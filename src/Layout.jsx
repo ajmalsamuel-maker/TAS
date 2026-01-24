@@ -25,14 +25,21 @@ export default function Layout({ children, currentPageName }) {
 
   const publicPages = [
     { name: 'Home', icon: Home, path: 'Home' },
+    { name: 'About', icon: Globe, path: 'About' },
+    { name: 'Pricing', icon: Activity, path: 'Pricing' },
   ];
 
   const userPages = [
-    { name: 'My Dashboard', icon: Activity, path: 'UserDashboard' }
+    { name: 'Dashboard', icon: Activity, path: 'UserDashboard' },
+    { name: 'Workflows', icon: Activity, path: 'Workflows' },
+    { name: 'Compliance', icon: Shield, path: 'UserCompliance' },
+    { name: 'Credentials', icon: Shield, path: 'UserCredentials' },
+    { name: 'Settings', icon: Users, path: 'UserSettings' }
   ];
 
   const adminPages = [
-    { name: 'Admin Dashboard', icon: Shield, path: 'AdminDashboard' }
+    { name: 'Admin Dashboard', icon: Shield, path: 'AdminDashboard' },
+    { name: 'Analytics', icon: Activity, path: 'AdminAnalytics' }
   ];
 
   const navigationPages = isAuthenticated 
@@ -170,9 +177,17 @@ export default function Layout({ children, currentPageName }) {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Powered By</h4>
-              <div className="space-y-2 text-sm">
-                <p className="text-cyan-300 font-semibold">CERTIZEN TECHNOLOGY</p>
-                <p className="text-cyan-300 font-semibold">FTS.MONEY</p>
+              <div className="space-y-3">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
+                  alt="Certizen Technology" 
+                  className="h-6 brightness-0 invert"
+                />
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
+                  alt="FTS.Money" 
+                  className="h-6 brightness-0 invert"
+                />
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ export default function OnboardingStep1({ formData, setFormData }) {
         <Label htmlFor="other_entity_name" className="text-base">Other Entity Name</Label>
         <Input
           id="other_entity_name"
-          value={formData.other_entity_name}
+          value={formData.other_entity_name || ''}
           onChange={(e) => updateField('other_entity_name', e.target.value)}
           placeholder="Trading name or DBA"
           className="mt-2"
@@ -73,7 +73,7 @@ export default function OnboardingStep1({ formData, setFormData }) {
           <Input
             id="website"
             type="url"
-            value={formData.website}
+            value={formData.website || ''}
             onChange={(e) => updateField('website', e.target.value)}
             placeholder="https://example.com"
             className="mt-2"

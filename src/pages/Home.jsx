@@ -73,8 +73,16 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-6 pb-16">
           <p className="text-blue-200 text-sm mb-4">Powered by</p>
           <div className="flex flex-wrap items-center gap-8">
-            <div className="text-2xl font-bold">CERTIZEN <span className="text-cyan-300">TECHNOLOGY</span></div>
-            <div className="text-2xl font-bold">fts.m<span className="text-cyan-400">♡</span>ney</div>
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
+              alt="Certizen Technology" 
+              className="h-8 md:h-10"
+            />
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
+              alt="FTS.Money" 
+              className="h-8 md:h-10"
+            />
           </div>
         </div>
       </section>
