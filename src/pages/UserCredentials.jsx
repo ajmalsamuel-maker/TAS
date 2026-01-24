@@ -3,15 +3,22 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Key, Shield, Globe, Copy, CheckCircle2, ExternalLink, Clock } from 'lucide-react';
+import { Key, Shield, Globe, Copy, CheckCircle2, ExternalLink, Clock, FileText } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function UserCredentials() {
   const [user, setUser] = useState(null);
   const [copied, setCopied] = useState('');
+  const [workflows, setWorkflows] = useState([]);
 
   useEffect(() => {
-    base44.auth.me().then(setUser);
+    base44.auth.me().then(async (userData) => {
+      setUser(userData);
+      if (userData?.id) {
+        const userWorkflows = await base44.entities.Workflow.filter({ user_id: userData.id });
+        setWorkflows(userWorkflows);
+      }
+    });
   }, []);
 
   const copyToClipboard = (text, label) => {
