@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
   ArrowRight, Shield, Zap, Globe, Lock, 
-  Network, CheckCircle2, TrendingUp, Layers
+  Network, CheckCircle2, TrendingUp, Layers,
+  Building2, FileCheck, Mail
 } from 'lucide-react';
 
 export default function Home() {
@@ -29,12 +31,12 @@ export default function Home() {
               <div className="flex flex-wrap gap-4 mb-8">
                 <Link to={createPageUrl('Onboarding')}>
                   <Button size="lg" className="bg-[#0044CC] text-white hover:bg-[#002D66] text-lg px-8 shadow-lg">
-                    Start Onboarding <ArrowRight className="ml-2 h-5 w-5" />
+                    Apply for LEI <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Link to={createPageUrl('About')}>
+                <Link to={createPageUrl('Contact')}>
                   <Button size="lg" variant="outline" className="border-[#0044CC] text-[#0044CC] hover:bg-blue-50 text-lg px-8">
-                    Learn More
+                    Contact Sales
                   </Button>
                 </Link>
               </div>
@@ -142,11 +144,115 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Core Services */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-2 mb-4">
+              <Network className="h-4 w-4 text-[#0044CC]" />
+              <span className="text-sm font-medium text-[#0044CC]">Unified Platform</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Complete Trust Services
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Everything you need for identity verification and compliance in one intelligent gateway
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <Card className="border-2 border-blue-100 hover:border-[#0044CC] transition-all hover:shadow-2xl group">
+              <CardHeader className="bg-gradient-to-br from-blue-50 to-cyan-50 border-b-2 border-blue-100">
+                <div className="w-14 h-14 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                  <Building2 className="h-7 w-7 text-white" />
+                </div>
+                <CardTitle className="text-2xl">KYB Verification</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <p className="text-gray-600 mb-4">
+                  Enterprise-grade business verification powered by Certizen and FTS.Money with global coverage.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    Real-time verification in 195+ countries
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    UBO & beneficial ownership checks
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    Regulatory compliance automation
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-blue-100 hover:border-[#0044CC] transition-all hover:shadow-2xl group">
+              <CardHeader className="bg-gradient-to-br from-blue-50 to-cyan-50 border-b-2 border-blue-100">
+                <div className="w-14 h-14 bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                  <Lock className="h-7 w-7 text-white" />
+                </div>
+                <CardTitle className="text-2xl">AML Screening</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <p className="text-gray-600 mb-4">
+                  Comprehensive anti-money laundering screening against global databases and watchlists.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    Global sanctions & PEP screening
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    Adverse media monitoring
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    Continuous watchlist updates
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-blue-100 hover:border-[#0044CC] transition-all hover:shadow-2xl group">
+              <CardHeader className="bg-gradient-to-br from-blue-50 to-cyan-50 border-b-2 border-blue-100">
+                <div className="w-14 h-14 bg-gradient-to-br from-indigo-600 to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                  <FileCheck className="h-7 w-7 text-white" />
+                </div>
+                <CardTitle className="text-2xl">vLEI Credentials</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <p className="text-gray-600 mb-4">
+                  Digital identity credentials based on LEI with cryptographic verification via KERI/ACDC.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    Cryptographically verifiable
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    OOR & ECR role credentials
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    Automated issuance & revocation
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Solution Section */}
       <section className="py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
-            The Solution - TAS
+            How TAS Works
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
