@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslation } from '../components/i18n/useTranslation';
 import { 
   ArrowRight, Shield, Zap, Globe, Lock, 
   Network, CheckCircle2, TrendingUp, Layers,
@@ -10,6 +11,7 @@ import {
 } from 'lucide-react';
 
 export default function Home() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       {/* Hero Section */}
@@ -22,21 +24,21 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
-                Trust Anchor Service
+                {t('hero.title')}
               </h1>
               <p className="text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed">
-                Global interoperability gateway for identity, compliance, and trust services with cryptographic data provenance
+                {t('hero.subtitle')}
               </p>
               
               <div className="flex flex-wrap gap-4 mb-8">
                 <Link to={createPageUrl('Onboarding')}>
                   <Button size="lg" className="bg-[#0066B3] text-white hover:bg-[#004C8C] text-lg px-8 shadow-lg">
-                    Apply for LEI <ArrowRight className="ml-2 h-5 w-5" />
+                    {t('hero.cta.apply')} <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link to={createPageUrl('Contact')}>
                   <Button size="lg" variant="outline" className="border-[#0066B3] text-[#0066B3] hover:bg-blue-50 text-lg px-8">
-                    Contact Sales
+                    {t('hero.cta.contact')}
                   </Button>
                 </Link>
               </div>
@@ -44,31 +46,31 @@ export default function Home() {
               <div className="flex items-center gap-8 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5" />
-                  <span>ISO Compliant</span>
+                  <span>{t('hero.badge.iso')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5" />
-                  <span>Enterprise Grade</span>
+                  <span>{t('hero.badge.enterprise')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Globe className="h-5 w-5" />
-                  <span>Global Coverage</span>
+                  <span>{t('hero.badge.global')}</span>
                 </div>
               </div>
             </div>
 
             <div className="relative">
               <div className="bg-white backdrop-blur-lg rounded-xl p-8 border border-gray-200 shadow-xl">
-                <h3 className="text-xl font-bold mb-6 text-gray-900">Enterprise Services</h3>
+                <h3 className="text-xl font-bold mb-6 text-gray-900">{t('hero.services.title')}</h3>
                 <div className="space-y-2.5">
-                  {['KYB Verification', 'AML Screening', 'LEI/vLEI Credentials', 'Digital Identity (DID)'].map((service, i) => (
+                  {['kyb', 'aml', 'vlei', 'did'].map((service, i) => (
                     <div key={i} className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
-                      <span className="text-base font-semibold text-gray-900">{service}</span>
+                      <span className="text-base font-semibold text-gray-900">{t(`hero.services.${service}`)}</span>
                     </div>
                   ))}
                 </div>
                 <p className="mt-6 text-xs text-gray-600 font-medium border-t pt-4">
-                  Cryptographic provenance • Regulatory compliant • API-first
+                  {t('hero.services.tagline')}
                 </p>
               </div>
             </div>
@@ -78,7 +80,7 @@ export default function Home() {
         {/* Powered By Section */}
         <div className="relative max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200 pt-12">
           <div>
-            <p className="text-gray-500 text-sm mb-8 text-center font-medium">POWERED BY</p>
+            <p className="text-gray-500 text-sm mb-8 text-center font-medium">{t('hero.poweredby')}</p>
             <div className="flex flex-wrap items-center justify-center gap-20">
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/4191d6eef_Untitleddesign5.png" 
@@ -99,7 +101,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-            The Challenge
+            {t('challenge.title')}
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6">
@@ -107,9 +109,9 @@ export default function Home() {
               <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4">
                 <Shield className="h-6 w-6 text-slate-600" />
               </div>
-              <h3 className="text-lg font-bold mb-3 text-gray-900">Fragmented Services</h3>
+              <h3 className="text-lg font-bold mb-3 text-gray-900">{t('challenge.fragmented.title')}</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Disconnected identity, compliance, and credential providers increase operational complexity and risk
+                {t('challenge.fragmented.desc')}
               </p>
             </div>
 
@@ -117,9 +119,9 @@ export default function Home() {
               <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-4">
                 <Network className="h-6 w-6 text-[#0066B3]" />
               </div>
-              <h3 className="text-lg font-bold mb-3 text-gray-900">Integration Burden</h3>
+              <h3 className="text-lg font-bold mb-3 text-gray-900">{t('challenge.integration.title')}</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Multiple vendor integrations, slow onboarding, and high maintenance costs limit scalability
+                {t('challenge.integration.desc')}
               </p>
             </div>
 
@@ -127,9 +129,9 @@ export default function Home() {
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <Zap className="h-6 w-6 text-[#0066B3]" />
               </div>
-              <h3 className="text-lg font-bold mb-3 text-gray-900">TAS Solution</h3>
+              <h3 className="text-lg font-bold mb-3 text-gray-900">{t('challenge.solution.title')}</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Unified API gateway with cryptographic provenance and seamless multi-provider orchestration
+                {t('challenge.solution.desc')}
               </p>
             </div>
           </div>
@@ -141,10 +143,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              Enterprise Trust Services
+              {t('services.title')}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Complete identity verification and compliance infrastructure via unified API
+              {t('services.subtitle')}
             </p>
           </div>
 
