@@ -30,12 +30,12 @@ export default function Home() {
               
               <div className="flex flex-wrap gap-4 mb-8">
                 <Link to={createPageUrl('Onboarding')}>
-                  <Button size="lg" className="bg-[#0044CC] text-white hover:bg-[#002D66] text-lg px-8 shadow-lg">
+                  <Button size="lg" className="bg-[#0066B3] text-white hover:bg-[#004C8C] text-lg px-8 shadow-lg">
                     Apply for LEI <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link to={createPageUrl('Contact')}>
-                  <Button size="lg" variant="outline" className="border-[#0044CC] text-[#0044CC] hover:bg-blue-50 text-lg px-8">
+                  <Button size="lg" variant="outline" className="border-[#0066B3] text-[#0066B3] hover:bg-blue-50 text-lg px-8">
                     Contact Sales
                   </Button>
                 </Link>
@@ -87,16 +87,16 @@ export default function Home() {
 
           <div className="mt-16 pt-12 border-t border-gray-200">
             <p className="text-gray-500 text-sm mb-8 text-center font-medium">POWERED BY</p>
-            <div className="flex flex-wrap items-center justify-center gap-16">
+            <div className="flex flex-wrap items-center justify-center gap-20">
               <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/4191d6eef_Untitleddesign5.png" 
                 alt="Certizen Technology" 
-                className="h-12 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                className="h-10 opacity-80 hover:opacity-100 transition-opacity"
               />
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
                 alt="FTS.Money" 
-                className="h-12 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                className="h-10 opacity-80 hover:opacity-100 transition-opacity"
               />
             </div>
           </div>
@@ -107,35 +107,35 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
-            The Problem - A Fragmented Digital World
+            The Challenge
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-8 rounded-xl bg-gradient-to-br from-red-50 to-orange-50 border border-red-100">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">⚠️</span>
+            <div className="text-center p-8 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 border-2 border-slate-200">
+              <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="h-8 w-8 text-slate-600" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900">The Challenge</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-900">Fragmented Services</h3>
               <p className="text-gray-700">
                 Businesses face a complex web of disconnected services for identity (KYB/KYC), compliance (AML), and credentials (vLEI)
               </p>
             </div>
 
-            <div className="text-center p-8 rounded-xl bg-gradient-to-br from-yellow-50 to-amber-50 border border-yellow-100">
-              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">✖️</span>
+            <div className="text-center p-8 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200">
+              <div className="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Network className="h-8 w-8 text-[#0066B3]" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900">The Result</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-900">Integration Complexity</h3>
               <p className="text-gray-700">
                 Slow onboarding, high integration costs, operational complexity, multiple compliance repositories, difficulty scaling across borders
               </p>
             </div>
 
-            <div className="text-center p-8 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">💡</span>
+            <div className="text-center p-8 rounded-xl bg-gradient-to-br from-cyan-50 to-cyan-100 border-2 border-cyan-200">
+              <div className="w-16 h-16 bg-cyan-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Zap className="h-8 w-8 text-cyan-700" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900">The Opportunity</h3>
+              <h3 className="text-xl font-bold mb-4 text-gray-900">Our Solution</h3>
               <p className="text-gray-700">
                 A unified, verifiable, interoperable layer to connect these ecosystems seamlessly
               </p>
@@ -149,8 +149,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-2 mb-4">
-              <Network className="h-4 w-4 text-[#0044CC]" />
-              <span className="text-sm font-medium text-[#0044CC]">Unified Platform</span>
+              <Network className="h-4 w-4 text-[#0066B3]" />
+              <span className="text-sm font-medium text-[#0066B3]">Unified Platform</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Complete Trust Services
@@ -163,7 +163,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <Card className="border-2 border-blue-100 hover:border-[#0044CC] transition-all hover:shadow-2xl group">
               <CardHeader className="bg-gradient-to-br from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-                <div className="w-14 h-14 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                <div className="w-14 h-14 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
                   <Building2 className="h-7 w-7 text-white" />
                 </div>
                 <CardTitle className="text-2xl">KYB Verification</CardTitle>
@@ -191,7 +191,7 @@ export default function Home() {
 
             <Card className="border-2 border-blue-100 hover:border-[#0044CC] transition-all hover:shadow-2xl group">
               <CardHeader className="bg-gradient-to-br from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-                <div className="w-14 h-14 bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                <div className="w-14 h-14 bg-gradient-to-br from-[#0088CC] to-[#0066B3] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
                   <Lock className="h-7 w-7 text-white" />
                 </div>
                 <CardTitle className="text-2xl">AML Screening</CardTitle>
@@ -219,7 +219,7 @@ export default function Home() {
 
             <Card className="border-2 border-blue-100 hover:border-[#0044CC] transition-all hover:shadow-2xl group">
               <CardHeader className="bg-gradient-to-br from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-                <div className="w-14 h-14 bg-gradient-to-br from-indigo-600 to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                <div className="w-14 h-14 bg-gradient-to-br from-[#004C8C] to-[#003366] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
                   <FileCheck className="h-7 w-7 text-white" />
                 </div>
                 <CardTitle className="text-2xl">vLEI Credentials</CardTitle>
@@ -256,9 +256,9 @@ export default function Home() {
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-blue-100">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <Layers className="h-6 w-6 text-[#0044CC]" />
+            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-blue-200">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-lg flex items-center justify-center mb-4">
+                <Layers className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">What it is</h3>
               <p className="text-gray-700">
@@ -266,9 +266,9 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-blue-100">
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-                <Zap className="h-6 w-6 text-cyan-600" />
+            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-blue-200">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-lg flex items-center justify-center mb-4">
+                <Zap className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Core Function</h3>
               <p className="text-gray-700">
@@ -276,9 +276,9 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-blue-100">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <Shield className="h-6 w-6 text-green-600" />
+            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-blue-200">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-lg flex items-center justify-center mb-4">
+                <Shield className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Key Principle</h3>
               <p className="text-gray-700">
@@ -319,25 +319,25 @@ export default function Home() {
                 phase: '1',
                 title: 'Request Routing',
                 desc: 'Client application sends API request to TAS. Platform performs validation, classification, and routing before passing to licensed services',
-                color: 'from-blue-500 to-blue-600'
+                color: 'from-[#0066B3] to-[#004080]'
               },
               {
                 phase: '2',
                 title: 'Parallel Execution',
                 desc: 'TAS executes required services (in parallel or sequence), coordinated by workflow automation engine. Automates KYB + AML + vLEI workflows',
-                color: 'from-cyan-500 to-cyan-600'
+                color: 'from-[#0088CC] to-[#0066B3]'
               },
               {
                 phase: '3',
                 title: 'Response Aggregation',
                 desc: 'TAS aggregates results into unified response. Client receives clean, normalized data regardless of provider involvement',
-                color: 'from-purple-500 to-purple-600'
+                color: 'from-[#006699] to-[#004C73]'
               },
               {
                 phase: '4',
                 title: 'Provenance Attestation',
                 desc: 'TAS cryptographically signs aggregated result and attaches complete, verifiable provenance record - the data passport',
-                color: 'from-pink-500 to-pink-600'
+                color: 'from-[#00556B] to-[#003D4D]'
               }
             ].map((item, i) => (
               <div key={i} className="relative">
@@ -368,19 +368,19 @@ export default function Home() {
                 title: 'Corporate Use Cases',
                 items: ['Vendor Onboarding', 'Partner Integration', 'Credential Issuance', 'Compliance Automation'],
                 color: 'from-blue-50 to-blue-100',
-                border: 'border-blue-200'
+                border: 'border-blue-300'
               },
               {
                 title: 'Web3 Business Operations',
                 items: ['DAO Legal Setup', 'DeFi Compliance', 'Cross-Chain Identity', 'NFT Authentication'],
                 color: 'from-cyan-50 to-cyan-100',
-                border: 'border-cyan-200'
+                border: 'border-cyan-300'
               },
               {
                 title: 'Supply Chain Integration',
                 items: ['Verified Identity', 'Automated Compliance', 'Secure Payments', 'Document Verification'],
-                color: 'from-purple-50 to-purple-100',
-                border: 'border-purple-200'
+                color: 'from-slate-50 to-slate-100',
+                border: 'border-slate-300'
               }
             ].map((useCase, i) => (
               <div key={i} className={`bg-gradient-to-br ${useCase.color} rounded-xl p-8 border-2 ${useCase.border}`}>
@@ -397,21 +397,21 @@ export default function Home() {
           </div>
 
           <div className="mt-16 bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-200">
-            <h3 className="text-2xl font-bold text-center mb-8 text-[#0044CC]">TAS Platform Enables</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { icon: Network, text: 'Unified API Access' },
-                { icon: Zap, text: 'Workflow Automation' },
-                { icon: Lock, text: 'Data Transformation' }
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-3">
-                    <item.icon className="h-8 w-8 text-[#0044CC]" />
-                  </div>
-                  <p className="font-semibold text-gray-800">{item.text}</p>
+          <h3 className="text-2xl font-bold text-center mb-8 text-[#0066B3]">TAS Platform Enables</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { icon: Network, text: 'Unified API Access' },
+              { icon: Zap, text: 'Workflow Automation' },
+              { icon: Lock, text: 'Data Transformation' }
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-full flex items-center justify-center mb-3">
+                  <item.icon className="h-8 w-8 text-white" />
                 </div>
-              ))}
-            </div>
+                <p className="font-semibold text-gray-800">{item.text}</p>
+              </div>
+            ))}
+          </div>
           </div>
         </div>
       </section>
@@ -437,7 +437,9 @@ export default function Home() {
                 tier: 'Business',
                 price: '$800',
                 features: ['Advanced workflows', 'Priority routing', '99.5% SLA uptime', '24/7 standard support', 'Enhanced provenance with audit reports'],
-                highlighted: true
+                highlighted: true,
+                gradientFrom: '#0066B3',
+                gradientTo: '#004080'
               },
               {
                 tier: 'Enterprise',
@@ -445,7 +447,7 @@ export default function Home() {
                 features: ['Dedicated infrastructure', 'Custom connectors', '99.9% SLA', '24/7 premium support', 'Full provenance with blockchain anchoring']
               }
             ].map((plan, i) => (
-              <div key={i} className={`rounded-2xl p-8 ${plan.highlighted ? 'bg-gradient-to-br from-[#0044CC] to-[#002D66] text-white shadow-2xl scale-105' : 'bg-gray-50 text-gray-900 border-2 border-gray-200'}`}>
+              <div key={i} className={`rounded-2xl p-8 ${plan.highlighted ? 'bg-gradient-to-br from-[#0066B3] to-[#004080] text-white shadow-2xl scale-105' : 'bg-gray-50 text-gray-900 border-2 border-blue-100'}`}>
                 <h3 className="text-2xl font-bold mb-2">{plan.tier}</h3>
                 <div className="mb-6">
                   <span className="text-4xl font-bold">{plan.price}</span>
@@ -454,12 +456,12 @@ export default function Home() {
                 <ul className="space-y-3">
                   {plan.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-2">
-                      <CheckCircle2 className={`h-5 w-5 mt-0.5 flex-shrink-0 ${plan.highlighted ? 'text-cyan-300' : 'text-green-600'}`} />
+                      <CheckCircle2 className={`h-5 w-5 mt-0.5 flex-shrink-0 ${plan.highlighted ? 'text-cyan-300' : 'text-[#0066B3]'}`} />
                       <span className="text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
-                <Button className={`w-full mt-8 ${plan.highlighted ? 'bg-white text-[#0044CC] hover:bg-blue-50' : 'bg-[#0044CC] text-white hover:bg-[#002D66]'}`}>
+                <Button className={`w-full mt-8 ${plan.highlighted ? 'bg-white text-[#0066B3] hover:bg-blue-50' : 'bg-[#0066B3] text-white hover:bg-[#004080]'}`}>
                   Get Started
                 </Button>
               </div>
@@ -469,7 +471,7 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white">
+      <section className="py-24 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
             Join the Digital Identity Revolution
@@ -493,7 +495,7 @@ export default function Home() {
           </div>
 
           <Link to={createPageUrl('Onboarding')}>
-            <Button size="lg" className="bg-white text-[#0044CC] hover:bg-blue-50 text-xl px-12 py-6">
+            <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50 text-xl px-12 py-6">
               Start Building with TAS
               <ArrowRight className="ml-2 h-6 w-6" />
             </Button>

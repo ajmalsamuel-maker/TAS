@@ -70,19 +70,18 @@ export default function Layout({ children, currentPageName }) {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-2">
               {navigationPages.map((page) => {
                 const Icon = page.icon;
                 const isActive = currentPageName === page.path;
                 return (
                   <Link key={page.path} to={createPageUrl(page.path)}>
-                    <div className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                    <div className={`px-4 py-2 rounded-lg transition-all ${
                       isActive 
-                        ? 'bg-white/20 text-white' 
+                        ? 'bg-white/20 text-white font-semibold' 
                         : 'text-blue-100 hover:bg-white/10 hover:text-white'
                     }`}>
-                      <Icon className="h-4 w-4" />
-                      <span className="font-medium">{page.name}</span>
+                      <span>{page.name}</span>
                     </div>
                   </Link>
                 );
@@ -193,18 +192,16 @@ export default function Layout({ children, currentPageName }) {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Powered By</h4>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/4191d6eef_Untitleddesign5.png" 
                   alt="Certizen Technology" 
-                  className="h-10 opacity-80 hover:opacity-100 transition-opacity"
-                  style={{filter: 'brightness(0) invert(1)'}}
+                  className="h-9 opacity-90 hover:opacity-100 transition-opacity"
                 />
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
                   alt="FTS.Money" 
-                  className="h-10 opacity-80 hover:opacity-100 transition-opacity"
-                  style={{filter: 'brightness(0) invert(1)'}}
+                  className="h-9 opacity-90 hover:opacity-100 transition-opacity"
                 />
               </div>
             </div>
