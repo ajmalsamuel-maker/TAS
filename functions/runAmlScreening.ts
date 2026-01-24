@@ -77,10 +77,11 @@ Deno.serve(async (req) => {
             status: screeningResult.risk_level === 'high' ? 'new' : 'resolved'
         });
 
-        // Update application status
+        // Update application status and TAS verification progress
         const newStatus = screeningResult.risk_level === 'high' ? 'under_review' : 'approved';
         await base44.entities.OnboardingApplication.update(applicationId, {
             status: newStatus,
+            tas_verification_status: newStatus === 'approved' ? 'aml_passed' : 'submitted',
             aml_result: screeningResult
         });
 

@@ -60,14 +60,15 @@ export default function ApplicationStatus() {
         );
     }
 
-    const statusSteps = [
-        { key: 'draft', label: 'Application Started', icon: Clock },
-        { key: 'submitted', label: 'Submitted', icon: Clock },
-        { key: 'under_review', label: 'AML & Verification', icon: Clock },
-        { key: 'approved', label: 'Approved', icon: CheckCircle2 }
+    const verificationSteps = [
+        { key: 'submitted', label: 'Application Submitted', icon: Clock },
+        { key: 'aml_passed', label: 'AML Screening Passed', icon: CheckCircle2 },
+        { key: 'facial_verified', label: 'Facial Verification Complete', icon: CheckCircle2 },
+        { key: 'complete', label: 'Credentials Issued', icon: CheckCircle2 }
     ];
 
-    const currentStepIndex = statusSteps.findIndex(step => step.key === application.status);
+    const currentVerificationStep = application.tas_verification_status || 'submitted';
+    const currentStepIndex = verificationSteps.findIndex(step => step.key === currentVerificationStep);
 
     const getStatusColor = (status) => {
         switch (status) {
@@ -111,10 +112,11 @@ export default function ApplicationStatus() {
                             Submitted on: {new Date(application.created_date).toLocaleDateString()}
                         </p>
 
-                        {/* Progress Steps */}
+                        {/* TAS Verification Progress */}
                         <div className="mt-8">
+                            <h3 className="font-semibold text-gray-900 mb-4">TAS Verification Status</h3>
                             <div className="space-y-4">
-                                {statusSteps.map((step, index) => {
+                                {verificationSteps.map((step, index) => {
                                     const isCompleted = index <= currentStepIndex;
                                     const isCurrent = index === currentStepIndex;
                                     const Icon = step.icon;
@@ -133,8 +135,11 @@ export default function ApplicationStatus() {
                                                     {step.label}
                                                 </p>
                                             </div>
-                                            {isCurrent && application.status === 'under_review' && (
+                                            {isCurrent && currentVerificationStep !== 'complete' && (
                                                 <Badge className="bg-blue-500 text-white">In Progress</Badge>
+                                            )}
+                                            {isCompleted && currentVerificationStep === 'complete' && (
+                                                <Badge className="bg-green-500 text-white">Complete</Badge>
                                             )}
                                         </div>
                                     );
@@ -158,18 +163,31 @@ export default function ApplicationStatus() {
                             </div>
                         )}
 
-                        {application.status === 'approved' && application.generated_lei && (
+                        {application.tas_verification_status === 'complete' && application.generated_lei && (
                             <div className="mt-8 bg-green-50 border-l-4 border-green-500 p-4 rounded">
-                                <h3 className="font-semibold text-gray-900 mb-3">Your Credentials</h3>
-                                <div className="space-y-2">
+                                <h3 className="font-semibold text-gray-900 mb-4">Global Credentials Issued</h3>
+                                <div className="space-y-4">
                                     <div>
-                                        <p className="text-xs text-gray-600">LEI (Legal Entity Identifier)</p>
-                                        <p className="font-mono text-lg text-gray-900">{application.generated_lei}</p>
+                                        <p className="text-xs font-semibold text-gray-600 uppercase">LEI (Legal Entity Identifier)</p>
+                                        <p className="font-mono text-sm bg-white p-2 rounded border border-gray-200 mt-1">{application.generated_lei}</p>
+                                        <p className="text-xs text-gray-500 mt-1">Global standard identifier recognized worldwide</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-gray-600">vLEI (verifiable LEI)</p>
-                                        <p className="font-mono text-lg text-gray-900">{application.generated_vlei}</p>
+                                        <p className="text-xs font-semibold text-gray-600 uppercase">vLEI (Verifiable LEI)</p>
+                                        <p className="font-mono text-sm bg-white p-2 rounded border border-gray-200 mt-1">{application.generated_vlei}</p>
+                                        <p className="text-xs text-gray-500 mt-1">Cryptographically signed credential proving KYB/AML verification</p>
                                     </div>
+                                    {application.vlei_credential && (
+                                        <div className="bg-white p-3 rounded border border-green-200 text-xs">
+                                            <p className="font-semibold text-gray-900 mb-2">Verification Chain:</p>
+                                            <ul className="space-y-1 text-gray-700">
+                                                <li>✓ KYB Verification Completed</li>
+                                                <li>✓ AML Screening Passed</li>
+                                                <li>✓ Facial Verification Completed</li>
+                                                <li>✓ Issued by: Trust Anchor Service (TAS)</li>
+                                            </ul>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )}

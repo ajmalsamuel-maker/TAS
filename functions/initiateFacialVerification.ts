@@ -85,6 +85,7 @@ Deno.serve(async (req) => {
         // Update application to mark facial verification in progress
         await base44.entities.OnboardingApplication.update(applicationId, {
             status: 'under_review',
+            tas_verification_status: 'facial_verified',
             facial_verification_initiated: new Date().toISOString(),
             facia_session_id: sessionData.session_id
         });
