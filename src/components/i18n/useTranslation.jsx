@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react';
-import { supabase, subscribeToTable } from '../lib/supabaseClient';
+import { base44 } from '@/api/base44Client';
 import IntlMessageFormat from 'intl-messageformat';
 
 const TranslationContext = createContext();
@@ -151,12 +151,10 @@ export function TranslationProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    // Real-time translation updates from Supabase
-    if (!supabase) return;
-    
-    const unsubscribe = subscribeToTable('translations', (payload) => {
-      if (payload.eventType === 'INSERT' || payload.eventType === 'UPDATE') {
-        const translation = payload.new;
+    // Real-time translation updates from Base44
+    const unsubscribe = base44.entities.Translation.subscribe((event) => {
+      if (event.type === 'create' || event.type === 'update') {
+        const translation = event.data;
         setTranslations(prev => ({
           ...prev,
           [translation.language]: {
@@ -178,20 +176,10 @@ export function TranslationProvider({ children }) {
 
   const loadUserLanguagePreference = async () => {
     try {
-      if (supabase) {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          const { data: profile } = await supabase
-            .from('user_profiles')
-            .select('language')
-            .eq('user_id', user.id)
-            .single();
-          
-          if (profile?.language) {
-            setCurrentLanguage(profile.language);
-            return;
-          }
-        }
+      const user = await base44.auth.me();
+      if (user?.language) {
+        setCurrentLanguage(user.language);
+        return;
       }
     } catch (error) {
       console.error('Failed to load user language preference:', error);
@@ -204,17 +192,7 @@ export function TranslationProvider({ children }) {
 
   const loadTranslations = async () => {
     try {
-      if (!supabase) {
-        console.warn('Supabase not configured, using empty translations');
-        setLoading(false);
-        return;
-      }
-
-      const { data: allTranslations, error } = await supabase
-        .from('translations')
-        .select('*');
-
-      if (error) throw error;
+      const allTranslations = await base44.entities.Translation.list();
 
       const translationMap = {};
       allTranslations?.forEach(t => {
@@ -235,20 +213,7 @@ export function TranslationProvider({ children }) {
   const changeLanguage = async (lang) => {
     setCurrentLanguage(lang);
     try {
-      if (supabase) {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          await supabase
-            .from('user_profiles')
-            .upsert({ 
-              user_id: user.id, 
-              language: lang,
-              updated_at: new Date().toISOString()
-            }, {
-              onConflict: 'user_id'
-            });
-        }
-      }
+      await base44.auth.updateMe({ language: lang });
     } catch (error) {
       console.error('Failed to save language preference:', error);
     }
