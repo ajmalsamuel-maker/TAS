@@ -274,6 +274,38 @@ export default function Onboarding() {
             Upon approval, your LEI and vLEI credentials will be automatically issued.
           </p>
         </div>
+
+        {/* Back Button */}
+        <div className="mt-8 text-center">
+          <Button
+            variant="ghost"
+            onClick={() => {
+              setShowForm(false);
+              setCurrentStep(1);
+              setFormData({
+                legal_name: '',
+                entity_category: '',
+                email: '',
+                apply_purpose: '',
+                legal_representative_name: '',
+                contact_person_name: '',
+                contact_person_tel: '',
+                contact_person_email: '',
+                legal_address: {},
+                headquarters_address: {},
+                entity_legal_form: '',
+                business_registry_name: '',
+                unique_business_id: '',
+                number_of_employees: '1',
+                document_urls: []
+              });
+            }}
+            className="text-[#0066B3] hover:bg-blue-50"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Overview
+          </Button>
+        </div>
       </div>
     </div>
   );
