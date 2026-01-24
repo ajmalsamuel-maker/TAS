@@ -12,6 +12,7 @@ import ProvidersManagement from '../components/admin/ProvidersManagement';
 import WorkflowsOverview from '../components/admin/WorkflowsOverview';
 import TranslationsManagement from '../components/admin/TranslationsManagement';
 import OnboardingApplications from '../components/admin/OnboardingApplications';
+import UserManagement from '../components/admin/UserManagement';
 
 export default function AdminDashboard() {
   const { data: providers = [] } = useQuery({
@@ -94,6 +95,9 @@ export default function AdminDashboard() {
             <TabsTrigger value="workflows" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Workflows
             </TabsTrigger>
+            <TabsTrigger value="users" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Users
+            </TabsTrigger>
             <TabsTrigger value="translations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Translations
             </TabsTrigger>
@@ -109,6 +113,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="workflows">
             <WorkflowsOverview workflows={workflows} />
+          </TabsContent>
+
+          <TabsContent value="users">
+            <UserManagement />
           </TabsContent>
 
           <TabsContent value="translations">
