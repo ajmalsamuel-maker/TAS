@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, Activity, Users, Zap, DollarSign, Globe } from 'lucide-react';
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, FunnelChart, Funnel } from 'recharts';
 
 export default function AdminAnalytics() {
   const { data: workflows = [] } = useQuery({
@@ -45,6 +45,21 @@ export default function AdminAnalytics() {
     requests: p.total_requests || Math.floor(Math.random() * 20000) + 5000,
     avgTime: p.avg_response_time_ms || Math.floor(Math.random() * 100) + 50
   }));
+
+  // Onboarding conversion funnel
+  const totalApplications = applications.length;
+  const submitted = applications.filter(a => a.status === 'submitted').length;
+  const underReview = applications.filter(a => a.status === 'under_review').length;
+  const approved = applications.filter(a => a.status === 'approved').length;
+  const facialVerified = applications.filter(a => a.tas_verification_status === 'facial_verified' || a.tas_verification_status === 'complete').length;
+
+  const conversionFunnel = [
+    { name: 'Applications Started', value: totalApplications, fill: '#8B5CF6' },
+    { name: 'Submitted', value: submitted, fill: '#0044CC' },
+    { name: 'Under Review', value: underReview, fill: '#F59E0B' },
+    { name: 'Approved', value: approved, fill: '#10B981' },
+    { name: 'Facial Verified', value: facialVerified, fill: '#06B6D4' }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
@@ -143,6 +158,45 @@ export default function AdminAnalytics() {
                 <Bar yAxisId="right" dataKey="uptime" fill="#10B981" name="Uptime %" />
               </BarChart>
             </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Onboarding Conversion Funnel */}
+        <Card className="mb-6 border-2 border-blue-100 shadow-lg">
+          <CardHeader className="border-b-2 border-blue-100 bg-gradient-to-r from-purple-50 to-pink-50">
+            <CardTitle className="flex items-center gap-2">
+              <Activity className="h-6 w-6 text-purple-600" />
+              LEI Onboarding Conversion Funnel
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <ResponsiveContainer width="100%" height={350}>
+              <FunnelChart>
+                <Tooltip />
+                <Funnel
+                  dataKey="value"
+                  data={conversionFunnel}
+                  isAnimationActive
+                >
+                  {conversionFunnel.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Funnel>
+              </FunnelChart>
+            </ResponsiveContainer>
+            <div className="mt-6 grid md:grid-cols-5 gap-4 text-center">
+              {conversionFunnel.map((stage, i) => (
+                <div key={i} className="p-3 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-600 mb-1">{stage.name}</p>
+                  <p className="text-2xl font-bold" style={{ color: stage.fill }}>{stage.value}</p>
+                  {totalApplications > 0 && (
+                    <p className="text-xs text-gray-500 mt-1">
+                      {Math.round((stage.value / totalApplications) * 100)}%
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
           </CardContent>
         </Card>
 
