@@ -145,28 +145,96 @@ export default function UserManagement() {
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
                   <TableHead>Role</TableHead>
-                  <TableHead>Joined</TableHead>
+                  <TableHead>Permissions</TableHead>
+                  <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {users.map((user) => (
-                  <TableRow key={user.id}>
-                    <TableCell className="font-medium">{user.full_name}</TableCell>
-                    <TableCell className="flex items-center gap-2">
-                      <Mail className="h-4 w-4 text-gray-400" />
-                      {user.email}
-                    </TableCell>
-                    <TableCell>
-                      <Badge className={user.role === 'admin' ? 'bg-purple-500' : 'bg-blue-500'}>
-                        {user.role === 'admin' && <Shield className="h-3 w-3 mr-1" />}
-                        {user.role}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-gray-500">
-                      {new Date(user.created_date).toLocaleDateString()}
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {users.map((user) => {
+                  const isEditing = editingUserId === user.id;
+                  const userRole = user.user_role || user.role || 'user';
+                  const roleColors = {
+                    admin: 'bg-red-500',
+                    editor: 'bg-blue-500',
+                    viewer: 'bg-amber-500',
+                    user: 'bg-gray-500'
+                  };
+                  return (
+                    <TableRow key={user.id}>
+                      <TableCell className="font-medium">{user.full_name}</TableCell>
+                      <TableCell className="flex items-center gap-2">
+                        <Mail className="h-4 w-4 text-gray-400" />
+                        {user.email}
+                      </TableCell>
+                      <TableCell>
+                        {isEditing ? (
+                          <Select value={editingRole} onValueChange={setEditingRole}>
+                            <SelectTrigger className="w-32">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="admin">Admin</SelectItem>
+                              <SelectItem value="editor">Editor</SelectItem>
+                              <SelectItem value="viewer">Viewer</SelectItem>
+                              <SelectItem value="user">User</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        ) : (
+                          <Badge className={`${roleColors[userRole] || 'bg-gray-500'} text-white`}>
+                            {userRole === 'admin' && <Shield className="h-3 w-3 mr-1" />}
+                            {userRole}
+                          </Badge>
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex flex-wrap gap-1">
+                          {(user.permissions || ROLE_PERMISSIONS[userRole] || []).slice(0, 2).map((perm, i) => (
+                            <span key={i} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                              {perm.replace(/_/g, ' ')}
+                            </span>
+                          ))}
+                          {(user.permissions || ROLE_PERMISSIONS[userRole] || []).length > 2 && (
+                            <span className="text-xs text-gray-500">+{(user.permissions || ROLE_PERMISSIONS[userRole] || []).length - 2}</span>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        {isEditing ? (
+                          <div className="flex gap-2">
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => updateRoleMutation.mutate({ userId: user.id, newRole: editingRole })}
+                              className="text-green-600 hover:text-green-700"
+                            >
+                              <Check className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => setEditingUserId(null)}
+                              className="text-red-600 hover:text-red-700"
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        ) : (
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => {
+                              setEditingUserId(user.id);
+                              setEditingRole(userRole);
+                            }}
+                            className="text-blue-600 hover:text-blue-700"
+                          >
+                            <Edit2 className="h-4 w-4" />
+                          </Button>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           )}
