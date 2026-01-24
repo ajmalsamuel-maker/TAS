@@ -63,12 +63,8 @@ export default function Layout({ children, currentPageName }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link to={createPageUrl(isAuthenticated ? (isAdmin ? 'AdminDashboard' : 'UserDashboard') : 'Home')} className="flex items-center gap-2">
+            <Link to={createPageUrl(isAuthenticated ? (isAdmin ? 'AdminDashboard' : 'UserDashboard') : 'Home')} className="flex items-center">
               <TASLogo size="md" />
-              <div>
-                <span className="text-xl font-bold">TAS</span>
-                <p className="text-xs text-blue-200">Trust Anchor Service</p>
-              </div>
             </Link>
 
             {/* Desktop Navigation */}
