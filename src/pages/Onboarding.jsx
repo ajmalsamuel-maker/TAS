@@ -75,6 +75,99 @@ export default function Onboarding() {
 
   const CurrentStepComponent = steps[currentStep - 1].component;
 
+  if (!showForm) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Get Started with Trust Anchor Service
+            </h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Complete a comprehensive LEI and Business Onboarding process to unlock full access to identity verification, compliance screening, and digital credentials
+            </p>
+          </div>
+
+          {/* Benefits Section */}
+          <div className="grid md:grid-cols-5 gap-4 mb-16">
+            <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                <Shield className="h-6 w-6 text-[#0066B3]" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">KYB Verification</h3>
+              <p className="text-sm text-gray-600">Global business verification with UBO checks</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                <Zap className="h-6 w-6 text-[#0066B3]" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">AML Screening</h3>
+              <p className="text-sm text-gray-600">Sanctions, PEP & adverse media screening</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                <FileCheck className="h-6 w-6 text-[#0066B3]" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">LEI Issuance</h3>
+              <p className="text-sm text-gray-600">Automatic LEI generation upon approval</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                <FileCheck className="h-6 w-6 text-[#0066B3]" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">vLEI Credentials</h3>
+              <p className="text-sm text-gray-600">Digital identity with KERI verification</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                <Clock className="h-6 w-6 text-[#0066B3]" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">Fast Processing</h3>
+              <p className="text-sm text-gray-600">Reviewed within 2-4 business days</p>
+            </div>
+          </div>
+
+          {/* Process Overview */}
+          <div className="bg-white rounded-xl border-2 border-blue-100 p-8 mb-12 shadow-lg">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Onboarding Process</h2>
+            <div className="grid md:grid-cols-4 gap-6">
+              {[
+                { num: 1, title: 'Basic Information', desc: 'Legal name, entity type, and business purpose' },
+                { num: 2, title: 'Contact & Address', desc: 'Legal representatives and office locations' },
+                { num: 3, title: 'Business Details', desc: 'Registration info, UBO, and employee count' },
+                { num: 4, title: 'Document Upload', desc: 'Submit business certificates and verification' }
+              ].map((step) => (
+                <div key={step.num} className="text-center">
+                  <div className="w-12 h-12 bg-[#0066B3] text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-3">
+                    {step.num}
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-600">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="text-center">
+            <Button 
+              onClick={() => setShowForm(true)}
+              size="lg" 
+              className="bg-[#0066B3] hover:bg-[#004C8C] text-white text-lg px-10 py-6 shadow-lg"
+            >
+              Begin Onboarding <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 py-12">
       <div className="max-w-4xl mx-auto px-6">
