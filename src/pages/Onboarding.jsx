@@ -12,6 +12,7 @@ import OnboardingStep1 from '../components/onboarding/OnboardingStep1';
 import OnboardingStep2 from '../components/onboarding/OnboardingStep2';
 import OnboardingStep3 from '../components/onboarding/OnboardingStep3';
 import OnboardingStep4 from '../components/onboarding/OnboardingStep4';
+import OnboardingStep5 from '../components/onboarding/OnboardingStep5';
 
 export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -37,14 +38,15 @@ export default function Onboarding() {
     document_urls: []
   });
 
-  const totalSteps = 4;
+  const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
 
   const steps = [
     { number: 1, title: 'Basic Information', component: OnboardingStep1 },
     { number: 2, title: 'Contact & Address', component: OnboardingStep2 },
     { number: 3, title: 'Business Details', component: OnboardingStep3 },
-    { number: 4, title: 'Documents & Review', component: OnboardingStep4 }
+    { number: 4, title: 'Documents & Review', component: OnboardingStep4 },
+    { number: 5, title: 'Facial Verification', component: OnboardingStep5 }
   ];
 
   const handleNext = () => {
@@ -156,12 +158,13 @@ export default function Onboarding() {
           {/* Process Overview */}
           <div className="bg-white rounded-xl border-2 border-blue-100 p-8 mb-12 shadow-lg">
             <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Onboarding Process</h2>
-            <div className="grid md:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-5 gap-4">
               {[
                 { num: 1, title: 'Basic Information', desc: 'Legal name, entity type, and business purpose' },
                 { num: 2, title: 'Contact & Address', desc: 'Legal representatives and office locations' },
                 { num: 3, title: 'Business Details', desc: 'Registration info, UBO, and employee count' },
-                { num: 4, title: 'Document Upload', desc: 'Submit business certificates and verification' }
+                { num: 4, title: 'Document Upload', desc: 'Submit business certificates and verification' },
+                { num: 5, title: 'Facial Verification', desc: 'Liveness test before LEI issuance' }
               ].map((step) => (
                 <div key={step.num} className="text-center">
                   <div className="w-12 h-12 bg-[#0066B3] text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-3">
@@ -284,11 +287,11 @@ export default function Onboarding() {
                   {isSubmitting || isRunningAml ? (
                     <>
                       <Loader className="mr-2 h-4 w-4 animate-spin" />
-                      {isRunningAml ? 'Running AML...' : 'Submitting...'}
+                      {isRunningAml ? 'Initiating Verification...' : 'Processing...'}
                     </>
                   ) : (
                     <>
-                      Submit Application
+                      Complete & Verify
                       <CheckCircle2 className="ml-2 h-4 w-4" />
                     </>
                   )}
@@ -299,11 +302,19 @@ export default function Onboarding() {
         </Card>
 
         {/* Info Banner */}
-        <div className="mt-8 bg-blue-50 border-l-4 border-[#0044CC] p-6 rounded-lg">
-          <p className="text-sm text-gray-700">
-            <strong>Note:</strong> Fields marked with * are required. Your application will be reviewed within 2-4 business days. 
-            Upon approval, your LEI and vLEI credentials will be automatically issued.
-          </p>
+        <div className="mt-8 space-y-4">
+          <div className="bg-blue-50 border-l-4 border-[#0044CC] p-6 rounded-lg">
+            <p className="text-sm text-gray-700">
+              <strong>Note:</strong> Fields marked with * are required. Your application will be reviewed within 2-4 business days.
+            </p>
+          </div>
+          {currentStep === totalSteps && (
+            <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-lg">
+              <p className="text-sm text-amber-900">
+                <strong>⚠️ Important:</strong> Complete facial verification (liveness test) to proceed with LEI and vLEI issuance. This is the final step before credentials are issued.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Back Button */}
