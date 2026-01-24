@@ -24,7 +24,7 @@ export default function Layout({ children, currentPageName }) {
   const isAdmin = user?.role === 'admin';
   const isAuthenticated = !!user;
 
-  // Marketing Website (Public)
+  // Marketing Website (Public) - ONLY these pages for non-authenticated users
   const marketingPages = [
     { name: 'Home', icon: Home, path: 'Home' },
     { name: 'Solutions', icon: Shield, path: 'About' },
@@ -32,7 +32,7 @@ export default function Layout({ children, currentPageName }) {
     { name: 'Contact', icon: Mail, path: 'Contact' },
   ];
 
-  // User Portal (Authenticated Users)
+  // User Portal Navigation (Authenticated Regular Users)
   const userPortalPages = [
     { name: 'Dashboard', icon: Activity, path: 'UserDashboard' },
     { name: 'Workflows', icon: Activity, path: 'Workflows' },
@@ -41,17 +41,19 @@ export default function Layout({ children, currentPageName }) {
     { name: 'Settings', icon: Settings, path: 'UserSettings' }
   ];
 
-  // Admin Portal (Admins Only)
+  // Admin Portal Navigation (Admins Only)
   const adminPortalPages = [
-    { name: 'Admin', icon: Shield, path: 'AdminDashboard' },
-    { name: 'Analytics', icon: BarChart, path: 'AdminAnalytics' }
+    { name: 'Dashboard', icon: Shield, path: 'AdminDashboard' },
+    { name: 'Analytics', icon: BarChart, path: 'AdminAnalytics' },
+    { name: 'Users', icon: Users, path: 'UserDashboard' },
+    { name: 'Settings', icon: Settings, path: 'UserSettings' }
   ];
 
-  // Determine navigation based on auth status
+  // CLEAR SEPARATION: Marketing vs Portal navigation
   const navigationPages = !isAuthenticated 
     ? marketingPages 
     : isAdmin 
-      ? [...adminPortalPages, ...userPortalPages]
+      ? adminPortalPages
       : userPortalPages;
 
   return (
@@ -88,23 +90,18 @@ export default function Layout({ children, currentPageName }) {
               })}
 
               {!isAuthenticated && (
-                <>
+                <div className="flex items-center gap-2 ml-4 pl-4 border-l border-white/20">
                   <Link to={createPageUrl('UserLogin')}>
                     <Button variant="ghost" className="text-white hover:bg-white/10">
-                      User Login
-                    </Button>
-                  </Link>
-                  <Link to={createPageUrl('AdminLogin')}>
-                    <Button variant="ghost" className="text-white hover:bg-white/10">
-                      Admin
+                      Sign In
                     </Button>
                   </Link>
                   <Link to={createPageUrl('Onboarding')}>
-                    <Button className="bg-cyan-500 hover:bg-cyan-600 text-white">
+                    <Button className="bg-white text-[#0066B3] hover:bg-blue-50 font-semibold">
                       Get Started
                     </Button>
                   </Link>
-                </>
+                </div>
               )}
 
               {isAuthenticated && (
@@ -192,17 +189,13 @@ export default function Layout({ children, currentPageName }) {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Powered By</h4>
-              <div className="space-y-6">
-                <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/4191d6eef_Untitleddesign5.png" 
-                  alt="Certizen Technology" 
-                  className="h-9 opacity-90 hover:opacity-100 transition-opacity"
-                />
-                <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
-                  alt="FTS.Money" 
-                  className="h-9 opacity-90 hover:opacity-100 transition-opacity"
-                />
+              <div className="space-y-3 text-blue-200">
+                <p className="text-sm hover:text-white transition-colors cursor-pointer">
+                  Certizen Technology
+                </p>
+                <p className="text-sm hover:text-white transition-colors cursor-pointer">
+                  FTS.Money
+                </p>
               </div>
             </div>
           </div>

@@ -91,7 +91,7 @@ export default function Home() {
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/4191d6eef_Untitleddesign5.png" 
                 alt="Certizen Technology" 
-                className="h-8 opacity-60 hover:opacity-90 transition-opacity"
+                className="h-6 opacity-50 hover:opacity-80 transition-opacity"
               />
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
