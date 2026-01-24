@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
+import { createPageUrl } from '../utils';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
   Shield, CheckCircle2, AlertTriangle, Clock,
-  TrendingUp, FileText, Globe, Key
+  TrendingUp, FileText, Globe, Key, ArrowRight, AlertCircle
 } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import StatsCard from '../components/dashboard/StatsCard';
@@ -36,6 +38,15 @@ export default function UserDashboard() {
     enabled: !!user,
     initialData: []
   });
+
+  const { data: applications = [] } = useQuery({
+    queryKey: ['user-applications'],
+    queryFn: () => base44.entities.OnboardingApplication.filter({ created_by: user?.email }),
+    enabled: !!user,
+    initialData: []
+  });
+
+  const currentApplication = applications[applications.length - 1] || null;
 
   if (loading) {
     return (
@@ -71,6 +82,62 @@ export default function UserDashboard() {
           </h1>
           <p className="text-gray-600">Your compliance dashboard and trust services overview</p>
         </div>
+
+        {/* Onboarding Status Section */}
+        {!currentApplication ? (
+          <Card className="mb-8 border-2 border-blue-500 bg-gradient-to-r from-blue-50 to-cyan-50 shadow-lg">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900 mb-2">Get Your LEI & Digital Credentials</h2>
+                  <p className="text-gray-600 mb-4">
+                    Start your business onboarding to receive your Legal Entity Identifier (LEI) and vLEI credentials. Takes 5-10 minutes to complete.
+                  </p>
+                  <div className="flex gap-2">
+                    <Badge className="bg-blue-600">Step 1 of 5</Badge>
+                    <Badge variant="outline">Draft</Badge>
+                  </div>
+                </div>
+                <Button 
+                  onClick={() => window.location.href = createPageUrl('Onboarding')}
+                  className="bg-[#0044CC] hover:bg-[#002D66] text-white px-8 py-6 h-auto flex-shrink-0"
+                >
+                  Start Onboarding <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card className="mb-8 border-2 border-amber-500 bg-gradient-to-r from-amber-50 to-orange-50 shadow-lg">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900 mb-2">Continue Your Onboarding</h2>
+                  <p className="text-gray-600 mb-4">
+                    You have an incomplete application. Pick up where you left off!
+                  </p>
+                  <div className="flex gap-2 items-center">
+                    <Badge className="bg-amber-600">
+                      Step {currentApplication.tas_verification_status === 'complete' ? 5 : 
+                            currentApplication.status === 'under_review' ? 4 :
+                            currentApplication.status === 'submitted' ? 2 : 1} of 5
+                    </Badge>
+                    <Badge variant="outline">{currentApplication.status}</Badge>
+                    {currentApplication.status === 'approved' && (
+                      <Badge className="bg-green-600">Ready for Credentials</Badge>
+                    )}
+                  </div>
+                </div>
+                <Button 
+                  onClick={() => window.location.href = createPageUrl('Onboarding')}
+                  className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-6 h-auto flex-shrink-0"
+                >
+                  Continue <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Stats Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
