@@ -126,6 +126,10 @@ export default function AdminDashboard() {
           <TabsContent value="translations">
             <TranslationsManagement />
           </TabsContent>
+
+          <TabsContent value="audit">
+            <AuditLogsManagement />
+          </TabsContent>
         </Tabs>
       </div>
     </div>
