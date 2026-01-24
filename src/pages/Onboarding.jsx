@@ -13,6 +13,7 @@ import OnboardingStep4 from '../components/onboarding/OnboardingStep4';
 
 export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     legal_name: '',
     entity_category: '',
