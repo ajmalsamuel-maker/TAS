@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { UserPlus, Mail, Shield, Edit2, Check, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { logAction, ACTION_TYPES } from '../audit/auditLogger';
+import { createNotification, NOTIFICATION_TYPES } from '../notifications/notificationService';
 
 const ROLE_PERMISSIONS = {
   admin: ['manage_users', 'manage_providers', 'manage_workflows', 'view_analytics', 'manage_translations'],
