@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
-import { CheckCircle2, ArrowRight, Zap, Shield, Globe } from 'lucide-react';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function Pricing() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
-      <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-20">
+      <section className="bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold mb-6">Simple, Transparent Pricing</h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
@@ -35,8 +35,7 @@ export default function Pricing() {
                   'Business-hours email support',
                   'Up to 10,000 API calls/month'
                 ],
-                cta: 'Start Free Trial',
-                color: 'from-blue-500 to-blue-600'
+                cta: 'Start Free Trial'
               },
               {
                 tier: 'Business',
@@ -53,7 +52,6 @@ export default function Pricing() {
                   'Custom workflow templates'
                 ],
                 cta: 'Get Started',
-                color: 'from-[#0044CC] to-[#002D66]',
                 highlighted: true
               },
               {
@@ -71,32 +69,29 @@ export default function Pricing() {
                   'Dedicated account manager',
                   'Regulatory compliance packs'
                 ],
-                cta: 'Contact Sales',
-                color: 'from-purple-500 to-purple-600'
+                cta: 'Contact Sales'
               }
             ].map((plan, i) => (
-              <div key={i} className={`rounded-2xl bg-white shadow-xl border-2 ${plan.highlighted ? 'border-[#0044CC] ring-4 ring-blue-100 scale-105' : 'border-gray-200'} transition-all hover:shadow-2xl`}>
-                <div className={`bg-gradient-to-r ${plan.color} text-white p-6 rounded-t-2xl`}>
+              <div key={i} className={`rounded-2xl ${plan.highlighted ? 'bg-gradient-to-br from-[#0066B3] to-[#004080] text-white shadow-2xl scale-105 border-2 border-blue-300' : 'bg-white text-gray-900 border-2 border-blue-100'} transition-all hover:shadow-2xl`}>
+                <div className="p-8">
                   <h3 className="text-2xl font-bold mb-2">{plan.tier}</h3>
                   <div className="mb-2">
                     <span className="text-5xl font-bold">{plan.price}</span>
-                    <span className="text-blue-100">/month</span>
+                    <span className={plan.highlighted ? 'text-blue-200' : 'text-gray-600'}>/month</span>
                   </div>
-                  <p className="text-sm text-blue-100">{plan.description}</p>
-                </div>
-                
-                <div className="p-6">
+                  <p className={`text-sm mb-8 ${plan.highlighted ? 'text-blue-100' : 'text-gray-600'}`}>{plan.description}</p>
+                  
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, j) => (
                       <li key={j} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{feature}</span>
+                        <CheckCircle2 className={`h-5 w-5 flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-cyan-300' : 'text-[#0066B3]'}`} />
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                   
                   <Link to={createPageUrl('Onboarding')}>
-                    <Button className={`w-full bg-gradient-to-r ${plan.color} text-white hover:opacity-90`}>
+                    <Button className={`w-full ${plan.highlighted ? 'bg-white text-[#0066B3] hover:bg-blue-50' : 'bg-[#0066B3] text-white hover:bg-[#004080]'}`}>
                       {plan.cta}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -127,7 +122,7 @@ export default function Pricing() {
                   ].map((item, i) => (
                     <tr key={i} className="border-b border-gray-100 hover:bg-blue-50">
                       <td className="py-4 px-4 font-medium text-gray-900">{item.service}</td>
-                      <td className="py-4 px-4 text-[#0044CC] font-semibold">{item.rate}</td>
+                      <td className="py-4 px-4 text-[#0066B3] font-semibold">{item.rate}</td>
                       <td className="py-4 px-4 text-sm text-gray-600">{item.desc}</td>
                     </tr>
                   ))}
@@ -137,21 +132,21 @@ export default function Pricing() {
           </div>
 
           {/* Provider Fees Notice */}
-          <div className="mt-12 bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg">
+          <div className="mt-12 bg-blue-50 border-l-4 border-[#0066B3] p-6 rounded-lg">
             <h4 className="font-bold text-gray-900 mb-2">Regulated Provider Fees</h4>
             <p className="text-sm text-gray-700 mb-4">
               The following services are billed separately by licensed providers:
             </p>
             <div className="grid md:grid-cols-3 gap-4 text-sm">
-              <div className="bg-white rounded-lg p-3 border border-yellow-200">
+              <div className="bg-white rounded-lg p-3 border border-blue-200">
                 <p className="font-semibold text-gray-900">Certizen Technology</p>
                 <p className="text-gray-600">vLEI issuance, DID creation, trust credentialing</p>
               </div>
-              <div className="bg-white rounded-lg p-3 border border-yellow-200">
+              <div className="bg-white rounded-lg p-3 border border-blue-200">
                 <p className="font-semibold text-gray-900">FTS AML</p>
                 <p className="text-gray-600">AML screening, PEP/sanctions checks</p>
               </div>
-              <div className="bg-white rounded-lg p-3 border border-yellow-200">
+              <div className="bg-white rounded-lg p-3 border border-blue-200">
                 <p className="font-semibold text-gray-900">FTS KYB</p>
                 <p className="text-gray-600">KYB verification, UBO checks, business scoring</p>
               </div>
@@ -164,17 +159,9 @@ export default function Pricing() {
       <section className="py-12 bg-white border-t">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-center text-sm text-gray-500 mb-4">Powered by</p>
-          <div className="flex items-center justify-center gap-12">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png"
-              alt="Certizen Technology"
-              className="h-8"
-            />
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png"
-              alt="FTS.Money"
-              className="h-8"
-            />
+          <div className="flex items-center justify-center gap-12 text-gray-600">
+            <p className="text-sm font-medium hover:text-[#0066B3] transition-colors cursor-pointer">Certizen Technology</p>
+            <p className="text-sm font-medium hover:text-[#0066B3] transition-colors cursor-pointer">FTS.Money</p>
           </div>
         </div>
       </section>
