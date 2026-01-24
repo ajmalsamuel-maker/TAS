@@ -8,12 +8,21 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { UserPlus, Mail, Shield } from 'lucide-react';
+import { UserPlus, Mail, Shield, Edit2, Check, X } from 'lucide-react';
 import { toast } from 'sonner';
+
+const ROLE_PERMISSIONS = {
+  admin: ['manage_users', 'manage_providers', 'manage_workflows', 'view_analytics', 'manage_translations'],
+  editor: ['create_content', 'edit_content', 'view_analytics'],
+  viewer: ['view_analytics', 'view_workflows'],
+  user: ['view_own_workflows', 'submit_applications']
+};
 
 export default function UserManagement() {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('user');
+  const [editingUserId, setEditingUserId] = useState(null);
+  const [editingRole, setEditingRole] = useState('');
   const queryClient = useQueryClient();
 
   const { data: users = [], isLoading } = useQuery({
