@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from './utils';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
+import TASLogo from './components/TASLogo';
 import { 
   Home, Users, Activity, Globe, LogOut, 
-  Shield, Menu, X, ChevronDown
+  Shield, Menu, X, Settings, BarChart
 } from 'lucide-react';
 
 export default function Layout({ children, currentPageName }) {
@@ -23,30 +24,34 @@ export default function Layout({ children, currentPageName }) {
   const isAdmin = user?.role === 'admin';
   const isAuthenticated = !!user;
 
-  const publicPages = [
+  // Marketing Website (Public)
+  const marketingPages = [
     { name: 'Home', icon: Home, path: 'Home' },
     { name: 'About', icon: Globe, path: 'About' },
     { name: 'Pricing', icon: Activity, path: 'Pricing' },
   ];
 
-  const userPages = [
+  // User Portal (Authenticated Users)
+  const userPortalPages = [
     { name: 'Dashboard', icon: Activity, path: 'UserDashboard' },
     { name: 'Workflows', icon: Activity, path: 'Workflows' },
     { name: 'Compliance', icon: Shield, path: 'UserCompliance' },
     { name: 'Credentials', icon: Shield, path: 'UserCredentials' },
-    { name: 'Settings', icon: Users, path: 'UserSettings' }
+    { name: 'Settings', icon: Settings, path: 'UserSettings' }
   ];
 
-  const adminPages = [
-    { name: 'Admin Dashboard', icon: Shield, path: 'AdminDashboard' },
-    { name: 'Analytics', icon: Activity, path: 'AdminAnalytics' }
+  // Admin Portal (Admins Only)
+  const adminPortalPages = [
+    { name: 'Admin', icon: Shield, path: 'AdminDashboard' },
+    { name: 'Analytics', icon: BarChart, path: 'AdminAnalytics' }
   ];
 
-  const navigationPages = isAuthenticated 
-    ? isAdmin 
-      ? [...adminPages, ...userPages]
-      : userPages
-    : publicPages;
+  // Determine navigation based on auth status
+  const navigationPages = !isAuthenticated 
+    ? marketingPages 
+    : isAdmin 
+      ? [...adminPortalPages, ...userPortalPages]
+      : userPortalPages;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -55,13 +60,8 @@ export default function Layout({ children, currentPageName }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link to={createPageUrl('Home')} className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
-                  <Shield className="h-6 w-6 text-white" />
-                </div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-[#0044CC]" />
-              </div>
+            <Link to={createPageUrl(isAuthenticated ? (isAdmin ? 'AdminDashboard' : 'UserDashboard') : 'Home')} className="flex items-center gap-2">
+              <TASLogo size="md" />
               <div>
                 <span className="text-xl font-bold">TAS</span>
                 <p className="text-xs text-blue-200">Trust Anchor Service</p>
@@ -88,11 +88,23 @@ export default function Layout({ children, currentPageName }) {
               })}
 
               {!isAuthenticated && (
-                <Link to={createPageUrl('Onboarding')}>
-                  <Button className="bg-cyan-500 hover:bg-cyan-600 text-white">
-                    Get Started
-                  </Button>
-                </Link>
+                <>
+                  <Link to={createPageUrl('UserLogin')}>
+                    <Button variant="ghost" className="text-white hover:bg-white/10">
+                      User Login
+                    </Button>
+                  </Link>
+                  <Link to={createPageUrl('AdminLogin')}>
+                    <Button variant="ghost" className="text-white hover:bg-white/10">
+                      Admin
+                    </Button>
+                  </Link>
+                  <Link to={createPageUrl('Onboarding')}>
+                    <Button className="bg-cyan-500 hover:bg-cyan-600 text-white">
+                      Get Started
+                    </Button>
+                  </Link>
+                </>
               )}
 
               {isAuthenticated && (
@@ -184,12 +196,14 @@ export default function Layout({ children, currentPageName }) {
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
                   alt="Certizen Technology" 
-                  className="h-7 brightness-0 invert opacity-90"
+                  className="h-8 opacity-90 hover:opacity-100 transition-opacity"
+                  style={{filter: 'brightness(0) invert(1)'}}
                 />
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
                   alt="FTS.Money" 
-                  className="h-7 brightness-0 invert opacity-90"
+                  className="h-8 opacity-90 hover:opacity-100 transition-opacity"
+                  style={{filter: 'brightness(0) invert(1)'}}
                 />
               </div>
             </div>

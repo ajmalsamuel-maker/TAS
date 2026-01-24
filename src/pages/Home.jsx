@@ -76,17 +76,21 @@ export default function Home() {
         {/* Powered By */}
         <div className="relative max-w-7xl mx-auto px-6 pb-16 border-t border-gray-200 pt-12">
           <p className="text-gray-500 text-sm mb-6 text-center">Powered by</p>
-          <div className="flex flex-wrap items-center justify-center gap-12">
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
-              alt="Certizen Technology" 
-              className="h-10 md:h-12 opacity-90 hover:opacity-100 transition-opacity"
-            />
-            <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
-              alt="FTS.Money" 
-              className="h-10 md:h-12 opacity-90 hover:opacity-100 transition-opacity"
-            />
+          <div className="flex flex-wrap items-center justify-center gap-16">
+            <div className="bg-white rounded-xl p-6 shadow-md border-2 border-gray-100">
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
+                alt="Certizen Technology" 
+                className="h-10 md:h-12 opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-md border-2 border-gray-100">
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
+                alt="FTS.Money" 
+                className="h-10 md:h-12 opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
           </div>
         </div>
       </section>
