@@ -10,6 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { UserPlus, Mail, Shield, Edit2, Check, X } from 'lucide-react';
 import { toast } from 'sonner';
+import { logAction, ACTION_TYPES } from '../audit/auditLogger';
 
 const ROLE_PERMISSIONS = {
   admin: ['manage_users', 'manage_providers', 'manage_workflows', 'view_analytics', 'manage_translations'],
