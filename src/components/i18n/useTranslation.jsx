@@ -1,16 +1,150 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { base44 } from '@/api/base44Client';
+import IntlMessageFormat from 'intl-messageformat';
 
 const TranslationContext = createContext();
+
+// BCP 47 compliant language tags with CLDR locale data
+export const AVAILABLE_LANGUAGES = [
+  { 
+    code: 'en', 
+    bcp47: 'en-US',
+    iso6391: 'en',
+    iso6392: 'eng',
+    name: 'English', 
+    nativeName: 'English',
+    direction: 'ltr',
+    cldrLocale: 'en-US'
+  },
+  { 
+    code: 'zh', 
+    bcp47: 'zh-Hans-CN',
+    iso6391: 'zh',
+    iso6392: 'zho',
+    name: 'Chinese (Simplified)', 
+    nativeName: '简体中文',
+    direction: 'ltr',
+    cldrLocale: 'zh-Hans-CN'
+  },
+  { 
+    code: 'es', 
+    bcp47: 'es-419',
+    iso6391: 'es',
+    iso6392: 'spa',
+    name: 'Spanish (Latin America)', 
+    nativeName: 'Español',
+    direction: 'ltr',
+    cldrLocale: 'es-419'
+  },
+  { 
+    code: 'ar', 
+    bcp47: 'ar-SA',
+    iso6391: 'ar',
+    iso6392: 'ara',
+    name: 'Arabic', 
+    nativeName: 'العربية',
+    direction: 'rtl',
+    cldrLocale: 'ar-SA'
+  },
+  { 
+    code: 'hi', 
+    bcp47: 'hi-IN',
+    iso6391: 'hi',
+    iso6392: 'hin',
+    name: 'Hindi', 
+    nativeName: 'हिन्दी',
+    direction: 'ltr',
+    cldrLocale: 'hi-IN'
+  },
+  { 
+    code: 'pt', 
+    bcp47: 'pt-BR',
+    iso6391: 'pt',
+    iso6392: 'por',
+    name: 'Portuguese (Brazil)', 
+    nativeName: 'Português',
+    direction: 'ltr',
+    cldrLocale: 'pt-BR'
+  },
+  { 
+    code: 'ru', 
+    bcp47: 'ru-RU',
+    iso6391: 'ru',
+    iso6392: 'rus',
+    name: 'Russian', 
+    nativeName: 'Русский',
+    direction: 'ltr',
+    cldrLocale: 'ru-RU'
+  },
+  { 
+    code: 'ja', 
+    bcp47: 'ja-JP',
+    iso6391: 'ja',
+    iso6392: 'jpn',
+    name: 'Japanese', 
+    nativeName: '日本語',
+    direction: 'ltr',
+    cldrLocale: 'ja-JP'
+  },
+  { 
+    code: 'de', 
+    bcp47: 'de-DE',
+    iso6391: 'de',
+    iso6392: 'deu',
+    name: 'German', 
+    nativeName: 'Deutsch',
+    direction: 'ltr',
+    cldrLocale: 'de-DE'
+  },
+  { 
+    code: 'fr', 
+    bcp47: 'fr-FR',
+    iso6391: 'fr',
+    iso6392: 'fra',
+    name: 'French', 
+    nativeName: 'Français',
+    direction: 'ltr',
+    cldrLocale: 'fr-FR'
+  },
+  { 
+    code: 'ko', 
+    bcp47: 'ko-KR',
+    iso6391: 'ko',
+    iso6392: 'kor',
+    name: 'Korean', 
+    nativeName: '한국어',
+    direction: 'ltr',
+    cldrLocale: 'ko-KR'
+  },
+  { 
+    code: 'it', 
+    bcp47: 'it-IT',
+    iso6391: 'it',
+    iso6392: 'ita',
+    name: 'Italian', 
+    nativeName: 'Italiano',
+    direction: 'ltr',
+    cldrLocale: 'it-IT'
+  },
+  { 
+    code: 'he', 
+    bcp47: 'he-IL',
+    iso6391: 'he',
+    iso6392: 'heb',
+    name: 'Hebrew', 
+    nativeName: 'עברית',
+    direction: 'rtl',
+    cldrLocale: 'he-IL'
+  }
+];
 
 export function TranslationProvider({ children }) {
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [translations, setTranslations] = useState({});
-  const [isRTL, setIsRTL] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // RTL languages per ISO 639-1
-  const RTL_LANGUAGES = ['ar', 'he', 'fa', 'ur', 'yi', 'arc'];
+  const currentLangData = AVAILABLE_LANGUAGES.find(l => l.code === currentLanguage) || AVAILABLE_LANGUAGES[0];
+  const isRTL = currentLangData.direction === 'rtl';
 
   useEffect(() => {
     loadTranslations();
@@ -18,10 +152,11 @@ export function TranslationProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    setIsRTL(RTL_LANGUAGES.includes(currentLanguage));
-    document.documentElement.dir = RTL_LANGUAGES.includes(currentLanguage) ? 'rtl' : 'ltr';
-    document.documentElement.lang = currentLanguage;
-  }, [currentLanguage]);
+    // Apply BCP 47 locale and direction to document
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    document.documentElement.lang = currentLangData.bcp47;
+    document.documentElement.setAttribute('data-locale', currentLangData.cldrLocale);
+  }, [currentLanguage, isRTL, currentLangData]);
 
   const loadUserLanguagePreference = async () => {
     try {
@@ -70,7 +205,8 @@ export function TranslationProvider({ children }) {
     }
   };
 
-  const t = (key, params = {}, count = null) => {
+  // ICU MessageFormat-compliant translation function
+  const t = (key, params = {}) => {
     const langTranslations = translations[currentLanguage] || {};
     const fallbackTranslations = translations['en'] || {};
     
@@ -80,35 +216,87 @@ export function TranslationProvider({ children }) {
       return key;
     }
 
-    let text = translation.value;
+    let messagePattern = translation.value;
 
-    // Pluralization support
-    if (count !== null && translation.plural_forms) {
-      if (count === 0 && translation.plural_forms.zero) {
-        text = translation.plural_forms.zero;
-      } else if (count === 1 && translation.plural_forms.one) {
-        text = translation.plural_forms.one;
-      } else if (translation.plural_forms.other) {
-        text = translation.plural_forms.other;
-      }
+    // ICU MessageFormat with pluralization and interpolation
+    try {
+      const msg = new IntlMessageFormat(messagePattern, currentLangData.bcp47);
+      return msg.format(params);
+    } catch (error) {
+      console.error(`Translation error for key "${key}":`, error);
+      return messagePattern;
     }
+  };
 
-    // Interpolation support
-    Object.keys(params).forEach(param => {
-      text = text.replace(new RegExp(`{{${param}}}`, 'g'), params[param]);
-    });
-
-    return text;
+  // CLDR-compliant locale-aware formatters
+  const formatters = {
+    // Date formatting using Intl.DateTimeFormat (CLDR-based)
+    date: (date, options = {}) => {
+      const defaults = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Intl.DateTimeFormat(currentLangData.bcp47, { ...defaults, ...options }).format(new Date(date));
+    },
+    
+    // Time formatting
+    time: (date, options = {}) => {
+      const defaults = { hour: '2-digit', minute: '2-digit' };
+      return new Intl.DateTimeFormat(currentLangData.bcp47, { ...defaults, ...options }).format(new Date(date));
+    },
+    
+    // DateTime formatting
+    datetime: (date, options = {}) => {
+      const defaults = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+      return new Intl.DateTimeFormat(currentLangData.bcp47, { ...defaults, ...options }).format(new Date(date));
+    },
+    
+    // Number formatting
+    number: (value, options = {}) => {
+      return new Intl.NumberFormat(currentLangData.bcp47, options).format(value);
+    },
+    
+    // Currency formatting
+    currency: (value, currency = 'USD', options = {}) => {
+      return new Intl.NumberFormat(currentLangData.bcp47, { 
+        style: 'currency', 
+        currency, 
+        ...options 
+      }).format(value);
+    },
+    
+    // Percent formatting
+    percent: (value, options = {}) => {
+      return new Intl.NumberFormat(currentLangData.bcp47, { 
+        style: 'percent', 
+        ...options 
+      }).format(value);
+    },
+    
+    // Relative time formatting
+    relativeTime: (value, unit = 'day') => {
+      if (typeof Intl.RelativeTimeFormat !== 'undefined') {
+        return new Intl.RelativeTimeFormat(currentLangData.bcp47, { numeric: 'auto' }).format(value, unit);
+      }
+      return `${value} ${unit}${Math.abs(value) !== 1 ? 's' : ''} ago`;
+    },
+    
+    // List formatting
+    list: (items, options = {}) => {
+      if (typeof Intl.ListFormat !== 'undefined') {
+        return new Intl.ListFormat(currentLangData.bcp47, options).format(items);
+      }
+      return items.join(', ');
+    }
   };
 
   return (
     <TranslationContext.Provider value={{ 
       t, 
-      currentLanguage, 
+      currentLanguage,
+      currentLocale: currentLangData,
       changeLanguage, 
       isRTL, 
       loading,
-      availableLanguages: AVAILABLE_LANGUAGES 
+      availableLanguages: AVAILABLE_LANGUAGES,
+      formatters
     }}>
       {children}
     </TranslationContext.Provider>
@@ -122,20 +310,3 @@ export function useTranslation() {
   }
   return context;
 }
-
-// ISO 639-1 primary languages with ISO 639-2 fallback
-export const AVAILABLE_LANGUAGES = [
-  { code: 'en', name: 'English', nativeName: 'English', iso6392: 'eng' },
-  { code: 'zh', name: 'Chinese', nativeName: '中文', iso6392: 'zho' },
-  { code: 'es', name: 'Spanish', nativeName: 'Español', iso6392: 'spa' },
-  { code: 'ar', name: 'Arabic', nativeName: 'العربية', iso6392: 'ara', rtl: true },
-  { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', iso6392: 'hin' },
-  { code: 'pt', name: 'Portuguese', nativeName: 'Português', iso6392: 'por' },
-  { code: 'ru', name: 'Russian', nativeName: 'Русский', iso6392: 'rus' },
-  { code: 'ja', name: 'Japanese', nativeName: '日本語', iso6392: 'jpn' },
-  { code: 'de', name: 'German', nativeName: 'Deutsch', iso6392: 'deu' },
-  { code: 'fr', name: 'French', nativeName: 'Français', iso6392: 'fra' },
-  { code: 'ko', name: 'Korean', nativeName: '한국어', iso6392: 'kor' },
-  { code: 'it', name: 'Italian', nativeName: 'Italiano', iso6392: 'ita' },
-  { code: 'he', name: 'Hebrew', nativeName: 'עברית', iso6392: 'heb', rtl: true }
-];
