@@ -6,7 +6,7 @@ import { createPageUrl } from '../utils';
 
 export default function AdminLogin() {
   const handleLogin = () => {
-    base44.auth.redirectToLogin(createPageUrl('AdminDashboard'));
+    base44.auth.redirectToLogin('AdminDashboard');
   };
 
   return (
