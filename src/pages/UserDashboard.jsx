@@ -14,9 +14,13 @@ import WorkflowStatusPanel from '../components/user/WorkflowStatusPanel';
 
 export default function UserDashboard() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    base44.auth.me().then(setUser);
+    base44.auth.me()
+      .then(setUser)
+      .catch(() => base44.auth.redirectToLogin(createPageUrl('UserDashboard')))
+      .finally(() => setLoading(false));
   }, []);
 
   const { data: workflows = [] } = useQuery({
@@ -32,6 +36,18 @@ export default function UserDashboard() {
     enabled: !!user,
     initialData: []
   });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
+        <p className="text-gray-600">Loading your dashboard...</p>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
 
   const completedWorkflows = workflows.filter(w => w.status === 'completed').length;
   const activeAlerts = alerts.filter(a => a.status === 'new').length;
