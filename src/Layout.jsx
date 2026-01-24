@@ -108,6 +108,7 @@ function LayoutContent({ children, currentPageName }) {
               {isAuthenticated && (
                 <div className="flex items-center gap-4 ml-4 pl-4 border-l border-white/20">
                   <LanguageSelector variant="minimal" />
+                  <NotificationBell user={user} />
                   <div className="text-right">
                     <p className="text-sm font-medium">{user.full_name}</p>
                     <p className="text-xs text-blue-200">{user.role}</p>
