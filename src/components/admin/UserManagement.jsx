@@ -43,6 +43,11 @@ export default function UserManagement() {
           user_role: role,
           permissions: ROLE_PERMISSIONS[role] || []
         });
+        // Log the invitation
+        await logAction(ACTION_TYPES.USER_INVITED, {
+          invited_email: email,
+          assigned_role: role
+        });
       }
     },
     onSuccess: () => {
