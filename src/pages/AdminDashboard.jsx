@@ -102,6 +102,9 @@ export default function AdminDashboard() {
             <TabsTrigger value="translations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Translations
             </TabsTrigger>
+            <TabsTrigger value="audit" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Audit Log
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="providers">
