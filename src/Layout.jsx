@@ -56,8 +56,11 @@ export default function Layout({ children, currentPageName }) {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to={createPageUrl('Home')} className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/10 backdrop-blur rounded-lg flex items-center justify-center border border-white/20">
-                <Shield className="h-6 w-6 text-cyan-300" />
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
+                  <Shield className="h-6 w-6 text-white" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-[#0044CC]" />
               </div>
               <div>
                 <span className="text-xl font-bold">TAS</span>
@@ -177,16 +180,16 @@ export default function Layout({ children, currentPageName }) {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Powered By</h4>
-              <div className="space-y-3">
+              <div className="space-y-4 bg-white/10 rounded-lg p-4 backdrop-blur">
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
                   alt="Certizen Technology" 
-                  className="h-6 brightness-0 invert"
+                  className="h-7 brightness-0 invert opacity-90"
                 />
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
                   alt="FTS.Money" 
-                  className="h-6 brightness-0 invert"
+                  className="h-7 brightness-0 invert opacity-90"
                 />
               </div>
             </div>

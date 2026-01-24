@@ -11,31 +11,35 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200')] opacity-10 bg-cover bg-center" />
+      <section className="relative overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200')] opacity-5 bg-cover bg-center" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#0044CC] rounded-full filter blur-3xl opacity-10 animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl opacity-10 animate-pulse" style={{animationDelay: '1s'}} />
         
         <div className="relative max-w-7xl mx-auto px-6 py-24 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
                 Trust Anchor Service
               </h1>
-              <p className="text-xl lg:text-2xl text-blue-100 mb-8 leading-relaxed">
+              <p className="text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed">
                 A trusted data integrity and provenance layer, serving as a global interoperability gateway connecting identity, compliance, and trust services under one unified technical fabric
               </p>
               
               <div className="flex flex-wrap gap-4 mb-8">
                 <Link to={createPageUrl('Onboarding')}>
-                  <Button size="lg" className="bg-white text-[#0044CC] hover:bg-blue-50 text-lg px-8">
+                  <Button size="lg" className="bg-[#0044CC] text-white hover:bg-[#002D66] text-lg px-8 shadow-lg">
                     Start Onboarding <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
-                  Learn More
-                </Button>
+                <Link to={createPageUrl('About')}>
+                  <Button size="lg" variant="outline" className="border-[#0044CC] text-[#0044CC] hover:bg-blue-50 text-lg px-8">
+                    Learn More
+                  </Button>
+                </Link>
               </div>
 
-              <div className="flex items-center gap-8 text-sm text-blue-200">
+              <div className="flex items-center gap-8 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5" />
                   <span>ISO Compliant</span>
@@ -52,16 +56,16 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                <h3 className="text-2xl font-semibold mb-6">Single Access Point For:</h3>
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 backdrop-blur-lg rounded-2xl p-8 border-2 border-blue-200 shadow-2xl">
+                <h3 className="text-2xl font-semibold mb-6 text-gray-900">Single Access Point For:</h3>
                 <div className="space-y-3">
                   {['KYB', 'AML', 'LEI/vLEI Issuing', 'DID & Web3'].map((service, i) => (
-                    <div key={i} className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 backdrop-blur rounded-lg p-4 border border-white/10 transform hover:scale-105 transition-all">
-                      <span className="text-lg font-medium">{service}</span>
+                    <div key={i} className="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-md transform hover:scale-105 transition-all hover:shadow-lg">
+                      <span className="text-lg font-medium text-gray-900">{service}</span>
                     </div>
                   ))}
                 </div>
-                <p className="mt-6 text-sm text-blue-100">
+                <p className="mt-6 text-sm text-gray-700 font-medium">
                   Where all data is cryptographically traceable to its source
                 </p>
               </div>
@@ -70,18 +74,18 @@ export default function Home() {
         </div>
 
         {/* Powered By */}
-        <div className="relative max-w-7xl mx-auto px-6 pb-16">
-          <p className="text-blue-200 text-sm mb-4">Powered by</p>
-          <div className="flex flex-wrap items-center gap-8">
+        <div className="relative max-w-7xl mx-auto px-6 pb-16 border-t border-gray-200 pt-12">
+          <p className="text-gray-500 text-sm mb-6 text-center">Powered by</p>
+          <div className="flex flex-wrap items-center justify-center gap-12">
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
               alt="Certizen Technology" 
-              className="h-8 md:h-10"
+              className="h-10 md:h-12 opacity-90 hover:opacity-100 transition-opacity"
             />
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
               alt="FTS.Money" 
-              className="h-8 md:h-10"
+              className="h-10 md:h-12 opacity-90 hover:opacity-100 transition-opacity"
             />
           </div>
         </div>
