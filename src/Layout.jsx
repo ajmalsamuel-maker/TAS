@@ -4,14 +4,17 @@ import { createPageUrl } from './utils';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
 import TASLogo from './components/TASLogo';
+import { TranslationProvider, useTranslation } from './components/i18n/useTranslation';
+import LanguageSelector from './components/i18n/LanguageSelector';
 import { 
   Home, Users, Activity, Globe, LogOut, 
   Shield, Menu, X, Settings, BarChart, Mail
 } from 'lucide-react';
 
-export default function Layout({ children, currentPageName }) {
+function LayoutContent({ children, currentPageName }) {
   const [user, setUser] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t, isRTL } = useTranslation();
 
   useEffect(() => {
     base44.auth.me().then(setUser).catch(() => setUser(null));
@@ -26,27 +29,27 @@ export default function Layout({ children, currentPageName }) {
 
   // Marketing Website (Public) - ONLY these pages for non-authenticated users
   const marketingPages = [
-    { name: 'Home', icon: Home, path: 'Home' },
-    { name: 'Solutions', icon: Shield, path: 'About' },
-    { name: 'Pricing', icon: Activity, path: 'Pricing' },
-    { name: 'Contact', icon: Mail, path: 'Contact' },
+    { nameKey: 'nav.home', icon: Home, path: 'Home' },
+    { nameKey: 'nav.solutions', icon: Shield, path: 'About' },
+    { nameKey: 'nav.pricing', icon: Activity, path: 'Pricing' },
+    { nameKey: 'nav.contact', icon: Mail, path: 'Contact' },
   ];
 
   // User Portal Navigation (Authenticated Regular Users)
   const userPortalPages = [
-    { name: 'Dashboard', icon: Activity, path: 'UserDashboard' },
-    { name: 'Workflows', icon: Activity, path: 'Workflows' },
-    { name: 'Compliance', icon: Shield, path: 'UserCompliance' },
-    { name: 'Credentials', icon: Shield, path: 'UserCredentials' },
-    { name: 'Settings', icon: Settings, path: 'UserSettings' }
+    { nameKey: 'nav.dashboard', icon: Activity, path: 'UserDashboard' },
+    { nameKey: 'nav.workflows', icon: Activity, path: 'Workflows' },
+    { nameKey: 'nav.compliance', icon: Shield, path: 'UserCompliance' },
+    { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials' },
+    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' }
   ];
 
   // Admin Portal Navigation (Admins Only)
   const adminPortalPages = [
-    { name: 'Dashboard', icon: Shield, path: 'AdminDashboard' },
-    { name: 'Analytics', icon: BarChart, path: 'AdminAnalytics' },
-    { name: 'Users', icon: Users, path: 'UserDashboard' },
-    { name: 'Settings', icon: Settings, path: 'UserSettings' }
+    { nameKey: 'nav.dashboard', icon: Shield, path: 'AdminDashboard' },
+    { nameKey: 'nav.analytics', icon: BarChart, path: 'AdminAnalytics' },
+    { nameKey: 'nav.users', icon: Users, path: 'UserDashboard' },
+    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' }
   ];
 
   // CLEAR SEPARATION: Marketing vs Portal navigation
@@ -57,7 +60,7 @@ export default function Layout({ children, currentPageName }) {
       : userPortalPages;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className={`min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 ${isRTL ? 'rtl' : 'ltr'}`}>
       {/* Top Navigation */}
       <nav className="bg-gradient-to-r from-[#0044CC] via-[#002D66] to-[#001A40] text-white shadow-xl sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -79,7 +82,7 @@ export default function Layout({ children, currentPageName }) {
                         ? 'bg-white/20 text-white font-semibold' 
                         : 'text-blue-100 hover:bg-white/10 hover:text-white'
                     }`}>
-                      <span>{page.name}</span>
+                      <span>{t(page.nameKey)}</span>
                     </div>
                   </Link>
                 );
@@ -87,14 +90,15 @@ export default function Layout({ children, currentPageName }) {
 
               {!isAuthenticated && (
                 <div className="flex items-center gap-2 ml-4 pl-4 border-l border-white/20">
+                  <LanguageSelector variant="minimal" />
                   <Link to={createPageUrl('UserLogin')}>
                     <Button variant="ghost" className="text-white hover:bg-white/10">
-                      Sign In
+                      {t('auth.signin')}
                     </Button>
                   </Link>
                   <Link to={createPageUrl('Onboarding')}>
                     <Button className="bg-white text-[#0066B3] hover:bg-blue-50 font-semibold">
-                      Get Started
+                      {t('auth.getstarted')}
                     </Button>
                   </Link>
                 </div>
@@ -102,6 +106,7 @@ export default function Layout({ children, currentPageName }) {
 
               {isAuthenticated && (
                 <div className="flex items-center gap-4 ml-4 pl-4 border-l border-white/20">
+                  <LanguageSelector variant="minimal" />
                   <div className="text-right">
                     <p className="text-sm font-medium">{user.full_name}</p>
                     <p className="text-xs text-blue-200">{user.role}</p>
@@ -130,6 +135,9 @@ export default function Layout({ children, currentPageName }) {
           {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div className="md:hidden py-4 border-t border-white/20">
+              <div className="px-4 pb-3">
+                <LanguageSelector />
+              </div>
               {navigationPages.map((page) => {
                 const Icon = page.icon;
                 return (
@@ -140,7 +148,7 @@ export default function Layout({ children, currentPageName }) {
                   >
                     <div className="flex items-center gap-3 px-4 py-3 hover:bg-white/10 rounded-lg mb-1">
                       <Icon className="h-5 w-5" />
-                      <span>{page.name}</span>
+                      <span>{t(page.nameKey)}</span>
                     </div>
                   </Link>
                 );
@@ -151,7 +159,7 @@ export default function Layout({ children, currentPageName }) {
                   className="flex items-center gap-3 px-4 py-3 hover:bg-white/10 rounded-lg w-full text-left"
                 >
                   <LogOut className="h-5 w-5" />
-                  <span>Logout</span>
+                  <span>{t('auth.logout')}</span>
                 </button>
               )}
             </div>
@@ -202,5 +210,13 @@ export default function Layout({ children, currentPageName }) {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function Layout(props) {
+  return (
+    <TranslationProvider>
+      <LayoutContent {...props} />
+    </TranslationProvider>
   );
 }
