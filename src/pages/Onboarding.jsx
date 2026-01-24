@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { CheckCircle2, Upload, ArrowRight, ArrowLeft, Zap, Shield, FileCheck, Clock, Users } from 'lucide-react';
+import { CheckCircle2, Upload, ArrowRight, ArrowLeft, Zap, Shield, FileCheck, Clock, Users, Loader } from 'lucide-react';
 import { toast } from 'sonner';
 import OnboardingStep1 from '../components/onboarding/OnboardingStep1';
 import OnboardingStep2 from '../components/onboarding/OnboardingStep2';
@@ -14,6 +16,9 @@ import OnboardingStep4 from '../components/onboarding/OnboardingStep4';
 export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState(1);
   const [showForm, setShowForm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRunningAml, setIsRunningAml] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     legal_name: '',
     entity_category: '',
@@ -57,19 +62,35 @@ export default function Onboarding() {
   };
 
   const handleSubmit = async () => {
+    setIsSubmitting(true);
     try {
-      await base44.entities.OnboardingApplication.create({
+      // Create the application
+      const response = await base44.entities.OnboardingApplication.create({
         ...formData,
         status: 'submitted'
       });
       
-      toast.success('Application submitted successfully! We will review and contact you shortly.');
+      toast.success('Application submitted successfully!');
       
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 2000);
+      // Trigger AML screening in the background
+      setIsRunningAml(true);
+      try {
+        await base44.functions.invoke('runAmlScreening', {
+          applicationId: response.id
+        });
+        toast.success('AML screening initiated');
+      } catch (amlError) {
+        console.error('AML screening error:', amlError);
+        toast.error('AML screening failed to initiate');
+      } finally {
+        setIsRunningAml(false);
+      }
+
+      // Redirect to application status page
+      setTimeout(() => navigate(createPageUrl('ApplicationStatus')), 2000);
     } catch (error) {
       toast.error('Failed to submit application. Please try again.');
+      setIsSubmitting(false);
     }
   };
 
@@ -258,9 +279,19 @@ export default function Onboarding() {
                 <Button
                   onClick={handleSubmit}
                   className="bg-green-600 hover:bg-green-700 px-8"
+                  disabled={isSubmitting || isRunningAml}
                 >
-                  Submit Application
-                  <CheckCircle2 className="ml-2 h-4 w-4" />
+                  {isSubmitting || isRunningAml ? (
+                    <>
+                      <Loader className="mr-2 h-4 w-4 animate-spin" />
+                      {isRunningAml ? 'Running AML...' : 'Submitting...'}
+                    </>
+                  ) : (
+                    <>
+                      Submit Application
+                      <CheckCircle2 className="ml-2 h-4 w-4" />
+                    </>
+                  )}
                 </Button>
               )}
             </div>
