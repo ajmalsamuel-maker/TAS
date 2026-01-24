@@ -215,7 +215,7 @@ export default function UserManagement() {
                             <Button
                               size="sm"
                               variant="ghost"
-                              onClick={() => updateRoleMutation.mutate({ userId: user.id, newRole: editingRole })}
+                              onClick={() => updateRoleMutation.mutate({ userId: user.id, newRole: editingRole, userEmail: user.email })}
                               className="text-green-600 hover:text-green-700"
                             >
                               <Check className="h-4 w-4" />
