@@ -1,13 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-key';
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('Missing Supabase credentials. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY');
+const isConfigured = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!isConfigured) {
+  console.warn('⚠️ Supabase not configured. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your environment variables.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export const supabase = isConfigured ? createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     persistSession: true,
     autoRefreshToken: true,
@@ -21,10 +23,15 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
       'x-application-name': 'TAS-Platform'
     }
   }
-});
+}) : null;
 
 // Real-time subscription helper
 export const subscribeToTable = (table, callback, filter = '*') => {
+  if (!supabase) {
+    console.warn('Supabase not configured, skipping subscription');
+    return () => {};
+  }
+  
   const subscription = supabase
     .channel(`${table}_changes`)
     .on('postgres_changes', 
@@ -41,3 +48,5 @@ export const subscribeToTable = (table, callback, filter = '*') => {
     subscription.unsubscribe();
   };
 };
+
+export const isSupabaseConfigured = isConfigured;

@@ -152,6 +152,8 @@ export function TranslationProvider({ children }) {
 
   useEffect(() => {
     // Real-time translation updates from Supabase
+    if (!supabase) return;
+    
     const unsubscribe = subscribeToTable('translations', (payload) => {
       if (payload.eventType === 'INSERT' || payload.eventType === 'UPDATE') {
         const translation = payload.new;
@@ -176,17 +178,19 @@ export function TranslationProvider({ children }) {
 
   const loadUserLanguagePreference = async () => {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        const { data: profile } = await supabase
-          .from('user_profiles')
-          .select('language')
-          .eq('user_id', user.id)
-          .single();
-        
-        if (profile?.language) {
-          setCurrentLanguage(profile.language);
-          return;
+      if (supabase) {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          const { data: profile } = await supabase
+            .from('user_profiles')
+            .select('language')
+            .eq('user_id', user.id)
+            .single();
+          
+          if (profile?.language) {
+            setCurrentLanguage(profile.language);
+            return;
+          }
         }
       }
     } catch (error) {
@@ -200,6 +204,12 @@ export function TranslationProvider({ children }) {
 
   const loadTranslations = async () => {
     try {
+      if (!supabase) {
+        console.warn('Supabase not configured, using empty translations');
+        setLoading(false);
+        return;
+      }
+
       const { data: allTranslations, error } = await supabase
         .from('translations')
         .select('*');
@@ -225,17 +235,19 @@ export function TranslationProvider({ children }) {
   const changeLanguage = async (lang) => {
     setCurrentLanguage(lang);
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        await supabase
-          .from('user_profiles')
-          .upsert({ 
-            user_id: user.id, 
-            language: lang,
-            updated_at: new Date().toISOString()
-          }, {
-            onConflict: 'user_id'
-          });
+      if (supabase) {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          await supabase
+            .from('user_profiles')
+            .upsert({ 
+              user_id: user.id, 
+              language: lang,
+              updated_at: new Date().toISOString()
+            }, {
+              onConflict: 'user_id'
+            });
+        }
       }
     } catch (error) {
       console.error('Failed to save language preference:', error);
