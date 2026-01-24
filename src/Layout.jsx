@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import TASLogo from './components/TASLogo';
 import { TranslationProvider, useTranslation } from './components/i18n/useTranslation';
 import LanguageSelector from './components/i18n/LanguageSelector';
+import NotificationBell from './components/notifications/NotificationBell';
 import { 
   Home, Users, Activity, Globe, LogOut, 
   Shield, Menu, X, Settings, BarChart, Mail
