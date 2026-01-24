@@ -291,9 +291,9 @@ export default function Home() {
                   <p className="text-xs font-semibold text-gray-800">{service}</p>
                 </div>
               ))}
-          </div>
-        </div>
-      </section>
+              </div>
+              </div>
+              </section>
 
       {/* How It Works */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
