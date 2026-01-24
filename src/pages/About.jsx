@@ -65,8 +65,8 @@ export default function About() {
           </div>
 
           {/* Trusted Provenance */}
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border-2 border-green-200">
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Trusted Data Provenance & End-to-End Validation</h3>
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-blue-200">
+            <h3 className="text-2xl font-bold mb-4 text-[#0066B3]">Trusted Data Provenance & End-to-End Validation</h3>
             <p className="text-gray-700 mb-6">
               TAS ensures all data used in identity and compliance workflows is <strong>cryptographically traceable</strong> to its source 
               via LEI/vLEI identifiers, creating a verifiable chain of custody from data origin to consumer:
@@ -77,8 +77,8 @@ export default function About() {
                 { icon: Lock, text: 'Reduces fraud' },
                 { icon: Network, text: 'Ensures regulatory confidence in digital workflows' }
               ].map((item, i) => (
-                <div key={i} className="bg-white rounded-lg p-4 border border-green-200">
-                  <item.icon className="h-6 w-6 text-green-600 mb-2" />
+                <div key={i} className="bg-white rounded-lg p-4 border border-blue-200">
+                  <item.icon className="h-6 w-6 text-[#0066B3] mb-2" />
                   <p className="text-sm font-medium text-gray-800">{item.text}</p>
                 </div>
               ))}
@@ -159,7 +159,7 @@ export default function About() {
               </ul>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-8 border-2 border-blue-200">
               <h3 className="text-xl font-bold mb-6 text-gray-900">Provider Responsibilities</h3>
               <ul className="space-y-3">
                 {[
@@ -168,7 +168,7 @@ export default function About() {
                   'Compliance Decisioning (FTS)'
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-gray-700">
-                    <div className="w-2 h-2 bg-purple-600 rounded-full" />
+                    <div className="w-2 h-2 bg-[#0066B3] rounded-full" />
                     {item}
                   </li>
                 ))}
@@ -178,16 +178,16 @@ export default function About() {
 
           {/* Strategic Value */}
           <div className="mt-12 grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border-2 border-green-200">
-              <h4 className="font-bold text-lg mb-3 text-gray-900">For FTS.Money</h4>
+            <div className="bg-gradient-to-br from-cyan-50 to-blue-100 rounded-xl p-6 border-2 border-blue-200">
+              <h4 className="font-bold text-lg mb-3 text-[#0066B3]">For FTS.Money</h4>
               <p className="text-gray-700">
                 Through its TAS service, FTS.Money enhances its platform value by delivering faster onboarding, 
                 reduced risk, and stronger cross-border acceptance.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
-              <h4 className="font-bold text-lg mb-3 text-gray-900">For Certizen</h4>
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border-2 border-blue-200">
+              <h4 className="font-bold text-lg mb-3 text-[#0066B3]">For Certizen</h4>
               <p className="text-gray-700">
                 Positions Certizen Technology as a universal trust anchor for businesses across industries, 
                 as well as serving government systems and decentralized ecosystems.
@@ -198,7 +198,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-to-br from-[#0044CC] to-[#002D66] text-white">
+      <section className="py-24 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
           <p className="text-xl text-blue-100 mb-8">
@@ -206,7 +206,7 @@ export default function About() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to={createPageUrl('Onboarding')}>
-              <Button size="lg" className="bg-white text-[#0044CC] hover:bg-blue-50 text-lg px-8">
+              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50 text-lg px-8">
                 Apply for LEI
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
