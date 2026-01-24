@@ -1,89 +1,112 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 
 Deno.serve(async (req) => {
-  try {
-    const base44 = createClientFromRequest(req);
-    const user = await base44.auth.me();
+    try {
+        const base44 = createClientFromRequest(req);
+        const user = await base44.auth.me();
 
-    if (!user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+        if (!user) {
+            return Response.json({ error: 'Unauthorized' }, { status: 401 });
+        }
 
-    const { entityName, country, entityType = 'business' } = await req.json();
+        const { applicationId } = await req.json();
 
-    // Create workflow
-    const workflow = await base44.entities.Workflow.create({
-      user_id: user.id,
-      type: 'aml',
-      status: 'in_progress',
-      language: user.language || 'en',
-      provenance_chain: []
-    });
+        if (!applicationId) {
+            return Response.json({ error: 'Application ID required' }, { status: 400 });
+        }
 
-    // Run AML screening
-    const amlResult = await base44.functions.invoke('amlWatcher', {
-      action: 'screen',
-      entity_name: entityName,
-      country,
-      entity_type: entityType
-    });
+        // Fetch the application
+        const application = await base44.entities.OnboardingApplication.read(applicationId);
+        
+        if (!application) {
+            return Response.json({ error: 'Application not found' }, { status: 404 });
+        }
 
-    const provenanceChain = [{
-      step: 'aml_screening',
-      provider: 'AML Watcher',
-      timestamp: new Date().toISOString(),
-      signature: await generateSignature({ entityName, country })
-    }];
+        const amlWatcherClientId = Deno.env.get('AMLWATCHER_CLIENT_ID');
+        const amlWatcherClientSecret = Deno.env.get('AMLWATCHER_CLIENT_SECRET');
 
-    // Process results and create alerts
-    const alerts = [];
-    if (amlResult.data?.data?.matches) {
-      for (const match of amlResult.data.data.matches) {
-        const alert = await base44.asServiceRole.entities.AMLAlert.create({
-          user_id: user.id,
-          workflow_id: workflow.id,
-          type: match.category || 'sanction_hit',
-          severity: match.score > 0.8 ? 'high' : match.score > 0.5 ? 'medium' : 'low',
-          details: match,
-          status: 'new'
+        // Get access token for AML Watcher
+        const tokenResponse = await fetch('https://api.amlwatcher.com/oauth/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                client_id: amlWatcherClientId,
+                client_secret: amlWatcherClientSecret,
+                grant_type: 'client_credentials'
+            })
         });
-        alerts.push(alert);
-      }
+
+        if (!tokenResponse.ok) {
+            throw new Error('Failed to get AML Watcher access token');
+        }
+
+        const { access_token } = await tokenResponse.json();
+
+        // Screen the business entity
+        const screeningResponse = await fetch('https://api.amlwatcher.com/v1/screening/kyb', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${access_token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                entity_name: application.legal_name,
+                entity_type: 'business',
+                country: application.legal_address?.country || 'HK',
+                registration_number: application.unique_business_id,
+                screening_type: 'enhanced'
+            })
+        });
+
+        if (!screeningResponse.ok) {
+            throw new Error('AML screening request failed');
+        }
+
+        const screeningResult = await screeningResponse.json();
+
+        // Create AML Alert record
+        const amlAlert = await base44.entities.AMLAlert.create({
+            user_id: user.id,
+            type: screeningResult.risk_level === 'high' ? 'sanction_hit' : 'adverse_media',
+            severity: screeningResult.risk_level === 'high' ? 'high' : screeningResult.risk_level === 'medium' ? 'medium' : 'low',
+            details: {
+                aml_watcher_id: screeningResult.screening_id,
+                matches: screeningResult.matches || [],
+                risk_indicators: screeningResult.risk_indicators || []
+            },
+            status: screeningResult.risk_level === 'high' ? 'new' : 'resolved'
+        });
+
+        // Update application status
+        const newStatus = screeningResult.risk_level === 'high' ? 'under_review' : 'approved';
+        await base44.entities.OnboardingApplication.update(applicationId, {
+            status: newStatus,
+            aml_result: screeningResult
+        });
+
+        // Create notification for user
+        await base44.entities.Notification.create({
+            recipient_id: user.id,
+            recipient_email: user.email,
+            type: newStatus === 'approved' ? 'workflow_completed' : 'aml_alert',
+            title: newStatus === 'approved' ? 'AML Check Passed' : 'Application Under Review',
+            message: newStatus === 'approved' 
+                ? 'Your AML screening passed. Please proceed to facial verification.'
+                : 'Your application requires additional review. Our team will contact you shortly.',
+            priority: newStatus === 'approved' ? 'medium' : 'high',
+            send_email: true,
+            metadata: { application_id: applicationId }
+        });
+
+        return Response.json({
+            success: true,
+            amlAlertId: amlAlert.id,
+            applicationStatus: newStatus,
+            screeningResult: screeningResult
+        });
+
+    } catch (error) {
+        console.error('AML screening error:', error);
+        return Response.json({ error: error.message }, { status: 500 });
     }
-
-    // Update workflow
-    await base44.entities.Workflow.update(workflow.id, {
-      status: 'completed',
-      provenance_chain: provenanceChain,
-      result: amlResult.data,
-      data_passport: {
-        workflow_id: workflow.id,
-        screening_results: amlResult.data,
-        alerts_created: alerts.length,
-        issued_at: new Date().toISOString()
-      }
-    });
-
-    return Response.json({
-      status: 'success',
-      workflow_id: workflow.id,
-      results: amlResult.data,
-      alerts: alerts.length
-    });
-
-  } catch (error) {
-    return Response.json({
-      error: error.message,
-      status: 'error'
-    }, { status: 500 });
-  }
 });
-
-async function generateSignature(data) {
-  const content = JSON.stringify({ ...data, timestamp: Date.now() });
-  const encoder = new TextEncoder();
-  const dataBuffer = encoder.encode(content);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}

@@ -13,6 +13,7 @@ import UserDashboard from './pages/UserDashboard';
 import UserLogin from './pages/UserLogin';
 import UserSettings from './pages/UserSettings';
 import Workflows from './pages/Workflows';
+import ApplicationStatus from './pages/ApplicationStatus';
 import __Layout from './Layout.jsx';
 
 
@@ -32,6 +33,7 @@ export const PAGES = {
     "UserLogin": UserLogin,
     "UserSettings": UserSettings,
     "Workflows": Workflows,
+    "ApplicationStatus": ApplicationStatus,
 }
 
 export const pagesConfig = {
