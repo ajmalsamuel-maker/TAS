@@ -13,6 +13,7 @@ import WorkflowsOverview from '../components/admin/WorkflowsOverview';
 import TranslationsManagement from '../components/admin/TranslationsManagement';
 import OnboardingApplications from '../components/admin/OnboardingApplications';
 import UserManagement from '../components/admin/UserManagement';
+import AuditLogsManagement from '../components/admin/AuditLogsManagement';
 
 export default function AdminDashboard() {
   const { data: providers = [] } = useQuery({
