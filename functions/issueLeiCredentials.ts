@@ -25,13 +25,15 @@ Deno.serve(async (req) => {
         const lei = await generateLei(application);
 
         // Generate vLEI
-        const vlei = await generateVlei(lei, user);
+        const { vlei, credential } = await generateVlei(lei, user);
 
-        // Update application with generated credentials
+        // Update application with generated credentials and TAS verification complete
         await base44.entities.OnboardingApplication.update(applicationId, {
             status: 'approved',
+            tas_verification_status: 'complete',
             generated_lei: lei,
             generated_vlei: vlei,
+            vlei_credential: credential,
             lei_issued_date: new Date().toISOString()
         });
 
@@ -103,7 +105,25 @@ async function generateLei(application) {
 }
 
 async function generateVlei(lei, user) {
-    // Generate vLEI based on LEI
-    const vlei = `vLEI-${lei}-${Date.now()}`;
-    return vlei;
+    // Generate vLEI credential with TAS as issuer
+    // Format: vLEI-{LEI}-{timestamp}-issued-by-{issuer}
+    const timestamp = new Date().toISOString().replace(/[-:]/g, '').split('T')[0];
+    const vlei = `vLEI-${lei}-${timestamp}-TAS`;
+    
+    // Create vLEI credential object (would be cryptographically signed in production)
+    const vleiCredential = {
+        credential_type: 'vLEI',
+        lei: lei,
+        vlei_id: vlei,
+        issuer: 'Trust Anchor Service (TAS)',
+        issued_at: new Date().toISOString(),
+        verification_status: {
+            kyb_completed: true,
+            aml_passed: true,
+            facial_verified: true
+        },
+        credential_proof: `${lei}-TAS-${Date.now()}`
+    };
+    
+    return { vlei, credential: vleiCredential };
 }
