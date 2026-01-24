@@ -84,6 +84,17 @@ export default function UserManagement() {
         user_email: userEmail,
         new_role: newRole
       });
+      // Create notification for role change
+      await createNotification({
+        recipientId: userId,
+        recipientEmail: userEmail,
+        type: NOTIFICATION_TYPES.ROLE_CHANGED,
+        title: 'Role Updated',
+        message: `Your role has been changed to ${newRole}.`,
+        priority: 'medium',
+        sendEmail: true,
+        metadata: { new_role: newRole }
+      });
     },
     onSuccess: () => {
       toast.success('User role updated');
