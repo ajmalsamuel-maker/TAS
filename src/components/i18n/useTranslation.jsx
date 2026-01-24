@@ -1,10 +1,9 @@
 import { useState, useEffect, createContext, useContext } from 'react';
-import { base44 } from '@/api/base44Client';
+import { supabase, subscribeToTable } from '../../lib/supabaseClient';
 import IntlMessageFormat from 'intl-messageformat';
 
 const TranslationContext = createContext();
 
-// BCP 47 compliant language tags with CLDR locale data
 export const AVAILABLE_LANGUAGES = [
   { 
     code: 'en', 
@@ -152,7 +151,24 @@ export function TranslationProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    // Apply BCP 47 locale and direction to document
+    // Real-time translation updates from Supabase
+    const unsubscribe = subscribeToTable('translations', (payload) => {
+      if (payload.eventType === 'INSERT' || payload.eventType === 'UPDATE') {
+        const translation = payload.new;
+        setTranslations(prev => ({
+          ...prev,
+          [translation.language]: {
+            ...prev[translation.language],
+            [translation.key]: translation
+          }
+        }));
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
     document.documentElement.lang = currentLangData.bcp47;
     document.documentElement.setAttribute('data-locale', currentLangData.cldrLocale);
@@ -160,25 +176,38 @@ export function TranslationProvider({ children }) {
 
   const loadUserLanguagePreference = async () => {
     try {
-      const user = await base44.auth.me();
-      if (user?.language) {
-        setCurrentLanguage(user.language);
-      } else {
-        const browserLang = navigator.language.split('-')[0];
-        setCurrentLanguage(browserLang || 'en');
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data: profile } = await supabase
+          .from('user_profiles')
+          .select('language')
+          .eq('user_id', user.id)
+          .single();
+        
+        if (profile?.language) {
+          setCurrentLanguage(profile.language);
+          return;
+        }
       }
-    } catch {
-      const browserLang = navigator.language.split('-')[0];
-      setCurrentLanguage(browserLang || 'en');
+    } catch (error) {
+      console.error('Failed to load user language preference:', error);
     }
+    
+    const browserLang = navigator.language.split('-')[0];
+    const supportedLang = AVAILABLE_LANGUAGES.find(l => l.code === browserLang);
+    setCurrentLanguage(supportedLang ? browserLang : 'en');
   };
 
   const loadTranslations = async () => {
     try {
-      const allTranslations = await base44.entities.Translation.list();
+      const { data: allTranslations, error } = await supabase
+        .from('translations')
+        .select('*');
+
+      if (error) throw error;
+
       const translationMap = {};
-      
-      allTranslations.forEach(t => {
+      allTranslations?.forEach(t => {
         if (!translationMap[t.language]) {
           translationMap[t.language] = {};
         }
@@ -196,16 +225,23 @@ export function TranslationProvider({ children }) {
   const changeLanguage = async (lang) => {
     setCurrentLanguage(lang);
     try {
-      const user = await base44.auth.me();
+      const { data: { user } } = await supabase.auth.getUser();
       if (user) {
-        await base44.auth.updateMe({ language: lang });
+        await supabase
+          .from('user_profiles')
+          .upsert({ 
+            user_id: user.id, 
+            language: lang,
+            updated_at: new Date().toISOString()
+          }, {
+            onConflict: 'user_id'
+          });
       }
     } catch (error) {
       console.error('Failed to save language preference:', error);
     }
   };
 
-  // ICU MessageFormat-compliant translation function
   const t = (key, params = {}) => {
     const langTranslations = translations[currentLanguage] || {};
     const fallbackTranslations = translations['en'] || {};
@@ -218,7 +254,6 @@ export function TranslationProvider({ children }) {
 
     let messagePattern = translation.value;
 
-    // ICU MessageFormat with pluralization and interpolation
     try {
       const msg = new IntlMessageFormat(messagePattern, currentLangData.bcp47);
       return msg.format(params);
@@ -228,32 +263,26 @@ export function TranslationProvider({ children }) {
     }
   };
 
-  // CLDR-compliant locale-aware formatters
   const formatters = {
-    // Date formatting using Intl.DateTimeFormat (CLDR-based)
     date: (date, options = {}) => {
       const defaults = { year: 'numeric', month: 'long', day: 'numeric' };
       return new Intl.DateTimeFormat(currentLangData.bcp47, { ...defaults, ...options }).format(new Date(date));
     },
     
-    // Time formatting
     time: (date, options = {}) => {
       const defaults = { hour: '2-digit', minute: '2-digit' };
       return new Intl.DateTimeFormat(currentLangData.bcp47, { ...defaults, ...options }).format(new Date(date));
     },
     
-    // DateTime formatting
     datetime: (date, options = {}) => {
       const defaults = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
       return new Intl.DateTimeFormat(currentLangData.bcp47, { ...defaults, ...options }).format(new Date(date));
     },
     
-    // Number formatting
     number: (value, options = {}) => {
       return new Intl.NumberFormat(currentLangData.bcp47, options).format(value);
     },
     
-    // Currency formatting
     currency: (value, currency = 'USD', options = {}) => {
       return new Intl.NumberFormat(currentLangData.bcp47, { 
         style: 'currency', 
@@ -262,7 +291,6 @@ export function TranslationProvider({ children }) {
       }).format(value);
     },
     
-    // Percent formatting
     percent: (value, options = {}) => {
       return new Intl.NumberFormat(currentLangData.bcp47, { 
         style: 'percent', 
@@ -270,7 +298,6 @@ export function TranslationProvider({ children }) {
       }).format(value);
     },
     
-    // Relative time formatting
     relativeTime: (value, unit = 'day') => {
       if (typeof Intl.RelativeTimeFormat !== 'undefined') {
         return new Intl.RelativeTimeFormat(currentLangData.bcp47, { numeric: 'auto' }).format(value, unit);
@@ -278,7 +305,6 @@ export function TranslationProvider({ children }) {
       return `${value} ${unit}${Math.abs(value) !== 1 ? 's' : ''} ago`;
     },
     
-    // List formatting
     list: (items, options = {}) => {
       if (typeof Intl.ListFormat !== 'undefined') {
         return new Intl.ListFormat(currentLangData.bcp47, options).format(items);
