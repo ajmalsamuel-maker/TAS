@@ -11,6 +11,7 @@ import UserCompliance from './pages/UserCompliance';
 import UserCredentials from './pages/UserCredentials';
 import UserSettings from './pages/UserSettings';
 import AdminAnalytics from './pages/AdminAnalytics';
+import DownloadLogo from './pages/DownloadLogo';
 import __Layout from './Layout.jsx';
 
 
@@ -28,6 +29,7 @@ export const PAGES = {
     "UserCredentials": UserCredentials,
     "UserSettings": UserSettings,
     "AdminAnalytics": AdminAnalytics,
+    "DownloadLogo": DownloadLogo,
 }
 
 export const pagesConfig = {
