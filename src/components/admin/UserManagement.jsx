@@ -49,6 +49,17 @@ export default function UserManagement() {
           invited_email: email,
           assigned_role: role
         });
+        // Create notification for invited user
+        await createNotification({
+          recipientId: newUser.id,
+          recipientEmail: email,
+          type: NOTIFICATION_TYPES.USER_INVITED,
+          title: 'Welcome to TAS',
+          message: `You've been invited as a ${role}. Sign in to get started.`,
+          priority: 'high',
+          sendEmail: true,
+          metadata: { assigned_role: role }
+        });
       }
     },
     onSuccess: () => {
