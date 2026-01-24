@@ -49,7 +49,27 @@ Deno.serve(async (req) => {
       provenanceChain.push(leiStep);
     }
 
-    // Step 2: AML Screening
+    // Step 2: Identity Verification (Facia)
+    if (type === 'kyb' && entityData.faceFrame && entityData.idFrame) {
+      const faciaStep = {
+        step: 'identity_verification',
+        provider: 'Facia',
+        timestamp: new Date().toISOString()
+      };
+
+      const faciaResult = await base44.functions.invoke('faciaVerification', {
+        action: 'faceMatch',
+        faceFrame: entityData.faceFrame,
+        idFrame: entityData.idFrame,
+        clientReference: workflow.id
+      });
+
+      results.identity = faciaResult.data;
+      faciaStep.signature = await generateSignature(faciaStep, faciaResult.data);
+      provenanceChain.push(faciaStep);
+    }
+
+    // Step 3: AML Screening
     if (type === 'aml' || type === 'kyb') {
       const amlStep = {
         step: 'aml_screening',
@@ -83,7 +103,7 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Step 3: Generate Data Passport
+    // Step 4: Generate Data Passport
     const dataPassport = {
       workflow_id: workflow.id,
       entity_data: entityData,
