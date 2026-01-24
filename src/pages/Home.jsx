@@ -482,16 +482,21 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             {[
-              { icon: '⚙️', title: 'Developer documentation and API references' },
-              { icon: '📦', title: 'Sandbox testing environment' },
-              { icon: '✓', title: 'Integration guides and best practices' },
-              { icon: '🤝', title: 'Technical support and community' }
-            ].map((item, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur rounded-lg p-6 border border-white/20 text-left">
-                <span className="text-3xl mb-3 block">{item.icon}</span>
-                <p className="text-lg">{item.title}</p>
-              </div>
-            ))}
+              { icon: Globe, title: 'Developer documentation and API references' },
+              { icon: Layers, title: 'Sandbox testing environment' },
+              { icon: CheckCircle2, title: 'Integration guides and best practices' },
+              { icon: Mail, title: 'Technical support and community' }
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div key={i} className="bg-white/10 backdrop-blur rounded-lg p-6 border border-white/20 text-left">
+                  <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-3">
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
+                  <p className="text-lg">{item.title}</p>
+                </div>
+              );
+            })}
           </div>
 
           <Link to={createPageUrl('Onboarding')}>
