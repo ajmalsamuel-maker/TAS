@@ -25,7 +25,7 @@ export default function Home() {
                 Trust Anchor Service
               </h1>
               <p className="text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed">
-                A trusted data integrity and provenance layer, serving as a global interoperability gateway connecting identity, compliance, and trust services under one unified technical fabric
+                Global interoperability gateway for identity, compliance, and trust services with cryptographic data provenance
               </p>
               
               <div className="flex flex-wrap gap-4 mb-8">
@@ -58,34 +58,26 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 backdrop-blur-lg rounded-2xl p-8 border-2 border-blue-200 shadow-2xl">
-                <h3 className="text-2xl font-semibold mb-6 text-gray-900">Single Access Point For:</h3>
-                <div className="space-y-3">
-                  {['KYB', 'AML', 'LEI/vLEI Issuing', 'DID & Web3'].map((service, i) => (
-                    <div key={i} className="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-md transform hover:scale-105 transition-all hover:shadow-lg">
-                      <span className="text-lg font-medium text-gray-900">{service}</span>
+              <div className="bg-white backdrop-blur-lg rounded-xl p-8 border border-gray-200 shadow-xl">
+                <h3 className="text-xl font-bold mb-6 text-gray-900">Enterprise Services</h3>
+                <div className="space-y-2.5">
+                  {['KYB Verification', 'AML Screening', 'LEI/vLEI Credentials', 'Digital Identity (DID)'].map((service, i) => (
+                    <div key={i} className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
+                      <span className="text-base font-semibold text-gray-900">{service}</span>
                     </div>
                   ))}
                 </div>
-                <p className="mt-6 text-sm text-gray-700 font-medium">
-                  Where all data is cryptographically traceable to its source
+                <p className="mt-6 text-xs text-gray-600 font-medium border-t pt-4">
+                  Cryptographic provenance • Regulatory compliant • API-first
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Trusted By Section */}
-        <div className="relative max-w-7xl mx-auto px-6 pb-16 border-t border-gray-200 pt-12">
-          <p className="text-gray-500 text-sm mb-8 text-center font-medium">TRUSTED BY LEADING ORGANIZATIONS</p>
-          <div className="flex flex-wrap items-center justify-center gap-12 opacity-60">
-            <div className="text-2xl font-bold text-gray-400">FinTech Corp</div>
-            <div className="text-2xl font-bold text-gray-400">Global Bank</div>
-            <div className="text-2xl font-bold text-gray-400">Enterprise Inc</div>
-            <div className="text-2xl font-bold text-gray-400">SecureID</div>
-          </div>
-
-          <div className="mt-16 pt-12 border-t border-gray-200">
+        {/* Powered By Section */}
+        <div className="relative max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200 pt-12">
+          <div>
             <p className="text-gray-500 text-sm mb-8 text-center font-medium">POWERED BY</p>
             <div className="flex flex-wrap items-center justify-center gap-20">
               <img 
@@ -104,40 +96,40 @@ export default function Home() {
       </section>
 
       {/* Problem Section */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
             The Challenge
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-8 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 border-2 border-slate-200">
-              <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-slate-600" />
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-lg bg-white border border-gray-200 shadow-sm">
+              <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4">
+                <Shield className="h-6 w-6 text-slate-600" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900">Fragmented Services</h3>
-              <p className="text-gray-700">
-                Businesses face a complex web of disconnected services for identity (KYB/KYC), compliance (AML), and credentials (vLEI)
+              <h3 className="text-lg font-bold mb-3 text-gray-900">Fragmented Services</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Disconnected identity, compliance, and credential providers increase operational complexity and risk
               </p>
             </div>
 
-            <div className="text-center p-8 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200">
-              <div className="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Network className="h-8 w-8 text-[#0066B3]" />
+            <div className="p-6 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-200 shadow-sm">
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-4">
+                <Network className="h-6 w-6 text-[#0066B3]" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900">Integration Complexity</h3>
-              <p className="text-gray-700">
-                Slow onboarding, high integration costs, operational complexity, multiple compliance repositories, difficulty scaling across borders
+              <h3 className="text-lg font-bold mb-3 text-gray-900">Integration Burden</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Multiple vendor integrations, slow onboarding, and high maintenance costs limit scalability
               </p>
             </div>
 
-            <div className="text-center p-8 rounded-xl bg-gradient-to-br from-cyan-50 to-cyan-100 border-2 border-cyan-200">
-              <div className="w-16 h-16 bg-cyan-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-8 w-8 text-cyan-700" />
+            <div className="p-6 rounded-lg bg-white border border-gray-200 shadow-sm">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                <Zap className="h-6 w-6 text-[#0066B3]" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900">Our Solution</h3>
-              <p className="text-gray-700">
-                A unified, verifiable, interoperable layer to connect these ecosystems seamlessly
+              <h3 className="text-lg font-bold mb-3 text-gray-900">TAS Solution</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Unified API gateway with cryptographic provenance and seamless multi-provider orchestration
               </p>
             </div>
           </div>
@@ -145,101 +137,97 @@ export default function Home() {
       </section>
 
       {/* Core Services */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-2 mb-4">
-              <Network className="h-4 w-4 text-[#0066B3]" />
-              <span className="text-sm font-medium text-[#0066B3]">Unified Platform</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Complete Trust Services
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              Enterprise Trust Services
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Everything you need for identity verification and compliance in one intelligent gateway
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Complete identity verification and compliance infrastructure via unified API
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="border-2 border-blue-100 hover:border-[#0044CC] transition-all hover:shadow-2xl group">
-              <CardHeader className="bg-gradient-to-br from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-                <div className="w-14 h-14 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                  <Building2 className="h-7 w-7 text-white" />
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg">
+              <CardHeader className="pb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-lg flex items-center justify-center mb-3">
+                  <Building2 className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-2xl">KYB Verification</CardTitle>
+                <CardTitle className="text-xl">KYB Verification</CardTitle>
               </CardHeader>
-              <CardContent className="pt-6">
-                <p className="text-gray-600 mb-4">
-                  Enterprise-grade business verification powered by Certizen and FTS.Money with global coverage.
+              <CardContent className="pt-0">
+                <p className="text-sm text-gray-600 mb-4">
+                  Global business verification with UBO checks and regulatory compliance automation
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
-                    Real-time verification in 195+ countries
+                  <li className="flex items-center gap-2 text-xs text-gray-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
+                    195+ country coverage
                   </li>
-                  <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
-                    UBO & beneficial ownership checks
+                  <li className="flex items-center gap-2 text-xs text-gray-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
+                    Real-time verification
                   </li>
-                  <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
-                    Regulatory compliance automation
+                  <li className="flex items-center gap-2 text-xs text-gray-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
+                    Automated compliance
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-blue-100 hover:border-[#0044CC] transition-all hover:shadow-2xl group">
-              <CardHeader className="bg-gradient-to-br from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-                <div className="w-14 h-14 bg-gradient-to-br from-[#0088CC] to-[#0066B3] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                  <Lock className="h-7 w-7 text-white" />
+            <Card className="border border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg">
+              <CardHeader className="pb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#0088CC] to-[#0066B3] rounded-lg flex items-center justify-center mb-3">
+                  <Lock className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-2xl">AML Screening</CardTitle>
+                <CardTitle className="text-xl">AML Screening</CardTitle>
               </CardHeader>
-              <CardContent className="pt-6">
-                <p className="text-gray-600 mb-4">
-                  Comprehensive anti-money laundering screening against global databases and watchlists.
+              <CardContent className="pt-0">
+                <p className="text-sm text-gray-600 mb-4">
+                  Comprehensive sanctions, PEP, and adverse media screening with continuous monitoring
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
-                    Global sanctions & PEP screening
+                  <li className="flex items-center gap-2 text-xs text-gray-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
+                    Global watchlist coverage
                   </li>
-                  <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
-                    Adverse media monitoring
+                  <li className="flex items-center gap-2 text-xs text-gray-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
+                    Adverse media tracking
                   </li>
-                  <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
-                    Continuous watchlist updates
+                  <li className="flex items-center gap-2 text-xs text-gray-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
+                    Real-time updates
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-blue-100 hover:border-[#0044CC] transition-all hover:shadow-2xl group">
-              <CardHeader className="bg-gradient-to-br from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-                <div className="w-14 h-14 bg-gradient-to-br from-[#004C8C] to-[#003366] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                  <FileCheck className="h-7 w-7 text-white" />
+            <Card className="border border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg">
+              <CardHeader className="pb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#004C8C] to-[#003366] rounded-lg flex items-center justify-center mb-3">
+                  <FileCheck className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-2xl">vLEI Credentials</CardTitle>
+                <CardTitle className="text-xl">vLEI Credentials</CardTitle>
               </CardHeader>
-              <CardContent className="pt-6">
-                <p className="text-gray-600 mb-4">
-                  Digital identity credentials based on LEI with cryptographic verification via KERI/ACDC.
+              <CardContent className="pt-0">
+                <p className="text-sm text-gray-600 mb-4">
+                  LEI-based digital identity credentials with KERI/ACDC cryptographic verification
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
-                    Cryptographically verifiable
+                  <li className="flex items-center gap-2 text-xs text-gray-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
+                    Cryptographic validation
                   </li>
-                  <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
-                    OOR & ECR role credentials
+                  <li className="flex items-center gap-2 text-xs text-gray-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
+                    OOR & ECR roles
                   </li>
-                  <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
-                    Automated issuance & revocation
+                  <li className="flex items-center gap-2 text-xs text-gray-700">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
+                    Automated lifecycle
                   </li>
                 </ul>
               </CardContent>
@@ -249,68 +237,69 @@ export default function Home() {
       </section>
 
       {/* Solution Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
-            How TAS Works
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+            Platform Architecture
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-blue-200">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-lg flex items-center justify-center mb-4">
-                <Layers className="h-6 w-6 text-white" />
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg p-6 border border-gray-200">
+              <div className="w-10 h-10 bg-[#0066B3] rounded-lg flex items-center justify-center mb-3">
+                <Layers className="h-5 w-5 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">What it is</h3>
-              <p className="text-gray-700">
-                A neutral, <strong>technology-only</strong> platform that acts as a global interoperability gateway between identity, compliance, and credentials
+              <h3 className="text-base font-bold mb-2 text-gray-900">Technology Layer</h3>
+              <p className="text-sm text-gray-600">
+                Neutral gateway for identity, compliance, and credential services
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-blue-200">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-lg flex items-center justify-center mb-4">
-                <Zap className="h-6 w-6 text-white" />
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg p-6 border border-gray-200">
+              <div className="w-10 h-10 bg-[#0066B3] rounded-lg flex items-center justify-center mb-3">
+                <Zap className="h-5 w-5 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Core Function</h3>
-              <p className="text-gray-700">
-                Intelligent <strong>API orchestration</strong>, workflow coordination, protocol standardization and data transformation between regulated service providers
+              <h3 className="text-base font-bold mb-2 text-gray-900">Orchestration</h3>
+              <p className="text-sm text-gray-600">
+                API routing, workflow automation, and data transformation
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-blue-200">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-lg flex items-center justify-center mb-4">
-                <Shield className="h-6 w-6 text-white" />
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg p-6 border border-gray-200">
+              <div className="w-10 h-10 bg-[#0066B3] rounded-lg flex items-center justify-center mb-3">
+                <Shield className="h-5 w-5 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Key Principle</h3>
-              <p className="text-gray-700">
-                TAS routes and coordinates—it never performs regulated activities itself. All <strong>regulated tasks remain with licensed partners</strong>
+              <h3 className="text-base font-bold mb-2 text-gray-900">Compliance</h3>
+              <p className="text-sm text-gray-600">
+                All regulated activities handled by licensed partners
               </p>
             </div>
           </div>
 
-          <h3 className="text-2xl font-bold text-center mb-8 text-[#0044CC]">
-            Service Bundle Selection
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {[
-              'KYB, AML',
-              'DID-based services',
-              'vLEI',
-              'Credential Verification Workflows',
-              'Custom Trust Workflows'
-            ].map((service, i) => (
-              <div key={i} className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-xl transition-all border border-blue-100 hover:border-blue-300">
-                <p className="font-semibold text-gray-800">{service}</p>
-              </div>
-            ))}
+          <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <h3 className="text-lg font-bold mb-4 text-gray-900 text-center">
+              Available Service Bundles
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+              {[
+                'KYB + AML',
+                'Digital Identity',
+                'vLEI Credentials',
+                'Verification Workflows',
+                'Custom Bundles'
+              ].map((service, i) => (
+                <div key={i} className="bg-gradient-to-br from-slate-50 to-blue-50 rounded p-3 text-center border border-blue-100">
+                  <p className="text-xs font-semibold text-gray-800">{service}</p>
+                </div>
+              ))}
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
-            How it Works - The Orchestration Engine
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+            Orchestration Engine
           </h2>
 
           <div className="grid md:grid-cols-4 gap-6">
@@ -318,36 +307,30 @@ export default function Home() {
               {
                 phase: '1',
                 title: 'Request Routing',
-                desc: 'Client application sends API request to TAS. Platform performs validation, classification, and routing before passing to licensed services',
-                color: 'from-[#0066B3] to-[#004080]'
+                desc: 'API validation, classification, and intelligent routing to licensed providers'
               },
               {
                 phase: '2',
                 title: 'Parallel Execution',
-                desc: 'TAS executes required services (in parallel or sequence), coordinated by workflow automation engine. Automates KYB + AML + vLEI workflows',
-                color: 'from-[#0088CC] to-[#0066B3]'
+                desc: 'Coordinated multi-service workflows (KYB, AML, vLEI) in parallel or sequence'
               },
               {
                 phase: '3',
-                title: 'Response Aggregation',
-                desc: 'TAS aggregates results into unified response. Client receives clean, normalized data regardless of provider involvement',
-                color: 'from-[#006699] to-[#004C73]'
+                title: 'Data Aggregation',
+                desc: 'Unified, normalized response from multiple provider sources'
               },
               {
                 phase: '4',
-                title: 'Provenance Attestation',
-                desc: 'TAS cryptographically signs aggregated result and attaches complete, verifiable provenance record - the data passport',
-                color: 'from-[#00556B] to-[#003D4D]'
+                title: 'Provenance Signing',
+                desc: 'Cryptographic attestation with complete audit trail and data passport'
               }
             ].map((item, i) => (
-              <div key={i} className="relative">
-                <div className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-100 hover:border-blue-300 transition-all h-full">
-                  <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 text-white text-2xl font-bold`}>
-                    {item.phase}
-                  </div>
-                  <h3 className="text-lg font-bold mb-3 text-gray-900">{item.title}</h3>
-                  <p className="text-sm text-gray-600">{item.desc}</p>
+              <div key={i} className="bg-white rounded-lg p-5 border border-gray-200">
+                <div className="w-10 h-10 rounded-full bg-[#0066B3] flex items-center justify-center mb-3 text-white text-lg font-bold">
+                  {item.phase}
                 </div>
+                <h3 className="text-base font-bold mb-2 text-gray-900">{item.title}</h3>
+                <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -417,13 +400,13 @@ export default function Home() {
       </section>
 
       {/* Business Model */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
-            The Business Model - Clear and Compliant
+          <h2 className="text-3xl font-bold text-center mb-3 text-gray-900">
+            Transparent Pricing
           </h2>
-          <p className="text-xl text-center text-gray-600 mb-16">
-            A transparent pricing model that reinforces our regulatory neutrality
+          <p className="text-base text-center text-gray-600 mb-12">
+            Clear, subscription-based pricing with usage-based technical fees
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -471,13 +454,13 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
+      <section className="py-20 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Join the Digital Identity Revolution
+          <h2 className="text-3xl font-bold mb-4">
+            Enterprise Identity Infrastructure
           </h2>
-          <p className="text-xl text-blue-100 mb-12">
-            TAS is not just a product; it is essential infrastructure for the future of digital trust
+          <p className="text-lg text-blue-100 mb-10">
+            Secure, compliant, and scalable trust services for global operations
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
