@@ -62,10 +62,15 @@ export default function UserManagement() {
   });
 
   const updateRoleMutation = useMutation({
-    mutationFn: async ({ userId, newRole }) => {
+    mutationFn: async ({ userId, newRole, userEmail }) => {
       await base44.entities.User.update(userId, {
         user_role: newRole,
         permissions: ROLE_PERMISSIONS[newRole] || []
+      });
+      // Log the role change
+      await logAction(ACTION_TYPES.USER_ROLE_CHANGED, {
+        user_email: userEmail,
+        new_role: newRole
       });
     },
     onSuccess: () => {
