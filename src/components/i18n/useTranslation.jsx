@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react';
-import { supabase, subscribeToTable } from '../../lib/supabaseClient';
+import { supabase, subscribeToTable } from '../lib/supabaseClient';
 import IntlMessageFormat from 'intl-messageformat';
 
 const TranslationContext = createContext();
