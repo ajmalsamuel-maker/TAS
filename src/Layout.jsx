@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import TASLogo from './components/TASLogo';
 import { 
   Home, Users, Activity, Globe, LogOut, 
-  Shield, Menu, X, Settings, BarChart
+  Shield, Menu, X, Settings, BarChart, Mail
 } from 'lucide-react';
 
 export default function Layout({ children, currentPageName }) {
@@ -27,8 +27,9 @@ export default function Layout({ children, currentPageName }) {
   // Marketing Website (Public)
   const marketingPages = [
     { name: 'Home', icon: Home, path: 'Home' },
-    { name: 'About', icon: Globe, path: 'About' },
+    { name: 'Solutions', icon: Shield, path: 'About' },
     { name: 'Pricing', icon: Activity, path: 'Pricing' },
+    { name: 'Contact', icon: Mail, path: 'Contact' },
   ];
 
   // User Portal (Authenticated Users)
@@ -192,17 +193,17 @@ export default function Layout({ children, currentPageName }) {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Powered By</h4>
-              <div className="space-y-4 bg-white/10 rounded-lg p-4 backdrop-blur">
+              <div className="space-y-4">
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
                   alt="Certizen Technology" 
-                  className="h-8 opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-10 opacity-80 hover:opacity-100 transition-opacity"
                   style={{filter: 'brightness(0) invert(1)'}}
                 />
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
                   alt="FTS.Money" 
-                  className="h-8 opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-10 opacity-80 hover:opacity-100 transition-opacity"
                   style={{filter: 'brightness(0) invert(1)'}}
                 />
               </div>

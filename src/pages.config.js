@@ -12,6 +12,7 @@ import UserCredentials from './pages/UserCredentials';
 import UserSettings from './pages/UserSettings';
 import AdminAnalytics from './pages/AdminAnalytics';
 import DownloadLogo from './pages/DownloadLogo';
+import Contact from './pages/Contact';
 import __Layout from './Layout.jsx';
 
 
@@ -30,6 +31,7 @@ export const PAGES = {
     "UserSettings": UserSettings,
     "AdminAnalytics": AdminAnalytics,
     "DownloadLogo": DownloadLogo,
+    "Contact": Contact,
 }
 
 export const pagesConfig = {

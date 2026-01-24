@@ -73,22 +73,28 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Powered By */}
+        {/* Trusted By Section */}
         <div className="relative max-w-7xl mx-auto px-6 pb-16 border-t border-gray-200 pt-12">
-          <p className="text-gray-500 text-sm mb-6 text-center">Powered by</p>
-          <div className="flex flex-wrap items-center justify-center gap-16">
-            <div className="bg-white rounded-xl p-6 shadow-md border-2 border-gray-100">
+          <p className="text-gray-500 text-sm mb-8 text-center font-medium">TRUSTED BY LEADING ORGANIZATIONS</p>
+          <div className="flex flex-wrap items-center justify-center gap-12 opacity-60">
+            <div className="text-2xl font-bold text-gray-400">FinTech Corp</div>
+            <div className="text-2xl font-bold text-gray-400">Global Bank</div>
+            <div className="text-2xl font-bold text-gray-400">Enterprise Inc</div>
+            <div className="text-2xl font-bold text-gray-400">SecureID</div>
+          </div>
+
+          <div className="mt-16 pt-12 border-t border-gray-200">
+            <p className="text-gray-500 text-sm mb-8 text-center font-medium">POWERED BY</p>
+            <div className="flex flex-wrap items-center justify-center gap-16">
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png" 
                 alt="Certizen Technology" 
-                className="h-10 md:h-12 opacity-80 hover:opacity-100 transition-opacity"
+                className="h-12 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
               />
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow-md border-2 border-gray-100">
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png" 
                 alt="FTS.Money" 
-                className="h-10 md:h-12 opacity-80 hover:opacity-100 transition-opacity"
+                className="h-12 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
               />
             </div>
           </div>
