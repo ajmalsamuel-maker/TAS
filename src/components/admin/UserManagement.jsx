@@ -33,7 +33,16 @@ export default function UserManagement() {
 
   const inviteMutation = useMutation({
     mutationFn: async ({ email, role }) => {
-      await base44.users.inviteUser(email, role);
+      await base44.users.inviteUser(email, 'user');
+      // Update with granular role after invitation
+      const users = await base44.entities.User.list();
+      const newUser = users.find(u => u.email === email);
+      if (newUser) {
+        await base44.entities.User.update(newUser.id, { 
+          user_role: role,
+          permissions: ROLE_PERMISSIONS[role] || []
+        });
+      }
     },
     onSuccess: () => {
       toast.success('User invited successfully');
@@ -43,6 +52,23 @@ export default function UserManagement() {
     },
     onError: (error) => {
       toast.error(error.message || 'Failed to invite user');
+    }
+  });
+
+  const updateRoleMutation = useMutation({
+    mutationFn: async ({ userId, newRole }) => {
+      await base44.entities.User.update(userId, {
+        user_role: newRole,
+        permissions: ROLE_PERMISSIONS[newRole] || []
+      });
+    },
+    onSuccess: () => {
+      toast.success('User role updated');
+      setEditingUserId(null);
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+    },
+    onError: (error) => {
+      toast.error(error.message || 'Failed to update role');
     }
   });
 
