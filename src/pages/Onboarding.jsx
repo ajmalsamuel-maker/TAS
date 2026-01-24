@@ -15,11 +15,31 @@ import OnboardingStep4 from '../components/onboarding/OnboardingStep4';
 import OnboardingStep5 from '../components/onboarding/OnboardingStep5';
 
 export default function Onboarding() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
   const [showForm, setShowForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRunningAml, setIsRunningAml] = useState(false);
   const navigate = useNavigate();
+
+  // Check authentication on mount
+  React.useEffect(() => {
+    base44.auth.me()
+      .then(currentUser => {
+        if (currentUser) {
+          setUser(currentUser);
+          setShowForm(true); // Auto-show form for authenticated users
+        } else {
+          // Redirect to login if not authenticated
+          base44.auth.redirectToLogin(createPageUrl('Onboarding'));
+        }
+      })
+      .catch(() => {
+        base44.auth.redirectToLogin(createPageUrl('Onboarding'));
+      })
+      .finally(() => setLoading(false));
+  }, [navigate]);
   const [formData, setFormData] = useState({
     legal_name: '',
     entity_category: '',
@@ -97,6 +117,17 @@ export default function Onboarding() {
   };
 
   const CurrentStepComponent = steps[currentStep - 1].component;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
+        <div className="text-center">
+          <Loader className="h-12 w-12 animate-spin text-[#0044CC] mx-auto mb-4" />
+          <p className="text-gray-600">Loading your onboarding...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!showForm) {
     return (
@@ -184,9 +215,18 @@ export default function Onboarding() {
               size="lg" 
               className="bg-[#0066B3] hover:bg-[#004C8C] text-white text-lg px-10 py-6 shadow-lg"
             >
-              Begin Onboarding <ArrowRight className="ml-2 h-5 w-5" />
+              Start Application <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
+
+          {/* User Info */}
+          {user && (
+            <div className="text-center mt-6 p-4 bg-blue-50 rounded-lg">
+              <p className="text-sm text-gray-600">
+                Logged in as: <span className="font-semibold text-[#0044CC]">{user.email}</span>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     );

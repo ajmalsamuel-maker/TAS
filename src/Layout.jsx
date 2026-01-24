@@ -97,7 +97,7 @@ function LayoutContent({ children, currentPageName }) {
                       {t('auth.signin')}
                     </Button>
                   </Link>
-                  <Link to={createPageUrl('Onboarding')}>
+                  <Link to={createPageUrl('UserLogin')}>
                     <Button className="bg-white text-[#0066B3] hover:bg-blue-50 font-semibold">
                       {t('auth.getstarted')}
                     </Button>

@@ -6,7 +6,10 @@ import { createPageUrl } from '../utils';
 
 export default function UserLogin() {
   const handleLogin = () => {
-    base44.auth.redirectToLogin(createPageUrl('UserDashboard'));
+    // Check if user is coming from signup/new account flow
+    const isNewSignup = new URLSearchParams(window.location.search).get('new') === 'true';
+    const redirectTo = isNewSignup ? createPageUrl('Onboarding') : createPageUrl('UserDashboard');
+    base44.auth.redirectToLogin(redirectTo);
   };
 
   return (
@@ -83,8 +86,8 @@ export default function UserLogin() {
         <div className="text-center mt-6 space-y-2">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}
-            <a href={createPageUrl('Onboarding')} className="text-[#0044CC] font-semibold hover:underline">
-              Apply for LEI
+            <a href={`${createPageUrl('UserLogin')}?new=true`} className="text-[#0044CC] font-semibold hover:underline">
+              Create account & Apply for LEI
             </a>
           </p>
           <a href={createPageUrl('Home')} className="text-sm text-gray-500 hover:text-gray-700 block">
