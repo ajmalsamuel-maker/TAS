@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { Upload, FileText, X } from 'lucide-react';
+import { Upload, FileText, X, Loader } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function OnboardingStep4({ formData, setFormData }) {
   const [uploading, setUploading] = useState(false);
+  const [extracting, setExtracting] = useState(false);
 
   const handleFileUpload = async (e) => {
     const files = Array.from(e.target.files);
@@ -27,6 +28,43 @@ export default function OnboardingStep4({ formData, setFormData }) {
       }));
       
       toast.success(`${files.length} document(s) uploaded successfully`);
+      
+      // Auto-extract data from documents
+      setExtracting(true);
+      try {
+        const extractionSchema = {
+          type: 'object',
+          properties: {
+            company_name: { type: 'string' },
+            registration_number: { type: 'string' },
+            incorporation_date: { type: 'string' },
+            address: { type: 'string' },
+            directors: { type: 'array', items: { type: 'string' } }
+          }
+        };
+        
+        const extractedResults = await base44.functions.invoke('extractDocumentData', {
+          file_urls: fileUrls,
+          json_schema: extractionSchema
+        });
+        
+        if (extractedResults.data && extractedResults.data.extracted_data) {
+          const firstSuccess = extractedResults.data.extracted_data.find(r => r.status === 'success');
+          if (firstSuccess?.data) {
+            setFormData(prev => ({
+              ...prev,
+              legal_name: firstSuccess.data.company_name || prev.legal_name,
+              unique_business_id: firstSuccess.data.registration_number || prev.unique_business_id,
+              entity_creation_date: firstSuccess.data.incorporation_date || prev.entity_creation_date
+            }));
+            toast.success('Document data extracted and auto-filled');
+          }
+        }
+      } catch (extractError) {
+        console.log('Auto-extraction skipped:', extractError.message);
+      } finally {
+        setExtracting(false);
+      }
     } catch (error) {
       toast.error('Failed to upload documents');
     } finally {
@@ -58,12 +96,16 @@ export default function OnboardingStep4({ formData, setFormData }) {
             onChange={handleFileUpload}
             className="hidden"
             id="file-upload"
-            disabled={uploading}
+            disabled={uploading || extracting}
           />
           <label htmlFor="file-upload" className="cursor-pointer">
-            <Upload className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+            {uploading || extracting ? (
+              <Loader className="h-12 w-12 mx-auto mb-4 text-blue-400 animate-spin" />
+            ) : (
+              <Upload className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+            )}
             <p className="text-lg font-medium text-gray-700 mb-2">
-              {uploading ? 'Uploading...' : 'Click to upload documents'}
+              {uploading ? 'Uploading...' : extracting ? 'Extracting data...' : 'Click to upload documents'}
             </p>
             <p className="text-sm text-gray-500">PDF, JPG, PNG up to 10MB each</p>
           </label>
