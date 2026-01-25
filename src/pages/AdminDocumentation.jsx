@@ -288,7 +288,45 @@ const AdminDocumentation = () => {
 
               <div>
                 <h3 className="text-lg font-bold mb-4">Isolation Implementation by Layer</h3>
-                <table className="w-full text-sm border-collapse">
+                <p className="mb-6 leading-relaxed">
+                  The multi-layer isolation strategy ensures that no single point of failure can compromise data across multiple tenants. Each layer implements isolation appropriate to its function, and together they create overlapping security boundaries that protect sensitive data at every level of the stack.
+                </p>
+                <MermaidDiagram 
+                  id="isolation-layers"
+                  chart={`graph TB
+    API["🔐 API Layer<br/>HMAC Signature Validation<br/>org_id in every request"]
+    DB["🗄️ Database Layer<br/>Row-Level Security<br/>Schema isolation"]
+    CACHE["⚡ Cache Layer<br/>Namespace Prefixing<br/>org_*:key pattern"]
+    QUEUE["📋 Message Queue<br/>org_id filtering<br/>Attribute-based routing"]
+    STORAGE["📦 Storage Layer<br/>IAM Role Restriction<br/>Prefix-based access"]
+    
+    API -->|Validate| DB
+    API -->|Store session| CACHE
+    API -->|Queue async| QUEUE
+    API -->|Upload docs| STORAGE
+    
+    style API fill:#e3f2fd
+    style DB fill:#f3e5f5
+    style CACHE fill:#e0f2f1
+    style QUEUE fill:#fff3e0
+    style STORAGE fill:#fbe9e7
+    
+    note right of API
+      Every request includes org_id
+      Signature prevents tampering
+    end note
+    
+    note right of DB
+      Physical schema separation
+      RLS policies block cross-tenant queries
+    end note
+    
+    note right of CACHE
+      Keys like org_123:session:xyz
+      Impossible to iterate across orgs
+    end note`}
+                />
+                <table className="w-full text-sm border-collapse mt-6">
                   <thead className="bg-gray-800 text-white">
                     <tr>
                       <th className="border p-3 text-left">Layer</th>
