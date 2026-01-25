@@ -4,9 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Textarea } from '@/components/ui/textarea';
 import { 
   Play, Save, Plus, Trash2, Settings, GitBranch, 
-  CheckCircle, XCircle, AlertCircle, Database, Code, Globe 
+  CheckCircle, XCircle, AlertCircle, Database, Code, Globe,
+  ZoomIn, ZoomOut, Maximize2, Bug, Clock, ArrowRight, Copy
 } from 'lucide-react';
 
 const NODE_TYPES = {
@@ -47,6 +50,11 @@ export default function PolicyFlowBuilder({ initialWorkflow, onSave }) {
   const [edges, setEdges] = useState(initialWorkflow?.edges || []);
   const [selectedNode, setSelectedNode] = useState(null);
   const [draggedNodeType, setDraggedNodeType] = useState(null);
+  const [zoom, setZoom] = useState(1);
+  const [testMode, setTestMode] = useState(false);
+  const [testData, setTestData] = useState('{}');
+  const [executionResults, setExecutionResults] = useState(null);
+  const [showExecutionHistory, setShowExecutionHistory] = useState(false);
 
   const addNode = useCallback((type, x = 300, y = 200) => {
     const newNode = {
@@ -88,6 +96,39 @@ export default function PolicyFlowBuilder({ initialWorkflow, onSave }) {
     onSave({ nodes, edges });
   };
 
+  const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.1, 2));
+  const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.1, 0.5));
+  const handleZoomReset = () => setZoom(1);
+
+  const duplicateNode = useCallback((node) => {
+    const newNode = {
+      ...node,
+      id: `node_${Date.now()}`,
+      position: { x: node.position.x + 100, y: node.position.y + 50 }
+    };
+    setNodes([...nodes, newNode]);
+  }, [nodes]);
+
+  const testWorkflow = async () => {
+    try {
+      const inputData = JSON.parse(testData);
+      // Simulate execution
+      const results = {};
+      nodes.forEach(node => {
+        if (node.type === 'data_source' || node.type === 'api_call') {
+          results[node.id] = {
+            status: 'success',
+            executedAt: new Date().toISOString(),
+            output: { sample: 'data' }
+          };
+        }
+      });
+      setExecutionResults(results);
+    } catch (error) {
+      alert('Invalid test data JSON');
+    }
+  };
+
   const handleDrop = (e) => {
     e.preventDefault();
     if (draggedNodeType) {
@@ -98,9 +139,9 @@ export default function PolicyFlowBuilder({ initialWorkflow, onSave }) {
   };
 
   return (
-    <div className="grid md:grid-cols-4 gap-6 h-[600px]">
+    <div className="grid md:grid-cols-4 gap-6 h-[700px]">
       {/* Node Palette */}
-      <Card className="md:col-span-1">
+      <Card className="md:col-span-1 overflow-auto">
         <CardHeader>
           <CardTitle className="text-sm">Node Types</CardTitle>
         </CardHeader>
@@ -126,51 +167,82 @@ export default function PolicyFlowBuilder({ initialWorkflow, onSave }) {
 
       {/* Canvas */}
       <Card className="md:col-span-2">
-        <CardHeader className="flex flex-row items-center justify-between">
+        <CardHeader className="flex flex-row items-center justify-between pb-3">
           <CardTitle className="text-sm">Workflow Canvas</CardTitle>
-          <div className="flex gap-2">
+          <div className="flex gap-1">
+            <Button size="sm" variant="outline" onClick={handleZoomOut}>
+              <ZoomOut className="w-4 h-4" />
+            </Button>
+            <Button size="sm" variant="outline" onClick={handleZoomReset}>
+              {Math.round(zoom * 100)}%
+            </Button>
+            <Button size="sm" variant="outline" onClick={handleZoomIn}>
+              <ZoomIn className="w-4 h-4" />
+            </Button>
+            <Button size="sm" variant="outline" onClick={() => setTestMode(!testMode)}>
+              <Bug className="w-4 h-4" />
+            </Button>
             <Button size="sm" variant="outline" onClick={handleSave}>
-              <Save className="w-4 h-4 mr-1" />
-              Save
+              <Save className="w-4 h-4" />
             </Button>
           </div>
         </CardHeader>
         <CardContent
-          className="relative bg-gray-50 h-[500px] overflow-auto"
+          className="relative bg-gradient-to-br from-gray-50 to-gray-100 h-[580px] overflow-auto"
           onDrop={handleDrop}
           onDragOver={(e) => e.preventDefault()}
         >
-          {/* Nodes */}
-          {nodes.map((node) => {
-            const NodeIcon = NODE_TYPES[node.type]?.icon || Settings;
-            const isSelected = selectedNode?.id === node.id;
-            
-            return (
-              <div
-                key={node.id}
-                className={`absolute p-4 rounded-lg shadow-md cursor-pointer transition-all ${
-                  NODE_TYPES[node.type]?.color || 'bg-gray-100'
-                } ${isSelected ? 'ring-2 ring-blue-500' : ''}`}
-                style={{ left: node.position.x, top: node.position.y }}
-                onClick={() => setSelectedNode(node)}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <NodeIcon className="w-4 h-4" />
-                  <span className="text-xs font-semibold">{node.label}</span>
-                </div>
-                {node.type === 'data_source' && node.config.source && (
-                  <Badge variant="outline" className="text-xs">
-                    {DATA_SOURCES.find(s => s.id === node.config.source)?.name}
-                  </Badge>
-                )}
-                {node.type === 'condition' && node.config.field && (
-                  <div className="text-xs text-gray-600 mt-1">
-                    {node.config.field} {node.config.operator} {node.config.value}
+          <div style={{ transform: `scale(${zoom})`, transformOrigin: 'top left', transition: 'transform 0.2s' }}>
+            {/* Nodes */}
+            {nodes.map((node) => {
+              const NodeIcon = NODE_TYPES[node.type]?.icon || Settings;
+              const isSelected = selectedNode?.id === node.id;
+              const hasExecutionResult = executionResults?.[node.id];
+              
+              return (
+                <div
+                  key={node.id}
+                  className={`absolute p-4 rounded-lg shadow-lg cursor-pointer transition-all border-2 ${
+                    NODE_TYPES[node.type]?.color || 'bg-gray-100'
+                  } ${isSelected ? 'ring-4 ring-blue-500 border-blue-600' : 'border-transparent'} ${
+                    hasExecutionResult ? 'ring-2 ring-green-400' : ''
+                  }`}
+                  style={{ left: node.position.x, top: node.position.y, minWidth: '180px' }}
+                  onClick={() => setSelectedNode(node)}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <NodeIcon className="w-4 h-4" />
+                      <span className="text-xs font-semibold">{node.label}</span>
+                    </div>
+                    {hasExecutionResult && (
+                      <CheckCircle className="w-3 h-3 text-green-600" />
+                    )}
                   </div>
-                )}
-              </div>
-            );
-          })}
+                  {node.type === 'data_source' && node.config.source && (
+                    <Badge variant="outline" className="text-xs">
+                      {DATA_SOURCES.find(s => s.id === node.config.source)?.name}
+                    </Badge>
+                  )}
+                  {node.type === 'api_call' && node.config.url && (
+                    <div className="text-xs text-gray-600 mt-1 truncate">
+                      {node.config.method} {node.config.url}
+                    </div>
+                  )}
+                  {node.type === 'condition' && node.config.field && (
+                    <div className="text-xs text-gray-600 mt-1">
+                      {node.config.field} {node.config.operator} {node.config.value}
+                    </div>
+                  )}
+                  {hasExecutionResult && (
+                    <div className="mt-2 pt-2 border-t border-gray-300">
+                      <p className="text-xs text-green-700 font-medium">Executed</p>
+                      <p className="text-xs text-gray-500">{new Date(hasExecutionResult.executedAt).toLocaleTimeString()}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
 
           {/* Edges - Simple arrows */}
           <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
@@ -222,113 +294,188 @@ export default function PolicyFlowBuilder({ initialWorkflow, onSave }) {
               </marker>
             </defs>
           </svg>
+          </div>
+
+          {/* Test Mode Panel */}
+          {testMode && (
+            <div className="absolute bottom-4 left-4 right-4 bg-white border-2 border-blue-500 rounded-lg shadow-xl p-4 z-10">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="font-semibold text-sm flex items-center gap-2">
+                  <Bug className="w-4 h-4" />
+                  Test Workflow
+                </h3>
+                <Button size="sm" variant="ghost" onClick={() => setTestMode(false)}>×</Button>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs font-medium mb-1 block">Input Data (JSON)</label>
+                  <Textarea
+                    value={testData}
+                    onChange={(e) => setTestData(e.target.value)}
+                    placeholder='{"name": "Test", "amount": 1000}'
+                    className="text-xs font-mono h-20"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium mb-1 block">Execution Results</label>
+                  <div className="bg-gray-50 rounded p-2 h-20 overflow-auto text-xs">
+                    {executionResults ? (
+                      <pre className="text-xs">{JSON.stringify(executionResults, null, 2)}</pre>
+                    ) : (
+                      <p className="text-gray-500">Run test to see results</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <Button onClick={testWorkflow} size="sm" className="mt-3 bg-blue-600">
+                <Play className="w-3 h-3 mr-1" />
+                Run Test
+              </Button>
+            </div>
+          )}
         </CardContent>
       </Card>
 
       {/* Node Properties */}
-      <Card className="md:col-span-1">
+      <Card className="md:col-span-1 overflow-auto">
         <CardHeader>
-          <CardTitle className="text-sm">Node Properties</CardTitle>
+          <CardTitle className="text-sm">Node Configuration</CardTitle>
         </CardHeader>
         <CardContent>
           {selectedNode ? (
-            <div className="space-y-4">
-              <div>
-                <label className="text-xs font-medium text-gray-700">Node ID</label>
-                <Input value={selectedNode.id} disabled className="text-xs mt-1" />
-              </div>
+            <Tabs defaultValue="config" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="config" className="text-xs">Config</TabsTrigger>
+                <TabsTrigger value="data" className="text-xs">Data</TabsTrigger>
+                <TabsTrigger value="settings" className="text-xs">Settings</TabsTrigger>
+              </TabsList>
 
-              <div>
-                <label className="text-xs font-medium text-gray-700">Label</label>
-                <Input
-                  value={selectedNode.label}
-                  onChange={(e) => setNodes(nodes.map(n => 
-                    n.id === selectedNode.id ? { ...n, label: e.target.value } : n
-                  ))}
-                  className="text-xs mt-1"
-                />
-              </div>
+              <TabsContent value="config" className="space-y-4 mt-4">
+                <div>
+                  <label className="text-xs font-medium text-gray-700">Node ID</label>
+                  <Input value={selectedNode.id} disabled className="text-xs mt-1" />
+                </div>
 
-              {selectedNode.type === 'data_source' && (
-                <>
-                  <div>
-                    <label className="text-xs font-medium text-gray-700">Data Source</label>
-                    <Select
-                      value={selectedNode.config.source}
-                      onValueChange={(value) => updateNodeConfig(selectedNode.id, { source: value })}
-                    >
-                      <SelectTrigger className="text-xs mt-1">
-                        <SelectValue placeholder="Select source" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {DATA_SOURCES.map(source => (
-                          <SelectItem key={source.id} value={source.id} className="text-xs">
-                            {source.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <label className="text-xs font-medium text-gray-700">Timeout (ms)</label>
-                    <Input
-                      type="number"
-                      value={selectedNode.config.timeout}
-                      onChange={(e) => updateNodeConfig(selectedNode.id, { timeout: parseInt(e.target.value) })}
-                      className="text-xs mt-1"
-                    />
-                  </div>
-                </>
-              )}
+                <div>
+                  <label className="text-xs font-medium text-gray-700">Label</label>
+                  <Input
+                    value={selectedNode.label}
+                    onChange={(e) => setNodes(nodes.map(n => 
+                      n.id === selectedNode.id ? { ...n, label: e.target.value } : n
+                    ))}
+                    className="text-xs mt-1"
+                  />
+                </div>
 
-              {selectedNode.type === 'api_call' && (
-                <>
-                  <div>
-                    <label className="text-xs font-medium text-gray-700">API URL</label>
-                    <Input
-                      value={selectedNode.config.url}
-                      onChange={(e) => updateNodeConfig(selectedNode.id, { url: e.target.value })}
-                      placeholder="https://api.example.com/endpoint"
-                      className="text-xs mt-1"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs font-medium text-gray-700">Method</label>
-                    <Select
-                      value={selectedNode.config.method}
-                      onValueChange={(value) => updateNodeConfig(selectedNode.id, { method: value })}
-                    >
-                      <SelectTrigger className="text-xs mt-1">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="GET">GET</SelectItem>
-                        <SelectItem value="POST">POST</SelectItem>
-                        <SelectItem value="PUT">PUT</SelectItem>
-                        <SelectItem value="DELETE">DELETE</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <label className="text-xs font-medium text-gray-700">Request Body (JSON)</label>
-                    <Input
-                      value={selectedNode.config.body}
-                      onChange={(e) => updateNodeConfig(selectedNode.id, { body: e.target.value })}
-                      placeholder='{"key": "{{context.field}}"}'
-                      className="text-xs mt-1"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs font-medium text-gray-700">Timeout (ms)</label>
-                    <Input
-                      type="number"
-                      value={selectedNode.config.timeout}
-                      onChange={(e) => updateNodeConfig(selectedNode.id, { timeout: parseInt(e.target.value) })}
-                      className="text-xs mt-1"
-                    />
-                  </div>
-                </>
-              )}
+                {selectedNode.type === 'data_source' && (
+                  <>
+                    <div>
+                      <label className="text-xs font-medium text-gray-700">Data Source</label>
+                      <Select
+                        value={selectedNode.config.source}
+                        onValueChange={(value) => updateNodeConfig(selectedNode.id, { source: value })}
+                      >
+                        <SelectTrigger className="text-xs mt-1">
+                          <SelectValue placeholder="Select source" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {DATA_SOURCES.map(source => (
+                            <SelectItem key={source.id} value={source.id} className="text-xs">
+                              {source.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-gray-700">Timeout (ms)</label>
+                      <Input
+                        type="number"
+                        value={selectedNode.config.timeout}
+                        onChange={(e) => updateNodeConfig(selectedNode.id, { timeout: parseInt(e.target.value) })}
+                        className="text-xs mt-1"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-gray-700">Response Mapping</label>
+                      <Textarea
+                        value={selectedNode.config.mapping || ''}
+                        onChange={(e) => updateNodeConfig(selectedNode.id, { mapping: e.target.value })}
+                        placeholder="result = response.data"
+                        className="text-xs mt-1 font-mono"
+                      />
+                    </div>
+                  </>
+                )}
+
+                {selectedNode.type === 'api_call' && (
+                  <>
+                    <div>
+                      <label className="text-xs font-medium text-gray-700">API URL</label>
+                      <Input
+                        value={selectedNode.config.url}
+                        onChange={(e) => updateNodeConfig(selectedNode.id, { url: e.target.value })}
+                        placeholder="https://api.example.com/endpoint"
+                        className="text-xs mt-1"
+                      />
+                      <p className="text-xs text-gray-500 mt-1">Use variables: {'{{input.fieldName}}'}</p>
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-gray-700">Method</label>
+                      <Select
+                        value={selectedNode.config.method}
+                        onValueChange={(value) => updateNodeConfig(selectedNode.id, { method: value })}
+                      >
+                        <SelectTrigger className="text-xs mt-1">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="GET">GET</SelectItem>
+                          <SelectItem value="POST">POST</SelectItem>
+                          <SelectItem value="PUT">PUT</SelectItem>
+                          <SelectItem value="DELETE">DELETE</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-gray-700">Headers (JSON)</label>
+                      <Textarea
+                        value={selectedNode.config.headers || '{}'}
+                        onChange={(e) => updateNodeConfig(selectedNode.id, { headers: e.target.value })}
+                        placeholder='{"Authorization": "Bearer {{token}}"}'
+                        className="text-xs mt-1 font-mono h-20"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-gray-700">Request Body (JSON)</label>
+                      <Textarea
+                        value={selectedNode.config.body}
+                        onChange={(e) => updateNodeConfig(selectedNode.id, { body: e.target.value })}
+                        placeholder='{"key": "{{context.field}}"}'
+                        className="text-xs mt-1 font-mono h-20"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-gray-700">Response Path</label>
+                      <Input
+                        value={selectedNode.config.responsePath || ''}
+                        onChange={(e) => updateNodeConfig(selectedNode.id, { responsePath: e.target.value })}
+                        placeholder="data.result"
+                        className="text-xs mt-1"
+                      />
+                      <p className="text-xs text-gray-500 mt-1">Extract specific field from response</p>
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-gray-700">Timeout (ms)</label>
+                      <Input
+                        type="number"
+                        value={selectedNode.config.timeout}
+                        onChange={(e) => updateNodeConfig(selectedNode.id, { timeout: parseInt(e.target.value) })}
+                        className="text-xs mt-1"
+                      />
+                    </div>
+                  </>
+                )}
 
               {selectedNode.type === 'condition' && (
                 <>
@@ -375,34 +522,94 @@ export default function PolicyFlowBuilder({ initialWorkflow, onSave }) {
                 </>
               )}
 
-              <div className="pt-4 border-t space-y-2">
-                <label className="text-xs font-medium text-gray-700">Connect to Node</label>
-                <Select onValueChange={(targetId) => connectNodes(selectedNode.id, targetId)}>
-                  <SelectTrigger className="text-xs">
-                    <SelectValue placeholder="Select target" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {nodes.filter(n => n.id !== selectedNode.id).map(node => (
-                      <SelectItem key={node.id} value={node.id} className="text-xs">
-                        {node.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+                <div className="pt-4 border-t space-y-2">
+                  <label className="text-xs font-medium text-gray-700">Connect to Node</label>
+                  <Select onValueChange={(targetId) => connectNodes(selectedNode.id, targetId)}>
+                    <SelectTrigger className="text-xs">
+                      <SelectValue placeholder="Select target" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {nodes.filter(n => n.id !== selectedNode.id).map(node => (
+                        <SelectItem key={node.id} value={node.id} className="text-xs">
+                          {node.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </TabsContent>
 
-              {selectedNode.type !== 'start' && (
-                <Button
-                  variant="destructive"
-                  size="sm"
-                  onClick={() => deleteNode(selectedNode.id)}
-                  className="w-full"
-                >
-                  <Trash2 className="w-4 h-4 mr-1" />
-                  Delete Node
-                </Button>
-              )}
-            </div>
+              <TabsContent value="data" className="space-y-3 mt-4">
+                <div className="bg-gray-50 rounded p-3">
+                  <p className="text-xs font-medium mb-2">Available Variables</p>
+                  <div className="space-y-1 text-xs font-mono">
+                    <p className="text-gray-600">{'{{input.fieldName}}'} - Input data</p>
+                    <p className="text-gray-600">{'{{results.nodeId}}'} - Previous node results</p>
+                    <p className="text-gray-600">{'{{context.variable}}'} - Context variables</p>
+                  </div>
+                </div>
+                {executionResults?.[selectedNode.id] && (
+                  <div>
+                    <p className="text-xs font-medium mb-2">Execution Output</p>
+                    <pre className="bg-gray-50 p-2 rounded text-xs overflow-auto max-h-40">
+                      {JSON.stringify(executionResults[selectedNode.id].output, null, 2)}
+                    </pre>
+                  </div>
+                )}
+              </TabsContent>
+
+              <TabsContent value="settings" className="space-y-3 mt-4">
+                <div>
+                  <label className="text-xs font-medium text-gray-700">Error Handling</label>
+                  <Select
+                    value={selectedNode.config.errorHandling || 'stop'}
+                    onValueChange={(value) => updateNodeConfig(selectedNode.id, { errorHandling: value })}
+                  >
+                    <SelectTrigger className="text-xs mt-1">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="stop">Stop Workflow</SelectItem>
+                      <SelectItem value="continue">Continue</SelectItem>
+                      <SelectItem value="retry">Retry</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                {selectedNode.config.errorHandling === 'retry' && (
+                  <div>
+                    <label className="text-xs font-medium text-gray-700">Retry Count</label>
+                    <Input
+                      type="number"
+                      value={selectedNode.config.retryCount || 3}
+                      onChange={(e) => updateNodeConfig(selectedNode.id, { retryCount: parseInt(e.target.value) })}
+                      className="text-xs mt-1"
+                    />
+                  </div>
+                )}
+                <div className="flex gap-2 pt-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => duplicateNode(selectedNode)}
+                    className="flex-1"
+                  >
+                    <Copy className="w-3 h-3 mr-1" />
+                    Duplicate
+                  </Button>
+                  {selectedNode.type !== 'start' && (
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => deleteNode(selectedNode.id)}
+                      className="flex-1"
+                    >
+                      <Trash2 className="w-3 h-3 mr-1" />
+                      Delete
+                    </Button>
+                  )}
+                </div>
+              </TabsContent>
+            </Tabs>
           ) : (
             <p className="text-xs text-gray-500">Select a node to edit its properties</p>
           )}
