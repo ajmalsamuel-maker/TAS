@@ -165,7 +165,7 @@ const MarketingWebsiteDocumentation = () => {
 
                 <div className="space-y-4">
                   <div className="bg-blue-50 p-6 rounded border-l-4 border-blue-600">
-                    <p className="font-bold text-lg mb-3">For Finance / CFO</p>
+                    <p className="font-bold text-lg mb-3">💰 For Finance / CFO</p>
                     <ul className="text-sm space-y-2 ml-4">
                       <li>• <strong>95% cost reduction</strong> vs traditional KYB providers</li>
                       <li>• <strong>$15K annual savings</strong> per 1000 verifications</li>
@@ -174,8 +174,8 @@ const MarketingWebsiteDocumentation = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-purple-50 p-6 rounded border-l-4 border-purple-600">
-                    <p className="font-bold text-lg mb-3">For Compliance / Chief Compliance Officer</p>
+                  <div className="bg-blue-50 p-6 rounded border-l-4 border-blue-600">
+                    <p className="font-bold text-lg mb-3">🛡️ For Compliance / Chief Compliance Officer</p>
                     <ul className="text-sm space-y-2 ml-4">
                       <li>• <strong>99.9% accuracy</strong> with multi-layer validation</li>
                       <li>• <strong>24/7 continuous monitoring</strong> of all entities</li>
@@ -184,8 +184,8 @@ const MarketingWebsiteDocumentation = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-green-50 p-6 rounded border-l-4 border-green-600">
-                    <p className="font-bold text-lg mb-3">For Operations / CTO</p>
+                  <div className="bg-indigo-50 p-6 rounded border-l-4 border-indigo-600">
+                    <p className="font-bold text-lg mb-3">⚙️ For Operations / CTO</p>
                     <ul className="text-sm space-y-2 ml-4">
                       <li>• <strong>REST API</strong> with 100ms latency, 99.95% uptime SLA</li>
                       <li>• <strong>Webhook integrations</strong> for real-time compliance updates</li>
