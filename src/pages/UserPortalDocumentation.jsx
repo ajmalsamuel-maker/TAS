@@ -315,35 +315,39 @@ const UserPortalDocumentation = () => {
               <div>
                 <h3 className="text-lg font-bold mb-4">Credential Details & Usage</h3>
                 <table className="w-full text-sm border-collapse">
-                  <thead className="bg-gray-800 text-white">
-                    <tr>
-                      <th className="border p-3 text-left">Credential Type</th>
-                      <th className="border p-3 text-left">Format</th>
-                      <th className="border p-3 text-left">Validity</th>
-                      <th className="border p-3 text-left">Use Cases</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="hover:bg-blue-50">
-                      <td className="border p-3 font-semibold">LEI</td>
-                      <td className="border p-3">20-character code (e.g., 5493001KJTIIGC8Y1R12)</td>
-                      <td className="border p-3">1 year (auto-renewable)</td>
-                      <td className="border p-3">Bank accounts, regulatory reporting, trading</td>
-                    </tr>
-                    <tr className="hover:bg-green-50">
-                      <td className="border p-3 font-semibold">vLEI</td>
-                      <td className="border p-3">W3C Verifiable Credential (JWT/LD-JSON)</td>
-                      <td className="border p-3">Issuer defined (typically 2 years)</td>
-                      <td className="border p-3">DeFi, NFT minting, smart contracts, identity verification</td>
-                    </tr>
-                    <tr className="hover:bg-purple-50">
-                      <td className="border p-3 font-semibold">Certificate</td>
-                      <td className="border p-3">PDF (downloadable from dashboard)</td>
-                      <td className="border p-3">Same as underlying credential</td>
-                      <td className="border p-3">Display on website, submit to partners</td>
-                    </tr>
-                  </tbody>
-                </table>
+                   <thead className="bg-gray-800 text-white">
+                     <tr>
+                       <th className="border p-3 text-left">Credential Type</th>
+                       <th className="border p-3 text-left">Format & Standard</th>
+                       <th className="border p-3 text-left">Validity Period</th>
+                       <th className="border p-3 text-left">Primary Use Cases</th>
+                       <th className="border p-3 text-left">Renewal</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr className="hover:bg-blue-50">
+                       <td className="border p-3 font-semibold text-blue-600">LEI</td>
+                       <td className="border p-3">20-char alphanumeric code (ISO 17442)<br/>e.g., 5493001KJTIIGC8Y1R12</td>
+                       <td className="border p-3">1 year<br/>Fixed expiration date</td>
+                       <td className="border p-3">• Bank accounts<br/>• Regulatory reporting<br/>• Trading platforms<br/>• Financial settlements</td>
+                       <td className="border p-3">Auto-renewal 60 days before expiry (automated)</td>
+                     </tr>
+                     <tr className="hover:bg-green-50">
+                       <td className="border p-3 font-semibold text-green-600">vLEI</td>
+                       <td className="border p-3">W3C Verifiable Credential<br/>JWT/JSON-LD format<br/>ACDC cryptographic signing</td>
+                       <td className="border p-3">Issuer-defined<br/>Typically 2 years<br/>Cryptographically signed</td>
+                       <td className="border p-3">• DeFi protocols<br/>• NFT & Web3 identity<br/>• Smart contracts<br/>• DAO governance<br/>• Blockchain verification</td>
+                       <td className="border p-3">Manual re-issuance before expiry</td>
+                     </tr>
+                     <tr className="hover:bg-indigo-50">
+                       <td className="border p-3 font-semibold text-indigo-600">Certificate</td>
+                       <td className="border p-3">PDF document<br/>Printable & digital<br/>Contains full LEI details</td>
+                       <td className="border p-3">Same as LEI<br/>Matches LEI expiration</td>
+                       <td className="border p-3">• Website display<br/>• Partner submissions<br/>• Regulatory filings<br/>• Audit documentation</td>
+                       <td className="border p-3">Automatic when LEI renews</td>
+                     </tr>
+                   </tbody>
+                 </table>
               </div>
             </CardContent>
           )}
