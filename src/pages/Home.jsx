@@ -8,6 +8,7 @@ import {
   Network, CheckCircle2, Layers, Building2, FileCheck, Mail,
   Activity, ShieldAlert, Fingerprint, Code
 } from 'lucide-react';
+import StandardsFooter from '@/components/standards/StandardsFooter';
 
 export default function Home() {
   return (
@@ -45,17 +46,17 @@ export default function Home() {
               </div>
 
               <div className="flex items-center gap-8 text-sm text-gray-600">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2" title="ISO/IEC 27001 - Information Security Management">
                   <CheckCircle2 className="h-5 w-5" />
                   <span>ISO 27001</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2" title="LEI & vLEI Compliant (ISO 17442)">
                   <Shield className="h-5 w-5" />
-                  <span>Enterprise Ready</span>
+                  <span>LEI Certified</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2" title="ISO 3166-1 & ISO 20275 Standards">
                   <Globe className="h-5 w-5" />
-                  <span>Global Coverage</span>
+                  <span>Global Standards</span>
                 </div>
               </div>
             </div>
@@ -229,6 +230,7 @@ export default function Home() {
                   <Building2 className="h-6 w-6 text-white" />
                 </div>
                 <CardTitle className="text-xl">KYB Verification</CardTitle>
+                <p className="text-xs text-gray-600 font-normal mt-2">ISO 20275 & LEI Compliant</p>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-sm text-gray-600 mb-4">
@@ -237,7 +239,7 @@ export default function Home() {
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2 text-xs text-gray-700">
                     <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
-                    195+ country coverage
+                    195+ countries (ISO 3166-1)
                   </li>
                   <li className="flex items-center gap-2 text-xs text-gray-700">
                     <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
@@ -245,7 +247,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-center gap-2 text-xs text-gray-700">
                     <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
-                    Automated compliance
+                    FATF AML/CFT compliant
                   </li>
                 </ul>
               </CardContent>
@@ -285,6 +287,7 @@ export default function Home() {
                   <FileCheck className="h-6 w-6 text-white" />
                 </div>
                 <CardTitle className="text-xl">vLEI Credentials</CardTitle>
+                <p className="text-xs text-gray-600 font-normal mt-2">ISO 17442 & KERI/ACDC</p>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-sm text-gray-600 mb-4">
@@ -293,15 +296,15 @@ export default function Home() {
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2 text-xs text-gray-700">
                     <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
-                    Cryptographic validation
+                    ACDC Cryptographic validation
                   </li>
                   <li className="flex items-center gap-2 text-xs text-gray-700">
                     <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
-                    OOR & ECR roles
+                    OOR & ECR roles (GLEIF)
                   </li>
                   <li className="flex items-center gap-2 text-xs text-gray-700">
                     <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3] flex-shrink-0" />
-                    Automated lifecycle
+                    KERI verified provenance
                   </li>
                 </ul>
               </CardContent>
@@ -461,6 +464,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Standards & Compliance */}
+      <StandardsFooter />
 
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
