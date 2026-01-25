@@ -559,6 +559,24 @@ const PublicDocumentation = () => {
           )}
         </Card>
 
+        {/* Standards & Compliance */}
+        <Card className="mb-8 bg-slate-900 text-white">
+          <CardContent className="pt-6">
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold">Standards & Compliance</h3>
+              <div className="space-y-3 text-sm">
+                <p><strong>Identity Standards:</strong> LEI (ISO 17442), vLEI (Verifiable Legal Entity Identifier), GLEIF-registered credentials</p>
+                <p><strong>Cryptography:</strong> KERI (Key Event Receipt Infrastructure), ACDC (Authentic Chained Data Containers), W3C Verifiable Credentials</p>
+                <p><strong>Compliance Frameworks:</strong> FATF AML/CFT, GDPR, SOX, FinCEN regulations, OFAC sanctions, PEP screening</p>
+                <p><strong>Security Standards:</strong> ISO/IEC 27001 (Information Security), PCI DSS Level 1, Bank-grade encryption</p>
+                <p><strong>Data Standards:</strong> ISO 3166-1 (Country codes), ISO 20275 (Entity Legal Forms), ISO 4217 (Currency codes), ISO 8601 (Dates)</p>
+                <p><strong>Web3 & Blockchain:</strong> W3C Verifiable Credentials, ACDC cryptographic signing, Multi-chain compatibility</p>
+                <p className="text-xs mt-4 border-t border-slate-700 pt-4">TAS is certified for multi-tenant SaaS compliance with strict regulatory oversight. All data processing adheres to international standards and maintains continuous compliance audits.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Footer */}
         <Card className="bg-gray-900 text-white">
           <CardContent className="pt-6">
