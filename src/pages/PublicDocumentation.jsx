@@ -128,19 +128,31 @@ const PublicDocumentation = () => {
                 <h3 className="text-lg font-bold mb-4">The Four Core Pillars</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                    <p className="font-bold text-blue-900 mb-2">1. Know Your Business (KYB)</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Building2 className="h-5 w-5 text-blue-600" />
+                      <p className="font-bold text-blue-900">1. Know Your Business (KYB)</p>
+                    </div>
                     <p className="text-sm">Verify company legitimacy using official business registries. Confirm incorporation, ownership, and regulatory status instantly.</p>
                   </div>
                   <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                    <p className="font-bold text-blue-900 mb-2">2. Anti-Money Laundering (AML)</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Lock className="h-5 w-5 text-blue-600" />
+                      <p className="font-bold text-blue-900">2. Anti-Money Laundering (AML)</p>
+                    </div>
                     <p className="text-sm">Screen against 300+ sanctions lists, PEP databases, and adverse media. Identify and block high-risk entities automatically.</p>
                   </div>
                   <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
-                    <p className="font-bold text-indigo-900 mb-2">3. LEI Issuance</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <FileCheck className="h-5 w-5 text-indigo-600" />
+                      <p className="font-bold text-indigo-900">3. LEI Issuance</p>
+                    </div>
                     <p className="text-sm">Issue unique Global Legal Entity Identifiers recognized by regulators and financial institutions worldwide.</p>
                   </div>
                   <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
-                    <p className="font-bold text-indigo-900 mb-2">4. Web3 Credentials</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Fingerprint className="h-5 w-5 text-indigo-600" />
+                      <p className="font-bold text-indigo-900">4. Web3 Credentials</p>
+                    </div>
                     <p className="text-sm">Issue blockchain-ready vLEI credentials for DeFi protocols, NFT ecosystems, and self-sovereign identity.</p>
                   </div>
                 </div>
