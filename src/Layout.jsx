@@ -240,7 +240,7 @@ function LayoutContent({ children, currentPageName }) {
             <div>
               <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-sm text-blue-200">
-                <li><a href="#" className="hover:text-white">Documentation</a></li>
+                <li><Link to={createPageUrl('PublicDocumentation')} className="hover:text-white">Documentation</Link></li>
                 <li><a href="#" className="hover:text-white">API Reference</a></li>
                 <li><a href="#" className="hover:text-white">Sandbox</a></li>
                 <li><a href="#" className="hover:text-white">Support</a></li>
