@@ -18,8 +18,20 @@ function LayoutContent({ children, currentPageName }) {
   const { t, isRTL } = useTranslation();
 
   useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => setUser(null));
-  }, []);
+    base44.auth.me().then(async (userData) => {
+      setUser(userData);
+      
+      // Check if user needs to complete organization onboarding
+      if (userData?.organization_id && !userData?.is_platform_admin) {
+        const orgs = await base44.entities.Organization.filter({ id: userData.organization_id });
+        const org = orgs[0];
+        
+        if (org && !org.onboarding_completed && currentPageName !== 'OrganizationOnboarding') {
+          window.location.href = createPageUrl('OrganizationOnboarding');
+        }
+      }
+    }).catch(() => setUser(null));
+  }, [currentPageName]);
 
   const handleLogout = () => {
     base44.auth.logout();

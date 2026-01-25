@@ -15,6 +15,7 @@ import UserLogin from './pages/UserLogin';
 import UserSettings from './pages/UserSettings';
 import Workflows from './pages/Workflows';
 import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
+import OrganizationOnboarding from './pages/OrganizationOnboarding';
 import __Layout from './Layout.jsx';
 
 
@@ -36,6 +37,7 @@ export const PAGES = {
     "UserSettings": UserSettings,
     "Workflows": Workflows,
     "PlatformAdminDashboard": PlatformAdminDashboard,
+    "OrganizationOnboarding": OrganizationOnboarding,
 }
 
 export const pagesConfig = {
