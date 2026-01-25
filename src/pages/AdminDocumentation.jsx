@@ -642,30 +642,30 @@ const AdminDocumentation = () => {
                 <MermaidDiagram 
                   id="case-workflow"
                   chart={`graph LR
-    A["🚨 AML Alert<br/>Detected"] --> B["📋 Case Created<br/>Type: aml_alert<br/>Status: new"]
-    B --> C["👤 Assignment<br/>assigned_to: Officer<br/>assigned_at: timestamp"]
-    C --> D["🔍 Investigation<br/>Review alert details<br/>Research company<br/>Add case notes"]
-    
-    D --> E{Decision}
-    
-    E -->|False Positive| F["✅ Approved<br/>Resume workflows<br/>Score unchanged"]
-    E -->|Confirmed Risk| G["🛑 Rejected<br/>Block account<br/>Notify authorities"]
-    E -->|Inconclusive| H["❓ Pending Info<br/>Request from org<br/>Extended timeline"]
-    
-    F --> I["📁 Case Closed<br/>resolved_at: timestamp<br/>SLA status: checked"]
-    G --> I
-    H --> I
-    
-    I --> J["🔒 Audit Trail<br/>Immutable record<br/>For compliance audits"]
-    
-    style A fill:#ffe0e0
-    style B fill:#fff3cd
-    style D fill:#e7f3ff
-    style F fill:#d4edda
-    style G fill:#f8d7da
-    style H fill:#fff3cd
-    style I fill:#d1ecf1
-    style J fill:#e2e3e5`}
+                    A["AML Alert<br/>Detected"] --> B["Case Created<br/>Type: aml_alert<br/>Status: new"]
+                    B --> C["Assignment<br/>assigned_to: Officer<br/>assigned_at: timestamp"]
+                    C --> D["Investigation<br/>Review alert details<br/>Research company<br/>Add case notes"]
+
+                    D --> E{Decision}
+
+                    E -->|False Positive| F["Approved<br/>Resume workflows<br/>Score unchanged"]
+                    E -->|Confirmed Risk| G["Rejected<br/>Block account<br/>Notify authorities"]
+                    E -->|Inconclusive| H["Pending Info<br/>Request from org<br/>Extended timeline"]
+
+                    F --> I["Case Closed<br/>resolved_at: timestamp<br/>SLA status: checked"]
+                    G --> I
+                    H --> I
+
+                    I --> J["Audit Trail<br/>Immutable record<br/>For compliance audits"]
+
+                    style A fill:#ffe0e0
+                    style B fill:#fff3cd
+                    style D fill:#e7f3ff
+                    style F fill:#d4edda
+                    style G fill:#f8d7da
+                    style H fill:#fff3cd
+                    style I fill:#d1ecf1
+                    style J fill:#e2e3e5`}
                 />
               </div>
 
