@@ -63,7 +63,7 @@ function LayoutContent({ children, currentPageName }) {
   const userPortalPages = [
     { nameKey: 'nav.dashboard', icon: Activity, path: 'UserDashboard' },
     { nameKey: 'nav.workflows', icon: Activity, path: 'Workflows' },
-    { nameKey: 'nav.web3', icon: Globe, path: 'Web3Dashboard' },
+    { name: 'Web3', icon: Globe, path: 'Web3Dashboard' },
     { nameKey: 'nav.compliance', icon: Shield, path: 'UserCompliance' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' }
@@ -105,7 +105,7 @@ function LayoutContent({ children, currentPageName }) {
                         ? 'bg-white/20 text-white font-semibold' 
                         : 'text-blue-100 hover:bg-white/10 hover:text-white'
                     }`}>
-                      <span>{t(page.nameKey)}</span>
+                      <span>{page.name || t(page.nameKey)}</span>
                     </div>
                   </Link>
                 );
@@ -172,7 +172,7 @@ function LayoutContent({ children, currentPageName }) {
                   >
                     <div className="flex items-center gap-3 px-4 py-3 hover:bg-white/10 rounded-lg mb-1">
                       <Icon className="h-5 w-5" />
-                      <span>{t(page.nameKey)}</span>
+                      <span>{page.name || t(page.nameKey)}</span>
                     </div>
                   </Link>
                 );
