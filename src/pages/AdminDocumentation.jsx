@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronDown, ChevronRight } from 'lucide-react';
+import mermaid from 'mermaid';
+
+mermaid.initialize({ startOnLoad: true, theme: 'default' });
 
 const AdminDocumentation = () => {
   const [expandedSections, setExpandedSections] = useState({});
