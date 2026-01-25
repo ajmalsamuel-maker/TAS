@@ -16,6 +16,7 @@ import UserManagement from '../components/admin/UserManagement';
 import AuditLogsManagement from '../components/admin/AuditLogsManagement';
 import WebhookManagement from '../components/admin/WebhookManagement';
 import AMLMonitoringPanel from '../components/admin/AMLMonitoringPanel';
+import PolicyManager from '../components/policy/PolicyManager';
 
 export default function AdminDashboard() {
   const { data: providers = [] } = useQuery({
