@@ -18,6 +18,7 @@ import WebhookManagement from '../components/admin/WebhookManagement';
 import AMLMonitoringPanel from '../components/admin/AMLMonitoringPanel';
 import PolicyManager from '../components/policy/PolicyManager';
 import CaseQueue from '../components/case/CaseQueue';
+import TransactionMonitoring from '../components/transaction/TransactionMonitoring';
 
 export default function AdminDashboard() {
   const [user, setUser] = React.useState(null);
@@ -126,6 +127,9 @@ export default function AdminDashboard() {
             <TabsTrigger value="cases" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Case Management
             </TabsTrigger>
+            <TabsTrigger value="transactions" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Transactions
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="providers">
@@ -166,6 +170,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="cases">
             <CaseQueue user={user} />
+          </TabsContent>
+
+          <TabsContent value="transactions">
+            <TransactionMonitoring />
           </TabsContent>
         </Tabs>
       </div>
