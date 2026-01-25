@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, Shield, Lock, Building2, FileCheck, Globe, Activity } from 'lucide-react';
 
 const UserPortalDocumentation = () => {
   const [expandedSections, setExpandedSections] = useState({});
@@ -66,12 +66,12 @@ const UserPortalDocumentation = () => {
 
   const SectionHeader = ({ title, section }) => (
     <button
-      onClick={() => toggleSection(section)}
-      className="w-full flex items-center justify-between p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-    >
-      <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
-      {expandedSections[section] ? <ChevronDown className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
-    </button>
+        onClick={() => toggleSection(section)}
+        className="w-full flex items-center justify-between p-4 bg-[#0066B3]/10 hover:bg-[#0066B3]/20 rounded-lg transition-colors"
+      >
+        <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+        {expandedSections[section] ? <ChevronDown className="h-5 w-5 text-[#0066B3]" /> : <ChevronRight className="h-5 w-5 text-[#0066B3]" />}
+      </button>
   );
 
   return (
@@ -109,20 +109,32 @@ const UserPortalDocumentation = () => {
             <div>
               <h3 className="text-lg font-bold mb-4">Key Dashboard Sections</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                  <p className="font-bold mb-2">✅ Compliance Status</p>
+                <div className="bg-[#0066B3]/5 p-4 rounded border-l-4 border-[#0066B3]">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Shield className="h-5 w-5 text-[#0066B3]" />
+                    <p className="font-bold">Compliance Status</p>
+                  </div>
                   <p className="text-sm">Real-time status of your verification, AML screening, and credential status</p>
                 </div>
-                <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                  <p className="font-bold mb-2">📋 Active Workflows</p>
+                <div className="bg-[#0066B3]/5 p-4 rounded border-l-4 border-[#0066B3]">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Activity className="h-5 w-5 text-[#0066B3]" />
+                    <p className="font-bold">Active Workflows</p>
+                  </div>
                   <p className="text-sm">Track KYB verification, AML screening, and document validation progress</p>
                 </div>
-                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
-                  <p className="font-bold mb-2">⚠️ Alerts & Actions</p>
+                <div className="bg-[#0066B3]/5 p-4 rounded border-l-4 border-[#0066B3]">
+                  <div className="flex items-center gap-2 mb-2">
+                    <FileCheck className="h-5 w-5 text-[#0066B3]" />
+                    <p className="font-bold">Alerts & Actions</p>
+                  </div>
                   <p className="text-sm">Critical alerts requiring immediate attention and action items</p>
                 </div>
-                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
-                  <p className="font-bold mb-2">🔐 Credentials & LEI</p>
+                <div className="bg-[#0066B3]/5 p-4 rounded border-l-4 border-[#0066B3]">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Lock className="h-5 w-5 text-[#0066B3]" />
+                    <p className="font-bold">Credentials & LEI</p>
+                  </div>
                   <p className="text-sm">Your issued LEI, vLEI credentials, and verification status</p>
                 </div>
               </div>
@@ -143,12 +155,12 @@ const UserPortalDocumentation = () => {
                 B --> E
                 B --> F
 
-                style A fill:#e3f2fd
-                style B fill:#f3e5f5
-                style C fill:#fff3e0
-                style D fill:#e8f5e9
-                style E fill:#fce4ec
-                style F fill:#f1f8e9`}
+                style A fill:#e3f2fd,stroke:#0066B3
+                style B fill:#e3f2fd,stroke:#0066B3
+                style C fill:#e3f2fd,stroke:#0066B3
+                style D fill:#e3f2fd,stroke:#0066B3
+                style E fill:#e3f2fd,stroke:#0066B3
+                style F fill:#e3f2fd,stroke:#0066B3`}
             />
           </CardContent>
         </Card>
@@ -200,15 +212,15 @@ const UserPortalDocumentation = () => {
                      G --> H
                      H --> I
 
-                     style A fill:#e3f2fd
-                     style B fill:#fff3e0
-                     style C fill:#fff3e0
-                     style D fill:#fce4ec
-                     style E fill:#fce4ec
-                     style F fill:#d4edda
-                     style G fill:#d4edda
-                     style H fill:#c8e6c9
-                     style I fill:#e0f2f1`}
+                     style A fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                     style B fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                     style C fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                     style D fill:#fff3e0,stroke:#0066B3,stroke-width:2px
+                     style E fill:#fff3e0,stroke:#0066B3,stroke-width:2px
+                     style F fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                     style G fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                     style H fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                     style I fill:#e3f2fd,stroke:#0066B3,stroke-width:2px`}
                  />
               </div>
 
@@ -289,27 +301,27 @@ const UserPortalDocumentation = () => {
                 </p>
 
                 <MermaidDiagram 
-                  chart={`graph TB
-                    A["Business Verified<br/>KYB Passed<br/>AML Clear"]
-                    B["LEI Registration<br/>Submitted to GLEIF<br/>1-3 days"]
-                    C["LEI Issued<br/>Global identifier<br/>Valid 1 year"]
-                    D["vLEI Credential<br/>Cryptographic signing<br/>Instant"]
-                    E["Credential Issued<br/>W3C Format<br/>Blockchain Ready"]
-                    F["Use Across<br/>Financial systems<br/>DeFi protocols<br/>Smart contracts"]
+                   chart={`graph TB
+                     A["Business Verified<br/>KYB Passed"]
+                     B["LEI Registration<br/>Submit GLEIF"]
+                     C["LEI Issued<br/>Global identifier"]
+                     D["vLEI Credential<br/>Signing"]
+                     E["Credential Issued<br/>W3C Format"]
+                     F["Use Across<br/>Financial systems"]
 
-                    A --> B
-                    B --> C
-                    C --> D
-                    D --> E
-                    E --> F
+                     A --> B
+                     B --> C
+                     C --> D
+                     D --> E
+                     E --> F
 
-                    style A fill:#e3f2fd
-                    style B fill:#fff3e0
-                    style C fill:#d4edda
-                    style D fill:#e8f5e9
-                    style E fill:#fce4ec
-                    style F fill:#f0e4ff`}
-                />
+                     style A fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                     style B fill:#fff3e0,stroke:#0066B3,stroke-width:2px
+                     style C fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                     style D fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                     style E fill:#fce4ec,stroke:#0066B3,stroke-width:2px
+                     style F fill:#e3f2fd,stroke:#0066B3,stroke-width:2px`}
+                 />
               </div>
 
               <div>

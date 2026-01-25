@@ -160,12 +160,12 @@ const PublicDocumentation = () => {
 
               <MermaidDiagram 
                 chart={`graph LR
-                  A["Business<br/>Submits Data"]
-                  B["KYB Check<br/>Registry lookup<br/>Ownership verify"]
-                  C["AML Screen<br/>Sanctions check<br/>PEP screening"]
+                  A["Submit<br/>Data"]
+                  B["KYB Check<br/>Registry lookup"]
+                  C["AML Screen<br/>Sanctions check"]
                   D["Decision"]
-                  E["LEI Issued<br/>Global identifier<br/>Regulatory recognized"]
-                  F["vLEI Issued<br/>Web3 credential<br/>Blockchain ready"]
+                  E["LEI Issued<br/>Global ID"]
+                  F["vLEI Issued<br/>Web3 credential"]
 
                   A --> B
                   B --> C
@@ -173,12 +173,12 @@ const PublicDocumentation = () => {
                   D -->|Approved| E
                   E --> F
 
-                  style A fill:#e3f2fd
-                  style B fill:#e3f2fd
-                  style C fill:#e3f2fd
-                  style D fill:#fff3e0
-                  style E fill:#e8f5e9
-                  style F fill:#d4edda`}
+                  style A fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style B fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style C fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style D fill:#fff3e0,stroke:#0066B3,stroke-width:2px
+                  style E fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style F fill:#e3f2fd,stroke:#0066B3,stroke-width:2px`}
               />
             </CardContent>
           )}
@@ -250,14 +250,14 @@ const PublicDocumentation = () => {
 
               <MermaidDiagram 
                 chart={`graph TB
-                  A["Submit Application<br/>Business details<br/>Registry info"]
-                  B["KYB Check<br/>Global registries<br/>30 mins"]
-                  C["AML Screening<br/>Sanctions lists<br/>15 mins"]
-                  D{"Manual Review<br/>if needed?"}
-                  E["Investigator<br/>Review<br/>1-3 days"]
+                  A["Submit<br/>Application"]
+                  B["KYB Check<br/>Registries"]
+                  C["AML Screen<br/>Sanctions"]
+                  D{"Manual<br/>Review?"}
+                  E["Investigator<br/>Review"]
                   F["Approved"]
-                  G["LEI Issued<br/>vLEI Created"]
-                  H["Monitoring<br/>24/7 surveillance"]
+                  G["Credentials<br/>Issued"]
+                  H["Monitoring"]
 
                   A --> B
                   B --> C
@@ -268,14 +268,14 @@ const PublicDocumentation = () => {
                   F --> G
                   G --> H
 
-                  style A fill:#e3f2fd
-                  style B fill:#fff3e0
-                  style C fill:#fff3e0
-                  style D fill:#fce4ec
-                  style E fill:#fce4ec
-                  style F fill:#d4edda
-                  style G fill:#d4edda
-                  style H fill:#e0f2f1`}
+                  style A fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style B fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style C fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style D fill:#fff3e0,stroke:#0066B3,stroke-width:2px
+                  style E fill:#fff3e0,stroke:#0066B3,stroke-width:2px
+                  style F fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style G fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style H fill:#e3f2fd,stroke:#0066B3,stroke-width:2px`}
               />
             </CardContent>
           )}
@@ -344,14 +344,14 @@ const PublicDocumentation = () => {
 
               <MermaidDiagram 
                 chart={`graph TB
-                  A["TAS Platform<br/>Unified Identity<br/>& Compliance"]
+                  A["TAS Platform<br/>Identity &<br/>Compliance"]
 
-                  B["Banks<br/>Account opening<br/>KYB/AML"]
-                  C["Fintech<br/>Merchant verify<br/>Fraud prevention"]
-                  D["DeFi<br/>Web3 identity<br/>vLEI credentials"]
-                  E["Enterprise<br/>Vendor verify<br/>Supply chain"]
-                  F["Insurance<br/>Underwriting<br/>Risk assessment"]
-                  G["Legal<br/>Due diligence<br/>Compliance"]
+                  B["Banks<br/>Account<br/>opening"]
+                  C["Fintech<br/>Merchant<br/>verify"]
+                  D["DeFi<br/>Web3<br/>identity"]
+                  E["Enterprise<br/>Vendor<br/>verify"]
+                  F["Insurance<br/>Underwriting"]
+                  G["Legal<br/>Due diligence"]
 
                   A --> B
                   A --> C
@@ -360,14 +360,13 @@ const PublicDocumentation = () => {
                   A --> F
                   A --> G
 
-                  style A fill:#0044CC
-                  style A color:#fff
-                  style B fill:#e3f2fd
-                  style C fill:#e3f2fd
-                  style D fill:#c8e6c9
-                  style E fill:#c8e6c9
-                  style F fill:#bbdefb
-                  style G fill:#f0e4ff`}
+                  style A fill:#0066B3,color:#fff,stroke-width:2px
+                  style B fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style C fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style D fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style E fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style F fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                  style G fill:#e3f2fd,stroke:#0066B3,stroke-width:2px`}
               />
             </CardContent>
           )}
