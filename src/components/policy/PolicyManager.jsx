@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { 
   Plus, Edit, Trash2, Play, Pause, Copy, TrendingUp, 
-  FlaskConical, Archive, CheckCircle 
+  FlaskConical, Archive, CheckCircle, Clock 
 } from 'lucide-react';
 import { toast } from 'sonner';
 import PolicyFlowBuilder from './PolicyFlowBuilder';
@@ -18,6 +18,8 @@ import ScheduleWorkflowModal from './ScheduleWorkflowModal';
 export default function PolicyManager() {
   const [showBuilder, setShowBuilder] = useState(false);
   const [editingPolicy, setEditingPolicy] = useState(null);
+  const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
+  const [schedulingPolicy, setSchedulingPolicy] = useState(null);
   const [newPolicyData, setNewPolicyData] = useState({
     name: '',
     type: 'identity_verification',
@@ -296,6 +298,17 @@ export default function PolicyManager() {
                           onClick={() => duplicatePolicy(policy)}
                         >
                           <Copy className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => {
+                            setSchedulingPolicy(policy);
+                            setScheduleModalOpen(true);
+                          }}
+                          title="Schedule workflow"
+                        >
+                          <Clock className="w-4 h-4 text-blue-600" />
                         </Button>
                         <Button
                           size="sm"
