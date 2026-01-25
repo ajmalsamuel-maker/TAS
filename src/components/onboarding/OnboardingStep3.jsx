@@ -39,7 +39,7 @@ const COUNTRY_CODES = [
 
 export default function OnboardingStep3({ formData, setFormData }) {
   const updateField = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
