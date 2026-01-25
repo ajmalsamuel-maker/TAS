@@ -87,43 +87,43 @@ export default function About() {
         </div>
       </section>
 
-      {/* Core Architecture */}
+      {/* Platform Capabilities */}
       <section className="py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Core Technical Architecture</h2>
-          <p className="text-xl text-center text-gray-600 mb-16">A modular, scalable, and secure foundation</p>
+          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Platform Capabilities</h2>
+          <p className="text-xl text-center text-gray-600 mb-16">Built for scale, security, and simplicity</p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: Network,
-                title: 'Modular Components',
-                desc: 'Isolated modules allow for upgrades without disruption'
+                title: 'Enterprise-Grade Infrastructure',
+                desc: 'Reliable, always-on platform designed for mission-critical operations'
               },
               {
                 icon: Globe,
-                title: 'Scalable Middleware',
-                desc: 'Scales horizontally across regions using Kubernetes and distributed load balancing'
+                title: 'Global Scalability',
+                desc: 'Seamlessly handles growing volumes across multiple regions worldwide'
               },
               {
                 icon: Zap,
-                title: 'Workflow Automation Engine',
-                desc: 'Coordinates complex, multi-step processes with parallel/sequential execution'
+                title: 'Intelligent Workflow Automation',
+                desc: 'Automate multi-step verification and credential issuance processes'
               },
               {
                 icon: Shield,
-                title: 'Security & Compliance by Design',
-                desc: 'Zero-trust architecture, encrypted transit, no persistent storage of regulated data'
+                title: 'Security & Compliance First',
+                desc: 'Bank-level security with encrypted data and regulatory-compliant operations'
               },
               {
                 icon: Lock,
-                title: 'Data Transformation Layer',
-                desc: 'Standardizes data across different provider formats'
+                title: 'Universal Data Integration',
+                desc: 'Works seamlessly with any provider format through smart data transformation'
               },
               {
                 icon: Target,
-                title: 'Provenance by Default',
-                desc: 'All data flowing through TAS is automatically bound to its LEI/vLEI source'
+                title: 'Complete Transparency',
+                desc: 'Every credential and verification is traceable to its trusted source'
               }
             ].map((item, i) => (
               <div key={i} className="bg-white rounded-xl p-6 shadow-lg border-2 border-blue-100 hover:border-blue-300 transition-all">
@@ -212,7 +212,7 @@ export default function About() {
               </Button>
             </Link>
             <Link to={createPageUrl('UserLogin')}>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0066B3] text-lg px-8">
                 Login to Portal
               </Button>
             </Link>
