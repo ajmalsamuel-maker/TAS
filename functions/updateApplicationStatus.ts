@@ -29,29 +29,22 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Application not found' }, { status: 404 });
     }
 
-    // Update application status
-    const updatedApp = await base44.entities.OnboardingApplication.update(applicationId, {
-      status: newStatus
-    });
-
-    // Create audit log
-    await base44.entities.AuditLog.create({
-      workflow_id: application.id,
-      event: `Application status changed from ${application.status} to ${newStatus}`,
-      event_type: 'workflow_started',
-      actor: user.email,
-      details: {
-        old_status: application.status,
-        new_status: newStatus,
-        notes: notes || null
-      }
-    });
-
-    return Response.json({
-      success: true,
-      application: updatedApp,
-      message: `Application status updated to ${newStatus}`
-    });
+    // Use triggerApplicationStatusChange for orchestrated status change
+    try {
+      const statusChangeRes = await base44.functions.invoke('triggerApplicationStatusChange', {
+        applicationId: applicationId,
+        newStatus: newStatus,
+        notes: notes
+      });
+      
+      return Response.json({
+        success: true,
+        message: statusChangeRes.data.message
+      });
+    } catch (error) {
+      console.error('Error in orchestrated status change:', error);
+      throw error;
+    }
   } catch (error) {
     console.error('Error updating application status:', error);
     return Response.json({ error: error.message }, { status: 500 });
