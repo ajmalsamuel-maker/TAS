@@ -1,134 +1,78 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 
+/**
+ * Assign a case to an investigator
+ * Ensures case belongs to the assigned user's organization
+ */
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
     const user = await base44.auth.me();
 
-    if (!user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!user || user.role !== 'admin') {
+      return Response.json({ error: 'Forbidden: Admin access required' }, { status: 403 });
     }
 
-    const { case_id, assignee_email, assignment_rule } = await req.json();
+    const { caseId, assigneeEmail, notes } = await req.json();
 
-    if (!case_id) {
-      return Response.json({ error: 'case_id is required' }, { status: 400 });
+    if (!caseId || !assigneeEmail) {
+      return Response.json({ error: 'caseId and assigneeEmail required' }, { status: 400 });
     }
 
     // Fetch case
-    const cases = await base44.entities.Case.filter({ id: case_id });
-    const caseItem = cases[0];
+    const cases = await base44.entities.Case.filter({ id: caseId });
+    const caseRecord = cases[0];
 
-    if (!caseItem) {
+    if (!caseRecord) {
       return Response.json({ error: 'Case not found' }, { status: 404 });
     }
 
-    let targetAssignee = assignee_email;
+    // Verify assignee exists and is in the same organization
+    const users = await base44.entities.User.filter({ 
+      email: assigneeEmail,
+      organization_id: caseRecord.organization_id
+    });
 
-    // Auto-assignment logic
-    if (!targetAssignee && assignment_rule) {
-      if (assignment_rule === 'round_robin') {
-        targetAssignee = await getRoundRobinAssignee(base44);
-      } else if (assignment_rule === 'least_loaded') {
-        targetAssignee = await getLeastLoadedAssignee(base44);
-      } else if (assignment_rule === 'skill_based') {
-        targetAssignee = await getSkillBasedAssignee(base44, caseItem.type);
-      }
-    }
-
-    if (!targetAssignee) {
-      return Response.json({ error: 'No assignee determined' }, { status: 400 });
+    if (!users || users.length === 0) {
+      return Response.json({ error: 'Assignee not found in organization' }, { status: 404 });
     }
 
     // Update case
-    const now = new Date().toISOString();
-    await base44.asServiceRole.entities.Case.update(case_id, {
-      assigned_to: targetAssignee,
-      assigned_at: now,
-      assigned_by: user.email,
-      status: caseItem.status === 'new' ? 'assigned' : caseItem.status
+    const updatedCase = await base44.entities.Case.update(caseId, {
+      status: 'assigned',
+      assigned_to: assigneeEmail,
+      assigned_at: new Date().toISOString(),
+      assigned_by: user.email
     });
 
-    // Add assignment note
-    await base44.asServiceRole.entities.CaseNote.create({
-      case_id,
-      author_email: 'system@tas.com',
-      author_name: 'System',
+    // Create case note
+    await base44.entities.CaseNote.create({
+      case_id: caseId,
+      author_email: user.email,
+      author_name: user.full_name,
       note_type: 'assignment',
-      content: `Case assigned to ${targetAssignee} by ${user.full_name}`,
-      is_internal: true,
-      metadata: {
-        assigned_by: user.email,
-        assigned_to: targetAssignee,
-        assignment_rule: assignment_rule || 'manual'
-      }
+      content: notes || `Case assigned to ${assigneeEmail} by ${user.full_name}`,
+      is_internal: true
+    });
+
+    // Create notification for assignee
+    await base44.functions.invoke('sendNotification', {
+      recipientEmail: assigneeEmail,
+      type: 'critical_alert',
+      title: 'New Case Assigned to You',
+      message: `A case has been assigned to you: ${caseRecord.subject}. Priority: ${caseRecord.priority}`,
+      actionUrl: '/cases',
+      priority: 'high',
+      sendEmail: true
     });
 
     return Response.json({
       success: true,
-      assigned_to: targetAssignee,
-      case_id
+      case: updatedCase,
+      message: 'Case assigned successfully'
     });
-
   } catch (error) {
-    console.error('Case assignment error:', error);
-    return Response.json({ 
-      error: 'Assignment failed', 
-      details: error.message 
-    }, { status: 500 });
+    console.error('Error assigning case:', error);
+    return Response.json({ error: error.message }, { status: 500 });
   }
 });
-
-async function getRoundRobinAssignee(base44) {
-  // Get all investigators (admin or users with specific role)
-  const users = await base44.entities.User.list();
-  const investigators = users.filter(u => u.role === 'admin');
-  
-  if (investigators.length === 0) return null;
-
-  // Get recent assignments
-  const recentCases = await base44.entities.Case.list('-assigned_at', 10);
-  const lastAssignee = recentCases.find(c => c.assigned_to)?.assigned_to;
-
-  // Find next in rotation
-  const lastIndex = investigators.findIndex(u => u.email === lastAssignee);
-  const nextIndex = (lastIndex + 1) % investigators.length;
-  
-  return investigators[nextIndex].email;
-}
-
-async function getLeastLoadedAssignee(base44) {
-  const users = await base44.entities.User.list();
-  const investigators = users.filter(u => u.role === 'admin');
-  
-  if (investigators.length === 0) return null;
-
-  // Count open cases for each investigator
-  const caseCounts = {};
-  const openCases = await base44.entities.Case.filter({ 
-    status: { $nin: ['resolved', 'closed'] }
-  });
-
-  investigators.forEach(inv => {
-    caseCounts[inv.email] = openCases.filter(c => c.assigned_to === inv.email).length;
-  });
-
-  // Find investigator with least cases
-  const leastLoaded = investigators.reduce((min, inv) => 
-    (caseCounts[inv.email] < caseCounts[min.email]) ? inv : min
-  );
-
-  return leastLoaded.email;
-}
-
-async function getSkillBasedAssignee(base44, caseType) {
-  // Simple skill-based routing - can be enhanced with user skill profiles
-  const users = await base44.entities.User.list();
-  const investigators = users.filter(u => u.role === 'admin');
-  
-  if (investigators.length === 0) return null;
-
-  // For now, return random investigator - can be enhanced with skill matching
-  const randomIndex = Math.floor(Math.random() * investigators.length);
-  return investigators[randomIndex].email;
-}
