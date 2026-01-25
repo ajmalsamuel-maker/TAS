@@ -315,19 +315,19 @@ const MarketingWebsiteDocumentation = () => {
                       <td className="border p-3 text-center">$1.75 / each</td>
                       <td className="border p-3 text-center">Negotiated</td>
                     </tr>
-                    <tr className="hover:bg-blue-50">
+                    <tr className="hover:bg-indigo-50">
                       <td className="border p-3">LEI Issuance</td>
                       <td className="border p-3 text-center">❌</td>
                       <td className="border p-3 text-center">✅ Included</td>
                       <td className="border p-3 text-center">✅ Included</td>
                     </tr>
-                    <tr className="hover:bg-blue-50">
+                    <tr className="hover:bg-indigo-50">
                       <td className="border p-3">Continuous Monitoring</td>
                       <td className="border p-3 text-center">❌</td>
                       <td className="border p-3 text-center">✅ 6 months</td>
                       <td className="border p-3 text-center">✅ Unlimited</td>
                     </tr>
-                    <tr className="hover:bg-blue-50">
+                    <tr className="hover:bg-indigo-50">
                       <td className="border p-3">API Access</td>
                       <td className="border p-3 text-center">❌</td>
                       <td className="border p-3 text-center">✅</td>
