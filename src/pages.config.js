@@ -17,6 +17,7 @@ import UserLogin from './pages/UserLogin';
 import UserSettings from './pages/UserSettings';
 import Workflows from './pages/Workflows';
 import Web3Dashboard from './pages/Web3Dashboard';
+import AdminReports from './pages/AdminReports';
 import __Layout from './Layout.jsx';
 
 
@@ -40,6 +41,7 @@ export const PAGES = {
     "UserSettings": UserSettings,
     "Workflows": Workflows,
     "Web3Dashboard": Web3Dashboard,
+    "AdminReports": AdminReports,
 }
 
 export const pagesConfig = {
