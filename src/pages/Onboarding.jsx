@@ -13,6 +13,8 @@ import OnboardingStep2 from '../components/onboarding/OnboardingStep2';
 import OnboardingStep3 from '../components/onboarding/OnboardingStep3';
 import OnboardingStep4 from '../components/onboarding/OnboardingStep4';
 import OnboardingStep5 from '../components/onboarding/OnboardingStep5';
+import GuidedWalkthrough from '../components/onboarding/GuidedWalkthrough';
+import ProgressWithTime from '../components/onboarding/ProgressWithTime';
 
 export default function Onboarding() {
   const [user, setUser] = useState(null);
@@ -21,6 +23,7 @@ export default function Onboarding() {
   const [showForm, setShowForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRunningAml, setIsRunningAml] = useState(false);
+  const [showGuidance, setShowGuidance] = useState(true);
   const navigate = useNavigate();
 
   // Check authentication on mount
@@ -71,6 +74,7 @@ export default function Onboarding() {
   const handleNext = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
+      setShowGuidance(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -78,6 +82,7 @@ export default function Onboarding() {
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+      setShowGuidance(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -244,45 +249,18 @@ export default function Onboarding() {
           </p>
         </div>
 
-        {/* Progress Bar */}
-        <Card className="mb-8 border-2 border-blue-100">
-          <CardContent className="pt-6">
-            <div className="mb-6">
-              <div className="flex justify-between mb-2">
-                <span className="text-sm font-medium text-gray-700">
-                  Step {currentStep} of {totalSteps}
-                </span>
-                <span className="text-sm font-medium text-[#0044CC]">
-                  {Math.round(progress)}% Complete
-                </span>
-              </div>
-              <Progress value={progress} className="h-2" />
-            </div>
+        {/* Progress with Time Estimates */}
+        <div className="mb-8">
+          <ProgressWithTime currentStep={currentStep} totalSteps={totalSteps} steps={steps} />
+        </div>
 
-            <div className="flex justify-between">
-              {steps.map((step) => (
-                <div key={step.number} className="flex flex-col items-center">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-all ${
-                    step.number < currentStep 
-                      ? 'bg-green-500 text-white' 
-                      : step.number === currentStep 
-                      ? 'bg-[#0044CC] text-white ring-4 ring-blue-200' 
-                      : 'bg-gray-200 text-gray-500'
-                  }`}>
-                    {step.number < currentStep ? (
-                      <CheckCircle2 className="h-5 w-5" />
-                    ) : (
-                      <span className="font-bold">{step.number}</span>
-                    )}
-                  </div>
-                  <span className="text-xs text-gray-600 text-center hidden md:block">
-                    {step.title}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        {/* Guided Walkthrough */}
+        {showGuidance && (
+          <GuidedWalkthrough 
+            currentStep={currentStep} 
+            onDismiss={() => setShowGuidance(false)}
+          />
+        )}
 
         {/* Form Content */}
         <Card className="border-2 border-blue-100 shadow-xl">
