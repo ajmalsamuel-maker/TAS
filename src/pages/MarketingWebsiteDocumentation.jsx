@@ -291,25 +291,25 @@ const MarketingWebsiteDocumentation = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="hover:bg-gray-50">
+                    <tr className="hover:bg-blue-50">
                       <td className="border p-3 font-semibold">Monthly Price</td>
                       <td className="border p-3 text-center font-bold">$99</td>
                       <td className="border p-3 text-center font-bold">$299</td>
                       <td className="border p-3 text-center font-bold">Custom</td>
                     </tr>
-                    <tr className="hover:bg-gray-50">
+                    <tr className="hover:bg-blue-50">
                       <td className="border p-3">KYB Verifications Included</td>
                       <td className="border p-3 text-center">50</td>
                       <td className="border p-3 text-center">200</td>
                       <td className="border p-3 text-center">Unlimited</td>
                     </tr>
-                    <tr className="hover:bg-gray-50">
+                    <tr className="hover:bg-blue-50">
                       <td className="border p-3">Cost Per Verification</td>
                       <td className="border p-3 text-center">$1.98</td>
                       <td className="border p-3 text-center">$1.50</td>
-                      <td className="border p-3 text-center">$0.50-1.00</td>
+                      <td className="border p-3 text-center">Negotiated</td>
                     </tr>
-                    <tr className="hover:bg-gray-50">
+                    <tr className="hover:bg-indigo-50">
                       <td className="border p-3">Overage Price</td>
                       <td className="border p-3 text-center">$2.00 / each</td>
                       <td className="border p-3 text-center">$1.75 / each</td>
