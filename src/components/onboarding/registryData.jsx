@@ -235,8 +235,8 @@ export const COUNTRY_REGISTRY_MAP = {
   'TM': [{ code: 'TM-SR', name: 'State Register' }],
   'AE': [{ code: 'AE-DED', name: 'Department of Economic Development - Dubai' }],
   'UZ': [{ code: 'UZ-MINJUST', name: 'Ministry of Justice' }],
-  'VN': [{{ code: 'VN-DCA', name: 'Department of Company Registration' }],
-  'YE': [{{ code: 'YE-MoC', name: 'Ministry of Commerce' }],
+  'VN': [{ code: 'VN-DCA', name: 'Department of Company Registration' }],
+  'YE': [{ code: 'YE-MoC', name: 'Ministry of Commerce' }],
 
   // Europe
   'AX': [{ code: 'AX-PRH', name: 'Patent and Registration Office' }],
