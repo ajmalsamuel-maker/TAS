@@ -6,12 +6,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { 
   Play, Save, Plus, Trash2, Settings, GitBranch, 
-  CheckCircle, XCircle, AlertCircle, Database, Code 
+  CheckCircle, XCircle, AlertCircle, Database, Code, Globe 
 } from 'lucide-react';
 
 const NODE_TYPES = {
   start: { icon: Play, color: 'bg-green-100 text-green-800', label: 'Start' },
   data_source: { icon: Database, color: 'bg-blue-100 text-blue-800', label: 'Data Source' },
+  api_call: { icon: Globe, color: 'bg-cyan-100 text-cyan-800', label: 'API Call' },
   condition: { icon: GitBranch, color: 'bg-yellow-100 text-yellow-800', label: 'Condition' },
   action: { icon: Settings, color: 'bg-purple-100 text-purple-800', label: 'Action' },
   approve: { icon: CheckCircle, color: 'bg-green-100 text-green-800', label: 'Approve' },
@@ -54,7 +55,8 @@ export default function PolicyFlowBuilder({ initialWorkflow, onSave }) {
       label: NODE_TYPES[type].label,
       position: { x, y },
       config: type === 'data_source' ? { source: '', timeout: 5000 } :
-             type === 'condition' ? { field: '', operator: 'equals', value: '' } :
+             type === 'api_call' ? { url: '', method: 'GET', headers: {}, body: '', timeout: 10000 } :
+             type === 'condition' ? { field: '', operator: 'equals', value: '', branches: [{ label: 'true', condition: 'true' }, { label: 'false', condition: 'false' }] } :
              type === 'custom_code' ? { code: '' } : {}
     };
     setNodes([...nodes, newNode]);
@@ -279,6 +281,55 @@ export default function PolicyFlowBuilder({ initialWorkflow, onSave }) {
                 </>
               )}
 
+              {selectedNode.type === 'api_call' && (
+                <>
+                  <div>
+                    <label className="text-xs font-medium text-gray-700">API URL</label>
+                    <Input
+                      value={selectedNode.config.url}
+                      onChange={(e) => updateNodeConfig(selectedNode.id, { url: e.target.value })}
+                      placeholder="https://api.example.com/endpoint"
+                      className="text-xs mt-1"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-gray-700">Method</label>
+                    <Select
+                      value={selectedNode.config.method}
+                      onValueChange={(value) => updateNodeConfig(selectedNode.id, { method: value })}
+                    >
+                      <SelectTrigger className="text-xs mt-1">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="GET">GET</SelectItem>
+                        <SelectItem value="POST">POST</SelectItem>
+                        <SelectItem value="PUT">PUT</SelectItem>
+                        <SelectItem value="DELETE">DELETE</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-gray-700">Request Body (JSON)</label>
+                    <Input
+                      value={selectedNode.config.body}
+                      onChange={(e) => updateNodeConfig(selectedNode.id, { body: e.target.value })}
+                      placeholder='{"key": "{{context.field}}"}'
+                      className="text-xs mt-1"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-gray-700">Timeout (ms)</label>
+                    <Input
+                      type="number"
+                      value={selectedNode.config.timeout}
+                      onChange={(e) => updateNodeConfig(selectedNode.id, { timeout: parseInt(e.target.value) })}
+                      className="text-xs mt-1"
+                    />
+                  </div>
+                </>
+              )}
+
               {selectedNode.type === 'condition' && (
                 <>
                   <div>
@@ -315,6 +366,11 @@ export default function PolicyFlowBuilder({ initialWorkflow, onSave }) {
                       onChange={(e) => updateNodeConfig(selectedNode.id, { value: e.target.value })}
                       className="text-xs mt-1"
                     />
+                  </div>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded p-2">
+                    <p className="text-xs text-yellow-800">
+                      Connect branches labeled "true" and "false" to route workflow based on condition
+                    </p>
                   </div>
                 </>
               )}

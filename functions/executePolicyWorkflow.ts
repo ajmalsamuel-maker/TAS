@@ -108,6 +108,10 @@ async function executeWorkflow(workflow, inputData, base44) {
       const result = await executeDataSource(currentNode.config, context, base44);
       context.results[currentNodeId] = result;
       trace[trace.length - 1].result = result;
+    } else if (currentNode.type === 'api_call') {
+      const result = await executeAPICall(currentNode.config, context);
+      context.results[currentNodeId] = result;
+      trace[trace.length - 1].result = result;
     } else if (currentNode.type === 'condition') {
       const conditionMet = evaluateCondition(currentNode.config, context);
       trace[trace.length - 1].condition_met = conditionMet;
@@ -148,6 +152,55 @@ async function executeWorkflow(workflow, inputData, base44) {
   }
 
   return { decision: 'error', reason: 'Workflow did not reach a terminal node', trace };
+}
+
+async function executeAPICall(config, context) {
+  const { url, method, body, timeout } = config;
+
+  try {
+    // Replace template variables in URL and body
+    const processedUrl = replaceTemplateVars(url, context);
+    const processedBody = body ? replaceTemplateVars(body, context) : null;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout || 10000);
+
+    const options = {
+      method: method || 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'TAS-Workflow-Engine/1.0'
+      },
+      signal: controller.signal
+    };
+
+    if (processedBody && method !== 'GET') {
+      options.body = processedBody;
+    }
+
+    const response = await fetch(processedUrl, options);
+    clearTimeout(timeoutId);
+
+    const data = await response.json();
+    
+    return {
+      status: response.ok ? 'success' : 'error',
+      status_code: response.status,
+      data: data
+    };
+  } catch (error) {
+    return {
+      status: 'error',
+      error: error.message
+    };
+  }
+}
+
+function replaceTemplateVars(template, context) {
+  return template.replace(/\{\{([^}]+)\}\}/g, (match, path) => {
+    const value = path.trim().split('.').reduce((obj, key) => obj?.[key], context);
+    return value !== undefined ? value : match;
+  });
 }
 
 async function executeDataSource(config, context, base44) {

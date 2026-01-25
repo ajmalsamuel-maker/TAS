@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import PolicyFlowBuilder from './PolicyFlowBuilder';
+import ScheduleWorkflowModal from './ScheduleWorkflowModal';
 
 export default function PolicyManager() {
   const [showBuilder, setShowBuilder] = useState(false);
