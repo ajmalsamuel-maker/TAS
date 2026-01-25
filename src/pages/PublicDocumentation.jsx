@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronDown, ChevronRight, Globe, Shield, Zap, Users, TrendingUp, Lock } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -13,353 +13,525 @@ const PublicDocumentation = () => {
     }));
   };
 
+  const MermaidDiagram = ({ chart }) => {
+    const containerRef = React.useRef(null);
+    const diagramId = React.useRef(Math.random().toString(36).substr(2, 9));
+
+    useEffect(() => {
+      const loadAndRender = async () => {
+        if (!window.mermaid) {
+          return;
+        }
+        
+        try {
+          window.mermaid.initialize({ 
+            startOnLoad: false, 
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: { useMaxWidth: true }
+          });
+          
+          if (containerRef.current && chart) {
+            const result = await window.mermaid.render(`diagram-${diagramId.current}`, chart);
+            containerRef.current.innerHTML = result.svg;
+            const svg = containerRef.current.querySelector('svg');
+            if (svg) {
+              svg.style.maxWidth = '100%';
+              svg.style.height = 'auto';
+              svg.style.minHeight = '400px';
+            }
+          }
+        } catch (err) {
+          console.error('Mermaid error:', err);
+        }
+      };
+
+      if (!window.mermaid) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+        script.async = true;
+        script.onload = loadAndRender;
+        document.head.appendChild(script);
+      } else {
+        loadAndRender();
+      }
+    }, [chart]);
+
+    return (
+      <div className="flex justify-center my-8 bg-white p-8 rounded-lg border border-gray-200 overflow-x-auto">
+        <div ref={containerRef} className="w-full" style={{ minHeight: '400px' }} />
+      </div>
+    );
+  };
+
+  const SectionHeader = ({ title, section }) => (
+    <button
+      onClick={() => toggleSection(section)}
+      className="w-full flex items-center justify-between p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+    >
+      <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+      {expandedSections[section] ? <ChevronDown className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
+    </button>
+  );
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50 p-6">
-      <div className="max-w-5xl mx-auto">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">Trust Anchor Service</h1>
-          <p className="text-2xl text-gray-600 mb-6">
-            Global Interoperability Gateway for Identity, Compliance & Trust
-          </p>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Verify business legitimacy, screen against sanctions, issue digital identities, and enable blockchain-based trust—all in one integrated platform.
-          </p>
-          <div className="flex gap-4 justify-center">
-            <button className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">
-              Get Started Free
-            </button>
-            <button className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 font-semibold">
-              Request Demo
-            </button>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6 md:p-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-12">
+          <h1 className="text-6xl font-bold text-gray-900 mb-4">Trust Anchor Service</h1>
+          <h2 className="text-3xl text-gray-700 mb-4">Global Platform for Business Identity & Compliance</h2>
+          <div className="flex flex-wrap gap-3 mt-6">
+            <Badge variant="default">Public Documentation</Badge>
+            <Badge variant="secondary">Learn More</Badge>
+            <Badge variant="secondary">2026-01-25</Badge>
+            <Badge className="bg-blue-100 text-blue-800">For Everyone</Badge>
           </div>
+          <p className="text-gray-600 mt-4">Comprehensive guide to what TAS is and how it works</p>
         </div>
 
         {/* What is TAS */}
-        <Card className="mb-8 border-l-4 border-l-blue-600">
-          <CardHeader>
-            <CardTitle className="text-2xl">What is Trust Anchor Service?</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-gray-700">
-              Trust Anchor Service (TAS) is a comprehensive platform that solves the critical problem of verifying business identity and legitimacy in today's digital economy. Whether you're a fintech, bank, insurer, or enterprise, TAS provides:
-            </p>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-4 bg-blue-50 rounded-lg">
-                <p className="font-semibold text-blue-900 mb-2">🏢 Business Identity Verification (KYB)</p>
-                <p className="text-sm text-gray-700">Verify company legitimacy using global business registries and official databases</p>
-              </div>
-              <div className="p-4 bg-red-50 rounded-lg">
-                <p className="font-semibold text-red-900 mb-2">🚨 Anti-Money Laundering (AML)</p>
-                <p className="text-sm text-gray-700">Screen against international sanction lists, PEP databases, and adverse media</p>
-              </div>
-              <div className="p-4 bg-purple-50 rounded-lg">
-                <p className="font-semibold text-purple-900 mb-2">🎫 Legal Entity Identifiers (LEI)</p>
-                <p className="text-sm text-gray-700">Issue and manage unique identifiers recognized globally for regulatory compliance</p>
-              </div>
-              <div className="p-4 bg-green-50 rounded-lg">
-                <p className="font-semibold text-green-900 mb-2">⛓️ Web3 Credentials (vLEI)</p>
-                <p className="text-sm text-gray-700">Issue verifiable blockchain credentials for DeFi, NFTs, and self-sovereign identity</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Problem & Solution */}
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <Card className="border-l-4 border-l-red-600">
-            <CardHeader>
-              <CardTitle>The Problem</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex gap-3">
-                <span className="text-red-600 font-bold">✗</span>
-                <span className="text-sm text-gray-700">Manual verification is slow, costly, and error-prone</span>
-              </div>
-              <div className="flex gap-3">
-                <span className="text-red-600 font-bold">✗</span>
-                <span className="text-sm text-gray-700">No unified system for global compliance checking</span>
-              </div>
-              <div className="flex gap-3">
-                <span className="text-red-600 font-bold">✗</span>
-                <span className="text-sm text-gray-700">Regulatory fragmentation across countries and industries</span>
-              </div>
-              <div className="flex gap-3">
-                <span className="text-red-600 font-bold">✗</span>
-                <span className="text-sm text-gray-700">Digital identity not recognized in blockchain/Web3 contexts</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-l-4 border-l-green-600">
-            <CardHeader>
-              <CardTitle>Our Solution</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex gap-3">
-                <span className="text-green-600 font-bold">✓</span>
-                <span className="text-sm text-gray-700">Automated verification in minutes, not weeks</span>
-              </div>
-              <div className="flex gap-3">
-                <span className="text-green-600 font-bold">✓</span>
-                <span className="text-sm text-gray-700">Single API for all compliance and identity needs</span>
-              </div>
-              <div className="flex gap-3">
-                <span className="text-green-600 font-bold">✓</span>
-                <span className="text-sm text-gray-700">120+ country support with local compliance rules</span>
-              </div>
-              <div className="flex gap-3">
-                <span className="text-green-600 font-bold">✓</span>
-                <span className="text-sm text-gray-700">Web3-ready credentials for DeFi, NFTs, and blockchain</span>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Core Features */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl">Core Features</CardTitle>
+            <SectionHeader title="What is Trust Anchor Service?" section="whatisitas" />
           </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div className="flex gap-4">
-                  <Shield className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">KYB Verification</h4>
-                    <p className="text-sm text-gray-600">Verify companies against official business registries worldwide. Access incorporation dates, ownership details, and regulatory status.</p>
+          {expandedSections.whatisitas && (
+            <CardContent className="space-y-6 text-gray-700">
+              <div>
+                <p className="leading-relaxed mb-4">
+                  Trust Anchor Service (TAS) is a global identity and compliance platform that enables businesses to verify identity, screen against regulatory risks, and issue digital credentials recognized by regulators, financial institutions, and blockchain networks worldwide. Rather than juggling multiple vendors for KYB, AML, LEI issuance, and Web3 credentials, TAS provides a unified system with a single API.
+                </p>
+
+                <p className="leading-relaxed mb-6">
+                  Think of TAS as your business's "passport office" for the digital economy. Just as a government issues passports that are recognized internationally, TAS issues Legal Entity Identifiers (LEI) and verifiable Web3 credentials (vLEI) that are trusted globally. These credentials prove your business is legitimate, complies with regulations, and is safe to do business with.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <p className="font-bold mb-2">🏢 Who Uses TAS?</p>
+                    <p className="text-sm">Banks, payment processors, fintech companies, insurance firms, enterprises, and DeFi protocols seeking to verify business identity and ensure compliance globally.</p>
                   </div>
-                </div>
-                <div className="flex gap-4">
-                  <Lock className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">AML Screening</h4>
-                    <p className="text-sm text-gray-600">Real-time screening against 300+ sanctions lists, PEP databases, and adverse media sources.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <Globe className="h-6 w-6 text-purple-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">LEI Management</h4>
-                    <p className="text-sm text-gray-600">Issue and manage Legal Entity Identifiers recognized by regulators and financial institutions globally.</p>
+                  <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                    <p className="font-bold mb-2">🌍 Global Reach</p>
+                    <p className="text-sm">Verification across 120+ countries with country-specific compliance rules, 300+ sanctions databases, and regulatory intelligence.</p>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex gap-4">
-                  <Zap className="h-6 w-6 text-amber-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">vLEI Credentials</h4>
-                    <p className="text-sm text-gray-600">Issue blockchain-ready credentials for Web3, DeFi integration, and self-sovereign identity applications.</p>
+              <div>
+                <h3 className="text-lg font-bold mb-4">The Four Core Pillars</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <p className="font-bold text-blue-900 mb-2">1. Know Your Business (KYB)</p>
+                    <p className="text-sm">Verify company legitimacy using official business registries. Confirm incorporation, ownership, and regulatory status instantly.</p>
                   </div>
-                </div>
-                <div className="flex gap-4">
-                  <TrendingUp className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Real-time Monitoring</h4>
-                    <p className="text-sm text-gray-600">Continuous monitoring and alerting for regulatory changes affecting your customers.</p>
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <p className="font-bold text-blue-900 mb-2">2. Anti-Money Laundering (AML)</p>
+                    <p className="text-sm">Screen against 300+ sanctions lists, PEP databases, and adverse media. Identify and block high-risk entities automatically.</p>
                   </div>
-                </div>
-                <div className="flex gap-4">
-                  <Users className="h-6 w-6 text-indigo-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Case Management</h4>
-                    <p className="text-sm text-gray-600">Built-in workflow for investigating and resolving alerts and compliance issues.</p>
+                  <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                    <p className="font-bold text-indigo-900 mb-2">3. LEI Issuance</p>
+                    <p className="text-sm">Issue unique Global Legal Entity Identifiers recognized by regulators and financial institutions worldwide.</p>
+                  </div>
+                  <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                    <p className="font-bold text-indigo-900 mb-2">4. Web3 Credentials</p>
+                    <p className="text-sm">Issue blockchain-ready vLEI credentials for DeFi protocols, NFT ecosystems, and self-sovereign identity.</p>
                   </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
+
+              <MermaidDiagram 
+                chart={`graph LR
+                  A["Business<br/>Submits Data"]
+                  B["KYB Check<br/>Registry lookup<br/>Ownership verify"]
+                  C["AML Screen<br/>Sanctions check<br/>PEP screening"]
+                  D["Decision"]
+                  E["LEI Issued<br/>Global identifier<br/>Regulatory recognized"]
+                  F["vLEI Issued<br/>Web3 credential<br/>Blockchain ready"]
+
+                  A --> B
+                  B --> C
+                  C --> D
+                  D -->|Approved| E
+                  E --> F
+
+                  style A fill:#e3f2fd
+                  style B fill:#e3f2fd
+                  style C fill:#e3f2fd
+                  style D fill:#fff3e0
+                  style E fill:#e8f5e9
+                  style F fill:#d4edda`}
+              />
+            </CardContent>
+          )}
         </Card>
 
         {/* How It Works */}
-        <Card className="mb-8 bg-gradient-to-br from-blue-50 to-purple-50">
+        <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl">How It Works</CardTitle>
+            <SectionHeader title="How It Works" section="howitworks" />
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex gap-4">
-                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 font-bold text-lg">1</div>
-                <div>
-                  <h4 className="font-semibold mb-1">Company Onboarding</h4>
-                  <p className="text-sm text-gray-700">Submit your business details, registry information, and supporting documents</p>
+          {expandedSections.howitworks && (
+            <CardContent className="space-y-6 text-gray-700">
+              <div>
+                <h3 className="text-lg font-bold mb-4">The Verification Process</h3>
+                <p className="mb-6 leading-relaxed">
+                  When you submit your business for verification, TAS orchestrates a multi-stage automated process. Within 2-5 hours, your company is verified against global databases, screened for regulatory risk, and issued credentials. Here's exactly what happens:
+                </p>
+
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold text-sm">1</div>
+                    <div>
+                      <h4 className="font-bold text-blue-900 mb-1">Submission & Data Validation</h4>
+                      <p className="text-sm">You submit your company name, registration number, country, and beneficial owner information. TAS validates the data and checks for completeness.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold text-sm">2</div>
+                    <div>
+                      <h4 className="font-bold text-blue-900 mb-1">KYB Verification (30 mins typical)</h4>
+                      <p className="text-sm">Automated lookup in official business registries (Companies House, SIREN, ROC, etc.) to verify incorporation, entity status, address, and ownership structure. 90% of businesses pass this stage automatically.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="bg-indigo-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold text-sm">3</div>
+                    <div>
+                      <h4 className="font-bold text-indigo-900 mb-1">AML Screening (15 mins typical)</h4>
+                      <p className="text-sm">Real-time check against OFAC, UN, EU sanctions lists, PEP databases, and adverse media. If matches are found, they're scored by confidence. Most matches are false positives and automatically resolved.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="bg-indigo-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold text-sm">4</div>
+                    <div>
+                      <h4 className="font-bold text-indigo-900 mb-1">Manual Review (if needed)</h4>
+                      <p className="text-sm">High-confidence AML matches are escalated to human investigators who verify using additional sources. This typically takes 1-3 business days.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold text-sm">5</div>
+                    <div>
+                      <h4 className="font-bold text-green-900 mb-1">LEI & vLEI Issuance</h4>
+                      <p className="text-sm">Upon approval, your Legal Entity Identifier is registered with GLEIF. Your vLEI credential is cryptographically signed and blockchain-ready immediately.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold text-sm">6</div>
+                    <div>
+                      <h4 className="font-bold text-blue-900 mb-1">Continuous Monitoring</h4>
+                      <p className="text-sm">After issuance, TAS monitors your business 24/7 for regulatory changes, sanctions updates, and compliance status degradation.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 font-bold text-lg">2</div>
-                <div>
-                  <h4 className="font-semibold mb-1">Automated Verification</h4>
-                  <p className="text-sm text-gray-700">Our system verifies your company against global registries and compliance databases automatically</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 font-bold text-lg">3</div>
-                <div>
-                  <h4 className="font-semibold mb-1">Approval & Issuance</h4>
-                  <p className="text-sm text-gray-700">Upon approval, receive your LEI and vLEI credentials (typically 2-5 business days)</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 font-bold text-lg">4</div>
-                <div>
-                  <h4 className="font-semibold mb-1">Use Globally</h4>
-                  <p className="text-sm text-gray-700">Use your credentials for regulatory compliance, banking, blockchain, and Web3 applications</p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
+
+              <MermaidDiagram 
+                chart={`graph TB
+                  A["Submit Application<br/>Business details<br/>Registry info"]
+                  B["KYB Check<br/>Global registries<br/>30 mins"]
+                  C["AML Screening<br/>Sanctions lists<br/>15 mins"]
+                  D{"Manual Review<br/>if needed?"}
+                  E["Investigator<br/>Review<br/>1-3 days"]
+                  F["Approved"]
+                  G["LEI Issued<br/>vLEI Created"]
+                  H["Monitoring<br/>24/7 surveillance"]
+
+                  A --> B
+                  B --> C
+                  C --> D
+                  D -->|No| F
+                  D -->|Yes| E
+                  E --> F
+                  F --> G
+                  G --> H
+
+                  style A fill:#e3f2fd
+                  style B fill:#fff3e0
+                  style C fill:#fff3e0
+                  style D fill:#fce4ec
+                  style E fill:#fce4ec
+                  style F fill:#d4edda
+                  style G fill:#d4edda
+                  style H fill:#e0f2f1`}
+              />
+            </CardContent>
+          )}
         </Card>
 
         {/* Use Cases */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl">Use Cases</CardTitle>
+            <SectionHeader title="Who Benefits from TAS" section="usecases" />
           </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                <h4 className="font-semibold mb-2">🏦 Financial Services</h4>
-                <p className="text-sm text-gray-700">Meet KYB/AML requirements for onboarding business customers, reduce fraud, and ensure regulatory compliance</p>
+          {expandedSections.usecases && (
+            <CardContent className="space-y-6 text-gray-700">
+              <p className="leading-relaxed">
+                TAS serves multiple industries and use cases. Whether you're a bank opening accounts, a fintech integrating compliance, or a blockchain protocol issuing identity, TAS provides the infrastructure.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                  <p className="font-bold text-blue-900 mb-2">🏦 Banks & Financial Institutions</p>
+                  <p className="text-sm">Streamline KYB/AML for account opening. Move from weeks to hours. Meet regulatory requirements automatically.</p>
+                </div>
+
+                <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                  <p className="font-bold text-blue-900 mb-2">💳 Payment & Fintech</p>
+                  <p className="text-sm">Verify merchants instantly via API. Reduce fraud. Meet PCI DSS compliance. Enable faster merchant onboarding.</p>
+                </div>
+
+                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                  <p className="font-bold text-indigo-900 mb-2">⛓️ DeFi & Web3 Protocols</p>
+                  <p className="text-sm">Issue vLEI credentials for DAO governance, institutional DeFi, and blockchain identity. Bridge traditional and crypto finance.</p>
+                </div>
+
+                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                  <p className="font-bold text-indigo-900 mb-2">🏢 Enterprise & Supply Chain</p>
+                  <p className="text-sm">Verify suppliers globally. Manage vendor compliance. Reduce counterparty risk.</p>
+                </div>
+
+                <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                  <p className="font-bold text-blue-900 mb-2">🛡️ Insurance & Risk</p>
+                  <p className="text-sm">Underwrite faster with verified identity data. Reduce fraud. Speed up claims processing.</p>
+                </div>
+
+                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                  <p className="font-bold text-indigo-900 mb-2">⚖️ Legal & Compliance</p>
+                  <p className="text-sm">Automate due diligence. Reduce manual document review by 80%. Cut legal costs dramatically.</p>
+                </div>
               </div>
-              <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                <h4 className="font-semibold mb-2">🌐 Fintech & APIs</h4>
-                <p className="text-sm text-gray-700">Integrate KYB/AML verification into your platform via REST API. Real-time verification results in seconds.</p>
-              </div>
-              <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                <h4 className="font-semibold mb-2">⛓️ Web3 & DeFi</h4>
-                <p className="text-sm text-gray-700">Enable regulated DeFi protocols and blockchain applications with verified business identity credentials</p>
-              </div>
-              <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                <h4 className="font-semibold mb-2">🏢 Enterprise Supply Chain</h4>
-                <p className="text-sm text-gray-700">Verify suppliers and business partners globally with compliance assurance</p>
-              </div>
-              <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                <h4 className="font-semibold mb-2">📊 Risk Management</h4>
-                <p className="text-sm text-gray-700">Monitor customers and counterparties for regulatory changes and emerging risks</p>
-              </div>
-              <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                <h4 className="font-semibold mb-2">🔐 Insurance & AML</h4>
-                <p className="text-sm text-gray-700">Streamline KYB processes and reduce insurance fraud with verified business credentials</p>
-              </div>
-            </div>
-          </CardContent>
+
+              <MermaidDiagram 
+                chart={`graph TB
+                  A["TAS Platform<br/>Unified Identity<br/>& Compliance"]
+
+                  B["Banks<br/>Account opening<br/>KYB/AML"]
+                  C["Fintech<br/>Merchant verify<br/>Fraud prevention"]
+                  D["DeFi<br/>Web3 identity<br/>vLEI credentials"]
+                  E["Enterprise<br/>Vendor verify<br/>Supply chain"]
+                  F["Insurance<br/>Underwriting<br/>Risk assessment"]
+                  G["Legal<br/>Due diligence<br/>Compliance"]
+
+                  A --> B
+                  A --> C
+                  A --> D
+                  A --> E
+                  A --> F
+                  A --> G
+
+                  style A fill:#0044CC
+                  style A color:#fff
+                  style B fill:#e3f2fd
+                  style C fill:#e3f2fd
+                  style D fill:#c8e6c9
+                  style E fill:#c8e6c9
+                  style F fill:#bbdefb
+                  style G fill:#f0e4ff`}
+              />
+            </CardContent>
+          )}
+        </Card>
+
+        {/* Key Features */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="Key Features" section="features" />
+          </CardHeader>
+          {expandedSections.features && (
+            <CardContent className="space-y-6 text-gray-700">
+              <table className="w-full text-sm border-collapse">
+                <thead className="bg-gray-800 text-white">
+                  <tr>
+                    <th className="border p-3 text-left">Feature</th>
+                    <th className="border p-3 text-left">What It Does</th>
+                    <th className="border p-3 text-left">Benefit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3 font-semibold">KYB Verification</td>
+                    <td className="border p-3">Check business registries in 120+ countries for company legitimacy</td>
+                    <td className="border p-3">Know who you're dealing with. Reduce fraud by 95%.</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3 font-semibold">AML Screening</td>
+                    <td className="border p-3">Screen against 300+ sanctions, PEP, and adverse media databases</td>
+                    <td className="border p-3">Ensure regulatory compliance. Block high-risk entities instantly.</td>
+                  </tr>
+                  <tr className="hover:bg-indigo-50">
+                    <td className="border p-3 font-semibold">LEI Issuance</td>
+                    <td className="border p-3">Issue unique 20-char identifiers recognized globally by regulators</td>
+                    <td className="border p-3">Enable bank accounts, trading, and regulatory reporting worldwide.</td>
+                  </tr>
+                  <tr className="hover:bg-indigo-50">
+                    <td className="border p-3 font-semibold">vLEI Credentials</td>
+                    <td className="border p-3">Cryptographically signed Web3-ready digital credentials</td>
+                    <td className="border p-3">Use in blockchain, DeFi, NFTs, and smart contracts.</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3 font-semibold">Continuous Monitoring</td>
+                    <td className="border p-3">24/7 surveillance of business compliance status</td>
+                    <td className="border p-3">Get instant alerts if regulatory status changes.</td>
+                  </tr>
+                  <tr className="hover:bg-indigo-50">
+                    <td className="border p-3 font-semibold">REST API</td>
+                    <td className="border p-3">Integrate verification into your application</td>
+                    <td className="border p-3">Embed KYB/AML directly into your workflows.</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3 font-semibold">Webhooks</td>
+                    <td className="border p-3">Real-time notifications when verification completes</td>
+                    <td className="border p-3">Update customer status automatically as soon as approved.</td>
+                  </tr>
+                  <tr className="hover:bg-indigo-50">
+                    <td className="border p-3 font-semibold">Case Management</td>
+                    <td className="border p-3">Investigation workflow for alerts requiring human review</td>
+                    <td className="border p-3">Track and resolve compliance issues with audit trail.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </CardContent>
+          )}
         </Card>
 
         {/* Pricing */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl">Subscription Plans</CardTitle>
+            <SectionHeader title="Subscription Plans" section="pricing" />
           </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="border rounded-lg p-6 hover:shadow-lg transition-shadow">
-                <h4 className="text-lg font-semibold mb-2">Starter</h4>
-                <p className="text-3xl font-bold text-blue-600 mb-1">$99<span className="text-sm text-gray-600">/mo</span></p>
-                <p className="text-sm text-gray-600 mb-4">Perfect for small businesses</p>
-                <ul className="space-y-2 text-sm">
-                  <li>✓ 10K API calls/month</li>
-                  <li>✓ KYB Verification</li>
-                  <li>✓ Basic AML Screening</li>
-                  <li>✓ Email Support</li>
-                </ul>
-              </div>
-              <div className="border-2 border-blue-600 rounded-lg p-6 shadow-lg bg-blue-50">
-                <div className="mb-2">
-                  <Badge className="bg-blue-600">Most Popular</Badge>
-                </div>
-                <h4 className="text-lg font-semibold mb-2">Business</h4>
-                <p className="text-3xl font-bold text-blue-600 mb-1">$299<span className="text-sm text-gray-600">/mo</span></p>
-                <p className="text-sm text-gray-600 mb-4">For growing companies</p>
-                <ul className="space-y-2 text-sm">
-                  <li>✓ 50K API calls/month</li>
-                  <li>✓ Full KYB & AML</li>
-                  <li>✓ LEI Issuance</li>
-                  <li>✓ vLEI Credentials</li>
-                  <li>✓ Phone Support</li>
-                </ul>
-              </div>
-              <div className="border rounded-lg p-6 hover:shadow-lg transition-shadow">
-                <h4 className="text-lg font-semibold mb-2">Enterprise</h4>
-                <p className="text-3xl font-bold text-blue-600 mb-1">Custom</p>
-                <p className="text-sm text-gray-600 mb-4">For large organizations</p>
-                <ul className="space-y-2 text-sm">
-                  <li>✓ Unlimited API calls</li>
-                  <li>✓ All features</li>
-                  <li>✓ Custom integrations</li>
-                  <li>✓ Dedicated support</li>
-                  <li>✓ SLA guarantee</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
+          {expandedSections.pricing && (
+            <CardContent className="space-y-6 text-gray-700">
+              <p className="leading-relaxed">
+                TAS pricing is transparent with no hidden fees. Pay for what you use. All plans include 24/7 infrastructure with 99.5%+ uptime.
+              </p>
+
+              <table className="w-full text-sm border-collapse">
+                <thead className="bg-gray-800 text-white">
+                  <tr>
+                    <th className="border p-3 text-left">Metric</th>
+                    <th className="border p-3 text-center">Starter</th>
+                    <th className="border p-3 text-center">Business</th>
+                    <th className="border p-3 text-center">Enterprise</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3 font-semibold">Monthly Price</td>
+                    <td className="border p-3 text-center font-bold">$99</td>
+                    <td className="border p-3 text-center font-bold">$299</td>
+                    <td className="border p-3 text-center font-bold">Custom</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3">KYB Verifications</td>
+                    <td className="border p-3 text-center">50/month</td>
+                    <td className="border p-3 text-center">200/month</td>
+                    <td className="border p-3 text-center">Unlimited</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3">Per Verification Cost</td>
+                    <td className="border p-3 text-center">$1.98</td>
+                    <td className="border p-3 text-center">$1.50</td>
+                    <td className="border p-3 text-center">Negotiated</td>
+                  </tr>
+                  <tr className="hover:bg-indigo-50">
+                    <td className="border p-3">LEI Issuance</td>
+                    <td className="border p-3 text-center">❌</td>
+                    <td className="border p-3 text-center">✅ Included</td>
+                    <td className="border p-3 text-center">✅ Included</td>
+                  </tr>
+                  <tr className="hover:bg-indigo-50">
+                    <td className="border p-3">Continuous Monitoring</td>
+                    <td className="border p-3 text-center">❌</td>
+                    <td className="border p-3 text-center">✅ 6 months</td>
+                    <td className="border p-3 text-center">✅ Unlimited</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3">API Access</td>
+                    <td className="border p-3 text-center">❌</td>
+                    <td className="border p-3 text-center">✅</td>
+                    <td className="border p-3 text-center">✅</td>
+                  </tr>
+                  <tr className="hover:bg-indigo-50">
+                    <td className="border p-3">Support</td>
+                    <td className="border p-3 text-center">Email</td>
+                    <td className="border p-3 text-center">Chat + Email</td>
+                    <td className="border p-3 text-center">24/7 Phone</td>
+                  </tr>
+                </tbody>
+              </table>
+            </CardContent>
+          )}
         </Card>
 
         {/* FAQ */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Frequently Asked Questions</CardTitle>
+            <SectionHeader title="Frequently Asked Questions" section="faq" />
           </CardHeader>
-          <CardContent className="space-y-4">
-            {[
-              {
-                q: 'How is TAS different from other KYB/AML providers?',
-                a: 'TAS is the only platform that unifies KYB, AML, LEI, and Web3 credentials in one system. We also provide 120+ country compliance support and blockchain-ready credentials—unique in the industry.'
-              },
-              {
-                q: 'What databases do you check?',
-                a: 'We check global business registries (Companies House, SIREN, etc.), OFAC sanctions lists, UN lists, EU sanctions, PEP databases, and adverse media sources. Complete coverage in 120+ countries.'
-              },
-              {
-                q: 'How quickly can I get my LEI?',
-                a: 'Verification typically takes 2-5 business days. LEI issuance happens immediately upon approval. Use your credentials right away.'
-              },
-              {
-                q: 'Is TAS compliant with regulations?',
-                a: 'Yes. We support AML/CFT compliance, GDPR, eIDAS, and local regulations in 120+ countries. All data is encrypted and securely stored.'
-              },
-              {
-                q: 'Can I use TAS for Web3?',
-                a: 'Absolutely! Our vLEI credentials are specifically designed for blockchain and DeFi use. Issue Web3-ready credentials and integrate with any smart contract platform.'
-              }
-            ].map((faq, i) => (
-              <div
-                key={i}
-                className="border rounded-lg overflow-hidden"
-              >
-                <button
-                  onClick={() => toggleSection(`faq${i}`)}
-                  className="w-full p-4 flex items-center justify-between hover:bg-gray-50 font-semibold text-left"
+          {expandedSections.faq && (
+            <CardContent className="space-y-4">
+              {[
+                {
+                  q: 'How long does verification take?',
+                  a: 'Most verifications complete within 2-5 hours. KYB checks typically finish in 30 minutes, AML screening in 15 minutes. Manual review (if needed) takes 1-3 business days.'
+                },
+                {
+                  q: 'How many countries does TAS support?',
+                  a: 'TAS supports business verification in 120+ countries with country-specific compliance rules. You can verify companies from any jurisdiction.'
+                },
+                {
+                  q: 'What happens if I have an AML alert?',
+                  a: 'If a match is found during AML screening, our team investigates to determine if it\'s a genuine risk or false positive. Most are false positives due to name similarities. If confirmed as a genuine risk, we help you manage the compliance workflow.'
+                },
+                {
+                  q: 'Can I use vLEI credentials in smart contracts?',
+                  a: 'Yes! vLEI credentials are issued as W3C Verifiable Credentials and can be presented to smart contracts on any blockchain. They\'re recognized by DeFi protocols, DAOs, and NFT platforms.'
+                },
+                {
+                  q: 'Is my data secure?',
+                  a: 'Absolutely. TAS is PCI DSS Level 1 certified with bank-grade encryption. All data is encrypted in transit and at rest. We maintain strict multi-tenant isolation so your data is never accessible to other customers.'
+                },
+                {
+                  q: 'How do I get started?',
+                  a: 'Sign up for free at the top of this page. You\'ll get instant access to the platform and can submit your first verification immediately. No credit card required.'
+                }
+              ].map((faq, i) => (
+                <div
+                  key={i}
+                  className="border rounded-lg overflow-hidden"
                 >
-                  {faq.q}
-                  {expandedSections[`faq${i}`] ? <ChevronDown /> : <ChevronRight />}
-                </button>
-                {expandedSections[`faq${i}`] && (
-                  <div className="p-4 bg-gray-50 border-t text-sm text-gray-700">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
-          </CardContent>
+                  <button
+                    onClick={() => toggleSection(`faq${i}`)}
+                    className="w-full p-4 flex items-center justify-between hover:bg-blue-50 font-semibold text-left"
+                  >
+                    {faq.q}
+                    {expandedSections[`faq${i}`] ? <ChevronDown /> : <ChevronRight />}
+                  </button>
+                  {expandedSections[`faq${i}`] && (
+                    <div className="p-4 bg-blue-50 border-t text-sm text-gray-700">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </CardContent>
+          )}
         </Card>
 
-        {/* CTA */}
-        <Card className="mb-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-          <CardContent className="pt-8">
-            <h3 className="text-2xl font-bold mb-2">Ready to Get Started?</h3>
-            <p className="text-blue-100 mb-6">
-              Join thousands of companies using TAS for global compliance and digital identity.
-            </p>
-            <div className="flex gap-4">
-              <button className="px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 font-semibold">
-                Start Free Trial
-              </button>
-              <button className="px-8 py-3 border-2 border-white text-white rounded-lg hover:bg-white/10 font-semibold">
-                Schedule Demo
-              </button>
+        {/* Footer */}
+        <Card className="bg-gray-900 text-white">
+          <CardContent className="pt-6">
+            <div className="text-sm space-y-3">
+              <p><strong>Document Version:</strong> 1.0</p>
+              <p><strong>Last Updated:</strong> January 25, 2026</p>
+              <p><strong>Classification:</strong> Public</p>
+              <p><strong>Target Audience:</strong> Everyone</p>
+              <p className="text-xs mt-4 border-t border-gray-700 pt-4">© 2026 FTS.Money & Certizen Technologies. Public documentation.</p>
             </div>
           </CardContent>
         </Card>
