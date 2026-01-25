@@ -14,21 +14,36 @@ const AdminDocumentation = () => {
   };
 
   const MermaidDiagram = ({ id, chart }) => {
+    const containerRef = React.useRef(null);
+
     useEffect(() => {
-      if (typeof window !== 'undefined' && window.mermaid) {
-        window.mermaid.initialize({ startOnLoad: false, theme: 'default' });
-        const element = document.querySelector(`[data-mermaid-id="${id}"]`);
-        if (element) {
+      const loadMermaid = async () => {
+        if (!window.mermaid) {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+          script.async = true;
+          script.onload = () => {
+            if (window.mermaid && containerRef.current) {
+              window.mermaid.initialize({ startOnLoad: false, theme: 'default' });
+              window.mermaid.render(`mermaid-${id}`, chart).then(result => {
+                containerRef.current.innerHTML = result.svg;
+              });
+            }
+          };
+          document.head.appendChild(script);
+        } else if (window.mermaid && containerRef.current) {
+          window.mermaid.initialize({ startOnLoad: false, theme: 'default' });
           window.mermaid.render(`mermaid-${id}`, chart).then(result => {
-            element.innerHTML = result.svg;
+            containerRef.current.innerHTML = result.svg;
           });
         }
-      }
-    }, [id, chart]);
+      };
+      loadMermaid();
+    }, [chart, id]);
 
     return (
       <div className="flex justify-center my-6 bg-white p-6 rounded-lg border border-gray-200 overflow-x-auto">
-        <div data-mermaid-id={id} />
+        <div ref={containerRef} />
       </div>
     );
   };
