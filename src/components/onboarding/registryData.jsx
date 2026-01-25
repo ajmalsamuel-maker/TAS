@@ -289,8 +289,6 @@ export const COUNTRY_REGISTRY_MAP = {
   // Additional countries with single registry
   'AL': [{ code: 'AL-NRC', name: 'National Registration Center' }],
   'AD': [{ code: 'AD-RPC', name: 'Registre del Comerç de Principat d\'Andorra' }],
-  'KR': [{ code: 'KR-MOPF', name: 'Ministry of Planning and Finance' }],
-
   // Oceania
   'AU': [{ code: 'AU-ASIC', name: 'Australian Securities and Investments Commission' }],
   'FJ': [{ code: 'FJ-ROC', name: 'Registrar of Companies' }],
