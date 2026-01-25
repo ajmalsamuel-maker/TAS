@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
+import StandardsFooter from '@/components/standards/StandardsFooter';
 
 export default function Pricing() {
   return (
@@ -146,6 +147,9 @@ export default function Pricing() {
         </div>
       </section>
 
+      {/* Standards & Compliance */}
+      <StandardsFooter />
+
       {/* Logos */}
       <section className="py-12 bg-white border-t">
         <div className="max-w-7xl mx-auto px-6">
@@ -156,6 +160,6 @@ export default function Pricing() {
           </div>
         </div>
       </section>
-    </div>
-  );
-}
+      </div>
+      );
+      }
