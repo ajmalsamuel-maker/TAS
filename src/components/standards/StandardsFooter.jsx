@@ -79,8 +79,17 @@ export default function StandardsFooter() {
           </div>
         </div>
 
-        <div className="border-t border-slate-700 pt-6 text-xs text-gray-400">
-          <p>TAS Platform complies with LEI issuance standards (ISO 17442), cryptographic verification (KERI/ACDC), and global compliance frameworks (FATF, GDPR, ISO 27001). All data collection and processing adheres to ISO 3166-1 (country codes), ISO 20275 (entity legal forms), and ISO 4217 (currency codes).</p>
+        <div className="border-t border-slate-700 pt-6 text-xs text-gray-400 space-y-3">
+          <p><strong className="text-white">Full Compliance & Standards:</strong></p>
+          <p>TAS Platform is fully compliant with international standards including: LEI issuance (ISO 17442 - Legal Entity Identifier), cryptographic identity verification (KERI/ACDC), global regulatory frameworks (FATF AML/CFT, GDPR, SOX), data standards (ISO 3166-1 country codes, ISO 20275 entity legal forms, ISO 4217 currency codes), information security (ISO/IEC 27001, PCI DSS Level 1), and Web3 standards (W3C Verifiable Credentials, ACDC Authentic Chained Data Containers). The platform maintains continuous compliance with FinCEN regulations, OFAC sanctions requirements, and emerging digital identity standards globally.</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-4 text-xs">
+            <div className="bg-slate-800 p-2 rounded">Identity: LEI (ISO 17442)</div>
+            <div className="bg-slate-800 p-2 rounded">Web3: ACDC, KERI, vLEI</div>
+            <div className="bg-slate-800 p-2 rounded">Security: ISO 27001</div>
+            <div className="bg-slate-800 p-2 rounded">Payments: PCI DSS L1</div>
+            <div className="bg-slate-800 p-2 rounded">Compliance: FATF, GDPR</div>
+            <div className="bg-slate-800 p-2 rounded">Data: ISO 3166-1, 20275</div>
+          </div>
         </div>
       </div>
     </div>
