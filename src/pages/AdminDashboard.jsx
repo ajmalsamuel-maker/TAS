@@ -24,9 +24,11 @@ import FraudDashboard from '../components/fraud/FraudDashboard';
 import OrganizationManagement from '../components/admin/OrganizationManagement';
 import Web3Analytics from '../components/admin/Web3Analytics';
 import AdminReports from './AdminReports';
+import OrganizationFilterSelector from '../components/admin/OrganizationFilterSelector';
 
 export default function AdminDashboard() {
   const [user, setUser] = useState(null);
+  const [selectedOrgId, setSelectedOrgId] = useState('all');
 
   useEffect(() => {
     base44.auth.me()
@@ -60,8 +62,13 @@ export default function AdminDashboard() {
   });
 
   const { data: applications = [] } = useQuery({
-    queryKey: ['applications'],
-    queryFn: () => base44.entities.OnboardingApplication.list(),
+    queryKey: ['applications', selectedOrgId],
+    queryFn: async () => {
+      if (selectedOrgId === 'all') {
+        return await base44.entities.OnboardingApplication.list();
+      }
+      return await base44.entities.OnboardingApplication.filter({ organization_id: selectedOrgId });
+    },
     initialData: []
   });
 
@@ -88,6 +95,13 @@ export default function AdminDashboard() {
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
           <p className="text-gray-600">Manage TAS platform, providers, workflows, and translations</p>
+          <div className="mt-4">
+            <OrganizationFilterSelector 
+              selectedOrgId={selectedOrgId}
+              onOrgChange={setSelectedOrgId}
+              currentUser={user}
+            />
+          </div>
         </div>
 
         {/* Stats Grid */}
