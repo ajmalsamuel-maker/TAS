@@ -106,30 +106,30 @@ export default function Pricing() {
           </div>
 
           {/* Usage-Based Add-ons */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-100">
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 text-center">Usage-Based Add-ons</h3>
-            <div className="grid md:grid-cols-3 gap-6">
+           <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-xl border-2 border-blue-100">
+             <h3 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900 text-center">Usage-Based Add-ons</h3>
+             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {[
                 { service: 'Extra Verifications', rate: '$15-25 each', desc: 'Additional verifications beyond your tier limit' },
                 { service: 'Enhanced AML Checks', rate: '$5-10 each', desc: 'Premium sanctions, PEP, and adverse media screening' },
                 { service: 'Facial Biometric Verification', rate: '$3-5 each', desc: 'Liveness detection and identity verification' }
               ].map((item, i) => (
-                <div key={i} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-6 border border-blue-200">
-                  <h4 className="font-bold text-gray-900 mb-2">{item.service}</h4>
-                  <p className="text-2xl font-bold text-[#0066B3] mb-2">{item.rate}</p>
-                  <p className="text-sm text-gray-600">{item.desc}</p>
-                </div>
+                <div key={i} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 sm:p-6 border border-blue-200">
+                    <h4 className="font-bold text-sm sm:text-base text-gray-900 mb-2">{item.service}</h4>
+                    <p className="text-xl sm:text-2xl font-bold text-[#0066B3] mb-2">{item.rate}</p>
+                    <p className="text-xs sm:text-sm text-gray-600">{item.desc}</p>
+                  </div>
               ))}
             </div>
           </div>
 
           {/* Provider Fees Notice */}
-          <div className="mt-12 bg-blue-50 border-l-4 border-[#0066B3] p-6 rounded-lg">
-            <h4 className="font-bold text-gray-900 mb-2">Regulated Provider Fees</h4>
-            <p className="text-sm text-gray-700 mb-4">
+          <div className="mt-8 sm:mt-12 bg-blue-50 border-l-4 border-[#0066B3] p-4 sm:p-6 rounded-lg">
+            <h4 className="font-bold text-sm sm:text-base text-gray-900 mb-2">Regulated Provider Fees</h4>
+            <p className="text-xs sm:text-sm text-gray-700 mb-4">
               The following services are billed separately by licensed providers:
             </p>
-            <div className="grid md:grid-cols-3 gap-4 text-sm">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-xs sm:text-sm">
               <div className="bg-white rounded-lg p-3 border border-blue-200">
                 <p className="font-semibold text-gray-900">Certizen Technology</p>
                 <p className="text-gray-600">vLEI issuance, DID creation, trust credentialing</p>
