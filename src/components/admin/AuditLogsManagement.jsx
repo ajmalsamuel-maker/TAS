@@ -64,10 +64,10 @@ export default function AuditLogsManagement() {
     const csv = [
       ['Timestamp', 'Actor', 'Email', 'Action', 'Details'].join(','),
       ...filteredLogs.map(log => [
-        format(new Date(log.timestamp), 'yyyy-MM-dd HH:mm:ss'),
-        log.actor,
-        log.actor_email,
-        log.event,
+        log.timestamp ? format(new Date(log.timestamp), 'yyyy-MM-dd HH:mm:ss') : 'N/A',
+        log.actor || '',
+        log.actor_email || '',
+        log.event || '',
         log.details ? log.details.replace(/,/g, ';') : ''
       ].map(v => `"${v}"`).join(','))
     ].join('\n');
@@ -150,7 +150,7 @@ export default function AuditLogsManagement() {
                   {filteredLogs.map((log) => (
                     <TableRow key={log.id}>
                       <TableCell className="text-sm whitespace-nowrap">
-                        {format(new Date(log.timestamp), 'MMM d, yyyy HH:mm:ss')}
+                        {log.timestamp ? format(new Date(log.timestamp), 'MMM d, yyyy HH:mm:ss') : 'N/A'}
                       </TableCell>
                       <TableCell>
                         <div className="text-sm">
@@ -198,7 +198,7 @@ export default function AuditLogsManagement() {
             <div className="space-y-3 text-sm">
               <div>
                 <span className="font-medium text-gray-700">Timestamp:</span>
-                <p className="text-gray-600">{format(new Date(selectedLog.timestamp), 'PPpp')}</p>
+                <p className="text-gray-600">{selectedLog.timestamp ? format(new Date(selectedLog.timestamp), 'PPpp') : 'N/A'}</p>
               </div>
               <div>
                 <span className="font-medium text-gray-700">Actor:</span>
