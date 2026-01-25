@@ -61,8 +61,6 @@ function LayoutContent({ children, currentPageName }) {
   // Admin Portal Navigation (Admins Only)
   const adminPortalPages = [
     { nameKey: 'nav.dashboard', icon: Shield, path: 'AdminDashboard' },
-    { nameKey: 'nav.analytics', icon: BarChart, path: 'AdminAnalytics' },
-    { nameKey: 'nav.users', icon: Users, path: 'UserDashboard' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' }
   ];
 
