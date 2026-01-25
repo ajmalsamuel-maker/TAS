@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronDown, ChevronRight, Shield, Lock, Building2, FileCheck, Globe, Activity } from 'lucide-react';
 
-const UserPortalDocumentation = () => {
+export default function UserPortalDocumentation() {
   const [expandedSections, setExpandedSections] = useState({});
 
   const toggleSection = (section) => {
