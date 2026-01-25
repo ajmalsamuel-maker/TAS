@@ -21,12 +21,19 @@ const AdminDocumentation = () => {
       script.onload = () => {
         if (window.mermaid) {
           window.mermaid.initialize({ startOnLoad: true, theme: 'default' });
-          window.mermaid.contentLoaderContent(document.querySelector(`#${id}`));
+          window.mermaid.render(id, chart).then(result => {
+            const element = document.querySelector(`#${id}`);
+            if (element) element.innerHTML = result.svg;
+          });
         }
       };
       document.body.appendChild(script);
-      return () => document.body.removeChild(script);
-    }, [id]);
+      return () => {
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      };
+    }, [id, chart]);
 
     return (
       <div className="flex justify-center my-6 bg-white p-6 rounded-lg border border-gray-200 overflow-x-auto">
