@@ -108,11 +108,17 @@ const PublicDocumentation = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                    <p className="font-bold mb-2">🏢 Who Uses TAS?</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Building2 className="h-5 w-5 text-blue-600" />
+                      <p className="font-bold">Who Uses TAS?</p>
+                    </div>
                     <p className="text-sm">Banks, payment processors, fintech companies, insurance firms, enterprises, and DeFi protocols seeking to verify business identity and ensure compliance globally.</p>
                   </div>
                   <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
-                    <p className="font-bold mb-2">🌍 Global Reach</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Globe className="h-5 w-5 text-indigo-600" />
+                      <p className="font-bold">Global Reach</p>
+                    </div>
                     <p className="text-sm">Verification across 120+ countries with country-specific compliance rules, 300+ sanctions databases, and regulatory intelligence.</p>
                   </div>
                 </div>
