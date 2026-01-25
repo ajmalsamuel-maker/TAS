@@ -99,6 +99,9 @@ export default function AdminDashboard() {
             <TabsTrigger value="workflows" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Workflows
             </TabsTrigger>
+            <TabsTrigger value="policies" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Policies
+            </TabsTrigger>
             <TabsTrigger value="users" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Users
             </TabsTrigger>
@@ -126,6 +129,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="workflows">
             <WorkflowsOverview workflows={workflows} />
+          </TabsContent>
+
+          <TabsContent value="policies">
+            <PolicyManager />
           </TabsContent>
 
           <TabsContent value="users">
