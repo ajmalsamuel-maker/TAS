@@ -21,6 +21,7 @@ import CaseQueue from '../components/case/CaseQueue';
 import TransactionMonitoring from '../components/transaction/TransactionMonitoring';
 import FraudDashboard from '../components/fraud/FraudDashboard';
 import OrganizationManagement from '../components/admin/OrganizationManagement';
+import Web3Analytics from '../components/admin/Web3Analytics';
 
 export default function AdminDashboard() {
   const [user, setUser] = React.useState(null);
@@ -138,6 +139,9 @@ export default function AdminDashboard() {
             <TabsTrigger value="fraud" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Fraud Detection
             </TabsTrigger>
+            <TabsTrigger value="web3" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Web3 Analytics
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="organizations">
@@ -190,6 +194,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="fraud">
             <FraudDashboard />
+          </TabsContent>
+
+          <TabsContent value="web3">
+            <Web3Analytics />
           </TabsContent>
         </Tabs>
       </div>
