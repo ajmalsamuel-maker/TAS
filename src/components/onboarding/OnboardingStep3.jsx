@@ -28,27 +28,53 @@ export default function OnboardingStep3({ formData, setFormData }) {
   return (
     <div className="space-y-6">
       <div>
-        <Label htmlFor="entity_legal_form" className="text-base">Entity Legal Form *</Label>
+        <Label htmlFor="entity_legal_form" className="text-base">Entity Legal Form (ISO 20275 ELF Code) *</Label>
         <Input
           id="entity_legal_form"
           value={formData.entity_legal_form}
-          onChange={(e) => updateField('entity_legal_form', e.target.value)}
-          placeholder="e.g., Limited Liability Company, Corporation"
+          onChange={(e) => {
+            const val = e.target.value.replace(/\D/g, '').slice(0, 4);
+            updateField('entity_legal_form', val);
+          }}
+          placeholder="e.g., 8888 (4-digit ISO 20275 code)"
+          maxLength="4"
           className="mt-2"
           required
         />
+        <p className="text-xs text-gray-500 mt-1">Enter 4-digit ISO 20275 Entity Legal Form code from GLEIF</p>
       </div>
 
-      <div>
-        <Label htmlFor="business_registry_name" className="text-base">Name of Business Registry *</Label>
-        <Input
-          id="business_registry_name"
-          value={formData.business_registry_name}
-          onChange={(e) => updateField('business_registry_name', e.target.value)}
-          placeholder="Official business registry name"
-          className="mt-2"
-          required
-        />
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <Label htmlFor="business_registry_country" className="text-base">Registry Country (ISO 3166-1) *</Label>
+          <Select 
+            value={formData.registry_country_code || ''}
+            onValueChange={(value) => updateField('registry_country_code', value)}
+          >
+            <SelectTrigger className="mt-2">
+              <SelectValue placeholder="Select country" />
+            </SelectTrigger>
+            <SelectContent>
+              {COUNTRY_CODES.map((country) => (
+                <SelectItem key={country.code} value={country.code}>
+                  {country.name} ({country.code})
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <Label htmlFor="business_registry_name" className="text-base">Name of Business Registry *</Label>
+          <Input
+            id="business_registry_name"
+            value={formData.business_registry_name}
+            onChange={(e) => updateField('business_registry_name', e.target.value)}
+            placeholder="e.g., Companies House, SIREN, ROC"
+            className="mt-2"
+            required
+          />
+        </div>
       </div>
 
       <div>
