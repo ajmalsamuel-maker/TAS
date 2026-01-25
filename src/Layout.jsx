@@ -217,14 +217,9 @@ function LayoutContent({ children, currentPageName }) {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Powered By</h4>
-              <div className="space-y-3 text-blue-200">
-                <p className="text-sm hover:text-white transition-colors cursor-pointer">
-                  Certizen Technology
-                </p>
-                <p className="text-sm hover:text-white transition-colors cursor-pointer">
-                  FTS.Money
-                </p>
-              </div>
+              <p className="text-sm text-blue-200 hover:text-white transition-colors cursor-pointer">
+                FTS.Money & Certizen Technologies
+              </p>
             </div>
           </div>
           
