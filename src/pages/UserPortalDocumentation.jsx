@@ -559,6 +559,4 @@ export default function UserPortalDocumentation() {
       </div>
     </div>
   );
-};
-
-export default UserPortalDocumentation;
+}
