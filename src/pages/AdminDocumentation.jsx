@@ -464,8 +464,7 @@ const AdminDocumentation = () => {
                   <strong>Invoice Generation Process:</strong> At the customer's billing_date (e.g., the 15th of each month), the system runs the invoice generation job. For each active subscription, it queries the UsageMetrics table for the current billing period, aggregates all usage from the start_date to the billing period end, and calculates charges: (base_subscription_price) + (sum of all usage costs). If the customer has prepaid credits, those are applied first. The system then creates an Invoice record in Draft status with individual line items for each service type. If auto_generate_invoices is enabled in BillingSettings, the invoice is automatically issued, sent, and recorded in the customer's audit log.
                 </p>
                 <MermaidDiagram 
-                  id="billing-flow"
-                  chart={`graph LR
+                   chart={`graph LR
                     A["Workflow Completes<br/>KYB/AML/Document/LEI"] 
                     B["Emit Event<br/>service_type<br/>org_id<br/>cost_amount"]
                     C["Billing Service<br/>Consume event<br/>Update UsageMetric"]
