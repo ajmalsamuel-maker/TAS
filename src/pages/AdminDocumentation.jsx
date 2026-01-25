@@ -360,7 +360,7 @@ const AdminDocumentation = () => {
                     <tr className="hover:bg-orange-50">
                       <td className="border p-3 font-semibold">Cache</td>
                       <td className="border p-3">Key namespace prefixing</td>
-                      <td className="border p-3">Redis keys: &quot;org_{id}:session:{session_id}&quot;. Impossible to iterate across organizations</td>
+                      <td className="border p-3">Redis keys: "org_&#123;id&#125;:session:&#123;session_id&#125;". Impossible to iterate across organizations</td>
                       <td className="border p-3">PCI DSS §2.2.4</td>
                     </tr>
                     <tr className="hover:bg-yellow-50">
