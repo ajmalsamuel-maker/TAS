@@ -105,52 +105,52 @@ export default function Contact() {
           {/* Contact Info */}
           <div className="space-y-4 sm:space-y-6">
             <Card className="border-2 border-blue-100">
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 min-h-10 min-w-10">
                     <Mail className="h-5 sm:h-6 w-5 sm:w-6 text-[#0044CC]" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Email</h3>
-                    <p className="text-gray-600">info@trustanchorservice.com</p>
-                    <p className="text-gray-600">support@trustanchorservice.com</p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base">Email</h3>
+                    <p className="text-gray-600 text-xs sm:text-sm break-all">info@trustanchorservice.com</p>
+                    <p className="text-gray-600 text-xs sm:text-sm break-all">support@trustanchorservice.com</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-6 w-6 text-[#0044CC]" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 min-h-10 min-w-10">
+                    <Phone className="h-5 sm:h-6 w-5 sm:w-6 text-[#0044CC]" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Phone</h3>
-                    <p className="text-gray-600">+852 XXXX XXXX</p>
-                    <p className="text-sm text-gray-500">Mon-Fri 9am-6pm HKT</p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base">Phone</h3>
+                    <p className="text-gray-600 text-xs sm:text-sm">+852 XXXX XXXX</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Mon-Fri 9am-6pm HKT</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-[#0044CC]" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 min-h-10 min-w-10">
+                    <MapPin className="h-5 sm:h-6 w-5 sm:w-6 text-[#0044CC]" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Office</h3>
-                    <p className="text-gray-600">Hong Kong</p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base">Office</h3>
+                    <p className="text-gray-600 text-xs sm:text-sm">Hong Kong</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             <Card className="bg-gradient-to-br from-[#0044CC] to-cyan-600 text-white border-0">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-xl mb-2">Ready to Get Started?</h3>
-                <p className="text-blue-100 mb-4">
-                  Apply for your LEI and start using TAS services today.
-                </p>
-                <Button variant="secondary" className="w-full bg-white text-[#0044CC] hover:bg-blue-50">
-                  Apply Now
-                </Button>
-              </CardContent>
-            </Card>
+               <CardContent className="p-4 sm:p-6">
+                 <h3 className="font-bold text-lg sm:text-xl mb-2">Ready to Get Started?</h3>
+                 <p className="text-xs sm:text-sm text-blue-100 mb-4">
+                   Apply for your LEI and start using TAS services today.
+                 </p>
+                 <Button variant="secondary" className="w-full bg-white text-[#0044CC] hover:bg-blue-50 text-sm sm:text-base py-2 sm:py-3">
+                   Apply Now
+                 </Button>
+               </CardContent>
+             </Card>
           </div>
         </div>
       </div>
