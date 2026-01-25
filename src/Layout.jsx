@@ -229,7 +229,7 @@ function LayoutContent({ children, currentPageName }) {
           </div>
           
           <div className="border-t border-white/20 pt-8 text-center text-sm text-blue-200">
-            <p>© 2025 FTS.Money & Certizen Technologies. All rights reserved.</p>
+            <p>© 2026 FTS.Money & Certizen Technologies. All rights reserved.</p>
           </div>
         </div>
       </footer>
