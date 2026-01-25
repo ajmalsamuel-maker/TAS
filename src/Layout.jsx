@@ -34,7 +34,7 @@ function LayoutContent({ children, currentPageName }) {
   }, [currentPageName]);
 
   const handleLogout = () => {
-    base44.auth.logout();
+    base44.auth.logout(createPageUrl('Home'));
   };
 
   const isAdmin = user?.role === 'admin';
