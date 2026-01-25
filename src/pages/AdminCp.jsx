@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Shield, Lock } from 'lucide-react';
 import { createPageUrl } from '../utils';
 
-export default function AdminLogin() {
+export default function AdminCp() {
   const handleLogin = () => {
     base44.auth.redirectToLogin();
   };

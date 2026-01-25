@@ -32,13 +32,13 @@ export default function AdminDashboard() {
     base44.auth.me()
       .then(userData => {
         if (!userData || userData.role !== 'admin') {
-          window.location.href = createPageUrl('AdminLogin');
+          window.location.href = createPageUrl('AdminCp');
         } else {
           setUser(userData);
         }
       })
       .catch(() => {
-        window.location.href = createPageUrl('AdminLogin');
+        window.location.href = createPageUrl('AdminCp');
       });
   }, []);
   const { data: providers = [] } = useQuery({
