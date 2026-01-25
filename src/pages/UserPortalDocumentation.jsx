@@ -85,7 +85,7 @@ const UserPortalDocumentation = () => {
             <Badge variant="default">User Guide</Badge>
             <Badge variant="secondary">Complete Reference</Badge>
             <Badge variant="secondary">2026-01-25</Badge>
-            <Badge className="bg-green-100 text-green-800">User Facing</Badge>
+            <Badge className="bg-blue-100 text-blue-800">User Facing</Badge>
           </div>
           <p className="text-gray-600 mt-4">For: Business Users & Compliance Officers</p>
         </div>
