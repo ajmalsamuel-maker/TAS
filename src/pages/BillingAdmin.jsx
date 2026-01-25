@@ -1,0 +1,146 @@
+import React, { useState } from 'react';
+import { base44 } from '@/api/base44Client';
+import { useQuery } from '@tanstack/react-query';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { DollarSign, Settings, Zap, FileText } from 'lucide-react';
+import BillingDashboard from '../components/billing/BillingDashboard';
+import BillingSettingsPanel from '../components/billing/BillingSettingsPanel';
+import BillingPlansManager from '../components/billing/BillingPlansManager';
+
+export default function BillingAdmin() {
+  const [user, setUser] = useState(null);
+
+  React.useEffect(() => {
+    base44.auth.me()
+      .then(currentUser => {
+        if (currentUser?.role !== 'admin') {
+          window.location.href = '/AdminCp';
+        }
+        setUser(currentUser);
+      })
+      .catch(() => {
+        window.location.href = '/UserLogin';
+      });
+  }, []);
+
+  const { data: summaryStats } = useQuery({
+    queryKey: ['billingSummary'],
+    queryFn: async () => {
+      const invoices = await base44.entities.Invoice.filter({});
+      const plans = await base44.entities.BillingPlan.filter({});
+      
+      return {
+        totalInvoices: invoices.length,
+        totalRevenue: invoices
+          .filter(i => i.status === 'paid')
+          .reduce((sum, i) => sum + (i.total_amount || 0), 0),
+        pendingAmount: invoices
+          .filter(i => ['issued', 'overdue'].includes(i.status))
+          .reduce((sum, i) => sum + (i.total_amount || 0), 0),
+        activePlans: plans.filter(p => p.is_active).length
+      };
+    }
+  });
+
+  if (!user) return null;
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Billing Administration</h1>
+          <p className="text-gray-600">Manage invoices, subscription plans, and accounting integrations</p>
+        </div>
+
+        {/* Summary Stats */}
+        <div className="grid md:grid-cols-4 gap-4 mb-8">
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">Total Revenue</p>
+                  <p className="text-2xl font-bold">${summaryStats?.totalRevenue.toFixed(2) || '0'}</p>
+                </div>
+                <DollarSign className="h-8 w-8 text-green-600" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">Pending Invoices</p>
+                  <p className="text-2xl font-bold">${summaryStats?.pendingAmount.toFixed(2) || '0'}</p>
+                </div>
+                <FileText className="h-8 w-8 text-orange-600" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">Total Invoices</p>
+                  <p className="text-2xl font-bold">{summaryStats?.totalInvoices || 0}</p>
+                </div>
+                <FileText className="h-8 w-8 text-blue-600" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">Active Plans</p>
+                  <p className="text-2xl font-bold">{summaryStats?.activePlans || 0}</p>
+                </div>
+                <Zap className="h-8 w-8 text-purple-600" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Tabs */}
+        <Tabs defaultValue="dashboard" className="space-y-4">
+          <TabsList>
+            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+            <TabsTrigger value="plans">Billing Plans</TabsTrigger>
+            <TabsTrigger value="settings">Settings & Integrations</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="dashboard">
+            <BillingDashboard organizationId="all" />
+          </TabsContent>
+
+          <TabsContent value="plans">
+            <BillingPlansManager />
+          </TabsContent>
+
+          <TabsContent value="settings">
+            <BillingSettingsPanel />
+          </TabsContent>
+        </Tabs>
+
+        {/* Info Banner */}
+        <Card className="mt-8 bg-blue-50 border-2 border-blue-200">
+          <CardContent className="pt-6">
+            <h3 className="font-semibold text-gray-900 mb-2">📋 Billing System Guide</h3>
+            <ul className="text-sm text-gray-700 space-y-1 ml-4">
+              <li>✓ <strong>Dashboard:</strong> View all invoices, revenue, and customer usage</li>
+              <li>✓ <strong>Billing Plans:</strong> Create/edit subscription tiers with custom pricing</li>
+              <li>✓ <strong>Settings:</strong> Configure company info, tax rates, auto-invoicing, and accounting integrations</li>
+              <li>✓ <strong>Usage Tracking:</strong> Automatically track KYB, AML, LEI, and API calls per customer</li>
+              <li>✓ <strong>Accounting Export:</strong> Export to QuickBooks, Xero, Sage, or NetSuite</li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
