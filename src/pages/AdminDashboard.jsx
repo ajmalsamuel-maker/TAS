@@ -26,10 +26,20 @@ import Web3Analytics from '../components/admin/Web3Analytics';
 import AdminReports from './AdminReports';
 
 export default function AdminDashboard() {
-  const [user, setUser] = React.useState(null);
+  const [user, setUser] = useState(null);
 
-  React.useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => setUser(null));
+  useEffect(() => {
+    base44.auth.me()
+      .then(userData => {
+        if (!userData || userData.role !== 'admin') {
+          window.location.href = createPageUrl('AdminLogin');
+        } else {
+          setUser(userData);
+        }
+      })
+      .catch(() => {
+        window.location.href = createPageUrl('AdminLogin');
+      });
   }, []);
   const { data: providers = [] } = useQuery({
     queryKey: ['providers'],
