@@ -8,21 +8,21 @@ export default function About() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-5xl font-bold mb-6">About TAS Platform</h1>
-          <p className="text-xl text-blue-100 max-w-3xl">
+      <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">About TAS Platform</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-blue-100 max-w-3xl">
             B2B SaaS infrastructure enabling businesses to issue LEI/vLEI credentials and automate compliance workflows across corporate, Web3, and supply chain operations
           </p>
         </div>
       </section>
 
       {/* Vision & Objectives */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">Vision & Technical Objectives</h2>
-          
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 text-gray-900">Vision & Technical Objectives</h2>
+
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16">
             <div>
               <h3 className="text-2xl font-bold mb-6 text-[#0044CC]">Our Vision</h3>
               <div className="space-y-4">

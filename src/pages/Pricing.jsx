@@ -9,19 +9,19 @@ export default function Pricing() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
-      <section className="bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white py-20">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-5xl font-bold mb-6">B2B SaaS Pricing</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+      <section className="bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white py-12 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">B2B SaaS Pricing</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-blue-100 max-w-2xl mx-auto">
             Multi-tenant workspaces with complete isolation. Each organization gets their own secure environment to manage credential issuance and compliance workflows.
           </p>
         </div>
       </section>
 
       {/* Pricing Tiers */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+      <section className="py-12 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
             {[
               {
                 tier: 'Starter',
@@ -76,18 +76,18 @@ export default function Pricing() {
                 cta: 'Contact Sales'
               }
             ].map((plan, i) => (
-              <div key={i} className={`rounded-2xl ${plan.highlighted ? 'bg-gradient-to-br from-[#0066B3] to-[#004080] text-white shadow-2xl scale-105 border-2 border-blue-300' : 'bg-white text-gray-900 border-2 border-blue-100'} transition-all hover:shadow-2xl`}>
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold mb-2">{plan.tier}</h3>
+              <div key={i} className={`rounded-2xl ${plan.highlighted ? 'bg-gradient-to-br from-[#0066B3] to-[#004080] text-white shadow-2xl lg:scale-105 border-2 border-blue-300' : 'bg-white text-gray-900 border-2 border-blue-100'} transition-all hover:shadow-2xl`}>
+                  <div className="p-4 sm:p-8">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2">{plan.tier}</h3>
                   <div className="mb-2">
-                    <span className="text-5xl font-bold">{plan.price}</span>
-                    {plan.price !== 'Custom' && <span className={plan.highlighted ? 'text-blue-200' : 'text-gray-600'}>/month</span>}
+                    <span className="text-4xl sm:text-5xl font-bold">{plan.price}</span>
+                    {plan.price !== 'Custom' && <span className={`text-xs sm:text-sm ${plan.highlighted ? 'text-blue-200' : 'text-gray-600'}`}>/month</span>}
                   </div>
-                  <p className={`text-sm mb-8 ${plan.highlighted ? 'text-blue-100' : 'text-gray-600'}`}>{plan.description}</p>
-                  
-                  <ul className="space-y-3 mb-8">
+                  <p className={`text-xs sm:text-sm mb-6 sm:mb-8 ${plan.highlighted ? 'text-blue-100' : 'text-gray-600'}`}>{plan.description}</p>
+
+                  <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
                     {plan.features.map((feature, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm">
+                      <li key={j} className="flex items-start gap-2 text-xs sm:text-sm">
                         <CheckCircle2 className={`h-5 w-5 flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-cyan-300' : 'text-[#0066B3]'}`} />
                         <span>{feature}</span>
                       </li>

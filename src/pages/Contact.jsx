@@ -23,27 +23,27 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       {/* Hero */}
-      <div className="bg-gradient-to-r from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-5xl font-bold mb-4">Get in Touch</h1>
-          <p className="text-xl text-blue-200">
-            Ready to transform your compliance infrastructure? Let's talk.
-          </p>
-        </div>
-      </div>
+      <div className="bg-gradient-to-r from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-12 sm:py-20">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4">Get in Touch</h1>
+           <p className="text-base sm:text-lg lg:text-xl text-blue-200">
+             Ready to transform your compliance infrastructure? Let's talk.
+           </p>
+         </div>
+       </div>
 
-      {/* Contact Form & Info */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-3 gap-8">
+       {/* Contact Form & Info */}
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+         <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <Card className="border-2 border-blue-100 shadow-xl">
-              <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-                <CardTitle className="text-2xl">Send us a Message</CardTitle>
+              <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100 p-4 sm:p-6">
+                <CardTitle className="text-xl sm:text-2xl">Send us a Message</CardTitle>
               </CardHeader>
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+              <CardContent className="p-4 sm:p-8">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Full Name *
@@ -93,8 +93,8 @@ export default function Contact() {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full bg-[#0044CC] hover:bg-[#002D66] text-lg py-6">
-                    <Send className="h-5 w-5 mr-2" />
+                  <Button type="submit" className="w-full bg-[#0044CC] hover:bg-[#002D66] text-base sm:text-lg py-5 sm:py-6">
+                    <Send className="h-4 sm:h-5 w-4 sm:w-5 mr-2" />
                     Send Message
                   </Button>
                 </form>
@@ -103,12 +103,12 @@ export default function Contact() {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <Card className="border-2 border-blue-100">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-6 w-6 text-[#0044CC]" />
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-5 sm:h-6 w-5 sm:w-6 text-[#0044CC]" />
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900 mb-1">Email</h3>

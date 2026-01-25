@@ -15,37 +15,37 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200')] opacity-5 bg-cover bg-center" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#0044CC] rounded-full filter blur-3xl opacity-10 animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl opacity-10 animate-pulse" style={{animationDelay: '1s'}} />
-        
-        <div className="relative max-w-7xl mx-auto px-6 py-24 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200')] opacity-5 bg-cover bg-center" />
+         <div className="absolute top-0 right-0 w-48 sm:w-96 h-48 sm:h-96 bg-[#0044CC] rounded-full filter blur-3xl opacity-10 animate-pulse" />
+         <div className="absolute bottom-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-cyan-500 rounded-full filter blur-3xl opacity-10 animate-pulse" style={{animationDelay: '1s'}} />
+
+         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 lg:py-32">
+           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight text-gray-900">
                 Enterprise Identity & Compliance Platform
               </h1>
-              <p className="text-xl lg:text-2xl text-gray-700 mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-700 mb-4 sm:mb-6 leading-relaxed">
                 Multi-tenant B2B SaaS platform for LEI/vLEI issuance, KYB verification, and automated compliance workflows
               </p>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8">
                 Purpose-built for banks, fintechs, DAOs, supply chains, and enterprises
               </p>
               
-              <div className="flex flex-wrap gap-4 mb-8">
-                <Link to={createPageUrl('Onboarding')}>
-                  <Button size="lg" className="bg-[#0066B3] text-white hover:bg-[#004C8C] text-lg px-8 shadow-lg">
-                    Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <Link to={createPageUrl('Onboarding')} className="w-full sm:w-auto">
+                  <Button size="lg" className="bg-[#0066B3] text-white hover:bg-[#004C8C] text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto shadow-lg">
+                    Start Free Trial <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
                   </Button>
                 </Link>
-                <Link to={createPageUrl('Contact')}>
-                  <Button size="lg" variant="outline" className="border-[#0066B3] text-[#0066B3] hover:bg-blue-50 text-lg px-8">
+                <Link to={createPageUrl('Contact')} className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="border-[#0066B3] text-[#0066B3] hover:bg-blue-50 text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto">
                     Contact Sales
                   </Button>
                 </Link>
               </div>
 
-              <div className="flex items-center gap-8 text-sm text-gray-600">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 text-xs sm:text-sm text-gray-600">
                 <div className="flex items-center gap-2" title="ISO/IEC 27001 - Information Security Management">
                   <CheckCircle2 className="h-5 w-5" />
                   <span>ISO 27001</span>
@@ -65,14 +65,14 @@ export default function Home() {
               <div className="bg-white backdrop-blur-lg rounded-xl p-8 border border-gray-200 shadow-xl">
                 <h3 className="text-xl font-bold mb-6 text-gray-900">Platform Capabilities</h3>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Building2 className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">99%</span>
-                    </div>
-                    <p className="text-sm font-semibold text-gray-900">KYB Verification</p>
-                    <p className="text-xs text-gray-600 mt-1">Accuracy rate</p>
-                  </div>
+                  <div className="bg-gradient-to-br from-blue-50 to-white p-3 sm:p-4 border-l-4 border-[#0066B3] shadow-sm">
+                       <div className="flex items-center justify-between mb-2">
+                         <Building2 className="h-5 sm:h-6 w-5 sm:w-6 text-[#0066B3]" />
+                         <span className="text-xl sm:text-2xl font-bold text-[#0066B3]">99%</span>
+                       </div>
+                       <p className="text-xs sm:text-sm font-semibold text-gray-900">KYB Verification</p>
+                       <p className="text-xs text-gray-600 mt-1">Accuracy rate</p>
+                     </div>
 
                   <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
                     <div className="flex items-center justify-between mb-2">

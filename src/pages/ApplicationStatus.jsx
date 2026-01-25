@@ -36,11 +36,11 @@ export default function ApplicationStatus() {
 
     if (!user) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
                 <div className="max-w-2xl mx-auto">
                     <Card>
-                        <CardContent className="p-12 text-center">
-                            <p className="text-gray-500">Please log in to view your application status.</p>
+                        <CardContent className="p-6 sm:p-12 text-center">
+                            <p className="text-sm sm:text-base text-gray-500">Please log in to view your application status.</p>
                         </CardContent>
                     </Card>
                 </div>
@@ -52,12 +52,12 @@ export default function ApplicationStatus() {
 
     if (!application) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
                 <div className="max-w-2xl mx-auto">
                     <Card>
-                        <CardContent className="p-12 text-center">
-                            <p className="text-gray-500 mb-4">No application found.</p>
-                            <Button className="bg-[#0066B3] hover:bg-[#004C8C]">
+                        <CardContent className="p-6 sm:p-12 text-center">
+                            <p className="text-sm sm:text-base text-gray-500 mb-4">No application found.</p>
+                            <Button className="bg-[#0066B3] hover:bg-[#004C8C] text-sm sm:text-base px-4 sm:px-6">
                                 Start New Application
                             </Button>
                         </CardContent>
@@ -94,21 +94,21 @@ export default function ApplicationStatus() {
     const facialVerificationUrl = facialVerificationWorkflow?.result?.verification_url;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
-            <div className="max-w-4xl mx-auto space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
+            <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
                 {/* Status Header */}
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Application Status</h1>
-                    <p className="text-gray-600">
+                <div className="text-center mb-6 sm:mb-8">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Application Status</h1>
+                    <p className="text-sm sm:text-base text-gray-600 break-words">
                         {application.legal_name}
                     </p>
                 </div>
 
                 {/* Application Details */}
                 <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center justify-between">
-                            <span>Current Status</span>
+                    <CardHeader className="p-4 sm:p-6">
+                        <CardTitle className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                            <span className="text-base sm:text-lg">Current Status</span>
                             <Badge className={getStatusColor(application.status)}>
                                 {application.status.toUpperCase()}
                             </Badge>
