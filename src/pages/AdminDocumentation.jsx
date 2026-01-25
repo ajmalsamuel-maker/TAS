@@ -324,7 +324,6 @@ const AdminDocumentation = () => {
                   The multi-layer isolation strategy ensures that no single point of failure can compromise data across multiple tenants. Each layer implements isolation appropriate to its function, and together they create overlapping security boundaries that protect sensitive data at every level of the stack.
                 </p>
                 <MermaidDiagram 
-                   id="isolation-layers"
                    chart={`graph TB
                      API["API Layer<br/>HMAC Signature Validation<br/>org_id in every request"]
                      DB["Database Layer<br/>Row-Level Security<br/>Schema isolation"]
