@@ -8,6 +8,7 @@ import { DollarSign, Settings, Zap, FileText } from 'lucide-react';
 import BillingDashboard from '../components/billing/BillingDashboard';
 import BillingSettingsPanel from '../components/billing/BillingSettingsPanel';
 import BillingPlansManager from '../components/billing/BillingPlansManager';
+import ExportPanel from '../components/billing/ExportPanel';
 
 export default function BillingAdmin() {
   const [user, setUser] = useState(null);
@@ -111,6 +112,7 @@ export default function BillingAdmin() {
           <TabsList>
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="plans">Billing Plans</TabsTrigger>
+            <TabsTrigger value="export">Export Data</TabsTrigger>
             <TabsTrigger value="settings">Settings & Integrations</TabsTrigger>
           </TabsList>
 
@@ -120,6 +122,10 @@ export default function BillingAdmin() {
 
           <TabsContent value="plans">
             <BillingPlansManager />
+          </TabsContent>
+
+          <TabsContent value="export">
+            <ExportPanel />
           </TabsContent>
 
           <TabsContent value="settings">

@@ -6,6 +6,7 @@ import AdminReports from './pages/AdminReports';
 import ApplicationStatus from './pages/ApplicationStatus';
 import Contact from './pages/Contact';
 import DownloadLogo from './pages/DownloadLogo';
+import FeatureVerificationGuide from './pages/FeatureVerificationGuide';
 import Home from './pages/Home';
 import Onboarding from './pages/Onboarding';
 import OrganizationOnboarding from './pages/OrganizationOnboarding';
@@ -18,7 +19,6 @@ import UserLogin from './pages/UserLogin';
 import UserSettings from './pages/UserSettings';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
-import FeatureVerificationGuide from './pages/FeatureVerificationGuide';
 import BillingAdmin from './pages/BillingAdmin';
 import __Layout from './Layout.jsx';
 
@@ -32,6 +32,7 @@ export const PAGES = {
     "ApplicationStatus": ApplicationStatus,
     "Contact": Contact,
     "DownloadLogo": DownloadLogo,
+    "FeatureVerificationGuide": FeatureVerificationGuide,
     "Home": Home,
     "Onboarding": Onboarding,
     "OrganizationOnboarding": OrganizationOnboarding,
@@ -44,7 +45,6 @@ export const PAGES = {
     "UserSettings": UserSettings,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
-    "FeatureVerificationGuide": FeatureVerificationGuide,
     "BillingAdmin": BillingAdmin,
 }
 
