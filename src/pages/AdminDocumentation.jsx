@@ -13,33 +13,36 @@ const AdminDocumentation = () => {
     }));
   };
 
-  const MermaidDiagram = ({ id = 'default', chart }) => {
+  const MermaidDiagram = ({ chart }) => {
     const containerRef = React.useRef(null);
-    const uniqueId = React.useRef(`diagram-${id}-${Math.random().toString(36).substr(2, 9)}`);
+    const diagramId = React.useRef(Math.random().toString(36).substr(2, 9));
 
     useEffect(() => {
-      const renderDiagram = async () => {
-        if (window.mermaid && containerRef.current) {
-          try {
-            window.mermaid.initialize({ 
-              startOnLoad: false, 
-              theme: 'default',
-              securityLevel: 'loose',
-              flowchart: { useMaxWidth: true }
-            });
-            const result = await window.mermaid.render(uniqueId.current, chart);
-            if (containerRef.current) {
-              containerRef.current.innerHTML = result.svg;
-              const svg = containerRef.current.querySelector('svg');
-              if (svg) {
-                svg.style.maxWidth = '100%';
-                svg.style.height = 'auto';
-                svg.style.minHeight = '400px';
-              }
+      const loadAndRender = async () => {
+        if (!window.mermaid) {
+          return;
+        }
+        
+        try {
+          window.mermaid.initialize({ 
+            startOnLoad: false, 
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: { useMaxWidth: true }
+          });
+          
+          if (containerRef.current && chart) {
+            const result = await window.mermaid.render(`diagram-${diagramId.current}`, chart);
+            containerRef.current.innerHTML = result.svg;
+            const svg = containerRef.current.querySelector('svg');
+            if (svg) {
+              svg.style.maxWidth = '100%';
+              svg.style.height = 'auto';
+              svg.style.minHeight = '400px';
             }
-          } catch (err) {
-            console.error('Mermaid render error:', err);
           }
+        } catch (err) {
+          console.error('Mermaid error:', err);
         }
       };
 
@@ -47,10 +50,10 @@ const AdminDocumentation = () => {
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
         script.async = true;
-        script.onload = renderDiagram;
+        script.onload = loadAndRender;
         document.head.appendChild(script);
       } else {
-        renderDiagram();
+        loadAndRender();
       }
     }, [chart]);
 
