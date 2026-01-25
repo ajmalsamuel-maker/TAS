@@ -13,8 +13,9 @@ const AdminDocumentation = () => {
     }));
   };
 
-  const MermaidDiagram = ({ id: diagramId = `diagram-${Math.random()}`, chart }) => {
+  const MermaidDiagram = ({ id, chart }) => {
     const containerRef = React.useRef(null);
+    const uniqueId = React.useRef(`diagram-${id}-${Math.random().toString(36).substr(2, 9)}`);
 
     useEffect(() => {
       const renderDiagram = async () => {
@@ -26,7 +27,7 @@ const AdminDocumentation = () => {
               securityLevel: 'loose',
               flowchart: { useMaxWidth: true }
             });
-            const result = await window.mermaid.render(`diagram-${diagramId}`, chart);
+            const result = await window.mermaid.render(uniqueId.current, chart);
             if (containerRef.current) {
               containerRef.current.innerHTML = result.svg;
               const svg = containerRef.current.querySelector('svg');
@@ -51,7 +52,7 @@ const AdminDocumentation = () => {
       } else {
         renderDiagram();
       }
-    }, [chart, diagramId]);
+    }, [chart]);
 
     return (
       <div className="flex justify-center my-8 bg-white p-8 rounded-lg border border-gray-200 overflow-x-auto">
