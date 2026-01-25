@@ -47,15 +47,25 @@ Deno.serve(async (req) => {
       type: 'application_approved',
       title: 'Your LEI Application Has Been Approved',
       message: 'Your business onboarding application has been approved. LEI and vLEI credentials will be issued shortly.',
-      action_url: '/applications/status',
+      action_url: '/credentials',
       priority: 'high',
       send_email: true
     });
 
+    // Trigger LEI/vLEI credential issuance
+    try {
+      await base44.functions.invoke('issueLEICredentials', {
+        applicationId: applicationId
+      });
+    } catch (credentialError) {
+      console.error('Error issuing credentials:', credentialError);
+      // Don't fail the approval if credential issuance has issues (can retry later)
+    }
+
     return Response.json({
       success: true,
       application: updatedApp,
-      message: 'Application approved successfully'
+      message: 'Application approved successfully. Credentials are being issued.'
     });
   } catch (error) {
     console.error('Error approving application:', error);
