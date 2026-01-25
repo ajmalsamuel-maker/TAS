@@ -10,9 +10,9 @@ export default function About() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-5xl font-bold mb-6">About TAS</h1>
+          <h1 className="text-5xl font-bold mb-6">About TAS Platform</h1>
           <p className="text-xl text-blue-100 max-w-3xl">
-            The Global Interoperability Gateway for Identity, Compliance & Trust Services
+            B2B SaaS infrastructure enabling businesses to issue LEI/vLEI credentials and automate compliance workflows across corporate, Web3, and supply chain operations
           </p>
         </div>
       </section>
@@ -27,11 +27,11 @@ export default function About() {
               <h3 className="text-2xl font-bold mb-6 text-[#0044CC]">Our Vision</h3>
               <div className="space-y-4">
                 {[
-                  'Global interoperability via a single API',
-                  'Foundational infrastructure unifying regulated service providers',
-                  'Web3-ready trust layer (DID, VCs)',
-                  'Enable frictionless verification and trusted transactions',
-                  'Universal portability of digital identity'
+                  'Identity infrastructure for any business - banks, DAOs, supply chains, enterprises',
+                  'Multi-tenant SaaS model with complete workspace isolation',
+                  'Global interoperability via unified API',
+                  'Web3-ready trust layer (DID, VCs, vLEI)',
+                  'Enable frictionless verification and credential issuance at scale'
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -200,9 +200,9 @@ export default function About() {
       {/* CTA */}
       <section className="py-24 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
+          <h2 className="text-4xl font-bold mb-6">Ready to Build with TAS?</h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join hundreds of businesses using TAS for secure, compliant identity and trust services
+            Join banks, fintechs, DAOs, and enterprises using TAS to automate credential issuance and compliance workflows
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to={createPageUrl('Onboarding')}>

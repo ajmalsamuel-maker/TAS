@@ -10,9 +10,9 @@ export default function Pricing() {
       {/* Header */}
       <section className="bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-5xl font-bold mb-6">Simple, Transparent Pricing</h1>
+          <h1 className="text-5xl font-bold mb-6">B2B SaaS Pricing</h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Choose the plan that fits your needs. All plans include our core orchestration capabilities.
+            Multi-tenant workspaces with complete isolation. Each organization gets their own secure environment to manage credential issuance and compliance workflows.
           </p>
         </div>
       </section>
@@ -24,50 +24,53 @@ export default function Pricing() {
             {[
               {
                 tier: 'Starter',
-                price: '$200',
-                description: 'Perfect for startups and small businesses',
+                price: '$1,500',
+                description: 'Perfect for startups and small teams',
                 features: [
-                  'Basic API access',
-                  'Standard workflows',
-                  'Shared infrastructure',
-                  'Basic provenance tracking',
-                  '99% uptime SLA',
-                  'Business-hours email support',
-                  'Up to 10,000 API calls/month'
+                  'Up to 100 LEI issuances/month',
+                  '5 team seats',
+                  'Basic KYB + AML screening',
+                  'Email support',
+                  'Standard API rate limits',
+                  'Multi-tenant isolation',
+                  'Basic workflow automation',
+                  'Webhook notifications'
                 ],
                 cta: 'Start Free Trial'
               },
               {
                 tier: 'Business',
-                price: '$800',
-                description: 'For growing companies with compliance needs',
+                price: '$4,500',
+                description: 'For growing organizations',
                 features: [
-                  'Advanced workflows',
-                  'Priority routing',
-                  '99.5% uptime SLA',
-                  'Enhanced provenance with audit reports',
-                  'Higher request quotas',
-                  '24/7 standard support',
-                  'Up to 100,000 API calls/month',
-                  'Custom workflow templates'
+                  'Up to 500 LEI issuances/month',
+                  '20 team seats',
+                  'Advanced fraud detection',
+                  'Custom workflows & policies',
+                  'Priority support + Slack channel',
+                  'Webhook integrations',
+                  '99.5% SLA uptime',
+                  'Custom branding options',
+                  'Advanced analytics dashboard'
                 ],
                 cta: 'Get Started',
                 highlighted: true
               },
               {
                 tier: 'Enterprise',
-                price: '$2,000',
-                description: 'For large organizations requiring full control',
+                price: 'Custom',
+                description: 'For large organizations at scale',
                 features: [
-                  'Dedicated infrastructure',
-                  'Custom connectors',
-                  '99.9% uptime SLA',
-                  'Full provenance with blockchain anchoring',
-                  'Enterprise analytics',
-                  '24/7 premium support',
-                  'Unlimited API calls',
+                  'Unlimited LEI issuances',
+                  'Unlimited team seats',
                   'Dedicated account manager',
-                  'Regulatory compliance packs'
+                  'Custom integrations & connectors',
+                  'White-label options',
+                  '99.9% SLA uptime',
+                  'Volume-based discounts',
+                  'Dedicated infrastructure',
+                  'Regulatory compliance packs',
+                  'Custom SLA agreements'
                 ],
                 cta: 'Contact Sales'
               }
@@ -77,7 +80,7 @@ export default function Pricing() {
                   <h3 className="text-2xl font-bold mb-2">{plan.tier}</h3>
                   <div className="mb-2">
                     <span className="text-5xl font-bold">{plan.price}</span>
-                    <span className={plan.highlighted ? 'text-blue-200' : 'text-gray-600'}>/month</span>
+                    {plan.price !== 'Custom' && <span className={plan.highlighted ? 'text-blue-200' : 'text-gray-600'}>/month</span>}
                   </div>
                   <p className={`text-sm mb-8 ${plan.highlighted ? 'text-blue-100' : 'text-gray-600'}`}>{plan.description}</p>
                   
@@ -101,33 +104,21 @@ export default function Pricing() {
             ))}
           </div>
 
-          {/* Usage-Based Fees */}
+          {/* Usage-Based Add-ons */}
           <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-100">
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 text-center">Usage-Based Technical Fees</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Service Type</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Rate</th>
-                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { service: 'API Routing', rate: '$0.50 per 1,000 requests', desc: 'Routing, security validation, protocol translation' },
-                    { service: 'Workflow Execution Steps', rate: '$0.10 per step', desc: 'Identity, AML, KYB, vLEI, and DID workflows' },
-                    { service: 'Data Transformation', rate: '$0.05 per MB', desc: 'Format normalization, schema alignment' },
-                    { service: 'Provenance Attestation & Data Passport', rate: '$0.25 per workflow', desc: 'Cryptographic finalization, audit trail generation' }
-                  ].map((item, i) => (
-                    <tr key={i} className="border-b border-gray-100 hover:bg-blue-50">
-                      <td className="py-4 px-4 font-medium text-gray-900">{item.service}</td>
-                      <td className="py-4 px-4 text-[#0066B3] font-semibold">{item.rate}</td>
-                      <td className="py-4 px-4 text-sm text-gray-600">{item.desc}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <h3 className="text-2xl font-bold mb-6 text-gray-900 text-center">Usage-Based Add-ons</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { service: 'Extra Verifications', rate: '$15-25 each', desc: 'Additional verifications beyond your tier limit' },
+                { service: 'Enhanced AML Checks', rate: '$5-10 each', desc: 'Premium sanctions, PEP, and adverse media screening' },
+                { service: 'Facial Biometric Verification', rate: '$3-5 each', desc: 'Liveness detection and identity verification' }
+              ].map((item, i) => (
+                <div key={i} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-6 border border-blue-200">
+                  <h4 className="font-bold text-gray-900 mb-2">{item.service}</h4>
+                  <p className="text-2xl font-bold text-[#0066B3] mb-2">{item.rate}</p>
+                  <p className="text-sm text-gray-600">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
 

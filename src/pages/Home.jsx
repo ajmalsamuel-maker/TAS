@@ -24,10 +24,13 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
-                {t('hero.title')}
+                LEI/vLEI Infrastructure as a Service
               </h1>
               <p className="text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed">
-                {t('hero.subtitle')}
+                Enable your business to issue verified credentials and automate compliance workflows without building the infrastructure
+              </p>
+              <p className="text-lg text-gray-600 mb-8">
+                Built for banks, fintechs, DAOs, supply chains, and enterprises requiring trust automation
               </p>
               
               <div className="flex flex-wrap gap-4 mb-8">
@@ -460,10 +463,10 @@ export default function Home() {
       <section className="py-20 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-4">
-            Enterprise Identity Infrastructure
+            Identity Infrastructure for Modern Business
           </h2>
           <p className="text-lg text-blue-100 mb-10">
-            Secure, compliant, and scalable trust services for global operations
+            Banks, fintechs, DAOs, and supply chains trust TAS to automate compliance and credential issuance
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
