@@ -61,24 +61,46 @@ export default function Home() {
 
             <div className="relative">
               <div className="bg-white backdrop-blur-lg rounded-xl p-8 border border-gray-200 shadow-xl">
-                <h3 className="text-xl font-bold mb-6 text-gray-900">Core Capabilities</h3>
-                <div className="space-y-2.5">
-                  <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
-                    <span className="text-base font-semibold text-gray-900">KYB Verification</span>
+                <h3 className="text-xl font-bold mb-6 text-gray-900">Platform Capabilities</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900">KYB Verification</span>
                   </div>
-                  <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
-                    <span className="text-base font-semibold text-gray-900">AML Screening</span>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900">AML Screening</span>
                   </div>
-                  <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
-                    <span className="text-base font-semibold text-gray-900">vLEI Issuance</span>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900">vLEI Issuance</span>
                   </div>
-                  <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
-                    <span className="text-base font-semibold text-gray-900">DID Management</span>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900">Transaction Monitoring</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900">Fraud Detection</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900">DID Management</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900">Workflow Automation</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900">Unified API</span>
                   </div>
                 </div>
-                <p className="mt-6 text-xs text-gray-600 font-medium border-t pt-4">
-                  All delivered through a unified API with complete multi-tenant isolation
-                </p>
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <p className="text-xs text-gray-600 font-medium">
+                    Complete multi-tenant isolation • Enterprise-grade security • Real-time processing
+                  </p>
+                </div>
               </div>
             </div>
           </div>
