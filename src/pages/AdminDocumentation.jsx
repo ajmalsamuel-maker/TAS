@@ -24,14 +24,19 @@ const AdminDocumentation = () => {
   const MermaidDiagram = ({ id, chart }) => {
     useEffect(() => {
       if (typeof window !== 'undefined' && window.mermaid) {
-        window.mermaid.initialize({ startOnLoad: true, theme: 'default' });
-        window.mermaid.render(id, chart);
+        window.mermaid.initialize({ startOnLoad: false, theme: 'default' });
+        const element = document.querySelector(`[data-mermaid-id="${id}"]`);
+        if (element) {
+          window.mermaid.render(`mermaid-${id}`, chart).then(result => {
+            element.innerHTML = result.svg;
+          });
+        }
       }
     }, [id, chart]);
 
     return (
       <div className="flex justify-center my-6 bg-white p-6 rounded-lg border border-gray-200 overflow-x-auto">
-        <div className="mermaid">{chart}</div>
+        <div data-mermaid-id={id} />
       </div>
     );
   };
