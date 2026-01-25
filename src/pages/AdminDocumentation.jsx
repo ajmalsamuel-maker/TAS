@@ -579,7 +579,6 @@ const AdminDocumentation = () => {
                   The <strong>Paid State</strong> is the completion state indicating that full payment has been received. The system records the paid_date, payment_method, and transaction_id. Paid invoices are marked as finalized and are available for export to accounting systems. This state is terminal—no further transitions are possible.
                 </p>
                 <MermaidDiagram 
-                   id="invoice-lifecycle"
                    chart={`stateDiagram-v2
                 [*] --> Draft
                 Draft --> Issued
