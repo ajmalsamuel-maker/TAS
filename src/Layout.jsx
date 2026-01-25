@@ -72,6 +72,7 @@ function LayoutContent({ children, currentPageName }) {
   // Admin Portal Navigation (Admins Only)
   const adminPortalPages = [
     { nameKey: 'nav.dashboard', icon: Shield, path: 'AdminDashboard' },
+    { name: 'Billing', icon: Activity, path: 'BillingAdmin' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' }
   ];
 
