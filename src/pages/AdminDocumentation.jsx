@@ -631,8 +631,7 @@ const AdminDocumentation = () => {
                   <strong>Phase 4: Closure & Audit Trail</strong> finalizes the case with resolution notes, officer name, and resolution timestamp. The time_to_resolve_hours metric is calculated and compared against the SLA target. Cases that exceed SLA are flagged for compliance review. All case notes remain immutable and searchable for future audits or regulatory investigations.
                 </p>
                 <MermaidDiagram 
-                  id="case-workflow"
-                  chart={`graph LR
+                   chart={`graph LR
                     A["AML Alert<br/>Detected"] --> B["Case Created<br/>Type: aml_alert<br/>Status: new"]
                     B --> C["Assignment<br/>assigned_to: Officer<br/>assigned_at: timestamp"]
                     C --> D["Investigation<br/>Review alert details<br/>Research company<br/>Add case notes"]
