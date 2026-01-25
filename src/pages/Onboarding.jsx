@@ -51,6 +51,7 @@ export default function Onboarding() {
     legal_address: {},
     headquarters_address: {},
     entity_legal_form: '',
+    registry_country_code: '',
     business_registry_name: '',
     unique_business_id: '',
     number_of_employees: '1',
