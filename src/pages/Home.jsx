@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
   ArrowRight, Shield, Zap, Globe, Lock, 
-  Network, CheckCircle2, Layers, Building2, FileCheck, Mail
+  Network, CheckCircle2, Layers, Building2, FileCheck, Mail,
+  Activity, ShieldAlert, Fingerprint, Code
 } from 'lucide-react';
 
 export default function Home() {
@@ -62,37 +63,53 @@ export default function Home() {
             <div className="relative">
               <div className="bg-white backdrop-blur-lg rounded-xl p-8 border border-gray-200 shadow-xl">
                 <h3 className="text-xl font-bold mb-6 text-gray-900">Platform Capabilities</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3 p-2">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Building2 className="h-5 w-5 text-[#0066B3]" />
+                    </div>
                     <span className="text-sm font-semibold text-gray-900">KYB Verification</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 p-2">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Lock className="h-5 w-5 text-[#0066B3]" />
+                    </div>
                     <span className="text-sm font-semibold text-gray-900">AML Screening</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 p-2">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <FileCheck className="h-5 w-5 text-[#0066B3]" />
+                    </div>
                     <span className="text-sm font-semibold text-gray-900">vLEI Issuance</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 p-2">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Activity className="h-5 w-5 text-[#0066B3]" />
+                    </div>
                     <span className="text-sm font-semibold text-gray-900">Transaction Monitoring</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 p-2">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <ShieldAlert className="h-5 w-5 text-[#0066B3]" />
+                    </div>
                     <span className="text-sm font-semibold text-gray-900">Fraud Detection</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 p-2">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Fingerprint className="h-5 w-5 text-[#0066B3]" />
+                    </div>
                     <span className="text-sm font-semibold text-gray-900">DID Management</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 p-2">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Zap className="h-5 w-5 text-[#0066B3]" />
+                    </div>
                     <span className="text-sm font-semibold text-gray-900">Workflow Automation</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <div className="flex items-center gap-3 p-2">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Code className="h-5 w-5 text-[#0066B3]" />
+                    </div>
                     <span className="text-sm font-semibold text-gray-900">Unified API</span>
                   </div>
                 </div>
