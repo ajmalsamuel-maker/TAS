@@ -18,6 +18,7 @@ import UserLogin from './pages/UserLogin';
 import UserSettings from './pages/UserSettings';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
+import FeatureVerificationGuide from './pages/FeatureVerificationGuide';
 import __Layout from './Layout.jsx';
 
 
@@ -42,6 +43,7 @@ export const PAGES = {
     "UserSettings": UserSettings,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
+    "FeatureVerificationGuide": FeatureVerificationGuide,
 }
 
 export const pagesConfig = {
