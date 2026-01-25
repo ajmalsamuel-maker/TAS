@@ -543,91 +543,48 @@ const AdminDocumentation = () => {
               <div>
                 <h3 className="text-xl font-bold mb-4">Case Management & Investigation Workflow</h3>
                 <p className="mb-6 leading-relaxed">
-                  When an AML alert is triggered, a case is automatically created to track the investigation. Cases are the mechanism by which TAS ensures compliance requirements are met and audit trails are maintained. Every case includes decision documentation, evidence attachments, and SLA tracking to ensure regulatory obligations are satisfied.
+                  When an AML alert is triggered, a case is automatically created to track the investigation. Cases are the mechanism by which TAS ensures compliance requirements are met and audit trails are maintained. Every case includes decision documentation, evidence attachments, SLA tracking, and assignment history to ensure regulatory obligations are satisfied. The case system is designed to be audit-proof: every action creates an immutable record, and the workflow enforces that all alerts are resolved according to regulatory timelines.
                 </p>
-                <div className="bg-slate-100 p-6 rounded-lg overflow-x-auto">
-                  <pre className="text-xs font-mono whitespace-pre-wrap">
-{`WORKFLOW: AML Alert → Case Creation → Investigation → Resolution
-
-┌─────────────────────────────────────────────────────────────┐
-│ PHASE 1: ALERT & CASE CREATION                              │
-├─────────────────────────────────────────────────────────────┤
-
-Event: AML screening detects sanction list match
-    ↓
-System auto-creates Case:
-    ├─ case_type = 'aml_alert'
-    ├─ priority = alert.severity (CRITICAL/HIGH/MEDIUM)
-    ├─ status = 'new'
-    ├─ related_entity = Organization
-    └─ context_data = Alert details + company info
-    ↓
-Admin receives notification email + dashboard alert
-    ↓
-
-┌─────────────────────────────────────────────────────────────┐
-│ PHASE 2: ASSIGNMENT & INVESTIGATION                         │
-├─────────────────────────────────────────────────────────────┤
-
-Admin assigns case:
-    ├─ assigned_to = Compliance Officer
-    ├─ assigned_at = timestamp
-    └─ Notify assignee via email
-    ↓
-Officer reviews:
-    ├─ Alert details (which list, match confidence)
-    ├─ Company information (name, country, registration)
-    ├─ Historical data (previous alerts, compliance score)
-    └─ External sources (news, sanctions databases)
-    ↓
-Officer adds CaseNotes:
-    ├─ "Match appears to be false positive - different entity ID"
-    ├─ "Company registered in Germany (different from OFAC hit in Russia)"
-    └─ Attachments: Evidence screenshots, documentation
-    ↓
-
-┌─────────────────────────────────────────────────────────────┐
-│ PHASE 3: DETERMINATION & RESOLUTION                         │
-├─────────────────────────────────────────────────────────────┤
-
-Officer makes determination:
-
-Option A: FALSE POSITIVE
-    ├─ resolution_action = 'approved'
-    ├─ Set status = 'resolved'
-    ├─ Resume customer workflows
-    └─ Allow subsequent verifications
-
-Option B: CONFIRMED RISK
-    ├─ resolution_action = 'rejected'
-    ├─ Block organization account
-    ├─ Generate compliance report
-    └─ Alert regulatory authorities
-
-Option C: INCONCLUSIVE
-    ├─ status = 'pending_info'
-    ├─ Send message to organization
-    └─ Request additional documentation
-    ↓
-
-┌─────────────────────────────────────────────────────────────┐
-│ PHASE 4: CLOSURE & AUDIT TRAIL                              │
-├─────────────────────────────────────────────────────────────┤
-
-Case finalization:
-    ├─ resolved_at = timestamp
-    ├─ resolved_by = Officer name + email
-    ├─ time_to_resolve_hours = (resolved_at - created_at)
-    ├─ SLA_status = Check if within SLA target
-    └─ Archive case
-    ↓
-Audit trail permanent:
-    ├─ Every note timestamped and attributed
-    ├─ Resolution tracked with evidence
-    ├─ Metrics updated (resolve rate, avg time)
-    └─ Available for compliance audits`}
-                  </pre>
-                </div>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Phase 1: Alert & Case Creation</strong> begins when the AML Screening service detects a potential match against sanctions lists, PEP databases, or other regulatory sources. The system immediately creates a Case record with type='aml_alert', severity based on the match confidence, and status='new'. The alert details (which list was matched, match percentage, company information) are captured in context_data. An automated notification is sent to all administrators with case management permissions, creating urgency for critical alerts.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Phase 2: Assignment & Investigation</strong> requires a compliance officer to review the alert and determine if it represents a genuine risk or a false positive. The officer examines the match confidence score, company jurisdiction, and beneficial ownership information. Many alerts are false positives caused by name similarities, especially for common business names in multiple countries. The officer may perform additional research using external sources (business registries, news archives, sanctions databases). All investigation work is documented in CaseNotes, which are timestamped and attributed to the investigating officer.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Phase 3: Determination & Resolution</strong> represents the officer's final decision. If the alert is determined to be a false positive, the case is marked approved and the organization's compliance score is not degraded. If the alert is confirmed as a genuine match to a sanctioned entity, the organization is immediately blocked and regulatory authorities are notified. If the determination is inconclusive, the organization is contacted to provide additional documentation for clarification.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Phase 4: Closure & Audit Trail</strong> finalizes the case with resolution notes, officer name, and resolution timestamp. The time_to_resolve_hours metric is calculated and compared against the SLA target. Cases that exceed SLA are flagged for compliance review. All case notes remain immutable and searchable for future audits or regulatory investigations.
+                </p>
+                <MermaidDiagram 
+                  id="case-workflow"
+                  chart={`graph LR
+    A["🚨 AML Alert<br/>Detected"] --> B["📋 Case Created<br/>Type: aml_alert<br/>Status: new"]
+    B --> C["👤 Assignment<br/>assigned_to: Officer<br/>assigned_at: timestamp"]
+    C --> D["🔍 Investigation<br/>Review alert details<br/>Research company<br/>Add case notes"]
+    
+    D --> E{Decision}
+    
+    E -->|False Positive| F["✅ Approved<br/>Resume workflows<br/>Score unchanged"]
+    E -->|Confirmed Risk| G["🛑 Rejected<br/>Block account<br/>Notify authorities"]
+    E -->|Inconclusive| H["❓ Pending Info<br/>Request from org<br/>Extended timeline"]
+    
+    F --> I["📁 Case Closed<br/>resolved_at: timestamp<br/>SLA status: checked"]
+    G --> I
+    H --> I
+    
+    I --> J["🔒 Audit Trail<br/>Immutable record<br/>For compliance audits"]
+    
+    style A fill:#ffe0e0
+    style B fill:#fff3cd
+    style D fill:#e7f3ff
+    style F fill:#d4edda
+    style G fill:#f8d7da
+    style H fill:#fff3cd
+    style I fill:#d1ecf1
+    style J fill:#e2e3e5`}
+                />
               </div>
 
               <div>
