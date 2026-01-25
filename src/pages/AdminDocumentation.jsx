@@ -3,6 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 
+// Load Mermaid from CDN
+if (typeof window !== 'undefined' && !window.mermaid) {
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+  script.async = true;
+  document.head.appendChild(script);
+}
+
 const AdminDocumentation = () => {
   const [expandedSections, setExpandedSections] = useState({});
 
