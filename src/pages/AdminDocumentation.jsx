@@ -122,57 +122,55 @@ const AdminDocumentation = () => {
               <div>
                 <h3 className="text-xl font-bold mb-4">High-Level Architecture</h3>
                 <p className="mb-6 leading-relaxed">
-                  The TAS platform is organized into five distinct layers, each with specific responsibilities. This layered approach provides clear separation of concerns, enables independent scaling of components, and maintains security through network segmentation. Understanding the flow of a request through these layers is essential for troubleshooting, capacity planning, and security analysis.
+                  The TAS platform is organized into five distinct layers, each with specific responsibilities and clearly defined boundaries. This layered approach provides clear separation of concerns, enables independent scaling of components, and maintains security through network segmentation. Each layer has been designed with the principle that failure in one layer does not cascade to others, and each can be independently updated, scaled, or replaced without affecting the entire system. Understanding the flow of a request through these layers is essential for troubleshooting performance bottlenecks, planning capacity upgrades, and conducting thorough security analysis.
                 </p>
-                <div className="bg-gray-800 p-6 rounded-lg overflow-x-auto">
-                  <pre className="text-xs text-gray-200 font-mono whitespace-pre-wrap">
-{`╔═════════════════════════════════════════════════════════════════════════════════╗
-║                           EDGE LAYER (CDN & DDoS)                               ║
-║                            Cloudflare WAF/CDN                                     ║
-║  • DDoS Protection (Layer 3-7)  • WAF Rules (OWASP)  • Global Cache              ║
-║  • Rate Limiting  • Geo-blocking  • SSL Termination                              ║
-╚═════════════════════════════════════════════════════════════════════════════════╝
-                                    ↓
-╔═════════════════════════════════════════════════════════════════════════════════╗
-║                        PORTAL LAYER (Customer Interfaces)                        ║
-║  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐        ║
-║  │ Admin Portal │  │ User Portal  │  │Public Website│  │  Merchant    │        ║
-║  │  (React UI)  │  │  (React UI)  │  │(Marketing)   │  │Portal (VT)   │        ║
-║  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘        ║
-╚═════════════════════════════════════════════════════════════════════════════════╝
-                                    ↓
-╔═════════════════════════════════════════════════════════════════════════════════╗
-║                      GATEWAY LAYER (API Management)                             ║
-║                      AWS Application Load Balancer                               ║
-║  • SSL Termination (TLS 1.3)  • Health Checks (30s interval)                    ║
-║  • Cross-zone Load Balancing  • Connection Draining (300s)                      ║
-║  • Auto-scaling Target Groups  • HTTP/2 Support                                 ║
-╚═════════════════════════════════════════════════════════════════════════════════╝
-                                    ↓
-╔═════════════════════════════════════════════════════════════════════════════════╗
-║                    APPLICATION LAYER (Microservices)                            ║
-║  ┌────────────────────┐  ┌────────────────────┐  ┌────────────────────┐        ║
-║  │ Verification Engine│  │  Billing Engine    │  │ Compliance Engine  │        ║
-║  │ • KYB Service      │  │ • Usage Metering   │  │ • Case Management  │        ║
-║  │ • AML Screening    │  │ • Invoice Generate │  │ • Audit Logging    │        ║
-║  │ • Document Verify  │  │ • Payment Process  │  │ • Alerts & Notify  │        ║
-║  └────────────────────┘  └────────────────────┘  └────────────────────┘        ║
-║  ┌────────────────────────────────────────────────────────────────────────┐    ║
-║  │            Workflow Orchestration Engine (Business Logic)             │    ║
-║  │  Coordinates KYB → AML → Document → LEI → Monitoring pipelines       │    ║
-║  └────────────────────────────────────────────────────────────────────────┘    ║
-╚═════════════════════════════════════════════════════════════════════════════════╝
-                                    ↓
-╔═════════════════════════════════════════════════════════════════════════════════╗
-║                      DATA LAYER (Persistence)                                   ║
-║  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       ║
-║  │ PostgreSQL   │  │ Redis Cluster│  │  SQS Queue   │  │   S3 Storage │       ║
-║  │ Transaction  │  │ Session/Cache│  │Async Process │  │ Docs/Backups │       ║
-║  │ Data (PCI)   │  │  Rate Limits │  │  Webhooks    │  │              │       ║
-║  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘       ║
-╚═════════════════════════════════════════════════════════════════════════════════╝`}
-                  </pre>
-                </div>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Edge Layer (Cloudflare)</strong> serves as the first line of defense against malicious traffic. All requests pass through Cloudflare's global network, which provides DDoS protection, Web Application Firewall (WAF) rules based on OWASP standards, and geo-blocking capabilities. The WAF inspects incoming requests and blocks those matching known attack patterns. Geographic restrictions can be enforced to comply with sanctions regulations (e.g., blocking requests from OFAC-designated countries).
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  The <strong>Portal Layer</strong> encompasses all customer-facing interfaces: the Admin Portal for platform administrators, the User Portal for business customers managing their compliance workflows, the Public Website for marketing and information, and the Merchant Portal for direct API integration. Each portal is a React-based single-page application that communicates exclusively through the Gateway Layer via authenticated APIs. The portals maintain no session state of their own; all session data is stored in Redis and retrieved via the API layer.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  The <strong>Gateway Layer</strong> (AWS Application Load Balancer) performs SSL/TLS termination, decrypting all incoming HTTPS traffic and re-encrypting outbound traffic to backend services. It distributes incoming requests across multiple ECS container instances using health checks at 30-second intervals. The ALB maintains connection draining with a 300-second timeout to ensure in-flight requests complete before removing instances. It supports HTTP/2 and gRPC protocols, enabling efficient bidirectional communication for real-time updates.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  The <strong>Application Layer</strong> contains the core business logic organized into three primary services: the Verification Engine (KYB, AML, Document validation), the Billing Engine (metering, invoicing, payment processing), and the Compliance Engine (case management, audit logging, alerts). These services communicate via message queues for async operations and direct API calls for synchronous requests. The Workflow Orchestration Engine coordinates the entire verification pipeline, ensuring that KYB → AML → Document → LEI → Monitoring stages execute in the correct sequence with proper error handling and retry logic.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  The <strong>Data Layer</strong> provides persistence through PostgreSQL for transactional data, Redis for caching and sessions, SQS for asynchronous task queuing, and S3 for document storage and backups. This separation of concerns ensures that each system is optimized for its specific access patterns: PostgreSQL's ACID guarantees ensure billing data consistency, Redis's in-memory performance enables fast rate limiting checks, SQS provides reliable async processing, and S3 offers nearly unlimited document storage with automatic replication.
+                </p>
+                <MermaidDiagram 
+                  id="arch-diagram"
+                  chart={`graph TD
+    A["🌐 Cloudflare CDN & WAF<br/>DDoS Protection • WAF Rules • Geo-Blocking"]
+    B["🖥️ Portal Layer<br/>Admin • User • Public • Merchant"]
+    C["⚖️ AWS ALB<br/>SSL • Load Balancing • Health Checks"]
+    D["🔧 Application Services<br/>Verification • Billing • Compliance"]
+    E["📊 Workflow Orchestration<br/>KYB → AML → Document → LEI → Monitor"]
+    F["💾 PostgreSQL<br/>Transactional Data"]
+    G["⚡ Redis<br/>Cache • Sessions • Rate Limits"]
+    H["📋 SQS<br/>Async Queues"]
+    I["📦 S3<br/>Documents • Backups"]
+    
+    A -->|HTTPS Filtered| B
+    B -->|Authenticated API| C
+    C -->|Load Balanced| D
+    D --> E
+    E -->|Persist| F
+    E -->|Cache| G
+    E -->|Queue| H
+    E -->|Store| I
+    
+    style A fill:#e1f5ff
+    style B fill:#f3e5f5
+    style C fill:#fff3e0
+    style D fill:#e8f5e9
+    style E fill:#fce4ec
+    style F fill:#f1f8e9
+    style G fill:#e0f2f1
+    style H fill:#ede7f6
+    style I fill:#fbe9e7`}
+                />
               </div>
 
               <div>
