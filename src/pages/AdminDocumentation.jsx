@@ -19,10 +19,21 @@ const AdminDocumentation = () => {
     useEffect(() => {
       const renderDiagram = () => {
         if (window.mermaid && containerRef.current) {
-          window.mermaid.initialize({ startOnLoad: false, theme: 'default' });
+          window.mermaid.initialize({ 
+            startOnLoad: false, 
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: { useMaxWidth: true }
+          });
           window.mermaid.render(`mermaid-${diagramId}`, chart).then(result => {
             if (containerRef.current) {
               containerRef.current.innerHTML = result.svg;
+              const svg = containerRef.current.querySelector('svg');
+              if (svg) {
+                svg.style.maxWidth = '100%';
+                svg.style.height = 'auto';
+                svg.style.minHeight = '400px';
+              }
             }
           });
         }
@@ -40,8 +51,8 @@ const AdminDocumentation = () => {
     }, [chart, diagramId]);
 
     return (
-      <div className="flex justify-center my-6 bg-white p-6 rounded-lg border border-gray-200 overflow-x-auto">
-        <div ref={containerRef} key={diagramId} />
+      <div className="flex justify-center my-8 bg-white p-8 rounded-lg border border-gray-200 overflow-x-auto">
+        <div ref={containerRef} key={diagramId} className="w-full" style={{ minHeight: '400px' }} />
       </div>
     );
   };
