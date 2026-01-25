@@ -576,45 +576,29 @@ const AdminDocumentation = () => {
                   The <strong>Paid State</strong> is the completion state indicating that full payment has been received. The system records the paid_date, payment_method, and transaction_id. Paid invoices are marked as finalized and are available for export to accounting systems. This state is terminal—no further transitions are possible.
                 </p>
                 <MermaidDiagram 
-                  id="invoice-lifecycle"
-                  chart={`stateDiagram-v2
-              [*] --> Draft
-
-              Draft --> Issued: issue()<br/>System: Record issue_date
-              Draft --> Deleted: delete()<br/>Admin action
-
-              Issued --> Sent: auto_email_enabled<br/>System: Send email
-              Issued --> Viewed: payment received before<br/>customer views
-              Issued --> Paid: payment_received
-              Issued --> Overdue: due_date passed
-              Issued --> Cancelled: admin cancel()
-
-              Sent --> Viewed: customer opens<br/>Track viewed_at
-              Sent --> Paid: payment_received
-              Sent --> Overdue: due_date passed
-              Sent --> Cancelled: admin cancel()
-
-              Viewed --> Paid: payment_received
-              Viewed --> Overdue: due_date passed
-              Viewed --> Cancelled: admin cancel()
-
-              Overdue --> Paid: payment_received<br/>Late payment accepted
-              Overdue --> Cancelled: admin cancel()
-
-              Paid --> [*]
-              Cancelled --> [*]
-              Deleted --> [*]
-
-              note right of Draft
-              Mutable state
-              Can be edited or deleted
-              end note
-
-              note right of Paid
-              Terminal state
-              No further transitions
-              end note`}
-                />
+                   id="invoice-lifecycle"
+                   chart={`stateDiagram-v2
+                [*] --> Draft
+                Draft --> Issued
+                Draft --> Deleted
+                Issued --> Sent
+                Issued --> Viewed
+                Issued --> Paid
+                Issued --> Overdue
+                Issued --> Cancelled
+                Sent --> Viewed
+                Sent --> Paid
+                Sent --> Overdue
+                Sent --> Cancelled
+                Viewed --> Paid
+                Viewed --> Overdue
+                Viewed --> Cancelled
+                Overdue --> Paid
+                Overdue --> Cancelled
+                Paid --> [*]
+                Cancelled --> [*]
+                Deleted --> [*]`}
+                 />
               </div>
             </CardContent>
           )}
