@@ -63,54 +63,77 @@ export default function Home() {
             <div className="relative">
               <div className="bg-white backdrop-blur-lg rounded-xl p-8 border border-gray-200 shadow-xl">
                 <h3 className="text-xl font-bold mb-6 text-gray-900">Platform Capabilities</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-3 p-2">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Building2 className="h-5 w-5 text-[#0066B3]" />
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <Building2 className="h-6 w-6 text-[#0066B3]" />
+                      <span className="text-2xl font-bold text-[#0066B3]">99%</span>
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">KYB Verification</span>
+                    <p className="text-sm font-semibold text-gray-900">KYB Verification</p>
+                    <p className="text-xs text-gray-600 mt-1">Accuracy rate</p>
                   </div>
-                  <div className="flex items-center gap-3 p-2">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Lock className="h-5 w-5 text-[#0066B3]" />
+
+                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <Lock className="h-6 w-6 text-[#0066B3]" />
+                      <span className="text-2xl font-bold text-[#0066B3]">24/7</span>
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">AML Screening</span>
+                    <p className="text-sm font-semibold text-gray-900">AML Screening</p>
+                    <p className="text-xs text-gray-600 mt-1">Real-time monitoring</p>
                   </div>
-                  <div className="flex items-center gap-3 p-2">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <FileCheck className="h-5 w-5 text-[#0066B3]" />
+
+                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <FileCheck className="h-6 w-6 text-[#0066B3]" />
+                      <span className="text-2xl font-bold text-[#0066B3]">&lt;5s</span>
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">vLEI Issuance</span>
+                    <p className="text-sm font-semibold text-gray-900">vLEI Issuance</p>
+                    <p className="text-xs text-gray-600 mt-1">Average time</p>
                   </div>
-                  <div className="flex items-center gap-3 p-2">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Activity className="h-5 w-5 text-[#0066B3]" />
+
+                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <Activity className="h-6 w-6 text-[#0066B3]" />
+                      <span className="text-2xl font-bold text-[#0066B3]">100%</span>
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">Transaction Monitoring</span>
+                    <p className="text-sm font-semibold text-gray-900">Transaction Monitoring</p>
+                    <p className="text-xs text-gray-600 mt-1">Coverage</p>
                   </div>
-                  <div className="flex items-center gap-3 p-2">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <ShieldAlert className="h-5 w-5 text-[#0066B3]" />
+
+                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <ShieldAlert className="h-6 w-6 text-[#0066B3]" />
+                      <span className="text-2xl font-bold text-[#0066B3]">AI</span>
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">Fraud Detection</span>
+                    <p className="text-sm font-semibold text-gray-900">Fraud Detection</p>
+                    <p className="text-xs text-gray-600 mt-1">Powered</p>
                   </div>
-                  <div className="flex items-center gap-3 p-2">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Fingerprint className="h-5 w-5 text-[#0066B3]" />
+
+                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <Fingerprint className="h-6 w-6 text-[#0066B3]" />
+                      <span className="text-2xl font-bold text-[#0066B3]">∞</span>
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">DID Management</span>
+                    <p className="text-sm font-semibold text-gray-900">DID Management</p>
+                    <p className="text-xs text-gray-600 mt-1">Scalable</p>
                   </div>
-                  <div className="flex items-center gap-3 p-2">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Zap className="h-5 w-5 text-[#0066B3]" />
+
+                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <Zap className="h-6 w-6 text-[#0066B3]" />
+                      <span className="text-2xl font-bold text-[#0066B3]">Auto</span>
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">Workflow Automation</span>
+                    <p className="text-sm font-semibold text-gray-900">Workflow Automation</p>
+                    <p className="text-xs text-gray-600 mt-1">No-code builder</p>
                   </div>
-                  <div className="flex items-center gap-3 p-2">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Code className="h-5 w-5 text-[#0066B3]" />
+
+                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <Code className="h-6 w-6 text-[#0066B3]" />
+                      <span className="text-2xl font-bold text-[#0066B3]">REST</span>
                     </div>
-                    <span className="text-sm font-semibold text-gray-900">Unified API</span>
+                    <p className="text-sm font-semibold text-gray-900">Unified API</p>
+                    <p className="text-xs text-gray-600 mt-1">Single integration</p>
                   </div>
                 </div>
                 <div className="mt-6 pt-4 border-t border-gray-200">
