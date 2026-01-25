@@ -440,6 +440,41 @@ const AdminDocumentation = () => {
                 <p className="mb-6 leading-relaxed">
                   The billing architecture follows an event-driven design. As verification workflows complete, they emit events to the Billing service via a message queue. The Billing service consumes these events, updates UsageMeter counters, applies pricing rules, and accumulates line items. At month-end (or billing date), the system generates a ConsolidatedInvoice by summing all accumulated usage and applying the customer's subscription plan pricing.
                 </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Real-Time Usage Tracking:</strong> When a KYB verification completes successfully, an event is published to SQS with the message body containing service_type='kyb', organization_id, timestamp, and cost_amount. The Billing microservice consumes this event and increments the corresponding UsageMetric counter. The customer's dashboard receives a real-time update via WebSocket, showing the incremented count and remaining verifications in their monthly limit. If the verification exceeds their limit, an overage charge is calculated based on overage_price_per_call from their subscription plan.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Invoice Generation Process:</strong> At the customer's billing_date (e.g., the 15th of each month), the system runs the invoice generation job. For each active subscription, it queries the UsageMetrics table for the current billing period, aggregates all usage from the start_date to the billing period end, and calculates charges: (base_subscription_price) + (sum of all usage costs). If the customer has prepaid credits, those are applied first. The system then creates an Invoice record in Draft status with individual line items for each service type. If auto_generate_invoices is enabled in BillingSettings, the invoice is automatically issued, sent, and recorded in the customer's audit log.
+                </p>
+                <MermaidDiagram 
+                  id="billing-flow"
+                  chart={`graph LR
+    A["🔄 Workflow Completes<br/>KYB/AML/Document/LEI"] 
+    B["📊 Emit Event<br/>service_type<br/>org_id<br/>cost_amount"]
+    C["💳 Billing Service<br/>Consume event<br/>Update UsageMetric"]
+    D["📈 Real-Time Dashboard<br/>Customer sees updated<br/>usage & remaining"]
+    
+    E["📅 Billing Date Triggered<br/>Scheduled job"]
+    F["🧮 Aggregate Usage<br/>Sum all events<br/>in billing period"]
+    G["💰 Calculate Charges<br/>Base + overage<br/>Apply credits"]
+    H["📄 Generate Invoice<br/>Create line items<br/>Save as Draft"]
+    I["✉️ Issue & Send<br/>if auto_email<br/>enabled"]
+    J["💵 Payment Received<br/>Update invoice status<br/>Reconcile in accounting"]
+    
+    A --> B --> C --> D
+    E --> F --> G --> H --> I --> J
+    
+    style A fill:#e3f2fd
+    style B fill:#e3f2fd
+    style C fill:#fff3cd
+    style D fill:#d4edda
+    style E fill:#f8d7da
+    style F fill:#f8d7da
+    style G fill:#fff3cd
+    style H fill:#e2e3e5
+    style I fill:#d1ecf1
+    style J fill:#d4edda`}
+                />
               </div>
 
               <div>
