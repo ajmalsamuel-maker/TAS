@@ -3,15 +3,12 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useTranslation } from '../components/i18n/useTranslation';
 import { 
   ArrowRight, Shield, Zap, Globe, Lock, 
-  Network, CheckCircle2, TrendingUp, Layers,
-  Building2, FileCheck, Mail
+  Network, CheckCircle2, Layers, Building2, FileCheck, Mail
 } from 'lucide-react';
 
 export default function Home() {
-  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       {/* Hero Section */}
@@ -26,22 +23,22 @@ export default function Home() {
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
                 LEI/vLEI Infrastructure as a Service
               </h1>
-              <p className="text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed">
-                Enable your business to issue verified credentials and automate compliance workflows without building the infrastructure
+              <p className="text-xl lg:text-2xl text-gray-700 mb-6 leading-relaxed">
+                Multi-tenant B2B SaaS platform enabling businesses to issue verified credentials and automate compliance workflows
               </p>
               <p className="text-lg text-gray-600 mb-8">
-                Built for banks, fintechs, DAOs, supply chains, and enterprises requiring trust automation
+                Purpose-built for banks, fintechs, DAOs, supply chains, and enterprises
               </p>
               
               <div className="flex flex-wrap gap-4 mb-8">
                 <Link to={createPageUrl('Onboarding')}>
                   <Button size="lg" className="bg-[#0066B3] text-white hover:bg-[#004C8C] text-lg px-8 shadow-lg">
-                    {t('hero.cta.apply')} <ArrowRight className="ml-2 h-5 w-5" />
+                    Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link to={createPageUrl('Contact')}>
                   <Button size="lg" variant="outline" className="border-[#0066B3] text-[#0066B3] hover:bg-blue-50 text-lg px-8">
-                    {t('hero.cta.contact')}
+                    Contact Sales
                   </Button>
                 </Link>
               </div>
@@ -49,31 +46,38 @@ export default function Home() {
               <div className="flex items-center gap-8 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5" />
-                  <span>{t('hero.badge.iso')}</span>
+                  <span>ISO 27001</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5" />
-                  <span>{t('hero.badge.enterprise')}</span>
+                  <span>Enterprise Ready</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Globe className="h-5 w-5" />
-                  <span>{t('hero.badge.global')}</span>
+                  <span>Global Coverage</span>
                 </div>
               </div>
             </div>
 
             <div className="relative">
               <div className="bg-white backdrop-blur-lg rounded-xl p-8 border border-gray-200 shadow-xl">
-                <h3 className="text-xl font-bold mb-6 text-gray-900">{t('hero.services.title')}</h3>
+                <h3 className="text-xl font-bold mb-6 text-gray-900">Core Capabilities</h3>
                 <div className="space-y-2.5">
-                  {['kyb', 'aml', 'vlei', 'did'].map((service, i) => (
-                    <div key={i} className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
-                      <span className="text-base font-semibold text-gray-900">{t(`hero.services.${service}`)}</span>
-                    </div>
-                  ))}
+                  <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
+                    <span className="text-base font-semibold text-gray-900">KYB Verification</span>
+                  </div>
+                  <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
+                    <span className="text-base font-semibold text-gray-900">AML Screening</span>
+                  </div>
+                  <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
+                    <span className="text-base font-semibold text-gray-900">vLEI Issuance</span>
+                  </div>
+                  <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-3.5 border border-blue-100">
+                    <span className="text-base font-semibold text-gray-900">DID Management</span>
+                  </div>
                 </div>
                 <p className="mt-6 text-xs text-gray-600 font-medium border-t pt-4">
-                  {t('hero.services.tagline')}
+                  All delivered through a unified API with complete multi-tenant isolation
                 </p>
               </div>
             </div>
@@ -83,7 +87,7 @@ export default function Home() {
         {/* Powered By Section */}
         <div className="relative max-w-7xl mx-auto px-6 pb-12 border-t border-gray-200 pt-12">
           <div>
-            <p className="text-gray-500 text-sm mb-8 text-center font-medium">{t('hero.poweredby')}</p>
+            <p className="text-gray-500 text-sm mb-8 text-center font-medium">Powered by</p>
             <div className="flex flex-wrap items-center justify-center gap-20">
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/4191d6eef_Untitleddesign5.png" 
@@ -100,21 +104,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Problem Section */}
+      {/* Value Proposition */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-            {t('challenge.title')}
+          <h2 className="text-3xl font-bold text-center mb-4 text-gray-900">
+            Why TAS Platform?
           </h2>
+          <p className="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+            Skip months of integration work. Get enterprise-grade identity infrastructure in minutes.
+          </p>
           
           <div className="grid md:grid-cols-3 gap-6">
             <div className="p-6 rounded-lg bg-white border border-gray-200 shadow-sm">
               <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4">
                 <Shield className="h-6 w-6 text-slate-600" />
               </div>
-              <h3 className="text-lg font-bold mb-3 text-gray-900">{t('challenge.fragmented.title')}</h3>
+              <h3 className="text-lg font-bold mb-3 text-gray-900">Multi-Tenant Isolation</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                {t('challenge.fragmented.desc')}
+                Each organization gets a completely isolated workspace with dedicated data storage and access controls
               </p>
             </div>
 
@@ -122,9 +129,9 @@ export default function Home() {
               <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-4">
                 <Network className="h-6 w-6 text-[#0066B3]" />
               </div>
-              <h3 className="text-lg font-bold mb-3 text-gray-900">{t('challenge.integration.title')}</h3>
+              <h3 className="text-lg font-bold mb-3 text-gray-900">Unified API</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                {t('challenge.integration.desc')}
+                One API for KYB, AML, vLEI, and DID services - no need to integrate with multiple providers
               </p>
             </div>
 
@@ -132,9 +139,9 @@ export default function Home() {
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <Zap className="h-6 w-6 text-[#0066B3]" />
               </div>
-              <h3 className="text-lg font-bold mb-3 text-gray-900">{t('challenge.solution.title')}</h3>
+              <h3 className="text-lg font-bold mb-3 text-gray-900">Deploy in Minutes</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                {t('challenge.solution.desc')}
+                Pre-built workflows, fraud detection, and compliance automation ready out of the box
               </p>
             </div>
           </div>
@@ -146,10 +153,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              {t('services.title')}
+              Complete Identity & Compliance Stack
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {t('services.subtitle')}
+              Everything you need to onboard businesses, verify identities, and issue credentials
             </p>
           </div>
 
@@ -241,102 +248,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Solution Section */}
+      {/* How It Works */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-            Platform Architecture
+          <h2 className="text-3xl font-bold text-center mb-4 text-gray-900">
+            How It Works
           </h2>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg p-6 border border-gray-200">
-              <div className="w-10 h-10 bg-[#0066B3] rounded-lg flex items-center justify-center mb-3">
-                <Layers className="h-5 w-5 text-white" />
-              </div>
-              <h3 className="text-base font-bold mb-2 text-gray-900">Technology Layer</h3>
-              <p className="text-sm text-gray-600">
-                Neutral gateway for identity, compliance, and credential services
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg p-6 border border-gray-200">
-              <div className="w-10 h-10 bg-[#0066B3] rounded-lg flex items-center justify-center mb-3">
-                <Zap className="h-5 w-5 text-white" />
-              </div>
-              <h3 className="text-base font-bold mb-2 text-gray-900">Orchestration</h3>
-              <p className="text-sm text-gray-600">
-                API routing, workflow automation, and data transformation
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg p-6 border border-gray-200">
-              <div className="w-10 h-10 bg-[#0066B3] rounded-lg flex items-center justify-center mb-3">
-                <Shield className="h-5 w-5 text-white" />
-              </div>
-              <h3 className="text-base font-bold mb-2 text-gray-900">Compliance</h3>
-              <p className="text-sm text-gray-600">
-                All regulated activities handled by licensed partners
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h3 className="text-lg font-bold mb-4 text-gray-900 text-center">
-              Available Service Bundles
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-              {[
-                'KYB + AML',
-                'Digital Identity',
-                'vLEI Credentials',
-                'Verification Workflows',
-                'Custom Bundles'
-              ].map((service, i) => (
-                <div key={i} className="bg-gradient-to-br from-slate-50 to-blue-50 rounded p-3 text-center border border-blue-100">
-                  <p className="text-xs font-semibold text-gray-800">{service}</p>
-                </div>
-              ))}
-              </div>
-              </div>
-              </div>
-              </section>
-
-      {/* How It Works */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-            Orchestration Engine
-          </h2>
+          <p className="text-lg text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Set up your workspace in minutes and start issuing credentials immediately
+          </p>
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
               {
-                phase: '1',
-                title: 'Request Routing',
-                desc: 'API validation, classification, and intelligent routing to licensed providers'
+                step: '1',
+                title: 'Create Workspace',
+                desc: 'Sign up and configure your isolated multi-tenant environment'
               },
               {
-                phase: '2',
-                title: 'Parallel Execution',
-                desc: 'Coordinated multi-service workflows (KYB, AML, vLEI) in parallel or sequence'
+                step: '2',
+                title: 'Invite Team',
+                desc: 'Add team members with role-based access controls'
               },
               {
-                phase: '3',
-                title: 'Data Aggregation',
-                desc: 'Unified, normalized response from multiple provider sources'
+                step: '3',
+                title: 'Configure Workflows',
+                desc: 'Set up KYB, AML, and credential issuance policies'
               },
               {
-                phase: '4',
-                title: 'Provenance Signing',
-                desc: 'Cryptographic attestation with complete audit trail and data passport'
+                step: '4',
+                title: 'Start Onboarding',
+                desc: 'Begin verifying businesses and issuing vLEI credentials'
               }
             ].map((item, i) => (
-              <div key={i} className="bg-white rounded-lg p-5 border border-gray-200">
-                <div className="w-10 h-10 rounded-full bg-[#0066B3] flex items-center justify-center mb-3 text-white text-lg font-bold">
-                  {item.phase}
+              <div key={i} className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg p-6 border border-gray-200">
+                <div className="w-12 h-12 rounded-full bg-[#0066B3] flex items-center justify-center mb-4 text-white text-xl font-bold">
+                  {item.step}
                 </div>
-                <h3 className="text-base font-bold mb-2 text-gray-900">{item.title}</h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
+                <h3 className="text-lg font-bold mb-2 text-gray-900">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -384,65 +334,45 @@ export default function Home() {
               </div>
             ))}
           </div>
-
-          <div className="mt-16 bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-200">
-          <h3 className="text-2xl font-bold text-center mb-8 text-[#0066B3]">TAS Platform Enables</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { icon: Network, text: 'Unified API Access' },
-              { icon: Zap, text: 'Workflow Automation' },
-              { icon: Lock, text: 'Data Transformation' }
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-full flex items-center justify-center mb-3">
-                  <item.icon className="h-8 w-8 text-white" />
-                </div>
-                <p className="font-semibold text-gray-800">{item.text}</p>
-              </div>
-            ))}
-          </div>
-          </div>
         </div>
       </section>
 
-      {/* Business Model */}
+      {/* Pricing Preview */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-3 text-gray-900">
-            Transparent Pricing
+            B2B SaaS Pricing
           </h2>
           <p className="text-base text-center text-gray-600 mb-12">
-            Clear, subscription-based pricing with usage-based technical fees
+            Multi-tenant workspaces with complete data isolation
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 tier: 'Starter',
-                price: '$200',
-                features: ['Basic API access', 'Standard workflows', 'Shared infrastructure', 'Business-hours support', 'Basic provenance tracking']
+                price: '$1,500',
+                features: ['Up to 100 LEI issuances/month', '5 team seats', 'Basic KYB + AML', 'Email support']
               },
               {
                 tier: 'Business',
-                price: '$800',
-                features: ['Advanced workflows', 'Priority routing', '99.5% SLA uptime', '24/7 standard support', 'Enhanced provenance with audit reports'],
-                highlighted: true,
-                gradientFrom: '#0066B3',
-                gradientTo: '#004080'
+                price: '$4,500',
+                features: ['Up to 500 LEI issuances/month', '20 team seats', 'Advanced fraud detection', 'Priority support + Slack', '99.5% SLA'],
+                highlighted: true
               },
               {
                 tier: 'Enterprise',
-                price: '$2,000',
-                features: ['Dedicated infrastructure', 'Custom connectors', '99.9% SLA', '24/7 premium support', 'Full provenance with blockchain anchoring']
+                price: 'Custom',
+                features: ['Unlimited issuances', 'Unlimited seats', 'Dedicated account manager', 'White-label options', '99.9% SLA']
               }
             ].map((plan, i) => (
               <div key={i} className={`rounded-2xl p-8 ${plan.highlighted ? 'bg-gradient-to-br from-[#0066B3] to-[#004080] text-white shadow-2xl scale-105' : 'bg-gray-50 text-gray-900 border-2 border-blue-100'}`}>
                 <h3 className="text-2xl font-bold mb-2">{plan.tier}</h3>
                 <div className="mb-6">
                   <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className={plan.highlighted ? 'text-blue-200' : 'text-gray-600'}>/month</span>
+                  {plan.price !== 'Custom' && <span className={plan.highlighted ? 'text-blue-200' : 'text-gray-600'}>/month</span>}
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-2">
                       <CheckCircle2 className={`h-5 w-5 mt-0.5 flex-shrink-0 ${plan.highlighted ? 'text-cyan-300' : 'text-[#0066B3]'}`} />
@@ -450,11 +380,22 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Button className={`w-full mt-8 ${plan.highlighted ? 'bg-white text-[#0066B3] hover:bg-blue-50' : 'bg-[#0066B3] text-white hover:bg-[#004080]'}`}>
-                  Get Started
-                </Button>
+                <Link to={createPageUrl(plan.tier === 'Enterprise' ? 'Contact' : 'Onboarding')}>
+                  <Button className={`w-full ${plan.highlighted ? 'bg-white text-[#0066B3] hover:bg-blue-50' : 'bg-[#0066B3] text-white hover:bg-[#004080]'}`}>
+                    {plan.tier === 'Enterprise' ? 'Contact Sales' : 'Get Started'}
+                  </Button>
+                </Link>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link to={createPageUrl('Pricing')}>
+              <Button variant="outline" size="lg" className="border-[#0066B3] text-[#0066B3] hover:bg-blue-50">
+                View Full Pricing Details
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

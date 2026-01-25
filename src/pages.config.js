@@ -7,6 +7,8 @@ import Contact from './pages/Contact';
 import DownloadLogo from './pages/DownloadLogo';
 import Home from './pages/Home';
 import Onboarding from './pages/Onboarding';
+import OrganizationOnboarding from './pages/OrganizationOnboarding';
+import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
 import Pricing from './pages/Pricing';
 import UserCompliance from './pages/UserCompliance';
 import UserCredentials from './pages/UserCredentials';
@@ -14,8 +16,6 @@ import UserDashboard from './pages/UserDashboard';
 import UserLogin from './pages/UserLogin';
 import UserSettings from './pages/UserSettings';
 import Workflows from './pages/Workflows';
-import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
-import OrganizationOnboarding from './pages/OrganizationOnboarding';
 import __Layout from './Layout.jsx';
 
 
@@ -29,6 +29,8 @@ export const PAGES = {
     "DownloadLogo": DownloadLogo,
     "Home": Home,
     "Onboarding": Onboarding,
+    "OrganizationOnboarding": OrganizationOnboarding,
+    "PlatformAdminDashboard": PlatformAdminDashboard,
     "Pricing": Pricing,
     "UserCompliance": UserCompliance,
     "UserCredentials": UserCredentials,
@@ -36,8 +38,6 @@ export const PAGES = {
     "UserLogin": UserLogin,
     "UserSettings": UserSettings,
     "Workflows": Workflows,
-    "PlatformAdminDashboard": PlatformAdminDashboard,
-    "OrganizationOnboarding": OrganizationOnboarding,
 }
 
 export const pagesConfig = {
