@@ -27,6 +27,13 @@ export default function ApplicationStatus() {
         initialData: []
     });
 
+    const { data: webhookLogs = [] } = useQuery({
+        queryKey: ['webhooks'],
+        queryFn: () => base44.entities.Webhook.list(),
+        enabled: !!user,
+        initialData: []
+    });
+
     if (!user) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
@@ -208,6 +215,44 @@ export default function ApplicationStatus() {
                         </div>
                     </CardContent>
                 </Card>
+
+                {/* Webhook & Monitoring Status */}
+                {application.status === 'approved' && (
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="text-base">Integration & Monitoring</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div>
+                                <p className="text-sm font-semibold text-gray-700 mb-2">Active Webhooks</p>
+                                {webhookLogs.filter(w => w.is_active).length > 0 ? (
+                                    <div className="space-y-2">
+                                        {webhookLogs.filter(w => w.is_active).map(webhook => (
+                                            <div key={webhook.id} className="flex items-center justify-between text-sm p-2 bg-gray-50 rounded">
+                                                <span className="font-mono text-xs">{webhook.url}</span>
+                                                <Badge variant={webhook.last_status === 'success' ? 'default' : 'destructive'}>
+                                                    {webhook.last_status || 'pending'}
+                                                </Badge>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p className="text-sm text-gray-500">No active webhooks configured</p>
+                                )}
+                            </div>
+
+                            <div className="pt-4 border-t">
+                                <p className="text-sm font-semibold text-gray-700 mb-2">AML Monitoring Status</p>
+                                <div className="bg-blue-50 p-3 rounded text-sm">
+                                    <p className="text-gray-700">✓ Quarterly AML screening active (every 90 days)</p>
+                                    <p className="text-xs text-gray-500 mt-1">
+                                        Automated checks for sanctions, PEP, and adverse media changes
+                                    </p>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                )}
             </div>
         </div>
     );

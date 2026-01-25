@@ -14,6 +14,8 @@ import TranslationsManagement from '../components/admin/TranslationsManagement';
 import OnboardingApplications from '../components/admin/OnboardingApplications';
 import UserManagement from '../components/admin/UserManagement';
 import AuditLogsManagement from '../components/admin/AuditLogsManagement';
+import WebhookManagement from '../components/admin/WebhookManagement';
+import AMLMonitoringPanel from '../components/admin/AMLMonitoringPanel';
 
 export default function AdminDashboard() {
   const { data: providers = [] } = useQuery({
@@ -105,6 +107,12 @@ export default function AdminDashboard() {
             <TabsTrigger value="audit" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Audit Log
             </TabsTrigger>
+            <TabsTrigger value="webhooks" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Webhooks
+            </TabsTrigger>
+            <TabsTrigger value="monitoring" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              AML Monitoring
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="providers">
@@ -129,6 +137,14 @@ export default function AdminDashboard() {
 
           <TabsContent value="audit">
             <AuditLogsManagement />
+          </TabsContent>
+
+          <TabsContent value="webhooks">
+            <WebhookManagement />
+          </TabsContent>
+
+          <TabsContent value="monitoring">
+            <AMLMonitoringPanel />
           </TabsContent>
         </Tabs>
       </div>
