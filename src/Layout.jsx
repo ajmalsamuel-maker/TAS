@@ -158,7 +158,7 @@ function LayoutContent({ children, currentPageName }) {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-white/20">
+            <div className="md:hidden py-4 border-t border-white/20 max-h-[calc(100vh-64px)] overflow-y-auto">
               <div className="px-4 pb-3">
                 <LanguageSelector />
               </div>
@@ -177,10 +177,37 @@ function LayoutContent({ children, currentPageName }) {
                   </Link>
                 );
               })}
+
+              {!isAuthenticated && (
+                <div className="border-t border-white/20 mt-4 pt-4 px-4 space-y-2">
+                  <Link
+                    to={createPageUrl('UserLogin')}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full"
+                  >
+                    <Button variant="ghost" className="w-full text-white hover:bg-white/10 justify-start">
+                      {t('auth.signin')}
+                    </Button>
+                  </Link>
+                  <Link
+                    to={createPageUrl('UserLogin')}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full"
+                  >
+                    <Button className="w-full bg-white text-[#0066B3] hover:bg-blue-50 font-semibold">
+                      {t('auth.getstarted')}
+                    </Button>
+                  </Link>
+                </div>
+              )}
+
               {isAuthenticated && (
                 <button
-                  onClick={handleLogout}
-                  className="flex items-center gap-3 px-4 py-3 hover:bg-white/10 rounded-lg w-full text-left"
+                  onClick={() => {
+                    handleLogout();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="flex items-center gap-3 px-4 py-3 hover:bg-white/10 rounded-lg w-full text-left border-t border-white/20 mt-4 pt-4"
                 >
                   <LogOut className="h-5 w-5" />
                   <span>{t('auth.logout')}</span>
