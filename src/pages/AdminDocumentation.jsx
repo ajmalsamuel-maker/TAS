@@ -167,34 +167,34 @@ const AdminDocumentation = () => {
                 <MermaidDiagram 
                   id="arch-diagram"
                   chart={`graph TD
-    A["🌐 Cloudflare CDN & WAF<br/>DDoS Protection • WAF Rules • Geo-Blocking"]
-    B["🖥️ Portal Layer<br/>Admin • User • Public • Merchant"]
-    C["⚖️ AWS ALB<br/>SSL • Load Balancing • Health Checks"]
-    D["🔧 Application Services<br/>Verification • Billing • Compliance"]
-    E["📊 Workflow Orchestration<br/>KYB → AML → Document → LEI → Monitor"]
-    F["💾 PostgreSQL<br/>Transactional Data"]
-    G["⚡ Redis<br/>Cache • Sessions • Rate Limits"]
-    H["📋 SQS<br/>Async Queues"]
-    I["📦 S3<br/>Documents • Backups"]
-    
-    A -->|HTTPS Filtered| B
-    B -->|Authenticated API| C
-    C -->|Load Balanced| D
-    D --> E
-    E -->|Persist| F
-    E -->|Cache| G
-    E -->|Queue| H
-    E -->|Store| I
-    
-    style A fill:#e1f5ff
-    style B fill:#f3e5f5
-    style C fill:#fff3e0
-    style D fill:#e8f5e9
-    style E fill:#fce4ec
-    style F fill:#f1f8e9
-    style G fill:#e0f2f1
-    style H fill:#ede7f6
-    style I fill:#fbe9e7`}
+                    A["Cloudflare CDN & WAF<br/>DDoS Protection • WAF Rules • Geo-Blocking"]
+                    B["Portal Layer<br/>Admin • User • Public • Merchant"]
+                    C["AWS ALB<br/>SSL • Load Balancing • Health Checks"]
+                    D["Application Services<br/>Verification • Billing • Compliance"]
+                    E["Workflow Orchestration<br/>KYB → AML → Document → LEI → Monitor"]
+                    F["PostgreSQL<br/>Transactional Data"]
+                    G["Redis<br/>Cache • Sessions • Rate Limits"]
+                    H["SQS<br/>Async Queues"]
+                    I["S3<br/>Documents • Backups"]
+
+                    A -->|HTTPS Filtered| B
+                    B -->|Authenticated API| C
+                    C -->|Load Balanced| D
+                    D --> E
+                    E -->|Persist| F
+                    E -->|Cache| G
+                    E -->|Queue| H
+                    E -->|Store| I
+
+                    style A fill:#e1f5ff
+                    style B fill:#f3e5f5
+                    style C fill:#fff3e0
+                    style D fill:#e8f5e9
+                    style E fill:#fce4ec
+                    style F fill:#f1f8e9
+                    style G fill:#e0f2f1
+                    style H fill:#ede7f6
+                    style I fill:#fbe9e7`}
                 />
               </div>
 
