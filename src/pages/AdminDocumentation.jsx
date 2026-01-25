@@ -17,7 +17,7 @@ const AdminDocumentation = () => {
     useEffect(() => {
       if (typeof window !== 'undefined' && window.mermaid) {
         window.mermaid.initialize({ startOnLoad: true, theme: 'default' });
-        window.mermaid.contentLoaderContent();
+        window.mermaid.render(id, chart);
       }
     }, [id, chart]);
 
