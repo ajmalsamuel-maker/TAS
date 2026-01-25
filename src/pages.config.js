@@ -10,6 +10,7 @@ import Contact from './pages/Contact';
 import DownloadLogo from './pages/DownloadLogo';
 import FeatureVerificationGuide from './pages/FeatureVerificationGuide';
 import Home from './pages/Home';
+import MarketingWebsiteDocumentation from './pages/MarketingWebsiteDocumentation';
 import Onboarding from './pages/Onboarding';
 import OrganizationOnboarding from './pages/OrganizationOnboarding';
 import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
@@ -19,11 +20,10 @@ import UserCompliance from './pages/UserCompliance';
 import UserCredentials from './pages/UserCredentials';
 import UserDashboard from './pages/UserDashboard';
 import UserLogin from './pages/UserLogin';
+import UserPortalDocumentation from './pages/UserPortalDocumentation';
 import UserSettings from './pages/UserSettings';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
-import UserPortalDocumentation from './pages/UserPortalDocumentation';
-import MarketingWebsiteDocumentation from './pages/MarketingWebsiteDocumentation';
 import __Layout from './Layout.jsx';
 
 
@@ -40,6 +40,7 @@ export const PAGES = {
     "DownloadLogo": DownloadLogo,
     "FeatureVerificationGuide": FeatureVerificationGuide,
     "Home": Home,
+    "MarketingWebsiteDocumentation": MarketingWebsiteDocumentation,
     "Onboarding": Onboarding,
     "OrganizationOnboarding": OrganizationOnboarding,
     "PlatformAdminDashboard": PlatformAdminDashboard,
@@ -49,11 +50,10 @@ export const PAGES = {
     "UserCredentials": UserCredentials,
     "UserDashboard": UserDashboard,
     "UserLogin": UserLogin,
+    "UserPortalDocumentation": UserPortalDocumentation,
     "UserSettings": UserSettings,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
-    "UserPortalDocumentation": UserPortalDocumentation,
-    "MarketingWebsiteDocumentation": MarketingWebsiteDocumentation,
 }
 
 export const pagesConfig = {

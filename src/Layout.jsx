@@ -68,7 +68,7 @@ function LayoutContent({ children, currentPageName }) {
     { nameKey: 'nav.compliance', icon: Shield, path: 'UserCompliance' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' },
-    { name: 'Documentation', icon: FileText, path: 'UserDocumentation' }
+    { name: 'Documentation', icon: FileText, path: 'UserPortalDocumentation' }
   ];
 
   // Admin Portal Navigation (Admins Only)
