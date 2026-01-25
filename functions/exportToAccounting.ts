@@ -102,6 +102,42 @@ Deno.serve(async (req) => {
         externalId = `NET-${invoice.invoice_number}`;
         break;
 
+      case 'oracle':
+        // Oracle Finance Cloud format
+        exportPayload = {
+          invoiceNumber: invoice.invoice_number,
+          invoiceDate: invoice.issue_date,
+          dueDate: invoice.due_date,
+          invoiceAmount: invoice.total_amount,
+          invoiceLines: invoice.items.map(item => ({
+            lineNumber: invoice.items.indexOf(item) + 1,
+            description: item.description,
+            quantity: item.quantity,
+            unitPrice: item.unit_price,
+            lineAmount: item.total
+          }))
+        };
+        externalId = `ORC-${invoice.invoice_number}`;
+        break;
+
+      case 'sap':
+        // SAP format
+        exportPayload = {
+          VBELN: invoice.invoice_number,
+          FKDAT: invoice.issue_date,
+          FKDAT_DUE: invoice.due_date,
+          NETWR: invoice.total_amount,
+          POSITIONS: invoice.items.map((item, idx) => ({
+            POSNR: String(idx + 1).padStart(6, '0'),
+            VTEXT: item.description,
+            MENGE: item.quantity,
+            NETPR: item.unit_price,
+            NETWR: item.total
+          }))
+        };
+        externalId = `SAP-${invoice.invoice_number}`;
+        break;
+
       default:
         return Response.json({ error: 'Unsupported accounting system' }, { status: 400 });
     }
