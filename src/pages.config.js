@@ -23,6 +23,9 @@ import BillingAdmin from './pages/BillingAdmin';
 import AdminDocumentation from './pages/AdminDocumentation';
 import UserDocumentation from './pages/UserDocumentation';
 import PublicDocumentation from './pages/PublicDocumentation';
+import AdminDocumentationDetailed from './pages/AdminDocumentationDetailed';
+import UserDocumentationDetailed from './pages/UserDocumentationDetailed';
+import PublicDocumentationDetailed from './pages/PublicDocumentationDetailed';
 import __Layout from './Layout.jsx';
 
 
@@ -52,6 +55,9 @@ export const PAGES = {
     "AdminDocumentation": AdminDocumentation,
     "UserDocumentation": UserDocumentation,
     "PublicDocumentation": PublicDocumentation,
+    "AdminDocumentationDetailed": AdminDocumentationDetailed,
+    "UserDocumentationDetailed": UserDocumentationDetailed,
+    "PublicDocumentationDetailed": PublicDocumentationDetailed,
 }
 
 export const pagesConfig = {
