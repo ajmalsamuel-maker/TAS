@@ -100,7 +100,7 @@ export const COUNTRY_REGISTRY_MAP = {
   'EC': [{ code: 'EC-SRI', name: 'Servicio de Rentas Internas' }],
   'SV': [{ code: 'SV-RMC', name: 'Registro de Comercio' }],
   'GD': [{ code: 'GD-ROC', name: 'Registrar of Companies' }],
-  'GT': [{{ code: 'GT-RMC', name: 'Registro Mercantil' }}],
+  'GT': [{ code: 'GT-RMC', name: 'Registro Mercantil' }],
   'GY': [{ code: 'GY-ROC', name: 'Registrar of Companies' }],
   'HT': [{ code: 'HT-RCS', name: 'Bureau du Greffe du Commerce' }],
   'HN': [{{ code: 'HN-RMC', name: 'Registro Mercantil' }}],
