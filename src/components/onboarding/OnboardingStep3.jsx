@@ -106,14 +106,42 @@ export default function OnboardingStep3({ formData, setFormData }) {
 
         <div>
           <Label htmlFor="business_registry_name" className="text-base">Name of Business Registry *</Label>
-          <Input
-            id="business_registry_name"
-            value={formData.business_registry_name}
-            onChange={(e) => updateField('business_registry_name', e.target.value)}
-            placeholder="e.g., Companies House, SIREN, ROC"
-            className="mt-2"
-            required
-          />
+          {registriesForCountry.length > 1 ? (
+            <Select 
+              value={formData.business_registry_name}
+              onValueChange={(value) => updateField('business_registry_name', value)}
+            >
+              <SelectTrigger className="mt-2">
+                <SelectValue placeholder="Select a registry for this country" />
+              </SelectTrigger>
+              <SelectContent>
+                {registriesForCountry.map((registry) => (
+                  <SelectItem key={registry.code} value={registry.name}>
+                    {registry.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          ) : registriesForCountry.length === 1 ? (
+            <div className="mt-2">
+              <Input
+                id="business_registry_name"
+                value={registriesForCountry[0].name}
+                disabled
+                className="mt-2 bg-gray-50"
+              />
+              <p className="text-xs text-gray-500 mt-1">Auto-populated based on selected country</p>
+            </div>
+          ) : (
+            <Input
+              id="business_registry_name"
+              value={formData.business_registry_name}
+              onChange={(e) => updateField('business_registry_name', e.target.value)}
+              placeholder="Enter registry name"
+              className="mt-2"
+              required
+            />
+          )}
         </div>
       </div>
 
