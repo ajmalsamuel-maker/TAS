@@ -52,6 +52,7 @@ function LayoutContent({ children, currentPageName }) {
   const userPortalPages = [
     { nameKey: 'nav.dashboard', icon: Activity, path: 'UserDashboard' },
     { nameKey: 'nav.workflows', icon: Activity, path: 'Workflows' },
+    { nameKey: 'nav.web3', icon: Globe, path: 'Web3Dashboard' },
     { nameKey: 'nav.compliance', icon: Shield, path: 'UserCompliance' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' }
