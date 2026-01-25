@@ -1,20 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Boxes, Sparkles } from 'lucide-react';
 import DAOIdentityPanel from '../components/web3/DAOIdentityPanel';
 import DeFiCompliancePanel from '../components/web3/DeFiCompliancePanel';
 import CrossChainIdentityPanel from '../components/web3/CrossChainIdentityPanel';
 import NFTAuthenticationPanel from '../components/web3/NFTAuthenticationPanel';
+import WalletConnect from '../components/web3/WalletConnect';
+import CredentialIssuer from '../components/web3/CredentialIssuer';
+import ServiceMarketplace from '../components/web3/ServiceMarketplace';
 
 export default function Web3Dashboard() {
-  const [user, setUser] = useState(null);
+  const { data: user } = useQuery({
+    queryKey: ['current-user'],
+    queryFn: () => base44.auth.me()
+  });
 
-  useEffect(() => {
-    base44.auth.me().then(setUser);
-  }, []);
+  const { data: organization } = useQuery({
+    queryKey: ['user-organization', user?.organization_id],
+    queryFn: async () => {
+      if (!user?.organization_id) return null;
+      const orgs = await base44.entities.Organization.filter({ id: user.organization_id });
+      return orgs[0];
+    },
+    enabled: !!user?.organization_id
+  });
 
   const { data: workflows = [] } = useQuery({
     queryKey: ['user-workflows'],
@@ -63,13 +76,60 @@ export default function Web3Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Main Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <DAOIdentityPanel user={user} />
-          <DeFiCompliancePanel workflows={workflows} alerts={alerts} />
-          <CrossChainIdentityPanel user={user} />
-          <NFTAuthenticationPanel user={user} />
-        </div>
+        {/* Main Tabs */}
+        <Tabs defaultValue="wallets" className="space-y-6">
+          <TabsList className="bg-white border-2 border-blue-100">
+            <TabsTrigger value="wallets" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Wallets & DIDs
+            </TabsTrigger>
+            <TabsTrigger value="credentials" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Credential Issuer
+            </TabsTrigger>
+            <TabsTrigger value="marketplace" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Marketplace
+            </TabsTrigger>
+            <TabsTrigger value="dao" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              DAO Identity
+            </TabsTrigger>
+            <TabsTrigger value="defi" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              DeFi Compliance
+            </TabsTrigger>
+            <TabsTrigger value="crosschain" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Cross-Chain
+            </TabsTrigger>
+            <TabsTrigger value="nft" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              NFT Auth
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="wallets">
+            <WalletConnect user={user} />
+          </TabsContent>
+
+          <TabsContent value="credentials">
+            <CredentialIssuer organization={organization} />
+          </TabsContent>
+
+          <TabsContent value="marketplace">
+            <ServiceMarketplace />
+          </TabsContent>
+
+          <TabsContent value="dao">
+            <DAOIdentityPanel user={user} />
+          </TabsContent>
+
+          <TabsContent value="defi">
+            <DeFiCompliancePanel workflows={workflows} alerts={alerts} />
+          </TabsContent>
+
+          <TabsContent value="crosschain">
+            <CrossChainIdentityPanel user={user} />
+          </TabsContent>
+
+          <TabsContent value="nft">
+            <NFTAuthenticationPanel user={user} />
+          </TabsContent>
+        </Tabs>
 
         {/* Technical Architecture */}
         <Card className="border-2 border-slate-200 shadow-lg">

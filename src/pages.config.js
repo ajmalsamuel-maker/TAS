@@ -2,6 +2,7 @@ import About from './pages/About';
 import AdminAnalytics from './pages/AdminAnalytics';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminLogin from './pages/AdminLogin';
+import AdminReports from './pages/AdminReports';
 import ApplicationStatus from './pages/ApplicationStatus';
 import Contact from './pages/Contact';
 import DownloadLogo from './pages/DownloadLogo';
@@ -15,9 +16,8 @@ import UserCredentials from './pages/UserCredentials';
 import UserDashboard from './pages/UserDashboard';
 import UserLogin from './pages/UserLogin';
 import UserSettings from './pages/UserSettings';
-import Workflows from './pages/Workflows';
 import Web3Dashboard from './pages/Web3Dashboard';
-import AdminReports from './pages/AdminReports';
+import Workflows from './pages/Workflows';
 import __Layout from './Layout.jsx';
 
 
@@ -26,6 +26,7 @@ export const PAGES = {
     "AdminAnalytics": AdminAnalytics,
     "AdminDashboard": AdminDashboard,
     "AdminLogin": AdminLogin,
+    "AdminReports": AdminReports,
     "ApplicationStatus": ApplicationStatus,
     "Contact": Contact,
     "DownloadLogo": DownloadLogo,
@@ -39,9 +40,8 @@ export const PAGES = {
     "UserDashboard": UserDashboard,
     "UserLogin": UserLogin,
     "UserSettings": UserSettings,
-    "Workflows": Workflows,
     "Web3Dashboard": Web3Dashboard,
-    "AdminReports": AdminReports,
+    "Workflows": Workflows,
 }
 
 export const pagesConfig = {
