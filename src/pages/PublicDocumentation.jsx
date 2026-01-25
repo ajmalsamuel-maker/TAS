@@ -245,33 +245,21 @@ const PublicDocumentation = () => {
               </div>
 
               <MermaidDiagram 
-                chart={`graph TB
-                  A["Submit<br/>Application"]
-                  B["KYB Check<br/>Registries"]
-                  C["AML Screen<br/>Sanctions"]
-                  D{"Manual<br/>Review?"}
-                  E["Investigator<br/>Review"]
-                  F["Approved"]
-                  G["Credentials<br/>Issued"]
-                  H["Monitoring"]
+                chart={`graph LR
+                  A["Submit"] B["KYB"] C["AML"] D{"Review?"}
+                  E["Check"] F["Approved"] G["Issue"]
 
-                  A --> B
-                  B --> C
-                  C --> D
+                  A --> B --> C --> D
                   D -->|No| F
-                  D -->|Yes| E
-                  E --> F
-                  F --> G
-                  G --> H
+                  D -->|Yes| E --> F --> G
 
-                  style A fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
-                  style B fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
-                  style C fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
-                  style D fill:#fff3e0,stroke:#0066B3,stroke-width:2px
-                  style E fill:#fff3e0,stroke:#0066B3,stroke-width:2px
-                  style F fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
-                  style G fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
-                  style H fill:#e3f2fd,stroke:#0066B3,stroke-width:2px`}
+                  style A fill:#e3f2fd,stroke:#0066B3
+                  style B fill:#e3f2fd,stroke:#0066B3
+                  style C fill:#e3f2fd,stroke:#0066B3
+                  style D fill:#fff3e0,stroke:#0066B3
+                  style E fill:#fff3e0,stroke:#0066B3
+                  style F fill:#e3f2fd,stroke:#0066B3
+                  style G fill:#e3f2fd,stroke:#0066B3`}
               />
             </CardContent>
           )}
