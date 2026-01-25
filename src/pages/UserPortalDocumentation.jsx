@@ -179,27 +179,37 @@ const UserPortalDocumentation = () => {
                 </p>
 
                 <MermaidDiagram 
-                  chart={`graph LR
-                    A["Workflow Initiated<br/>Business submitted"]
-                    B["KYB Verification<br/>Registry checks<br/>30 mins typical"]
-                    C["AML Screening<br/>Sanctions check<br/>15 mins typical"]
-                    D["Document Review<br/>if required<br/>Manual process"]
-                    E["LEI Issuance<br/>Credential generation"]
-                    F["Monitoring<br/>Ongoing"]
+                   chart={`graph LR
+                     A["Submit<br/>Business Data"]
+                     B["KYB Check<br/>Registry lookup<br/>30 min"]
+                     C["AML Screen<br/>Sanctions scan<br/>15 min"]
+                     D{"Manual<br/>Review?"}
+                     E["Investigation<br/>1-3 days"]
+                     F["Approved"]
+                     G["LEI Issued"]
+                     H["vLEI Created"]
+                     I["24/7 Monitoring"]
 
-                    A --> B
-                    B --> C
-                    C --> D
-                    D --> E
-                    E --> F
+                     A --> B
+                     B --> C
+                     C --> D
+                     D -->|No| F
+                     D -->|Yes| E
+                     E --> F
+                     F --> G
+                     G --> H
+                     H --> I
 
-                    style A fill:#e3f2fd
-                    style B fill:#fff3e0
-                    style C fill:#fff3e0
-                    style D fill:#fce4ec
-                    style E fill:#d4edda
-                    style F fill:#e0f2f1`}
-                />
+                     style A fill:#e3f2fd
+                     style B fill:#fff3e0
+                     style C fill:#fff3e0
+                     style D fill:#fce4ec
+                     style E fill:#fce4ec
+                     style F fill:#d4edda
+                     style G fill:#d4edda
+                     style H fill:#c8e6c9
+                     style I fill:#e0f2f1`}
+                 />
               </div>
 
               <div>
