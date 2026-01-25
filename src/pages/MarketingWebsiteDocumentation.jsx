@@ -333,13 +333,13 @@ const MarketingWebsiteDocumentation = () => {
                       <td className="border p-3 text-center">✅</td>
                       <td className="border p-3 text-center">✅</td>
                     </tr>
-                    <tr className="hover:bg-green-50">
+                    <tr className="hover:bg-blue-50">
                       <td className="border p-3">Support</td>
                       <td className="border p-3 text-center">Email</td>
                       <td className="border p-3 text-center">Chat + Email</td>
                       <td className="border p-3 text-center">24/7 Phone + Dedicated</td>
                     </tr>
-                    <tr className="hover:bg-green-50">
+                    <tr className="hover:bg-blue-50">
                       <td className="border p-3">SLA Uptime</td>
                       <td className="border p-3 text-center">99.5%</td>
                       <td className="border p-3 text-center">99.9%</td>
