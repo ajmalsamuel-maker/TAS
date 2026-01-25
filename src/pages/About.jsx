@@ -331,12 +331,12 @@ export default function About() {
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png"
               alt="Certizen Technology"
-              className="h-8"
+              className="h-6 sm:h-8"
             />
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png"
               alt="FTS.Money"
-              className="h-8"
+              className="h-6 sm:h-8"
             />
           </div>
         </div>
