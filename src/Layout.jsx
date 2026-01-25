@@ -8,9 +8,9 @@ import { TranslationProvider, useTranslation } from './components/i18n/useTransl
 import LanguageSelector from './components/i18n/LanguageSelector';
 import NotificationBell from './components/notifications/NotificationBell';
 import { 
-  Home, Users, Activity, Globe, LogOut, 
-  Shield, Menu, X, Settings, BarChart, Mail
-} from 'lucide-react';
+        Home, Users, Activity, Globe, LogOut, 
+        Shield, Menu, X, Settings, BarChart, Mail, FileText
+      } from 'lucide-react';
 
 function LayoutContent({ children, currentPageName }) {
   const [user, setUser] = useState(null);
@@ -57,6 +57,7 @@ function LayoutContent({ children, currentPageName }) {
     { nameKey: 'nav.solutions', icon: Shield, path: 'About' },
     { nameKey: 'nav.pricing', icon: Activity, path: 'Pricing' },
     { nameKey: 'nav.contact', icon: Mail, path: 'Contact' },
+    { name: 'Learn', icon: FileText, path: 'PublicDocumentation' },
   ];
 
   // User Portal Navigation (Authenticated Regular Users)
@@ -66,14 +67,16 @@ function LayoutContent({ children, currentPageName }) {
     { name: 'Web3', icon: Globe, path: 'Web3Dashboard' },
     { nameKey: 'nav.compliance', icon: Shield, path: 'UserCompliance' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials' },
-    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' }
+    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' },
+    { name: 'Documentation', icon: FileText, path: 'UserDocumentation' }
   ];
 
   // Admin Portal Navigation (Admins Only)
   const adminPortalPages = [
     { nameKey: 'nav.dashboard', icon: Shield, path: 'AdminDashboard' },
     { name: 'Billing', icon: Activity, path: 'BillingAdmin' },
-    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' }
+    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' },
+    { name: 'Docs', icon: FileText, path: 'AdminDocumentation' }
   ];
 
   // CLEAR SEPARATION: Marketing vs Portal navigation
