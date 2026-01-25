@@ -16,6 +16,22 @@ const AdminDocumentation = () => {
     }));
   };
 
+  const MermaidDiagram = ({ id, chart }) => {
+    React.useEffect(() => {
+      try {
+        mermaid.contentLoaderContent(document.querySelector(`#${id}`));
+      } catch (e) {
+        console.error('Mermaid render error:', e);
+      }
+    }, [id]);
+
+    return (
+      <div className="flex justify-center my-6 bg-white p-6 rounded-lg border border-gray-200 overflow-x-auto">
+        <div id={id} className="mermaid">{chart}</div>
+      </div>
+    );
+  };
+
   const SectionHeader = ({ title, section }) => (
     <button
       onClick={() => toggleSection(section)}
