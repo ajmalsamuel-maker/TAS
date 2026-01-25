@@ -15,33 +15,15 @@ const AdminDocumentation = () => {
 
   const MermaidDiagram = ({ id, chart }) => {
     useEffect(() => {
-      const loadMermaid = async () => {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
-        script.async = true;
-        script.onload = async () => {
-          if (window.mermaid) {
-            window.mermaid.initialize({ startOnLoad: false, theme: 'default' });
-            const diagramId = `mermaid-${id}`;
-            const element = document.getElementById(diagramId);
-            if (element) {
-              element.textContent = chart;
-              await window.mermaid.render(diagramId, chart).then(result => {
-                element.innerHTML = result.svg;
-              });
-            }
-          }
-        };
-        if (!document.querySelector('script[src*="mermaid"]')) {
-          document.body.appendChild(script);
-        }
-      };
-      loadMermaid();
+      if (typeof window !== 'undefined' && window.mermaid) {
+        window.mermaid.initialize({ startOnLoad: true, theme: 'default' });
+        window.mermaid.contentLoaderContent();
+      }
     }, [id, chart]);
 
     return (
       <div className="flex justify-center my-6 bg-white p-6 rounded-lg border border-gray-200 overflow-x-auto">
-        <div id={`mermaid-${id}`} className="mermaid" />
+        <div className="mermaid">{chart}</div>
       </div>
     );
   };
