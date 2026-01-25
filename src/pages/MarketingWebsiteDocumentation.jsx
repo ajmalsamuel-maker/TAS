@@ -465,23 +465,23 @@ const MarketingWebsiteDocumentation = () => {
                 </p>
 
                 <div className="space-y-4">
-                  <div className="bg-green-50 p-4 rounded border-l-4 border-green-600">
-                    <p className="font-bold">Educational Content</p>
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <p className="font-bold">📚 Educational Content</p>
                     <p className="text-sm mt-2">Blog posts, whitepapers, guides on compliance topics (KYB 101, AML screening best practices, LEI overview)</p>
                     <p className="text-xs text-gray-600 mt-2">SEO Target: High-volume keywords (10K+ searches/month)</p>
                   </div>
-                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                    <p className="font-bold">Thought Leadership</p>
+                  <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                    <p className="font-bold">🎯 Thought Leadership</p>
                     <p className="text-sm mt-2">Industry reports, regulatory analysis, predictions on compliance trends</p>
                     <p className="text-xs text-gray-600 mt-2">Audience: C-suite, decision makers, industry publications</p>
                   </div>
-                  <div className="bg-purple-50 p-4 rounded border-l-4 border-purple-600">
-                    <p className="font-bold">Product Content</p>
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <p className="font-bold">⚙️ Product Content</p>
                     <p className="text-sm mt-2">API documentation, feature guides, integration tutorials</p>
                     <p className="text-xs text-gray-600 mt-2">Audience: Developers, technical teams, API users</p>
                   </div>
-                  <div className="bg-amber-50 p-4 rounded border-l-4 border-amber-600">
-                    <p className="font-bold">Sales Enablement</p>
+                  <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                    <p className="font-bold">📊 Sales Enablement</p>
                     <p className="text-sm mt-2">Case studies, ROI calculators, competitor comparisons, customer testimonials</p>
                     <p className="text-xs text-gray-600 mt-2">Audience: Prospects in decision stage, sales team</p>
                   </div>
