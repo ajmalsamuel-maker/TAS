@@ -13,19 +13,20 @@ const AdminDocumentation = () => {
     }));
   };
 
-  const MermaidDiagram = ({ id: diagramId, chart }) => {
+  const MermaidDiagram = ({ id: diagramId = `diagram-${Math.random()}`, chart }) => {
     const containerRef = React.useRef(null);
 
     useEffect(() => {
-      const renderDiagram = () => {
+      const renderDiagram = async () => {
         if (window.mermaid && containerRef.current) {
-          window.mermaid.initialize({ 
-            startOnLoad: false, 
-            theme: 'default',
-            securityLevel: 'loose',
-            flowchart: { useMaxWidth: true }
-          });
-          window.mermaid.render(`mermaid-${diagramId}`, chart).then(result => {
+          try {
+            window.mermaid.initialize({ 
+              startOnLoad: false, 
+              theme: 'default',
+              securityLevel: 'loose',
+              flowchart: { useMaxWidth: true }
+            });
+            const result = await window.mermaid.render(`diagram-${diagramId}`, chart);
             if (containerRef.current) {
               containerRef.current.innerHTML = result.svg;
               const svg = containerRef.current.querySelector('svg');
@@ -35,7 +36,9 @@ const AdminDocumentation = () => {
                 svg.style.minHeight = '400px';
               }
             }
-          });
+          } catch (err) {
+            console.error('Mermaid render error:', err);
+          }
         }
       };
 
@@ -52,7 +55,7 @@ const AdminDocumentation = () => {
 
     return (
       <div className="flex justify-center my-8 bg-white p-8 rounded-lg border border-gray-200 overflow-x-auto">
-        <div ref={containerRef} key={diagramId} className="w-full" style={{ minHeight: '400px' }} />
+        <div ref={containerRef} className="w-full" style={{ minHeight: '400px' }} />
       </div>
     );
   };
