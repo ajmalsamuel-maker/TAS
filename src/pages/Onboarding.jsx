@@ -29,7 +29,6 @@ export default function Onboarding() {
       .then(currentUser => {
         if (currentUser) {
           setUser(currentUser);
-          setShowForm(true); // Auto-show form for authenticated users
         } else {
           // Redirect to login if not authenticated
           base44.auth.redirectToLogin(createPageUrl('Onboarding'));
