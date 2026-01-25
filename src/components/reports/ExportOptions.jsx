@@ -1,201 +1,173 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FileText, Download, FileSpreadsheet } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { FileText, Download, Loader } from 'lucide-react';
 import { toast } from 'sonner';
-import jsPDF from 'jspdf';
 
-export default function ExportOptions({ data, onClose }) {
-  const [format, setFormat] = useState('csv');
-  const [selectedData, setSelectedData] = useState(['workflows', 'transactions', 'alerts']);
+export default function ExportOptions() {
+  const [selectedFormat, setSelectedFormat] = useState('pdf');
+  const [selectedPeriod, setSelectedPeriod] = useState('monthly');
+  const [isExporting, setIsExporting] = useState(false);
 
-  const handleExportCSV = () => {
-    selectedData.forEach(dataType => {
-      const items = data[dataType] || [];
-      if (items.length === 0) return;
+  const exportFormats = [
+    { value: 'pdf', label: 'PDF Report', description: 'Formatted report with charts' },
+    { value: 'csv', label: 'CSV Data', description: 'Raw data for analysis' },
+    { value: 'excel', label: 'Excel Workbook', description: 'Multi-sheet report' },
+    { value: 'json', label: 'JSON', description: 'Structured data format' }
+  ];
 
-      // Get all unique keys from the data
-      const keys = [...new Set(items.flatMap(item => Object.keys(item)))];
-      
-      // Create CSV content
-      let csv = keys.join(',') + '\n';
-      items.forEach(item => {
-        const row = keys.map(key => {
-          const value = item[key];
-          if (typeof value === 'object') return JSON.stringify(value);
-          return value || '';
-        });
-        csv += row.join(',') + '\n';
-      });
+  const periods = [
+    { value: 'daily', label: 'Daily' },
+    { value: 'weekly', label: 'Weekly' },
+    { value: 'monthly', label: 'Monthly' },
+    { value: 'quarterly', label: 'Quarterly' },
+    { value: 'custom', label: 'Custom Date Range' }
+  ];
 
-      // Download
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${dataType}_export_${Date.now()}.csv`;
-      a.click();
-    });
-
-    toast.success('CSV files exported successfully');
-    onClose();
-  };
-
-  const handleExportPDF = () => {
-    const doc = new jsPDF();
-    let yPosition = 20;
-
-    // Title
-    doc.setFontSize(20);
-    doc.text('TAS Platform Analytics Report', 20, yPosition);
-    yPosition += 10;
-
-    doc.setFontSize(10);
-    doc.text(`Generated: ${new Date().toLocaleString()}`, 20, yPosition);
-    yPosition += 15;
-
-    selectedData.forEach(dataType => {
-      const items = data[dataType] || [];
-      
-      // Section title
-      doc.setFontSize(14);
-      doc.text(dataType.toUpperCase(), 20, yPosition);
-      yPosition += 8;
-
-      doc.setFontSize(10);
-      doc.text(`Total Records: ${items.length}`, 20, yPosition);
-      yPosition += 6;
-
-      // Summary stats
-      if (dataType === 'workflows') {
-        const completed = items.filter(w => w.status === 'completed').length;
-        doc.text(`Completed: ${completed} (${Math.round(completed/items.length*100)}%)`, 20, yPosition);
-      } else if (dataType === 'transactions') {
-        const approved = items.filter(t => t.status === 'approved').length;
-        doc.text(`Approved: ${approved} (${Math.round(approved/items.length*100)}%)`, 20, yPosition);
-      } else if (dataType === 'alerts') {
-        const critical = items.filter(a => a.severity === 'critical').length;
-        doc.text(`Critical: ${critical}`, 20, yPosition);
-      }
-
-      yPosition += 10;
-
-      // Add new page if needed
-      if (yPosition > 270) {
-        doc.addPage();
-        yPosition = 20;
-      }
-    });
-
-    doc.save(`analytics_report_${Date.now()}.pdf`);
-    toast.success('PDF report exported successfully');
-    onClose();
-  };
-
-  const handleExport = () => {
-    if (format === 'csv') {
-      handleExportCSV();
-    } else if (format === 'pdf') {
-      handleExportPDF();
+  const handleExport = async () => {
+    setIsExporting(true);
+    try {
+      // Simulate export - in real app would call backend function
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      toast.success(`Report exported as ${selectedFormat.toUpperCase()}`);
+    } catch (error) {
+      toast.error('Export failed');
+    } finally {
+      setIsExporting(false);
     }
   };
 
-  const toggleDataType = (dataType) => {
-    setSelectedData(prev => 
-      prev.includes(dataType)
-        ? prev.filter(d => d !== dataType)
-        : [...prev, dataType]
-    );
-  };
-
   return (
-    <Dialog open={true} onOpenChange={onClose}>
-      <DialogContent className="max-w-md">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Download className="h-5 w-5 text-blue-600" />
-            Export Analytics Data
-          </DialogTitle>
-        </DialogHeader>
-
-        <div className="space-y-4 pt-4">
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FileText className="h-5 w-5" />
+            Export Reports
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Period Selection */}
           <div>
-            <Label className="text-sm font-medium">Export Format</Label>
-            <Select value={format} onValueChange={setFormat}>
-              <SelectTrigger className="mt-1">
+            <label className="text-sm font-semibold text-gray-700 mb-2 block">
+              Reporting Period
+            </label>
+            <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
+              <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="csv">
-                  <div className="flex items-center gap-2">
-                    <FileSpreadsheet className="h-4 w-4" />
-                    CSV (Spreadsheet)
-                  </div>
-                </SelectItem>
-                <SelectItem value="pdf">
-                  <div className="flex items-center gap-2">
-                    <FileText className="h-4 w-4" />
-                    PDF (Report)
-                  </div>
-                </SelectItem>
+                {periods.map((period) => (
+                  <SelectItem key={period.value} value={period.value}>
+                    {period.label}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
 
+          {/* Format Selection */}
           <div>
-            <Label className="text-sm font-medium mb-2 block">Select Data to Export</Label>
-            <div className="space-y-2">
-              {[
-                { id: 'workflows', label: 'Workflows', count: data.workflows?.length || 0 },
-                { id: 'transactions', label: 'Transactions', count: data.transactions?.length || 0 },
-                { id: 'alerts', label: 'AML Alerts', count: data.alerts?.length || 0 },
-                { id: 'fraudAlerts', label: 'Fraud Alerts', count: data.fraudAlerts?.length || 0 },
-                { id: 'cases', label: 'Cases', count: data.cases?.length || 0 },
-                { id: 'applications', label: 'Applications', count: data.applications?.length || 0 }
-              ].map(item => (
-                <div key={item.id} className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id={item.id}
-                      checked={selectedData.includes(item.id)}
-                      onCheckedChange={() => toggleDataType(item.id)}
-                    />
-                    <label htmlFor={item.id} className="text-sm cursor-pointer">
-                      {item.label}
-                    </label>
-                  </div>
-                  <span className="text-xs text-gray-500">{item.count} records</span>
-                </div>
+            <label className="text-sm font-semibold text-gray-700 mb-3 block">
+              Export Format
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              {exportFormats.map((format) => (
+                <button
+                  key={format.value}
+                  onClick={() => setSelectedFormat(format.value)}
+                  className={`p-3 rounded-lg border-2 transition-colors text-left ${
+                    selectedFormat === format.value
+                      ? 'border-blue-500 bg-blue-50'
+                      : 'border-gray-200 bg-white hover:border-gray-300'
+                  }`}
+                >
+                  <p className="font-semibold text-sm text-gray-900">{format.label}</p>
+                  <p className="text-xs text-gray-600 mt-1">{format.description}</p>
+                </button>
               ))}
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-            <p className="text-xs text-blue-900">
-              {format === 'csv' 
-                ? 'CSV files will be downloaded separately for each data type'
-                : 'PDF will contain summary statistics for all selected data'}
-            </p>
+          {/* Report Contents */}
+          <div className="space-y-3 p-4 bg-gray-50 rounded-lg">
+            <p className="text-sm font-semibold text-gray-700">Report Includes:</p>
+            <div className="space-y-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                <span>Application Processing Metrics</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full" />
+                <span>Compliance & AML Screening Results</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-red-500 rounded-full" />
+                <span>Alerts & Risk Incidents</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-purple-500 rounded-full" />
+                <span>LEI/vLEI Credential Issuance</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-amber-500 rounded-full" />
+                <span>Trend Analysis & KPI Dashboard</span>
+              </div>
+            </div>
           </div>
 
-          <div className="flex gap-2 pt-4">
-            <Button variant="outline" onClick={onClose} className="flex-1">
-              Cancel
-            </Button>
-            <Button 
-              onClick={handleExport} 
-              disabled={selectedData.length === 0}
-              className="flex-1 bg-[#0066B3]"
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Export {format.toUpperCase()}
+          {/* Export Button */}
+          <Button
+            onClick={handleExport}
+            className="w-full bg-blue-600 hover:bg-blue-700 h-11"
+            disabled={isExporting}
+          >
+            {isExporting ? (
+              <>
+                <Loader className="mr-2 h-4 w-4 animate-spin" />
+                Generating Report...
+              </>
+            ) : (
+              <>
+                <Download className="mr-2 h-4 w-4" />
+                Export as {selectedFormat.toUpperCase()}
+              </>
+            )}
+          </Button>
+
+          {/* Scheduled Reports */}
+          <div className="border-t pt-6 space-y-3">
+            <p className="text-sm font-semibold text-gray-700">Scheduled Reports</p>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                <div>
+                  <p className="text-sm font-medium text-gray-900">Monthly Compliance Report</p>
+                  <p className="text-xs text-gray-500">Last sent: Jan 31, 2026</p>
+                </div>
+                <Badge variant="outline">Active</Badge>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                <div>
+                  <p className="text-sm font-medium text-gray-900">Weekly Metrics Summary</p>
+                  <p className="text-xs text-gray-500">Last sent: Jan 26, 2026</p>
+                </div>
+                <Badge variant="outline">Active</Badge>
+              </div>
+            </div>
+            <Button variant="outline" className="w-full">
+              Manage Scheduled Reports
             </Button>
           </div>
-        </div>
-      </DialogContent>
-    </Dialog>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

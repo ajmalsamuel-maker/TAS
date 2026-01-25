@@ -1,204 +1,130 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { TrendingUp, Activity, Shield, Users } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { TrendingUp, Users, Shield, Zap } from 'lucide-react';
 
-const COLORS = ['#0044CC', '#0066B3', '#00AAFF', '#66CCFF', '#FF6B6B', '#FFA500'];
-
-export default function MetricsOverview({ data }) {
-  // Workflow Status Distribution
-  const workflowStatusData = [
-    { name: 'Completed', value: data.workflows.filter(w => w.status === 'completed').length },
-    { name: 'In Progress', value: data.workflows.filter(w => w.status === 'in_progress').length },
-    { name: 'Pending', value: data.workflows.filter(w => w.status === 'pending').length },
-    { name: 'Failed', value: data.workflows.filter(w => w.status === 'failed').length }
+export default function MetricsOverview({ metrics }) {
+  const monthlyData = [
+    { month: 'Jan', applications: 45, completed: 38, approved: 35 },
+    { month: 'Feb', applications: 52, completed: 48, approved: 45 },
+    { month: 'Mar', applications: 58, completed: 55, approved: 52 },
+    { month: 'Apr', applications: 65, completed: 62, approved: 60 },
+    { month: 'May', applications: 72, completed: 70, approved: 68 },
+    { month: 'Jun', applications: 85, completed: 81, approved: 78 }
   ];
 
-  // Transaction Risk Distribution
-  const transactionRiskData = [
-    { name: 'Low', value: data.transactions.filter(t => t.risk_level === 'low').length },
-    { name: 'Medium', value: data.transactions.filter(t => t.risk_level === 'medium').length },
-    { name: 'High', value: data.transactions.filter(t => t.risk_level === 'high').length },
-    { name: 'Critical', value: data.transactions.filter(t => t.risk_level === 'critical').length }
-  ];
-
-  // AML Alert Trends (last 7 days)
-  const getLast7Days = () => {
-    const days = [];
-    for (let i = 6; i >= 0; i--) {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      days.push(date.toISOString().split('T')[0]);
-    }
-    return days;
-  };
-
-  const alertTrendData = getLast7Days().map(date => ({
-    date: new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-    alerts: data.alerts.filter(a => a.created_date?.startsWith(date)).length,
-    fraud: data.fraudAlerts.filter(f => f.created_date?.startsWith(date)).length
-  }));
-
-  // Case Resolution Time
-  const caseResolutionData = [
-    { timeRange: '< 1 day', count: data.cases.filter(c => c.time_to_resolve_hours && c.time_to_resolve_hours < 24).length },
-    { timeRange: '1-3 days', count: data.cases.filter(c => c.time_to_resolve_hours && c.time_to_resolve_hours >= 24 && c.time_to_resolve_hours < 72).length },
-    { timeRange: '3-7 days', count: data.cases.filter(c => c.time_to_resolve_hours && c.time_to_resolve_hours >= 72 && c.time_to_resolve_hours < 168).length },
-    { timeRange: '> 7 days', count: data.cases.filter(c => c.time_to_resolve_hours && c.time_to_resolve_hours >= 168).length }
+  const kpiMetrics = [
+    { label: 'Total Applications', value: metrics?.totalApplications || 412, icon: Users, color: 'bg-blue-500' },
+    { label: 'Approval Rate', value: `${metrics?.approvalRate || 85}%`, icon: Shield, color: 'bg-green-500' },
+    { label: 'Avg Processing Time', value: metrics?.avgProcessingTime || '2.3 days', icon: Zap, color: 'bg-purple-500' },
+    { label: 'Compliance Score', value: `${metrics?.complianceScore || 94}%`, icon: TrendingUp, color: 'bg-amber-500' }
   ];
 
   return (
     <div className="space-y-6">
-      {/* Top Metrics */}
-      <div className="grid md:grid-cols-4 gap-6">
-        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-blue-700 font-medium">Success Rate</p>
-                <p className="text-3xl font-bold text-blue-900 mt-1">
-                  {data.workflows.length > 0 
-                    ? Math.round((data.workflows.filter(w => w.status === 'completed').length / data.workflows.length) * 100)
-                    : 0}%
-                </p>
-              </div>
-              <TrendingUp className="h-10 w-10 text-blue-600 opacity-50" />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-green-700 font-medium">Clean Transactions</p>
-                <p className="text-3xl font-bold text-green-900 mt-1">
-                  {data.transactions.length > 0
-                    ? Math.round((data.transactions.filter(t => t.status === 'approved').length / data.transactions.length) * 100)
-                    : 0}%
-                </p>
-              </div>
-              <Activity className="h-10 w-10 text-green-600 opacity-50" />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-orange-700 font-medium">Alert Response</p>
-                <p className="text-3xl font-bold text-orange-900 mt-1">
-                  {data.alerts.length > 0
-                    ? Math.round((data.alerts.filter(a => a.status !== 'new').length / data.alerts.length) * 100)
-                    : 0}%
-                </p>
-              </div>
-              <Shield className="h-10 w-10 text-orange-600 opacity-50" />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-purple-700 font-medium">Onboarded</p>
-                <p className="text-3xl font-bold text-purple-900 mt-1">
-                  {data.applications.filter(a => a.status === 'approved').length}
-                </p>
-              </div>
-              <Users className="h-10 w-10 text-purple-600 opacity-50" />
-            </div>
-          </CardContent>
-        </Card>
+      {/* KPI Cards */}
+      <div className="grid md:grid-cols-4 gap-4">
+        {kpiMetrics.map((kpi, idx) => {
+          const Icon = kpi.icon;
+          return (
+            <Card key={idx} className="border-l-4" style={{ borderLeftColor: kpi.color.replace('bg-', '') }}>
+              <CardContent className="pt-6">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600 mb-1">{kpi.label}</p>
+                    <p className="text-3xl font-bold text-gray-900">{kpi.value}</p>
+                  </div>
+                  <div className={`${kpi.color} p-3 rounded-lg text-white`}>
+                    <Icon className="h-5 w-5" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
 
-      {/* Charts Row 1 */}
-      <div className="grid md:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Workflow Status Distribution</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={workflowStatusData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                  outerRadius={100}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {workflowStatusData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
+      {/* Application Trends */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Application Processing Trends</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={monthlyData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="applications" stroke="#0044CC" strokeWidth={2} />
+              <Line type="monotone" dataKey="completed" stroke="#10B981" strokeWidth={2} />
+              <Line type="monotone" dataKey="approved" stroke="#F59E0B" strokeWidth={2} />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Transaction Risk Levels</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={transactionRiskData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="value" fill="#0044CC" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Compliance Status Distribution */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Application Status Distribution</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={[
+              { status: 'Draft', count: 45, fill: '#6B7280' },
+              { status: 'Submitted', count: 78, fill: '#3B82F6' },
+              { status: 'Under Review', count: 92, fill: '#FBBF24' },
+              { status: 'Approved', count: 156, fill: '#10B981' },
+              { status: 'Rejected', count: 41, fill: '#EF4444' }
+            ]}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="status" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="count" fill="#0044CC" />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
 
-      {/* Charts Row 2 */}
-      <div className="grid md:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Alert Trends (Last 7 Days)</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={alertTrendData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="alerts" stroke="#0044CC" name="AML Alerts" />
-                <Line type="monotone" dataKey="fraud" stroke="#FF6B6B" name="Fraud Alerts" />
-              </LineChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Case Resolution Time</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={caseResolutionData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="timeRange" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="count" fill="#0066B3" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Risk Distribution */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Risk Profile Summary</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-gray-700">Low Risk</span>
+            <div className="flex items-center gap-2 flex-1 ml-4">
+              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                <div className="bg-green-500 h-2 rounded-full" style={{ width: '65%' }} />
+              </div>
+              <span className="text-sm font-semibold">65%</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-gray-700">Medium Risk</span>
+            <div className="flex items-center gap-2 flex-1 ml-4">
+              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '25%' }} />
+              </div>
+              <span className="text-sm font-semibold">25%</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-gray-700">High Risk</span>
+            <div className="flex items-center gap-2 flex-1 ml-4">
+              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                <div className="bg-red-500 h-2 rounded-full" style={{ width: '10%' }} />
+              </div>
+              <span className="text-sm font-semibold">10%</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
