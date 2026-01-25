@@ -471,56 +471,63 @@ const AdminDocumentation = () => {
               <div>
                 <h3 className="text-lg font-bold mb-4">Invoice Lifecycle & State Machine</h3>
                 <p className="mb-4 leading-relaxed">
-                  Invoices in TAS follow a well-defined state machine that prevents invalid transitions and ensures data consistency. Understanding this lifecycle is essential for debugging billing issues and auditing invoice history.
+                  Invoices in TAS follow a well-defined state machine that prevents invalid transitions and ensures data consistency. Understanding this lifecycle is essential for debugging billing issues, auditing invoice history, and ensuring regulatory compliance. The state machine design guarantees that invoices cannot transition through illegal paths—for example, an invoice cannot move directly from Draft to Paid, and a Cancelled invoice can never be reopened. This immutable audit trail is required by financial regulations and enables forensic analysis of billing disputes.
                 </p>
-                <div className="bg-slate-100 p-6 rounded-lg overflow-x-auto">
-                  <pre className="text-xs font-mono whitespace-pre-wrap">
-{`┌─────────────────────────────────────────────────────────────┐
-│                    NORMAL FLOW                               │
-├─────────────────────────────────────────────────────────────┤
+                <p className="mb-4 leading-relaxed">
+                  The <strong>Draft State</strong> is the initial state when an invoice is created. During this phase, the invoice can be freely edited, deleted, or issued. No communication is sent to the customer, and the invoice has no legal standing. This allows administrators to correct errors before the invoice becomes official.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  The <strong>Issued State</strong> represents the moment when an invoice becomes officially binding. The system records the issue_date, and an audit log entry is created. If auto-email is enabled in BillingSettings, the invoice is automatically emailed to the customer, transitioning to the Sent state. Once issued, the invoice can only be modified through amendments (creating adjustment line items) rather than direct edits, maintaining an immutable audit trail.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  The <strong>Viewed State</strong> indicates that the customer has opened and reviewed the invoice. This is tracked via the viewed_at timestamp, enabling reporting on how quickly customers review their invoices. If an invoice is issued but payment arrives before the customer views it, the invoice transitions directly to Paid, skipping the Viewed state.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  The <strong>Overdue State</strong> is automatically triggered by a scheduled job when the current date exceeds the due_date. However, the invoice still expects payment—this state is a flag indicating that payment is late. When payment arrives, the invoice transitions to Paid regardless of how overdue it was. Overdue invoices trigger reminder notifications to the customer.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  The <strong>Paid State</strong> is the completion state indicating that full payment has been received. The system records the paid_date, payment_method, and transaction_id. Paid invoices are marked as finalized and are available for export to accounting systems. This state is terminal—no further transitions are possible.
+                </p>
+                <MermaidDiagram 
+                  id="invoice-lifecycle"
+                  chart={`stateDiagram-v2
+              [*] --> Draft
 
-┌──────┐    admin clicks     ┌────────┐   auto-email (if    ┌─────┐
-│Draft │────── "issue" ─────→│Issued  │──  enabled)  ──→│Sent │
-└──────┘                    └────────┘                     └─────┘
-                                │                             │
-                                │ (if paid immediately)       │ (customer opens)
-                                └─────────────────────────────→ Viewed
-                                                                │
-                                                   (payment received)
-                                                                ↓
-                                                            ┌─────┐
-                                                            │Paid ✓│ FINAL
-                                                            └─────┘
+              Draft --> Issued: issue()<br/>System: Record issue_date
+              Draft --> Deleted: delete()<br/>Admin action
 
-├─────────────────────────────────────────────────────────────┤
-│                   ALTERNATE FLOWS                            │
-├─────────────────────────────────────────────────────────────┤
+              Issued --> Sent: auto_email_enabled<br/>System: Send email
+              Issued --> Viewed: payment received before<br/>customer views
+              Issued --> Paid: payment_received
+              Issued --> Overdue: due_date passed
+              Issued --> Cancelled: admin cancel()
 
-From ANY state:
-    (admin clicks "cancel")
-         ↓
-    ┌──────────┐
-    │Cancelled │ FINAL (Void)
-    └──────────┘
+              Sent --> Viewed: customer opens<br/>Track viewed_at
+              Sent --> Paid: payment_received
+              Sent --> Overdue: due_date passed
+              Sent --> Cancelled: admin cancel()
 
-From Issued/Sent/Viewed:
-    (due date passes)
-         ↓
-    ┌─────────┐
-    │Overdue ⚠│ (still expecting payment)
-    └────┬────┘
-         │ (payment received)
-         ↓
-    Paid ✓ FINAL
+              Viewed --> Paid: payment_received
+              Viewed --> Overdue: due_date passed
+              Viewed --> Cancelled: admin cancel()
 
-From Draft:
-    (admin clicks "delete")
-         ↓
-    ┌─────────┐
-    │Deleted  │ FINAL (only for drafts)
-    └─────────┘`}
-                  </pre>
-                </div>
+              Overdue --> Paid: payment_received<br/>Late payment accepted
+              Overdue --> Cancelled: admin cancel()
+
+              Paid --> [*]
+              Cancelled --> [*]
+              Deleted --> [*]
+
+              note right of Draft
+              Mutable state
+              Can be edited or deleted
+              end note
+
+              note right of Paid
+              Terminal state
+              No further transitions
+              end note`}
+                />
               </div>
             </CardContent>
           )}
