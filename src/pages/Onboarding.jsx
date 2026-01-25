@@ -93,9 +93,21 @@ export default function Onboarding() {
         ...formData,
         status: 'submitted'
       });
-      
+
       toast.success('Application submitted successfully!');
-      
+
+      // Auto-create organization
+      try {
+        await base44.functions.invoke('createOrganization', {
+          applicationId: response.id,
+          organizationName: formData.legal_name
+        });
+        toast.success('Organization created');
+      } catch (orgError) {
+        console.error('Organization creation error:', orgError);
+        toast.error('Organization creation failed');
+      }
+
       // Trigger AML screening in the background
       setIsRunningAml(true);
       try {
