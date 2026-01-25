@@ -21,10 +21,10 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
-                LEI/vLEI Infrastructure as a Service
+                Enterprise Identity & Compliance Platform
               </h1>
               <p className="text-xl lg:text-2xl text-gray-700 mb-6 leading-relaxed">
-                Multi-tenant B2B SaaS platform enabling businesses to issue verified credentials and automate compliance workflows
+                Multi-tenant B2B SaaS platform for LEI/vLEI issuance, KYB verification, and automated compliance workflows
               </p>
               <p className="text-lg text-gray-600 mb-8">
                 Purpose-built for banks, fintechs, DAOs, supply chains, and enterprises
