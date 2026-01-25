@@ -25,8 +25,8 @@ function LayoutContent({ children, currentPageName }) {
       if (userData?.organization_id && !userData?.is_platform_admin) {
         const orgs = await base44.entities.Organization.filter({ id: userData.organization_id });
         const org = orgs[0];
-        
-        if (org && !org.onboarding_completed && currentPageName !== 'OrganizationOnboarding') {
+
+        if (org && !org.onboarding_completed && currentPageName !== 'OrganizationOnboarding' && currentPageName !== 'Onboarding') {
           window.location.href = createPageUrl('OrganizationOnboarding');
         }
       }
