@@ -160,21 +160,21 @@ const PublicDocumentation = () => {
 
               <MermaidDiagram 
                 chart={`graph LR
-                  A["Submit"] B["KYB"] C["AML"] D["Check"]
-                  E["LEI"] F["vLEI"]
+                  A["Submit Data"]
+                  B["KYB Check"]
+                  C["AML Screen"]
+                  D["Decision"]
+                  E["LEI Issued"]
+                  F["vLEI Ready"]
 
-                  A --> B
-                  B --> C
-                  C --> D
-                  D --> E
-                  E --> F
+                  A --> B --> C --> D --> E --> F
 
-                  style A fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
-                  style B fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
-                  style C fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
-                  style D fill:#fff3e0,stroke:#0066B3,stroke-width:2px
-                  style E fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
-                  style F fill:#e3f2fd,stroke:#0066B3,stroke-width:2px`}
+                  style A fill:#e3f2fd,stroke:#0066B3,stroke-width:1px
+                  style B fill:#e3f2fd,stroke:#0066B3,stroke-width:1px
+                  style C fill:#e3f2fd,stroke:#0066B3,stroke-width:1px
+                  style D fill:#fff3e0,stroke:#0066B3,stroke-width:1px
+                  style E fill:#e3f2fd,stroke:#0066B3,stroke-width:1px
+                  style F fill:#e3f2fd,stroke:#0066B3,stroke-width:1px`}
               />
             </CardContent>
           )}
