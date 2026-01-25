@@ -23,20 +23,54 @@ const ENTITY_LEGAL_FORMS = [
   { code: '8888', label: 'Non-classified Business Entity', description: 'Entity type cannot be classified' }
 ];
 
-const COUNTRY_CODES = [
-  { code: 'US', name: 'United States' },
-  { code: 'GB', name: 'United Kingdom' },
-  { code: 'FR', name: 'France' },
-  { code: 'DE', name: 'Germany' },
-  { code: 'CN', name: 'China' },
-  { code: 'IN', name: 'India' },
-  { code: 'JP', name: 'Japan' },
-  { code: 'SG', name: 'Singapore' },
-  { code: 'HK', name: 'Hong Kong' },
-  { code: 'AE', name: 'United Arab Emirates' },
-  { code: 'AU', name: 'Australia' },
-  { code: 'CA', name: 'Canada' },
-].sort((a, b) => a.name.localeCompare(b.name));
+// Extract all countries from registry map with their names
+const COUNTRY_NAMES = {
+  'US': 'United States', 'GB': 'United Kingdom', 'FR': 'France', 'DE': 'Germany', 'CN': 'China',
+  'IN': 'India', 'JP': 'Japan', 'SG': 'Singapore', 'HK': 'Hong Kong', 'AE': 'United Arab Emirates',
+  'AU': 'Australia', 'CA': 'Canada', 'DZ': 'Algeria', 'AO': 'Angola', 'BJ': 'Benin',
+  'BW': 'Botswana', 'BF': 'Burkina Faso', 'BI': 'Burundi', 'CM': 'Cameroon', 'CV': 'Cape Verde',
+  'CF': 'Central African Republic', 'TD': 'Chad', 'KM': 'Comoros', 'CG': 'Congo', 'CD': 'Democratic Republic of Congo',
+  'CI': 'Côte d\'Ivoire', 'DJ': 'Djibouti', 'EG': 'Egypt', 'GQ': 'Equatorial Guinea', 'ER': 'Eritrea',
+  'ET': 'Ethiopia', 'GA': 'Gabon', 'GM': 'Gambia', 'GH': 'Ghana', 'GN': 'Guinea',
+  'GW': 'Guinea-Bissau', 'KE': 'Kenya', 'LS': 'Lesotho', 'LR': 'Liberia', 'LY': 'Libya',
+  'MG': 'Madagascar', 'MW': 'Malawi', 'ML': 'Mali', 'MR': 'Mauritania', 'MU': 'Mauritius',
+  'MA': 'Morocco', 'MZ': 'Mozambique', 'NA': 'Namibia', 'NE': 'Niger', 'NG': 'Nigeria',
+  'RW': 'Rwanda', 'ST': 'São Tomé and Príncipe', 'SN': 'Senegal', 'SC': 'Seychelles', 'SL': 'Sierra Leone',
+  'SO': 'Somalia', 'ZA': 'South Africa', 'SS': 'South Sudan', 'SD': 'Sudan', 'SZ': 'Eswatini',
+  'TZ': 'Tanzania', 'TG': 'Togo', 'TN': 'Tunisia', 'UG': 'Uganda', 'ZM': 'Zambia',
+  'ZW': 'Zimbabwe', 'AG': 'Antigua and Barbuda', 'AR': 'Argentina', 'BS': 'Bahamas', 'BB': 'Barbados',
+  'BZ': 'Belize', 'BO': 'Bolivia', 'BR': 'Brazil', 'CL': 'Chile', 'CO': 'Colombia',
+  'CR': 'Costa Rica', 'CU': 'Cuba', 'DM': 'Dominica', 'DO': 'Dominican Republic', 'EC': 'Ecuador',
+  'SV': 'El Salvador', 'GD': 'Grenada', 'GT': 'Guatemala', 'GY': 'Guyana', 'HT': 'Haiti',
+  'HN': 'Honduras', 'JM': 'Jamaica', 'MX': 'Mexico', 'NI': 'Nicaragua', 'PA': 'Panama',
+  'PY': 'Paraguay', 'PE': 'Peru', 'KN': 'Saint Kitts and Nevis', 'LC': 'Saint Lucia',
+  'VC': 'Saint Vincent and the Grenadines', 'SR': 'Suriname', 'TT': 'Trinidad and Tobago',
+  'UY': 'Uruguay', 'VE': 'Venezuela', 'AF': 'Afghanistan', 'AM': 'Armenia', 'AZ': 'Azerbaijan',
+  'BH': 'Bahrain', 'BD': 'Bangladesh', 'BT': 'Bhutan', 'BN': 'Brunei', 'KH': 'Cambodia',
+  'GE': 'Georgia', 'ID': 'Indonesia', 'IR': 'Iran', 'IQ': 'Iraq', 'IL': 'Israel',
+  'JO': 'Jordan', 'KZ': 'Kazakhstan', 'KW': 'Kuwait', 'KG': 'Kyrgyzstan', 'LA': 'Laos',
+  'LB': 'Lebanon', 'MO': 'Macau', 'MY': 'Malaysia', 'MV': 'Maldives', 'MN': 'Mongolia',
+  'MM': 'Myanmar', 'NP': 'Nepal', 'KP': 'North Korea', 'OM': 'Oman', 'PK': 'Pakistan',
+  'PS': 'Palestine', 'PH': 'Philippines', 'QA': 'Qatar', 'SA': 'Saudi Arabia', 'KR': 'South Korea',
+  'LK': 'Sri Lanka', 'SY': 'Syria', 'TW': 'Taiwan', 'TJ': 'Tajikistan', 'TH': 'Thailand',
+  'TL': 'Timor-Leste', 'TR': 'Turkey', 'TM': 'Turkmenistan', 'UZ': 'Uzbekistan', 'VN': 'Vietnam',
+  'YE': 'Yemen', 'AX': 'Åland Islands', 'AT': 'Austria', 'BY': 'Belarus', 'BE': 'Belgium',
+  'BA': 'Bosnia and Herzegovina', 'BG': 'Bulgaria', 'HR': 'Croatia', 'CY': 'Cyprus', 'CZ': 'Czechia',
+  'DK': 'Denmark', 'EE': 'Estonia', 'FI': 'Finland', 'GR': 'Greece', 'HU': 'Hungary',
+  'IS': 'Iceland', 'IE': 'Ireland', 'IT': 'Italy', 'XK': 'Kosovo', 'LV': 'Latvia',
+  'LI': 'Liechtenstein', 'LT': 'Lithuania', 'LU': 'Luxembourg', 'MT': 'Malta', 'MD': 'Moldova',
+  'MC': 'Monaco', 'ME': 'Montenegro', 'NL': 'Netherlands', 'MK': 'North Macedonia', 'NO': 'Norway',
+  'PL': 'Poland', 'PT': 'Portugal', 'RO': 'Romania', 'RU': 'Russia', 'RS': 'Serbia',
+  'SK': 'Slovakia', 'SI': 'Slovenia', 'ES': 'Spain', 'SE': 'Sweden', 'CH': 'Switzerland',
+  'UA': 'Ukraine', 'AL': 'Albania', 'AD': 'Andorra', 'AU': 'Australia', 'FJ': 'Fiji',
+  'KI': 'Kiribati', 'MH': 'Marshall Islands', 'FM': 'Micronesia', 'NR': 'Nauru',
+  'NZ': 'New Zealand', 'PW': 'Palau', 'PG': 'Papua New Guinea', 'WS': 'Samoa',
+  'SB': 'Solomon Islands', 'TO': 'Tonga', 'TV': 'Tuvalu', 'VU': 'Vanuatu'
+};
+
+const COUNTRY_CODES = Object.keys(COUNTRY_REGISTRY_MAP)
+  .map(code => ({ code, name: COUNTRY_NAMES[code] || code }))
+  .sort((a, b) => a.name.localeCompare(b.name));
 
 export default function OnboardingStep3({ formData, setFormData }) {
   const updateField = (field, value) => {
