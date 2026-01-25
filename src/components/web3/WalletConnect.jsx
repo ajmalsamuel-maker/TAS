@@ -8,11 +8,20 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Wallet, Link as LinkIcon, CheckCircle, XCircle, Copy } from 'lucide-react';
 import { toast } from 'sonner';
 
-const WALLET_TYPES = [
-  { id: 'metamask', name: 'MetaMask', icon: '🦊' },
-  { id: 'walletconnect', name: 'WalletConnect', icon: '🔗' },
-  { id: 'coinbase', name: 'Coinbase Wallet', icon: '💼' },
-  { id: 'phantom', name: 'Phantom', icon: '👻' }
+const HOT_WALLETS = [
+  { id: 'metamask', name: 'MetaMask', icon: '🦊', chains: ['Ethereum', 'Polygon', 'Arbitrum'] },
+  { id: 'walletconnect', name: 'WalletConnect', icon: '🔗', chains: ['Multi-chain'] },
+  { id: 'coinbase', name: 'Coinbase Wallet', icon: '💼', chains: ['Ethereum', 'Polygon', 'Optimism'] },
+  { id: 'phantom', name: 'Phantom', icon: '👻', chains: ['Solana', 'Ethereum'] },
+  { id: 'ledger', name: 'Ledger Live', icon: '🔐', chains: ['Ethereum', 'Polygon', 'Solana'] },
+  { id: 'trezor', name: 'Trezor', icon: '🔑', chains: ['Ethereum', 'Bitcoin'] }
+];
+
+const COLD_WALLETS = [
+  { id: 'ledger-hardware', name: 'Ledger Nano', icon: '📱', security: 'Hardware', chains: ['Ethereum', 'Bitcoin', 'Solana'] },
+  { id: 'trezor-hardware', name: 'Trezor Model T', icon: '🖥️', security: 'Hardware', chains: ['Ethereum', 'Bitcoin'] },
+  { id: 'coldcard', name: 'ColdCard', icon: '🧊', security: 'Hardware', chains: ['Bitcoin'] },
+  { id: 'keepkey', name: 'KeepKey', icon: '🛡️', security: 'Hardware', chains: ['Ethereum', 'Bitcoin'] }
 ];
 
 const DID_METHODS = [
