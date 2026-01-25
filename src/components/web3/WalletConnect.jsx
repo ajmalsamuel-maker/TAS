@@ -192,16 +192,37 @@ export default function WalletConnect({ user }) {
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
-              <h3 className="text-sm font-medium mb-3">Connect Wallet</h3>
+              <h3 className="text-sm font-medium mb-4">🔥 Hot Wallets (Online Access)</h3>
+              <p className="text-xs text-gray-600 mb-3">Connected wallets for active trading and regular use</p>
               <div className="grid grid-cols-2 gap-3">
-                {WALLET_TYPES.map(wallet => (
+                {HOT_WALLETS.map(wallet => (
                   <button
                     key={wallet.id}
                     onClick={() => simulateWalletConnect(wallet.id)}
-                    className="p-4 border rounded-lg hover:bg-white hover:shadow-md transition-all text-left"
+                    className="p-4 border rounded-lg hover:bg-white hover:shadow-md transition-all text-left bg-orange-50 border-orange-200"
                   >
                     <div className="text-2xl mb-2">{wallet.icon}</div>
                     <p className="text-sm font-medium">{wallet.name}</p>
+                    <p className="text-xs text-gray-600 mt-1">{wallet.chains.join(', ')}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t pt-6">
+              <h3 className="text-sm font-medium mb-4">❄️ Cold Wallets (Offline Storage)</h3>
+              <p className="text-xs text-gray-600 mb-3">Hardware wallets for maximum security and cold storage</p>
+              <div className="grid grid-cols-2 gap-3">
+                {COLD_WALLETS.map(wallet => (
+                  <button
+                    key={wallet.id}
+                    onClick={() => simulateWalletConnect(wallet.id)}
+                    className="p-4 border rounded-lg hover:bg-white hover:shadow-md transition-all text-left bg-blue-50 border-blue-200"
+                  >
+                    <div className="text-2xl mb-2">{wallet.icon}</div>
+                    <p className="text-sm font-medium">{wallet.name}</p>
+                    <p className="text-xs text-gray-500 mt-1">{wallet.security}</p>
+                    <p className="text-xs text-gray-600 mt-1">{wallet.chains.join(', ')}</p>
                   </button>
                 ))}
               </div>
