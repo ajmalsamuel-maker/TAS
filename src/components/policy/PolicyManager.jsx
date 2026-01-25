@@ -361,6 +361,19 @@ export default function PolicyManager() {
           </CardContent>
         </Card>
       )}
+
+      {/* Schedule Workflow Modal */}
+      {schedulingPolicy && (
+        <ScheduleWorkflowModal
+          open={scheduleModalOpen}
+          onClose={() => {
+            setScheduleModalOpen(false);
+            setSchedulingPolicy(null);
+          }}
+          policyId={schedulingPolicy.id}
+          policyName={schedulingPolicy.name}
+        />
+      )}
     </div>
   );
 }
