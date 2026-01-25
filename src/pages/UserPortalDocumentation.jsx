@@ -412,41 +412,46 @@ const UserPortalDocumentation = () => {
               <div>
                 <h3 className="text-lg font-bold mb-4">Understanding Alerts</h3>
                 <table className="w-full text-sm border-collapse">
-                  <thead className="bg-gray-800 text-white">
-                    <tr>
-                      <th className="border p-3 text-left">Alert Type</th>
-                      <th className="border p-3 text-left">Severity</th>
-                      <th className="border p-3 text-left">What It Means</th>
-                      <th className="border p-3 text-center">Action Required</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="hover:bg-red-50">
-                      <td className="border p-3 font-semibold">Sanctions Hit</td>
-                      <td className="border p-3"><span className="bg-red-100 text-red-800 px-2 py-1 rounded">CRITICAL</span></td>
-                      <td className="border p-3">Business matched OFAC or EU sanctions list</td>
-                      <td className="border p-3 text-center">Immediate contact required</td>
-                    </tr>
-                    <tr className="hover:bg-orange-50">
-                      <td className="border p-3 font-semibold">PEP Match</td>
-                      <td className="border p-3"><span className="bg-orange-100 text-orange-800 px-2 py-1 rounded">HIGH</span></td>
-                      <td className="border p-3">Beneficial owner is politically exposed person</td>
-                      <td className="border p-3 text-center">Provide documentation</td>
-                    </tr>
-                    <tr className="hover:bg-yellow-50">
-                      <td className="border p-3 font-semibold">Adverse Media</td>
-                      <td className="border p-3"><span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">MEDIUM</span></td>
-                      <td className="border p-3">News article mentions business in negative context</td>
-                      <td className="border p-3 text-center">Review and respond</td>
-                    </tr>
-                    <tr className="hover:bg-blue-50">
-                      <td className="border p-3 font-semibold">Registry Change</td>
-                      <td className="border p-3"><span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">LOW</span></td>
-                      <td className="border p-3">Business registry information was updated</td>
-                      <td className="border p-3 text-center">Review notice</td>
-                    </tr>
-                  </tbody>
-                </table>
+                   <thead className="bg-gray-800 text-white">
+                     <tr>
+                       <th className="border p-3 text-left">Alert Type</th>
+                       <th className="border p-3 text-center">Severity</th>
+                       <th className="border p-3 text-left">What It Means</th>
+                       <th className="border p-3 text-left">Action Required</th>
+                       <th className="border p-3 text-center">SLA</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr className="hover:bg-red-50">
+                       <td className="border p-3 font-semibold text-red-600">Sanctions Hit</td>
+                       <td className="border p-3 text-center"><span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-bold">CRITICAL</span></td>
+                       <td className="border p-3">Business matched OFAC, UN, or EU sanctions list with high confidence</td>
+                       <td className="border p-3">Contact immediately • Provide proof of legitimate business • May be escalated to authorities</td>
+                       <td className="border p-3 text-center">2 hours</td>
+                     </tr>
+                     <tr className="hover:bg-orange-50">
+                       <td className="border p-3 font-semibold text-orange-600">PEP Match</td>
+                       <td className="border p-3 text-center"><span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-bold">HIGH</span></td>
+                       <td className="border p-3">Beneficial owner or director matches PEP (Politically Exposed Person) database</td>
+                       <td className="border p-3">Provide documentation • Explain business relationship • Enhanced due diligence may be required</td>
+                       <td className="border p-3 text-center">1 day</td>
+                     </tr>
+                     <tr className="hover:bg-yellow-50">
+                       <td className="border p-3 font-semibold text-yellow-600">Adverse Media</td>
+                       <td className="border p-3 text-center"><span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-bold">MEDIUM</span></td>
+                       <td className="border p-3">News article or report mentions business in potentially negative context (fraud, investigation, etc.)</td>
+                       <td className="border p-3">Review article • Respond with context • Provide clarifying documentation if needed</td>
+                       <td className="border p-3 text-center">3 days</td>
+                     </tr>
+                     <tr className="hover:bg-blue-50">
+                       <td className="border p-3 font-semibold text-blue-600">Registry Update</td>
+                       <td className="border p-3 text-center"><span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-bold">LOW</span></td>
+                       <td className="border p-3">Business registry shows updated information (address, directors, ownership changes)</td>
+                       <td className="border p-3">Review notice • Confirm accuracy • Update profile if information changed</td>
+                       <td className="border p-3 text-center">5 days</td>
+                     </tr>
+                   </tbody>
+                 </table>
               </div>
             </CardContent>
           )}
