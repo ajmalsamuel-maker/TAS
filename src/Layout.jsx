@@ -29,13 +29,14 @@ function LayoutContent({ children, currentPageName }) {
         if (org && !org.onboarding_completed && currentPageName !== 'OrganizationOnboarding') {
           window.location.href = createPageUrl('OrganizationOnboarding');
         }
-        }).catch(() => {
-        // Not authenticated - only redirect to AdminCp if trying to access admin pages
-        if (currentPageName === 'AdminDashboard') {
-          window.location.href = createPageUrl('AdminCp');
-        }
       }
-    }).catch(() => setUser(null));
+    }).catch(() => {
+      setUser(null);
+      // Not authenticated - only redirect to AdminCp if trying to access admin pages
+      if (currentPageName === 'AdminDashboard') {
+        window.location.href = createPageUrl('AdminCp');
+      }
+    });
   }, [currentPageName]);
 
   const handleLogout = () => {
