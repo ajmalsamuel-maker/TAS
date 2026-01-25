@@ -474,31 +474,31 @@ const AdminDocumentation = () => {
                 <MermaidDiagram 
                   id="billing-flow"
                   chart={`graph LR
-    A["🔄 Workflow Completes<br/>KYB/AML/Document/LEI"] 
-    B["📊 Emit Event<br/>service_type<br/>org_id<br/>cost_amount"]
-    C["💳 Billing Service<br/>Consume event<br/>Update UsageMetric"]
-    D["📈 Real-Time Dashboard<br/>Customer sees updated<br/>usage & remaining"]
-    
-    E["📅 Billing Date Triggered<br/>Scheduled job"]
-    F["🧮 Aggregate Usage<br/>Sum all events<br/>in billing period"]
-    G["💰 Calculate Charges<br/>Base + overage<br/>Apply credits"]
-    H["📄 Generate Invoice<br/>Create line items<br/>Save as Draft"]
-    I["✉️ Issue & Send<br/>if auto_email<br/>enabled"]
-    J["💵 Payment Received<br/>Update invoice status<br/>Reconcile in accounting"]
-    
-    A --> B --> C --> D
-    E --> F --> G --> H --> I --> J
-    
-    style A fill:#e3f2fd
-    style B fill:#e3f2fd
-    style C fill:#fff3cd
-    style D fill:#d4edda
-    style E fill:#f8d7da
-    style F fill:#f8d7da
-    style G fill:#fff3cd
-    style H fill:#e2e3e5
-    style I fill:#d1ecf1
-    style J fill:#d4edda`}
+                    A["Workflow Completes<br/>KYB/AML/Document/LEI"] 
+                    B["Emit Event<br/>service_type<br/>org_id<br/>cost_amount"]
+                    C["Billing Service<br/>Consume event<br/>Update UsageMetric"]
+                    D["Real-Time Dashboard<br/>Customer sees updated<br/>usage & remaining"]
+
+                    E["Billing Date Triggered<br/>Scheduled job"]
+                    F["Aggregate Usage<br/>Sum all events<br/>in billing period"]
+                    G["Calculate Charges<br/>Base + overage<br/>Apply credits"]
+                    H["Generate Invoice<br/>Create line items<br/>Save as Draft"]
+                    I["Issue & Send<br/>if auto_email<br/>enabled"]
+                    J["Payment Received<br/>Update invoice status<br/>Reconcile in accounting"]
+
+                    A --> B --> C --> D
+                    E --> F --> G --> H --> I --> J
+
+                    style A fill:#e3f2fd
+                    style B fill:#e3f2fd
+                    style C fill:#fff3cd
+                    style D fill:#d4edda
+                    style E fill:#f8d7da
+                    style F fill:#f8d7da
+                    style G fill:#fff3cd
+                    style H fill:#e2e3e5
+                    style I fill:#d1ecf1
+                    style J fill:#d4edda`}
                 />
               </div>
 
