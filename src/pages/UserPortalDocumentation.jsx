@@ -471,41 +471,46 @@ const UserPortalDocumentation = () => {
                 </p>
 
                 <table className="w-full text-sm border-collapse mt-6">
-                  <thead className="bg-gray-800 text-white">
-                    <tr>
-                      <th className="border p-3 text-left">Role</th>
-                      <th className="border p-3 text-left">Permissions</th>
-                      <th className="border p-3 text-left">Can Invite</th>
-                      <th className="border p-3 text-left">Typical User</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="hover:bg-purple-50">
-                      <td className="border p-3 font-semibold">Organization Admin</td>
-                      <td className="border p-3">All permissions, user management, billing, integrations</td>
-                      <td className="border p-3">✅ Any role</td>
-                      <td className="border p-3">Owner, Finance Manager</td>
-                    </tr>
-                    <tr className="hover:bg-blue-50">
-                      <td className="border p-3 font-semibold">Compliance Officer</td>
-                      <td className="border p-3">Alert investigation, case management, reporting</td>
-                      <td className="border p-3">❌ No</td>
-                      <td className="border p-3">Compliance Manager, Investigator</td>
-                    </tr>
-                    <tr className="hover:bg-green-50">
-                      <td className="border p-3 font-semibold">API User</td>
-                      <td className="border p-3">API access, webhook management, read compliance data</td>
-                      <td className="border p-3">❌ No</td>
-                      <td className="border p-3">Developer, Integration Engineer</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50">
-                      <td className="border p-3 font-semibold">Viewer</td>
-                      <td className="border p-3">Read-only access to dashboard and reports</td>
-                      <td className="border p-3">❌ No</td>
-                      <td className="border p-3">Auditor, Stakeholder</td>
-                    </tr>
-                  </tbody>
-                </table>
+                   <thead className="bg-gray-800 text-white">
+                     <tr>
+                       <th className="border p-3 text-left">Role</th>
+                       <th className="border p-3 text-left">Key Permissions</th>
+                       <th className="border p-3 text-center">Can Invite</th>
+                       <th className="border p-3 text-left">Cannot Access</th>
+                       <th className="border p-3 text-left">Typical User</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr className="hover:bg-purple-50">
+                       <td className="border p-3 font-semibold text-purple-600">Organization Admin</td>
+                       <td className="border p-3">All permissions • User & role management • Billing & payments • API key generation • Integrations • Settings</td>
+                       <td className="border p-3 text-center">✅ All</td>
+                       <td className="border p-3">Nothing (full access)</td>
+                       <td className="border p-3">Owner, Finance Manager, CEO</td>
+                     </tr>
+                     <tr className="hover:bg-blue-50">
+                       <td className="border p-3 font-semibold text-blue-600">Compliance Officer</td>
+                       <td className="border p-3">Alert investigation • Case management • Comment on cases • Reporting • View compliance data</td>
+                       <td className="border p-3 text-center">❌</td>
+                       <td className="border p-3">Billing, User management, Settings, API access</td>
+                       <td className="border p-3">Compliance Manager, Investigator, Risk Officer</td>
+                     </tr>
+                     <tr className="hover:bg-green-50">
+                       <td className="border p-3 font-semibold text-green-600">API User</td>
+                       <td className="border p-3">API access • Webhook management • Read verification data • View own API keys</td>
+                       <td className="border p-3 text-center">❌</td>
+                       <td className="border p-3">Billing, User management, Case review, Settings</td>
+                       <td className="border p-3">Developer, Integration Engineer, System Admin</td>
+                     </tr>
+                     <tr className="hover:bg-indigo-50">
+                       <td className="border p-3 font-semibold text-indigo-600">Viewer</td>
+                       <td className="border p-3">Read-only access to dashboard • View reports • View compliance status</td>
+                       <td className="border p-3 text-center">❌</td>
+                       <td className="border p-3">Everything except read • Cannot make any changes</td>
+                       <td className="border p-3">Auditor, Stakeholder, Board Member, Consultant</td>
+                     </tr>
+                   </tbody>
+                 </table>
               </div>
 
               <div>
