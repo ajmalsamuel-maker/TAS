@@ -19,7 +19,7 @@ const AdminDocumentation = () => {
       className="w-full flex items-center justify-between p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
     >
       <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
-      {expandedSections[section] ? <ChevronDown /> : <ChevronRight />}
+      {expandedSections[section] ? <ChevronDown className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
     </button>
   );
 
