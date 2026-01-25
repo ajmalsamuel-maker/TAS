@@ -13,33 +13,31 @@ const AdminDocumentation = () => {
     }));
   };
 
-  const MermaidDiagram = ({ id, chart }) => {
+  const MermaidDiagram = ({ id: diagramId, chart }) => {
     const containerRef = React.useRef(null);
 
     useEffect(() => {
-      const loadMermaid = async () => {
-        if (!window.mermaid) {
-          const script = document.createElement('script');
-          script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
-          script.async = true;
-          script.onload = () => {
-            if (window.mermaid && containerRef.current) {
-              window.mermaid.initialize({ startOnLoad: false, theme: 'default' });
-              window.mermaid.render(`mermaid-${id}`, chart).then(result => {
-                containerRef.current.innerHTML = result.svg;
-              });
-            }
-          };
-          document.head.appendChild(script);
-        } else if (window.mermaid && containerRef.current) {
+      const renderDiagram = () => {
+        if (window.mermaid && containerRef.current) {
           window.mermaid.initialize({ startOnLoad: false, theme: 'default' });
-          window.mermaid.render(`mermaid-${id}`, chart).then(result => {
-            containerRef.current.innerHTML = result.svg;
+          window.mermaid.render(`mermaid-${diagramId}`, chart).then(result => {
+            if (containerRef.current) {
+              containerRef.current.innerHTML = result.svg;
+            }
           });
         }
       };
-      loadMermaid();
-    }, [chart, id]);
+
+      if (!window.mermaid) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+        script.async = true;
+        script.onload = renderDiagram;
+        document.head.appendChild(script);
+      } else {
+        renderDiagram();
+      }
+    }, [chart, diagramId]);
 
     return (
       <div className="flex justify-center my-6 bg-white p-6 rounded-lg border border-gray-200 overflow-x-auto">
