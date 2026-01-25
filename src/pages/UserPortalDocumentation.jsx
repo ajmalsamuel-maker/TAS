@@ -215,47 +215,53 @@ const UserPortalDocumentation = () => {
               <div>
                 <h3 className="text-lg font-bold mb-4">Workflow Status Definitions</h3>
                 <table className="w-full text-sm border-collapse">
-                  <thead className="bg-gray-800 text-white">
-                    <tr>
-                      <th className="border p-3 text-left">Status</th>
-                      <th className="border p-3 text-left">Meaning</th>
-                      <th className="border p-3 text-left">What You Can Do</th>
-                      <th className="border p-3 text-center">Duration</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="hover:bg-blue-50">
-                      <td className="border p-3 font-semibold text-blue-600">Pending</td>
-                      <td className="border p-3">Awaiting KYB data processing</td>
-                      <td className="border p-3">Monitor dashboard, check status updates</td>
-                      <td className="border p-3 text-center">0-30 min</td>
-                    </tr>
-                    <tr className="hover:bg-yellow-50">
-                      <td className="border p-3 font-semibold text-yellow-600">In Progress</td>
-                      <td className="border p-3">Active verification processing</td>
-                      <td className="border p-3">View detailed logs, submit additional docs if requested</td>
-                      <td className="border p-3 text-center">30 min-4 hrs</td>
-                    </tr>
-                    <tr className="hover:bg-purple-50">
-                      <td className="border p-3 font-semibold text-purple-600">Needs Review</td>
-                      <td className="border p-3">Manual review required</td>
-                      <td className="border p-3">Provide additional documentation, answer questions</td>
-                      <td className="border p-3 text-center">1-3 days</td>
-                    </tr>
-                    <tr className="hover:bg-green-50">
-                      <td className="border p-3 font-semibold text-green-600">Completed</td>
-                      <td className="border p-3">Verification successful</td>
-                      <td className="border p-3">Access credentials, enable API access</td>
-                      <td className="border p-3 text-center">—</td>
-                    </tr>
-                    <tr className="hover:bg-red-50">
-                      <td className="border p-3 font-semibold text-red-600">Failed</td>
-                      <td className="border p-3">Could not verify business</td>
-                      <td className="border p-3">Resubmit with corrected information</td>
-                      <td className="border p-3 text-center">—</td>
-                    </tr>
-                  </tbody>
-                </table>
+                   <thead className="bg-gray-800 text-white">
+                     <tr>
+                       <th className="border p-3 text-left">Status</th>
+                       <th className="border p-3 text-left">Meaning</th>
+                       <th className="border p-3 text-left">What You Can Do</th>
+                       <th className="border p-3 text-center">Duration</th>
+                       <th className="border p-3 text-center">Next Step</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr className="hover:bg-blue-50">
+                       <td className="border p-3 font-semibold text-blue-600">Submitted</td>
+                       <td className="border p-3">Application received and queued for processing</td>
+                       <td className="border p-3">Monitor dashboard, check email for updates</td>
+                       <td className="border p-3 text-center">0-5 min</td>
+                       <td className="border p-3 text-center">→ KYB Check</td>
+                     </tr>
+                     <tr className="hover:bg-yellow-50">
+                       <td className="border p-3 font-semibold text-yellow-600">In Progress</td>
+                       <td className="border p-3">Active KYB/AML processing</td>
+                       <td className="border p-3">View detailed activity logs, submit docs if requested</td>
+                       <td className="border p-3 text-center">30 min-2 hrs</td>
+                       <td className="border p-3 text-center">→ Review or Approved</td>
+                     </tr>
+                     <tr className="hover:bg-purple-50">
+                       <td className="border p-3 font-semibold text-purple-600">Manual Review</td>
+                       <td className="border p-3">High-confidence AML match or document verification</td>
+                       <td className="border p-3">Provide additional documentation, respond to queries</td>
+                       <td className="border p-3 text-center">1-3 days</td>
+                       <td className="border p-3 text-center">→ Approved or Rejected</td>
+                     </tr>
+                     <tr className="hover:bg-green-50">
+                       <td className="border p-3 font-semibold text-green-600">Approved</td>
+                       <td className="border p-3">Verification complete, credentials ready</td>
+                       <td className="border p-3">Download LEI, vLEI credentials, enable API access</td>
+                       <td className="border p-3 text-center">—</td>
+                       <td className="border p-3 text-center">→ Monitoring</td>
+                     </tr>
+                     <tr className="hover:bg-red-50">
+                       <td className="border p-3 font-semibold text-red-600">Rejected</td>
+                       <td className="border p-3">Could not verify business legitimacy</td>
+                       <td className="border p-3">Resubmit with corrected/new information</td>
+                       <td className="border p-3 text-center">—</td>
+                       <td className="border p-3 text-center">→ New Application</td>
+                     </tr>
+                   </tbody>
+                 </table>
               </div>
             </CardContent>
           )}
