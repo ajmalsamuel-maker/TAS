@@ -18,7 +18,6 @@ import PublicDocumentation from './pages/PublicDocumentation';
 import UserCompliance from './pages/UserCompliance';
 import UserCredentials from './pages/UserCredentials';
 import UserDashboard from './pages/UserDashboard';
-import UserDocumentation from './pages/UserDocumentation';
 import UserLogin from './pages/UserLogin';
 import UserSettings from './pages/UserSettings';
 import Web3Dashboard from './pages/Web3Dashboard';
@@ -49,7 +48,6 @@ export const PAGES = {
     "UserCompliance": UserCompliance,
     "UserCredentials": UserCredentials,
     "UserDashboard": UserDashboard,
-    "UserDocumentation": UserDocumentation,
     "UserLogin": UserLogin,
     "UserSettings": UserSettings,
     "Web3Dashboard": Web3Dashboard,
