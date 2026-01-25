@@ -21,13 +21,18 @@ function LayoutContent({ children, currentPageName }) {
     base44.auth.me().then(async (userData) => {
       setUser(userData);
       
-      // Check if user needs to complete organization onboarding
-      if (userData?.organization_id && !userData?.is_platform_admin) {
-        const orgs = await base44.entities.Organization.filter({ id: userData.organization_id });
-        const org = orgs[0];
+      // Check if user needs to complete organization onboarding (only after LEI application is submitted)
+      if (userData?.organization_id && !userData?.is_platform_admin && currentPageName !== 'Onboarding') {
+        const apps = await base44.entities.OnboardingApplication.filter({ created_by: userData.email });
+        const hasSubmittedApp = apps.some(app => ['submitted', 'under_review', 'approved', 'rejected'].includes(app.status));
+        
+        if (hasSubmittedApp) {
+          const orgs = await base44.entities.Organization.filter({ id: userData.organization_id });
+          const org = orgs[0];
 
-        if (org && !org.onboarding_completed && currentPageName !== 'OrganizationOnboarding' && currentPageName !== 'Onboarding') {
-          window.location.href = createPageUrl('OrganizationOnboarding');
+          if (org && !org.onboarding_completed && currentPageName !== 'OrganizationOnboarding') {
+            window.location.href = createPageUrl('OrganizationOnboarding');
+          }
         }
       }
     }).catch(() => {
