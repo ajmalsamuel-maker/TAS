@@ -43,6 +43,13 @@ export default function OnboardingStep3({ formData, setFormData }) {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  // Get registries for selected country
+  const getRegistriesForCountry = (countryCode) => {
+    return COUNTRY_REGISTRY_MAP[countryCode] || [];
+  };
+
+  const registriesForCountry = getRegistriesForCountry(formData.registry_country_code);
+
   return (
     <div className="space-y-6">
       <div>
