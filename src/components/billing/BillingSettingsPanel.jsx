@@ -46,10 +46,12 @@ export default function BillingSettingsPanel() {
   }
 
   const integrations = [
-    { name: 'QuickBooks Online', key: 'quickbooks', connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) },
-    { name: 'Xero', key: 'xero', connected: settings?.accounting_integrations?.some(i => i.system === 'xero' && i.is_connected) },
-    { name: 'Sage', key: 'sage', connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) },
-    { name: 'NetSuite', key: 'netsuite', connected: settings?.accounting_integrations?.some(i => i.system === 'netsuite' && i.is_connected) }
+    { name: 'QuickBooks Online', key: 'quickbooks', icon: '📊', connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) },
+    { name: 'Xero', key: 'xero', icon: '📈', connected: settings?.accounting_integrations?.some(i => i.system === 'xero' && i.is_connected) },
+    { name: 'Sage', key: 'sage', icon: '💼', connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) },
+    { name: 'NetSuite', key: 'netsuite', icon: '🌐', connected: settings?.accounting_integrations?.some(i => i.system === 'netsuite' && i.is_connected) },
+    { name: 'Oracle Finance Cloud', key: 'oracle', icon: '🏢', connected: settings?.accounting_integrations?.some(i => i.system === 'oracle' && i.is_connected) },
+    { name: 'SAP', key: 'sap', icon: '⚙️', connected: settings?.accounting_integrations?.some(i => i.system === 'sap' && i.is_connected) }
   ];
 
   return (
@@ -142,7 +144,7 @@ export default function BillingSettingsPanel() {
             {integrations.map((integration) => (
               <div key={integration.key} className="flex items-center justify-between p-3 border rounded-lg">
                 <div>
-                  <p className="font-semibold">{integration.name}</p>
+                  <p className="font-semibold">{integration.icon} {integration.name}</p>
                   <p className="text-sm text-gray-600">Auto-export invoices</p>
                 </div>
                 <div className="flex items-center gap-2">
