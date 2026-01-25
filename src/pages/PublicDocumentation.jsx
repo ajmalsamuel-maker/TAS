@@ -294,32 +294,50 @@ const PublicDocumentation = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                  <p className="font-bold text-blue-900 mb-2">🏦 Banks & Financial Institutions</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Building2 className="h-5 w-5 text-blue-600" />
+                    <p className="font-bold text-blue-900">Banks & Financial Institutions</p>
+                  </div>
                   <p className="text-sm">Streamline KYB/AML for account opening. Move from weeks to hours. Meet regulatory requirements automatically.</p>
                 </div>
 
                 <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                  <p className="font-bold text-blue-900 mb-2">💳 Payment & Fintech</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Zap className="h-5 w-5 text-blue-600" />
+                    <p className="font-bold text-blue-900">Payment & Fintech</p>
+                  </div>
                   <p className="text-sm">Verify merchants instantly via API. Reduce fraud. Meet PCI DSS compliance. Enable faster merchant onboarding.</p>
                 </div>
 
                 <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
-                  <p className="font-bold text-indigo-900 mb-2">⛓️ DeFi & Web3 Protocols</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Globe className="h-5 w-5 text-indigo-600" />
+                    <p className="font-bold text-indigo-900">DeFi & Web3 Protocols</p>
+                  </div>
                   <p className="text-sm">Issue vLEI credentials for DAO governance, institutional DeFi, and blockchain identity. Bridge traditional and crypto finance.</p>
                 </div>
 
                 <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
-                  <p className="font-bold text-indigo-900 mb-2">🏢 Enterprise & Supply Chain</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <FileCheck className="h-5 w-5 text-indigo-600" />
+                    <p className="font-bold text-indigo-900">Enterprise & Supply Chain</p>
+                  </div>
                   <p className="text-sm">Verify suppliers globally. Manage vendor compliance. Reduce counterparty risk.</p>
                 </div>
 
                 <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                  <p className="font-bold text-blue-900 mb-2">🛡️ Insurance & Risk</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Shield className="h-5 w-5 text-blue-600" />
+                    <p className="font-bold text-blue-900">Insurance & Risk</p>
+                  </div>
                   <p className="text-sm">Underwrite faster with verified identity data. Reduce fraud. Speed up claims processing.</p>
                 </div>
 
                 <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
-                  <p className="font-bold text-indigo-900 mb-2">⚖️ Legal & Compliance</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <ShieldAlert className="h-5 w-5 text-indigo-600" />
+                    <p className="font-bold text-indigo-900">Legal & Compliance</p>
+                  </div>
                   <p className="text-sm">Automate due diligence. Reduce manual document review by 80%. Cut legal costs dramatically.</p>
                 </div>
               </div>
