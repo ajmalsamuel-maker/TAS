@@ -99,50 +99,52 @@ export default function AdminDashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="organizations" className="space-y-6">
-          <TabsList className="bg-white border-2 border-blue-100 p-1">
-            <TabsTrigger value="organizations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Organizations
-            </TabsTrigger>
-            <TabsTrigger value="providers" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Providers
-            </TabsTrigger>
-            <TabsTrigger value="applications" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Applications
-            </TabsTrigger>
-            <TabsTrigger value="workflows" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Workflows
-            </TabsTrigger>
-            <TabsTrigger value="policies" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Policies
-            </TabsTrigger>
-            <TabsTrigger value="users" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Users
-            </TabsTrigger>
-            <TabsTrigger value="translations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Translations
-            </TabsTrigger>
-            <TabsTrigger value="audit" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Audit Log
-            </TabsTrigger>
-            <TabsTrigger value="webhooks" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Webhooks
-            </TabsTrigger>
-            <TabsTrigger value="monitoring" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              AML Monitoring
-            </TabsTrigger>
-            <TabsTrigger value="cases" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Case Management
-            </TabsTrigger>
-            <TabsTrigger value="transactions" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Transactions
-            </TabsTrigger>
-            <TabsTrigger value="fraud" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Fraud Detection
-            </TabsTrigger>
-            <TabsTrigger value="web3" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Web3 Analytics
-            </TabsTrigger>
-          </TabsList>
+          <div className="bg-white border-2 border-blue-100 rounded-lg p-1">
+            <TabsList className="grid grid-cols-3 lg:grid-cols-7 gap-1 h-auto bg-transparent">
+              <TabsTrigger value="organizations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Organizations
+              </TabsTrigger>
+              <TabsTrigger value="applications" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Applications
+              </TabsTrigger>
+              <TabsTrigger value="workflows" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Workflows
+              </TabsTrigger>
+              <TabsTrigger value="policies" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Policies
+              </TabsTrigger>
+              <TabsTrigger value="cases" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Cases
+              </TabsTrigger>
+              <TabsTrigger value="transactions" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Transactions
+              </TabsTrigger>
+              <TabsTrigger value="fraud" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Fraud
+              </TabsTrigger>
+              <TabsTrigger value="monitoring" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                AML
+              </TabsTrigger>
+              <TabsTrigger value="web3" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Web3
+              </TabsTrigger>
+              <TabsTrigger value="providers" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Providers
+              </TabsTrigger>
+              <TabsTrigger value="users" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Users
+              </TabsTrigger>
+              <TabsTrigger value="webhooks" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Webhooks
+              </TabsTrigger>
+              <TabsTrigger value="translations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                i18n
+              </TabsTrigger>
+              <TabsTrigger value="audit" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Audit Log
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           <TabsContent value="organizations">
             <OrganizationManagement />
