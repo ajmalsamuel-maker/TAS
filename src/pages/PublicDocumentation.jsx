@@ -58,8 +58,8 @@ const PublicDocumentation = () => {
     }, [chart]);
 
     return (
-      <div className="flex justify-center my-8 bg-white p-8 rounded-lg border border-gray-200 overflow-x-auto">
-        <div ref={containerRef} className="w-full" style={{ minHeight: '400px' }} />
+      <div className="flex justify-center my-8 bg-white p-6 rounded-lg border border-gray-200 overflow-x-auto">
+        <div ref={containerRef} className="w-full" style={{ minHeight: '220px' }} />
       </div>
     );
   };
@@ -246,20 +246,24 @@ const PublicDocumentation = () => {
 
               <MermaidDiagram 
                 chart={`graph LR
-                  A["Submit"] B["KYB"] C["AML"] D{"Review?"}
-                  E["Check"] F["Approved"] G["Issue"]
+                  A["Submit"] 
+                  B["KYB Check"] 
+                  C["AML Screen"]
+                  D{"Review"}
+                  E["Approved"]
+                  F["Issue Credentials"]
 
                   A --> B --> C --> D
-                  D -->|No| F
-                  D -->|Yes| E --> F --> G
+                  D -->|Yes| E
+                  D -->|No| E
+                  E --> F
 
-                  style A fill:#e3f2fd,stroke:#0066B3
-                  style B fill:#e3f2fd,stroke:#0066B3
-                  style C fill:#e3f2fd,stroke:#0066B3
-                  style D fill:#fff3e0,stroke:#0066B3
-                  style E fill:#fff3e0,stroke:#0066B3
-                  style F fill:#e3f2fd,stroke:#0066B3
-                  style G fill:#e3f2fd,stroke:#0066B3`}
+                  style A fill:#e3f2fd,stroke:#0066B3,stroke-width:1px
+                  style B fill:#e3f2fd,stroke:#0066B3,stroke-width:1px
+                  style C fill:#e3f2fd,stroke:#0066B3,stroke-width:1px
+                  style D fill:#fff3e0,stroke:#0066B3,stroke-width:1px
+                  style E fill:#e3f2fd,stroke:#0066B3,stroke-width:1px
+                  style F fill:#e3f2fd,stroke:#0066B3,stroke-width:1px`}
               />
             </CardContent>
           )}
