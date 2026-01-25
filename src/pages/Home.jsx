@@ -63,77 +63,45 @@ export default function Home() {
             <div className="relative">
               <div className="bg-white backdrop-blur-lg rounded-xl p-8 border border-gray-200 shadow-xl">
                 <h3 className="text-xl font-bold mb-6 text-gray-900">Platform Capabilities</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Building2 className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">99%</span>
-                    </div>
-                    <p className="text-sm font-semibold text-gray-900">KYB Verification</p>
-                    <p className="text-xs text-gray-600 mt-1">Accuracy rate</p>
+                <div className="flex flex-wrap gap-2.5">
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2.5 rounded-full border border-blue-200 hover:border-[#0066B3] transition-all">
+                    <Building2 className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">KYB Verification</span>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Lock className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">24/7</span>
-                    </div>
-                    <p className="text-sm font-semibold text-gray-900">AML Screening</p>
-                    <p className="text-xs text-gray-600 mt-1">Real-time monitoring</p>
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2.5 rounded-full border border-blue-200 hover:border-[#0066B3] transition-all">
+                    <Lock className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">AML Screening</span>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <FileCheck className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">&lt;5s</span>
-                    </div>
-                    <p className="text-sm font-semibold text-gray-900">vLEI Issuance</p>
-                    <p className="text-xs text-gray-600 mt-1">Average time</p>
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2.5 rounded-full border border-blue-200 hover:border-[#0066B3] transition-all">
+                    <FileCheck className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">vLEI Issuance</span>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Activity className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">100%</span>
-                    </div>
-                    <p className="text-sm font-semibold text-gray-900">Transaction Monitoring</p>
-                    <p className="text-xs text-gray-600 mt-1">Coverage</p>
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2.5 rounded-full border border-blue-200 hover:border-[#0066B3] transition-all">
+                    <Activity className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">Transaction Monitoring</span>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <ShieldAlert className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">AI</span>
-                    </div>
-                    <p className="text-sm font-semibold text-gray-900">Fraud Detection</p>
-                    <p className="text-xs text-gray-600 mt-1">Powered</p>
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2.5 rounded-full border border-blue-200 hover:border-[#0066B3] transition-all">
+                    <ShieldAlert className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">Fraud Detection</span>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Fingerprint className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">∞</span>
-                    </div>
-                    <p className="text-sm font-semibold text-gray-900">DID Management</p>
-                    <p className="text-xs text-gray-600 mt-1">Scalable</p>
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2.5 rounded-full border border-blue-200 hover:border-[#0066B3] transition-all">
+                    <Fingerprint className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">DID Management</span>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Zap className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">Auto</span>
-                    </div>
-                    <p className="text-sm font-semibold text-gray-900">Workflow Automation</p>
-                    <p className="text-xs text-gray-600 mt-1">No-code builder</p>
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2.5 rounded-full border border-blue-200 hover:border-[#0066B3] transition-all">
+                    <Zap className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">Workflow Automation</span>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Code className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">REST</span>
-                    </div>
-                    <p className="text-sm font-semibold text-gray-900">Unified API</p>
-                    <p className="text-xs text-gray-600 mt-1">Single integration</p>
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2.5 rounded-full border border-blue-200 hover:border-[#0066B3] transition-all">
+                    <Code className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                    <span className="text-sm font-semibold text-gray-900 whitespace-nowrap">Unified API</span>
                   </div>
                 </div>
                 <div className="mt-6 pt-4 border-t border-gray-200">
