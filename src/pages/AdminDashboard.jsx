@@ -19,6 +19,7 @@ import AMLMonitoringPanel from '../components/admin/AMLMonitoringPanel';
 import PolicyManager from '../components/policy/PolicyManager';
 import CaseQueue from '../components/case/CaseQueue';
 import TransactionMonitoring from '../components/transaction/TransactionMonitoring';
+import FraudDashboard from '../components/fraud/FraudDashboard';
 
 export default function AdminDashboard() {
   const [user, setUser] = React.useState(null);
@@ -130,6 +131,9 @@ export default function AdminDashboard() {
             <TabsTrigger value="transactions" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Transactions
             </TabsTrigger>
+            <TabsTrigger value="fraud" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Fraud Detection
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="providers">
@@ -174,6 +178,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="transactions">
             <TransactionMonitoring />
+          </TabsContent>
+
+          <TabsContent value="fraud">
+            <FraudDashboard />
           </TabsContent>
         </Tabs>
       </div>

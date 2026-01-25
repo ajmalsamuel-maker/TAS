@@ -85,6 +85,13 @@ Deno.serve(async (req) => {
       }
     });
 
+    // Run fraud detection
+    if (triggeredRules.length > 0 || riskScore > 50) {
+      await base44.functions.invoke('detectFraud', {
+        transaction_id: transaction_id
+      });
+    }
+
     return Response.json({
       success: true,
       risk_score: riskScore,
