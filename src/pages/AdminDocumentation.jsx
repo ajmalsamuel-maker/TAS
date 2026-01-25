@@ -41,7 +41,7 @@ const AdminDocumentation = () => {
 
     return (
       <div className="flex justify-center my-6 bg-white p-6 rounded-lg border border-gray-200 overflow-x-auto">
-        <div ref={containerRef} />
+        <div ref={containerRef} key={diagramId} />
       </div>
     );
   };
