@@ -107,15 +107,15 @@ const MarketingWebsiteDocumentation = () => {
                   <p className="font-bold mb-2">Home / Landing</p>
                   <p className="text-sm">Hero section with value prop, problem/solution, three-tier pricing, CTA</p>
                 </div>
-                <div className="bg-green-50 p-4 rounded border-l-4 border-green-600">
+                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
                   <p className="font-bold mb-2">About / Solutions</p>
                   <p className="text-sm">Company mission, team bios, customer logos, use cases by industry</p>
                 </div>
-                <div className="bg-purple-50 p-4 rounded border-l-4 border-purple-600">
+                <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
                   <p className="font-bold mb-2">Pricing</p>
                   <p className="text-sm">Feature comparison, plan details, ROI calculator, FAQ</p>
                 </div>
-                <div className="bg-amber-50 p-4 rounded border-l-4 border-amber-600">
+                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
                   <p className="font-bold mb-2">Documentation / Contact</p>
                   <p className="text-sm">API docs, blog, knowledge base, contact form, sales calendar</p>
                 </div>
