@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { CheckCircle2, ChevronRight, ChevronLeft } from 'lucide-react';
 import { toast } from 'sonner';
-import { createPageUrl } from './utils';
+import { createPageUrl } from '../utils';
 import OrgProfileStep from '../components/onboarding/org/OrgProfileStep';
 import InviteUsersStep from '../components/onboarding/org/InviteUsersStep';
 import BrandingSettingsStep from '../components/onboarding/org/BrandingSettingsStep';
