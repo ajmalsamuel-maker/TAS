@@ -11,7 +11,6 @@ import CrossChainIdentityPanel from '../components/web3/CrossChainIdentityPanel'
 import NFTAuthenticationPanel from '../components/web3/NFTAuthenticationPanel';
 import WalletConnect from '../components/web3/WalletConnect';
 import CredentialIssuer from '../components/web3/CredentialIssuer';
-import ServiceMarketplace from '../components/web3/ServiceMarketplace';
 
 export default function Web3Dashboard() {
   const { data: user } = useQuery({
@@ -78,15 +77,12 @@ export default function Web3Dashboard() {
 
         {/* Main Tabs */}
         <Tabs defaultValue="wallets" className="space-y-6">
-          <TabsList className="bg-white border-2 border-blue-100">
+          <TabsList className="bg-white border-2 border-blue-100 flex-wrap h-auto">
             <TabsTrigger value="wallets" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Wallets & DIDs
             </TabsTrigger>
             <TabsTrigger value="credentials" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Credential Issuer
-            </TabsTrigger>
-            <TabsTrigger value="marketplace" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Marketplace
             </TabsTrigger>
             <TabsTrigger value="dao" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               DAO Identity
@@ -110,10 +106,6 @@ export default function Web3Dashboard() {
             <CredentialIssuer organization={organization} />
           </TabsContent>
 
-          <TabsContent value="marketplace">
-            <ServiceMarketplace />
-          </TabsContent>
-
           <TabsContent value="dao">
             <DAOIdentityPanel user={user} />
           </TabsContent>
@@ -130,6 +122,32 @@ export default function Web3Dashboard() {
             <NFTAuthenticationPanel user={user} />
           </TabsContent>
         </Tabs>
+
+        {/* TAS Integrated Services Banner */}
+        <Card className="mt-8 border-2 border-green-200 bg-gradient-to-r from-green-50 to-emerald-50">
+          <CardHeader className="border-b-2 border-green-200">
+            <CardTitle className="text-lg">TAS Integrated Services</CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <p className="text-sm text-gray-700 mb-4">
+              All Web3 operations are powered by TAS-integrated service providers:
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="bg-white rounded-lg p-3 border border-green-200">
+                <p className="font-semibold text-gray-900 text-sm">LEI & vLEI Issuance</p>
+                <p className="text-xs text-gray-600 mt-1">Powered by Certizen</p>
+              </div>
+              <div className="bg-white rounded-lg p-3 border border-green-200">
+                <p className="font-semibold text-gray-900 text-sm">AML/KYB Verification</p>
+                <p className="text-xs text-gray-600 mt-1">Powered by FTS.Money</p>
+              </div>
+              <div className="bg-white rounded-lg p-3 border border-green-200">
+                <p className="font-semibold text-gray-900 text-sm">Compliance Monitoring</p>
+                <p className="text-xs text-gray-600 mt-1">Integrated via TAS</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Technical Architecture */}
         <Card className="border-2 border-slate-200 shadow-lg">
