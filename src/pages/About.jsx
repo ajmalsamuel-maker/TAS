@@ -212,7 +212,7 @@ export default function About() {
               </Button>
             </Link>
             <Link to={createPageUrl('UserLogin')}>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0066B3] text-lg px-8">
+              <Button size="lg" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0066B3] text-lg px-8">
                 Login to Portal
               </Button>
             </Link>
