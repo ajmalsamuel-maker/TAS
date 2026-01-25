@@ -49,8 +49,7 @@ const UserDocumentationDetailed = () => {
                     The onboarding process guides you through a 5-phase journey to register your business and obtain your Legal Entity Identifier (LEI). The entire process typically takes 30-45 minutes, with verification taking 2-5 business days.
                   </p>
                   <div className="bg-slate-100 p-6 rounded-lg font-mono text-xs overflow-x-auto">
-                    <pre>{`
-User clicks "Start Onboarding"
+                    <pre className="whitespace-pre-wrap">{"User clicks \"Start Onboarding\""}
          ↓
 PHASE 1: COMPANY INFORMATION (5-10 min)
          ├── Legal name (as registered)

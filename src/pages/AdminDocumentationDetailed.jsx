@@ -46,8 +46,7 @@ const AdminDocumentationDetailed = () => {
                 <div>
                   <h3 className="text-lg font-semibold mb-4">Complete System Architecture</h3>
                   <div className="bg-slate-100 p-6 rounded-lg font-mono text-xs overflow-x-auto mb-6">
-                    <pre>{`
-╔════════════════════════════════════════════════════════════════════╗
+                    <pre className="whitespace-pre-wrap">{"╔════════════════════════════════════════════════════════════════════╗"}
 ║                         PRESENTATION LAYER                         ║
 ╠════════════════════════════════════════════════════════════════════╣
 ║  Admin Portal │ User Portal │ Public Website │ Mobile Responsive  ║
