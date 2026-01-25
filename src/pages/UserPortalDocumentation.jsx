@@ -110,19 +110,19 @@ const UserPortalDocumentation = () => {
               <h3 className="text-lg font-bold mb-4">Key Dashboard Sections</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
-                  <p className="font-bold mb-2">Compliance Status</p>
+                  <p className="font-bold mb-2">✅ Compliance Status</p>
                   <p className="text-sm">Real-time status of your verification, AML screening, and credential status</p>
                 </div>
-                <div className="bg-green-50 p-4 rounded border-l-4 border-green-600">
-                  <p className="font-bold mb-2">Active Workflows</p>
+                <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                  <p className="font-bold mb-2">📋 Active Workflows</p>
                   <p className="text-sm">Track KYB verification, AML screening, and document validation progress</p>
                 </div>
-                <div className="bg-purple-50 p-4 rounded border-l-4 border-purple-600">
-                  <p className="font-bold mb-2">Alerts & Actions</p>
+                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                  <p className="font-bold mb-2">⚠️ Alerts & Actions</p>
                   <p className="text-sm">Critical alerts requiring immediate attention and action items</p>
                 </div>
-                <div className="bg-amber-50 p-4 rounded border-l-4 border-amber-600">
-                  <p className="font-bold mb-2">Credentials & LEI</p>
+                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                  <p className="font-bold mb-2">🔐 Credentials & LEI</p>
                   <p className="text-sm">Your issued LEI, vLEI credentials, and verification status</p>
                 </div>
               </div>
