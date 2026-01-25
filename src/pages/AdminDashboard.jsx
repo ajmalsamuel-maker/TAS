@@ -17,8 +17,14 @@ import AuditLogsManagement from '../components/admin/AuditLogsManagement';
 import WebhookManagement from '../components/admin/WebhookManagement';
 import AMLMonitoringPanel from '../components/admin/AMLMonitoringPanel';
 import PolicyManager from '../components/policy/PolicyManager';
+import CaseQueue from '../components/case/CaseQueue';
 
 export default function AdminDashboard() {
+  const [user, setUser] = React.useState(null);
+
+  React.useEffect(() => {
+    base44.auth.me().then(setUser).catch(() => setUser(null));
+  }, []);
   const { data: providers = [] } = useQuery({
     queryKey: ['providers'],
     queryFn: () => base44.entities.Provider.list(),
@@ -117,6 +123,9 @@ export default function AdminDashboard() {
             <TabsTrigger value="monitoring" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               AML Monitoring
             </TabsTrigger>
+            <TabsTrigger value="cases" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Case Management
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="providers">
@@ -153,6 +162,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="monitoring">
             <AMLMonitoringPanel />
+          </TabsContent>
+
+          <TabsContent value="cases">
+            <CaseQueue user={user} />
           </TabsContent>
         </Tabs>
       </div>
