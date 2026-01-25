@@ -160,17 +160,13 @@ const PublicDocumentation = () => {
 
               <MermaidDiagram 
                 chart={`graph LR
-                  A["Submit<br/>Data"]
-                  B["KYB Check<br/>Registry lookup"]
-                  C["AML Screen<br/>Sanctions check"]
-                  D["Decision"]
-                  E["LEI Issued<br/>Global ID"]
-                  F["vLEI Issued<br/>Web3 credential"]
+                  A["Submit"] B["KYB"] C["AML"] D["Check"]
+                  E["LEI"] F["vLEI"]
 
                   A --> B
                   B --> C
                   C --> D
-                  D -->|Approved| E
+                  D --> E
                   E --> F
 
                   style A fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
