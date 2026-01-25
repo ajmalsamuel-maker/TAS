@@ -68,7 +68,7 @@ export default function AuditLogsManagement() {
         log.actor || '',
         log.actor_email || '',
         log.event || '',
-        log.details ? log.details.replace(/,/g, ';') : ''
+        log.details ? (typeof log.details === 'object' ? JSON.stringify(log.details) : log.details).replace(/,/g, ';') : ''
       ].map(v => `"${v}"`).join(','))
     ].join('\n');
 
@@ -165,7 +165,9 @@ export default function AuditLogsManagement() {
                       </TableCell>
                       <TableCell className="text-sm text-gray-600 max-w-xs truncate">
                         {log.details ? (
-                          <span title={log.details}>{log.details}</span>
+                          <span title={typeof log.details === 'object' ? JSON.stringify(log.details) : log.details}>
+                            {typeof log.details === 'object' ? JSON.stringify(log.details) : log.details}
+                          </span>
                         ) : (
                           <span className="text-gray-400">—</span>
                         )}
@@ -212,7 +214,9 @@ export default function AuditLogsManagement() {
                 <div>
                   <span className="font-medium text-gray-700">Details:</span>
                   <pre className="bg-gray-50 p-3 rounded-md text-xs overflow-auto max-h-40 mt-2">
-                    {JSON.stringify(JSON.parse(selectedLog.details), null, 2)}
+                    {typeof selectedLog.details === 'object' 
+                      ? JSON.stringify(selectedLog.details, null, 2)
+                      : selectedLog.details}
                   </pre>
                 </div>
               )}
