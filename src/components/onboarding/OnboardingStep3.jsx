@@ -4,6 +4,24 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AlertCircle } from 'lucide-react';
 
+const ENTITY_LEGAL_FORMS = [
+  { code: '1000', label: 'Sole Proprietor', description: 'Individual operating as self-employed' },
+  { code: '1100', label: 'General Partnership (GP)', description: 'Two or more partners with shared liability' },
+  { code: '1200', label: 'Limited Partnership (LP)', description: 'Partners with limited and general liability' },
+  { code: '1300', label: 'Limited Liability Partnership (LLP)', description: 'Partners with limited personal liability' },
+  { code: '2000', label: 'Limited Company', description: 'Company with limited liability structure' },
+  { code: '2100', label: 'Private Limited Company (Ltd)', description: 'Privately held limited company' },
+  { code: '2110', label: 'Close Company', description: 'Limited company with restricted share transfer' },
+  { code: '2200', label: 'Public Limited Company (Plc)', description: 'Publicly traded limited company' },
+  { code: '3000', label: 'Unlimited Company', description: 'Company without liability limits' },
+  { code: '4000', label: 'Joint Venture', description: 'Partnership agreement for specific project' },
+  { code: '5000', label: 'Cooperative', description: 'Member-owned business organization' },
+  { code: '6000', label: 'Trust', description: 'Legal arrangement for asset management' },
+  { code: '7000', label: 'Association', description: 'Group organized for common purpose' },
+  { code: '8000', label: 'Other Legal Entity', description: 'Any other legal entity type' },
+  { code: '8888', label: 'Non-classified Business Entity', description: 'Entity type cannot be classified' }
+];
+
 const COUNTRY_CODES = [
   { code: 'US', name: 'United States' },
   { code: 'GB', name: 'United Kingdom' },
@@ -17,7 +35,6 @@ const COUNTRY_CODES = [
   { code: 'AE', name: 'United Arab Emirates' },
   { code: 'AU', name: 'Australia' },
   { code: 'CA', name: 'Canada' },
-  // Add more as needed
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function OnboardingStep3({ formData, setFormData }) {
