@@ -14,12 +14,18 @@ const AdminDocumentation = () => {
   };
 
   const MermaidDiagram = ({ id, chart }) => {
-    React.useEffect(() => {
-      try {
-        mermaid.contentLoaderContent(document.querySelector(`#${id}`));
-      } catch (e) {
-        console.error('Mermaid render error:', e);
-      }
+    useEffect(() => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+      script.async = true;
+      script.onload = () => {
+        if (window.mermaid) {
+          window.mermaid.initialize({ startOnLoad: true, theme: 'default' });
+          window.mermaid.contentLoaderContent(document.querySelector(`#${id}`));
+        }
+      };
+      document.body.appendChild(script);
+      return () => document.body.removeChild(script);
     }, [id]);
 
     return (
