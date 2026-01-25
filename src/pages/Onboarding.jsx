@@ -32,15 +32,12 @@ export default function Onboarding() {
       .then(currentUser => {
         if (currentUser) {
           setUser(currentUser);
-        } else {
-          // Redirect to login if not authenticated
-          base44.auth.redirectToLogin(createPageUrl('Onboarding'));
         }
+        setLoading(false);
       })
       .catch(() => {
-        base44.auth.redirectToLogin(createPageUrl('Onboarding'));
-      })
-      .finally(() => setLoading(false));
+        setLoading(false);
+      });
   }, [navigate]);
   const [formData, setFormData] = useState({
     legal_name: '',
