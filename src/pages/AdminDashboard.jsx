@@ -20,6 +20,7 @@ import PolicyManager from '../components/policy/PolicyManager';
 import CaseQueue from '../components/case/CaseQueue';
 import TransactionMonitoring from '../components/transaction/TransactionMonitoring';
 import FraudDashboard from '../components/fraud/FraudDashboard';
+import OrganizationManagement from '../components/admin/OrganizationManagement';
 
 export default function AdminDashboard() {
   const [user, setUser] = React.useState(null);
@@ -96,8 +97,11 @@ export default function AdminDashboard() {
         </div>
 
         {/* Main Content Tabs */}
-        <Tabs defaultValue="providers" className="space-y-6">
+        <Tabs defaultValue="organizations" className="space-y-6">
           <TabsList className="bg-white border-2 border-blue-100 p-1">
+            <TabsTrigger value="organizations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+              Organizations
+            </TabsTrigger>
             <TabsTrigger value="providers" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Providers
             </TabsTrigger>
@@ -135,6 +139,10 @@ export default function AdminDashboard() {
               Fraud Detection
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="organizations">
+            <OrganizationManagement />
+          </TabsContent>
 
           <TabsContent value="providers">
             <ProvidersManagement providers={providers} />

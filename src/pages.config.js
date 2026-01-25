@@ -14,6 +14,7 @@ import UserDashboard from './pages/UserDashboard';
 import UserLogin from './pages/UserLogin';
 import UserSettings from './pages/UserSettings';
 import Workflows from './pages/Workflows';
+import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
 import __Layout from './Layout.jsx';
 
 
@@ -34,6 +35,7 @@ export const PAGES = {
     "UserLogin": UserLogin,
     "UserSettings": UserSettings,
     "Workflows": Workflows,
+    "PlatformAdminDashboard": PlatformAdminDashboard,
 }
 
 export const pagesConfig = {
