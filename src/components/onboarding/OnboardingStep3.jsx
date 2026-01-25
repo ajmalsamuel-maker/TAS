@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AlertCircle } from 'lucide-react';
-import { COUNTRY_REGISTRY_MAP } from './registryData';
+import { COUNTRY_REGISTRY_MAP } from './registryData.js';
 
 const ENTITY_LEGAL_FORMS = [
   { code: '1000', label: 'Sole Proprietor', description: 'Individual operating as self-employed' },
