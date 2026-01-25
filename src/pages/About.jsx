@@ -324,10 +324,10 @@ export default function About() {
       </section>
 
       {/* Logos Footer */}
-      <section className="py-12 bg-white border-t">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-center text-sm text-gray-500 mb-4">Powered by</p>
-          <div className="flex items-center justify-center gap-12">
+      <section className="py-8 sm:py-12 bg-white border-t">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <p className="text-center text-xs sm:text-sm text-gray-500 mb-4">Powered by</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/d897e53ec_Certizen-Technology.png"
               alt="Certizen Technology"
