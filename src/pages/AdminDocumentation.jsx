@@ -172,7 +172,6 @@ const AdminDocumentation = () => {
                   The <strong>Data Layer</strong> provides persistence through PostgreSQL for transactional data, Redis for caching and sessions, SQS for asynchronous task queuing, and S3 for document storage and backups. This separation of concerns ensures that each system is optimized for its specific access patterns: PostgreSQL's ACID guarantees ensure billing data consistency, Redis's in-memory performance enables fast rate limiting checks, SQS provides reliable async processing, and S3 offers nearly unlimited document storage with automatic replication.
                 </p>
                 <MermaidDiagram 
-                  id="arch-diagram"
                   chart={`graph TD
                     A["Cloudflare CDN & WAF<br/>DDoS Protection • WAF Rules • Geo-Blocking"]
                     B["Portal Layer<br/>Admin • User • Public • Merchant"]
