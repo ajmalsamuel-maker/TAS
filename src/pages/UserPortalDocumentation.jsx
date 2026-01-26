@@ -478,50 +478,50 @@ export default function UserPortalDocumentation() {
                      <div>
                      <h3 className="text-lg font-bold mb-4">Workflow Status Definitions</h3>
                      <table className="w-full text-sm border-collapse">
-                   <thead className="bg-gray-800 text-white">
+                     <thead className="bg-gray-800 text-white">
                      <tr>
-                       <th className="border p-3 text-left">Status</th>
-                       <th className="border p-3 text-left">Meaning</th>
-                       <th className="border p-3 text-left">What You Can Do</th>
-                       <th className="border p-3 text-center">Duration</th>
-                       <th className="border p-3 text-center">Next Step</th>
+                     <th className="border p-3 text-left">Status</th>
+                     <th className="border p-3 text-left">Meaning</th>
+                     <th className="border p-3 text-left">What You Can Do</th>
+                     <th className="border p-3 text-center">Duration</th>
+                     <th className="border p-3 text-center">Next Step</th>
                      </tr>
-                   </thead>
-                   <tbody>
+                     </thead>
+                     <tbody>
                      <tr className="hover:bg-blue-50">
-                       <td className="border p-3 font-semibold text-blue-600">Submitted</td>
-                       <td className="border p-3">Application received and queued for processing</td>
-                       <td className="border p-3">Monitor dashboard, check email for updates</td>
-                       <td className="border p-3 text-center">0-5 min</td>
-                       <td className="border p-3 text-center">→ KYB Check</td>
+                     <td className="border p-3 font-semibold text-blue-600">Submitted</td>
+                     <td className="border p-3">Application received and queued for processing</td>
+                     <td className="border p-3">Monitor dashboard, check email for updates</td>
+                     <td className="border p-3 text-center">0-5 min</td>
+                     <td className="border p-3 text-center">→ KYB Check</td>
                      </tr>
                      <tr className="hover:bg-yellow-50">
-                       <td className="border p-3 font-semibold text-yellow-600">In Progress</td>
-                       <td className="border p-3">Active KYB/AML processing</td>
-                       <td className="border p-3">View detailed activity logs, submit docs if requested</td>
-                       <td className="border p-3 text-center">30 min-2 hrs</td>
-                       <td className="border p-3 text-center">→ Review or Approved</td>
+                     <td className="border p-3 font-semibold text-yellow-600">In Progress</td>
+                     <td className="border p-3">Active KYB/AML processing</td>
+                     <td className="border p-3">View detailed activity logs, submit docs if requested</td>
+                     <td className="border p-3 text-center">30 min-2 hrs</td>
+                     <td className="border p-3 text-center">→ Review or Approved</td>
                      </tr>
                      <tr className="hover:bg-purple-50">
-                       <td className="border p-3 font-semibold text-purple-600">Manual Review</td>
-                       <td className="border p-3">High-confidence AML match or document verification</td>
-                       <td className="border p-3">Provide additional documentation, respond to queries</td>
-                       <td className="border p-3 text-center">1-3 days</td>
-                       <td className="border p-3 text-center">→ Approved or Rejected</td>
+                     <td className="border p-3 font-semibold text-purple-600">Manual Review</td>
+                     <td className="border p-3">High-confidence AML match or document verification</td>
+                     <td className="border p-3">Provide additional documentation, respond to queries</td>
+                     <td className="border p-3 text-center">1-3 days</td>
+                     <td className="border p-3 text-center">→ Approved or Rejected</td>
                      </tr>
                      <tr className="hover:bg-green-50">
-                       <td className="border p-3 font-semibold text-green-600">Approved</td>
-                       <td className="border p-3">Verification complete, credentials ready</td>
-                       <td className="border p-3">Download LEI, vLEI credentials, enable API access</td>
-                       <td className="border p-3 text-center">—</td>
-                       <td className="border p-3 text-center">→ Monitoring</td>
+                     <td className="border p-3 font-semibold text-green-600">Approved</td>
+                     <td className="border p-3">Verification complete, credentials ready</td>
+                     <td className="border p-3">Download LEI, vLEI credentials, enable API access</td>
+                     <td className="border p-3 text-center">—</td>
+                     <td className="border p-3 text-center">→ Monitoring</td>
                      </tr>
                      <tr className="hover:bg-red-50">
-                       <td className="border p-3 font-semibold text-red-600">Rejected</td>
-                       <td className="border p-3">Could not verify business legitimacy</td>
-                       <td className="border p-3">Resubmit with corrected/new information</td>
-                       <td className="border p-3 text-center">—</td>
-                       <td className="border p-3 text-center">→ New Application</td>
+                     <td className="border p-3 font-semibold text-red-600">Rejected</td>
+                     <td className="border p-3">Could not verify business legitimacy</td>
+                     <td className="border p-3">Resubmit with corrected/new information</td>
+                     <td className="border p-3 text-center">—</td>
+                     <td className="border p-3 text-center">→ New Application</td>
                      </tr>
                      </tbody>
                      </table>
@@ -587,37 +587,37 @@ export default function UserPortalDocumentation() {
 
                      <div>
                      <h3 className="text-lg font-bold mb-4">Credential Details & Usage</h3>
-                <table className="w-full text-sm border-collapse">
-                   <thead className="bg-gray-800 text-white">
+                     <table className="w-full text-sm border-collapse">
+                     <thead className="bg-gray-800 text-white">
                      <tr>
-                       <th className="border p-3 text-left">Credential Type</th>
-                       <th className="border p-3 text-left">Format & Standard</th>
-                       <th className="border p-3 text-left">Validity Period</th>
-                       <th className="border p-3 text-left">Primary Use Cases</th>
-                       <th className="border p-3 text-left">Renewal</th>
+                     <th className="border p-3 text-left">Credential Type</th>
+                     <th className="border p-3 text-left">Format & Standard</th>
+                     <th className="border p-3 text-left">Validity Period</th>
+                     <th className="border p-3 text-left">Primary Use Cases</th>
+                     <th className="border p-3 text-left">Renewal</th>
                      </tr>
-                   </thead>
-                   <tbody>
+                     </thead>
+                     <tbody>
                      <tr className="hover:bg-blue-50">
-                       <td className="border p-3 font-semibold text-blue-600">LEI</td>
-                       <td className="border p-3">20-char alphanumeric code (ISO 17442)<br/>e.g., 5493001KJTIIGC8Y1R12</td>
-                       <td className="border p-3">1 year<br/>Fixed expiration date</td>
-                       <td className="border p-3">• Bank accounts<br/>• Regulatory reporting<br/>• Trading platforms<br/>• Financial settlements</td>
-                       <td className="border p-3">Auto-renewal 60 days before expiry (automated)</td>
+                     <td className="border p-3 font-semibold text-blue-600">LEI</td>
+                     <td className="border p-3">20-char alphanumeric code (ISO 17442)<br/>e.g., 5493001KJTIIGC8Y1R12</td>
+                     <td className="border p-3">1 year<br/>Fixed expiration date</td>
+                     <td className="border p-3">• Bank accounts<br/>• Regulatory reporting<br/>• Trading platforms<br/>• Financial settlements</td>
+                     <td className="border p-3">Auto-renewal 60 days before expiry (automated)</td>
                      </tr>
                      <tr className="hover:bg-green-50">
-                       <td className="border p-3 font-semibold text-green-600">vLEI</td>
-                       <td className="border p-3">W3C Verifiable Credential<br/>JWT/JSON-LD format<br/>ACDC cryptographic signing</td>
-                       <td className="border p-3">Issuer-defined<br/>Typically 2 years<br/>Cryptographically signed</td>
-                       <td className="border p-3">• DeFi protocols<br/>• NFT & Web3 identity<br/>• Smart contracts<br/>• DAO governance<br/>• Blockchain verification</td>
-                       <td className="border p-3">Manual re-issuance before expiry</td>
+                     <td className="border p-3 font-semibold text-green-600">vLEI</td>
+                     <td className="border p-3">W3C Verifiable Credential<br/>JWT/JSON-LD format<br/>ACDC cryptographic signing</td>
+                     <td className="border p-3">Issuer-defined<br/>Typically 2 years<br/>Cryptographically signed</td>
+                     <td className="border p-3">• DeFi protocols<br/>• NFT & Web3 identity<br/>• Smart contracts<br/>• DAO governance<br/>• Blockchain verification</td>
+                     <td className="border p-3">Manual re-issuance before expiry</td>
                      </tr>
                      <tr className="hover:bg-indigo-50">
-                       <td className="border p-3 font-semibold text-indigo-600">Certificate</td>
-                       <td className="border p-3">PDF document<br/>Printable & digital<br/>Contains full LEI details</td>
-                       <td className="border p-3">Same as LEI<br/>Matches LEI expiration</td>
-                       <td className="border p-3">• Website display<br/>• Partner submissions<br/>• Regulatory filings<br/>• Audit documentation</td>
-                       <td className="border p-3">Automatic when LEI renews</td>
+                     <td className="border p-3 font-semibold text-indigo-600">Certificate</td>
+                     <td className="border p-3">PDF document<br/>Printable & digital<br/>Contains full LEI details</td>
+                     <td className="border p-3">Same as LEI<br/>Matches LEI expiration</td>
+                     <td className="border p-3">• Website display<br/>• Partner submissions<br/>• Regulatory filings<br/>• Audit documentation</td>
+                     <td className="border p-3">Automatic when LEI renews</td>
                      </tr>
                      </tbody>
                      </table>
@@ -703,50 +703,50 @@ export default function UserPortalDocumentation() {
                     <div>
                     <h3 className="text-lg font-bold mb-4">Understanding Alerts</h3>
                     <table className="w-full text-sm border-collapse">
-                   <thead className="bg-gray-800 text-white">
-                     <tr>
-                       <th className="border p-3 text-left">Alert Type</th>
-                       <th className="border p-3 text-center">Severity</th>
-                       <th className="border p-3 text-left">What It Means</th>
-                       <th className="border p-3 text-left">Action Required</th>
-                       <th className="border p-3 text-center">SLA</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-                     <tr className="hover:bg-red-50">
-                       <td className="border p-3 font-semibold text-red-600">Sanctions Hit</td>
-                       <td className="border p-3 text-center"><span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-bold">CRITICAL</span></td>
-                       <td className="border p-3">Business matched OFAC, UN, or EU sanctions list with high confidence</td>
-                       <td className="border p-3">Contact immediately • Provide proof of legitimate business • May be escalated to authorities</td>
-                       <td className="border p-3 text-center">2 hours</td>
-                     </tr>
-                     <tr className="hover:bg-orange-50">
-                       <td className="border p-3 font-semibold text-orange-600">PEP Match</td>
-                       <td className="border p-3 text-center"><span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-bold">HIGH</span></td>
-                       <td className="border p-3">Beneficial owner or director matches PEP (Politically Exposed Person) database</td>
-                       <td className="border p-3">Provide documentation • Explain business relationship • Enhanced due diligence may be required</td>
-                       <td className="border p-3 text-center">1 day</td>
-                     </tr>
-                     <tr className="hover:bg-yellow-50">
-                       <td className="border p-3 font-semibold text-yellow-600">Adverse Media</td>
-                       <td className="border p-3 text-center"><span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-bold">MEDIUM</span></td>
-                       <td className="border p-3">News article or report mentions business in potentially negative context (fraud, investigation, etc.)</td>
-                       <td className="border p-3">Review article • Respond with context • Provide clarifying documentation if needed</td>
-                       <td className="border p-3 text-center">3 days</td>
-                     </tr>
-                     <tr className="hover:bg-blue-50">
-                       <td className="border p-3 font-semibold text-blue-600">Registry Update</td>
-                       <td className="border p-3 text-center"><span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-bold">LOW</span></td>
-                       <td className="border p-3">Business registry shows updated information (address, directors, ownership changes)</td>
-                       <td className="border p-3">Review notice • Confirm accuracy • Update profile if information changed</td>
-                       <td className="border p-3 text-center">5 days</td>
-                     </tr>
-                     </tbody>
-                     </table>
-                     </div>
-                     </CardContent>
-                     )}
-                     </Card>
+                    <thead className="bg-gray-800 text-white">
+                    <tr>
+                     <th className="border p-3 text-left">Alert Type</th>
+                     <th className="border p-3 text-center">Severity</th>
+                     <th className="border p-3 text-left">What It Means</th>
+                     <th className="border p-3 text-left">Action Required</th>
+                     <th className="border p-3 text-center">SLA</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr className="hover:bg-red-50">
+                     <td className="border p-3 font-semibold text-red-600">Sanctions Hit</td>
+                     <td className="border p-3 text-center"><span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-bold">CRITICAL</span></td>
+                     <td className="border p-3">Business matched OFAC, UN, or EU sanctions list with high confidence</td>
+                     <td className="border p-3">Contact immediately • Provide proof of legitimate business • May be escalated to authorities</td>
+                     <td className="border p-3 text-center">2 hours</td>
+                    </tr>
+                    <tr className="hover:bg-orange-50">
+                     <td className="border p-3 font-semibold text-orange-600">PEP Match</td>
+                     <td className="border p-3 text-center"><span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-bold">HIGH</span></td>
+                     <td className="border p-3">Beneficial owner or director matches PEP (Politically Exposed Person) database</td>
+                     <td className="border p-3">Provide documentation • Explain business relationship • Enhanced due diligence may be required</td>
+                     <td className="border p-3 text-center">1 day</td>
+                    </tr>
+                    <tr className="hover:bg-yellow-50">
+                     <td className="border p-3 font-semibold text-yellow-600">Adverse Media</td>
+                     <td className="border p-3 text-center"><span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-bold">MEDIUM</span></td>
+                     <td className="border p-3">News article or report mentions business in potentially negative context (fraud, investigation, etc.)</td>
+                     <td className="border p-3">Review article • Respond with context • Provide clarifying documentation if needed</td>
+                     <td className="border p-3 text-center">3 days</td>
+                    </tr>
+                    <tr className="hover:bg-blue-50">
+                     <td className="border p-3 font-semibold text-blue-600">Registry Update</td>
+                     <td className="border p-3 text-center"><span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-bold">LOW</span></td>
+                     <td className="border p-3">Business registry shows updated information (address, directors, ownership changes)</td>
+                     <td className="border p-3">Review notice • Confirm accuracy • Update profile if information changed</td>
+                     <td className="border p-3 text-center">5 days</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    </div>
+                    </CardContent>
+                    )}
+                    </Card>
 
                      {/* Settings & Administration */}
                      <Card className="mb-8">
@@ -818,49 +818,49 @@ export default function UserPortalDocumentation() {
 
                 <h3 className="text-lg font-bold mb-4 mt-8">Role Permissions Matrix</h3>
                 <table className="w-full text-sm border-collapse mt-6">
-                   <thead className="bg-gray-800 text-white">
-                     <tr>
-                       <th className="border p-3 text-left">Role</th>
-                       <th className="border p-3 text-left">Key Permissions</th>
-                       <th className="border p-3 text-center">Can Invite</th>
-                       <th className="border p-3 text-left">Cannot Access</th>
-                       <th className="border p-3 text-left">Typical User</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-                     <tr className="hover:bg-purple-50">
-                       <td className="border p-3 font-semibold text-purple-600">Organization Admin</td>
-                       <td className="border p-3">All permissions • User & role management • Billing & payments • API key generation • Integrations • Settings</td>
-                       <td className="border p-3 text-center">✅ All</td>
-                       <td className="border p-3">Nothing (full access)</td>
-                       <td className="border p-3">Owner, Finance Manager, CEO</td>
-                     </tr>
-                     <tr className="hover:bg-blue-50">
-                       <td className="border p-3 font-semibold text-blue-600">Compliance Officer</td>
-                       <td className="border p-3">Alert investigation • Case management • Comment on cases • Reporting • View compliance data</td>
-                       <td className="border p-3 text-center">❌</td>
-                       <td className="border p-3">Billing, User management, Settings, API access</td>
-                       <td className="border p-3">Compliance Manager, Investigator, Risk Officer</td>
-                     </tr>
-                     <tr className="hover:bg-green-50">
-                       <td className="border p-3 font-semibold text-green-600">API User</td>
-                       <td className="border p-3">API access • Webhook management • Read verification data • View own API keys</td>
-                       <td className="border p-3 text-center">❌</td>
-                       <td className="border p-3">Billing, User management, Case review, Settings</td>
-                       <td className="border p-3">Developer, Integration Engineer, System Admin</td>
-                     </tr>
-                     <tr className="hover:bg-indigo-50">
-                       <td className="border p-3 font-semibold text-indigo-600">Viewer</td>
-                       <td className="border p-3">Read-only access to dashboard • View reports • View compliance status</td>
-                       <td className="border p-3 text-center">❌</td>
-                       <td className="border p-3">Everything except read • Cannot make any changes</td>
-                       <td className="border p-3">Auditor, Stakeholder, Board Member, Consultant</td>
-                     </tr>
-                   </tbody>
-                   </table>
+                  <thead className="bg-gray-800 text-white">
+                    <tr>
+                      <th className="border p-3 text-left">Role</th>
+                      <th className="border p-3 text-left">Key Permissions</th>
+                      <th className="border p-3 text-center">Can Invite</th>
+                      <th className="border p-3 text-left">Cannot Access</th>
+                      <th className="border p-3 text-left">Typical User</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="hover:bg-purple-50">
+                      <td className="border p-3 font-semibold text-purple-600">Organization Admin</td>
+                      <td className="border p-3">All permissions • User & role management • Billing & payments • API key generation • Integrations • Settings</td>
+                      <td className="border p-3 text-center">✅ All</td>
+                      <td className="border p-3">Nothing (full access)</td>
+                      <td className="border p-3">Owner, Finance Manager, CEO</td>
+                    </tr>
+                    <tr className="hover:bg-blue-50">
+                      <td className="border p-3 font-semibold text-blue-600">Compliance Officer</td>
+                      <td className="border p-3">Alert investigation • Case management • Comment on cases • Reporting • View compliance data</td>
+                      <td className="border p-3 text-center">❌</td>
+                      <td className="border p-3">Billing, User management, Settings, API access</td>
+                      <td className="border p-3">Compliance Manager, Investigator, Risk Officer</td>
+                    </tr>
+                    <tr className="hover:bg-green-50">
+                      <td className="border p-3 font-semibold text-green-600">API User</td>
+                      <td className="border p-3">API access • Webhook management • Read verification data • View own API keys</td>
+                      <td className="border p-3 text-center">❌</td>
+                      <td className="border p-3">Billing, User management, Case review, Settings</td>
+                      <td className="border p-3">Developer, Integration Engineer, System Admin</td>
+                    </tr>
+                    <tr className="hover:bg-indigo-50">
+                      <td className="border p-3 font-semibold text-indigo-600">Viewer</td>
+                      <td className="border p-3">Read-only access to dashboard • View reports • View compliance status</td>
+                      <td className="border p-3 text-center">❌</td>
+                      <td className="border p-3">Everything except read • Cannot make any changes</td>
+                      <td className="border p-3">Auditor, Stakeholder, Board Member, Consultant</td>
+                    </tr>
+                  </tbody>
+                </table>
 
-                   <div>
-                   <h3 className="text-lg font-bold mb-4 mt-8">Web3 Dashboard: Blockchain & Decentralized Identity</h3>
+                <div>
+                <h3 className="text-lg font-bold mb-4 mt-8">Web3 Dashboard: Blockchain & Decentralized Identity</h3>
                 <p className="mb-4 leading-relaxed">
                   The Web3 Dashboard is a specialized menu item for organizations leveraging blockchain technology and decentralized identity systems. This section bridges traditional compliance (LEI, vLEI) with Web3 capabilities (DeFi, DAOs, NFTs). When you click "Web3" in the navigation, you access four main panels: Wallet Connection, DeFi Compliance, DAO Governance Integration, and NFT Authentication.
                 </p>
