@@ -474,12 +474,11 @@ export default function UserPortalDocumentation() {
                      style G fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
                      style H fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
                      style I fill:#e3f2fd,stroke:#0066B3,stroke-width:2px`}
-                 />
-              </div>
+                     />
 
-              <div>
-                <h3 className="text-lg font-bold mb-4">Workflow Status Definitions</h3>
-                <table className="w-full text-sm border-collapse">
+                     <div>
+                     <h3 className="text-lg font-bold mb-4">Workflow Status Definitions</h3>
+                     <table className="w-full text-sm border-collapse">
                    <thead className="bg-gray-800 text-white">
                      <tr>
                        <th className="border p-3 text-left">Status</th>
@@ -703,12 +702,11 @@ export default function UserPortalDocumentation() {
                     style G fill:#fce4ec
                     style I fill:#d4edda
                     style J fill:#f8d7da`}
-                />
-              </div>
+                    />
 
-              <div>
-                <h3 className="text-lg font-bold mb-4">Understanding Alerts</h3>
-                <table className="w-full text-sm border-collapse">
+                    <div>
+                    <h3 className="text-lg font-bold mb-4">Understanding Alerts</h3>
+                    <table className="w-full text-sm border-collapse">
                    <thead className="bg-gray-800 text-white">
                      <tr>
                        <th className="border p-3 text-left">Alert Type</th>
@@ -821,8 +819,8 @@ export default function UserPortalDocumentation() {
                 <p className="mb-6 leading-relaxed">
                   <strong>Webhook Configuration:</strong> Webhooks enable real-time notifications to your own systems when events occur in TAS. Configure webhooks from Settings → Integrations. Specify your webhook endpoint URL (where TAS should send notifications), select which event types to subscribe to (application status changes, workflow completions, compliance alerts, credential issuances), and generate a secret key for signature verification. When events occur, TAS sends HTTP POST requests to your endpoint with event details in JSON format. Your system can verify authenticity using the HMAC signature in the request headers, preventing spoofed webhook attacks.
                 </p>
-              </div>
 
+                <h3 className="text-lg font-bold mb-4 mt-8">Role Permissions Matrix</h3>
                 <table className="w-full text-sm border-collapse mt-6">
                    <thead className="bg-gray-800 text-white">
                      <tr>
@@ -863,11 +861,10 @@ export default function UserPortalDocumentation() {
                        <td className="border p-3">Auditor, Stakeholder, Board Member, Consultant</td>
                      </tr>
                    </tbody>
-                 </table>
-              </div>
+                   </table>
 
-              <div>
-                <h3 className="text-lg font-bold mb-4 mt-8">Web3 Dashboard: Blockchain & Decentralized Identity</h3>
+                   <div>
+                   <h3 className="text-lg font-bold mb-4 mt-8">Web3 Dashboard: Blockchain & Decentralized Identity</h3>
                 <p className="mb-4 leading-relaxed">
                   The Web3 Dashboard is a specialized menu item for organizations leveraging blockchain technology and decentralized identity systems. This section bridges traditional compliance (LEI, vLEI) with Web3 capabilities (DeFi, DAOs, NFTs). When you click "Web3" in the navigation, you access four main panels: Wallet Connection, DeFi Compliance, DAO Governance Integration, and NFT Authentication.
                 </p>
