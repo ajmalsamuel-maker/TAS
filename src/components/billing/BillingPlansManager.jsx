@@ -90,9 +90,61 @@ export default function BillingPlansManager() {
         is_active: false
       },
       regional_pricing: [],
-      organization_discounts: []
+      organization_discounts: [],
+      progressive_pricing: []
     });
     setEditingPlan(null);
+  };
+
+  const addProgressiveTier = (component) => {
+    const existing = formData.progressive_pricing || [];
+    const componentTiers = existing.find(p => p.component === component);
+    
+    if (componentTiers) {
+      const updated = existing.map(p => {
+        if (p.component === component) {
+          return {
+            ...p,
+            tiers: [...(p.tiers || []), { from: 0, to: null, price: 0 }]
+          };
+        }
+        return p;
+      });
+      setFormData({ ...formData, progressive_pricing: updated });
+    } else {
+      setFormData({
+        ...formData,
+        progressive_pricing: [
+          ...existing,
+          { component, tiers: [{ from: 0, to: null, price: 0 }] }
+        ]
+      });
+    }
+  };
+
+  const removeProgressiveTier = (component, tierIdx) => {
+    const updated = formData.progressive_pricing.map(p => {
+      if (p.component === component) {
+        const newTiers = [...p.tiers];
+        newTiers.splice(tierIdx, 1);
+        return { ...p, tiers: newTiers };
+      }
+      return p;
+    }).filter(p => p.tiers.length > 0);
+    
+    setFormData({ ...formData, progressive_pricing: updated });
+  };
+
+  const updateProgressiveTier = (component, tierIdx, field, value) => {
+    const updated = formData.progressive_pricing.map(p => {
+      if (p.component === component) {
+        const newTiers = [...p.tiers];
+        newTiers[tierIdx] = { ...newTiers[tierIdx], [field]: value };
+        return { ...p, tiers: newTiers };
+      }
+      return p;
+    });
+    setFormData({ ...formData, progressive_pricing: updated });
   };
 
   const addRegionalPricing = () => {
