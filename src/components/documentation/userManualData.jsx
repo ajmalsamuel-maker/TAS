@@ -1,4 +1,4 @@
-import { BookOpen, FileText, Award, Shield, Activity, Settings, Users, CreditCard } from 'lucide-react';
+import { BookOpen, FileText, Award, Shield, Activity, Settings, Users, CreditCard, FileCheck } from 'lucide-react';
 
 export const userManualSections = [
   {
