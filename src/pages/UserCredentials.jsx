@@ -5,9 +5,11 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Key, Shield, Globe, Copy, CheckCircle2, ExternalLink, Clock, FileText } from 'lucide-react';
 import { toast } from 'sonner';
+import VLEIManager from '../components/credentials/VLEIManager';
 
 export default function UserCredentials() {
   const [user, setUser] = useState(null);
+  const [organization, setOrganization] = useState(null);
   const [copied, setCopied] = useState('');
   const [workflows, setWorkflows] = useState([]);
 
@@ -17,6 +19,10 @@ export default function UserCredentials() {
       if (userData?.id) {
         const userWorkflows = await base44.entities.Workflow.filter({ user_id: userData.id });
         setWorkflows(userWorkflows);
+      }
+      if (userData?.organization_id) {
+        const orgs = await base44.entities.Organization.filter({ id: userData.organization_id });
+        setOrganization(orgs[0]);
       }
     });
   }, []);
@@ -111,7 +117,12 @@ export default function UserCredentials() {
           </CardContent>
         </Card>
 
-        {/* vLEI Credentials */}
+        {/* vLEI Manager */}
+        {organization && organization.lei && (
+          <VLEIManager organization={organization} />
+        )}
+
+        {/* vLEI Credentials - Legacy Display */}
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           <Card className="border-2 border-purple-100 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b-2 border-purple-100">
