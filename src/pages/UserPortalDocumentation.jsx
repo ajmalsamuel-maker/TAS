@@ -258,16 +258,96 @@ export default function UserPortalDocumentation() {
         {/* Dashboard Overview */}
         <Card className="mb-8">
           <CardHeader>
-            <h2 className="text-3xl font-bold">Dashboard Overview</h2>
+            <h2 className="text-3xl font-bold">Dashboard Menu Item: Your Central Command Center</h2>
           </CardHeader>
           <CardContent className="space-y-6 text-gray-700">
             <div>
               <h3 className="text-xl font-bold mb-4">Welcome to Your Compliance Hub</h3>
               <p className="mb-4 leading-relaxed">
-                The User Portal is your centralized command center for managing business identity verification, compliance monitoring, and credential issuance. Once you've completed onboarding and your LEI has been issued, you'll have immediate access to a comprehensive dashboard that displays your compliance status, active workflows, and regulatory alerts.
+                The Dashboard is the first screen you see upon logging into TAS, and it serves as your primary operational interface. This is not just a static display of information—it's a dynamic, real-time command center that continuously monitors your organization's compliance status, tracks active verification workflows, displays pending alerts, and provides instant access to your most frequently needed actions. Think of it as your business compliance cockpit, designed to give you complete situational awareness in seconds.
               </p>
               <p className="mb-4 leading-relaxed">
-                The dashboard is designed with a focus on clarity and actionability. Key metrics are prominently displayed, recent activities are visible at a glance, and any alerts or required actions are immediately apparent. The interface adapts to your role—compliance officers see detailed investigation workflows, while administrators see organizational metrics and billing information.
+                Every element on the dashboard is purposefully positioned to support your decision-making. The top metrics cards show your most critical status indicators: LEI validity, compliance score, active workflows, and pending alerts. The middle section displays your recent activity feed—every application submission, document upload, workflow completion, and status change from the last 30 days. The right panel contains quick action buttons for your most common tasks: starting new applications, uploading documents, downloading credentials, and viewing compliance reports.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                The dashboard automatically refreshes every 60 seconds, ensuring you always see current data without manually reloading the page. For workflow progress, we use WebSocket connections that push updates instantly—when your AML screening completes, the dashboard updates immediately with the results. This real-time capability means you can leave the dashboard open all day and trust that you're seeing accurate, up-to-date information at all times.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-4">Understanding Each Dashboard Component</h3>
+              
+              <div className="space-y-6">
+                <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
+                  <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
+                    <Shield className="w-5 h-5" />
+                    LEI Status Card
+                  </h4>
+                  <p className="text-sm mb-3">
+                    This card displays your organization's Legal Entity Identifier status with color-coded visual indicators. A green badge with checkmark means your LEI is active and valid for use in all financial transactions. An orange warning indicates your LEI is expiring within 30 days and renewal is recommended. A red alert means your LEI has lapsed and immediate renewal is required. The card shows your 20-character LEI code prominently, with a one-click copy button for easy sharing with banks, trading platforms, or regulatory authorities.
+                  </p>
+                  <p className="text-sm">
+                    <strong>Click this card to:</strong> View your full LEI details including issuance date, expiry date, and renewal history • Download your official LEI certificate as PDF • Copy your LEI code to clipboard • Initiate renewal process if expiring soon • View GLEIF public database entry for your organization
+                  </p>
+                </div>
+
+                <div className="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded">
+                  <h4 className="font-bold text-indigo-900 mb-2 flex items-center gap-2">
+                    <Activity className="w-5 h-5" />
+                    Active Workflows Card
+                  </h4>
+                  <p className="text-sm mb-3">
+                    Shows real-time status of all verification workflows currently in progress. Each workflow—whether KYB verification, AML screening, document validation, or credential issuance—displays a progress bar showing completion percentage, the current processing step, and estimated time remaining. For example, if your AML screening is running, you'll see "AML Screening - Step 2/3: Checking PEP Databases - 75% Complete - ~5 min remaining." This transparency eliminates uncertainty and sets clear expectations.
+                  </p>
+                  <p className="text-sm">
+                    <strong>Click this card to:</strong> View detailed step-by-step progress for each active workflow • See which specific checks are running (registry queries, sanctions screening, document OCR) • Access logs showing each verification step and its result • Estimate when workflows will complete • Identify workflows that may require your input or are waiting on manual review
+                  </p>
+                </div>
+
+                <div className="bg-green-50 border-l-4 border-green-600 p-4 rounded">
+                  <h4 className="font-bold text-green-900 mb-2 flex items-center gap-2">
+                    <FileCheck className="w-5 h-5" />
+                    Compliance Score Card
+                  </h4>
+                  <p className="text-sm mb-3">
+                    Your compliance score is a calculated metric ranging from 0-100 that represents your overall regulatory health. This score is computed from multiple factors: AML screening status (30% weight), document currency and completeness (25%), information accuracy and verification (20%), response time to alerts (15%), and LEI validity status (10%). A score of 90-100 is excellent (green), 70-89 is good (light green), 50-69 requires attention (yellow), and below 50 is critical (red).
+                  </p>
+                  <p className="text-sm mb-3">
+                    The score updates in real-time as your situation changes. If a document expires, your score drops immediately. When you upload a fresh document, it increases. If you respond quickly to an AML alert, your response time metric improves. This dynamic scoring helps you understand what actions will improve your compliance standing and prioritize remediation efforts.
+                  </p>
+                  <p className="text-sm">
+                    <strong>Click this card to:</strong> See detailed breakdown of how your score is calculated • Identify specific areas reducing your score with recommended remediation actions • View historical score trends over time • Download compliance reports for auditors or regulators • Set up alerts when your score drops below defined thresholds
+                  </p>
+                </div>
+
+                <div className="bg-purple-50 border-l-4 border-purple-600 p-4 rounded">
+                  <h4 className="font-bold text-purple-900 mb-2 flex items-center gap-2">
+                    <Lock className="w-5 h-5" />
+                    Credentials Card
+                  </h4>
+                  <p className="text-sm mb-3">
+                    Displays all verifiable credentials issued to your organization, including your primary LEI credential, vLEI credentials for different roles (OOR - Official Organizational Role, ECR - Engagement Context Role), and any additional certificates. Each credential shows its type, holder name, issuance date, expiration date, and current validity status. You can see at a glance which credentials are active, which are expiring soon, and which have been revoked.
+                  </p>
+                  <p className="text-sm">
+                    <strong>Click this card to:</strong> Download credential files in multiple formats (PDF certificate, JSON Web Token, W3C Verifiable Credential) • View cryptographic signature details and verification proofs • Share credential verification links with counterparties • Revoke credentials that are no longer needed • Request new credentials for team members (administrators only) • Verify credentials presented by others
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold mb-4 mt-8">Recent Activity Feed: Your Audit Trail</h3>
+              <p className="mb-4 leading-relaxed">
+                The Recent Activity feed occupies the left column of your dashboard and provides a chronological log of everything happening in your account. This serves multiple purposes: it keeps you informed of automated processes running in the background, creates an audit trail for compliance documentation, helps you track team member actions in multi-user organizations, and provides quick navigation to recently modified items.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                Each activity entry shows an icon indicating the type of action (document uploaded, workflow completed, user invited, etc.), a descriptive text explaining what happened ("Business Registration Certificate uploaded by compliance@yourcompany.com"), a timestamp showing when it occurred (relative time like "2 hours ago" for recent items, absolute date for older items), and a clickable link to view full details. Activities are color-coded by category: blue for applications, green for successful completions, yellow for items requiring attention, and red for errors or rejections.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                <strong>Filtering the Activity Feed:</strong> Click the filter dropdown above the feed to focus on specific activity types. "Applications Only" shows just application submissions and status changes. "Credentials Only" displays credential issuances, downloads, and revocations. "Workflows Only" tracks KYB, AML, and verification processes. "System Notifications" shows automated alerts and monitoring events. "All Activity" is the default view showing everything. Your filter preference is saved and persists across sessions.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                <strong>Using Activity for Troubleshooting:</strong> If you're wondering "Did my application submit successfully?" or "When did that workflow complete?" or "Who uploaded that document?", the activity feed provides definitive answers. Each entry includes the user who performed the action (for multi-user organizations), the exact timestamp, and links to supporting details. This eliminates confusion and provides clear accountability for all actions taken on your account.
               </p>
             </div>
 
@@ -333,27 +413,35 @@ export default function UserPortalDocumentation() {
         {/* Workflows */}
         <Card className="mb-8">
           <CardHeader>
-            <SectionHeader title="Verification Workflows" section="workflows" />
+            <SectionHeader title="Workflows Menu Item: Tracking Every Verification Step" section="workflows" />
           </CardHeader>
           {expandedSections.workflows && (
             <CardContent className="space-y-8">
               <div>
                 <h3 className="text-xl font-bold mb-4">Understanding Your Verification Journey</h3>
-                <p className="mb-6 leading-relaxed">
-                  Your verification workflow is automated, transparent, and designed to complete in 2-5 hours for most businesses. The process consists of three primary stages: Know Your Business (KYB) verification, Anti-Money Laundering (AML) screening, and continuous monitoring. Each stage feeds into the next, with automatic escalation to human review only when necessary.
+                <p className="mb-4 leading-relaxed">
+                  The Workflows menu item is where you monitor every verification process from submission to completion. When you click "Workflows" in the main navigation, you're taken to a comprehensive view showing all workflows you've ever initiated, their current status, detailed progress for active workflows, and complete history for finished ones. This page is essential for compliance officers who need to track multiple verification requests, understand processing timelines, and troubleshoot any delays or issues.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  Your verification workflow is automated, transparent, and designed to complete in 2-5 hours for most businesses. The process consists of three primary stages: Know Your Business (KYB) verification, Anti-Money Laundering (AML) screening, and continuous monitoring. Each stage feeds into the next, with automatic escalation to human review only when necessary. Unlike traditional verification services that operate as black boxes, TAS shows you exactly what's happening at every moment—which registry is being queried, which sanctions list is being checked, which document is being analyzed.
                 </p>
 
                 <p className="mb-4 leading-relaxed">
-                  <strong>Stage 1: KYB Verification</strong> validates that your business exists and is registered in the jurisdiction you claim. The system queries official business registries in 120+ countries, verifying incorporation date, entity status, beneficial ownership, and registered address. This stage typically completes within 30 minutes for publicly registered businesses.
+                  <strong>Stage 1: KYB Verification - Proving Your Business Exists</strong> validates that your business exists and is registered in the jurisdiction you claim. The system queries official business registries in 120+ countries, verifying incorporation date, entity status, beneficial ownership, and registered address. This stage typically completes within 30 minutes for publicly registered businesses. You'll see real-time updates as the system connects to the registry API, submits your business details, receives the response, parses the data, and compares it to your application. If everything matches perfectly, you get an instant green checkmark and automatic progression to AML screening.
                 </p>
 
                 <p className="mb-4 leading-relaxed">
-                  <strong>Stage 2: AML Screening</strong> checks your business and beneficial owners against 300+ global sanctions lists, PEP (Politically Exposed Persons) databases, and adverse media sources. If matches are found, they are scored by confidence level. False positives (common for generic business names) are automatically resolved. High-confidence matches escalate to human investigation.
+                  <strong>Stage 2: AML Screening - Regulatory Risk Assessment</strong> checks your business and beneficial owners against 300+ global sanctions lists, PEP (Politically Exposed Persons) databases, and adverse media sources. This is where most manual reviews occur because name matching is complex—"John Smith" or "Global Trading Company" might appear on watchlists, but it's likely a different person or entity. The system uses fuzzy matching algorithms that score potential matches from 0-100%. Scores below 30% are automatically dismissed as false positives. Scores of 30-70% trigger quick human review (usually resolved in hours). Scores above 70% require thorough investigation by senior compliance officers (may take 1-3 days).
+                </p>
+
+                <p className="mb-4 leading-relaxed">
+                  <strong>Stage 3: Continuous Monitoring - Ongoing Compliance</strong> tracks regulatory changes, sanctions list updates, and your compliance status over time. This monitoring runs 24/7 in the background even after your LEI is issued. If your business or beneficial owners become subject to sanctions after initial verification, you receive immediate notification via email, SMS (if enabled), and dashboard alert. Your credentials may be automatically suspended pending investigation if the match is high-confidence. This continuous vigilance ensures you remain compliant even as global regulations evolve.
                 </p>
 
                 <p className="mb-6 leading-relaxed">
-                  <strong>Stage 3: Continuous Monitoring</strong> tracks regulatory changes, sanctions list updates, and your compliance status over time. This ensures that if your business or beneficial owners become subject to sanctions after initial verification, you receive immediate notification and your access is restricted accordingly.
+                  <strong>Workflow Page Features:</strong> The Workflows page provides powerful filtering and search capabilities. Filter by workflow type (KYB, AML, LEI Issuance, vLEI Generation), status (Pending, In Progress, Completed, Failed), date range (last 7 days, 30 days, 90 days, custom), or specific organization (for admins managing multiple entities). Each workflow entry is expandable—click to see the complete step-by-step execution log showing what happened, when it happened, which external provider was used, how long each step took, and any errors encountered. This transparency is invaluable for understanding processing delays or troubleshooting failed workflows.
                 </p>
+              </div>
 
                 <MermaidDiagram 
                    chart={`graph LR
@@ -447,23 +535,35 @@ export default function UserPortalDocumentation() {
         {/* Credentials & LEI */}
         <Card className="mb-8">
           <CardHeader>
-            <SectionHeader title="Credentials & LEI Management" section="credentials" />
+            <SectionHeader title="Credentials Menu Item: Managing Your Digital Identity" section="credentials" />
           </CardHeader>
           {expandedSections.credentials && (
             <CardContent className="space-y-8">
               <div>
-                <h3 className="text-xl font-bold mb-4">Your Digital Identity</h3>
-                <p className="mb-6 leading-relaxed">
-                  Upon successful verification, you receive two primary credentials: a Legal Entity Identifier (LEI) and a verifiable LEI (vLEI) credential. The LEI is a global, unique identifier for your business registered with GLEIF (Global Legal Entity Identifier Foundation). The vLEI is a cryptographically signed digital credential that proves your identity on Web3 and blockchain systems.
+                <h3 className="text-xl font-bold mb-4">Your Digital Identity Arsenal</h3>
+                <p className="mb-4 leading-relaxed">
+                  The Credentials page is your repository for all digital identity documents issued to your organization. This is where you download, verify, share, and manage your LEI certificates, vLEI credentials, verification proofs, and compliance attestations. Think of this page as your secure digital vault—everything you need to prove your business identity to banks, regulators, trading platforms, or Web3 protocols is stored here in multiple formats optimized for different use cases.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  Upon successful verification, you receive two primary credentials: a Legal Entity Identifier (LEI) and a verifiable LEI (vLEI) credential. The LEI is a global, unique identifier for your business registered with GLEIF (Global Legal Entity Identifier Foundation). The vLEI is a cryptographically signed digital credential that proves your identity on Web3 and blockchain systems. Both credentials represent the same underlying verification—your business's proven legitimacy—but packaged differently for traditional financial systems versus modern decentralized applications.
                 </p>
 
                 <p className="mb-4 leading-relaxed">
-                  <strong>Legal Entity Identifier (LEI):</strong> A 20-character alphanumeric code assigned to your business by GLEIF. This identifier is recognized globally by financial institutions, regulators, and trading venues. Your LEI is valid for one year and must be renewed annually. We automate this renewal process—you'll receive notifications 60 days before expiration.
+                  <strong>Legal Entity Identifier (LEI):</strong> A 20-character alphanumeric code assigned to your business by GLEIF. This identifier is recognized globally by financial institutions, regulators, and trading venues. Your LEI is valid for one year and must be renewed annually. We automate this renewal process—you'll receive notifications 60 days before expiration, another at 30 days, and final reminders at 15 and 7 days. The renewal process is one-click: we verify your information is still current, charge the renewal fee to your saved payment method, and extend your LEI validity for another year. Your LEI code never changes—the same 20 characters remain your permanent global identifier throughout your business's lifetime.
+                </p>
+
+                <p className="mb-4 leading-relaxed">
+                  <strong>Verifiable LEI Credential (vLEI):</strong> A Web3-ready digital credential that combines your LEI with cryptographic proof of your identity. This credential can be presented to counterparties, used in DeFi protocols, or integrated into smart contracts. vLEI credentials are issued as W3C Verifiable Credentials and can be stored in blockchain wallets or credential management systems. Unlike your LEI (which is a simple identifier), your vLEI contains rich metadata: your legal name, jurisdiction, registration date, verification status, issuer information, cryptographic signatures, and validity dates. Anyone can cryptographically verify your vLEI without contacting TAS—the signature proves authenticity and the blockchain registry confirms it hasn't been revoked.
                 </p>
 
                 <p className="mb-6 leading-relaxed">
-                  <strong>Verifiable LEI Credential (vLEI):</strong> A Web3-ready digital credential that combines your LEI with cryptographic proof of your identity. This credential can be presented to counterparties, used in DeFi protocols, or integrated into smart contracts. vLEI credentials are issued as W3C Verifiable Credentials and can be stored in blockchain wallets or credential management systems.
+                  <strong>Downloading and Using Your Credentials:</strong> From the Credentials page, you can download your LEI certificate as a PDF suitable for printing or attaching to regulatory submissions. You can export your vLEI as a JSON file for importing into digital wallets or as a QR code for mobile scanning. Each credential includes a verification URL—share this URL with counterparties and they can independently verify your credential's authenticity without requiring access to your TAS account. This enables trustless verification essential for Web3 and DeFi applications.
                 </p>
+
+                <p className="mb-6 leading-relaxed">
+                  <strong>Team Credential Management (Administrators Only):</strong> If you're an organization administrator, the Credentials page includes additional functionality for issuing vLEI credentials to your team members. These personal credentials (called OOR - Official Organizational Role credentials) link individual employees to your organization's LEI, enabling them to sign documents, approve transactions, or represent your company with cryptographic proof. You define each person's role, authority scope, and validity period when issuing their credential. When team members leave, you revoke their credentials with a single click—the revocation propagates to the blockchain registry within minutes, ensuring no one can use expired credentials.
+                </p>
+              </div>
 
                 <MermaidDiagram 
                    chart={`graph TB
@@ -533,23 +633,43 @@ export default function UserPortalDocumentation() {
         {/* Compliance & Monitoring */}
         <Card className="mb-8">
           <CardHeader>
-            <SectionHeader title="Compliance & Monitoring" section="compliance" />
+            <SectionHeader title="Compliance Menu Item: Staying Regulatory Compliant 24/7" section="compliance" />
           </CardHeader>
           {expandedSections.compliance && (
             <CardContent className="space-y-8">
               <div>
-                <h3 className="text-xl font-bold mb-4">Continuous Compliance Monitoring</h3>
-                <p className="mb-6 leading-relaxed">
-                  Verification doesn't end after initial approval. We continuously monitor your business and beneficial owners against updated sanctions lists, PEP databases, and regulatory changes. This ensures that if circumstances change, you're immediately notified and appropriate actions are taken.
+                <h3 className="text-xl font-bold mb-4">Continuous Compliance Monitoring Explained</h3>
+                <p className="mb-4 leading-relaxed">
+                  The Compliance page is your ongoing regulatory monitoring center. While the Dashboard shows high-level compliance status, this dedicated Compliance section provides deep visibility into every aspect of your regulatory standing. Verification doesn't end after initial approval—we continuously monitor your business and beneficial owners against updated sanctions lists, PEP databases, adverse media sources, and regulatory changes. This ensures that if circumstances change, you're immediately notified and appropriate actions are taken to maintain compliance.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  When you open the Compliance page, you see several key sections: Active Alerts requiring your attention, Compliance Score Breakdown showing exactly how your score is calculated, Document Expiration Tracker monitoring all uploaded documents, Regulatory Calendar highlighting upcoming deadlines (LEI renewal, annual certifications, etc.), and Audit Log providing complete history of all compliance-related actions on your account. This comprehensive view enables proactive compliance management rather than reactive crisis response.
                 </p>
 
                 <p className="mb-4 leading-relaxed">
-                  <strong>Automated Monitoring:</strong> Our systems check your business against updated watchlists daily. If a match is detected, you'll receive immediate notification in the portal and via email. The alert includes the source (sanctions list, PEP database, news), confidence score, and recommended actions. Most alerts are false positives due to name similarities and are automatically resolved.
+                  <strong>Automated Monitoring - Your 24/7 Watchdog:</strong> Our systems check your business against updated watchlists daily. Global sanctions lists (OFAC, UN, EU, UK, DFAT, etc.) are updated frequently as geopolitical situations evolve. The system automatically downloads these updates, runs your organization and beneficial owners through the new data, and flags any new matches immediately. If a match is detected, you'll receive immediate notification in the portal (red badge on the Compliance menu item), via email to your registered address, and optionally via SMS if you've enabled mobile alerts. The alert includes the source (which specific sanctions list), confidence score (0-100% probability it's actually your entity), match details (what name or identifier matched), and recommended actions.
+                </p>
+
+                <p className="mb-4 leading-relaxed">
+                  Most alerts are false positives due to name similarities—if your company is "Global Imports LLC" and there's a sanctioned entity called "Global Imports Ltd" in a completely different country, the fuzzy matching algorithm flags this as a potential match. The system assigns these a low confidence score (typically 20-40%) and automatically marks them as "Likely False Positive - Auto-Resolved" without requiring your action. However, they remain visible in your alert history for audit purposes. You can click any auto-resolved alert to see why it was dismissed and the specific differences that indicated it wasn't a true match.
                 </p>
 
                 <p className="mb-6 leading-relaxed">
-                  <strong>Manual Investigation:</strong> For high-confidence alerts, our compliance team conducts manual investigation to determine whether the match represents actual regulatory risk. You may be asked to provide additional documentation to prove your business is not subject to sanctions. This investigation typically takes 1-3 business days.
+                  <strong>Manual Investigation - When Human Judgment is Needed:</strong> For high-confidence alerts (70%+ match score), our compliance team conducts manual investigation to determine whether the match represents actual regulatory risk. You'll receive an email explaining that your application is under enhanced review, what specifically triggered the alert (typically a detailed match report showing names, addresses, and identifiers that matched), and what additional documentation you can provide to expedite resolution. Common requests include: corporate structure charts showing all parent and subsidiary companies (to prove you're not affiliated with the sanctioned entity), source of funds documentation (to demonstrate your capital doesn't originate from sanctioned sources), detailed business activity explanations (to show your operations don't involve sanctioned jurisdictions or activities), and government-issued certificates of good standing.
                 </p>
+
+                <p className="mb-6 leading-relaxed">
+                  Most manual investigations resolve favorably—perhaps 80% of high-confidence alerts turn out to be false positives once reviewed by experienced analysts who understand the nuances of international business structures and name variations across languages. The investigation typically takes 1-3 business days. During this period, your existing LEI remains valid (if you have one), but new credential issuances are paused. Once the investigation concludes that you're not actually the sanctioned entity, processing resumes immediately and you receive confirmation via email. If the investigation confirms you are subject to sanctions, your account is suspended, existing credentials are revoked, and the matter is escalated to regulatory authorities as required by law.
+                </p>
+
+                <p className="mb-4 leading-relaxed">
+                  <strong>Alert Response Best Practices:</strong> When you receive a compliance alert, respond within 24-48 hours even if you're gathering documentation. A simple acknowledgment message like "We've received the alert and are preparing the requested documentation, expect our response within 3 business days" demonstrates good faith cooperation and prevents your case from being automatically escalated. Provide comprehensive documentation the first time—partial responses that require multiple follow-ups delay resolution significantly. If you disagree with an alert or believe it's clearly erroneous, explain why with supporting evidence rather than simply stating "this is wrong."
+                </p>
+
+                <p className="mb-6 leading-relaxed">
+                  <strong>Document Expiration Management:</strong> The Compliance page includes a Document Tracker that monitors the validity of all documents you've uploaded. Business registration certificates typically don't expire, but proof of address documents (utility bills) must be refreshed every 3 months, beneficial owner identification must remain current (not expired), and certain jurisdiction-specific documents have validity periods. The tracker shows each document, its upload date, expiration date (if applicable), and days until expiration. Documents expiring within 30 days are flagged yellow. Expired documents turn red and may impact your compliance score or trigger workflows requiring updated documentation.
+                </p>
+              </div>
 
                 <MermaidDiagram 
                   chart={`graph LR
@@ -637,15 +757,71 @@ export default function UserPortalDocumentation() {
         {/* Settings & Administration */}
         <Card className="mb-8">
           <CardHeader>
-            <SectionHeader title="Settings & Administration" section="settings" />
+            <SectionHeader title="Settings Menu Item: Configuring Your Account & Organization" section="settings" />
           </CardHeader>
           {expandedSections.settings && (
             <CardContent className="space-y-8">
               <div>
-                <h3 className="text-xl font-bold mb-4">User Management & Permissions</h3>
-                <p className="mb-6 leading-relaxed">
-                  Your organization can have multiple users with different permission levels. Administrators manage users, billing, and integrations. Compliance officers review alerts and investigations. API users access verification services programmatically. Each role has specific permissions that cannot be exceeded—a compliance officer cannot access billing, and an API user cannot perform administrative functions.
+                <h3 className="text-xl font-bold mb-4">Settings: Your Configuration Control Center</h3>
+                <p className="mb-4 leading-relaxed">
+                  The Settings menu item provides access to all configuration options for your personal account and organization. This is where you manage your profile information, security settings, notification preferences, team members, billing details, API keys, and integration configurations. The Settings page is organized into logical sections with tabs or accordion panels, making it easy to find and modify specific settings without being overwhelmed by options.
                 </p>
+                <p className="mb-6 leading-relaxed">
+                  Settings are divided into two scopes: Personal Settings (affecting only your user account) and Organization Settings (affecting all users in your organization—only visible to administrators). Personal settings include your display name, email address (read-only, used for login), password, two-factor authentication, language preference, timezone, and notification preferences. Organization settings include company profile, billing information, subscription management, team member administration, API access, webhooks, and white-label branding (Enterprise only). The interface clearly indicates which settings are personal versus organizational to prevent confusion.
+                </p>
+
+                <h3 className="text-xl font-bold mb-4 mt-8">User Management & Permissions in Detail</h3>
+                <p className="mb-4 leading-relaxed">
+                  Your organization can have multiple users with different permission levels. Administrators manage users, billing, and integrations. Regular users can submit applications, view workflows, and download credentials assigned to them. Each role has specific permissions that cannot be exceeded—a regular user cannot access billing, invite other users, or generate API keys. This role-based access control ensures security and compliance by limiting each user to only the data and functions necessary for their job responsibilities.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Inviting Team Members:</strong> Organization administrators can invite new users from Settings → Team Management. Click "Invite User," enter their email address, assign their role (Administrator or User), and optionally add a welcome message. They receive an invitation email with a link to create their account. Once they complete registration, they automatically have access to your organization's data according to their assigned role. You can track invitation status—whether the email was sent, whether the recipient opened it, and whether they completed registration. Unused invitations expire after 7 days for security.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Managing Existing Users:</strong> The Team Management section shows all current users, their roles, last login date, and activity level. You can change user roles (promote regular user to administrator or demote administrator to regular user), suspend users temporarily (blocks their access without deleting their account), or remove users permanently (deletes their account and revokes all associated credentials). Each action requires confirmation and is logged in the audit trail. When you remove a user, any vLEI credentials issued to them are automatically revoked within minutes.
+                </p>
+
+                <h3 className="text-xl font-bold mb-4 mt-8">Security Settings: Protecting Your Account</h3>
+                <p className="mb-4 leading-relaxed">
+                  The Security tab contains critical account protection features. Two-Factor Authentication (2FA) is strongly recommended for all users and mandatory for administrators. Enable 2FA by selecting your preferred method: authenticator app (Google Authenticator, Microsoft Authenticator, Authy), SMS codes, or physical security key (YubiKey, FIDO2 device). The setup wizard guides you through the process and generates backup codes—save these in a secure location as they allow account recovery if you lose your 2FA device.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Active Sessions Management:</strong> The Security tab shows all devices where you're currently logged in: desktop browsers, mobile devices, tablets. Each session displays the device type, operating system, browser, IP address, geographic location, and login time. You can remotely log out any session if you suspect unauthorized access or if you left yourself logged in on a shared computer. This is particularly important for administrators who have elevated privileges.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Password and Recovery:</strong> Change your password from the Security tab at any time. New passwords must meet minimum requirements: 12+ characters, uppercase and lowercase letters, numbers, symbols, and cannot be a common password or contain your email address. Set up account recovery options (backup email, phone number for SMS) so you can regain access if you forget your password. The password reset flow sends a time-limited link (valid 1 hour) to your recovery email, requiring you to verify identity before setting a new password.
+                </p>
+
+                <h3 className="text-xl font-bold mb-4 mt-8">Notification Preferences: Staying Informed Without Overwhelm</h3>
+                <p className="mb-4 leading-relaxed">
+                  Control what notifications you receive, how you receive them, and when. The Notification Preferences section lets you configure in-app notifications (displayed in the notification bell), email notifications (sent to your registered email), SMS notifications (for critical alerts only), and browser push notifications (desktop pop-ups even when TAS isn't the active tab). You can enable or disable each notification type individually for different event categories.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Notification Categories:</strong> Application Status Changes (submission confirmations, approval notifications, rejection alerts), Workflow Updates (KYB completed, AML screening started, manual review required), Compliance Alerts (AML matches, sanctions hits, document expiries), Credential Events (LEI issued, vLEI generated, renewals due), Billing Events (payment successful, payment failed, invoice generated), and System Announcements (platform updates, maintenance windows, new features). For each category, choose notification delivery methods: All (in-app + email + SMS), Email Only, In-App Only, or None.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Digest Mode:</strong> Instead of receiving individual emails for every event, you can enable Daily Digest mode. This sends one comprehensive email per day summarizing all activity: applications submitted, workflows completed, alerts generated, and required actions. Digests are sent at your configured time (default 8 AM in your timezone). Critical alerts always send immediately regardless of digest settings—you won't wait 24 hours to learn about a sanctions match.
+                </p>
+
+                <h3 className="text-xl font-bold mb-4 mt-8">Billing & Subscription Management</h3>
+                <p className="mb-4 leading-relaxed">
+                  Administrators see a Billing section in Settings showing current subscription tier, monthly cost, payment method on file, billing history, and usage against plan limits. View all invoices (paid and unpaid), download PDF copies for accounting, see itemized charges for each service used, and track overage fees if you exceeded plan limits. Update your payment method by adding a new credit card—we securely tokenize the card via FTS.Money (our payment processor) without storing card numbers in TAS systems.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Plan Upgrades and Downgrades:</strong> Change your subscription tier at any time. Upgrades take effect immediately—you gain access to new features and higher limits right away. Downgrades take effect at the end of your current billing period to ensure you get full value for what you've paid. When you upgrade mid-month, we calculate prorated charges: you pay the difference between your old tier and new tier for the remaining days in the current month, then full price for the new tier starting next month. When you downgrade, you continue on your current tier until the end of the billing period, then the lower-tier pricing begins.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Usage Monitoring:</strong> The Billing section includes real-time usage meters showing your consumption against plan limits. For example, if your Business plan includes 200 KYB verifications per month and you've used 147, you'll see a progress bar at 73% with "53 verifications remaining this period." This transparency helps you avoid unexpected overage charges. If you consistently approach or exceed your limits, the system suggests upgrading to a higher tier that better matches your usage patterns, potentially saving money compared to paying overage fees.
+                </p>
+
+                <h3 className="text-xl font-bold mb-4 mt-8">API Access & Integration Configuration</h3>
+                <p className="mb-4 leading-relaxed">
+                  For organizations with API access enabled (Business and Enterprise tiers), the Settings page includes an API section for generating and managing API keys. API keys are secret tokens that authenticate your application when making programmatic requests to TAS. Generate a new key by clicking "Create API Key," naming it descriptively (e.g., "Production Server," "Development Environment," "Mobile App"), and selecting its permissions scope (Read Only, Read + Write, Full Access). The newly generated key is displayed once—copy it immediately and store securely as you cannot view it again.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>Webhook Configuration:</strong> Webhooks enable real-time notifications to your own systems when events occur in TAS. Configure webhooks from Settings → Integrations. Specify your webhook endpoint URL (where TAS should send notifications), select which event types to subscribe to (application status changes, workflow completions, compliance alerts, credential issuances), and generate a secret key for signature verification. When events occur, TAS sends HTTP POST requests to your endpoint with event details in JSON format. Your system can verify authenticity using the HMAC signature in the request headers, preventing spoofed webhook attacks.
+                </p>
+              </div>
 
                 <table className="w-full text-sm border-collapse mt-6">
                    <thead className="bg-gray-800 text-white">
@@ -691,17 +867,38 @@ export default function UserPortalDocumentation() {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold mb-4">API Integration & Webhooks</h3>
+                <h3 className="text-lg font-bold mb-4 mt-8">Web3 Dashboard: Blockchain & Decentralized Identity</h3>
                 <p className="mb-4 leading-relaxed">
-                  For organizations that need to integrate verification into their own systems, we provide REST API access and webhooks. API users can programmatically submit verification requests, check status, retrieve credentials, and subscribe to real-time updates via webhooks.
+                  The Web3 Dashboard is a specialized menu item for organizations leveraging blockchain technology and decentralized identity systems. This section bridges traditional compliance (LEI, vLEI) with Web3 capabilities (DeFi, DAOs, NFTs). When you click "Web3" in the navigation, you access four main panels: Wallet Connection, DeFi Compliance, DAO Governance Integration, and NFT Authentication.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Wallet Connection:</strong> Connect your organization's blockchain wallets (MetaMask, WalletConnect, Ledger) to your TAS account. Once connected, you can prove your organization's identity on any blockchain by signing messages with your wallet that's cryptographically linked to your vLEI credential. This enables trustless verification—counterparties can confirm your business's legitimacy without relying on centralized databases or third parties. The connection process takes 2 minutes: click "Connect Wallet," approve the connection request in your wallet app, sign a verification message proving you control the wallet, and the system links your wallet address to your LEI and vLEI credentials.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>DeFi Compliance:</strong> If your organization participates in decentralized finance protocols, the DeFi Compliance panel helps you meet Know Your Business (KYB) requirements many protocols now mandate. Export your vLEI credential in formats compatible with Aave, Compound, Uniswap governance, and other major DeFi platforms. The panel generates compliance proofs you can submit when protocols require verification for large transactions or governance participation. Monitor your on-chain reputation score aggregated from multiple DeFi platforms.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>DAO Governance:</strong> Decentralized Autonomous Organizations increasingly require verified identity for governance participation to prevent Sybil attacks and ensure legitimate stakeholder voting. The DAO Integration panel lets you present your vLEI credential to DAO voting platforms, proving one legitimate business per vote. Configure which DAOs you participate in, link your governance tokens to your verified identity, and view your voting history with cryptographic proof of your organization's participation.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  <strong>NFT Authentication:</strong> Issue authenticated NFTs that carry your organization's verifiable credential metadata. These NFTs prove they were created by your verified business—valuable for digital collectibles, tokenized assets, or proof of authenticity for physical goods. The NFT Authentication panel guides you through minting NFTs on multiple chains (Ethereum, Polygon, Binance Smart Chain) with embedded vLEI signatures, making them verifiably authentic and traceable to your registered business.
+                </p>
+
+                <h3 className="text-lg font-bold mb-4">API Integration & Webhooks for Developers</h3>
+                <p className="mb-4 leading-relaxed">
+                  For organizations that need to integrate verification into their own systems, we provide comprehensive REST API access and real-time webhooks. API users can programmatically submit verification requests, check workflow status, retrieve credentials, download verification reports, and subscribe to real-time updates via webhooks. The API follows RESTful conventions with JSON request/response formats, standard HTTP status codes, and comprehensive error messages. Rate limits are based on your subscription tier: Starter allows 100 API calls per hour, Business allows 1,000 per hour, and Enterprise has no rate limits.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>API Documentation Access:</strong> From Settings → API, you can access the complete API reference documentation showing every available endpoint, required parameters, response formats, and code examples in multiple languages (JavaScript, Python, Java, C#, Go). The documentation includes interactive testing—you can make API calls directly from the documentation page using your real API key to see actual responses. This makes integration development significantly faster as you can test endpoints before writing code.
                 </p>
                 <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
                   <p className="font-bold mb-2">Popular API Use Cases:</p>
                   <ul className="text-sm space-y-2 ml-4">
-                    <li>• Auto-verify customer KYB during onboarding flows</li>
-                    <li>• Retrieve LEI and vLEI credentials for customer profiles</li>
-                    <li>• Receive real-time alerts via webhooks when compliance status changes</li>
-                    <li>• Export verification data to your own database</li>
+                    <li>• <strong>Customer Onboarding Automation:</strong> Integrate KYB verification directly into your customer registration flow, automatically verifying business legitimacy as part of account creation</li>
+                    <li>• <strong>Real-Time Credential Retrieval:</strong> Pull LEI and vLEI credentials for customer profiles in your CRM, displaying verification status in your internal dashboards</li>
+                    <li>• <strong>Compliance Monitoring:</strong> Receive real-time webhooks when compliance status changes, triggering automated workflows in your compliance management system</li>
+                    <li>• <strong>Data Export and Warehousing:</strong> Bulk export verification data to your own database for analytics, reporting, or regulatory filing preparation</li>
+                    <li>• <strong>White-Label Integration:</strong> Embed TAS verification flows into your own product using our API, providing verification services to your customers under your brand</li>
                   </ul>
                 </div>
               </div>
