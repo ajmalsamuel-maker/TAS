@@ -39,11 +39,11 @@ export default function TASLogo({ size = 'md', showText = true }) {
           <line x1="50" y1="35" x2="62" y2="55" stroke="white" strokeWidth="2" opacity="0.7" />
           <line x1="38" y1="55" x2="62" y2="55" stroke="white" strokeWidth="2" opacity="0.7" />
           
-          {/* Green verification circle with checkmark - overlapping shield */}
-          <circle cx="70" cy="25" r="18" fill="#4ADE80" />
-          <circle cx="70" cy="25" r="18" fill="none" stroke="white" strokeWidth="2.5" />
+          {/* Green verification circle with checkmark - top right, not overlapping triangle */}
+          <circle cx="75" cy="18" r="16" fill="#4ADE80" />
+          <circle cx="75" cy="18" r="16" fill="none" stroke="white" strokeWidth="2.3" />
           {/* Checkmark path */}
-          <path d="M62 25 L67 32 L78 18" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M68 18 L72 24 L82 12" fill="none" stroke="white" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
 

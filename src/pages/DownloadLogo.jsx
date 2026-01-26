@@ -31,11 +31,11 @@ export default function DownloadLogo() {
   <line x1="200" y1="140" x2="248" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
   <line x1="152" y1="220" x2="248" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
   
-  <!-- Green verification circle with checkmark - overlapping shield -->
-  <circle cx="280" cy="100" r="72" fill="#4ADE80" />
-  <circle cx="280" cy="100" r="72" fill="none" stroke="white" stroke-width="10" />
+  <!-- Green verification circle with checkmark - top right, not overlapping triangle -->
+  <circle cx="300" cy="72" r="64" fill="#4ADE80" />
+  <circle cx="300" cy="72" r="64" fill="none" stroke="white" stroke-width="9" />
   <!-- Checkmark path -->
-  <path d="M248 100 L268 128 L312 72" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M272 72 L288 96 L328 48" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
 </svg>`;
 
     const blob = new Blob([svg], { type: 'image/svg+xml' });
@@ -64,9 +64,9 @@ export default function DownloadLogo() {
   <line x1="200" y1="140" x2="152" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
   <line x1="200" y1="140" x2="248" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
   <line x1="152" y1="220" x2="248" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
-  <circle cx="280" cy="100" r="72" fill="#4ADE80" />
-  <circle cx="280" cy="100" r="72" fill="none" stroke="white" stroke-width="10" />
-  <path d="M248 100 L268 128 L312 72" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="300" cy="72" r="64" fill="#4ADE80" />
+  <circle cx="300" cy="72" r="64" fill="none" stroke="white" stroke-width="9" />
+  <path d="M272 72 L288 96 L328 48" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
 </svg>`;
 
     const canvas = document.createElement('canvas');
@@ -126,9 +126,9 @@ export default function DownloadLogo() {
                   <line x1="200" y1="140" x2="152" y2="220" stroke="white" strokeWidth="8" opacity="0.7" />
                   <line x1="200" y1="140" x2="248" y2="220" stroke="white" strokeWidth="8" opacity="0.7" />
                   <line x1="152" y1="220" x2="248" y2="220" stroke="white" strokeWidth="8" opacity="0.7" />
-                  <circle cx="280" cy="100" r="72" fill="#4ADE80" />
-                  <circle cx="280" cy="100" r="72" fill="none" stroke="white" strokeWidth="10" />
-                  <path d="M248 100 L268 128 L312 72" fill="none" stroke="white" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="300" cy="72" r="64" fill="#4ADE80" />
+                  <circle cx="300" cy="72" r="64" fill="none" stroke="white" strokeWidth="10" />
+                  <path d="M272 72 L288 96 L328 48" fill="none" stroke="white" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               
