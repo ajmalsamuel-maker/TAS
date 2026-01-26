@@ -9,33 +9,29 @@ Deno.serve(async (req) => {
             return Response.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        const { applicationId } = await req.json();
+        const { application_id } = await req.json();
 
-        if (!applicationId) {
+        if (!application_id) {
             return Response.json({ error: 'Application ID required' }, { status: 400 });
         }
 
-        const application = await base44.entities.OnboardingApplication.read(applicationId);
+        const apps = await base44.entities.OnboardingApplication.filter({ id: application_id });
         
-        if (!application) {
+        if (apps.length === 0) {
             return Response.json({ error: 'Application not found' }, { status: 404 });
         }
 
-        if (application.status !== 'approved') {
-            return Response.json({ error: 'Application must be approved before facial verification' }, { status: 400 });
-        }
-
+        const application = apps[0];
         const faciaClientId = Deno.env.get('FACIA_CLIENT_ID');
         const faciaClientSecret = Deno.env.get('FACIA_CLIENT_SECRET');
 
         // Get Facia access token
-        const tokenResponse = await fetch('https://api.facia.ai/oauth/token', {
+        const tokenResponse = await fetch('https://api.facia.ai/request-access-token', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 client_id: faciaClientId,
-                client_secret: faciaClientSecret,
-                grant_type: 'client_credentials'
+                client_secret: faciaClientSecret
             })
         });
 
@@ -43,71 +39,48 @@ Deno.serve(async (req) => {
             throw new Error('Failed to get Facia access token');
         }
 
-        const { access_token } = await tokenResponse.json();
+        const tokenData = await tokenResponse.json();
+        const access_token = tokenData.access_token;
 
-        // Create verification session with Facia
-        const sessionResponse = await fetch('https://api.facia.ai/v1/verification/session', {
+        if (!access_token) {
+            throw new Error('No access token returned from Facia');
+        }
+
+        // Generate liveness URL
+        const baseUrl = Deno.env.get('BASE_URL') || 'https://app.base44.com';
+        const livenessResponse = await fetch('https://api.facia.ai/generate-liveness-url', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${access_token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user_email: user.email,
-                user_id: user.id,
-                verification_type: 'facial',
-                metadata: {
-                    application_id: applicationId,
-                    entity_name: application.legal_name
-                }
+                redirect_url: `${baseUrl}/app/CompleteOnboarding?application_id=${application_id}&facia_complete=true`,
+                callback_url: `${baseUrl}/api/facia-callback`,
+                customer_id: application.id,
+                customer_email: application.email || user.email,
+                ttl: 60
             })
         });
 
-        if (!sessionResponse.ok) {
-            throw new Error('Failed to create Facia verification session');
+        if (!livenessResponse.ok) {
+            const errorData = await livenessResponse.json();
+            throw new Error(errorData.message || 'Failed to generate liveness URL');
         }
 
-        const sessionData = await sessionResponse.json();
+        const livenessData = await livenessResponse.json();
 
-        // Store workflow record
-        await base44.entities.Workflow.create({
-            user_id: user.id,
-            type: 'did_verification',
-            status: 'in_progress',
-            provider_name: 'Facia',
-            result: {
-                facia_session_id: sessionData.session_id,
-                verification_url: sessionData.verification_url,
-                expires_at: sessionData.expires_at
-            }
-        });
-
-        // Update application to mark facial verification in progress
-        await base44.entities.OnboardingApplication.update(applicationId, {
-            status: 'under_review',
-            tas_verification_status: 'facial_verified',
+        // Update application to mark facial verification initiated
+        await base44.asServiceRole.entities.OnboardingApplication.update(application.id, {
             facial_verification_initiated: new Date().toISOString(),
-            facia_session_id: sessionData.session_id
-        });
-
-        // Create notification with action URL
-        await base44.entities.Notification.create({
-            recipient_id: user.id,
-            recipient_email: user.email,
-            type: 'workflow_completed',
-            title: 'Identity Verification Required',
-            message: 'Please complete facial verification to finalize your LEI application.',
-            action_url: sessionData.verification_url,
-            priority: 'high',
-            send_email: true,
-            metadata: { application_id: applicationId }
+            facia_session_id: livenessData.reference_id || livenessData.session_id
         });
 
         return Response.json({
             success: true,
-            sessionId: sessionData.session_id,
-            verificationUrl: sessionData.verification_url,
-            expiresAt: sessionData.expires_at
+            facia_url: livenessData.url,
+            session_id: livenessData.reference_id || livenessData.session_id,
+            expires_in: livenessData.ttl || 60
         });
 
     } catch (error) {
