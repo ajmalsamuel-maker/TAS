@@ -8,9 +8,10 @@ import { TranslationProvider, useTranslation } from './components/i18n/useTransl
 import LanguageSelector from './components/i18n/LanguageSelector';
 import NotificationBell from './components/notifications/NotificationBell';
 import { 
-        Home, Users, Activity, Globe, LogOut, 
-        Shield, Menu, X, Settings, BarChart, Mail, FileText
-      } from 'lucide-react';
+          Home, Users, Activity, Globe, LogOut, 
+          Shield, Menu, X, Settings, BarChart, Mail, FileText, BookOpen
+        } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 function LayoutContent({ children, currentPageName }) {
   const [user, setUser] = useState(null);
@@ -53,30 +54,32 @@ function LayoutContent({ children, currentPageName }) {
 
   // Marketing Website (Public) - ONLY these pages for non-authenticated users
   const marketingPages = [
-    { nameKey: 'nav.home', icon: Home, path: 'Home' },
-    { nameKey: 'nav.solutions', icon: Shield, path: 'About' },
-    { nameKey: 'nav.pricing', icon: Activity, path: 'Pricing' },
-    { nameKey: 'nav.contact', icon: Mail, path: 'Contact' },
-    { name: 'Learn', icon: FileText, path: 'PublicDocumentation' },
+    { nameKey: 'nav.home', icon: Home, path: 'Home', tooltip: 'Return to homepage' },
+    { nameKey: 'nav.solutions', icon: Shield, path: 'About', tooltip: 'Learn about our solutions' },
+    { nameKey: 'nav.pricing', icon: Activity, path: 'Pricing', tooltip: 'View pricing plans' },
+    { nameKey: 'nav.contact', icon: Mail, path: 'Contact', tooltip: 'Get in touch with us' },
+    { name: 'Learn', icon: FileText, path: 'PublicDocumentation', tooltip: 'Browse documentation' },
   ];
 
   // User Portal Navigation (Authenticated Regular Users)
   const userPortalPages = [
-    { nameKey: 'nav.dashboard', icon: Activity, path: 'UserDashboard' },
-    { nameKey: 'nav.workflows', icon: Activity, path: 'Workflows' },
-    { name: 'Web3', icon: Globe, path: 'Web3Dashboard' },
-    { nameKey: 'nav.compliance', icon: Shield, path: 'UserCompliance' },
-    { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials' },
-    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' },
-    { name: 'Documentation', icon: FileText, path: 'UserPortalDocumentation' }
+    { nameKey: 'nav.dashboard', icon: Activity, path: 'UserDashboard', tooltip: 'View your dashboard overview' },
+    { nameKey: 'nav.workflows', icon: Activity, path: 'Workflows', tooltip: 'Track verification workflows' },
+    { name: 'Web3', icon: Globe, path: 'Web3Dashboard', tooltip: 'Web3 and blockchain features' },
+    { nameKey: 'nav.compliance', icon: Shield, path: 'UserCompliance', tooltip: 'Monitor compliance status' },
+    { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials', tooltip: 'Manage LEI and vLEI credentials' },
+    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings', tooltip: 'Configure account settings' },
+    { name: 'Documentation', icon: FileText, path: 'UserPortalDocumentation', tooltip: 'Technical documentation' },
+    { name: 'Help', icon: BookOpen, path: 'UserManual', tooltip: 'Complete user manual with examples' }
   ];
 
   // Admin Portal Navigation (Admins Only)
   const adminPortalPages = [
-    { nameKey: 'nav.dashboard', icon: Shield, path: 'AdminDashboard' },
-    { name: 'Billing', icon: Activity, path: 'BillingAdmin' },
-    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings' },
-    { name: 'Docs', icon: FileText, path: 'AdminDocumentation' }
+    { nameKey: 'nav.dashboard', icon: Shield, path: 'AdminDashboard', tooltip: 'Admin control panel' },
+    { name: 'Billing', icon: Activity, path: 'BillingAdmin', tooltip: 'Manage billing and revenue' },
+    { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings', tooltip: 'System and account settings' },
+    { name: 'Docs', icon: FileText, path: 'AdminDocumentation', tooltip: 'Technical documentation' },
+    { name: 'Manual', icon: BookOpen, path: 'UserManual', tooltip: 'Complete admin manual with guides' }
   ];
 
   // CLEAR SEPARATION: Marketing vs Portal navigation
@@ -98,22 +101,30 @@ function LayoutContent({ children, currentPageName }) {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-2">
-              {navigationPages.map((page) => {
-                const Icon = page.icon;
-                const isActive = currentPageName === page.path;
-                return (
-                  <Link key={page.path} to={createPageUrl(page.path)}>
-                    <div className={`px-4 py-2 rounded-lg transition-all ${
-                      isActive 
-                        ? 'bg-white/20 text-white font-semibold' 
-                        : 'text-blue-100 hover:bg-white/10 hover:text-white'
-                    }`}>
-                      <span>{page.name || t(page.nameKey)}</span>
-                    </div>
-                  </Link>
-                );
-              })}
+            <TooltipProvider>
+              <div className="hidden md:flex items-center gap-2">
+                {navigationPages.map((page) => {
+                  const Icon = page.icon;
+                  const isActive = currentPageName === page.path;
+                  return (
+                    <Tooltip key={page.path}>
+                      <TooltipTrigger asChild>
+                        <Link to={createPageUrl(page.path)}>
+                          <div className={`px-4 py-2 rounded-lg transition-all ${
+                            isActive 
+                              ? 'bg-white/20 text-white font-semibold' 
+                              : 'text-blue-100 hover:bg-white/10 hover:text-white'
+                          }`}>
+                            <span>{page.name || t(page.nameKey)}</span>
+                          </div>
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{page.tooltip}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
 
               {!isAuthenticated && (
                 <div className="flex items-center gap-2 ml-4 pl-4 border-l border-white/20">
@@ -148,8 +159,9 @@ function LayoutContent({ children, currentPageName }) {
                     <LogOut className="h-4 w-4" />
                   </Button>
                 </div>
-              )}
-            </div>
+                )}
+                </div>
+                </TooltipProvider>
 
             {/* Mobile Menu Button */}
             <button

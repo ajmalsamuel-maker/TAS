@@ -25,6 +25,7 @@ import UserSettings from './pages/UserSettings';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
 import CompleteOnboarding from './pages/CompleteOnboarding';
+import UserManual from './pages/UserManual';
 import __Layout from './Layout.jsx';
 
 
@@ -56,6 +57,7 @@ export const PAGES = {
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
     "CompleteOnboarding": CompleteOnboarding,
+    "UserManual": UserManual,
 }
 
 export const pagesConfig = {
