@@ -148,12 +148,16 @@ export default function BillingPlansManager() {
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="basic" className="space-y-4">
-            <TabsList>
-              <TabsTrigger value="basic">Basic Info</TabsTrigger>
-              <TabsTrigger value="components">Component Pricing</TabsTrigger>
-              <TabsTrigger value="promo">Promotions</TabsTrigger>
-              <TabsTrigger value="regional">Regional Pricing</TabsTrigger>
-              <TabsTrigger value="discounts">Organization Discounts</TabsTrigger>
+            <TabsList className="grid grid-cols-4 lg:grid-cols-9 gap-1">
+              <TabsTrigger value="basic">Basic</TabsTrigger>
+              <TabsTrigger value="components">Components</TabsTrigger>
+              <TabsTrigger value="progressive">Tiers</TabsTrigger>
+              <TabsTrigger value="promo">Promos</TabsTrigger>
+              <TabsTrigger value="regional">Regional</TabsTrigger>
+              <TabsTrigger value="discounts">Org Discounts</TabsTrigger>
+              <TabsTrigger value="advanced">Advanced</TabsTrigger>
+              <TabsTrigger value="referral">Referrals</TabsTrigger>
+              <TabsTrigger value="industry">Industry</TabsTrigger>
             </TabsList>
 
             {/* Basic Info */}
@@ -519,6 +523,34 @@ export default function BillingPlansManager() {
               </div>
             </TabsContent>
 
+            {/* Progressive Pricing Tiers */}
+            <TabsContent value="progressive" className="space-y-4">
+              <div className="bg-white rounded-lg p-4 border">
+                <h3 className="font-semibold mb-4">Usage-Based Progressive Pricing</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Define tiered pricing (e.g., first 100 vLEIs at $50, next 100 at $40, 200+ at $35)
+                </p>
+                <div className="space-y-4">
+                  {['vlei_issuance', 'lei_issuance', 'kyb_verification'].map(component => (
+                    <div key={component} className="border rounded p-3 bg-gray-50">
+                      <h4 className="font-semibold text-sm mb-2 capitalize">
+                        {component.replace('_', ' ')} Tiers
+                      </h4>
+                      <div className="text-xs text-gray-500 mb-2">
+                        Example: 1-100 at $50, 101-500 at $40, 501+ at $35
+                      </div>
+                      <div className="grid grid-cols-3 gap-2 text-xs font-semibold mb-1">
+                        <div>From Qty</div>
+                        <div>To Qty</div>
+                        <div>Price ($)</div>
+                      </div>
+                      <div className="text-sm text-gray-500">Coming soon - configure in metadata for now</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
+
             {/* Organization Discounts */}
             <TabsContent value="discounts" className="space-y-4">
               <div className="bg-white rounded-lg p-4 border">
@@ -595,6 +627,326 @@ export default function BillingPlansManager() {
                   {(!formData.organization_discounts || formData.organization_discounts.length === 0) && (
                     <p className="text-sm text-gray-500 text-center py-4">No organization-specific discounts</p>
                   )}
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* Advanced Features */}
+            <TabsContent value="advanced" className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                {/* Multi-Year Discounts */}
+                <div className="bg-white rounded-lg p-4 border">
+                  <h3 className="font-semibold mb-3">Multi-Year Discounts</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="text-sm font-semibold">2-Year Discount (%)</label>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        value={formData.multi_year_discounts?.two_year || 15}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          multi_year_discounts: {
+                            ...formData.multi_year_discounts,
+                            two_year: parseFloat(e.target.value)
+                          }
+                        })}
+                        placeholder="15"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-semibold">3-Year Discount (%)</label>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        value={formData.multi_year_discounts?.three_year || 25}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          multi_year_discounts: {
+                            ...formData.multi_year_discounts,
+                            three_year: parseFloat(e.target.value)
+                          }
+                        })}
+                        placeholder="25"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* White-Label/Reseller Pricing */}
+                <div className="bg-white rounded-lg p-4 border">
+                  <h3 className="font-semibold mb-3">White-Label/Reseller Pricing</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={formData.white_label_pricing?.is_enabled || false}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          white_label_pricing: {
+                            ...formData.white_label_pricing,
+                            is_enabled: e.target.checked
+                          }
+                        })}
+                        className="rounded"
+                      />
+                      <label className="text-sm font-semibold">Enable Wholesale Pricing</label>
+                    </div>
+                    {formData.white_label_pricing?.is_enabled && (
+                      <>
+                        <div>
+                          <label className="text-sm font-semibold">Wholesale Discount (%)</label>
+                          <Input
+                            type="number"
+                            step="0.1"
+                            value={formData.white_label_pricing?.wholesale_discount || 0}
+                            onChange={(e) => setFormData({
+                              ...formData,
+                              white_label_pricing: {
+                                ...formData.white_label_pricing,
+                                wholesale_discount: parseFloat(e.target.value)
+                              }
+                            })}
+                            placeholder="30"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-sm font-semibold">Minimum Monthly Volume</label>
+                          <Input
+                            type="number"
+                            value={formData.white_label_pricing?.minimum_volume || 0}
+                            onChange={(e) => setFormData({
+                              ...formData,
+                              white_label_pricing: {
+                                ...formData.white_label_pricing,
+                                minimum_volume: parseInt(e.target.value)
+                              }
+                            })}
+                            placeholder="100"
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Multi-Currency Support */}
+                <div className="bg-white rounded-lg p-4 border">
+                  <h3 className="font-semibold mb-3">Multi-Currency Support</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={formData.multi_currency_support?.enabled !== false}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          multi_currency_support: {
+                            ...formData.multi_currency_support,
+                            enabled: e.target.checked
+                          }
+                        })}
+                        className="rounded"
+                      />
+                      <label className="text-sm font-semibold">Enable Multi-Currency</label>
+                    </div>
+                    <div>
+                      <label className="text-sm font-semibold">Supported Currencies</label>
+                      <p className="text-xs text-gray-500 mb-2">USD, EUR, GBP, AED, SGD (comma-separated)</p>
+                      <Input
+                        value={formData.multi_currency_support?.supported_currencies?.join(', ') || 'USD, EUR, GBP'}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          multi_currency_support: {
+                            ...formData.multi_currency_support,
+                            supported_currencies: e.target.value.split(',').map(c => c.trim())
+                          }
+                        })}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tax Configuration */}
+                <div className="bg-white rounded-lg p-4 border">
+                  <h3 className="font-semibold mb-3">Tax Handling (VAT/GST)</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={formData.tax_configuration?.auto_calculate !== false}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          tax_configuration: {
+                            ...formData.tax_configuration,
+                            auto_calculate: e.target.checked
+                          }
+                        })}
+                        className="rounded"
+                      />
+                      <label className="text-sm font-semibold">Auto-Calculate VAT/GST</label>
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      Tax rules configured per country in Invoice Standards entity
+                    </p>
+                  </div>
+                </div>
+
+                {/* Payment Terms */}
+                <div className="bg-white rounded-lg p-4 border">
+                  <h3 className="font-semibold mb-3">Payment Terms</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="text-sm font-semibold">Default Payment Terms</label>
+                      <select
+                        value={formData.payment_terms?.default_terms || 'immediate'}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          payment_terms: {
+                            ...formData.payment_terms,
+                            default_terms: e.target.value
+                          }
+                        })}
+                        className="w-full border rounded px-3 py-2"
+                      >
+                        <option value="immediate">Immediate</option>
+                        <option value="net_15">Net 15</option>
+                        <option value="net_30">Net 30</option>
+                        <option value="net_60">Net 60</option>
+                        <option value="net_90">Net 90</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-sm font-semibold">Enterprise Payment Terms</label>
+                      <select
+                        value={formData.payment_terms?.enterprise_terms || 'net_30'}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          payment_terms: {
+                            ...formData.payment_terms,
+                            enterprise_terms: e.target.value
+                          }
+                        })}
+                        className="w-full border rounded px-3 py-2"
+                      >
+                        <option value="net_30">Net 30</option>
+                        <option value="net_60">Net 60</option>
+                        <option value="net_90">Net 90</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Seasonal Campaigns */}
+                <div className="bg-white rounded-lg p-4 border">
+                  <h3 className="font-semibold mb-3">Seasonal Campaigns</h3>
+                  <p className="text-xs text-gray-500 mb-2">
+                    Recurring campaigns (e.g., Q4 Compliance Rush, Year-End Special)
+                  </p>
+                  <div className="text-sm text-gray-500">Configure in metadata for now</div>
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* Referral Program */}
+            <TabsContent value="referral" className="space-y-4">
+              <div className="bg-white rounded-lg p-4 border">
+                <h3 className="font-semibold mb-4">Referral Credit Program</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={formData.referral_program?.is_enabled || false}
+                      onChange={(e) => setFormData({
+                        ...formData,
+                        referral_program: {
+                          ...formData.referral_program,
+                          is_enabled: e.target.checked
+                        }
+                      })}
+                      className="rounded"
+                    />
+                    <label className="text-sm font-semibold">Enable Referral Program</label>
+                  </div>
+                  {formData.referral_program?.is_enabled && (
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="text-sm font-semibold">Credit for Referrer ($)</label>
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={formData.referral_program?.credit_amount || 0}
+                          onChange={(e) => setFormData({
+                            ...formData,
+                            referral_program: {
+                              ...formData.referral_program,
+                              credit_amount: parseFloat(e.target.value)
+                            }
+                          })}
+                          placeholder="100"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-semibold">Credit for Referee ($)</label>
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={formData.referral_program?.referee_credit || 0}
+                          onChange={(e) => setFormData({
+                            ...formData,
+                            referral_program: {
+                              ...formData.referral_program,
+                              referee_credit: parseFloat(e.target.value)
+                            }
+                          })}
+                          placeholder="50"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-semibold">Max Referrals (blank = unlimited)</label>
+                        <Input
+                          type="number"
+                          value={formData.referral_program?.max_referrals || ''}
+                          onChange={(e) => setFormData({
+                            ...formData,
+                            referral_program: {
+                              ...formData.referral_program,
+                              max_referrals: e.target.value ? parseInt(e.target.value) : null
+                            }
+                          })}
+                          placeholder="Unlimited"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* Industry-Specific Pricing */}
+            <TabsContent value="industry" className="space-y-4">
+              <div className="bg-white rounded-lg p-4 border">
+                <h3 className="font-semibold mb-4">Industry-Specific Pricing</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Special pricing for nonprofits, government, education, healthcare
+                </p>
+                <div className="space-y-3">
+                  {['nonprofit', 'government', 'education', 'healthcare', 'financial_services'].map(industry => (
+                    <div key={industry} className="border rounded p-3 bg-gray-50">
+                      <div className="grid md:grid-cols-2 gap-3">
+                        <div className="font-semibold capitalize">{industry.replace('_', ' ')}</div>
+                        <div>
+                          <label className="text-xs font-semibold">Discount (%)</label>
+                          <Input
+                            type="number"
+                            step="0.1"
+                            placeholder="e.g., 20"
+                            className="text-sm"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <p className="text-xs text-gray-500 mt-2">Configure in metadata for now</p>
                 </div>
               </div>
             </TabsContent>
