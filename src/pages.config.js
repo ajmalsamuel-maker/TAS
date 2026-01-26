@@ -6,6 +6,7 @@ import AdminDocumentation from './pages/AdminDocumentation';
 import AdminReports from './pages/AdminReports';
 import ApplicationStatus from './pages/ApplicationStatus';
 import BillingAdmin from './pages/BillingAdmin';
+import CompleteOnboarding from './pages/CompleteOnboarding';
 import Contact from './pages/Contact';
 import DownloadLogo from './pages/DownloadLogo';
 import FeatureVerificationGuide from './pages/FeatureVerificationGuide';
@@ -24,7 +25,6 @@ import UserPortalDocumentation from './pages/UserPortalDocumentation';
 import UserSettings from './pages/UserSettings';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
-import CompleteOnboarding from './pages/CompleteOnboarding';
 import __Layout from './Layout.jsx';
 
 
@@ -37,6 +37,7 @@ export const PAGES = {
     "AdminReports": AdminReports,
     "ApplicationStatus": ApplicationStatus,
     "BillingAdmin": BillingAdmin,
+    "CompleteOnboarding": CompleteOnboarding,
     "Contact": Contact,
     "DownloadLogo": DownloadLogo,
     "FeatureVerificationGuide": FeatureVerificationGuide,
@@ -55,7 +56,6 @@ export const PAGES = {
     "UserSettings": UserSettings,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
-    "CompleteOnboarding": CompleteOnboarding,
 }
 
 export const pagesConfig = {

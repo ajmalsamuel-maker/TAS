@@ -125,6 +125,63 @@ const AdminDocumentation = () => {
 
           {/* Admin Manual Tab */}
           <TabsContent value="manual" className="space-y-6">
+            <div className="flex flex-wrap gap-3 mb-6">
+              <Badge variant="default">Version 1.0</Badge>
+              <Badge variant="secondary">Complete Administrator Guide</Badge>
+              <Badge variant="secondary">2026-01-26</Badge>
+              <Badge className="bg-amber-100 text-amber-800">Internal - Admin Teams</Badge>
+            </div>
+
+            {/* Executive Summary */}
+            <Card className="mb-8">
+              <CardHeader>
+                <h2 className="text-3xl font-bold">Executive Summary</h2>
+              </CardHeader>
+              <CardContent className="space-y-6 text-gray-700">
+                <div>
+                  <h3 className="text-xl font-bold mb-4">Administrator Role Overview</h3>
+                  <p className="mb-4 leading-relaxed">
+                    As a TAS Platform Administrator, you are the operational backbone of the Trust Anchor Service. Your responsibilities span application review, organization management, compliance monitoring, billing oversight, and system health maintenance. This manual provides comprehensive guidance for every administrative function, from routine daily tasks to complex edge cases requiring judgment and expertise.
+                  </p>
+                  <p className="mb-4 leading-relaxed">
+                    The TAS platform processes thousands of verification requests monthly across 120+ countries, supporting organizations from small startups to Fortune 500 enterprises. Your role ensures that every application is reviewed with appropriate rigor, that billing is accurate and transparent, that compliance alerts are investigated promptly, and that customers receive excellent service throughout their lifecycle. The average administrator manages 30-50 applications daily, monitors 200+ active organizations, and resolves 10-15 support cases while maintaining 99.5% SLA compliance.
+                  </p>
+                  <p className="leading-relaxed">
+                    This manual is organized into functional areas matching your daily workflow: Dashboard Operations, Application Review, Organization Management, Billing Administration, Compliance Monitoring, and System Configuration. Each section provides detailed narratives explaining not just how to perform tasks, but why processes are designed as they are, what regulatory requirements drive decisions, and how to handle exceptional situations requiring judgment.
+                  </p>
+                </div>
+
+                <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded">
+                  <h3 className="text-lg font-bold mb-4">Core Administrative Responsibilities</h3>
+                  <ul className="space-y-3 text-sm">
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Application Review & Approval:</strong> Evaluate LEI applications for completeness, accuracy, and compliance with GLEIF standards. Target: <24-hour turnaround for standard applications</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Organization Lifecycle Management:</strong> Create, configure, and maintain organization accounts including billing setup, feature enablement, and user management</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Compliance Alert Investigation:</strong> Review and resolve AML alerts, sanction matches, and PEP flags within regulatory timelines with full documentation</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Billing & Revenue Management:</strong> Configure pricing plans, manage credits, process invoices, resolve payment failures, and export data to accounting systems</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Credential Issuance & Management:</strong> Issue vLEI credentials, manage LEI renewals, handle revocations, and maintain GLEIF synchronization</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>System Monitoring & Maintenance:</strong> Monitor platform health, respond to alerts, coordinate with engineering on issues, and ensure uptime SLAs are met</span></li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-bold mb-4">Daily Administrative Workflow</h3>
+                  <p className="mb-4 leading-relaxed">
+                    A typical administrator day begins with the Dashboard Health Check - review the top metrics bar for any red indicators requiring immediate attention, check the pending applications queue for SLA breaches, scan the AML alerts panel for critical severity items, and verify system health is green. This morning review takes 5-10 minutes but surfaces 90% of urgent issues.
+                  </p>
+                  <p className="mb-4 leading-relaxed">
+                    The morning session (9 AM - 12 PM) focuses on application review. Process applications in priority order: SLA-breached items first, then approaching-deadline items, then standard queue. Target 15-20 application reviews before lunch, with an average of 8-12 minutes per straightforward application and 20-30 minutes for complex cases requiring manual research. Use the batch approval feature when you have 3+ straightforward applications from the same jurisdiction to save time.
+                  </p>
+                  <p className="mb-4 leading-relaxed">
+                    Afternoon sessions (1 PM - 5 PM) alternate between compliance work and operational tasks. Monday afternoons focus on billing - review pending invoices, resolve payment failures, process refund requests. Tuesday/Thursday afternoons handle compliance - investigate AML alerts, review high-risk cases, update sanctions list configurations. Wednesday/Friday afternoons cover organization management - create new organizations for sales deals, configure special pricing, handle support escalations. This pattern ensures all areas receive attention without becoming overwhelming.
+                  </p>
+                  <p className="leading-relaxed">
+                    The end-of-day review (30 minutes before close) verifies all critical items are resolved: check for unassigned SLA-breached applications, verify critical AML alerts have been assigned or resolved, confirm no failed payment notifications were missed, and review tomorrow's calendar for LEI renewals or scheduled maintenance. Document any items you couldn't complete in team notes so the next shift or tomorrow morning picks them up immediately.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Search Bar */}
             <div className="mb-6">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -137,6 +194,7 @@ const AdminDocumentation = () => {
               </div>
             </div>
 
+            {/* Manual Sections */}
             <div className="space-y-4">
               {filteredManualSections.map((section) => (
                 <UserManualSection
@@ -157,6 +215,19 @@ const AdminDocumentation = () => {
                 </CardContent>
               </Card>
             )}
+
+            {/* Footer */}
+            <Card className="bg-gray-900 text-white mt-8">
+              <CardContent className="pt-6">
+                <div className="text-sm space-y-3">
+                  <p><strong>Document Version:</strong> 1.0</p>
+                  <p><strong>Last Updated:</strong> January 26, 2026</p>
+                  <p><strong>Classification:</strong> Internal - Admin Teams</p>
+                  <p><strong>Owner:</strong> TAS Operations</p>
+                  <p className="text-xs mt-4 border-t border-gray-700 pt-4">© 2026 FTS.Money & Certizen Technologies. Internal use only.</p>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {/* Technical Reference Tab */}

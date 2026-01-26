@@ -1309,5 +1309,407 @@ Explain why you need the information when it's not obvious. Applicants are more 
 When rejecting applications, be professional and fact-based. Clearly state the reason: "We cannot approve this application because the business registration certificate shows your company was dissolved on December 15, 2025. LEIs can only be issued to currently active, registered entities. If this was in error and your company remains active, please provide an updated certificate of good standing from the business registry." Avoid judgmental language and stick to factual observations about why the application doesn't meet requirements.`
       }
     ]
+  },
+  {
+    id: 'billing-management',
+    title: 'Billing & Revenue Management',
+    icon: CreditCard,
+    subsections: [
+      {
+        title: 'Understanding the Billing System',
+        content: `<strong>The Foundation of Revenue Operations</strong>
+
+The TAS billing system is designed to be completely automated while remaining transparent and auditable. Unlike traditional billing systems that require manual invoice creation, the TAS system continuously meters usage throughout the billing period and automatically generates accurate invoices at month-end. This automation eliminates billing errors, reduces administrative overhead by 95%, and provides customers with real-time visibility into their current charges.
+
+Every action in the platform that has a cost - KYB verifications, AML screenings, LEI issuances, vLEI credential generations, API calls - immediately creates a usage event. These events flow into the Usage Metrics system, which aggregates them by service type, applies pricing rules from the organization's subscription plan, and calculates running totals. Customers see their current usage and costs updated in real-time on their dashboard, eliminating billing surprises and disputes.
+
+<strong>Configuring Billing Plans: The Revenue Model</strong>
+
+Billing plans define the economic relationship with each customer. The plan determines their monthly base subscription fee, what services are included, usage limits, overage pricing, and available features. Creating effective billing plans requires balancing competitive pricing with sustainable margins while aligning tiers to clear customer value propositions.
+
+The Starter tier is your entry-level offering designed for small businesses and those evaluating the platform. Price it low enough to minimize barriers to entry ($99-149/month), but with conservative usage limits (50 KYB verifications, 100 AML screenings) that encourage upgrade to Business tier as usage grows. Include basic features only - single LEI issuance, web portal access, email support. This tier should be profitable on a marginal cost basis but may lose money when including fixed platform costs - that's acceptable because it's a customer acquisition tier.
+
+The Business tier is your revenue workhorse - most customers should end up here. Price for sustainable margins ($299-499/month) while providing generous usage limits (200-500 verifications) that satisfy most mid-market companies. Include advanced features that create clear value differentiation: vLEI credential issuance, priority support, webhook integrations, advanced analytics. This tier should be highly profitable with 70-80% gross margins after subtracting provider costs and infrastructure.
+
+The Enterprise tier is custom-priced based on specific customer needs. Rather than publishing a fixed price, position this as "Contact Sales." Enterprise customers require custom integrations, dedicated support, special SLAs, potentially white-label deployments, and volume discounts. Price these deals with professional services bundled - implementation fees ($5,000-50,000), monthly platform fees ($2,000-10,000+), and per-service charges at wholesale rates. Enterprise deals should be multi-year contracts with minimum commitments ensuring predictable revenue.
+
+<strong>Component Pricing: Granular Cost Attribution</strong>
+
+Within each billing plan, you can configure component pricing - the specific price for each individual service. This granularity enables accurate cost attribution, transparent billing, and flexible pricing experiments. For example, the Business tier might include 200 KYB verifications at no additional charge, but charge $2.50 per additional verification beyond that limit. AML screenings might be included up to 500/month with $0.75 per screening in overage. LEI issuance could be $50 per LEI, and vLEI credentials $25 per credential.
+
+Progressive pricing creates volume discounts automatically. Instead of a flat $50 per LEI regardless of volume, you can configure tiers: LEIs 1-10 at $50 each, LEIs 11-50 at $40 each, LEIs 51+ at $30 each. This rewards high-volume customers with better economics while maintaining healthy margins on low-volume usage. The system automatically calculates which tier each transaction falls into and applies the appropriate price.
+
+Regional pricing adjusts costs based on local market conditions. A verification that costs $2.50 in the USA might be priced at $1.50 in India or $3.50 in Switzerland based on local competition and willingness to pay. Configure regional pricing with country-level or continent-level multipliers. The system applies the appropriate regional price based on the organization's registered country, ensuring competitive positioning in each market while maximizing global revenue.
+
+<strong>Managing Credits: Prepaid and Promotional</strong>
+
+Credits provide flexibility in billing - allowing prepaid packages, promotional incentives, referral rewards, and service recovery. An organization's credit balance consists of multiple pools: prepaid credits purchased upfront, promotional credits from marketing campaigns, referral credits earned by bringing new customers, and rollover credits from unused subscriptions. The system automatically applies credits in a specific order when invoices are generated: promotional credits first (they often have expiration dates), then referral credits, then prepaid credits, and finally rollover credits.
+
+Creating promotional campaigns involves defining the credit amount, eligibility criteria, expiration dates, and application rules. For example, a "Q4 Compliance Rush" campaign might offer $500 in credits to all Business tier customers who sign up in October-December. The credits expire 90 days after issuance unless used. When these customers' invoices are generated, the system automatically applies available promotional credits, reducing the payable amount and showing "Promotional Discount: -$500" as a line item for transparency.
+
+Referral programs incentivize customer acquisition. When Organization A refers Organization B, and B becomes a paying customer, both receive credits. A typical structure: referrer receives $250 credit, referee receives $100 credit on their first invoice. Configure referral tracking with unique codes for each organization, automatic credit issuance upon conversion, and fraud detection rules (same owner behind both organizations = invalid referral). Track referral ROI by comparing credit costs to lifetime value of acquired customers.
+
+<strong>Invoice Generation and Management</strong>
+
+While invoice generation is automated, you occasionally need to manually create invoices for special situations: mid-month plan upgrades, one-time professional services fees, adjustment invoices correcting errors, or credit memos for refunds. The manual invoice creation interface provides complete control over line items, amounts, due dates, and payment terms while maintaining the same validation rules as automated invoices.
+
+Creating a manual invoice starts with selecting the organization from the dropdown. The system loads their current billing plan and usage metrics for context. Add line items one at a time: description (what was charged for), quantity (how many units), unit price, and total (auto-calculated). Common line items include "Professional Services - Custom Integration Development" ($5,000 fixed fee), "Overage Charges - KYB Verifications" (50 units × $3.00 = $150), or "Credit Adjustment - Service Disruption" (-$200 refund).
+
+Set the invoice issue date (today by default), due date (based on payment terms - Net 30 means due in 30 days), and payment terms. Add customer notes if you want to explain charges: "This invoice covers the custom SAML integration implemented in January plus standard usage fees." Internal notes (not visible to customer) might document context: "Per agreement with sales team, integration fee discounted from $10,000 to $5,000 for this enterprise customer."
+
+Before finalizing, review the calculation: subtotal (sum of line items), tax (calculated based on organization's country and tax rules), discounts (if any applied), and total amount due. Click "Issue Invoice" to finalize and send. The customer receives an email with a PDF attachment and a link to view/pay online. The invoice status changes from Draft to Issued, then to Sent when email delivery confirms, and ultimately to Paid when payment is received.`
+      },
+      {
+        title: 'Processing Payments and Reconciliation',
+        content: `<strong>Payment Processing in TAS</strong>
+
+TAS supports multiple payment methods to accommodate different customer preferences and regional requirements. Credit card processing through Stripe is the primary method for most customers - it's instant, automated, and requires no manual intervention. Bank transfers are common for enterprise customers and in regions where credit cards are less prevalent, but require manual reconciliation. Wire transfers are used for large invoices (>$10,000) or international payments. ACH is available for US-based customers wanting lower transaction fees than credit cards.
+
+When a customer pays via credit card through the portal, the payment flow is completely automated. They click "Pay Invoice" from their dashboard, which opens Stripe's payment form. They enter card details (or select a saved payment method), click Pay, and Stripe processes the transaction. If successful, Stripe sends a webhook to TAS confirming payment, the system immediately updates the invoice status to Paid, records the transaction ID, creates a PaymentRecord entity for audit trail, and sends a payment confirmation email to the customer. This entire flow completes in 2-3 seconds.
+
+Bank transfer and wire payments require manual reconciliation because you must match incoming payments to specific invoices. When you receive notification from your bank of an incoming transfer, you navigate to Billing → Payments → Record Payment. Search for the invoice by number, organization name, or amount. Verify the payment amount matches the invoice total. Enter the payment details: payment date (when funds arrived in your account), payment method (Bank Transfer or Wire), transaction reference number (from your bank), and any notes. Click "Record Payment" and the invoice updates to Paid status with the customer receiving confirmation.
+
+Payment failures occur when credit cards are declined, bank transfers are rejected, or invoices go unpaid beyond their due date. The system automatically attempts to retry failed credit card charges - once immediately, once after 24 hours, once after 72 hours, and once after 7 days. If all retries fail, the invoice is marked as Overdue and the organization receives escalating reminder emails. You should monitor the Failed Payments dashboard weekly and contact organizations with persistent failures - often there's a simple issue like an expired credit card that they can quickly resolve.
+
+<strong>Refunds and Credit Memos</strong>
+
+Refund requests require creating credit memos that offset previously issued invoices. This maintains the audit trail while showing the economic reality. For example, if a customer was charged $500 in error, you don't delete the original invoice (that would destroy the audit trail). Instead, you create a credit memo for -$500 that references the original invoice. The net result is $0 owed, but both transactions remain visible in the system and in accounting exports.
+
+To process a refund: locate the original invoice, click "Issue Credit Memo," enter the refund amount and reason ("Service disruption on Jan 15-16, 2026, crediting 2 days of subscription fee"), select whether to apply as credit toward future invoices or refund to original payment method, and confirm. If refunding to payment method, the system initiates the refund through Stripe (for card payments) or generates instructions for manual bank refund (for wire transfers). The customer receives the refund within 5-10 business days depending on their bank.
+
+<strong>Billing Data Export to Accounting Systems</strong>
+
+Most organizations need to export TAS billing data to their accounting system - QuickBooks, Xero, NetSuite, SAP, or Oracle. The export system generates files in standard formats that can be imported directly into these systems, eliminating manual data entry and ensuring accounting records match TAS records exactly.
+
+Configure the export by selecting the accounting system from the dropdown. The system loads the appropriate export format - QuickBooks uses IIF files, Xero uses CSV with specific column headers, NetSuite uses CSV with different headers, SAP uses IDoc format. Select the date range to export - typically the previous month for monthly accounting close. Click "Generate Export" and the system creates a file containing all invoices, payments, credits, and refunds for that period formatted according to your accounting system's import specification.
+
+The export includes all necessary fields: customer name, invoice number, date, amount, tax amount, account codes (revenue account, tax account, receivables account), payment status, payment method, and transaction references. For complex accounting systems, you can map TAS service types to specific GL accounts - KYB revenue to account 4100, AML revenue to account 4200, LEI revenue to account 4300. This enables detailed revenue reporting by service line in your financial statements.`
+      }
+    ]
+  },
+  {
+    id: 'examples-use-cases',
+    title: 'Examples & Common Scenarios',
+    icon: Activity,
+    subsections: [
+      {
+        title: 'Application Review Examples',
+        content: `<strong>Example 1: Straightforward Approval - UK Limited Company</strong>
+
+<strong>Scenario:</strong> Acme Technologies Ltd, a software company based in London, submitted an LEI application at 10:00 AM.
+
+<strong>Application Data:</strong>
+• Legal Name: Acme Technologies Limited
+• Registration Number: 12345678
+• Country: United Kingdom
+• Entity Type: Private Limited Company (Ltd)
+• Industry: Software Development
+• Registered Address: 123 Tech Street, London, E1 6AN
+
+<strong>Automated Verification Results:</strong>
+• KYB Check: ✅ Green - Exact match with Companies House registry
+• AML Screening: ✅ Clear - No matches found (score: 0)
+• Document Validation: ✅ High quality documents uploaded
+
+<strong>Documents Submitted:</strong>
+• Certificate of Incorporation from Companies House
+• Recent utility bill (dated January 10, 2026)
+• Director's passport (valid until 2029)
+
+<strong>Review Process:</strong>
+1. Open application from queue (assigned to you)
+2. Verify KYB result shows exact match - companies house confirms company is active
+3. Check AML screening - completely clear, no flags
+4. Review Certificate of Incorporation - issued 2022, includes company number 12345678, director name matches passport
+5. Check utility bill - shows business address matching registered address, dated within 3 months, business name matches
+6. Verify director passport - current, photo clear, name matches application
+7. Decision: Everything in order, straightforward approval
+8. Click "Approve Application"
+9. Add note: "UK Ltd company verified via Companies House, documents authentic and current, AML clear. Approved for LEI issuance."
+10. Submit approval
+
+<strong>Outcome:</strong> LEI generated automatically within 5 minutes, customer receives welcome email with credentials. Total review time: 6 minutes.
+
+<strong>Example 2: Request Additional Information - Address Discrepancy</strong>
+
+<strong>Scenario:</strong> Global Imports LLC submitted application with address mismatch.
+
+<strong>Application Data:</strong>
+• Legal Name: Global Imports LLC
+• Registration Number: 123456
+• Registered Address: 456 Corporate Services Blvd, Delaware
+• Business Address: 789 Warehouse District, New Jersey
+
+<strong>Issue Identified:</strong>
+Utility bill shows New Jersey warehouse address, but business registration shows Delaware corporate services address. This is common (many companies use Delaware for incorporation while operating elsewhere) but needs documentation.
+
+<strong>Review Process:</strong>
+1. Note automated KYB verification passed (Delaware registration confirmed)
+2. AML clear
+3. Identify address discrepancy
+4. Decision: Request explanation rather than reject (likely legitimate)
+5. Click "Request Additional Information"
+6. Message: "We notice your registered address in Delaware differs from your operational address in New Jersey shown on the utility bill. This is common for companies using registered agent services. Please provide one of the following: (1) A letter from your registered agent confirming they provide corporate services at the Delaware address, OR (2) A lease agreement or deed for the New Jersey warehouse showing your business name. Please respond within 7 business days."
+7. Set deadline: February 2, 2026
+8. Submit request
+
+<strong>Customer Response (2 days later):</strong>
+Customer uploads letter from Delaware registered agent company confirming they provide corporate services for Global Imports LLC at the Delaware address.
+
+<strong>Follow-Up Review:</strong>
+1. Review uploaded letter - professional letterhead, confirms relationship, explains address
+2. Decision: Satisfactory explanation, approve
+3. Add note: "Address discrepancy explained - Delaware is registered agent address, NJ is operational headquarters. Legitimate use of corporate services provider. Approved."
+4. Click "Approve Application"
+
+<strong>Outcome:</strong> LEI issued. Total review time: 8 minutes initial + 4 minutes follow-up = 12 minutes. Customer satisfied with clear communication.
+
+<strong>Example 3: Rejection - Business Dissolved</strong>
+
+<strong>Scenario:</strong> XYZ Corp submitted application, but automated checks flag business as dissolved.
+
+<strong>Application Data:</strong>
+• Legal Name: XYZ Corporation
+• Registration Number: 987654
+• Country: United States (California)
+
+<strong>Issue Identified:</strong>
+• KYB Check: ❌ Red - California Secretary of State shows status "DISSOLVED" effective December 1, 2025
+• Business registration certificate submitted shows incorporation in 2018 but no current status
+
+<strong>Review Process:</strong>
+1. See red flag on KYB verification
+2. Manually verify via California SOS website - confirms dissolution
+3. Examine documents - certificate is from 2018 showing incorporation, but doesn't show current status
+4. Decision: Cannot approve LEI for dissolved entity per GLEIF rules
+5. Click "Reject Application"
+6. Rejection reason: "We cannot issue an LEI because the California Secretary of State database shows XYZ Corporation was dissolved on December 1, 2025. LEIs can only be issued to active, currently registered entities. If your company has been reinstated, please provide a Certificate of Good Standing or Certificate of Status from the California Secretary of State showing active status, then submit a new application."
+7. Submit rejection
+
+<strong>Outcome:</strong> Application rejected, customer receives clear explanation. They can reinstate their corporation and reapply. Total review time: 10 minutes.
+
+<strong>Example 4: Escalation - High-Risk AML Match</strong>
+
+<strong>Scenario:</strong> International Trading Partners DMCC submitted application, AML screening shows potential sanctions list match.
+
+<strong>Application Data:</strong>
+• Legal Name: International Trading Partners DMCC
+• Country: United Arab Emirates (Dubai)
+• Industry: Commodity Trading
+• Beneficial Owner: Ahmed Al-Rashid
+
+<strong>Issue Identified:</strong>
+• KYB Check: ✅ Green - Verified with Dubai DMCC registry
+• AML Screening: ⚠️ Yellow/Red - 78% match to UN sanctions list entry "International Trading Partners" and 65% match for beneficial owner name to PEP database
+
+<strong>Review Process:</strong>
+1. See AML alert with moderate-high confidence match
+2. Review detailed match report - sanctions list entry is for a Syrian commodity trading company added to list in 2019
+3. Compare details: Similar business name, same industry (commodities), different country (UAE vs Syria), similar beneficial owner name
+4. This requires expert judgment - could be legitimate UAE company with coincidentally similar name, OR could be sanctioned entity operating under new jurisdiction
+5. Decision: Do NOT approve or reject immediately - escalate to senior compliance officer
+6. Click "Assign to Senior Reviewer"
+7. Select senior compliance officer from dropdown
+8. Add note: "High-risk AML match requiring enhanced due diligence. Sanctions list entry for similar company in Syria, applicant is UAE. Same industry. Recommend requesting: (1) corporate structure showing all parent/subsidiary companies, (2) source of funds documentation, (3) detailed business activity explanation, (4) any prior sanctions clearances. Possible false positive but too risky for standard approval."
+9. Submit assignment
+
+<strong>Senior Officer Actions:</strong>
+1. Reviews your notes and agrees with assessment
+2. Requests comprehensive documentation package from customer
+3. May engage external sanctions screening specialist
+4. Takes 5-7 days for thorough investigation
+5. Eventually determines false positive after receiving detailed evidence
+6. Approves with enhanced monitoring flag
+
+<strong>Outcome:</strong> Proper escalation prevents inappropriate approval while ensuring legitimate business isn't rejected without investigation. Your total time: 15 minutes. Senior officer time: 2+ hours. Customer approved with conditions.`
+      },
+      {
+        title: 'Organization Management Scenarios',
+        content: `<strong>Example 1: Enterprise White-Glove Onboarding</strong>
+
+<strong>Scenario:</strong> Sales team closed a deal with MegaBank International, a tier-1 financial institution. $50,000 annual contract with custom SLA, dedicated support, and white-label branding. You're creating their organization account before they log in.
+
+<strong>Configuration Steps:</strong>
+1. Navigate to Organizations → Create Organization
+2. Enter legal details:
+   • Legal Name: MegaBank International Limited
+   • Registration: UK Companies House #87654321
+   • Entity Type: Public Limited Company (PLC)
+   • Country: United Kingdom
+   • Headquarters: London
+3. Select Billing Tier: Enterprise
+4. Configure custom pricing: $4,000/month base fee, unlimited usage, $0 overage fees
+5. Enable all feature flags:
+   ✓ vLEI Issuance
+   ✓ API Access (Unlimited)
+   ✓ White Label Branding
+   ✓ Priority Support (24/7)
+   ✓ Advanced Analytics
+   ✓ Custom Integrations
+6. Set payment terms: Net 60 (per contract negotiation)
+7. Add internal notes: "Enterprise contract signed Jan 2026. $50K annual minimum commitment. Dedicated support contact: enterprise@tas.example.com. White-label setup scheduled for Week 2."
+8. Enter primary admin contact: john.doe@megabank.example.com
+9. Select email template: "Enterprise Customer Welcome"
+10. Customize email: "Welcome to TAS! Your Enterprise account has been configured with unlimited API access, white-label branding, and 24/7 dedicated support as discussed. Your dedicated account manager is Jane Smith (jane.smith@tas.example.com). She'll schedule your onboarding call this week. Looking forward to our partnership!"
+11. Click "Create Organization"
+
+<strong>Post-Creation Tasks:</strong>
+• Verify organization created successfully
+• Check invitation email sent to john.doe@megabank.example.com
+• Schedule internal onboarding call with customer success team
+• Notify white-label team to begin branding setup
+• Add organization to enterprise customer Slack channel
+• Set up weekly usage reports for account manager
+
+<strong>Outcome:</strong> Organization created with enterprise-grade configuration, customer receives VIP treatment from first interaction, all special pricing and terms configured correctly. Setup time: 20 minutes.
+
+<strong>Example 2: Partner Account with Revenue Sharing</strong>
+
+<strong>Scenario:</strong> LawFirm Partners LLP wants to resell TAS services to their clients under their own brand. They'll pay wholesale prices and bill their clients retail.
+
+<strong>Configuration Requirements:</strong>
+• White-label branding (their logo, colors, domain)
+• Wholesale pricing (40% discount from retail)
+• Multi-organization management (separate accounts for each of their clients)
+• Revenue tracking per end-client
+• Monthly partnership report
+
+<strong>Setup Process:</strong>
+1. Create parent organization: "LawFirm Partners LLP"
+2. Billing tier: Enterprise (Custom)
+3. Configure white-label pricing in Billing Admin:
+   • Enable white_label_pricing
+   • Set wholesale_discount: 40%
+   • Minimum volume: 20 verifications/month
+   • Component wholesale prices:
+     - KYB: $3.00 (retail $5.00)
+     - AML: $1.50 (retail $2.50)
+     - LEI Issuance: $30 (retail $50)
+     - vLEI: $15 (retail $25)
+4. Enable partner-specific features:
+   ✓ Multi-tenant management
+   ✓ White-label portal at clients.lawfirmpartners.com
+   ✓ Branded email templates
+   ✓ Partner analytics dashboard
+   ✓ End-client usage reporting
+5. Create initial admin: partners@lawfirmpartners.com
+6. Document partnership terms in internal notes
+7. Set up monthly partnership report automation
+
+<strong>Ongoing Management:</strong>
+• When partner onboards a new client, you create sub-organization under partner account
+• Usage for each sub-organization tracked separately
+• Partner receives consolidated monthly invoice covering all clients
+• Partner can view per-client usage to bill their clients appropriately
+• Monitor partner's total volume for wholesale pricing eligibility
+
+<strong>Outcome:</strong> Partner successfully white-labels TAS, resells to 15 clients in first quarter, generates $8,000 monthly revenue for TAS at wholesale rates. Partnership program expands to 5 total partners.
+
+<strong>Example 3: Handling Billing Dispute</strong>
+
+<strong>Scenario:</strong> Customer contacts support claiming they were charged for 150 KYB verifications but only performed 100.
+
+<strong>Investigation Process:</strong>
+1. Navigate to organization's Usage Metrics
+2. Select billing period in question (December 2025)
+3. Review detailed usage log showing every verification:
+   • Date/time of each verification
+   • What was verified (organization name, registry)
+   • API key used
+   • User who initiated
+   • Workflow ID for audit trail
+4. Export usage detail to CSV
+5. Analyze the data:
+   • 100 verifications from their web portal (user: compliance@customer.com)
+   • 50 verifications from API (api_key: ak_live_xyz123)
+6. Contact customer: "We reviewed your usage in detail. The 150 verification charge is correct: 100 from your web portal user compliance@customer.com, plus 50 from API calls using key ak_live_xyz123. The API calls came from IP address 203.45.67.89. Can you check if your development team is using that API key for testing or integration work?"
+7. Customer responds: "Ah! Our developer was testing the integration and didn't realize test mode wasn't enabled. Those 50 were accidental."
+8. Decision: Legitimate usage error, show goodwill by crediting
+9. Create credit memo: -$125 (50 verifications × $2.50 overage price)
+10. Apply credit to current month's invoice
+11. Respond: "We've issued a $125 credit for the accidental test verifications. For future testing, please use test mode (available in your API settings) which doesn't count toward your quota. The credit will appear on your next invoice."
+
+<strong>Outcome:</strong> Dispute resolved favorably, customer satisfied with fair treatment, relationship strengthened. Recommend enabling test mode for this customer and documenting for future reference. Resolution time: 30 minutes.`
+      },
+      {
+        title: 'Compliance Alert Scenarios',
+        content: `<strong>Example 1: False Positive - Common Name Match</strong>
+
+<strong>Alert Details:</strong>
+• Organization: Global Trading Company LLC (USA)
+• Alert Type: PEP Match
+• Severity: Medium
+• Match Score: 62%
+• Matched Against: "Global Trading Company" - entity associated with politician in Eastern Europe
+
+<strong>Investigation:</strong>
+1. Review match details - PEP database entry is for a trading company in Moldova owned by relative of government minister
+2. Compare to applicant - USA Delaware LLC, completely different jurisdiction, no connection to Moldova, different registration number and ownership
+3. Check beneficial owners - all US citizens with no political connections
+4. Conclusion: False positive - common business name shared across different entities
+
+<strong>Resolution:</strong>
+• Status: Approved (False Positive)
+• Case notes: "Resolved as false positive. Match is for unrelated Moldovan entity. US applicant has no connection to Eastern European PEP. Different jurisdiction, different owners, different business structure. Approved for LEI issuance."
+• Time to resolution: 12 minutes
+
+<strong>Example 2: True Positive - Confirmed Sanctions Match</strong>
+
+<strong>Alert Details:</strong>
+• Organization: Petro-Chem Trading DMCC (UAE)
+• Alert Type: Sanctions List Hit
+• Severity: Critical
+• Match Score: 94%
+• Matched Against: OFAC SDN List - Entity designated January 2024
+
+<strong>Investigation:</strong>
+1. Review OFAC entry - lists "Petrochem Trading Est." located in Dubai, designated for sanctions evasion
+2. Compare to applicant - nearly identical name (just different spelling), same city (Dubai), same industry (petroleum products)
+3. Check registration dates - applicant company incorporated March 2024, 2 months AFTER sanctions designation
+4. Review beneficial owners - names similar to sanctioned entity's officers
+5. Conclusion: Almost certain this is the sanctioned entity operating under a new corporate structure to evade sanctions
+
+<strong>Resolution:</strong>
+• Status: Rejected (Confirmed Sanctions Match)
+• Immediate actions:
+  - Block organization account
+  - Flag in system as high-risk
+  - Document evidence thoroughly
+  - Prepare Suspicious Activity Report (SAR) filing
+  - Notify senior compliance officer
+  - Report to FinCEN within 30 days
+• Case notes: "CRITICAL: Confirmed sanctions match. Entity appears to be OFAC-designated Petrochem Trading Est. operating under new corporate structure. Similar name, same location, incorporated shortly after designation, beneficial owners match sanctioned individuals. REJECTED. SAR filed with FinCEN on [date]. Organization permanently blocked."
+• Time to resolution: 2 hours (thorough investigation required)
+
+<strong>Example 3: Ongoing Monitoring Alert - Adverse Media</strong>
+
+<strong>Alert Details:</strong>
+• Organization: TechStartup Inc (has active LEI for 6 months)
+• Alert Type: Adverse Media
+• Severity: Medium
+• Source: News article published yesterday
+
+<strong>Investigation:</strong>
+1. Read the news article - reports TechStartup's CEO was arrested for fraud related to a different company 10 years ago
+2. Verify facts - search court records, CEO's name matches
+3. Check: Is this the same person? CEO's profile shows he was indeed involved in failed startup in 2015, charges were filed but later dropped
+4. Assess current risk - old case (10 years ago), charges dropped, no conviction, no current legal issues
+5. Review organization's TAS history - no suspicious activity, all verifications legitimate, payments on time
+6. Conclusion: Adverse media is factual but not current risk. Monitor but don't revoke LEI.
+
+<strong>Resolution:</strong>
+• Status: Acknowledged - Enhanced Monitoring
+• Actions:
+  - Flag account for enhanced monitoring (6-month review cycle)
+  - Document the adverse media event
+  - No impact to current LEI status
+  - Send internal memo to review team
+• Case notes: "Adverse media regarding CEO's involvement in 2015 fraud case (charges dropped, no conviction). Assessed as low current risk given age of incident and resolution. LEI remains active. Enhanced monitoring enabled for next 6 months. Will re-review if additional adverse media appears."
+• Time to resolution: 45 minutes
+
+<strong>Follow-Up:</strong>
+6 months later, no additional issues → Remove enhanced monitoring flag, case closed successfully.`
+      }
+    ]
   }
 ];
