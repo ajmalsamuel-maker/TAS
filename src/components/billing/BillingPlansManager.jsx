@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Edit2, Trash2, Loader, DollarSign, Percent, Globe, Tag } from 'lucide-react';
 import { toast } from 'sonner';
+import { COUNTRIES, CONTINENTS, getCountryName, getContinentName } from './countryData';
 
 export default function BillingPlansManager() {
   const queryClient = useQueryClient();
@@ -435,7 +436,7 @@ export default function BillingPlansManager() {
                 <div className="space-y-3">
                   {(formData.regional_pricing || []).map((region, idx) => (
                     <div key={idx} className="border rounded p-3 bg-gray-50">
-                      <div className="grid md:grid-cols-4 gap-3">
+                      <div className="grid md:grid-cols-3 gap-3">
                         <div>
                           <label className="text-xs font-semibold">Type</label>
                           <select
@@ -443,6 +444,8 @@ export default function BillingPlansManager() {
                             onChange={(e) => {
                               const updated = [...formData.regional_pricing];
                               updated[idx].region_type = e.target.value;
+                              updated[idx].region_code = '';
+                              updated[idx].region_name = '';
                               setFormData({ ...formData, regional_pricing: updated });
                             }}
                             className="w-full border rounded px-2 py-1 text-sm"
@@ -452,30 +455,33 @@ export default function BillingPlansManager() {
                           </select>
                         </div>
                         <div>
-                          <label className="text-xs font-semibold">Code</label>
-                          <Input
-                            size="sm"
+                          <label className="text-xs font-semibold">
+                            {region.region_type === 'continent' ? 'Continent' : 'Country'} (ISO Code)
+                          </label>
+                          <select
                             value={region.region_code}
                             onChange={(e) => {
                               const updated = [...formData.regional_pricing];
                               updated[idx].region_code = e.target.value;
+                              if (region.region_type === 'continent') {
+                                updated[idx].region_name = getContinentName(e.target.value);
+                              } else {
+                                updated[idx].region_name = getCountryName(e.target.value);
+                              }
                               setFormData({ ...formData, regional_pricing: updated });
                             }}
-                            placeholder="US, EU, CN"
-                          />
-                        </div>
-                        <div>
-                          <label className="text-xs font-semibold">Name</label>
-                          <Input
-                            size="sm"
-                            value={region.region_name}
-                            onChange={(e) => {
-                              const updated = [...formData.regional_pricing];
-                              updated[idx].region_name = e.target.value;
-                              setFormData({ ...formData, regional_pricing: updated });
-                            }}
-                            placeholder="United States"
-                          />
+                            className="w-full border rounded px-2 py-1 text-sm"
+                          >
+                            <option value="">Select...</option>
+                            {region.region_type === 'continent' 
+                              ? CONTINENTS.map(c => (
+                                  <option key={c.code} value={c.code}>{c.code} - {c.name}</option>
+                                ))
+                              : COUNTRIES.map(c => (
+                                  <option key={c.code} value={c.code}>{c.code} - {c.name}</option>
+                                ))
+                            }
+                          </select>
                         </div>
                         <div>
                           <label className="text-xs font-semibold">Price Multiplier</label>
@@ -491,6 +497,9 @@ export default function BillingPlansManager() {
                             }}
                             placeholder="1.0"
                           />
+                          <p className="text-xs text-gray-500 mt-1">
+                            1.0 = base, 0.8 = 20% off, 1.2 = 20% premium
+                          </p>
                         </div>
                       </div>
                       <Button
