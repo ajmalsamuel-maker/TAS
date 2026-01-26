@@ -25,6 +25,7 @@ import OrganizationManagement from '../components/admin/OrganizationManagement';
 import Web3Analytics from '../components/admin/Web3Analytics';
 import AdminReports from './AdminReports';
 import OrganizationFilterSelector from '../components/admin/OrganizationFilterSelector';
+import VLEIAdminPanel from '../components/admin/VLEIAdminPanel';
 
 export default function AdminDashboard() {
   const [user, setUser] = useState(null);
@@ -141,6 +142,9 @@ export default function AdminDashboard() {
               <TabsTrigger value="organizations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 Organizations
               </TabsTrigger>
+              <TabsTrigger value="vlei" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                vLEI
+              </TabsTrigger>
               <TabsTrigger value="applications" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 Applications
               </TabsTrigger>
@@ -188,6 +192,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="organizations">
             <OrganizationManagement />
+          </TabsContent>
+
+          <TabsContent value="vlei">
+            <VLEIAdminPanel />
           </TabsContent>
 
           <TabsContent value="providers">
