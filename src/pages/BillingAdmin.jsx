@@ -124,6 +124,14 @@ export default function BillingAdmin() {
             <BillingPlansManager />
           </TabsContent>
 
+          <TabsContent value="credits">
+            <CreditsManager />
+          </TabsContent>
+
+          <TabsContent value="referrals">
+            <ReferralManager />
+          </TabsContent>
+
           <TabsContent value="export">
             <ExportPanel />
           </TabsContent>
