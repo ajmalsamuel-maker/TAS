@@ -523,12 +523,12 @@ export default function UserPortalDocumentation() {
                        <td className="border p-3 text-center">—</td>
                        <td className="border p-3 text-center">→ New Application</td>
                      </tr>
-                   </tbody>
-                   </table>
-                   </div>
-                   </CardContent>
-          )}
-        </Card>
+                     </tbody>
+                     </table>
+                     </div>
+                     </CardContent>
+                     )}
+                     </Card>
 
         {/* Credentials & LEI */}
         <Card className="mb-8">
@@ -583,11 +583,10 @@ export default function UserPortalDocumentation() {
                      style D fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
                      style E fill:#fce4ec,stroke:#0066B3,stroke-width:2px
                      style F fill:#e3f2fd,stroke:#0066B3,stroke-width:2px`}
-                 />
-              </div>
+                     />
 
-              <div>
-                <h3 className="text-lg font-bold mb-4">Credential Details & Usage</h3>
+                     <div>
+                     <h3 className="text-lg font-bold mb-4">Credential Details & Usage</h3>
                 <table className="w-full text-sm border-collapse">
                    <thead className="bg-gray-800 text-white">
                      <tr>
@@ -894,10 +893,11 @@ export default function UserPortalDocumentation() {
                     <li>• <strong>Data Export and Warehousing:</strong> Bulk export verification data to your own database for analytics, reporting, or regulatory filing preparation</li>
                     <li>• <strong>White-Label Integration:</strong> Embed TAS verification flows into your own product using our API, providing verification services to your customers under your brand</li>
                   </ul>
-                </div>
-            </CardContent>
-          )}
-        </Card>
+                  </div>
+                  </div>
+                  </CardContent>
+                  )}
+                  </Card>
 
         {/* Footer */}
         <Card className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white">
