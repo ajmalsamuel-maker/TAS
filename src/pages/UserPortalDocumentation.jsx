@@ -530,14 +530,14 @@ export default function UserPortalDocumentation() {
                      )}
                      </Card>
 
-        {/* Credentials & LEI */}
-        <Card className="mb-8">
-          <CardHeader>
-            <SectionHeader title="Credentials Menu Item: Managing Your Digital Identity" section="credentials" />
-          </CardHeader>
-          {expandedSections.credentials && (
-            <CardContent className="space-y-8">
-              <div>
+                     {/* Credentials & LEI */}
+                     <Card className="mb-8">
+                     <CardHeader>
+                     <SectionHeader title="Credentials Menu Item: Managing Your Digital Identity" section="credentials" />
+                     </CardHeader>
+                     {expandedSections.credentials && (
+                     <CardContent className="space-y-8">
+                     <div>
                 <h3 className="text-xl font-bold mb-4">Your Digital Identity Arsenal</h3>
                 <p className="mb-4 leading-relaxed">
                   The Credentials page is your repository for all digital identity documents issued to your organization. This is where you download, verify, share, and manage your LEI certificates, vLEI credentials, verification proofs, and compliance attestations. Think of this page as your secure digital vault—everything you need to prove your business identity to banks, regulators, trading platforms, or Web3 protocols is stored here in multiple formats optimized for different use cases.
@@ -627,13 +627,13 @@ export default function UserPortalDocumentation() {
                      </Card>
 
                      {/* Compliance & Monitoring */}
-        <Card className="mb-8">
-          <CardHeader>
-            <SectionHeader title="Compliance Menu Item: Staying Regulatory Compliant 24/7" section="compliance" />
-          </CardHeader>
-          {expandedSections.compliance && (
-            <CardContent className="space-y-8">
-              <div>
+                     <Card className="mb-8">
+                     <CardHeader>
+                     <SectionHeader title="Compliance Menu Item: Staying Regulatory Compliant 24/7" section="compliance" />
+                     </CardHeader>
+                     {expandedSections.compliance && (
+                     <CardContent className="space-y-8">
+                     <div>
                 <h3 className="text-xl font-bold mb-4">Continuous Compliance Monitoring Explained</h3>
                 <p className="mb-4 leading-relaxed">
                   The Compliance page is your ongoing regulatory monitoring center. While the Dashboard shows high-level compliance status, this dedicated Compliance section provides deep visibility into every aspect of your regulatory standing. Verification doesn't end after initial approval—we continuously monitor your business and beneficial owners against updated sanctions lists, PEP databases, adverse media sources, and regulatory changes. This ensures that if circumstances change, you're immediately notified and appropriate actions are taken to maintain compliance.
@@ -749,13 +749,13 @@ export default function UserPortalDocumentation() {
                      </Card>
 
                      {/* Settings & Administration */}
-        <Card className="mb-8">
-          <CardHeader>
-            <SectionHeader title="Settings Menu Item: Configuring Your Account & Organization" section="settings" />
-          </CardHeader>
-          {expandedSections.settings && (
-            <CardContent className="space-y-8">
-              <div>
+                     <Card className="mb-8">
+                     <CardHeader>
+                     <SectionHeader title="Settings Menu Item: Configuring Your Account & Organization" section="settings" />
+                     </CardHeader>
+                     {expandedSections.settings && (
+                     <CardContent className="space-y-8">
+                     <div>
                 <h3 className="text-xl font-bold mb-4">Settings: Your Configuration Control Center</h3>
                 <p className="mb-4 leading-relaxed">
                   The Settings menu item provides access to all configuration options for your personal account and organization. This is where you manage your profile information, security settings, notification preferences, team members, billing details, API keys, and integration configurations. The Settings page is organized into logical sections with tabs or accordion panels, making it easy to find and modify specific settings without being overwhelmed by options.
