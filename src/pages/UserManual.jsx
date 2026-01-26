@@ -669,27 +669,13 @@ Think of it as a digital passport for your organization:
 **vLEI Structure:**
 
 **Credential Contents:**
-```
-{
-  "credentialSubject": {
-    "LEI": "529900T8BM49AURSDO55",
-    "legalName": "Example Corp Ltd",
-    "registrationNumber": "12345678",
-    "jurisdiction": "GB",
-    "legalForm": "Limited Company"
-  },
-  "issuer": "did:web:tas.example.com",
-  "issuanceDate": "2026-01-26T10:30:00Z",
-  "expirationDate": "2027-01-26T10:30:00Z",
-  "proof": {
-    "type": "Ed25519Signature2020",
-    "created": "2026-01-26T10:30:00Z",
-    "proofPurpose": "assertionMethod",
-    "verificationMethod": "did:web:tas.example.com#key-1",
-    "proofValue": "z3MvG..."
-  }
-}
-```
+
+Example JSON structure (view in Credentials page):
+- credentialSubject: Contains LEI and organization details
+- issuer: TAS identifier
+- issuanceDate: When credential was created
+- expirationDate: When credential expires
+- proof: Cryptographic signature for verification
 
 **How to Use vLEI:**
 
@@ -749,11 +735,7 @@ Think of it as a digital passport for your organization:
 5. Displays verification timestamp
 
 **Programmatic Verification:**
-```javascript
-// API call to verify vLEI
-const result = await verifyVLEI(credential);
-// Returns: { valid: true, issuer: "TAS", status: "active" }
-```
+Via API, you can verify vLEI credentials programmatically. Contact support for API documentation.
 
 **vLEI Lifecycle:**
 
@@ -1824,14 +1806,13 @@ Visual progress indicator shows:
 
 **Example: LEI Issuance Workflow**
 
-```
-1. ✅ Document Validation (Completed - 2 min ago)
-2. ✅ Business Registry Check (Completed - 1 min ago)
-3. 🔄 AML Screening (In Progress - ~2 min remaining)
-4. ⏳ LEI Generation (Pending)
-5. ⏳ GLEIF Registration (Pending)
-6. ⏳ Certificate Creation (Pending)
-```
+Typical workflow shows progress through these steps:
+1. Document Validation (Completed)
+2. Business Registry Check (Completed)
+3. AML Screening (In Progress)
+4. LEI Generation (Pending)
+5. GLEIF Registration (Pending)
+6. Certificate Creation (Pending)
 
 **Step Details:**
 
@@ -3362,15 +3343,11 @@ Configure what emails you receive:
 - Document Verification: $X per document
 
 **Example Configuration:**
-```
-{
-  "lei_issuance": 150.00,
-  "vlei_issuance": 50.00,
-  "kyb_verification": 75.00,
-  "aml_screening": 25.00,
-  "document_verification": 10.00
-}
-```
+- LEI Issuance: $150 per issuance
+- vLEI Issuance: $50 per credential
+- KYB Verification: $75 per verification
+- AML Screening: $25 per screening
+- Document Verification: $10 per document
 
 **Step 5: Progressive Pricing**
 
