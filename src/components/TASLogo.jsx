@@ -1,10 +1,11 @@
 import React from 'react';
+import { Check } from 'lucide-react';
 
 export default function TASLogo({ size = 'md' }) {
   const sizes = {
-    sm: { container: 'w-8 h-8', shield: 'w-5 h-5', dot: 'w-2 h-2', text: 'text-base' },
-    md: { container: 'w-10 h-10', shield: 'w-6 h-6', dot: 'w-3 h-3', text: 'text-xl' },
-    lg: { container: 'w-16 h-16', shield: 'w-10 h-10', dot: 'w-4 h-4', text: 'text-3xl' }
+    sm: { container: 'w-8 h-8', shield: 'w-5 h-5', badge: 'w-4 h-4', text: 'text-base' },
+    md: { container: 'w-10 h-10', shield: 'w-6 h-6', badge: 'w-5 h-5', text: 'text-xl' },
+    lg: { container: 'w-16 h-16', shield: 'w-10 h-10', badge: 'w-7 h-7', text: 'text-3xl' }
   };
 
   const s = sizes[size];
@@ -39,8 +40,10 @@ export default function TASLogo({ size = 'md' }) {
           <line x1="38" y1="55" x2="62" y2="55" stroke="white" strokeWidth="2" opacity="0.7" />
         </svg>
         
-        {/* Green verification dot */}
-        <div className={`absolute -top-1 -right-1 ${s.dot} bg-green-400 rounded-full border-2 border-white shadow-lg`} />
+        {/* Green verification checkmark badge */}
+        <div className={`absolute -top-1 -right-1 ${s.badge} bg-green-400 rounded-full border-2 border-white shadow-lg flex items-center justify-center`}>
+          <Check className="w-full h-full text-white" strokeWidth={3} />
+        </div>
       </div>
       
       <div>
