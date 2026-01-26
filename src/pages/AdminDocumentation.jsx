@@ -154,7 +154,7 @@ const AdminDocumentation = () => {
                 <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded">
                   <h3 className="text-lg font-bold mb-4">Core Administrative Responsibilities</h3>
                   <ul className="space-y-3 text-sm">
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Application Review & Approval:</strong> Evaluate LEI applications for completeness, accuracy, and compliance with GLEIF standards. Target: <24-hour turnaround for standard applications</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Application Review & Approval:</strong> Evaluate LEI applications for completeness, accuracy, and compliance with GLEIF standards. Target: &lt;24-hour turnaround for standard applications</span></li>
                     <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Organization Lifecycle Management:</strong> Create, configure, and maintain organization accounts including billing setup, feature enablement, and user management</span></li>
                     <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Compliance Alert Investigation:</strong> Review and resolve AML alerts, sanction matches, and PEP flags within regulatory timelines with full documentation</span></li>
                     <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Billing & Revenue Management:</strong> Configure pricing plans, manage credits, process invoices, resolve payment failures, and export data to accounting systems</span></li>
