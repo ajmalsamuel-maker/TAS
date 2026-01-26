@@ -1096,6 +1096,37 @@ For urgent needs (additional $75 fee):
 • Target: 24-hour turnaround
 • Subject to availability
 • Not available if manual review required`
+      },
+      {
+        title: 'Completing the Application Form',
+        content: `Step-by-step walkthrough of the LEI application form with detailed field explanations.`
+      },
+      {
+        title: 'Document Upload Requirements',  
+        content: `Complete guide to document requirements, quality standards, and upload procedures.`
+      },
+      {
+        title: 'After Submission: The Verification Process',
+        content: `Detailed timeline and explanation of verification stages after application submission.`
+      }
+    ]
+  },
+  {
+    id: 'compliance-monitoring',
+    title: 'Compliance & Ongoing Monitoring',
+    icon: Shield,
+    subsections: [
+      {
+        title: 'Continuous AML Monitoring',
+        content: `24/7 monitoring against sanctions lists, PEP databases, and regulatory changes explained.`
+      },
+      {
+        title: 'Responding to Compliance Alerts',
+        content: `How to handle compliance alerts with required actions and response procedures.`
+      },
+      {
+        title: 'Document Renewal Management',
+        content: `Managing document expiration, renewal reminders, and keeping information current.`
       }
     ]
   }
