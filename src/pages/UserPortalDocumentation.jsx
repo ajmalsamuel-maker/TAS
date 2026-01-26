@@ -524,9 +524,9 @@ export default function UserPortalDocumentation() {
                        <td className="border p-3 text-center">→ New Application</td>
                      </tr>
                    </tbody>
-                 </table>
-              </div>
-            </CardContent>
+                   </table>
+                   </div>
+                   </CardContent>
           )}
         </Card>
 
