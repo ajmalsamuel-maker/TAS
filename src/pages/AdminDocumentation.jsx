@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { ChevronDown, ChevronRight, BookOpen, Search, FileText } from 'lucide-react';
+import { UserManualSection } from '../components/documentation/UserManualContent';
+import { adminManualSections } from '../components/documentation/userManualData';
 
 const AdminDocumentation = () => {
   const [expandedSections, setExpandedSections] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [expandedManualSections, setExpandedManualSections] = useState({});
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
+    }));
+  };
+
+  const toggleManualSection = (sectionId) => {
+    setExpandedManualSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
     }));
   };
 
@@ -74,21 +87,86 @@ const AdminDocumentation = () => {
     </button>
   );
 
+  const filteredManualSections = searchQuery
+    ? adminManualSections.filter(section =>
+        section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        section.subsections.some(sub =>
+          sub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          sub.content.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      )
+    : adminManualSections;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-6xl font-bold text-gray-900 mb-4">Trust Anchor Service</h1>
-          <h2 className="text-3xl text-gray-700 mb-4">Complete Technical Infrastructure & System Design</h2>
-          <div className="flex flex-wrap gap-3 mt-6">
-            <Badge variant="default">Version 1.0</Badge>
-            <Badge variant="secondary">Complete Reference</Badge>
-            <Badge variant="secondary">2026-01-25</Badge>
-            <Badge className="bg-amber-100 text-amber-800">Internal - Technical Teams</Badge>
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <FileText className="h-12 w-12 text-blue-600" />
+            <div>
+              <h1 className="text-5xl font-bold text-gray-900">Admin Documentation</h1>
+              <p className="text-xl text-gray-600 mt-2">Technical reference and administrator manual</p>
+            </div>
           </div>
-          <p className="text-gray-600 mt-4">Document Owner: Platform Engineering</p>
         </div>
+
+        <Tabs defaultValue="manual" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 bg-white p-2 rounded-lg shadow-sm">
+            <TabsTrigger value="manual" className="flex items-center gap-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+              <BookOpen className="h-4 w-4" />
+              Administrator Manual
+            </TabsTrigger>
+            <TabsTrigger value="technical" className="flex items-center gap-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+              <FileText className="h-4 w-4" />
+              Technical Reference
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Admin Manual Tab */}
+          <TabsContent value="manual" className="space-y-6">
+            <div className="mb-6">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Input
+                  placeholder="Search admin manual (e.g., 'approve application', 'billing plans', 'user management')..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 pr-4 py-6 text-base shadow-sm"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {filteredManualSections.map((section) => (
+                <UserManualSection
+                  key={section.id}
+                  section={section}
+                  isExpanded={expandedManualSections[section.id]}
+                  onToggle={() => toggleManualSection(section.id)}
+                />
+              ))}
+            </div>
+
+            {searchQuery && filteredManualSections.length === 0 && (
+              <Card className="text-center py-16">
+                <CardContent>
+                  <Search className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">No results found</h3>
+                  <p className="text-gray-600">Try different keywords or clear the search to browse all topics</p>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+
+          {/* Technical Reference Tab */}
+          <TabsContent value="technical" className="space-y-6">
+            <div className="flex flex-wrap gap-3 mb-6">
+              <Badge variant="default">Version 1.0</Badge>
+              <Badge variant="secondary">Complete Reference</Badge>
+              <Badge variant="secondary">2026-01-26</Badge>
+              <Badge className="bg-amber-100 text-amber-800">Internal - Technical Teams</Badge>
+            </div>
 
         {/* Executive Summary */}
         <Card className="mb-8">
@@ -709,13 +787,15 @@ const AdminDocumentation = () => {
           <CardContent className="pt-6">
             <div className="text-sm space-y-3">
               <p><strong>Document Version:</strong> 1.0</p>
-              <p><strong>Last Updated:</strong> January 25, 2026</p>
+              <p><strong>Last Updated:</strong> January 26, 2026</p>
               <p><strong>Classification:</strong> Internal - Technical Teams</p>
               <p><strong>Owner:</strong> Platform Engineering</p>
               <p className="text-xs mt-4 border-t border-gray-700 pt-4">© 2026 FTS.Money & Certizen Technologies. Internal use only.</p>
             </div>
           </CardContent>
         </Card>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
