@@ -9,6 +9,8 @@ import BillingDashboard from '../components/billing/BillingDashboard';
 import BillingSettingsPanel from '../components/billing/BillingSettingsPanel';
 import BillingPlansManager from '../components/billing/BillingPlansManager';
 import ExportPanel from '../components/billing/ExportPanel';
+import CreditsManager from '../components/billing/CreditsManager';
+import ReferralManager from '../components/billing/ReferralManager';
 
 export default function BillingAdmin() {
   const [user, setUser] = useState(null);
@@ -109,11 +111,13 @@ export default function BillingAdmin() {
 
         {/* Tabs */}
         <Tabs defaultValue="dashboard" className="space-y-4">
-          <TabsList>
+          <TabsList className="grid grid-cols-3 lg:grid-cols-6">
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-            <TabsTrigger value="plans">Billing Plans</TabsTrigger>
-            <TabsTrigger value="export">Export Data</TabsTrigger>
-            <TabsTrigger value="settings">Settings & Integrations</TabsTrigger>
+            <TabsTrigger value="plans">Plans</TabsTrigger>
+            <TabsTrigger value="credits">Credits</TabsTrigger>
+            <TabsTrigger value="referrals">Referrals</TabsTrigger>
+            <TabsTrigger value="export">Export</TabsTrigger>
+            <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
 
           <TabsContent value="dashboard">
