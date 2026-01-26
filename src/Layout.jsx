@@ -69,8 +69,7 @@ function LayoutContent({ children, currentPageName }) {
     { nameKey: 'nav.compliance', icon: Shield, path: 'UserCompliance', tooltip: 'Monitor compliance status' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials', tooltip: 'Manage LEI and vLEI credentials' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings', tooltip: 'Configure account settings' },
-    { name: 'Documentation', icon: FileText, path: 'UserPortalDocumentation', tooltip: 'Technical documentation' },
-    { name: 'Help', icon: BookOpen, path: 'UserManual', tooltip: 'Complete user manual with examples' }
+    { name: 'Documentation', icon: FileText, path: 'UserPortalDocumentation', tooltip: 'Technical documentation and user manual' }
   ];
 
   // Admin Portal Navigation (Admins Only)
@@ -78,8 +77,7 @@ function LayoutContent({ children, currentPageName }) {
     { nameKey: 'nav.dashboard', icon: Shield, path: 'AdminDashboard', tooltip: 'Admin control panel' },
     { name: 'Billing', icon: Activity, path: 'BillingAdmin', tooltip: 'Manage billing and revenue' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings', tooltip: 'System and account settings' },
-    { name: 'Docs', icon: FileText, path: 'AdminDocumentation', tooltip: 'Technical documentation' },
-    { name: 'Manual', icon: BookOpen, path: 'UserManual', tooltip: 'Complete admin manual with guides' }
+    { name: 'Docs', icon: FileText, path: 'AdminDocumentation', tooltip: 'Technical documentation and admin manual' }
   ];
 
   // CLEAR SEPARATION: Marketing vs Portal navigation
