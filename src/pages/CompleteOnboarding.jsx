@@ -4,14 +4,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Upload, CheckCircle, AlertCircle, Loader, FileText, Camera } from 'lucide-react';
+import { Upload, CheckCircle, AlertCircle, Loader, FileText, Camera, Smartphone } from 'lucide-react';
 import { toast } from 'sonner';
+import { QRCodeSVG } from 'qrcode.react';
 
 export default function CompleteOnboarding() {
   const [application, setApplication] = useState(null);
   const [loading, setLoading] = useState(true);
   const [uploadedDocs, setUploadedDocs] = useState([]);
   const [faciaCompleted, setFaciaCompleted] = useState(false);
+  const [faciaUrl, setFaciaUrl] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -71,16 +73,14 @@ export default function CompleteOnboarding() {
 
   const initiateFacialVerification = async () => {
     try {
-      toast.info('Initiating facial verification...');
+      toast.info('Generating verification link...');
       const response = await base44.functions.invoke('initiateFacialVerification', {
         application_id: application.id
       });
 
       if (response.data.facia_url) {
-        window.open(response.data.facia_url, '_blank');
-        setFaciaCompleted(true);
-        toast.success('Facial verification initiated. Complete it in the new window.');
-        loadApplication();
+        setFaciaUrl(response.data.facia_url);
+        toast.success('Verification link generated! Scan QR code or open link.');
       }
     } catch (error) {
       toast.error('Error initiating facial verification');
@@ -230,23 +230,66 @@ export default function CompleteOnboarding() {
                 Complete a quick facial liveness check to verify your identity.
               </p>
               
-              <Button
-                onClick={initiateFacialVerification}
-                disabled={faciaCompleted}
-                className="w-full"
-              >
-                {faciaCompleted ? (
-                  <>
+              {!faciaUrl && !faciaCompleted && (
+                <Button
+                  onClick={initiateFacialVerification}
+                  className="w-full"
+                >
+                  <Camera className="h-4 w-4 mr-2" />
+                  Generate Verification Link
+                </Button>
+              )}
+
+              {faciaUrl && !faciaCompleted && (
+                <div className="space-y-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="flex items-start gap-3 mb-4">
+                      <Smartphone className="h-5 w-5 text-blue-600 mt-0.5" />
+                      <div>
+                        <h4 className="font-semibold text-blue-900 mb-1">Scan with Mobile Phone</h4>
+                        <p className="text-sm text-blue-700">
+                          Use your phone's camera to scan this QR code and complete verification
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-white p-4 rounded-lg border-2 border-blue-300 w-fit mx-auto">
+                      <QRCodeSVG value={faciaUrl} size={200} />
+                    </div>
+                  </div>
+
+                  <div className="text-center">
+                    <p className="text-sm text-gray-600 mb-2">Or open on this device:</p>
+                    <Button
+                      onClick={() => window.open(faciaUrl, '_blank')}
+                      variant="outline"
+                      className="w-full"
+                    >
+                      Open Verification Link
+                    </Button>
+                  </div>
+
+                  <Button
+                    onClick={() => {
+                      setFaciaCompleted(true);
+                      loadApplication();
+                    }}
+                    variant="outline"
+                    className="w-full text-green-600 border-green-600 hover:bg-green-50"
+                  >
                     <CheckCircle className="h-4 w-4 mr-2" />
-                    Verification Completed
-                  </>
-                ) : (
-                  <>
-                    <Camera className="h-4 w-4 mr-2" />
-                    Start Facial Verification
-                  </>
-                )}
-              </Button>
+                    I've Completed the Verification
+                  </Button>
+                </div>
+              )}
+
+              {faciaCompleted && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                  <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
+                  <p className="font-semibold text-green-900">Verification Completed</p>
+                  <p className="text-sm text-green-700">You can now submit your application</p>
+                </div>
+              )}
             </CardContent>
           </Card>
 
