@@ -28,7 +28,18 @@ export default function OrganizationManagement() {
   });
 
   const createOrgMutation = useMutation({
-    mutationFn: (data) => base44.entities.Organization.create(data),
+    mutationFn: async (data) => {
+      const org = await base44.entities.Organization.create(data);
+      
+      // Send onboarding invitation email
+      await base44.functions.invoke('sendOnboardingInvitation', {
+        organization_id: org.id,
+        contact_email: data.contact_email,
+        organization_name: data.name
+      });
+      
+      return org;
+    },
     onSuccess: () => {
       queryClient.invalidateQueries(['organizations']);
       setShowCreateForm(false);
@@ -40,7 +51,7 @@ export default function OrganizationManagement() {
         contact_email: '',
         country: ''
       });
-      toast.success('Organization created successfully');
+      toast.success('Organization created and onboarding email sent');
     }
   });
 
@@ -79,7 +90,7 @@ export default function OrganizationManagement() {
             Organizations
           </h2>
           <p className="text-sm text-slate-600 mt-1">
-            Manage customer organizations using the TAS platform
+            Create organizations and send onboarding invitations for document verification & liveness checks
           </p>
         </div>
         <Button onClick={() => setShowCreateForm(!showCreateForm)}>
@@ -92,6 +103,9 @@ export default function OrganizationManagement() {
         <Card>
           <CardHeader>
             <CardTitle>Create New Organization</CardTitle>
+            <p className="text-sm text-gray-600 mt-2">
+              Organization will receive an email to complete document upload and liveness verification
+            </p>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleCreateOrg} className="space-y-4">
