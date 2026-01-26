@@ -1108,276 +1108,205 @@ export const adminManualSections = [
     icon: Shield,
     subsections: [
       {
-        title: 'Admin Dashboard Components & Controls',
-        content: `<strong>Welcome to the TAS Admin Portal</strong>
+        title: 'Understanding the Admin Dashboard',
+        content: `<strong>Welcome to the TAS Administrative Control Center</strong>
 
-As a platform administrator, you have complete visibility and control over all TAS operations. The admin portal is designed for efficient management of organizations, applications, billing, compliance, and system health.
+The TAS Admin Dashboard serves as your comprehensive command center for overseeing all platform operations. Every morning when you log in, this dashboard provides an immediate snapshot of system health, pending work, compliance status, and financial performance. Think of it as your operational cockpit - designed to surface the most critical information first while providing quick access to detailed management tools.
 
-<strong>Admin Dashboard Layout</strong>
+The dashboard automatically refreshes every 60 seconds, ensuring you always see current data without manual page refreshes. Real-time WebSocket connections update certain widgets instantly - for example, when a new application is submitted, you'll see the pending count increment immediately without any delay. This real-time capability is essential during high-volume periods or when monitoring critical workflows.
 
-<strong>Top Metrics Bar (Real-Time)</strong>
+<strong>The Top Metrics Bar: Your At-a-Glance Health Check</strong>
 
-<strong>Total Organizations:</strong>
-• Count of all registered organizations
-• Click to view full organization list
-• Color indicators: Green (active), Gray (inactive), Red (suspended)
-• Trend arrow showing growth/decline vs. previous period
+When you first look at your dashboard each morning, the top metrics bar tells you everything you need to know about the platform's current state. The Total Organizations metric shows your cumulative customer base - this number should trend steadily upward as you acquire new customers. If you see this number decrease, it indicates organizations have been deleted or suspended, which warrants investigation. Clicking this metric takes you to the full organization list where you can filter, search, and analyze your customer base in detail.
 
-<strong>Active LEIs:</strong>
-• Number of currently valid LEI credentials
-• Excludes lapsed or expired LEIs
-• Click for detailed breakdown by organization type
-• Shows percentage of total organizations with active LEIs
+The Active LEIs counter is perhaps your most important operational metric. This represents organizations that have successfully completed verification and currently hold valid, unexpired LEI credentials. This number should ideally be very close to your total organization count - if there's a significant gap, it indicates organizations that registered but haven't completed their LEI applications, or LEIs that have lapsed due to non-renewal. This gap represents both a revenue opportunity (following up to complete applications) and a potential customer satisfaction issue (applications stuck or abandoned).
 
-<strong>Pending Applications:</strong>
-• Count of applications requiring admin review
-• Color-coded by SLA status:
-  - Green: Within SLA (<24 hours)
-  - Yellow: Approaching SLA (24-48 hours)
-  - Red: SLA breach (>48 hours)
-• Click to navigate directly to application review queue
+Pending Applications requires your immediate attention - this is your work queue. The number shows applications waiting for manual review, and the color coding indicates urgency. A green badge means all applications are being processed within your 24-hour service level agreement. Yellow warns you that some applications are approaching the SLA deadline and should be prioritized today. Red indicates you have applications that have exceeded the SLA, which is a critical situation requiring immediate attention - these customers are likely frustrated and may escalate to support or leave negative reviews.
 
-<strong>System Health:</strong>
-• Current operational status
-• Green (All Systems Operational)
-• Yellow (Degraded Performance - some delays)
-• Red (Service Disruption - critical issue)
-• Click for detailed system status page
+The System Health indicator provides instant visibility into technical operations. Under normal circumstances, this displays a green checkmark with "All Systems Operational." However, if any component experiences issues - database slowness, external provider outages, elevated error rates - this changes to yellow (Degraded) or red (Major Outage). Clicking the indicator reveals detailed status for each system component: database, cache, message queues, external providers, and email delivery. During outages, this page also displays customer-facing status messages and estimated time to resolution.`
+      },
+      {
+        title: 'Managing the Application Review Queue',
+        content: `<strong>The Application Review Process: Your Core Responsibility</strong>
 
-<strong>24-Hour Activity Snapshot:</strong>
-• Applications submitted in last 24 hours
-• LEIs issued in last 24 hours
-• Revenue generated (last 24 hours)
-• API calls made
-• Mini trend chart showing hourly distribution
+As a TAS administrator, reviewing and approving LEI applications is your primary operational responsibility. Each application represents a business seeking to participate in global financial markets, and your thorough, timely review ensures both regulatory compliance and excellent customer experience. The review process requires balancing speed with accuracy - customers expect quick turnaround, but regulators require comprehensive verification.
 
-<strong>Organizations Panel (Detailed View)</strong>
+When you open the application queue, you see all pending applications sorted by priority. The system uses intelligent prioritization: applications approaching SLA deadlines appear first, followed by high-value enterprise customers, then standard applications by submission time. This ensures you never miss an SLA deadline while appropriately prioritizing your most important customers.
 
-<strong>Organization Metrics:</strong>
-• <strong>Total Registered:</strong> All-time organization count
-• <strong>New This Week:</strong> Organizations registered in last 7 days
-• <strong>New This Month:</strong> Monthly growth metric
-• <strong>Growth Rate:</strong> Percentage change vs. previous month
-• <strong>Churn Rate:</strong> Organizations that suspended/cancelled
+<strong>Opening an Application for Review</strong>
 
-<strong>By Organization Type (Pie Chart):</strong>
-• Financial Institutions (banks, insurers)
-• Fintech Companies
-• Law Firms
-• Company Secretaries
-• Insurance Companies
-• Trade/Commodity Firms
-• Other
-Click any segment to filter organization list by that type
+Click any application in the queue to open the detailed review interface. This comprehensive view contains everything you need to make an informed decision. The left panel shows the submitted application data: legal entity name, registration number, addresses, beneficial ownership, contact information, and business purpose. The right panel displays uploaded documents with a built-in PDF/image viewer so you can examine documents without downloading them.
 
-<strong>Geographic Distribution (World Map):</strong>
-• Interactive map showing organization distribution
-• Color intensity indicates organization count per country
-• Click country to see all organizations there
-• Top 10 countries listed with exact counts
+The top of the review interface shows automated verification results. The KYB Check section displays results from querying the business registry in the applicant's jurisdiction. You'll see whether the business name matches the registry exactly, whether the registration number is valid and currently active, the official incorporation date, and the registered address on file. A green checkmark indicates perfect match; yellow warnings indicate minor discrepancies requiring investigation; red errors indicate significant mismatches that typically result in rejection.
 
-<strong>Applications Queue (Priority List)</strong>
+The AML Screening Results section shows whether the applicant or any beneficial owners matched sanctions lists, PEP databases, or adverse media sources. This is presented as a risk score from 0-100, with detailed breakdowns of any matches found. A score of 0-20 is typically clear for approval. Scores of 21-50 may have low-confidence matches requiring quick review (often false positives due to common names). Scores of 51-80 indicate moderate-risk matches requiring thorough investigation. Scores above 80 are high-risk and typically require escalation to senior compliance officers or outright rejection.
 
-<strong>Applications Requiring Review:</strong>
+<strong>Examining Uploaded Documents</strong>
 
-Sorted by urgency:
-1. <strong>Critical (Red):</strong> SLA breached (>48 hours) - immediate attention required
-2. <strong>High Priority (Orange):</strong> Approaching SLA (24-48 hours) - review today
-3. <strong>Normal (Yellow):</strong> Within SLA (<24 hours) - review when able
-4. <strong>New (Green):</strong> Just submitted (<6 hours) - not yet urgent
+Document verification is a critical skill for application reviewers. You're looking for authenticity, currency, and consistency. The Business Registration Certificate should be an official government document, not a photocopy or screenshot. It should display an official seal, stamp, or watermark from the issuing authority. The legal entity name must match exactly what the applicant entered - even small differences like "Ltd" vs "Limited" or "Corp" vs "Corporation" matter for regulatory compliance.
 
-For each application:
-• Organization name and country
-• Application submission time
-• SLA deadline countdown
-• Current status
-• Assigned reviewer (if any)
-• Quick action buttons: Assign to Me, Review Now, View Details
+Check the issue date on the business registration certificate. Different jurisdictions have different validity periods - UK Companies House certificates don't expire, but some jurisdictions require renewal every 1-3 years. If the certificate is outdated, you should request a current one even if the business is still registered. The registration number format should match the jurisdiction's standard format - UK companies use 8 digits or 2 letters followed by 6 digits, US corporations vary by state, Singapore uses format YYYYXXXXZ.
 
-<strong>Queue Management:</strong>
-• <strong>Auto-Assignment:</strong> Enable to automatically assign applications to available reviewers
-• <strong>Load Balancing:</strong> Distributes applications evenly across team
-• <strong>Skill-Based Routing:</strong> Route high-risk jurisdictions to experienced reviewers
-• <strong>SLA Monitoring:</strong> Alerts sent when applications risk breaching SLA
+The Proof of Address document must show the business's registered address and be dated within the last 3 months. Utility bills are ideal because they're harder to forge than bank statements. The business name on the utility bill must match the application. If the addresses don't match, request an explanation - sometimes the registered address is a corporate services provider while the physical headquarters is elsewhere, which is legitimate but needs documentation.
 
-<strong>Compliance Monitoring Panel</strong>
+For beneficial ownership, examine the provided identification documents for each person with 25% or more ownership. Government-issued IDs should be current (not expired), show a clear photo, display the person's full legal name matching the application, and include a date of birth and document expiry date. Passports are ideal because they're internationally standardized. National ID cards are acceptable if they meet the same standards. Driver's licenses are generally not acceptable as primary identification unless they're the official national ID in that jurisdiction.
 
-<strong>Active AML Alerts:</strong>
-• Count of alerts requiring investigation
-• Severity breakdown (Critical, High, Medium, Low)
-• Average age of open alerts
-• SLA compliance rate (% resolved within target time)
-• Click to navigate to AML Alert Management
+<strong>Making Your Decision: Approve, Reject, or Request Information</strong>
 
-<strong>Documents Expiring Soon:</strong>
-• Business registration certificates expiring in next 30 days
-• Beneficial owner ID expiring
-• Address proof expiring
-• Organized by organization
-• Click to send renewal reminder to organization
+After reviewing all documentation and automated checks, you face three possible actions. If everything is in order - documents are authentic and current, information matches across all sources, KYB verification passed, AML screening is clear, and there are no red flags - you click the "Approve Application" button. This triggers the automated LEI generation process, which registers the organization with GLEIF, generates the 20-character LEI code, creates the vLEI credential, and sends the welcome email with credentials to the applicant. The entire post-approval process completes within minutes.
 
-<strong>LEI Renewals Due:</strong>
-• LEIs expiring in next 90 days
-• Sorted by expiration date (soonest first)
-• Renewal status: Not Started, Initiated, Payment Pending, Complete
-• Auto-renewal enabled/disabled indicator
-• Click to process manual renewal or send reminder
+If you identify issues that make approval impossible - fraudulent documents, confirmed sanctions list match, business not actually registered, significant discrepancies that cannot be explained - you must reject the application. Click "Reject Application" and you'll be required to provide a detailed reason. This reason is sent to the applicant, so be professional and specific: "Business registration certificate shows company was dissolved in 2024" is helpful; "Documents not good enough" is not. Rejections are serious actions with potential legal implications, so document your reasoning thoroughly.
 
-<strong>High-Risk Transactions:</strong>
-• Transactions flagged for review
-• Risk score (0-100)
-• Flagging reasons (jurisdiction, amount, customer history)
-• Assigned investigator
-• Click to view transaction details and approve/reject
+The middle path is requesting additional information. This is appropriate when you have questions that might be easily resolved, when documents are slightly outdated but the business appears legitimate, or when you need clarification on discrepancies. Click "Request Additional Information" and specify exactly what you need. Be specific: instead of "need more documents," write "Please provide a current business registration certificate dated within the last 6 months, and a utility bill showing the registered address at 123 Business St." The more specific your request, the faster the applicant can respond appropriately.
 
-<strong>User Activity Panel</strong>
+When you request additional information, the application status changes to "Additional Information Required" and the applicant receives an email notification with your message. The application is placed on hold until the applicant responds. You can set a deadline for response (typically 7-14 days). If the deadline passes without response, the system can automatically reject the application or send escalating reminder emails, depending on your configuration.
 
-<strong>Active Users (Last 24 Hours):</strong>
-• Count of unique users who logged in
-• By organization (shows which orgs are actively using the platform)
-• By user role (admins vs. regular users)
-• Peak activity hour
-• Geographic distribution
+<strong>Using the Assignment System for Team Coordination</strong>
 
-<strong>New User Registrations:</strong>
-• Users registered in last 7 days
-• Invitation source (org invite vs. direct signup)
-• Activation rate (% who verified email)
-• Organizations they belong to
-• Click to view user details
+In organizations with multiple reviewers, the assignment system prevents duplicate work and ensures balanced workload distribution. When you open an unassigned application, you see an "Assign to Me" button. Clicking this claims the application for your review - other administrators will see it marked as assigned to you and generally won't interfere unless you request assistance.
 
-<strong>Login Statistics:</strong>
-• Total logins (last 24 hours)
-• Failed login attempts (monitor for brute force attacks)
-• Average session duration
-• Devices used (desktop, mobile, tablet breakdown)
-• Browsers used
+The system tracks assignment duration. If an application is assigned to you for more than 4 hours without status change, it's flagged as potentially stuck. Your team lead may check in to see if you need help or if the application should be reassigned. This prevents applications from languishing due to reviewer workload or complexity.
 
-<strong>User Role Distribution:</strong>
-Pie chart showing:
-• Platform Admins (TAS staff)
-• Organization Admins
-• Regular Users
-• Suspended/Inactive Users
+You can also assign applications to specific team members. If you identify an application requiring specialized expertise - perhaps it's in a jurisdiction where you're unfamiliar with business registry procedures, or it's a complex financial institution with multiple layers of ownership - you can reassign it to a senior reviewer or jurisdiction specialist. Click the "Reassign" button, select the destination reviewer from the dropdown, add a note explaining why you're reassigning (e.g., "Complex ownership structure, needs senior review"), and confirm. The new assignee receives a notification immediately.
 
-<strong>Recent Admin Actions:</strong>
-Audit log of administrative actions in last 24 hours:
-• Who performed the action
-• What action was taken
-• Which organization/user affected
-• Timestamp
-• Result (success/failure)
-Click to view full audit trail
+<strong>Dashboard Customization for Different Admin Roles</strong>
 
-<strong>System Health Monitoring</strong>
+Not all administrators need to see the same information. A billing administrator cares primarily about revenue metrics, outstanding invoices, and payment failures. A compliance officer focuses on AML alerts, document expiries, and audit logs. A customer success manager watches application approval rates, customer satisfaction scores, and support ticket trends. The dashboard supports role-based customization to show each administrator the metrics most relevant to their responsibilities.
 
-<strong>API Uptime:</strong>
-• Current month uptime percentage
-• Target: 99.95% (Enterprise SLA)
-• Historical uptime (30/60/90 days)
-• Downtime incidents with details
-• Scheduled maintenance windows
+Click "Customize Dashboard" in the top-right corner to enter edit mode. You'll see all available widgets with descriptions of what each displays. Drag widgets from the available list into your dashboard layout. Reorder widgets by dragging them into your preferred arrangement - most administrators put their most-watched metrics at the top. Remove widgets you don't use frequently by clicking the X icon. Your customized layout is saved automatically and persists across sessions and devices.
 
-<strong>Average Response Time:</strong>
-• Current API response time (milliseconds)
-• P50 (median): Should be <100ms
-• P95 (95th percentile): Should be <300ms
-• P99 (99th percentile): Should be <500ms
-• Trend chart showing last 24 hours
+Advanced customization includes widget sizing and data range configuration. Some widgets support multiple sizes - the Revenue Chart can be displayed as a small summary sparkline or expanded to a full-width detailed graph. Date ranges can be set globally (affecting all time-based widgets) or individually per widget. You might configure your main metrics to show last 7 days while keeping the revenue chart at monthly view for trend analysis.
 
-<strong>Failed Requests:</strong>
-• Count of 4xx and 5xx errors (last 24 hours)
-• Error rate percentage
-• Most common error codes
-• Affected endpoints
-• Click to view error details and logs
+<strong>Interpreting Real-Time Activity Metrics</strong>
 
-<strong>Database Performance:</strong>
-• Query performance (avg execution time)
-• Slow query count (>1 second)
-• Connection pool utilization
-• Deadlocks or locks detected
-• Replication lag (if applicable)
+The 24-Hour Activity Snapshot provides crucial insights into platform usage patterns and customer behavior. The hourly distribution chart shows when customers are most active - you typically see peaks during business hours in major timezones. If you notice unusual activity patterns - like a sudden spike in submissions at 3 AM - this might indicate automated bot testing or a customer running batch imports via API.
 
-<strong>Provider Availability:</strong>
-External service health:
-• KYB Providers (business registry APIs)
-• AML Screening Services
-• Document Verification APIs
-• Payment Processors
-• Email Delivery Service
-Each shows: Online, Degraded, or Offline
+Applications submitted vs. LEIs issued is your operational efficiency metric. In a healthy system, the ratio should be close to 1:1 with a slight lag for processing time. If you see 100 applications submitted but only 60 LEIs issued, investigate why 40 are stuck. Common causes include applications requiring additional information (customer not responding), complex cases requiring extended review, or process bottlenecks in your review workflow.
 
-<strong>Financial Metrics Panel</strong>
+Revenue generated in the last 24 hours combined with transaction count tells you your average transaction value. Track this over time - declining average values might indicate you're attracting more small customers or that discounting is eroding margins. Increasing average values suggests successful upselling or migration to higher-tier plans. Significant day-to-day fluctuations are normal, but watch the 7-day and 30-day moving averages for true trends.
 
-<strong>Revenue Dashboard:</strong>
-• <strong>MTD (Month to Date):</strong> Revenue accumulated this month
-• <strong>YTD (Year to Date):</strong> Total revenue this calendar year
-• <strong>MRR (Monthly Recurring):</strong> Subscription revenue (predictable)
-• <strong>vs. Previous Month:</strong> Growth percentage
-• <strong>vs. Previous Year:</strong> YoY growth
+API call volume indicates how programmatically integrated your customers are. High API usage relative to manual portal usage suggests you have sophisticated customers automating their compliance workflows. This is generally positive - API customers tend to have higher retention and lifetime value. However, if API usage suddenly drops, investigate whether there's a service issue, API documentation problem, or customers churning.`
+      },
+      {
+        title: 'Organization Management: Creating & Configuring Customer Accounts',
+        content: `<strong>Creating Organizations: When and How to Manually Onboard Customers</strong>
 
-<strong>Pending Invoices:</strong>
-• Count of unpaid invoices
-• Total amount outstanding
-• Broken down by age: Current, 1-30 days, 31-60 days, 61-90 days, 90+ days
-• Click to view aging report
+While most organizations self-register through the public website, there are situations where you'll manually create organization accounts. Enterprise sales deals often involve white-glove onboarding where you create the account on the customer's behalf and configure everything before they ever log in. Strategic partnerships may require custom configuration that isn't available through self-service. Regulatory or compliance situations might necessitate administrator creation with specific settings.
 
-<strong>Payment Success Rate:</strong>
-• Percentage of successful payment transactions
-• Failed payment reasons (declined card, insufficient funds, etc.)
-• Trend over time
-• Target: >98%
+To create a new organization, navigate to the Organizations tab and click "Create Organization" in the top-right. This opens a comprehensive form where you'll enter all business details. Unlike the customer-facing onboarding wizard, this admin form gives you access to additional configuration options not available to regular users - billing tier selection, feature flag toggles, custom rate limits, and special pricing arrangements.
 
-<strong>Average Transaction Value:</strong>
-• Mean revenue per customer transaction
-• Trend over time
-• By plan tier (Starter vs. Business vs. Enterprise)
+<strong>Entering Organization Details: The Foundation of Everything</strong>
 
-<strong>Top Revenue Sources:</strong>
-• Top 10 organizations by revenue
-• Revenue by service type (LEI, vLEI, AML, KYB)
-• Revenue by country
-• Revenue by sales channel (direct, partner, referral)
+The Legal Name field is the most critical piece of information - this is how the organization will be registered with GLEIF and appear in the global LEI database. Enter the name exactly as it appears on the business registration certificate. Include all legal suffixes like "Limited," "LLC," "Inc.," "GmbH," "SA," etc. Do not use abbreviations unless that's how it's officially registered. Case sensitivity matters in some jurisdictions - if the official registration is "ACME CORPORATION" in all caps, enter it that way.
 
-<strong>Dashboard Actions & Customization</strong>
+The Business Registration Number must match the official identifier from the government business registry. Different countries use different formats and names for this number. In the UK it's the Companies House number, in the USA it's the state-specific corporation ID or EIN, in Singapore it's the UEN. Verify the format matches what's expected for that jurisdiction - incorrect format suggests either a typo or potential fraud. The system validates formats for major jurisdictions, showing a green checkmark if the format is correct and a yellow warning if it doesn't match expected patterns.
 
-<strong>Refresh Controls:</strong>
-• Auto-refresh: Every 60 seconds (default)
-• Manual refresh button (forces immediate update)
-• Real-time updates via WebSocket (no refresh needed for some widgets)
-• Last updated timestamp shown on each widget
+Entity Legal Form is standardized according to ISO 20275, which defines four-digit codes for legal entity types worldwide. The dropdown presents common options in plain language ("Limited Liability Company," "Public Corporation," "Partnership") but stores the ISO code. This standardization is critical because it enables automated processing and GLEIF registration. If you're unsure which form applies, research the jurisdiction's business law or consult the business registration document which usually specifies the legal form.
 
-<strong>Date Range Filter (Global):</strong>
-Changes all time-based metrics simultaneously:
-• Last 24 hours
-• Last 7 days
-• Last 30 days (default)
-• Last 90 days
-• Year to date
-• Custom range (calendar picker)
-Affects: Activity metrics, revenue, applications, user stats
+<strong>Configuring Billing and Subscription Plans</strong>
 
-<strong>Widget Customization:</strong>
-1. Click "Customize Dashboard" button
-2. Drag widgets to reorder priority
-3. Click 'X' on widgets to hide
-4. Click '+' button to show available widgets
-5. Resize widgets (some support small/medium/large)
-6. Save layout (stored per admin user)
-7. Export/import layouts (share with team)
+The Billing Tier selection determines what the organization pays and what features they can access. This decision has long-term implications for both revenue and customer success. Select "Starter" for small businesses testing the platform or with minimal verification needs - they pay lower monthly fees but have restricted API limits and basic support. Choose "Business" for established companies with regular compliance workflows - they get higher limits, priority support, and vLEI credential capabilities. Reserve "Enterprise" for large organizations, financial institutions, or high-volume customers requiring custom configurations, dedicated support, and unlimited usage.
 
-<strong>Quick Actions Toolbar</strong>
+When selecting a billing tier, consider the organization's indicated use case. If they mentioned processing 500+ KYB verifications per month, Starter tier's 50-verification limit is inadequate - they'll immediately hit overages and may churn due to unexpected costs. If they're a law firm planning to use TAS for multiple end clients, they likely need Business or Enterprise tier for the multi-tenancy and white-label features. Matching the right tier to the customer's needs prevents friction and maximizes retention.
 
-Always accessible from dashboard:
-• <strong>Create Organization:</strong> Manually add new organization
-• <strong>Review Application:</strong> Go to next pending application
-• <strong>Issue Credential:</strong> Shortcut to vLEI issuance
-• <strong>Send Notification:</strong> Broadcast message to users
-• <strong>Generate Report:</strong> Create compliance or revenue report
-• <strong>View Audit Logs:</strong> Access full audit trail
-• <strong>System Settings:</strong> Configure platform-wide settings
-• <strong>Support Center:</strong> Access admin support resources`
+Custom pricing arrangements are configured after organization creation through the Billing Admin panel. For now, select the standard tier that best approximates their needs. You can always adjust billing later, and the system prorates charges if you change tiers mid-month. Document any pricing discussions or special arrangements in the Internal Notes field so other administrators understand the context if they need to modify billing later.
+
+<strong>Feature Flags: Enabling Advanced Capabilities</strong>
+
+The Features section contains checkboxes for optional platform capabilities. These features are sometimes restricted by billing tier (Enterprise-only features) or may require additional configuration before they work correctly. Understanding what each feature enables helps you configure organizations appropriately.
+
+"vLEI Issuance" allows the organization to generate verifiable credentials for their team members. This should be enabled for Business and Enterprise tiers, and disabled for Starter unless they specifically purchased it as an add-on. Organizations need vLEI issuance if they plan to issue digital credentials to employees for signing contracts, accessing DeFi protocols, or participating in blockchain governance.
+
+"API Access" enables programmatic integration with the TAS platform. Enable this for organizations that indicated they want to integrate verification into their existing systems, automate compliance workflows, or build custom applications on top of TAS. When enabled, the organization can generate API keys from their settings panel. Leave disabled for organizations only using the web portal to reduce attack surface.
+
+"White Label" permits the organization to customize the portal with their own branding, logos, and colors. This is typically Enterprise-tier only and requires additional setup. Enable this for partners who resell TAS services under their own brand, or enterprise customers who want the platform to match their corporate identity when their employees use it.
+
+"Priority Support" elevates the organization's support tickets to a high-priority queue with faster response time SLAs. This is automatically included in Enterprise tier and available as a paid add-on for Business tier. Priority support customers receive responses within 2 hours for critical issues versus 24 hours for standard support.
+
+"Advanced Analytics" unlocks detailed reporting, custom dashboard creation, and data export capabilities beyond the standard metrics. This is valuable for organizations with dedicated compliance or risk teams who need to generate regulatory reports, board presentations, or detailed audit trails. Enable for Enterprise customers and charge-appropriate add-on fees for Business tier.
+
+"Custom Integrations" allows the organization to request bespoke integrations with their internal systems - ERP systems, accounting software, CRM platforms, or proprietary compliance tools. This requires development work, so it's typically Enterprise-only with professional services fees. Enable this flag to indicate the organization has purchased integration services, which allows them to submit integration requests through the support portal.
+
+<strong>Setting Up the Initial Administrator User</strong>
+
+Every organization needs at least one administrator who can manage users, billing, and settings. Enter the email address of the person who will be the primary contact and administrative owner. This person will receive an onboarding invitation email with a link to create their account and complete the setup process.
+
+Choose the appropriate email template for the invitation. The "Standard Onboarding" template is suitable for most customers - it welcomes them, explains next steps, and provides links to complete their LEI application. The "Partner Welcome" template is tailored for strategic partners, emphasizing white-label capabilities, revenue sharing, and dedicated support. The "Enterprise Customer" template highlights premium features, dedicated account management, and custom integration options.
+
+You can customize the email content by adding a personal message in the provided text area. This is an excellent opportunity to set expectations, provide your direct contact information for questions, or reference any sales conversations. For example: "Welcome to TAS! As discussed with our sales team, your Enterprise account includes dedicated support from me personally. Please reach out anytime at admin@tas.example.com. I've configured your account with unlimited API access and white-label branding as requested. Looking forward to our partnership!"
+
+<strong>Finalizing Organization Creation</strong>
+
+Before clicking "Create Organization," review all entered information carefully. Organization creation triggers multiple automated processes: the database record is created, billing subscription is initialized, API rate limits are configured, monitoring is activated, and the invitation email is queued for sending. While you can edit most fields after creation, some critical identifiers (legal name, registration number) require verification processes to change, so accuracy now saves time later.
+
+Click "Create Organization" and the system processes your request. You'll see a success message within 1-2 seconds, and the organization immediately appears in your organization list. The invitation email is sent within 1-2 minutes - you can verify it was sent successfully by checking the organization's activity log. If the invitation email fails (due to invalid email address or email delivery issues), you'll see an error notification and can resend the invitation manually.
+
+The newly created organization starts in a "Pending Activation" state. Once the invited administrator accepts the invitation, creates their account, and logs in for the first time, the organization status changes to "Active." You can track activation rates across all organizations to identify invitation emails that might be getting caught in spam filters or invitees who may need follow-up phone calls to complete activation.`
+      }
+    ]
+  },
+  {
+    id: 'application-review',
+    title: 'Application Review & Approval',
+    icon: FileCheck,
+    subsections: [
+      {
+        title: 'The Complete Application Review Workflow',
+        content: `<strong>Your Role in the Verification Ecosystem</strong>
+
+As an application reviewer, you stand at the critical juncture between automated verification and final approval. The system has already performed automated KYB registry checks, AML sanctions screening, and document quality validation. Your role is to apply human judgment to edge cases, interpret ambiguous results, and make the final determination on whether an application meets standards for LEI issuance. This requires understanding not just the technical process, but the regulatory context and business implications of your decisions.
+
+Every application you review represents a business that needs to participate in regulated financial markets. Delays in your review directly impact their ability to open bank accounts, trade securities, or comply with their own regulatory obligations. Conversely, approving a fraudulent or high-risk entity could expose TAS to regulatory sanctions, financial liability, and reputational damage. Your thoughtful, thorough review balances these competing pressures.
+
+<strong>The Systematic Review Approach: Following a Consistent Process</strong>
+
+Experienced reviewers develop a systematic approach that ensures consistency and catches issues early. Begin every review by reading the application summary - organization name, country, industry, and stated business purpose. This context helps you calibrate your scrutiny. A fintech company in a well-regulated jurisdiction like Singapore requires standard due diligence. A money services business in a high-risk jurisdiction triggers enhanced due diligence protocols. A law firm or corporate services provider is lower-risk because they're already subject to their own regulatory oversight.
+
+Next, examine the automated verification results before looking at documents. The KYB verification result tells you whether the business actually exists in the claimed jurisdiction's registry. A green "Match Confirmed" result with high confidence means the automated system successfully queried the registry and verified the business name, registration number, and status. This gives you confidence to proceed. A yellow "Possible Match" indicates the registry returned results but there are minor discrepancies - perhaps the name formatting is slightly different, or the registered address doesn't exactly match. Investigate these discrepancies carefully in the documents.
+
+A red "No Match" or "Registry Error" requires careful handling. Sometimes this occurs due to technical issues - the business registry API was temporarily offline, or there's a typo in the registration number. Other times it indicates a real problem - the business isn't actually registered, or was registered but has since been dissolved. Check the documents first to verify the registration number is entered correctly. If the number appears correct on the certificate but the automated check failed, try manually visiting the business registry website and searching there. Some registries have APIs with limited data while their public website has complete information.
+
+<strong>AML Screening Results: Distinguishing Real Risks from False Positives</strong>
+
+The AML screening section displays potentially complex results that require interpretation. The system has compared the organization's legal name, trading names, beneficial owners' names, and registered addresses against hundreds of sanctions lists, PEP databases, and adverse media sources. It uses sophisticated fuzzy matching algorithms because exact matches are rare - sanctioned entities often use name variations, misspellings, or different transliterations.
+
+A match score of 85% or higher typically represents the same entity. Scores of 50-84% require investigation - they could be the same entity with a slightly different name, or completely different entities that happen to share similar names. Scores below 50% are usually false positives but should still be briefly reviewed to confirm.
+
+When you see a high-confidence match (75%+), examine the detailed match report. This shows you which specific list triggered the match, what name or identifier matched, and any additional information from that list. For example, if the match is to the OFAC SDN (Specially Designated Nationals) list, you'll see the SDN entry number, the exact name as it appears on the list, any aliases, associated addresses, and the date the entity was added to the list.
+
+Compare the match details to your application. Are the addresses the same? Are the registration numbers similar? Is the business activity consistent? For example, if your applicant is a software company in Germany and the OFAC match is for a shipping company in Syria, despite both having similar names, this is clearly a false positive - different jurisdiction, different industry, different business activity. Document "False positive - different entity, different jurisdiction" and proceed with approval.
+
+However, if your applicant is a financial services company in Dubai and the match is to a UN sanctions list entry for a financial institution in the UAE, this requires serious investigation even if the names aren't identical. Sanctioned entities often create new entities with similar names to evade sanctions. Request additional documentation: corporate structure chart showing all parent and subsidiary companies, source of funds documentation, detailed explanation of business activities, and potentially background checks on beneficial owners.
+
+<strong>Document Authenticity Verification: Red Flags and Green Lights</strong>
+
+Distinguishing authentic documents from forgeries or tampered documents is a critical skill. While TAS implements automated document verification checks, human review remains necessary for sophisticated fraud attempts. Start with the basics: does the document look professionally produced? Government-issued business registration certificates are typically printed on special paper, include official seals or watermarks, use security features like microprinting or holograms (in some jurisdictions), and display consistent formatting.
+
+Red flags include: documents that appear to be simple Word or PDF printouts without official formatting, documents with obvious digital manipulation (mismatched fonts, varying image quality, copy-paste artifacts visible), documents missing standard security features that should be present for that jurisdiction, and documents from unofficial sources (certificates should come from government registries, not from company formation agents unless explicitly permitted in that jurisdiction).
+
+Quality issues distinct from fraud also occur. Customers often scan documents at low resolution, take photos at angles, or submit incomplete multi-page documents. These legitimate mistakes require requesting resubmission. Use judgment - if the document is readable and you can verify the key information (business name, registration number, dates), minor quality issues might be acceptable. If text is blurry or portions are cut off, request a clearer scan.
+
+Consistency across documents is crucial. The business name must appear identically on the business registration certificate, proof of address, and any other documents. Addresses should match - the registered address on the business certificate should match the address on the utility bill (unless there's a documented explanation for why they differ). Beneficial owners listed in the application should match ownership information on any shareholder certificates or articles of incorporation.
+
+<strong>Making the Approval Decision: Weighing Evidence and Risk</strong>
+
+After reviewing all documents, automated checks, and any additional information, you synthesize everything into an approval decision. This is ultimately a risk-based determination. You're assessing: (1) Is this a legitimate, properly registered business? (2) Are there any regulatory red flags that prohibit working with them? (3) Is the provided information accurate and complete? (4) Does the risk level align with TAS's risk appetite and compliance policies?
+
+For straightforward cases - established business in a well-regulated jurisdiction, clear automated verification results, high-quality documents, no AML flags - approval is simple. You've verified everything checks out, so click "Approve Application." Add a brief approval note like "Verified against UK Companies House registry, all documents current and authentic, AML clear, approved for LEI issuance." This note becomes part of the permanent audit trail.
+
+For cases with minor issues that you can resolve through research - perhaps the registry shows a slightly different name format, or the beneficial owner's ID is expiring in 30 days - use judgment. If the discrepancy is explainable and doesn't indicate fraud or risk, you can approve with a note: "Approved despite registry showing name as 'ACME CORP LTD' vs application 'Acme Corp Ltd' - confirmed these are identical, UK Companies House uses all caps. Beneficial owner ID expires in 28 days - flagged for follow-up."
+
+For cases with significant concerns - unresolved AML matches, suspicious documents, information that doesn't verify, or high-risk profiles - request additional information or escalate to senior reviewers rather than making a unilateral rejection. Complex cases benefit from a second opinion. Use the internal notes feature to document your concerns: "Concerned about PEP match - beneficial owner name similar to sanctioned individual. Requesting additional ID and source of funds documentation to distinguish. If response insufficient, recommend rejection."
+
+<strong>Communicating with Applicants: Professional and Clear Messaging</strong>
+
+When you request additional information, your message is sent directly to the applicant via email and displayed in their portal. The quality and clarity of your communication significantly impacts customer experience and response time. Vague requests like "need more documents" lead to confusion and delays. Specific requests like "Please upload a current business registration certificate issued within the last 90 days" enable quick, appropriate responses.
+
+Structure your requests clearly. If you need multiple items, use numbered lists: "To continue processing your application, please provide: 1) Updated business registration certificate dated within the last 3 months, 2) Utility bill showing the registered address at 123 Business St, 3) Passport copy for beneficial owner John Smith showing current validity." Set a clear deadline: "Please provide these documents within 7 business days (by February 3, 2026) to avoid application timeout."
+
+Explain why you need the information when it's not obvious. Applicants are more likely to respond quickly when they understand the reason: "We noticed the address on your utility bill (456 Office Rd) differs from your registered address (123 Business St). This is common when businesses use registered office services. Please explain the relationship between these addresses or provide documentation showing both are legitimately associated with your business."
+
+When rejecting applications, be professional and fact-based. Clearly state the reason: "We cannot approve this application because the business registration certificate shows your company was dissolved on December 15, 2025. LEIs can only be issued to currently active, registered entities. If this was in error and your company remains active, please provide an updated certificate of good standing from the business registry." Avoid judgmental language and stick to factual observations about why the application doesn't meet requirements.`
       }
     ]
   }
