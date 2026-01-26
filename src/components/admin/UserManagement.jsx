@@ -8,10 +8,19 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { UserPlus, Mail, Shield, Edit2, Check, X } from 'lucide-react';
+import { UserPlus, Mail, Shield, Edit2, Check, X, Key, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { logAction, ACTION_TYPES } from '../audit/auditLogger';
 import { createNotification, NOTIFICATION_TYPES } from '../notifications/notificationService';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 const ROLE_PERMISSIONS = {
   admin: ['manage_users', 'manage_providers', 'manage_workflows', 'view_analytics', 'manage_translations'],
@@ -25,6 +34,8 @@ export default function UserManagement() {
   const [role, setRole] = useState('user');
   const [editingUserId, setEditingUserId] = useState(null);
   const [editingRole, setEditingRole] = useState('');
+  const [resetDialogOpen, setResetDialogOpen] = useState(false);
+  const [selectedUserForReset, setSelectedUserForReset] = useState(null);
   const queryClient = useQueryClient();
 
   const { data: users = [], isLoading } = useQuery({
@@ -106,6 +117,37 @@ export default function UserManagement() {
     }
   });
 
+  const passwordResetMutation = useMutation({
+    mutationFn: async ({ userId, userEmail, userName }) => {
+      // Send password reset email
+      await base44.auth.requestPasswordReset(userEmail);
+      // Log the password reset action
+      await logAction(ACTION_TYPES.PASSWORD_RESET_REQUESTED, {
+        user_email: userEmail,
+        requested_by: 'admin'
+      });
+      // Create notification for password reset
+      await createNotification({
+        recipientId: userId,
+        recipientEmail: userEmail,
+        type: NOTIFICATION_TYPES.PASSWORD_RESET,
+        title: 'Password Reset Requested',
+        message: 'A password reset link has been sent to your email. Please check your inbox.',
+        priority: 'high',
+        sendEmail: true,
+        metadata: { reset_requested_by: 'admin' }
+      });
+    },
+    onSuccess: () => {
+      toast.success('Password reset email sent successfully');
+      setResetDialogOpen(false);
+      setSelectedUserForReset(null);
+    },
+    onError: (error) => {
+      toast.error(error.message || 'Failed to send password reset email');
+    }
+  });
+
   const handleInvite = (e) => {
     e.preventDefault();
     if (!email) {
@@ -113,6 +155,16 @@ export default function UserManagement() {
       return;
     }
     inviteMutation.mutate({ email, role });
+  };
+
+  const handleResetPassword = () => {
+    if (selectedUserForReset) {
+      passwordResetMutation.mutate({
+        userId: selectedUserForReset.id,
+        userEmail: selectedUserForReset.email,
+        userName: selectedUserForReset.full_name
+      });
+    }
   };
 
   return (
@@ -253,17 +305,32 @@ export default function UserManagement() {
                             </Button>
                           </div>
                         ) : (
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => {
-                              setEditingUserId(user.id);
-                              setEditingRole(userRole);
-                            }}
-                            className="text-blue-600 hover:text-blue-700"
-                          >
-                            <Edit2 className="h-4 w-4" />
-                          </Button>
+                          <div className="flex gap-2">
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => {
+                                setEditingUserId(user.id);
+                                setEditingRole(userRole);
+                              }}
+                              className="text-blue-600 hover:text-blue-700"
+                              title="Edit user role"
+                            >
+                              <Edit2 className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => {
+                                setSelectedUserForReset(user);
+                                setResetDialogOpen(true);
+                              }}
+                              className="text-orange-600 hover:text-orange-700"
+                              title="Reset user password"
+                            >
+                              <Key className="h-4 w-4" />
+                            </Button>
+                          </div>
                         )}
                       </TableCell>
                     </TableRow>
@@ -274,6 +341,36 @@ export default function UserManagement() {
           )}
         </CardContent>
       </Card>
+
+      {/* Password Reset Dialog */}
+      <AlertDialog open={resetDialogOpen} onOpenChange={setResetDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <div className="flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 text-orange-600" />
+              <AlertDialogTitle>Reset User Password</AlertDialogTitle>
+            </div>
+            <AlertDialogDescription className="space-y-3 pt-3">
+              <p>
+                A password reset link will be sent to <strong>{selectedUserForReset?.email}</strong>.
+              </p>
+              <p className="text-sm text-gray-600">
+                The user will receive an email with instructions to create a new password. This link will expire in 1 hour.
+              </p>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="flex gap-3 justify-end mt-4">
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleResetPassword}
+              disabled={passwordResetMutation.isPending}
+              className="bg-orange-600 hover:bg-orange-700"
+            >
+              {passwordResetMutation.isPending ? 'Sending...' : 'Send Reset Link'}
+            </AlertDialogAction>
+          </div>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
