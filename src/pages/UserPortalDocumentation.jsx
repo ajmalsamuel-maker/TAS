@@ -4,8 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { ChevronDown, ChevronRight, Shield, Lock, Building2, FileCheck, Globe, Activity, BookOpen, Search, FileText, Award, Settings } from 'lucide-react';
-import { UserManualSection } from '../components/documentation/UserManualContent';
-import { userManualSections } from '../components/documentation/userManualData';
+import { UserManualSection } from '@/components/documentation/UserManualContent';
+import { userManualSections } from '@/components/documentation/userManualData';
 
 export default function UserPortalDocumentation() {
   const [expandedSections, setExpandedSections] = useState({});

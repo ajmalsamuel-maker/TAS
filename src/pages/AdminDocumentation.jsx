@@ -4,8 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { ChevronDown, ChevronRight, BookOpen, Search, FileText } from 'lucide-react';
-import { UserManualSection } from '../components/documentation/UserManualContent';
-import { adminManualSections } from '../components/documentation/userManualData';
+import { UserManualSection } from '@/components/documentation/UserManualContent';
+import { adminManualSections } from '@/components/documentation/userManualData';
 
 const AdminDocumentation = () => {
   const [expandedSections, setExpandedSections] = useState({});
