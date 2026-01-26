@@ -78,6 +78,40 @@ Deno.serve(async (req) => {
             credential_data: credentialData
         });
 
+        // Track billing usage - $50 per vLEI issuance
+        const currentPeriod = new Date();
+        const periodStart = new Date(currentPeriod.getFullYear(), currentPeriod.getMonth(), 1).toISOString().split('T')[0];
+        const periodEnd = new Date(currentPeriod.getFullYear(), currentPeriod.getMonth() + 1, 0).toISOString().split('T')[0];
+
+        const existingMetrics = await base44.asServiceRole.entities.UsageMetrics.filter({
+            organization_id: user.organization_id,
+            period_start: periodStart
+        });
+
+        if (existingMetrics.length > 0) {
+            const metric = existingMetrics[0];
+            await base44.asServiceRole.entities.UsageMetrics.update(metric.id, {
+                vlei_credentials: (metric.vlei_credentials || 0) + 1,
+                cost_breakdown: {
+                    ...metric.cost_breakdown,
+                    vlei_cost: ((metric.cost_breakdown?.vlei_cost || 0) + 50)
+                },
+                total_cost: (metric.total_cost || 0) + 50
+            });
+        } else {
+            await base44.asServiceRole.entities.UsageMetrics.create({
+                organization_id: user.organization_id,
+                subscription_id: organization.subscription_id || null,
+                period_start: periodStart,
+                period_end: periodEnd,
+                vlei_credentials: 1,
+                cost_breakdown: {
+                    vlei_cost: 50
+                },
+                total_cost: 50
+            });
+        }
+
         // Create notification for the holder
         await base44.asServiceRole.entities.Notification.create({
             recipient_id: user.id,
@@ -98,7 +132,8 @@ Deno.serve(async (req) => {
             success: true,
             vlei_id: vleiId,
             credential: credentialData,
-            record: vleiRecord
+            record: vleiRecord,
+            billing: { charged: 50, currency: 'USD' }
         });
 
     } catch (error) {
