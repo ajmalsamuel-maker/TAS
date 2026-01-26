@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
-import { ChevronDown, ChevronRight, Shield, Lock, Building2, FileCheck, Globe, Activity, BookOpen, Search, FileText, Award, Settings } from 'lucide-react';
+import { ChevronDown, ChevronRight, Shield, Lock, Building2, FileCheck, Globe, Activity, BookOpen, Search, FileText, Award, Settings, Users } from 'lucide-react';
 import { UserManualSection } from '@/components/documentation/UserManualContent';
 import { userManualSections } from '@/components/documentation/userManualData';
 
@@ -125,6 +125,92 @@ export default function UserPortalDocumentation() {
 
           {/* User Manual Tab */}
           <TabsContent value="manual" className="space-y-6">
+            {/* Version and Metadata Badges */}
+            <div className="flex flex-wrap gap-3 mb-6">
+              <Badge variant="outline" className="px-4 py-1.5 text-sm">
+                <FileText className="w-4 h-4 mr-2" />
+                Version 1.0.3
+              </Badge>
+              <Badge variant="outline" className="px-4 py-1.5 text-sm">
+                <Activity className="w-4 h-4 mr-2" />
+                Published: January 26, 2026
+              </Badge>
+              <Badge variant="outline" className="px-4 py-1.5 text-sm bg-blue-50">
+                <Users className="w-4 h-4 mr-2" />
+                Audience: Business Users & Compliance Officers
+              </Badge>
+            </div>
+
+            {/* Executive Summary */}
+            <Card className="mb-8 border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+              <CardHeader>
+                <CardTitle className="text-2xl flex items-center gap-2">
+                  <BookOpen className="w-6 h-6 text-blue-600" />
+                  Executive Summary
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-700 leading-relaxed">
+                  <strong>Welcome to the Trust Anchor Service (TAS) User Manual.</strong> This comprehensive guide empowers business users to successfully navigate every aspect of the TAS platform, from initial LEI application through ongoing credential management and compliance monitoring. Whether you're a compliance officer submitting your first verification request, a finance manager overseeing regulatory requirements, or a legal representative coordinating identity credentials, this manual provides step-by-step instructions, real-world examples, and best practices for efficient platform utilization.
+                </p>
+                <p className="text-gray-700 leading-relaxed">
+                  The TAS platform automates complex verification workflows that traditionally required weeks of manual effort. Our integrated system performs Know Your Business (KYB) verification by querying official business registries in 120+ countries, conducts Anti-Money Laundering (AML) screening against 300+ global watchlists, and issues cryptographically verifiable credentials compliant with GLEIF and W3C standards. Most applications complete within 4-8 hours, with 87% approved automatically without manual intervention.
+                </p>
+                <div className="bg-white rounded-lg p-4 border border-blue-200">
+                  <h4 className="font-semibold text-gray-900 mb-3">What You'll Find in This Manual:</h4>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Getting Started:</strong> Account creation, dashboard navigation, user roles, and interface orientation for first-time users</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>LEI Application Process:</strong> Complete walkthrough from document preparation through final approval and credential issuance</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Credential Management:</strong> Downloading certificates, understanding vLEI credentials, sharing with partners, and managing renewals</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Compliance Monitoring:</strong> Responding to AML alerts, maintaining regulatory standards, and understanding continuous monitoring</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Web3 Integration:</strong> Using credentials in blockchain systems, DeFi protocols, and decentralized applications</span></li>
+                  </ul>
+                </div>
+                <p className="text-sm text-gray-600 italic border-t border-blue-200 pt-4 mt-4">
+                  <strong>Maintained By:</strong> TAS Product & Customer Success Teams | <strong>Last Updated:</strong> January 26, 2026 | <strong>Feedback:</strong> userdocs@tas.example.com
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Navigation Guide */}
+            <Card className="mb-6 bg-white border-blue-200">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-blue-600" />
+                  How to Use This Manual
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-700 mb-4">
+                  This manual is organized into focused sections covering each major area of the TAS platform. Click any section title to expand detailed guides with screenshots, examples, and best practices. Use the search bar below to quickly find specific procedures or terminology.
+                </p>
+                <div className="grid md:grid-cols-3 gap-4 text-sm">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                    <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
+                      <BookOpen className="w-4 h-4" />
+                      Getting Started
+                    </h4>
+                    <p className="text-gray-700">Account setup, navigation basics, dashboard orientation, and role understanding</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+                    <h4 className="font-semibold text-indigo-900 mb-2 flex items-center gap-2">
+                      <FileText className="w-4 h-4" />
+                      LEI Applications
+                    </h4>
+                    <p className="text-gray-700">Complete application workflow, document requirements, and approval tracking</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                    <h4 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
+                      <Shield className="w-4 h-4" />
+                      Compliance
+                    </h4>
+                    <p className="text-gray-700">AML alerts, monitoring procedures, and regulatory maintenance</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Search Bar */}
             <div className="mb-6">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -624,14 +710,32 @@ export default function UserPortalDocumentation() {
         </Card>
 
         {/* Footer */}
-        <Card className="bg-gray-900 text-white">
+        <Card className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white">
           <CardContent className="pt-6">
-            <div className="text-sm space-y-3">
-              <p><strong>Document Version:</strong> 1.0</p>
-              <p><strong>Last Updated:</strong> January 26, 2026</p>
-              <p><strong>Classification:</strong> User Facing</p>
-              <p><strong>Target Audience:</strong> Business Users & Compliance Officers</p>
-              <p className="text-xs mt-4 border-t border-gray-700 pt-4">© 2026 FTS.Money & Certizen Technologies. User documentation.</p>
+            <div className="grid md:grid-cols-2 gap-8 mb-6">
+              <div>
+                <h4 className="font-bold text-lg mb-3 text-blue-200">Document Information</h4>
+                <div className="text-sm space-y-2">
+                  <p><strong>Version:</strong> 1.0.3</p>
+                  <p><strong>Published:</strong> January 26, 2026</p>
+                  <p><strong>Last Reviewed:</strong> January 26, 2026</p>
+                  <p><strong>Classification:</strong> User Facing Documentation</p>
+                  <p><strong>Target Audience:</strong> Business Users, Compliance Officers, Finance Teams</p>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-bold text-lg mb-3 text-blue-200">Support & Feedback</h4>
+                <div className="text-sm space-y-2">
+                  <p><strong>Documentation Team:</strong> TAS Product & Customer Success</p>
+                  <p><strong>Feedback:</strong> userdocs@tas.example.com</p>
+                  <p><strong>Technical Support:</strong> support@tas.example.com</p>
+                  <p><strong>Live Chat:</strong> Available 9 AM - 6 PM (your timezone)</p>
+                  <p className="text-blue-200 mt-4">We continuously improve this documentation based on user feedback. Please report errors, suggest improvements, or request additional topics.</p>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 pt-4">
+              <p className="text-xs text-gray-400">© 2026 FTS.Money & Certizen Technologies. All rights reserved. User documentation for Trust Anchor Service platform.</p>
             </div>
           </CardContent>
         </Card>
