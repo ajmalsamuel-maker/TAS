@@ -1118,15 +1118,1493 @@ For urgent needs (additional $75 fee):
     subsections: [
       {
         title: 'Continuous AML Monitoring',
-        content: `24/7 monitoring against sanctions lists, PEP databases, and regulatory changes explained.`
+        content: `<strong>What is Continuous Monitoring?</strong>
+
+Compliance doesn't end when your LEI is approved. TAS continuously monitors your business and beneficial owners against updated regulatory databases 24/7/365. This ongoing surveillance ensures you remain compliant even as global sanctions lists change, new regulations are enacted, or your business circumstances evolve.
+
+<strong>Why Continuous Monitoring Matters</strong>
+
+Sanctions lists and PEP databases update frequently:
+• OFAC updates occur weekly (sometimes daily during geopolitical crises)
+• UN sanctions list updates monthly or more frequently during conflicts
+• EU sanctions can change within hours during international incidents
+• PEP status changes when officials are elected, appointed, or leave office
+• Adverse media is published constantly across global news sources
+
+A business that was clear on Monday might match a sanctions list on Tuesday if new designations are added. Without continuous monitoring, you wouldn't know until your next manual review—potentially months later. By then, you may have conducted prohibited transactions or violated regulations unknowingly, exposing your business to severe penalties, asset freezes, or criminal liability.
+
+<strong>What TAS Monitors Automatically</strong>
+
+<strong>1. Sanctions List Updates (Daily Screening)</strong>
+
+Every morning at 2:00 AM UTC, TAS downloads the latest versions of 300+ global sanctions lists. These include:
+
+<strong>Major Global Lists:</strong>
+• <strong>US OFAC SDN:</strong> Specially Designated Nationals and Blocked Persons (updated weekly, sometimes daily)
+• <strong>US OFAC Consolidated:</strong> Country-based sanctions programs (Iran, North Korea, Syria, Cuba, etc.)
+• <strong>UN Security Council Consolidated List:</strong> Individuals and entities subject to UN sanctions
+• <strong>EU Sanctions List:</strong> All EU member states' consolidated restrictions
+• <strong>UK OFSI Financial Sanctions:</strong> UK Treasury sanctions post-Brexit
+• <strong>DFAT Australia Sanctions:</strong> Australian government sanctions regime
+• <strong>SECO Switzerland Sanctions:</strong> Swiss sanctions (often more extensive than EU)
+
+<strong>Country-Specific Lists:</strong>
+• Canada - Global Affairs Canada Sanctions
+• Japan - METI Export Control Lists
+• Singapore - MAS Financial Sanctions
+• South Korea - MOFA Sanctions List
+• Hong Kong - HKMA Sanctions
+• UAE - Central Bank Sanctions
+• And 280+ additional jurisdictional lists worldwide
+
+<strong>Sector-Specific Sanctions:</strong>
+• Arms embargoes and weapons proliferation
+• Technology transfer restrictions (semiconductors, encryption, etc.)
+• Financial sector sanctions (correspondent banking restrictions)
+• Energy sector sanctions (oil, gas, nuclear)
+• Transportation and shipping restrictions
+
+The system re-screens your organization's legal name, all trading names, all beneficial owners, and your registered addresses against every updated list. This comprehensive re-screening typically processes 50,000+ name combinations and takes 15-30 minutes per organization.
+
+<strong>2. PEP Database Changes (Weekly Updates)</strong>
+
+Politically Exposed Persons status is dynamic and changes as governments change:
+
+<strong>Who Qualifies as a PEP:</strong>
+• Heads of state (presidents, prime ministers, monarchs)
+• Senior government officials (ministers, secretaries, commissioners)
+• Senior military officers (generals, admirals)
+• Senior judicial officials (supreme court justices, prosecutors general)
+• Senior political party officials (party chairs, campaign managers)
+• State-owned enterprise executives (CEOs of government-owned companies)
+• Important international organization officials (UN, World Bank, IMF leadership)
+
+<strong>PEP Family Members (Associated Persons):</strong>
+• Immediate family: Spouses, children, parents, siblings
+• Close associates: Business partners, known close friends
+• Companies substantially owned by PEPs or their families
+
+<strong>How PEP Status Changes:</strong>
+• <strong>New PEPs:</strong> Elections bring new officials into power, appointees take ministerial roles, military promotions to senior ranks
+• <strong>Former PEPs:</strong> Officials leave government, elected officials lose elections, term limits expire
+• <strong>Risk Level Changes:</strong> Officials move between positions of varying risk levels
+
+We track PEP changes weekly and update our database accordingly. If a beneficial owner becomes a PEP, you're notified within 7 days and may need to complete enhanced due diligence questionnaires. If a previously flagged PEP leaves office, they remain classified as "Former PEP" for 12-18 months (jurisdiction-dependent) before risk level decreases.
+
+<strong>3. Adverse Media Scanning (Daily Intelligence Gathering)</strong>
+
+Our system monitors 10,000+ global news sources for articles mentioning your business or beneficial owners in negative contexts:
+
+<strong>Media Sources Monitored:</strong>
+• <strong>Major International News:</strong> Reuters, Bloomberg, Associated Press, Agence France-Presse, BBC, CNN
+• <strong>Regional Business Press:</strong> Financial Times, Wall Street Journal, Nikkei, South China Morning Post
+• <strong>Local Newspapers:</strong> Publications in your jurisdiction and beneficial owners' jurisdictions
+• <strong>Regulatory Announcements:</strong> SEC filings, FCA enforcement actions, regulatory agency press releases
+• <strong>Court Records:</strong> Criminal charges, civil lawsuits, bankruptcy filings (public records)
+• <strong>Industry Publications:</strong> Trade journals and sector-specific news relevant to your industry
+
+<strong>Negative Context Detection:</strong>
+The AI-powered system analyzes articles to determine if mentions are truly negative:
+• <strong>Definitely Negative:</strong> Fraud charges, criminal investigations, regulatory sanctions, business failures
+• <strong>Potentially Negative:</strong> Civil litigation, consumer complaints, regulatory inquiries, business disputes
+• <strong>Neutral/Positive:</strong> Normal business news, product launches, hiring announcements (ignored)
+
+<strong>Severity Assessment:</strong>
+
+<strong>Critical Adverse Media:</strong>
+• Criminal charges filed against business or beneficial owners
+• Confirmed fraud or embezzlement
+• Regulatory shutdown or license revocation
+• Conviction or guilty plea
+→ Triggers immediate investigation, credential suspension possible
+
+<strong>High Severity:</strong>
+• Ongoing regulatory investigation
+• Major civil lawsuit alleging fraud
+• Significant customer complaints or class actions
+• Directors arrested or charged (not convicted yet)
+→ Enhanced monitoring activated, may request explanation
+
+<strong>Medium Severity:</strong>
+• Business disputes or contract disagreements
+• Consumer complaints or negative reviews
+• Minor regulatory violations (fines <$50,000)
+• Bankruptcy filing by related entity
+→ Logged and monitored, usually no immediate action
+
+<strong>Low Severity:</strong>
+• General business challenges (revenue decline, layoffs)
+• Competitive disputes
+• Minor customer service issues
+→ Logged for reference only, no alerts generated
+
+You're notified of Medium-severity and higher adverse media. Low-severity items are logged but don't generate alerts. Critical and high-severity media triggers immediate compliance team review and may result in contact within hours.
+
+<strong>4. Business Registry Changes (Weekly Verification)</strong>
+
+We check your jurisdiction's business registry weekly for any updates or modifications:
+
+<strong>Changes We Detect:</strong>
+• Legal name changes or amendments
+• Registered address modifications
+• Director or officer appointments/resignations
+• Ownership structure updates (new shareholders, share transfers)
+• Business status changes (active → dissolved, active → in liquidation)
+• Entity type conversions (LLC → Corporation, private → public)
+• Merger or acquisition events
+
+<strong>Why Registry Monitoring Matters:</strong>
+Your LEI information must match the official registry. If your business changes its name with the registry but doesn't update TAS, your LEI becomes inaccurate. This can cause:
+• Transaction rejections (counterparty systems flag mismatched LEI data)
+• Regulatory compliance failures (reported LEI data doesn't match current reality)
+• Financial audit issues (discrepancies between LEI and actual business structure)
+
+<strong>Automatic Reconciliation:</strong>
+When changes are detected:
+1. System compares registry data to your TAS profile
+2. If differences found, email sent: "We noticed your registered address changed from [old] to [new]"
+3. You're asked to confirm: "Is this change accurate?"
+4. If confirmed, system requests updated supporting documents
+5. Once documents uploaded, profile updates automatically
+6. LEI data synchronized with current registry information
+7. GLEIF notified of changes (for propagation to global database)
+
+<strong>How You're Notified of Monitoring Alerts</strong>
+
+<strong>Multi-Channel Notification System:</strong>
+
+<strong>In-App Notifications (Real-Time):</strong>
+• Red badge appears on Compliance menu item showing alert count
+• Alert displayed prominently on dashboard with severity indicator
+• Detailed alert information in Compliance → Alerts section
+• Browser push notifications if enabled (pop-up even when TAS isn't active tab)
+• Sound alert for critical notifications (can disable in settings)
+
+<strong>Email Notifications (Tiered by Severity):</strong>
+
+<strong>Critical Alerts (Immediate):</strong>
+• Sanctions list matches
+• Business status changed to dissolved
+• Credential revocation events
+• Email sent within 1-2 minutes of detection
+• Subject line: "🚨 CRITICAL ALERT: Immediate Action Required"
+
+<strong>High-Severity Alerts (Within 1 Hour):</strong>
+• High-confidence PEP matches
+• Serious adverse media
+• Document expiration (grace period ended)
+• Subject line: "⚠️ URGENT: Action Required Within 24 Hours"
+
+<strong>Medium-Severity Alerts (Daily Digest):</strong>
+• Moderate-confidence matches
+• Medium-severity adverse media
+• Registry changes detected
+• Document expiring in 7-14 days
+• Sent once daily at 8:00 AM your timezone
+• Subject line: "TAS Compliance Digest - January 26, 2026"
+
+<strong>Low-Severity Alerts (Weekly Summary):</strong>
+• Low-confidence matches (auto-resolved)
+• Document expiring in 30+ days
+• General system updates
+• Sent weekly on Monday mornings
+• Subject line: "TAS Weekly Compliance Summary"
+
+<strong>SMS Notifications (Critical Only):</strong>
+• Only for critical and high-severity alerts
+• Brief message: "TAS ALERT: Possible sanctions match detected. Log in immediately to review."
+• Link to alert details in portal
+• Requires phone number configured in Settings → Profile
+
+<strong>Webhook Notifications (Real-Time, If Configured):</strong>
+• Instant POST request to your configured endpoint
+• JSON payload with full alert details
+• Enables automated responses in your own systems
+• Example: Auto-create ticket in your compliance management system
+
+<strong>Alert Severity Classification</strong>
+
+<strong>CRITICAL (Red) - Immediate Action:</strong>
+• <strong>Response Time:</strong> 2 hours maximum
+• <strong>Consequences of Delay:</strong> Automatic credential suspension, regulatory reporting, account freeze
+• <strong>Who Handles:</strong> Senior compliance officer or legal counsel immediately
+• <strong>Examples:</strong> Confirmed sanctions match, business dissolved, fraudulent activity detected
+
+<strong>HIGH (Orange) - Urgent Attention:</strong>
+• <strong>Response Time:</strong> 24 hours
+• <strong>Consequences of Delay:</strong> Escalation to critical status, enhanced monitoring, possible suspension
+• <strong>Who Handles:</strong> Compliance officer or designated responsible person
+• <strong>Examples:</strong> High-confidence PEP match, serious adverse media, major document expiry
+
+<strong>MEDIUM (Yellow) - Action Required:</strong>
+• <strong>Response Time:</strong> 3 business days
+• <strong>Consequences of Delay:</strong> Compliance score impact, may escalate to high severity
+• <strong>Who Handles:</strong> Any authorized team member
+• <strong>Examples:</strong> Moderate AML matches, registry changes, expiring documents
+
+<strong>LOW (Blue) - Informational:</strong>
+• <strong>Response Time:</strong> 7 days or no action required
+• <strong>Consequences of Delay:</strong> None (informational only)
+• <strong>Who Handles:</strong> Review when convenient
+• <strong>Examples:</strong> Low-confidence false positives, general updates, renewal reminders
+
+<strong>Responding to Monitoring Alerts</strong>
+
+<strong>Low-Confidence Alerts (Auto-Resolved):</strong>
+• Match score <30%
+• Automatically marked "Likely False Positive - Auto-Resolved"
+• Logged for audit trail and regulatory documentation
+• No action required from you
+• Can review details in alert history if curious
+• Example: Your "Global Trading LLC" matches someone else's "Global Trading Ltd" in different country
+
+<strong>Medium-Confidence Alerts (Quick Review Required):</strong>
+• Match score 30-69%
+• Requires brief review but usually cleared quickly
+• Timeline: Respond within 24-48 hours
+• System sends email: "Your application requires brief review due to potential match"
+
+<strong>How to Respond:</strong>
+1. Log into Compliance → Alerts
+2. Click the alert to view full details
+3. Review match report showing what triggered alert
+4. Click "Respond to Alert" button
+5. Provide brief explanation in text field
+6. Upload supporting evidence if applicable
+7. Submit response
+
+<strong>Example Response:</strong>
+"This is a false positive. The matched entity 'Global Trading Company' on the UN sanctions list is a Syrian company registered in 2015. Our business is 'Global Trading Company LLC' registered in Delaware, USA in 2020. We operate in software sales, not commodities. Completely different entities. Attached: our US business registration showing incorporation details and different registration number."
+
+<strong>Typical Resolution:</strong>
+• Compliance team reviews your response within 4-8 hours
+• Confirms it's a different entity
+• Marks alert as "Cleared - False Positive"
+• Adds notation to your account preventing future alerts for the same match
+• You receive confirmation email
+• Compliance score restored if it was impacted
+
+<strong>High-Confidence Alerts (Serious Investigation):</strong>
+• Match score 70%+ 
+• Potential true match to sanctions list, PEP, or serious adverse media
+• Immediate investigation by senior compliance team required
+• Your account flagged "Under Review" status
+• New credential issuances paused pending resolution
+• Timeline: Respond within 24 hours, investigation takes 2-5 business days
+
+<strong>What Happens During Investigation:</strong>
+
+<strong>Day 1 - Alert Detection:</strong>
+• System detects high-confidence match at 2:00 AM during daily screening
+• Alert created in database with severity "Critical" or "High"
+• Email sent immediately to your registered address
+• SMS sent if enabled
+• Compliance team assigned automatically
+
+<strong>Day 1 - Initial Contact (Within 2 Hours):</strong>
+• TAS compliance officer emails you with:
+  - Details of what was matched
+  - Which specific list or database
+  - Match confidence score and reasoning
+  - List of required documentation to resolve
+  - Response deadline (typically 24-48 hours)
+
+<strong>Example Email:</strong>
+"Dear [Your Name], Our automated monitoring system detected a potential match between your organization and an entity on the OFAC SDN list. Match details: Your organization: ABC Trading DMCC (Dubai, UAE). Matched entity: ABC Trading Est. (OFAC designation January 2024, Dubai). Match confidence: 78%. This requires immediate investigation. Please provide the following within 24 hours: 1) Complete corporate structure chart showing all parent and subsidiary companies, 2) Source of funds documentation, 3) Detailed business activity explanation, 4) Any prior sanctions clearance letters if applicable. Your response will be reviewed by our senior compliance team. Until resolved, new credential issuances are paused but existing LEI remains active."
+
+<strong>Day 1-2 - Your Response:</strong>
+• Gather requested documentation
+• Prepare detailed written explanation
+• Upload evidence via alert response form
+• Submit within deadline
+
+<strong>Day 2-4 - TAS Investigation:</strong>
+• Senior compliance officer reviews your response
+• Verifies provided documentation
+• May consult external sanctions screening specialists
+• Cross-references with additional intelligence sources
+• Makes preliminary determination
+
+<strong>Possible Investigation Outcomes:</strong>
+
+<strong>Cleared as False Positive (70% of high-confidence alerts):</strong>
+• Evidence conclusively proves you're a different entity
+• Different registration numbers, different ownership, different business activities
+• Coincidental name similarity explained
+• Alert marked "Resolved - False Positive"
+• Notation added to prevent future alerts for same match
+• Processing resumes, credentials reactivated
+• Enhanced monitoring may continue for 3-6 months as precaution
+
+<strong>Approved with Enhanced Monitoring (20% of cases):</strong>
+• Not conclusively proven to be different entity OR different entity but in same high-risk sector
+• Insufficient evidence to reject, insufficient evidence to completely clear
+• Decision: Allow to continue with enhanced scrutiny
+• Enhanced monitoring includes:
+  - More frequent screening (daily vs. weekly for standard accounts)
+  - Manual review of all transactions
+  - Quarterly compliance questionnaires
+  - Shorter credential validity periods (6 months vs. 1 year)
+  - Senior officer approval required for renewals
+• Duration: 6-12 months, then reevaluated
+
+<strong>Rejected - Confirmed Match or Unable to Distinguish (10% of cases):</strong>
+• Evidence indicates you ARE the sanctioned entity or closely related
+• OR unable to conclusively prove you're different
+• Regulatory obligation requires TAS to refuse service
+• Immediate actions:
+  - Account suspended
+  - All credentials revoked within 1 hour
+  - Transactions blocked
+  - Regulatory authorities notified
+  - Suspicious Activity Report (SAR) filed with FinCEN or equivalent
+• Permanent block - cannot reapply
+• Refund of prorated unused subscription fees
+
+<strong>Day 5 - Final Decision Communicated:</strong>
+• Detailed email explaining outcome
+• If cleared: Confirmation letter suitable for audit documentation
+• If enhanced monitoring: Terms and conditions outlined
+• If rejected: Formal rejection notice with regulatory reporting confirmation
+
+<strong>True Positive Scenarios (Confirmed Sanctions or PEP)</strong>
+
+If investigation confirms you are actually sanctioned, associated with sanctioned entities, or the adverse media represents actual regulatory violations:
+
+<strong>Immediate Actions Taken:</strong>
+• <strong>Account Suspension:</strong> Access to portal blocked within 60 minutes
+• <strong>Credential Revocation:</strong> LEI and all vLEI credentials revoked, GLEIF notified to update global database
+• <strong>Transaction Block:</strong> Any in-progress workflows terminated
+• <strong>Asset Freeze:</strong> Any funds held (prepaid credits, deposits) frozen pending regulatory guidance
+• <strong>Notification to Authorities:</strong> TAS files Suspicious Activity Report with relevant financial intelligence unit (FinCEN in USA, FIU in other jurisdictions)
+• <strong>Audit Trail Lock:</strong> All historical data preserved and locked for regulatory access
+
+<strong>Legal Implications:</strong>
+• TAS is legally required to refuse service under OFAC regulations, EU sanctions law, and UN resolutions
+• Cannot process any transactions for sanctioned entities
+• Attempting to circumvent (reapply under different name) is a federal crime
+• You should seek legal counsel immediately
+• May face asset seizure, criminal prosecution, significant fines
+
+<strong>If It's a Mistaken Identity (You Believe It's Wrong):</strong>
+• Gather comprehensive evidence proving you're a different entity
+• Obtain legal clearances from relevant authorities (OFAC license, EU clearance letter)
+• May need to petition OFAC, UN, or EU directly for de-listing or clarification
+• TAS can resume service only after official government clearance provided
+• Process can take months to years for sanctions issues
+
+<strong>Compliance Score Impact of Monitoring</strong>
+
+Monitoring alerts affect your compliance score in real-time:
+
+<strong>No Alerts (Ideal State):</strong>
+• Compliance score: 100/100
+• All monitoring checks clear
+• Documents current
+• LEI active and renewed on time
+
+<strong>Low-Confidence Alerts (Auto-Resolved):</strong>
+• Compliance score: 100/100 (no impact)
+• System handles automatically
+• Logged but doesn't affect your standing
+
+<strong>Medium-Confidence (Under Investigation):</strong>
+• Compliance score: 90/100 (temporary -10 points)
+• Indicates pending investigation
+• Score restores when alert cleared
+• If cleared as false positive: Returns to 100
+
+<strong>High-Confidence (Serious Investigation):</strong>
+• Compliance score: 70/100 (temporary -30 points)
+• Significant concern under review
+• May impact ability to transact during investigation
+• If cleared: Returns to 100
+• If approved with enhanced monitoring: Stays at 85/100
+
+<strong>Confirmed Match:</strong>
+• Compliance score: 0/100
+• Account suspended
+• Score becomes irrelevant as account is closed
+
+<strong>Best Practices for Compliance Maintenance</strong>
+
+<strong>Proactive Monitoring:</strong>
+✓ <strong>Review Compliance dashboard weekly</strong> even when you have no alerts (check for trends, upcoming expiries)
+✓ <strong>Respond to all alerts within 24-48 hours</strong> to prevent escalation and demonstrate good faith
+✓ <strong>Keep all information updated</strong> - report changes to ownership, addresses, or business activity within 30 days
+✓ <strong>Monitor your compliance score</strong> and investigate if it drops unexpectedly (may indicate unreported issue)
+✓ <strong>Renew your LEI on time</strong> - lapsed LEIs drop your score by 25 points immediately
+✓ <strong>Upload updated documents proactively</strong> 30 days before existing ones expire (don't wait for reminders)
+
+<strong>Configuration Recommendations:</strong>
+✓ <strong>Enable all notification channels</strong> for critical alerts (in-app, email, SMS)
+✓ <strong>Use daily digest for medium alerts</strong> to avoid notification fatigue
+✓ <strong>Configure multiple notification recipients</strong> if you have a compliance team
+✓ <strong>Set up webhook integration</strong> to create tickets in your compliance management system
+✓ <strong>Enable browser notifications</strong> during business hours for real-time awareness
+
+<strong>Documentation and Audit Trail:</strong>
+✓ <strong>Document all alert responses</strong> in your own records (not just TAS system)
+✓ <strong>Export monthly compliance reports</strong> for internal audit and regulatory examiners
+✓ <strong>Maintain copies of all clearance letters</strong> for false positive determinations
+✓ <strong>Keep screenshots of cleared alerts</strong> showing TAS compliance team resolved them
+✓ <strong>Create internal procedures</strong> for handling different alert types
+✓ <strong>Train your team</strong> on alert response procedures
+
+<strong>Escalation Procedures:</strong>
+✓ <strong>Define who handles what:</strong> Regular staff for low/medium, compliance officer for high, legal counsel for critical
+✓ <strong>Create decision tree:</strong> "If alert type X with score Y, escalate to Z within N hours"
+✓ <strong>Document authorities:</strong> Who can approve responses, who can authorize enhanced monitoring acceptance
+✓ <strong>Emergency contacts:</strong> List of people to contact for after-hours critical alerts
+
+<strong>Regular Compliance Health Checks</strong>
+
+<strong>Weekly Quick Check (5 minutes):</strong>
+• Log into Compliance dashboard
+• Verify score is 85+ (healthy range)
+• Check for new alerts
+• Review upcoming document expiries
+• Confirm no overdue responses
+
+<strong>Monthly Deep Review (30 minutes):</strong>
+• Generate full compliance report (Compliance → Reports → Generate Monthly Report)
+• Review all alerts from past month (including resolved ones)
+• Analyze compliance score trends
+• Check document currency
+• Verify beneficial owner information still accurate
+• Export report for records
+
+<strong>Quarterly Audit Preparation (2 hours):</strong>
+• Export complete alert history
+• Download all clearance determinations
+• Gather supporting evidence for any investigations
+• Review and update ownership structure if changed
+• Ensure all documents current with 60+ days validity remaining
+• Prepare summary for auditors or board
+
+<strong>Annual Compliance Certification:</strong>
+• Required for LEI renewal
+• Attest that all information remains accurate
+• Confirm no unreported changes to business structure
+• Verify beneficial ownership still current
+• Certify no undisclosed sanctions or PEP issues
+• Signed by authorized representative (CEO, CFO, or Compliance Officer)`
       },
       {
         title: 'Responding to Compliance Alerts',
-        content: `How to handle compliance alerts with required actions and response procedures.`
+        content: `<strong>The Alert Response Framework</strong>
+
+When you receive a compliance alert, your response quality and timeliness directly impact the outcome. This section provides a systematic approach to handling alerts professionally and efficiently.
+
+<strong>Step 1: Understanding the Alert (First 15 Minutes)</strong>
+
+When an alert appears, immediately review its details:
+
+<strong>Alert Information Panel Shows:</strong>
+• <strong>Alert Type:</strong> Sanctions Hit, PEP Match, Adverse Media, Registry Change, Document Expiry
+• <strong>Severity Level:</strong> Critical, High, Medium, Low (with color coding)
+• <strong>Match Confidence Score:</strong> 0-100% (how likely this is a true match)
+• <strong>Detected Date:</strong> When the alert was generated
+• <strong>Response Deadline:</strong> When you must respond by
+• <strong>Current Status:</strong> New, Under Review, Pending Your Response, Resolved
+
+<strong>Detailed Match Information:</strong>
+• What exactly matched (business name, beneficial owner name, address)
+• Which database or list triggered the alert (OFAC SDN, UN List, PEP database, news source)
+• Full entry from the matched list (including all details about the matched entity)
+• Similarity analysis showing why the match was flagged
+• Any previous alerts for the same match (recurring issue vs. new)
+
+<strong>Risk Assessment:</strong>
+• System-calculated risk level based on match type, confidence, and your profile
+• Historical context (has your organization been flagged before?)
+• Industry-specific risk factors
+• Jurisdiction risk considerations
+
+<strong>Read Everything Carefully:</strong>
+• Don't skim—details matter immensely
+• Note the specific list or database (OFAC vs. UN vs. EU—different legal implications)
+• Check the match confidence score (98% requires different approach than 35%)
+• Understand what's actually being alleged or matched
+• Review any recommended actions from the compliance team
+
+<strong>Step 2: Initial Assessment and Triage (15-30 Minutes)</strong>
+
+Before responding, determine whether this is clearly a false positive, potentially serious, or ambiguous:
+
+<strong>Clear False Positive Indicators:</strong>
+• Match confidence <40%
+• Completely different jurisdiction (you're in USA, match is in Middle East)
+• Different business type (you're software, match is shipping/commodities)
+• Different ownership (your owners clearly not the same individuals)
+• Chronologically impossible (you incorporated before sanctioned entity existed)
+
+→ <strong>Action:</strong> Prepare straightforward response explaining differences
+
+<strong>Potentially Serious Indicators:</strong>
+• Match confidence >70%
+• Same or nearby jurisdiction
+• Similar or related business activities
+• Ownership names similar or matching
+• Timing concerns (you incorporated shortly after sanctions designation)
+
+→ <strong>Action:</strong> Gather comprehensive documentation, may need legal counsel
+
+<strong>Ambiguous Situations:</strong>
+• Medium confidence (50-70%)
+• Some similarities, some differences
+• Unclear relationships
+• Limited public information available
+
+→ <strong>Action:</strong> Thorough investigation before responding, prepare detailed evidence
+
+<strong>Step 3: Gathering Evidence (1-4 Hours, Depending on Complexity)</strong>
+
+<strong>For False Positive Responses, Gather:</strong>
+
+<strong>Proof of Different Identity:</strong>
+• Your business registration certificate showing your registration number
+• The matched entity's details from the sanctions list (already in alert, but review carefully)
+• Comparison table showing differences:
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+  <tr><td style="border: 1px solid #ccc; padding: 8px;"><strong>Attribute</strong></td><td style="border: 1px solid #ccc; padding: 8px;"><strong>Your Business</strong></td><td style="border: 1px solid #ccc; padding: 8px;"><strong>Matched Entity</strong></td></tr>
+  <tr><td style="border: 1px solid #ccc; padding: 8px;">Legal Name</td><td style="border: 1px solid #ccc; padding: 8px;">Global Trading LLC</td><td style="border: 1px solid #ccc; padding: 8px;">Global Trading Est.</td></tr>
+  <tr><td style="border: 1px solid #ccc; padding: 8px;">Registration Country</td><td style="border: 1px solid #ccc; padding: 8px;">USA (Delaware)</td><td style="border: 1px solid #ccc; padding: 8px;">Syria</td></tr>
+  <tr><td style="border: 1px solid #ccc; padding: 8px;">Registration Number</td><td style="border: 1px solid #ccc; padding: 8px;">DE-123456</td><td style="border: 1px solid #ccc; padding: 8px;">Unknown/Not Listed</td></tr>
+  <tr><td style="border: 1px solid #ccc; padding: 8px;">Business Activity</td><td style="border: 1px solid #ccc; padding: 8px;">Software Development</td><td style="border: 1px solid #ccc; padding: 8px;">Petroleum Trading</td></tr>
+  <tr><td style="border: 1px solid #ccc; padding: 8px;">Incorporation Date</td><td style="border: 1px solid #ccc; padding: 8px;">2020</td><td style="border: 1px solid #ccc; padding: 8px;">2018</td></tr>
+</table>
+
+<strong>Supporting Documentation:</strong>
+• Certificate of Good Standing (proves current active status)
+• Recent bank statement (shows legitimate business operations)
+• Customer contracts or invoices (demonstrates actual business activity)
+• Website screenshots (shows what you actually do)
+• LinkedIn company page (shows team, location, activities)
+
+<strong>For PEP Matches, Additionally Gather:</strong>
+• Detailed background on the beneficial owner
+• Employment history showing they've never held government positions
+• Passport showing nationality (if different from PEP's nationality, helps prove different person)
+• Signed attestation from the individual: "I [name] confirm that I am not politically exposed, have never held government office, and am not related to [matched PEP name]"
+
+<strong>For Adverse Media, Gather:</strong>
+• Full context of the news article (read the complete article, not just headline)
+• Your company's official response or statement about the incident
+• Legal outcomes (charges dropped, lawsuit dismissed, settlements reached)
+• Corrective actions taken since the incident
+• Time elapsed since the incident (10-year-old resolved issue vs. current investigation)
+
+<strong>Step 4: Crafting Your Response (30-60 Minutes)</strong>
+
+<strong>Structure of an Effective Response:</strong>
+
+<strong>1. Opening - Acknowledge Receipt and Understanding</strong>
+"Thank you for notifying us of the potential match to [list name]. We have reviewed the alert details carefully and are providing the following information for your assessment."
+
+<strong>2. Direct Answer - State Your Position Clearly</strong>
+"This is a false positive. Our organization is completely unrelated to the matched entity for the following reasons:" OR "We acknowledge this match and provide the following context and documentation for your review:"
+
+<strong>3. Evidence Section - Present Facts Systematically</strong>
+Use numbered points or a table to present differences clearly:
+"Key Differences:
+1. Jurisdiction: We are registered in [country], matched entity is in [different country]
+2. Business Activity: We operate in [industry], matched entity operates in [different industry]
+3. Ownership: Our beneficial owners are [names], with no relation to [matched entity's owners]
+4. Registration: Our registration number is [number], matched entity's is [different number] or unknown
+5. Timeline: We incorporated in [year], matched entity was sanctioned in [different year]"
+
+<strong>4. Supporting Documentation - Reference Attachments</strong>
+"Attached documentation:
+• Exhibit A: Business Registration Certificate showing incorporation details
+• Exhibit B: Certificate of Good Standing confirming current active status
+• Exhibit C: Beneficial owner passports showing nationality and identity
+• Exhibit D: Corporate structure chart showing ownership hierarchy
+• Exhibit E: Signed attestation from CEO confirming no relationship to matched entity"
+
+<strong>5. Closing - Request Specific Outcome</strong>
+"Based on this evidence, we respectfully request that this alert be classified as a false positive and cleared from our account. We're available to provide any additional information you may need. Please contact us at [email] or [phone]."
+
+<strong>Tone and Professionalism:</strong>
+• Be factual and objective, not defensive or emotional
+• Avoid phrases like "this is ridiculous" or "obviously wrong" even if it seems clearly wrong
+• Provide evidence, not just assertions
+• Be respectful of the reviewer's time (concise but complete)
+• Professional formatting (numbered lists, clear headers, proper grammar)
+
+<strong>Response Examples</strong>
+
+<strong>Example 1: False Positive Sanctions Match</strong>
+
+<em>Alert: 62% match to OFAC SDN entry "International Services Group"</em>
+
+<strong>Your Response:</strong>
+"TAS Compliance Team,
+
+Thank you for the sanctions alert regarding potential match to OFAC SDN entry 'International Services Group'. We have carefully reviewed this and determined it is a false positive based on the following:
+
+<strong>Entity Comparison:</strong>
+• <strong>Our Company:</strong> International Services Group LLC, Delaware Registration #5234567, incorporated 2018
+• <strong>OFAC Entity:</strong> International Services Group, Iran-based entity, designated 2019 for sanctions evasion
+
+<strong>Key Differences:</strong>
+1. <strong>Jurisdiction:</strong> We are a US Delaware corporation operating exclusively in the United States. The sanctioned entity operates in Iran.
+2. <strong>Business Activity:</strong> We provide IT consulting and software development to US clients. The sanctioned entity was involved in petroleum product procurement.
+3. <strong>Ownership:</strong> Our sole owner is John Smith (US citizen, SSN XXX-XX-1234). The sanctioned entity is owned by Iranian nationals.
+4. <strong>Timeline:</strong> We incorporated in 2018, one year BEFORE the Iranian entity was sanctioned, eliminating possibility we're a successor entity.
+
+<strong>Supporting Evidence:</strong>
+• Certificate of Good Standing from Delaware (Exhibit A)
+• John Smith's US passport (Exhibit B)
+• Client contracts showing our US-based software consulting work (Exhibit C)
+• Bank statements from US bank showing normal business operations (Exhibit D)
+
+We respectfully request this alert be marked as a false positive. We have no connection to Iranian business activities or sanctioned entities. Available for any follow-up questions at compliance@ourcompany.com or +1-555-0123.
+
+Regards,
+[Your Name], [Title]"
+
+<strong>Example 2: PEP Match Requiring Enhanced Due Diligence</strong>
+
+<em>Alert: 85% match for beneficial owner "Maria Gonzalez" to PEP database (minister's daughter)</em>
+
+<strong>Your Response:</strong>
+"TAS Compliance Team,
+
+We acknowledge the PEP alert regarding our beneficial owner Maria Gonzalez. We have investigated this match and provide the following information:
+
+<strong>Match Assessment:</strong>
+The PEP database entry is for Maria Gonzalez, daughter of the Transport Minister of [Country]. Our beneficial owner is indeed Maria Gonzalez, but we do not believe she is the same person as the minister's daughter.
+
+<strong>Distinguishing Information:</strong>
+1. <strong>Age:</strong> Our Maria Gonzalez was born 1985 (age 41). The minister's daughter was born 1992 (age 34) according to public records.
+2. <strong>Nationality:</strong> Our Maria Gonzalez is a US citizen (Exhibit A - passport). The minister's daughter is a [Country] national.
+3. <strong>Location:</strong> Our Maria Gonzalez has lived in California since 2010 (Exhibit B - proof of residence history). The minister's daughter resides in [Country's capital].
+4. <strong>Professional Background:</strong> Our Maria Gonzalez is a software engineer with 15 years in tech (Exhibit C - LinkedIn profile, employment verification). The minister's daughter works in government relations according to public profiles.
+
+<strong>Documentation Provided:</strong>
+• Maria Gonzalez's US passport showing DOB and nationality (Exhibit A)
+• California driver's license and utility bills showing residence (Exhibit B)
+• Employment history and LinkedIn profile (Exhibit C)
+• Signed attestation from Maria Gonzalez (Exhibit D): "I confirm that I am not related to [Minister's name] or his family, have never held political office, and have no connections to [Country] government."
+
+<strong>Request:</strong>
+Given the clear differences in age, nationality, location, and background, we believe this is a case of coincidental name sharing (Maria Gonzalez is a common name). We request this be cleared as a false positive.
+
+However, if enhanced due diligence is required due to the name match, we are prepared to provide:
+• Source of funds documentation for Maria's investment in our company
+• Additional background verification
+• Notarized statements
+• Whatever else may be required
+
+Available for discussion at [contact details].
+
+Regards,
+[Your Name]"
+
+<strong>Example 3: Adverse Media Response</strong>
+
+<em>Alert: Adverse media detected - news article about lawsuit filed against your company</em>
+
+<strong>Your Response:</strong>
+"TAS Compliance Team,
+
+Regarding the adverse media alert for lawsuit coverage:
+
+<strong>Context:</strong>
+The news article references a civil lawsuit filed by a former customer in March 2025 alleging breach of contract. We acknowledge this litigation and provide full context:
+
+<strong>Case Status:</strong>
+• Lawsuit filed March 2025 in [Court Name], Case #CV-2025-001234
+• Allegations: Customer claimed we failed to deliver services per contract
+• Our defense: Customer failed to pay invoices, we terminated contract per terms
+• Resolution: Case dismissed with prejudice July 2025 (Exhibit A - court dismissal order)
+• Customer ordered to pay our legal fees
+• No admission of wrongdoing
+
+<strong>Financial Impact:</strong>
+• Legal fees: $15,000 (recovered from plaintiff)
+• No damages paid
+• No settlement
+• No ongoing liability
+
+<strong>Compliance Implications:</strong>
+• This was a standard commercial dispute, not fraud or regulatory violation
+• Resolved favorably in our favor
+• No impact on our business operations or regulatory status
+• No pattern of similar litigation (first and only lawsuit in our 8-year history)
+
+<strong>Documentation:</strong>
+• Court dismissal order with prejudice (Exhibit A)
+• Legal fee award order (Exhibit B)
+• Our attorney's letter confirming resolution (Exhibit C)
+
+<strong>Request:</strong>
+We request this adverse media be noted in our file as "Resolved Commercial Dispute - No Compliance Impact." This was a one-time contractual disagreement that was resolved in our favor through the legal system.
+
+Please let us know if you need additional context or documentation.
+
+Regards,
+[Your Name]"
+
+<strong>Step 5: Submitting Your Response</strong>
+
+<strong>Through the TAS Portal:</strong>
+1. Navigate to Compliance → Alerts
+2. Click the alert you're responding to
+3. Click "Respond to Alert" button
+4. Paste or type your response in the text field
+5. Upload supporting documents using "Add Attachment" button
+6. Label each attachment clearly (Exhibit A, Exhibit B, etc.)
+7. Review response for typos or missing information
+8. Click "Submit Response"
+9. Confirmation message appears: "Response submitted successfully. Compliance team will review within [timeframe]."
+10. You receive email confirmation with copy of your response
+
+<strong>Response Tracking:</strong>
+• Alert status changes to "Under Review - Response Received"
+• You can see your submitted response anytime by opening the alert
+• Compliance team can request additional information through the same thread
+• All communication remains attached to the alert for audit trail
+
+<strong>Step 6: Following Up (If Needed)</strong>
+
+<strong>If No Response Within Expected Timeframe:</strong>
+• Medium-severity alerts: Expect response within 2 business days
+• High-severity: Expect response within 24 hours
+• Critical: Expect response within 4 hours
+
+<strong>If Deadline Passes:</strong>
+• Send polite follow-up email: "I submitted a response to Alert #AML-2026-00123 on January 26. Could you provide an update on the review status and expected timeline?"
+• Check spam folder for responses you may have missed
+• Verify your contact information is current in your profile
+• Call support line if critical alert with no response beyond deadline
+
+<strong>If Additional Information Requested:</strong>
+• Compliance team may respond: "Thank you for your response. To complete our review, please also provide [additional items]"
+• Gather and submit additional information promptly
+• Acknowledge receipt: "Thank you, we'll provide those documents by [date]"
+• Meet the new deadline
+
+<strong>Step 7: Resolution and Aftermath</strong>
+
+<strong>Alert Cleared as False Positive:</strong>
+• Email confirmation: "Alert #AML-2026-00123 has been cleared as a false positive"
+• Alert status changes to "Resolved - False Positive"
+• Compliance score restored (if it was impacted)
+• Notation added to your account to prevent future alerts for the same match
+• Clearance letter available for download (useful for audit documentation)
+
+<strong>Alert Cleared with Enhanced Monitoring:</strong>
+• Email: "Based on your response, we're clearing this alert but enabling enhanced monitoring"
+• Enhanced monitoring period: 3-6 months typically
+• What this means:
+  - More frequent automated screening (daily vs. weekly)
+  - Manual review of transaction patterns
+  - May require quarterly compliance certifications
+  - Shorter credential validity periods
+  - Continued monitoring for related news or developments
+• After monitoring period: If no issues, returns to normal monitoring
+• You can request early termination of enhanced monitoring by demonstrating continued clean record
+
+<strong>Alert Escalated for Further Investigation:</strong>
+• Email: "Your response is under review. Our senior compliance team is conducting further investigation. We'll provide an update within [timeframe]."
+• What's happening:
+  - Senior officer assigned
+  - May consult external specialists (sanctions lawyers, forensic accountants)
+  - Deeper background research
+  - Potential contact with regulatory authorities for guidance
+  - Takes 3-5 business days typically
+• During investigation:
+  - Existing LEI remains active (usually)
+  - New credential issuances paused
+  - Large transactions may require manual approval
+• Stay responsive and cooperative
+
+<strong>Alert Confirmed - Account Action Required:</strong>
+• Email: "After investigation, we have determined [outcome]"
+• Possible outcomes:
+  
+<strong>Confirmed Sanctions Match:</strong>
+  - Account suspended immediately
+  - All credentials revoked
+  - Regulatory notification required by law
+  - Cannot continue service
+  - Seek legal counsel urgently
+  
+<strong>Confirmed High-Risk But Not Sanctioned:</strong>
+  - May continue with significant restrictions
+  - Enhanced monitoring mandatory
+  - Transaction limits imposed
+  - Frequent compliance certifications required
+  - Higher fees due to elevated compliance costs
+  - Month-to-month service (no long-term contracts)
+
+<strong>Common Alert Response Mistakes to Avoid</strong>
+
+<strong>❌ Mistake 1: Delayed Response</strong>
+• "I'll get to it next week" → Alert escalates, compliance score drops, account may be suspended
+• <strong>Correct approach:</strong> Respond within 24-48 hours even if just to acknowledge and promise full response soon
+
+<strong>❌ Mistake 2: Incomplete Information</strong>
+• Responding "This is wrong" without explanation or evidence
+• <strong>Correct approach:</strong> Provide detailed reasoning and supporting documents with first response
+
+<strong>❌ Mistake 3: Defensive or Hostile Tone</strong>
+• "I can't believe you're accusing us of this!" → Creates antagonistic relationship
+• <strong>Correct approach:</strong> Professional, factual, cooperative tone showing you take compliance seriously
+
+<strong>❌ Mistake 4: Hiding Information</strong>
+• Not disclosing relevant facts hoping they won't be discovered
+• <strong>Correct approach:</strong> Full transparency. If there IS a connection or concern, explain it honestly with mitigating context
+
+<strong>❌ Mistake 5: Over-Promising</strong>
+• "We'll have this to you tomorrow" when you know it takes 3 days to gather documents
+• <strong>Correct approach:</strong> Realistic timelines, then deliver on or ahead of schedule
+
+<strong>❌ Mistake 6: Not Reading the Alert Carefully</strong>
+• Responding to wrong issue or missing what's actually being asked
+• <strong>Correct approach:</strong> Read alert 2-3 times, understand exactly what's being questioned, respond precisely
+
+<strong>Alert Response Best Practices</strong>
+
+✓ <strong>Respond Quickly:</strong> Within 24 hours for high-severity, 48 hours for medium
+✓ <strong>Be Thorough First Time:</strong> Provide comprehensive evidence with initial response (avoid multiple back-and-forth exchanges)
+✓ <strong>Use Professional Language:</strong> Formal business communication style
+✓ <strong>Organize Information Clearly:</strong> Numbered lists, tables, clearly labeled exhibits
+✓ <strong>Attach Evidence:</strong> Don't just claim things, prove them with documents
+✓ <strong>Be Honest:</strong> If there IS a connection or issue, explain with full context rather than hiding
+✓ <strong>Keep Copies:</strong> Save your response and all attachments for your own records
+✓ <strong>Follow Up Appropriately:</strong> If no response within expected timeframe, polite follow-up
+✓ <strong>Learn from Alerts:</strong> If you get similar alerts repeatedly, address root cause
+
+<strong>When to Escalate Internally</strong>
+
+<strong>Situations Requiring Legal Counsel:</strong>
+• Any confirmed sanctions match (even if you believe it's error)
+• PEP matches where enhanced due diligence requested
+• Adverse media involving criminal charges
+• Situations where wrong response could have legal consequences
+• Anytime you're uncertain about regulatory implications
+
+<strong>Situations Requiring Senior Management:</strong>
+• Alerts that could impact business operations
+• Decisions about accepting enhanced monitoring terms
+• Major adverse media requiring official company statement
+• Situations affecting business reputation
+
+<strong>Situations You Can Handle Directly:</strong>
+• Clear false positives with obvious differences
+• Document expiration reminders (administrative)
+• Registry change confirmations (if you know about the change)
+• Low-severity adverse media with easy explanations
+
+<strong>Building a Response Library</strong>
+
+<strong>For Repeat Situations:</strong>
+Create template responses for common alert types:
+• False positive due to common business name
+• PEP false positive (common personal name)
+• Address change confirmation
+• Document expiration response
+• Low-severity adverse media explanation
+
+<strong>Customize templates each time but maintain structure:</strong>
+• Saves time (don't reinvent response format)
+• Ensures consistency (all responses meet quality standards)
+• Reduces errors (template includes all necessary elements)
+• Trains junior staff (they learn proper response format)
+
+<strong>Post-Resolution Actions</strong>
+
+<strong>After Alert Cleared:</strong>
+1. Download the clearance letter or resolution notice
+2. Save to your compliance files (may need for audits)
+3. Update your internal risk register
+4. Brief senior management if it was significant
+5. Review whether any process changes needed (e.g., if document quality issues caused alert, improve document scanning procedures)
+6. Thank the compliance team if they were helpful (builds good relationship)
+
+<strong>After Enhanced Monitoring Begins:</strong>
+1. Understand all requirements and restrictions
+2. Set calendar reminders for quarterly certifications
+3. Assign someone to monitor compliance more frequently
+4. Document all transactions carefully (may need to explain them)
+5. Prepare for elevated scrutiny and respond promptly to any queries
+6. Track enhanced monitoring end date and request normal status restoration when eligible`
       },
       {
         title: 'Document Renewal Management',
-        content: `Managing document expiration, renewal reminders, and keeping information current.`
+        content: `<strong>Understanding Document Lifecycles</strong>
+
+Different documents in your TAS account have different validity periods and renewal requirements. Managing these lifecycles proactively prevents compliance gaps, score reductions, and service interruptions.
+
+<strong>Documents That Expire - Complete Breakdown</strong>
+
+<strong>1. Proof of Address Documents (3-Month Validity)</strong>
+
+<strong>Why 3 Months?</strong>
+• Addresses change frequently in business operations
+• Recent documents prove ongoing business activity at claimed location
+• Regulatory standards (AML/KYC regulations) require current address verification
+• Outdated addresses may not reflect where business actually operates
+
+<strong>Renewal Timeline:</strong>
+• <strong>90 days:</strong> Document uploaded, marked "Current" (green status)
+• <strong>60 days:</strong> Still current, no alerts
+• <strong>30 days:</strong> First reminder email: "Your proof of address expires in 30 days"
+• <strong>15 days:</strong> Second reminder, dashboard shows yellow warning badge
+• <strong>7 days:</strong> Urgent reminder, orange warning on Compliance page
+• <strong>Expiration day:</strong> Document marked "Expired" (red), compliance score drops -5 points
+• <strong>+7 days expired:</strong> Score drops additional -10 points (total -15)
+• <strong>+30 days expired:</strong> Enhanced monitoring triggered, possible credential suspension
+
+<strong>What to Upload as Renewal:</strong>
+• <strong>Utility Bill (Preferred):</strong> Electricity, gas, water, internet - shows business name and address, dated within last 30 days
+• <strong>Bank Statement:</strong> Business account statement showing address in header, dated within last 30 days
+• <strong>Lease Agreement:</strong> Current commercial lease showing business as tenant, must be an active lease
+• <strong>Government Correspondence:</strong> Tax authority letters, business license renewals, regulatory notices showing address
+
+<strong>Same Address vs. Changed Address:</strong>
+
+<strong>If Address Hasn't Changed:</strong>
+• Simply upload new dated document showing same address
+• System verifies address matches existing profile
+• Document refreshed, expiry date extended 90 days
+• Takes 1-2 minutes to process
+
+<strong>If Address Changed:</strong>
+• Upload document showing NEW address
+• System detects address difference
+• Prompts you to confirm: "We noticed the address on your new document differs from your profile. Has your business relocated?"
+• You confirm: "Yes, we moved to new address on [date]"
+• System requests: "Please also update your business registry if not already done"
+• Profile updated with new address
+• GLEIF notified of LEI address change
+• Takes 5-10 minutes to process
+
+<strong>2. Beneficial Owner ID Documents (Varies by ID Type)</strong>
+
+<strong>Passport Expiration:</strong>
+• <strong>Typical Validity:</strong> 5-10 years depending on country
+• <strong>TAS Reminder Schedule:</strong>
+  - 90 days before expiry: First reminder to beneficial owner and admin
+  - 60 days: Second reminder
+  - 30 days: Urgent reminder with compliance score warning
+  - Expiry date: Document marked expired, -10 points to compliance score
+  - Grace period: 30 days to upload renewed passport before enhanced monitoring
+
+<strong>What to Do When Passport Expires:</strong>
+
+<strong>If Owner Renewed Passport:</strong>
+1. Obtain copy of new passport (photo page)
+2. Navigate to Compliance → Documents → Beneficial Owner IDs
+3. Find the expired passport entry
+4. Click "Replace Document"
+5. Upload new passport scan
+6. System verifies it's the same person (name match)
+7. Expiry date updated to new passport's expiration
+8. Compliance score restored
+
+<strong>If Owner Obtained New Passport from Different Country (Citizenship Change):</strong>
+1. Upload new passport showing new nationality
+2. System flags: "Beneficial owner nationality changed from [old] to [new]"
+3. You confirm: "Yes, [owner name] obtained [country] citizenship in [year]"
+4. May trigger brief re-screening due to nationality change
+5. Usually cleared quickly (same person, just different nationality)
+
+<strong>National ID Cards:</strong>
+• <strong>Validity:</strong> Varies dramatically by country
+  - <strong>USA:</strong> No national ID (driver's licenses don't qualify)
+  - <strong>UK:</strong> No national ID card system (use passport)
+  - <strong>EU Countries:</strong> 5-10 years typically
+  - <strong>India:</strong> Aadhaar permanent, PAN card permanent
+  - <strong>China:</strong> 10-20 years depending on age
+  - <strong>Singapore:</strong> NRIC doesn't expire
+  - <strong>UAE:</strong> Emirates ID expires every 5 years
+
+<strong>Renewal Process:</strong>
+• Same as passport renewal
+• Upload renewed ID card when issued by government
+• System verifies person is the same
+• Documents refreshed
+
+<strong>Driver's Licenses (Generally NOT Primary ID):</strong>
+• TAS rarely accepts driver's licenses as primary ID
+• Only in jurisdictions where it IS the official national identification
+• Typical expiration: 4-8 years
+• If initially accepted, must be renewed when expires
+
+<strong>3. Business Registration Certificates (Jurisdiction-Dependent)</strong>
+
+<strong>Jurisdictions Where Certificates Expire Regularly:</strong>
+
+<strong>Singapore - ACRA Business Profile:</strong>
+• <strong>Validity:</strong> 3 months only
+• <strong>Renewal:</strong> Download fresh profile from ACRA BizFile every 3 months
+• <strong>Cost:</strong> Small fee (S$5-15) charged by ACRA
+• <strong>Process:</strong> Log into BizFile portal → Search company → Download Business Profile → Upload to TAS
+• <strong>TAS Reminders:</strong> 2 weeks before expiry (monthly reminder essentially)
+
+<strong>Some US States - Certificate of Good Standing:</strong>
+• <strong>Validity:</strong> Varies by state (California: annual, Delaware: as needed, New York: as needed)
+• <strong>Renewal:</strong> Request from Secretary of State office
+• <strong>Cost:</strong> $20-50 typically
+• <strong>Processing Time:</strong> Instant online (most states) to 5 business days (if by mail)
+• <strong>TAS Reminders:</strong> 45 days before state-specific expiry
+
+<strong>India - Various State Registrations:</strong>
+• <strong>Validity:</strong> Annual renewal for some states/types
+• <strong>Renewal:</strong> Through MCA (Ministry of Corporate Affairs) portal
+• <strong>Cost:</strong> Filing fees vary
+
+<strong>Middle East - Trade License Renewals:</strong>
+• <strong>UAE:</strong> Trade licenses expire annually
+• <strong>Saudi Arabia:</strong> Commercial Registration annual renewal
+• <strong>Validity:</strong> 1 year
+• <strong>Renewal:</strong> Through economic department or chamber of commerce
+• <strong>Cost:</strong> $500-2,000 depending on jurisdiction and business type
+
+<strong>Jurisdictions Where Certificates Don't Expire:</strong>
+
+<strong>United Kingdom - Certificate of Incorporation:</strong>
+• <strong>Validity:</strong> Permanent (issued once at incorporation)
+• <strong>Renewal:</strong> NOT required
+• <strong>Updates:</strong> Only if business changes name or converts entity type
+• <strong>Good Standing:</strong> Can request updated "Certificate of Good Standing" anytime if needed (but not required by TAS)
+
+<strong>Most US States - Articles of Incorporation:</strong>
+• <strong>Validity:</strong> Permanent
+• <strong>Renewal:</strong> NOT required
+• <strong>Annual Reports:</strong> Required (filing with state) but don't generate new certificate
+• <strong>Good Standing:</strong> Can be requested to prove current active status (useful but not always required by TAS)
+
+<strong>European Union - Most Commercial Registry Extracts:</strong>
+• <strong>Validity:</strong> Permanent or long-term (1-5 years)
+• <strong>Renewal:</strong> Update when major business changes occur
+• <strong>Refresh:</strong> Download updated extract every 1-2 years as good practice
+
+<strong>The Document Renewal Dashboard</strong>
+
+<strong>Accessing the Dashboard:</strong>
+Navigate to: Compliance → Document Tracker (or Documents → Expiry Calendar)
+
+<strong>Dashboard Views:</strong>
+
+<strong>List View (Default):</strong>
+Table showing all uploaded documents with columns:
+• Document Type (Business Registration, Proof of Address, Owner ID, etc.)
+• Description/Label (what you named it)
+• Upload Date (when you originally uploaded)
+• Expiration Date (if applicable, or "Never" for permanent docs)
+• Status (Current, Expiring Soon, Expired)
+• Days Until Expiry (countdown for visual urgency)
+• Actions (View, Download, Replace, Delete)
+
+<strong>Calendar View:</strong>
+Visual monthly calendar with colored dots on dates:
+• <strong>Green dots:</strong> Documents expiring 30+ days out (low urgency)
+• <strong>Yellow dots:</strong> Documents expiring in 15-30 days (upcoming)
+• <strong>Orange dots:</strong> Documents expiring in 7-14 days (urgent)
+• <strong>Red dots:</strong> Documents expiring within 7 days or already expired (critical)
+
+Click any date to see which documents expire that day. Hover over dots to preview document names without clicking.
+
+<strong>Timeline View:</strong>
+Horizontal timeline showing all expiration dates:
+• Past (expired documents shown in red on the left)
+• Present (today marked with vertical line)
+• Future (upcoming expiries shown on the right)
+• Spacing indicates time between expiries
+• Useful for planning renewal batches
+
+<strong>Color Coding System:</strong>
+• <strong>🟢 Green:</strong> Current and valid (more than 30 days until expiry OR permanent document)
+• <strong>🟡 Yellow:</strong> Expiring soon (less than 30 days but more than 7 days)
+• <strong>🟠 Orange:</strong> Expiring very soon (less than 7 days)
+• <strong>🔴 Red:</strong> Expired (immediate action required to restore compliance)
+
+<strong>Sorting and Filtering Options:</strong>
+
+<strong>Sort By:</strong>
+• Expiry date (ascending) - Shows most urgent first
+• Expiry date (descending) - Shows furthest expiries first
+• Upload date - Recently uploaded documents first
+• Document type - Groups all similar documents together
+• Status - Shows all expired first, then expiring soon, then current
+
+<strong>Filter By:</strong>
+• Document Type: Business Reg, Proof of Address, Owner IDs, Corporate Structure, Licenses, etc.
+• Status: Current, Expiring Soon, Expired, All
+• Beneficial Owner: Show only documents for specific owner (useful for multi-owner businesses)
+• Date Range: Show only documents expiring within custom timeframe
+
+<strong>Search:</strong>
+• Type to find specific documents by name, type, or owner name
+• Example: Search "passport" to find all passport documents
+• Example: Search "John Smith" to find all documents related to that beneficial owner
+
+<strong>Bulk Renewal Process (Efficiency for Multiple Expirations)</strong>
+
+When multiple documents are expiring around the same time:
+
+<strong>Step 1: Identify Documents Needing Renewal</strong>
+• Filter to show "Expiring in next 30 days"
+• Export list to spreadsheet (button: "Export to CSV")
+• Spreadsheet shows: Document Type, Current File Name, Expiry Date, Assigned To (for owner IDs)
+
+<strong>Step 2: Gather All Replacement Documents</strong>
+• Create folder on your computer: "TAS Renewals - January 2026"
+• Obtain all replacement documents
+• Name files clearly: "Proof_of_Address_Jan2026.pdf", "Business_Registration_Updated.pdf", "John_Smith_Passport_New.pdf"
+• Verify file quality before uploading
+
+<strong>Step 3: Bulk Upload</strong>
+1. Navigate to Document Tracker
+2. Click "Upload Multiple Documents"
+3. Drag-and-drop all files into upload zone at once
+4. System analyzes each file using OCR and AI:
+   - Detects document type (business certificate vs. proof of address vs. ID)
+   - Extracts business name or person name
+   - Attempts to match to existing document categories
+5. Preview screen shows:
+   - Each uploaded file
+   - System's suggested matching (e.g., "This appears to be a proof of address for [Business Name]")
+   - Option to confirm or manually select correct category
+6. Review all matches for accuracy
+7. Correct any mismatched files by selecting proper category from dropdown
+8. Click "Submit All Updates"
+9. System processes all documents:
+   - Updates expiry dates
+   - Refreshes compliance score
+   - Marks old documents as "Replaced"
+   - Sends confirmation email listing all successfully updated documents
+
+<strong>Processing Time:</strong> 30-60 seconds for batch of up to 10 documents
+
+<strong>LEI Renewal Process (Annual Requirement)</strong>
+
+Your LEI must be renewed annually to remain valid. This is separate from document renewal and is a fundamental requirement.
+
+<strong>Why LEI Renewal is Required:</strong>
+• Ensures LEI data remains current and accurate
+• GLEIF requirement for all LEIs globally
+• Confirms your business is still active and operational
+• Provides opportunity to update business information if changed
+• Prevents LEI database from becoming cluttered with dissolved entities
+
+<strong>LEI Renewal Timeline (Automated Reminders):</strong>
+
+<strong>90 Days Before Expiry:</strong>
+• Informational email: "Your LEI renews on [date]. Renewal process begins 60 days prior."
+• Gives you advance warning to budget and prepare
+
+<strong>60 Days Before Expiry:</strong>
+• Renewal invoice generated automatically
+• Email: "Your LEI renewal invoice is ready - $[amount] due by [date]"
+• Invoice available in your Billing section
+• Payment not yet due (you have 60 days)
+
+<strong>45 Days Before Expiry:</strong>
+• Second reminder with "Renew Now" call-to-action button
+• Email shows:
+  - Current LEI code
+  - Current expiry date
+  - Renewal cost
+  - One-click renewal link
+  - Payment method on file (if auto-renewal enabled)
+
+<strong>30 Days Before Expiry:</strong>
+• More urgent reminder
+• Dashboard shows orange badge on Credentials page
+• Subject line: "LEI Renewal Due in 30 Days - Renew to Avoid Lapse"
+
+<strong>15 Days Before Expiry:</strong>
+• Escalated reminder
+• SMS sent (if enabled): "Your LEI expires in 15 days. Renew now: [link]"
+• Dashboard shows countdown timer
+
+<strong>7 Days Before Expiry:</strong>
+• Final urgent warning
+• Email subject: "🚨 FINAL REMINDER: LEI Expires in 7 Days"
+• Compliance score starts declining (-5 points)
+• Customer success team may call (Enterprise customers)
+
+<strong>Expiration Day (If Not Renewed):</strong>
+• LEI status changes from "Active" to "Lapsed"
+• Compliance score drops -25 points immediately
+• Email: "Your LEI has lapsed. Renew immediately to restore service."
+• Still visible in GLEIF database but flagged as lapsed
+• Some financial systems reject lapsed LEIs
+
+<strong>One-Click Renewal Process:</strong>
+
+<strong>Standard Renewal Flow:</strong>
+1. Click "Renew LEI" button in any reminder email or on dashboard
+2. System loads renewal page showing:
+   - Your current LEI code (unchanging)
+   - Current expiry date
+   - New expiry date (1 year from current expiry)
+   - Renewal cost (typically $75-100 depending on your plan)
+   - Payment method on file
+3. System re-verifies your information is still current:
+   - Queries business registry to confirm still active
+   - Checks if address, ownership, or legal name changed
+   - Re-screens against current AML databases
+4. If everything matches (no changes):
+   - Click "Confirm Renewal"
+   - Payment processed automatically
+   - Renewal completes in 5-10 seconds
+   - New certificate emailed immediately
+   - LEI validity extended for another year
+   - GLEIF database updated within 24 hours
+5. If changes detected:
+   - System shows: "We noticed changes to your business information"
+   - Displays: Old vs. New comparison
+   - Asks: "Please confirm these changes are accurate and provide updated documents"
+   - You upload supporting documents for changes
+   - Renewal processes once changes verified (4-8 hours)
+
+<strong>Auto-Renewal (Recommended Setup):</strong>
+
+<strong>Enabling Auto-Renewal:</strong>
+1. Navigate to Settings → Billing → LEI Renewal Preferences
+2. Toggle "Enable Auto-Renewal" to ON
+3. Verify payment method on file
+4. Select renewal timing:
+   - <strong>30 Days Before Expiry (Recommended):</strong> Gives time to resolve payment issues if card declined
+   - <strong>15 Days Before Expiry:</strong> Standard option
+   - <strong>7 Days Before Expiry:</strong> Last-minute (risky if payment fails)
+5. Enable notifications: "Email me when auto-renewal processes"
+6. Save settings
+
+<strong>How Auto-Renewal Works:</strong>
+• System automatically initiates renewal at your configured timing
+• Charges your saved payment method (credit card or ACH)
+• Sends confirmation email: "Your LEI has been automatically renewed"
+• Zero action required from you
+• Zero risk of accidental lapse
+• Can disable anytime
+
+<strong>Auto-Renewal Failure Handling:</strong>
+If payment declines:
+• Immediate email: "Auto-renewal failed - payment declined"
+• Manual renewal link provided
+• You have until actual expiry date to renew manually
+• System retries auto-renewal every 48 hours until expiry
+• If all retries fail, you must renew manually or LEI lapses
+
+<strong>What Happens If You Don't Renew (Consequences)</strong>
+
+<strong>Lapsed Status (Day 0 - Expiration Date Passes):</strong>
+• LEI status changes to "LAPSED" in GLEIF global database
+• Your LEI code still exists but flagged as not current
+• TAS account remains active but LEI is non-functional
+• Compliance score: 0/100 (massive drop)
+• Dashboard shows red alert: "LEI LAPSED - Renew Immediately"
+
+<strong>Impact on Your Operations:</strong>
+• <strong>Financial Transactions:</strong> Some counterparty systems reject lapsed LEIs
+• <strong>Bank Accounts:</strong> Banks may freeze accounts requiring current LEI
+• <strong>Trading Platforms:</strong> May suspend trading access until LEI renewed
+• <strong>Regulatory Reporting:</strong> Cannot file reports using lapsed LEI (compliance violations possible)
+• <strong>Contracts:</strong> Counterparties may invoke material breach clauses if LEI validity was contractually required
+
+<strong>Grace Period (Days 1-30 After Lapse):</strong>
+• You can still renew with late fee
+• <strong>Late Fee:</strong> Typically $25-50 additional charge
+• <strong>Processing:</strong> Same-day renewal (faster than new applications)
+• <strong>Restoration:</strong> LEI reactivated immediately upon payment
+• <strong>GLEIF Update:</strong> Status changes back to "Active" within 24 hours
+• <strong>Compliance Score:</strong> Restored once renewed
+
+<strong>Extended Lapse (31-90 Days):</strong>
+• Higher late fees ($50-100)
+• May require re-verification:
+  - Update business registry check
+  - Confirm ownership hasn't changed
+  - Upload current documents
+• Processing time: 1-3 business days (not instant)
+• GLEIF may require explanation for extended lapse
+
+<strong>Long-Term Lapse (90+ Days to 1 Year):</strong>
+• Essentially treated as new application
+• Full KYB and AML re-screening required
+• Must submit updated documents
+• Processing: 4-8 hours (standard application timeline)
+• Higher reinstatement fees ($100-200)
+• Your LEI code remains the same (if approved)
+
+<strong>Permanent Lapse (1+ Year):</strong>
+• GLEIF may retire your LEI code
+• New application required (may receive different LEI code)
+• Full new application process and fees
+
+<strong>Document Replacement Reminders and Configuration</strong>
+
+<strong>Customizing Reminder Timing:</strong>
+Settings → Compliance → Notification Preferences
+
+<strong>Conservative (For Slow Organizations):</strong>
+• First reminder: 60 days before expiry
+• Second reminder: 45 days
+• Final reminders: 30, 15, 7 days
+• Best for: Large organizations with slow procurement, highly regulated businesses requiring extensive approval processes
+
+<strong>Standard (Default Setting):</strong>
+• First reminder: 30 days before expiry
+• Second reminder: 15 days
+• Final reminders: 7, 3 days
+• Best for: Most businesses with normal processing speed
+
+<strong>Aggressive (For Nimble Organizations):</strong>
+• First reminder: 14 days before expiry
+• Second reminder: 7 days
+• Final reminder: 2 days
+• Best for: Small businesses, organizations with fast decision-making, tech companies
+
+<strong>Reminder Recipients:</strong>
+Configure who receives which reminders:
+• <strong>All document expiries:</strong> Admin + compliance team
+• <strong>Proof of address:</strong> Office manager
+• <strong>Beneficial owner IDs:</strong> Send to that specific beneficial owner + admin
+• <strong>Business registration:</strong> Legal department + admin
+• <strong>LEI renewal:</strong> Finance team + admin + CEO
+
+Multiple recipients ensure reminders don't get lost if one person is on vacation or leaves the organization.
+
+<strong>Compliance Calendar Integration</strong>
+
+<strong>Export to Your Calendar System:</strong>
+
+1. Navigate to Compliance → Document Tracker
+2. Click "Export to Calendar" button
+3. Choose format:
+   - <strong>iCal (.ics):</strong> Compatible with Apple Calendar, Outlook, Thunderbird
+   - <strong>Google Calendar:</strong> Direct integration, automatic sync
+   - <strong>Microsoft Outlook:</strong> Direct integration for Office 365
+   - <strong>CSV:</strong> Import into any calendar system manually
+4. Select what to export:
+   - □ Document expiration dates
+   - □ LEI renewal date
+   - □ Scheduled compliance reviews
+   - □ Beneficial owner ID expiries
+   - □ All upcoming deadlines
+5. Set reminder timing in calendar:
+   - 30 days before event
+   - 14 days before event
+   - 7 days before event
+   - Day of event
+6. Click "Generate Calendar Export"
+7. File downloads (or calendar integrates directly)
+8. Import into your calendar system
+
+<strong>Benefits:</strong>
+• Entire compliance team sees deadlines in their work calendars
+• Integrates with existing meeting scheduling and workflows
+• Visual representation of compliance workload
+• Automatic reminders without logging into TAS
+• Can assign tasks to specific team members through calendar
+
+<strong>Renewal Automation and Best Practices</strong>
+
+<strong>Setting Up Renewal Automation:</strong>
+
+<strong>1. Enable Auto-Renewal for LEI:</strong>
+• Settings → Billing → Auto-Renewal: ON
+• Eliminates human error and forgetfulness
+• Saves time (no manual renewal clicks)
+• Reduces risk (never accidentally lapse)
+
+<strong>2. Configure Payment Auto-Update:</strong>
+• Some payment providers (FTS.Money) automatically update expired cards
+• Enable "Auto-update expired cards" in Settings → Billing
+• Bank sends updated card details automatically
+• Prevents renewal failures due to expired payment methods
+
+<strong>3. Document Renewal Workflows:</strong>
+• Create recurring task in your project management system: "Renew TAS Proof of Address" every 90 days
+• Assign to office manager or admin coordinator
+• Include checklist:
+  □ Obtain latest utility bill or bank statement
+  □ Verify address hasn't changed
+  □ Scan at 300+ DPI
+  □ Upload to TAS
+  □ Verify upload successful
+  □ Mark task complete
+
+<strong>4. Beneficial Owner Passport Tracking:</strong>
+• Maintain separate spreadsheet: "Beneficial Owner ID Expiry Tracking"
+• Columns: Owner Name, ID Type, Issue Date, Expiry Date, Renewal Status
+• Set reminders in your system 90 days before each expiry
+• Coordinate with owners to obtain renewed IDs early
+
+<strong>Best Practices to Prevent Expiry Issues:</strong>
+
+✓ <strong>Upload Documents Early:</strong> Don't wait until the last minute - if document expires in 7 days and you're gathering replacement, upload placeholder until you get the right document
+✓ <strong>Buffer Time:</strong> Aim to renew 14 days before expiry (gives cushion for unexpected issues)
+✓ <strong>Quality Check Before Upload:</strong> Verify documents are high quality, complete, and clearly show required information
+✓ <strong>Version Control:</strong> Label documents with dates "Proof_of_Address_2026-01-26.pdf" so you know which is newest
+✓ <strong>Confirmation Check:</strong> After uploading, verify the system accepted it and shows new expiry date
+✓ <strong>Team Training:</strong> Ensure multiple people know how to renew documents (backup when primary person is unavailable)
+✓ <strong>Annual Audit:</strong> Once per year, review ALL documents even if not expiring, refresh anything questionable
+
+<strong>Common Renewal Scenarios</strong>
+
+<strong>Scenario 1: Beneficial Owner Passport Expiring, Owner Traveling</strong>
+• Owner's passport expires in 2 weeks
+• Owner is traveling internationally and cannot renew immediately
+• <strong>Solution:</strong>
+  - Upload current passport now with note: "Owner currently traveling, will upload renewed passport upon return in 3 weeks"
+  - Request temporary extension citing travel
+  - System may grant 30-day extension
+  - Upload renewed passport as soon as available
+
+<strong>Scenario 2: Business Relocated, Multiple Documents Need Updates</strong>
+• Your business moved to new office
+• Need to update: Registered address with registry, proof of address, possibly business license
+• <strong>Process:</strong>
+  1. Update address with business registry first (government requirement)
+  2. Wait for updated registry certificate (1-2 weeks depending on jurisdiction)
+  3. Obtain utility bill or lease at new address
+  4. Upload both documents to TAS simultaneously
+  5. System detects address change, requests confirmation
+  6. Confirm change: "We relocated to [new address] on [date]"
+  7. Profile updated, GLEIF notified
+• <strong>Timeline:</strong> 2-3 weeks total
+
+<strong>Scenario 3: Beneficial Owner Left Company, New Owner Joined</strong>
+• Original owner sold their shares and left
+• New owner purchased shares
+• <strong>Process:</strong>
+  1. Navigate to Settings → Organization → Beneficial Owners
+  2. Click "Remove Beneficial Owner" next to departed owner
+  3. Click "Add Beneficial Owner" to add new owner
+  4. Upload new owner's ID documents and proof of address
+  5. Upload updated shareholder certificate or corporate structure showing new ownership
+  6. System triggers brief re-verification (KYB and AML for new owner)
+  7. Usually approves within 4-8 hours if new owner is clean
+  8. GLEIF notified of ownership change
+• <strong>Timeline:</strong> Same day if documents ready
+
+<strong>Scenario 4: Document Lost or Damaged, Need to Re-Upload Same Document</strong>
+• You need to download a document but can't find it in your system
+• Original document was deleted accidentally
+• <strong>Solution:</strong>
+  - Contact TAS support: "Please resend [document type] uploaded on [date]"
+  - Support retrieves from archive
+  - Sends document to you via secure link
+  - All historical documents retained permanently for audit purposes
+
+<strong>Pro Tips for Compliance Champions</strong>
+
+✓ <strong>Create a Compliance Calendar:</strong> Dedicated calendar showing only TAS compliance deadlines (separate from regular work calendar)
+✓ <strong>Quarterly Document Refresh:</strong> Even if documents don't expire, upload fresh versions every 6 months (shows proactive management)
+✓ <strong>Maintain Document Sources:</strong> Keep list of where to obtain each document (registry website URLs, utility provider portals)
+✓ <strong>Standard Operating Procedures:</strong> Write step-by-step guide for your organization on renewing each document type
+✓ <strong>Backup Contacts:</strong> List of people who can handle renewals if primary contact is unavailable
+✓ <strong>Monitor Compliance Score Trends:</strong> Graph your score over time, investigate any declining trend even if still above 85`
       }
     ]
   }
