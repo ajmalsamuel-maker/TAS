@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ChevronDown, ChevronRight, Shield, Lock, Building2, FileCheck, Globe, Activity } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { ChevronDown, ChevronRight, Shield, Lock, Building2, FileCheck, Globe, Activity, BookOpen, Search, FileText, Award, Settings } from 'lucide-react';
+import { UserManualSection } from '../components/documentation/UserManualContent';
+import { userManualSections } from '../components/documentation/userManualData';
 
 export default function UserPortalDocumentation() {
   const [expandedSections, setExpandedSections] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [expandedManualSections, setExpandedManualSections] = useState({});
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
+    }));
+  };
+
+  const toggleManualSection = (sectionId) => {
+    setExpandedManualSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
     }));
   };
 
@@ -74,21 +87,87 @@ export default function UserPortalDocumentation() {
       </button>
   );
 
+  const filteredManualSections = searchQuery
+    ? userManualSections.filter(section => 
+        section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        section.subsections.some(sub => 
+          sub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          sub.content.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      )
+    : userManualSections;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-6xl font-bold text-gray-900 mb-4">User Portal Documentation</h1>
-          <h2 className="text-3xl text-gray-700 mb-4">Complete Guide to Compliance & Identity Verification</h2>
-          <div className="flex flex-wrap gap-3 mt-6">
-            <Badge variant="default">User Guide</Badge>
-            <Badge variant="secondary">Complete Reference</Badge>
-            <Badge variant="secondary">2026-01-25</Badge>
-            <Badge className="bg-blue-100 text-blue-800">User Facing</Badge>
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <FileText className="h-12 w-12 text-blue-600" />
+            <div>
+              <h1 className="text-5xl font-bold text-gray-900">Documentation & Help</h1>
+              <p className="text-xl text-gray-600 mt-2">Complete guide to TAS features and functions</p>
+            </div>
           </div>
-          <p className="text-gray-600 mt-4">For: Business Users & Compliance Officers</p>
         </div>
+        
+        <Tabs defaultValue="manual" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 bg-white p-2 rounded-lg shadow-sm">
+            <TabsTrigger value="manual" className="flex items-center gap-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+              <BookOpen className="h-4 w-4" />
+              User Manual
+            </TabsTrigger>
+            <TabsTrigger value="technical" className="flex items-center gap-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+              <FileText className="h-4 w-4" />
+              Technical Reference
+            </TabsTrigger>
+          </TabsList>
+
+          {/* User Manual Tab */}
+          <TabsContent value="manual" className="space-y-6">
+            <div className="mb-6">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Input
+                  placeholder="Search manual (e.g., 'upload documents', 'AML screening', 'LEI renewal')..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 pr-4 py-6 text-base shadow-sm"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {filteredManualSections.map((section) => (
+                <UserManualSection
+                  key={section.id}
+                  section={section}
+                  isExpanded={expandedManualSections[section.id]}
+                  onToggle={() => toggleManualSection(section.id)}
+                />
+              ))}
+            </div>
+
+            {searchQuery && filteredManualSections.length === 0 && (
+              <Card className="text-center py-16">
+                <CardContent>
+                  <Search className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">No results found</h3>
+                  <p className="text-gray-600">Try different keywords or clear the search to browse all topics</p>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+
+          {/* Technical Reference Tab */}
+          <TabsContent value="technical" className="space-y-6">
+            <div className="space-y-6">
+              <div className="flex flex-wrap gap-3">
+                <Badge variant="default">User Guide</Badge>
+                <Badge variant="secondary">Complete Reference</Badge>
+                <Badge variant="secondary">2026-01-26</Badge>
+                <Badge className="bg-blue-100 text-blue-800">User Facing</Badge>
+              </div>
 
         {/* Dashboard Overview */}
         <Card className="mb-8">
@@ -549,13 +628,16 @@ export default function UserPortalDocumentation() {
           <CardContent className="pt-6">
             <div className="text-sm space-y-3">
               <p><strong>Document Version:</strong> 1.0</p>
-              <p><strong>Last Updated:</strong> January 25, 2026</p>
+              <p><strong>Last Updated:</strong> January 26, 2026</p>
               <p><strong>Classification:</strong> User Facing</p>
               <p><strong>Target Audience:</strong> Business Users & Compliance Officers</p>
               <p className="text-xs mt-4 border-t border-gray-700 pt-4">© 2026 FTS.Money & Certizen Technologies. User documentation.</p>
             </div>
           </CardContent>
         </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
