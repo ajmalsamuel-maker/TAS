@@ -95,7 +95,7 @@ function LayoutContent({ children, currentPageName }) {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to={createPageUrl(isAuthenticated ? (isAdmin ? 'AdminDashboard' : 'UserDashboard') : 'Home')} className="flex items-center">
-              <TASLogo size="md" />
+              <TASLogo size="md" showText={false} />
             </Link>
 
             {/* Desktop Navigation */}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 
-export default function TASLogo({ size = 'md' }) {
+export default function TASLogo({ size = 'md', showText = true }) {
   const sizes = {
     sm: { container: 'w-8 h-8', shield: 'w-5 h-5', badge: 'w-4 h-4', text: 'text-base' },
     md: { container: 'w-10 h-10', shield: 'w-6 h-6', badge: 'w-5 h-5', text: 'text-xl' },
@@ -45,12 +45,14 @@ export default function TASLogo({ size = 'md' }) {
           <Check className="w-2/3 h-2/3 text-white" strokeWidth={4} />
         </div>
       </div>
-      
+
+      {showText && (
       <div>
         <span className={`${s.text} font-bold bg-gradient-to-r from-[#0044CC] to-cyan-600 bg-clip-text text-transparent`}>
           TAS
         </span>
       </div>
-    </div>
+      )}
+      </div>
   );
 }
