@@ -441,7 +441,6 @@ export default function UserPortalDocumentation() {
                 <p className="mb-6 leading-relaxed">
                   <strong>Workflow Page Features:</strong> The Workflows page provides powerful filtering and search capabilities. Filter by workflow type (KYB, AML, LEI Issuance, vLEI Generation), status (Pending, In Progress, Completed, Failed), date range (last 7 days, 30 days, 90 days, custom), or specific organization (for admins managing multiple entities). Each workflow entry is expandable—click to see the complete step-by-step execution log showing what happened, when it happened, which external provider was used, how long each step took, and any errors encountered. This transparency is invaluable for understanding processing delays or troubleshooting failed workflows.
                 </p>
-              </div>
 
                 <MermaidDiagram 
                    chart={`graph LR
@@ -562,7 +561,6 @@ export default function UserPortalDocumentation() {
                 <p className="mb-6 leading-relaxed">
                   <strong>Team Credential Management (Administrators Only):</strong> If you're an organization administrator, the Credentials page includes additional functionality for issuing vLEI credentials to your team members. These personal credentials (called OOR - Official Organizational Role credentials) link individual employees to your organization's LEI, enabling them to sign documents, approve transactions, or represent your company with cryptographic proof. You define each person's role, authority scope, and validity period when issuing their credential. When team members leave, you revoke their credentials with a single click—the revocation propagates to the blockchain registry within minutes, ensuring no one can use expired credentials.
                 </p>
-              </div>
 
                 <MermaidDiagram 
                    chart={`graph TB
@@ -622,14 +620,14 @@ export default function UserPortalDocumentation() {
                        <td className="border p-3">• Website display<br/>• Partner submissions<br/>• Regulatory filings<br/>• Audit documentation</td>
                        <td className="border p-3">Automatic when LEI renews</td>
                      </tr>
-                   </tbody>
-                 </table>
-              </div>
-            </CardContent>
-          )}
-        </Card>
+                     </tbody>
+                     </table>
+                     </div>
+                     </CardContent>
+                     )}
+                     </Card>
 
-        {/* Compliance & Monitoring */}
+                     {/* Compliance & Monitoring */}
         <Card className="mb-8">
           <CardHeader>
             <SectionHeader title="Compliance Menu Item: Staying Regulatory Compliant 24/7" section="compliance" />
@@ -668,7 +666,6 @@ export default function UserPortalDocumentation() {
                 <p className="mb-6 leading-relaxed">
                   <strong>Document Expiration Management:</strong> The Compliance page includes a Document Tracker that monitors the validity of all documents you've uploaded. Business registration certificates typically don't expire, but proof of address documents (utility bills) must be refreshed every 3 months, beneficial owner identification must remain current (not expired), and certain jurisdiction-specific documents have validity periods. The tracker shows each document, its upload date, expiration date (if applicable), and days until expiration. Documents expiring within 30 days are flagged yellow. Expired documents turn red and may impact your compliance score or trigger workflows requiring updated documentation.
                 </p>
-              </div>
 
                 <MermaidDiagram 
                   chart={`graph LR
@@ -745,14 +742,14 @@ export default function UserPortalDocumentation() {
                        <td className="border p-3">Review notice • Confirm accuracy • Update profile if information changed</td>
                        <td className="border p-3 text-center">5 days</td>
                      </tr>
-                   </tbody>
-                 </table>
-              </div>
-            </CardContent>
-          )}
-        </Card>
+                     </tbody>
+                     </table>
+                     </div>
+                     </CardContent>
+                     )}
+                     </Card>
 
-        {/* Settings & Administration */}
+                     {/* Settings & Administration */}
         <Card className="mb-8">
           <CardHeader>
             <SectionHeader title="Settings Menu Item: Configuring Your Account & Organization" section="settings" />
@@ -898,7 +895,6 @@ export default function UserPortalDocumentation() {
                     <li>• <strong>White-Label Integration:</strong> Embed TAS verification flows into your own product using our API, providing verification services to your customers under your brand</li>
                   </ul>
                 </div>
-              </div>
             </CardContent>
           )}
         </Card>
