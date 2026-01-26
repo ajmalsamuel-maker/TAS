@@ -38,12 +38,13 @@ export default function TASLogo({ size = 'md', showText = true }) {
           <line x1="50" y1="35" x2="38" y2="55" stroke="white" strokeWidth="2" opacity="0.7" />
           <line x1="50" y1="35" x2="62" y2="55" stroke="white" strokeWidth="2" opacity="0.7" />
           <line x1="38" y1="55" x2="62" y2="55" stroke="white" strokeWidth="2" opacity="0.7" />
+          
+          {/* Green verification circle with checkmark - overlapping shield */}
+          <circle cx="70" cy="25" r="18" fill="#4ADE80" />
+          <circle cx="70" cy="25" r="18" fill="none" stroke="white" strokeWidth="2.5" />
+          {/* Checkmark path */}
+          <path d="M62 25 L67 32 L78 18" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        
-        {/* Green verification checkmark badge */}
-        <div className={`absolute -top-1 -right-1 ${s.badge} bg-green-400 rounded-full border-2 border-white shadow-lg flex items-center justify-center`}>
-          <Check className="w-2/3 h-2/3 text-white" strokeWidth={4} />
-        </div>
       </div>
 
       {showText && (

@@ -31,9 +31,11 @@ export default function DownloadLogo() {
   <line x1="200" y1="140" x2="248" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
   <line x1="152" y1="220" x2="248" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
   
-  <!-- Green verification checkmark badge -->
-  <circle cx="320" cy="60" r="20" fill="#4ADE80" stroke="white" stroke-width="6" />
-  <path d="M308 60 L318 70 L332 52" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <!-- Green verification circle with checkmark - overlapping shield -->
+  <circle cx="280" cy="100" r="72" fill="#4ADE80" />
+  <circle cx="280" cy="100" r="72" fill="none" stroke="white" stroke-width="10" />
+  <!-- Checkmark path -->
+  <path d="M248 100 L268 128 L312 72" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
 </svg>`;
 
     const blob = new Blob([svg], { type: 'image/svg+xml' });
@@ -62,8 +64,9 @@ export default function DownloadLogo() {
   <line x1="200" y1="140" x2="152" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
   <line x1="200" y1="140" x2="248" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
   <line x1="152" y1="220" x2="248" y2="220" stroke="white" stroke-width="8" opacity="0.7" />
-  <circle cx="320" cy="60" r="20" fill="#4ADE80" stroke="white" stroke-width="6" />
-  <path d="M308 60 L318 70 L332 52" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <circle cx="280" cy="100" r="72" fill="#4ADE80" />
+  <circle cx="280" cy="100" r="72" fill="none" stroke="white" stroke-width="10" />
+  <path d="M248 100 L268 128 L312 72" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
 </svg>`;
 
     const canvas = document.createElement('canvas');
@@ -123,8 +126,9 @@ export default function DownloadLogo() {
                   <line x1="200" y1="140" x2="152" y2="220" stroke="white" strokeWidth="8" opacity="0.7" />
                   <line x1="200" y1="140" x2="248" y2="220" stroke="white" strokeWidth="8" opacity="0.7" />
                   <line x1="152" y1="220" x2="248" y2="220" stroke="white" strokeWidth="8" opacity="0.7" />
-                  <circle cx="320" cy="60" r="20" fill="#4ADE80" stroke="white" strokeWidth="6" />
-                  <path d="M308 60 L318 70 L332 52" stroke="white" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  <circle cx="280" cy="100" r="72" fill="#4ADE80" />
+                  <circle cx="280" cy="100" r="72" fill="none" stroke="white" strokeWidth="10" />
+                  <path d="M248 100 L268 128 L312 72" fill="none" stroke="white" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               
@@ -134,12 +138,8 @@ export default function DownloadLogo() {
                   <span className="text-gray-700"><strong>Primary:</strong> Blue gradient (#0044CC → #06B6D4)</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <div className="w-4 h-4 bg-green-400 rounded-full border border-gray-300 flex items-center justify-center">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={3}>
-                      <path d="M20 6L9 17l-5-5" />
-                    </svg>
-                  </div>
-                  <span className="text-gray-700"><strong>Accent:</strong> Green Checkmark (#4ADE80)</span>
+                  <div className="w-4 h-4 bg-green-400 rounded-full border-2 border-white" />
+                  <span className="text-gray-700"><strong>Accent:</strong> Green Circle with Checkmark (#4ADE80)</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <div className="w-4 h-4 bg-white border-2 border-gray-300 rounded" />
@@ -255,14 +255,14 @@ export default function DownloadLogo() {
               
               <div className="text-center">
                <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-3 flex items-center justify-center">
-                 <div className="w-8 h-8 bg-green-400 rounded-full border-2 border-white flex items-center justify-center">
-                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={3}>
+                 <div className="w-12 h-12 bg-green-400 rounded-full border-3 border-white flex items-center justify-center">
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
                      <path d="M20 6L9 17l-5-5" />
                    </svg>
                  </div>
                </div>
                <h4 className="font-bold text-gray-900 mb-2">Verification Badge</h4>
-               <p className="text-sm text-gray-600">Green checkmark signifies verified, trusted, and compliant status</p>
+               <p className="text-sm text-gray-600">Green circle with checkmark signifies verified, trusted, and compliant status</p>
               </div>
             </div>
           </CardContent>
