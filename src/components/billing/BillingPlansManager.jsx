@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Edit2, Trash2, Loader, DollarSign, Percent, Globe, Tag } from 'lucide-react';
 import { toast } from 'sonner';
 import { COUNTRIES, CONTINENTS, getCountryName, getContinentName } from './countryData';
+import { CURRENCIES, TAX_RULES_BY_COUNTRY, getCurrencySymbol } from './currencyData';
 
 export default function BillingPlansManager() {
   const queryClient = useQueryClient();
@@ -528,25 +529,79 @@ export default function BillingPlansManager() {
               <div className="bg-white rounded-lg p-4 border">
                 <h3 className="font-semibold mb-4">Usage-Based Progressive Pricing</h3>
                 <p className="text-sm text-gray-600 mb-4">
-                  Define tiered pricing (e.g., first 100 vLEIs at $50, next 100 at $40, 200+ at $35)
+                  Define tiered pricing (e.g., 1-100 at $50, 101-500 at $40, 501+ at $35)
                 </p>
                 <div className="space-y-4">
-                  {['vlei_issuance', 'lei_issuance', 'kyb_verification'].map(component => (
-                    <div key={component} className="border rounded p-3 bg-gray-50">
-                      <h4 className="font-semibold text-sm mb-2 capitalize">
-                        {component.replace('_', ' ')} Tiers
-                      </h4>
-                      <div className="text-xs text-gray-500 mb-2">
-                        Example: 1-100 at $50, 101-500 at $40, 501+ at $35
+                  {['vlei_issuance', 'lei_issuance', 'kyb_verification', 'aml_screening'].map(component => {
+                    const componentTiers = (formData.progressive_pricing || []).find(p => p.component === component);
+                    const tiers = componentTiers?.tiers || [];
+                    
+                    return (
+                      <div key={component} className="border rounded p-4 bg-gray-50">
+                        <div className="flex items-center justify-between mb-3">
+                          <h4 className="font-semibold capitalize">
+                            {component.replace(/_/g, ' ')}
+                          </h4>
+                          <Button
+                            size="sm"
+                            onClick={() => addProgressiveTier(component)}
+                            variant="outline"
+                          >
+                            <Plus className="h-3 w-3 mr-1" /> Add Tier
+                          </Button>
+                        </div>
+                        
+                        {tiers.length > 0 ? (
+                          <div className="space-y-2">
+                            <div className="grid grid-cols-4 gap-2 text-xs font-semibold text-gray-600">
+                              <div>From Qty</div>
+                              <div>To Qty (blank = unlimited)</div>
+                              <div>Price ($)</div>
+                              <div></div>
+                            </div>
+                            {tiers.map((tier, idx) => (
+                              <div key={idx} className="grid grid-cols-4 gap-2 items-center">
+                                <Input
+                                  type="number"
+                                  size="sm"
+                                  value={tier.from}
+                                  onChange={(e) => updateProgressiveTier(component, idx, 'from', parseInt(e.target.value))}
+                                  placeholder="0"
+                                />
+                                <Input
+                                  type="number"
+                                  size="sm"
+                                  value={tier.to || ''}
+                                  onChange={(e) => updateProgressiveTier(component, idx, 'to', e.target.value ? parseInt(e.target.value) : null)}
+                                  placeholder="Unlimited"
+                                />
+                                <Input
+                                  type="number"
+                                  step="0.01"
+                                  size="sm"
+                                  value={tier.price}
+                                  onChange={(e) => updateProgressiveTier(component, idx, 'price', parseFloat(e.target.value))}
+                                  placeholder="50.00"
+                                />
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  onClick={() => removeProgressiveTier(component, idx)}
+                                  className="text-red-600"
+                                >
+                                  <Trash2 className="h-3 w-3" />
+                                </Button>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-sm text-gray-500 text-center py-2">
+                            No tiers configured - using base component pricing
+                          </p>
+                        )}
                       </div>
-                      <div className="grid grid-cols-3 gap-2 text-xs font-semibold mb-1">
-                        <div>From Qty</div>
-                        <div>To Qty</div>
-                        <div>Price ($)</div>
-                      </div>
-                      <div className="text-sm text-gray-500">Coming soon - configure in metadata for now</div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </TabsContent>
@@ -750,25 +805,38 @@ export default function BillingPlansManager() {
                       <label className="text-sm font-semibold">Enable Multi-Currency</label>
                     </div>
                     <div>
-                      <label className="text-sm font-semibold">Supported Currencies</label>
-                      <p className="text-xs text-gray-500 mb-2">USD, EUR, GBP, AED, SGD (comma-separated)</p>
-                      <Input
-                        value={formData.multi_currency_support?.supported_currencies?.join(', ') || 'USD, EUR, GBP'}
-                        onChange={(e) => setFormData({
-                          ...formData,
-                          multi_currency_support: {
-                            ...formData.multi_currency_support,
-                            supported_currencies: e.target.value.split(',').map(c => c.trim())
-                          }
-                        })}
-                      />
+                      <label className="text-sm font-semibold">Supported Currencies (ISO 4217)</label>
+                      <p className="text-xs text-gray-500 mb-2">Select currencies to support</p>
+                      <select
+                        multiple
+                        size="5"
+                        value={formData.multi_currency_support?.supported_currencies || ['USD', 'EUR', 'GBP']}
+                        onChange={(e) => {
+                          const selected = Array.from(e.target.selectedOptions, opt => opt.value);
+                          setFormData({
+                            ...formData,
+                            multi_currency_support: {
+                              ...formData.multi_currency_support,
+                              supported_currencies: selected
+                            }
+                          });
+                        }}
+                        className="w-full border rounded px-3 py-2 text-sm"
+                      >
+                        {CURRENCIES.map(curr => (
+                          <option key={curr.code} value={curr.code}>
+                            {curr.code} - {curr.name} ({curr.symbol})
+                          </option>
+                        ))}
+                      </select>
+                      <p className="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Tax Configuration */}
                 <div className="bg-white rounded-lg p-4 border">
-                  <h3 className="font-semibold mb-3">Tax Handling (VAT/GST)</h3>
+                  <h3 className="font-semibold mb-3">Tax Handling (VAT/GST/Sales Tax)</h3>
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
                       <input
@@ -778,15 +846,25 @@ export default function BillingPlansManager() {
                           ...formData,
                           tax_configuration: {
                             ...formData.tax_configuration,
-                            auto_calculate: e.target.checked
+                            auto_calculate: e.target.checked,
+                            tax_rules: e.target.checked ? TAX_RULES_BY_COUNTRY : []
                           }
                         })}
                         className="rounded"
                       />
-                      <label className="text-sm font-semibold">Auto-Calculate VAT/GST</label>
+                      <label className="text-sm font-semibold">Auto-Calculate Tax by Country (ISO Standards)</label>
                     </div>
-                    <p className="text-xs text-gray-500">
-                      Tax rules configured per country in Invoice Standards entity
+                    <div className="text-xs text-gray-600 bg-blue-50 p-3 rounded">
+                      <p className="font-semibold mb-1">Standards Compliance:</p>
+                      <ul className="ml-4 space-y-0.5">
+                        <li>• EU VAT Directive 2006/112/EC</li>
+                        <li>• OECD International VAT/GST Guidelines</li>
+                        <li>• ISO 3166-1 country codes</li>
+                        <li>• Automatic reverse charge for B2B (EU)</li>
+                      </ul>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">
+                      Covers {TAX_RULES_BY_COUNTRY.length} countries with VAT/GST/Sales Tax rates
                     </p>
                   </div>
                 </div>
