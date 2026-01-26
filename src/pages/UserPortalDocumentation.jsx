@@ -417,7 +417,6 @@ export default function UserPortalDocumentation() {
           </CardHeader>
           {expandedSections.workflows && (
             <CardContent className="space-y-8">
-              <div>
                 <h3 className="text-xl font-bold mb-4">Understanding Your Verification Journey</h3>
                 <p className="mb-4 leading-relaxed">
                   The Workflows menu item is where you monitor every verification process from submission to completion. When you click "Workflows" in the main navigation, you're taken to a comprehensive view showing all workflows you've ever initiated, their current status, detailed progress for active workflows, and complete history for finished ones. This page is essential for compliance officers who need to track multiple verification requests, understand processing timelines, and troubleshoot any delays or issues.
@@ -536,12 +535,11 @@ export default function UserPortalDocumentation() {
                      <SectionHeader title="Credentials Menu Item: Managing Your Digital Identity" section="credentials" />
                      </CardHeader>
                      {expandedSections.credentials && (
-                     <CardContent className="space-y-8">
-                     <div>
-                <h3 className="text-xl font-bold mb-4">Your Digital Identity Arsenal</h3>
-                <p className="mb-4 leading-relaxed">
-                  The Credentials page is your repository for all digital identity documents issued to your organization. This is where you download, verify, share, and manage your LEI certificates, vLEI credentials, verification proofs, and compliance attestations. Think of this page as your secure digital vault—everything you need to prove your business identity to banks, regulators, trading platforms, or Web3 protocols is stored here in multiple formats optimized for different use cases.
-                </p>
+                       <CardContent className="space-y-8">
+                           <h3 className="text-xl font-bold mb-4">Your Digital Identity Arsenal</h3>
+                           <p className="mb-4 leading-relaxed">
+                             The Credentials page is your repository for all digital identity documents issued to your organization. This is where you download, verify, share, and manage your LEI certificates, vLEI credentials, verification proofs, and compliance attestations. Think of this page as your secure digital vault—everything you need to prove your business identity to banks, regulators, trading platforms, or Web3 protocols is stored here in multiple formats optimized for different use cases.
+                           </p>
                 <p className="mb-4 leading-relaxed">
                   Upon successful verification, you receive two primary credentials: a Legal Entity Identifier (LEI) and a verifiable LEI (vLEI) credential. The LEI is a global, unique identifier for your business registered with GLEIF (Global Legal Entity Identifier Foundation). The vLEI is a cryptographically signed digital credential that proves your identity on Web3 and blockchain systems. Both credentials represent the same underlying verification—your business's proven legitimacy—but packaged differently for traditional financial systems versus modern decentralized applications.
                 </p>
@@ -632,12 +630,11 @@ export default function UserPortalDocumentation() {
                      <SectionHeader title="Compliance Menu Item: Staying Regulatory Compliant 24/7" section="compliance" />
                      </CardHeader>
                      {expandedSections.compliance && (
-                     <CardContent className="space-y-8">
-                     <div>
-                <h3 className="text-xl font-bold mb-4">Continuous Compliance Monitoring Explained</h3>
-                <p className="mb-4 leading-relaxed">
-                  The Compliance page is your ongoing regulatory monitoring center. While the Dashboard shows high-level compliance status, this dedicated Compliance section provides deep visibility into every aspect of your regulatory standing. Verification doesn't end after initial approval—we continuously monitor your business and beneficial owners against updated sanctions lists, PEP databases, adverse media sources, and regulatory changes. This ensures that if circumstances change, you're immediately notified and appropriate actions are taken to maintain compliance.
-                </p>
+                       <CardContent className="space-y-8">
+                           <h3 className="text-xl font-bold mb-4">Continuous Compliance Monitoring Explained</h3>
+                           <p className="mb-4 leading-relaxed">
+                             The Compliance page is your ongoing regulatory monitoring center. While the Dashboard shows high-level compliance status, this dedicated Compliance section provides deep visibility into every aspect of your regulatory standing. Verification doesn't end after initial approval—we continuously monitor your business and beneficial owners against updated sanctions lists, PEP databases, adverse media sources, and regulatory changes. This ensures that if circumstances change, you're immediately notified and appropriate actions are taken to maintain compliance.
+                           </p>
                 <p className="mb-4 leading-relaxed">
                   When you open the Compliance page, you see several key sections: Active Alerts requiring your attention, Compliance Score Breakdown showing exactly how your score is calculated, Document Expiration Tracker monitoring all uploaded documents, Regulatory Calendar highlighting upcoming deadlines (LEI renewal, annual certifications, etc.), and Audit Log providing complete history of all compliance-related actions on your account. This comprehensive view enables proactive compliance management rather than reactive crisis response.
                 </p>
@@ -754,12 +751,11 @@ export default function UserPortalDocumentation() {
                      <SectionHeader title="Settings Menu Item: Configuring Your Account & Organization" section="settings" />
                      </CardHeader>
                      {expandedSections.settings && (
-                     <CardContent className="space-y-8">
-                     <div>
-                <h3 className="text-xl font-bold mb-4">Settings: Your Configuration Control Center</h3>
-                <p className="mb-4 leading-relaxed">
-                  The Settings menu item provides access to all configuration options for your personal account and organization. This is where you manage your profile information, security settings, notification preferences, team members, billing details, API keys, and integration configurations. The Settings page is organized into logical sections with tabs or accordion panels, making it easy to find and modify specific settings without being overwhelmed by options.
-                </p>
+                       <CardContent className="space-y-8">
+                           <h3 className="text-xl font-bold mb-4">Settings: Your Configuration Control Center</h3>
+                           <p className="mb-4 leading-relaxed">
+                             The Settings menu item provides access to all configuration options for your personal account and organization. This is where you manage your profile information, security settings, notification preferences, team members, billing details, API keys, and integration configurations. The Settings page is organized into logical sections with tabs or accordion panels, making it easy to find and modify specific settings without being overwhelmed by options.
+                           </p>
                 <p className="mb-6 leading-relaxed">
                   Settings are divided into two scopes: Personal Settings (affecting only your user account) and Organization Settings (affecting all users in your organization—only visible to administrators). Personal settings include your display name, email address (read-only, used for login), password, two-factor authentication, language preference, timezone, and notification preferences. Organization settings include company profile, billing information, subscription management, team member administration, API access, webhooks, and white-label branding (Enterprise only). The interface clearly indicates which settings are personal versus organizational to prevent confusion.
                 </p>
