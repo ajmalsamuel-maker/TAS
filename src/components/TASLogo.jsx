@@ -42,7 +42,7 @@ export default function TASLogo({ size = 'md' }) {
         
         {/* Green verification checkmark badge */}
         <div className={`absolute -top-1 -right-1 ${s.badge} bg-green-400 rounded-full border-2 border-white shadow-lg flex items-center justify-center`}>
-          <Check className="w-full h-full text-white" strokeWidth={3} />
+          <Check className="w-2/3 h-2/3 text-white" strokeWidth={4} />
         </div>
       </div>
       
