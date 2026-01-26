@@ -80,7 +80,8 @@
     "intl-messageformat": "^10.5.0",
     "@formatjs/intl": "^2.10.0",
     "@supabase/supabase-js": "^2.39.0",
-    "mermaid": "^10.6.1"
+    "mermaid": "^10.6.1",
+    "qrcode.react": "^4.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
