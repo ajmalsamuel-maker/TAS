@@ -29,6 +29,12 @@ import UserSettings from './pages/UserSettings';
 import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
+import UserAlerts from './pages/UserAlerts';
+import UserWorkflows from './pages/UserWorkflows';
+import UserTeam from './pages/UserTeam';
+import UserTransactions from './pages/UserTransactions';
+import UserCases from './pages/UserCases';
+import UserPolicies from './pages/UserPolicies';
 import __Layout from './Layout.jsx';
 
 
@@ -64,6 +70,12 @@ export const PAGES = {
     "VLEIManagement": VLEIManagement,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
+    "UserAlerts": UserAlerts,
+    "UserWorkflows": UserWorkflows,
+    "UserTeam": UserTeam,
+    "UserTransactions": UserTransactions,
+    "UserCases": UserCases,
+    "UserPolicies": UserPolicies,
 }
 
 export const pagesConfig = {
