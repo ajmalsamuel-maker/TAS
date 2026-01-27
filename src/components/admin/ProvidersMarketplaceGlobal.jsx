@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -29,6 +29,33 @@ const CATEGORY_LABELS = {
 export default function ProvidersMarketplaceGlobal() {
   const [selectedCategory, setSelectedCategory] = useState('KYB_KYC');
   const [searchTerm, setSearchTerm] = useState('');
+  const queryClient = useQueryClient();
+
+  const { mutate: enableProvider, isPending } = useMutation({
+    mutationFn: async (globalProvider) => {
+      return await base44.entities.Provider.create({
+        name: globalProvider.provider_name,
+        provider_category: globalProvider.provider_category,
+        api_type: globalProvider.api_type,
+        authentication_method: globalProvider.authentication_method,
+        api_endpoints: globalProvider.api_endpoints,
+        status: 'pending_configuration',
+        global_provider_id: globalProvider.id,
+        setup_requirements: globalProvider.setup_requirements
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['providers'] });
+      alert('Provider enabled! Configure it in the Providers section.');
+    },
+    onError: () => {
+      alert('Failed to enable provider. It may already be configured.');
+    }
+  });
+
+  const handleEnableProvider = (provider) => {
+    enableProvider(provider);
+  };
 
   const { data: providers, isLoading } = useQuery({
     queryKey: ['providersGlobal', selectedCategory],
@@ -277,8 +304,12 @@ function ProviderCard({ provider }) {
             )}
 
             {/* Action Button */}
-            <Button className="w-full bg-blue-600 hover:bg-blue-700">
-              Configure {provider.provider_name}
+            <Button 
+              onClick={() => handleEnableProvider(provider)}
+              disabled={isPending}
+              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
+            >
+              {isPending ? 'Enabling...' : `Enable ${provider.provider_name}`}
             </Button>
           </div>
         )}
