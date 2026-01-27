@@ -90,15 +90,17 @@ export default function OnboardingStep1({ formData, setFormData }) {
         
         <div className="flex gap-3">
           <Select value={searchCountry} onValueChange={setSearchCountry}>
-            <SelectTrigger className="w-32">
+            <SelectTrigger className="w-40">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="US">USA</SelectItem>
-              <SelectItem value="GB">UK</SelectItem>
-              <SelectItem value="SG">Singapore</SelectItem>
-              <SelectItem value="HK">Hong Kong</SelectItem>
-              <SelectItem value="AE">UAE</SelectItem>
+            <SelectContent className="max-h-80">
+              {countries.length > 0 ? countries.map((country) => (
+                <SelectItem key={country.code} value={country.code}>
+                  {country.name} ({country.code})
+                </SelectItem>
+              )) : (
+                <SelectItem value="US">USA</SelectItem>
+              )}
             </SelectContent>
           </Select>
           <Input
