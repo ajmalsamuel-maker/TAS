@@ -49,7 +49,7 @@ export default function BillingSettingsPanel() {
     { 
       name: 'QuickBooks Online', 
       key: 'quickbooks', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Intuit_QuickBooks_logo.svg',
+      logo: 'https://cdn.worldvectorlogo.com/logos/quickbooks-1.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) 
     },
     { 
@@ -73,13 +73,13 @@ export default function BillingSettingsPanel() {
     { 
       name: 'Oracle Finance Cloud', 
       key: 'oracle', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjRjgwMDAwIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+T1JBPC90ZXh0Pjwvc3ZnPg==',
+      logo: 'https://www.vectorlogo.zone/logos/oracle/oracle-ar21.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'oracle' && i.is_connected) 
     },
     { 
       name: 'SAP', 
       key: 'sap', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDA4OEQ0IiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U0FQPC90ZXh0Pjwvc3ZnPg==',
+      logo: 'https://www.vectorlogo.zone/logos/sap/sap-ar21.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'sap' && i.is_connected) 
     },
     { 
@@ -91,25 +91,25 @@ export default function BillingSettingsPanel() {
     { 
       name: 'Microsoft Dynamics 365', 
       key: 'dynamics365', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGcgZmlsbD0iIzAwNzgxNCI+PHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB4PSIxIiB5PSIxIi8+PHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB4PSIxNyIgeT0iMSIgZmlsbD0iIzhCQjgzQiIvPjxyZWN0IHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgeD0iMSIgeT0iMTciIGZpbGw9IiMwNTk0Q0YiLz48cmVjdCB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHg9IjE3IiB5PSIxNyIgZmlsbD0iI0ZCQjgzQiIvPjwvZz48L3N2Zz4=',
+      logo: 'https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'dynamics365' && i.is_connected) 
     },
     { 
       name: 'FreshBooks', 
       key: 'freshbooks', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMEY3MkRCIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RkI8L3RleHQ+PC9zdmc+',
+      logo: 'https://www.vectorlogo.zone/logos/freshbooks/freshbooks-ar21.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'freshbooks' && i.is_connected) 
     },
     { 
       name: 'MYOB', 
       key: 'myob', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDBBM0FBIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TVlPQjwvdGV4dD48L3N2Zz4=',
+      logo: 'https://cdn.worldvectorlogo.com/logos/myob-1.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'myob' && i.is_connected) 
     },
     { 
       name: 'TallyPrime', 
       key: 'tallyprime', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjRTYzOTQ2IiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VDwvdGV4dD48L3N2Zz4=',
+      logo: 'https://cdn.worldvectorlogo.com/logos/tally-solutions.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'tallyprime' && i.is_connected) 
     }
   ];
