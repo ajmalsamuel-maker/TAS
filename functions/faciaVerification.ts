@@ -16,11 +16,15 @@ async function getAccessToken() {
   });
 
   const data = await response.json();
-  if (!data.access_token) {
+  
+  // Facia API returns token in result.data.token
+  const accessToken = data.result?.data?.token || data.access_token;
+  
+  if (!accessToken) {
     throw new Error(data.message || 'Failed to get access token');
   }
 
-  return data.access_token;
+  return accessToken;
 }
 
 async function generateLivenessUrl(accessToken, customerData) {
