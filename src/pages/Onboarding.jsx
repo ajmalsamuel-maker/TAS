@@ -382,16 +382,25 @@ export default function Onboarding() {
 
             {/* Navigation Buttons */}
             {currentStep !== 7 && (
-              <div className="flex justify-between mt-8 pt-6 border-t">
-                <Button
-                  variant="outline"
-                  onClick={handleBack}
-                  disabled={currentStep === 1}
-                  className="px-6"
-                >
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back
-                </Button>
+              <div className="flex justify-between items-center mt-8 pt-6 border-t gap-4">
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={handleBack}
+                    disabled={currentStep === 1}
+                    className="px-6"
+                  >
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={handleSaveDraft}
+                    className="px-6 text-gray-700"
+                  >
+                    Save as Draft
+                  </Button>
+                </div>
 
                 {currentStep < 6 ? (
                   <Button
