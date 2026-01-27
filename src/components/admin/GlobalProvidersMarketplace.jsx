@@ -4,9 +4,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Search, Filter, Eye, ExternalLink, Globe, 
-  Zap, Shield, TrendingUp, CheckCircle2, AlertCircle
+  Zap, Shield, TrendingUp, CheckCircle2, AlertCircle, Cpu
 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
@@ -41,20 +42,31 @@ export default function GlobalProvidersMarketplace() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedProvider, setSelectedProvider] = useState(null);
+  const [activeTab, setActiveTab] = useState('all');
 
   const { data: providers, isLoading } = useQuery({
     queryKey: ['provider-global'],
     queryFn: () => base44.entities.ProviderGlobal.list()
   });
 
-  const filteredProviders = providers?.filter(p => {
+  const web3Categories = ['WEB3_VERIFICATION', 'BLOCKCHAIN_COMPLIANCE'];
+  const tradCategories = ['KYB_KYC', 'AML_SCREENING', 'FACIAL_RECOGNITION', 'ID_VERIFICATION', 'DOCUMENT_VERIFICATION', 'LIVENESS_DETECTION'];
+  const leiCategories = ['LEI_ISSUANCE', 'VLEI_ISSUANCE'];
+
+  const filteredByTab = activeTab === 'web3' 
+    ? providers?.filter(p => web3Categories.includes(p.provider_category))
+    : activeTab === 'lei'
+    ? providers?.filter(p => leiCategories.includes(p.provider_category))
+    : providers;
+
+  const filteredProviders = filteredByTab?.filter(p => {
     const matchesSearch = p.provider_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       p.service_types?.some(s => s.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesCategory = selectedCategory === 'all' || p.provider_category === selectedCategory;
     return matchesSearch && matchesCategory;
   }) || [];
 
-  const categories = ['all', ...new Set(providers?.map(p => p.provider_category) || [])];
+  const categories = ['all', ...new Set(filteredByTab?.map(p => p.provider_category) || [])];
 
   return (
     <div className="space-y-6">
@@ -64,8 +76,20 @@ export default function GlobalProvidersMarketplace() {
         <p className="text-gray-600">Browse and compare all available service providers</p>
       </div>
 
-      {/* Search & Filters */}
-      <div className="space-y-4">
+      {/* Tabs */}
+      <Tabs value={activeTab} onValueChange={(val) => { setActiveTab(val); setSelectedCategory('all'); }}>
+        <TabsList className="grid w-full max-w-md grid-cols-4">
+          <TabsTrigger value="all">All</TabsTrigger>
+          <TabsTrigger value="traditional">Traditional</TabsTrigger>
+          <TabsTrigger value="web3" className="flex items-center gap-2">
+            <Cpu className="h-4 w-4" /> Web3
+          </TabsTrigger>
+          <TabsTrigger value="lei">LEI/vLEI</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value={activeTab} className="space-y-4">
+          {/* Search & Filters */}
+          <div className="space-y-4">
         <div className="relative">
           <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
           <Input
@@ -422,6 +446,8 @@ export default function GlobalProvidersMarketplace() {
           ))}
         </div>
       )}
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
