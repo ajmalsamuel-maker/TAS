@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,8 +6,8 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Globe, Settings, Plus, Trash2, Activity } from 'lucide-react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Globe, Settings, Plus, Trash2, Activity, CheckCircle2 } from 'lucide-react';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 
 const COUNTRY_CODES = [
@@ -25,8 +25,26 @@ export default function ProviderCountryRouting({ provider, onUpdate }) {
   const [exclusiveCountries, setExclusiveCountries] = useState(
     provider?.country_routing_rules?.exclusive_countries || false
   );
+  const [availableCountries, setAvailableCountries] = useState([]);
 
   const queryClient = useQueryClient();
+
+  const { data: providers } = useQuery({
+    queryKey: ['providers'],
+    queryFn: () => base44.entities.Provider.list()
+  });
+
+  useEffect(() => {
+    if (providers) {
+      const countries = new Set();
+      providers.forEach(p => {
+        if (p.country_routing_rules?.countries?.length > 0) {
+          p.country_routing_rules.countries.forEach(c => countries.add(c));
+        }
+      });
+      setAvailableCountries(Array.from(countries).sort());
+    }
+  }, [providers]);
 
   const { mutate: updateProvider, isPending } = useMutation({
     mutationFn: async (data) => {
@@ -56,6 +74,12 @@ export default function ProviderCountryRouting({ provider, onUpdate }) {
       prev.includes(code) ? prev.filter(c => c !== code) : [...prev, code]
     );
   };
+
+  const selectAllCountries = () => {
+    setSelectedCountries([...COUNTRY_CODES]);
+  };
+
+  const allSelected = selectedCountries.length === COUNTRY_CODES.length;
 
   return (
     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
@@ -107,6 +131,43 @@ export default function ProviderCountryRouting({ provider, onUpdate }) {
                 : `Provider serves ${selectedCountries.length} countries`}
             </div>
 
+            {availableCountries.length > 0 && (
+              <div className="bg-green-50 border border-green-200 rounded p-3 text-sm text-green-900">
+                <p className="font-semibold mb-2">Countries Covered by Other Providers:</p>
+                <div className="flex flex-wrap gap-2">
+                  {availableCountries.map(code => (
+                    <Badge key={code} variant="secondary" className="bg-green-100 text-green-800">
+                      {code}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="flex justify-between items-center mb-4">
+              <Label className="text-sm font-semibold">Select Countries</Label>
+              <div className="flex gap-2">
+                {selectedCountries.length > 0 && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setSelectedCountries([])}
+                  >
+                    Clear All
+                  </Button>
+                )}
+                <Button
+                  variant={allSelected ? "secondary" : "outline"}
+                  size="sm"
+                  onClick={selectAllCountries}
+                  className="flex items-center gap-1"
+                >
+                  <CheckCircle2 className="h-4 w-4" />
+                  Select All
+                </Button>
+              </div>
+            </div>
+
             <div className="flex flex-wrap gap-2">
               {COUNTRY_CODES.map(code => (
                 <button
@@ -122,17 +183,6 @@ export default function ProviderCountryRouting({ provider, onUpdate }) {
                 </button>
               ))}
             </div>
-
-            {selectedCountries.length > 0 && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setSelectedCountries([])}
-                className="mt-4"
-              >
-                Clear All
-              </Button>
-            )}
           </TabsContent>
 
           <TabsContent value="fallback" className="space-y-4">
