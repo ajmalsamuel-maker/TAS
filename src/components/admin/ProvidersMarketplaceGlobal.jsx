@@ -387,10 +387,11 @@ function ProviderCard({ provider, enabledProvider, queryClient, onEnable, isEnab
              <div>
                <p className="text-xs font-semibold text-gray-600 mb-2">Global Coverage</p>
                {(() => {
-                 const validCountries = provider.global_coverage?.filter(c => c && typeof c === 'string' && c.trim().length > 0) || [];
-                 return validCountries.length === 0 ? (
-                   <Badge className="bg-green-100 text-green-800 text-xs">Global Coverage</Badge>
-                 ) : (
+                 const validCountries = (provider.global_coverage || []).filter(c => c && typeof c === 'string' && c.trim().length > 0);
+                 if (validCountries.length === 0) {
+                   return <Badge className="bg-green-100 text-green-800 text-xs">Global Coverage</Badge>;
+                 }
+                 return (
                    <div className="flex flex-wrap gap-1">
                      {validCountries.slice(0, 10).map(country => (
                        <Badge key={country} variant="outline" className="text-xs">
