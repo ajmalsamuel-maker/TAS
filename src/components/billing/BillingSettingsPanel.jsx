@@ -49,25 +49,25 @@ export default function BillingSettingsPanel() {
     { 
       name: 'QuickBooks Online', 
       key: 'quickbooks', 
-      logo: null,
+      logo: 'https://quickbooks.intuit.com/oidam/intuit/sbseg/en_us/blog/images/quickbooks-icon-450x450.png',
       connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) 
     },
     { 
       name: 'Xero', 
       key: 'xero', 
-      logo: null,
+      logo: 'https://developer.xero.com/static/images/developer-app-signup/xero-api.png',
       connected: settings?.accounting_integrations?.some(i => i.system === 'xero' && i.is_connected) 
     },
     { 
       name: 'Sage', 
       key: 'sage', 
-      logo: null,
+      logo: 'https://www.sage.com/en-gb/-/media/images/sagedotcom/master/global/sage_logo_green.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) 
     },
     { 
       name: 'NetSuite', 
       key: 'netsuite', 
-      logo: null,
+      logo: 'https://www.netsuite.com/portal/assets/img/NetSuite-logo.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'netsuite' && i.is_connected) 
     },
     { 
