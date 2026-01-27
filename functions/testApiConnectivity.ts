@@ -96,14 +96,25 @@ async function testFacia() {
       body: JSON.stringify({ client_id: clientId, client_secret: clientSecret })
     });
 
+    if (!response.ok) {
+      const errorText = await response.text();
+      return {
+        service: 'Facia',
+        status: 'error',
+        message: `HTTP ${response.status}: ${errorText}`,
+        connected: false
+      };
+    }
+
     const data = await response.json();
 
     if (!data.access_token) {
       return {
         service: 'Facia',
         status: 'error',
-        message: data.message || 'Authentication failed',
-        connected: false
+        message: data.message || data.error || 'Authentication failed - no access token received',
+        connected: false,
+        details: data
       };
     }
 
