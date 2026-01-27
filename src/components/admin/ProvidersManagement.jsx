@@ -13,14 +13,29 @@ import { base44 } from '@/api/base44Client';
 
 export default function ProvidersManagement({ providers: initialProviders }) {
   const [editingProvider, setEditingProvider] = useState(null);
-  const [editConfig, setEditConfig] = useState({});
+  const [loadedCredentials, setLoadedCredentials] = useState({});
   const [showDialog, setShowDialog] = useState(false);
+  const [loadingCredentials, setLoadingCredentials] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: providers = initialProviders } = useQuery({
     queryKey: ['providers'],
     queryFn: () => base44.entities.Provider.list()
   });
+
+  const loadCredentials = async (provider) => {
+    setLoadingCredentials(true);
+    try {
+      const { data } = await base44.functions.invoke('getProviderCredentials', { 
+        provider_name: provider.name 
+      });
+      setLoadedCredentials(data.credentials || {});
+    } catch (error) {
+      console.error('Failed to load credentials:', error);
+      setLoadedCredentials({});
+    }
+    setLoadingCredentials(false);
+  };
 
   const { mutate: updateProvider } = useMutation({
     mutationFn: async (data) => {
