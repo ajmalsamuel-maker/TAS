@@ -14,6 +14,7 @@ import OnboardingStep3 from '../components/onboarding/OnboardingStep3';
 import OnboardingStep4AML from '../components/onboarding/OnboardingStep4AML';
 import OnboardingStep5 from '../components/onboarding/OnboardingStep4';
 import OnboardingStep6Facia from '../components/onboarding/OnboardingStep6Facia';
+import OnboardingStep7vLEI from '../components/onboarding/OnboardingStep7vLEI';
 import GuidedWalkthrough from '../components/onboarding/GuidedWalkthrough';
 import ProgressWithTime from '../components/onboarding/ProgressWithTime';
 
@@ -59,7 +60,9 @@ export default function Onboarding() {
     document_urls: []
   });
 
-  const totalSteps = 6;
+  const [submittedApplication, setSubmittedApplication] = useState(null);
+  
+  const totalSteps = 7;
   const progress = (currentStep / totalSteps) * 100;
 
   const steps = [
@@ -68,7 +71,8 @@ export default function Onboarding() {
     { number: 3, title: 'Business Registry', component: OnboardingStep3 },
     { number: 4, title: 'AML Screening', component: OnboardingStep4AML },
     { number: 5, title: 'Documents', component: OnboardingStep5 },
-    { number: 6, title: 'Identity Verification', component: OnboardingStep6Facia }
+    { number: 6, title: 'Identity Verification', component: OnboardingStep6Facia },
+    { number: 7, title: 'vLEI Issuance', component: OnboardingStep7vLEI }
   ];
 
   const handleNext = () => {
@@ -96,6 +100,7 @@ export default function Onboarding() {
         status: 'submitted'
       });
 
+      setSubmittedApplication(response);
       toast.success('Application submitted successfully!');
 
       // Auto-create organization
@@ -124,12 +129,17 @@ export default function Onboarding() {
         setIsRunningAml(false);
       }
 
-      // Redirect to application status page
-      setTimeout(() => navigate(createPageUrl('ApplicationStatus')), 2000);
+      // Move to vLEI step instead of redirecting
+      setCurrentStep(7);
+      setIsSubmitting(false);
     } catch (error) {
       toast.error('Failed to submit application. Please try again.');
       setIsSubmitting(false);
     }
+  };
+
+  const handleVLEIComplete = () => {
+    navigate(createPageUrl('ApplicationStatus'));
   };
 
   const CurrentStepComponent = steps[currentStep - 1].component;
@@ -205,14 +215,15 @@ export default function Onboarding() {
           {/* Process Overview */}
           <div className="bg-white rounded-xl border-2 border-blue-100 p-8 mb-12 shadow-lg">
             <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Onboarding Process</h2>
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid md:grid-cols-3 lg:grid-cols-7 gap-4">
               {[
                 { num: 1, title: 'Company Info', desc: 'KYB search & auto-fill' },
                 { num: 2, title: 'Addresses', desc: 'HQ and legal address' },
                 { num: 3, title: 'Registry', desc: 'Business registration details' },
                 { num: 4, title: 'AML Check', desc: 'Sanctions & PEP screening' },
                 { num: 5, title: 'Documents', desc: 'Upload certificates' },
-                { num: 6, title: 'Verification', desc: 'Facial liveness test' }
+                { num: 6, title: 'Verification', desc: 'Facial liveness test' },
+                { num: 7, title: 'vLEI', desc: 'Digital credential issuance' }
               ].map((step) => (
                 <div key={step.num} className="text-center">
                   <div className="w-12 h-12 bg-[#0066B3] text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-3">
@@ -283,51 +294,60 @@ export default function Onboarding() {
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-8">
-            <CurrentStepComponent 
-              formData={formData}
-              setFormData={setFormData}
-            />
+            {currentStep === 7 ? (
+              <OnboardingStep7vLEI 
+                application={submittedApplication}
+                onComplete={handleVLEIComplete}
+              />
+            ) : (
+              <CurrentStepComponent 
+                formData={formData}
+                setFormData={setFormData}
+              />
+            )}
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between mt-8 pt-6 border-t">
-              <Button
-                variant="outline"
-                onClick={handleBack}
-                disabled={currentStep === 1}
-                className="px-6"
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
-              </Button>
+            {currentStep !== 7 && (
+              <div className="flex justify-between mt-8 pt-6 border-t">
+                <Button
+                  variant="outline"
+                  onClick={handleBack}
+                  disabled={currentStep === 1}
+                  className="px-6"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back
+                </Button>
 
-              {currentStep < totalSteps ? (
-                <Button
-                  onClick={handleNext}
-                  className="bg-[#0044CC] hover:bg-[#002D66] px-6"
-                >
-                  Next
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              ) : (
-                <Button
-                  onClick={handleSubmit}
-                  className="bg-green-600 hover:bg-green-700 px-8"
-                  disabled={isSubmitting || isRunningAml}
-                >
-                  {isSubmitting || isRunningAml ? (
-                    <>
-                      <Loader className="mr-2 h-4 w-4 animate-spin" />
-                      {isRunningAml ? 'Initiating Verification...' : 'Processing...'}
-                    </>
-                  ) : (
-                    <>
-                      Complete & Verify
-                      <CheckCircle2 className="ml-2 h-4 w-4" />
-                    </>
-                  )}
-                </Button>
-              )}
-            </div>
+                {currentStep < 6 ? (
+                  <Button
+                    onClick={handleNext}
+                    className="bg-[#0044CC] hover:bg-[#002D66] px-6"
+                  >
+                    Next
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={handleSubmit}
+                    className="bg-green-600 hover:bg-green-700 px-8"
+                    disabled={isSubmitting || isRunningAml}
+                  >
+                    {isSubmitting || isRunningAml ? (
+                      <>
+                        <Loader className="mr-2 h-4 w-4 animate-spin" />
+                        {isRunningAml ? 'Initiating Verification...' : 'Processing...'}
+                      </>
+                    ) : (
+                      <>
+                        Submit & Continue to vLEI
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
 
@@ -345,10 +365,17 @@ export default function Onboarding() {
               </p>
             </div>
           )}
-          {currentStep === totalSteps && (
+          {currentStep === 6 && (
             <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-lg">
               <p className="text-sm text-purple-900">
-                <strong>⚠️ Final Step:</strong> Complete facial verification to proceed with LEI and vLEI issuance. This is the last requirement before credentials are issued.
+                <strong>⚠️ Identity Verification:</strong> Complete facial verification to proceed with LEI and vLEI issuance.
+              </p>
+            </div>
+          )}
+          {currentStep === 7 && (
+            <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-lg">
+              <p className="text-sm text-purple-900">
+                <strong>🎉 Final Step:</strong> Issue your vLEI credential to complete onboarding and gain full access to TAS services.
               </p>
             </div>
           )}

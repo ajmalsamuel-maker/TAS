@@ -27,6 +27,7 @@ import UserSettings from './pages/UserSettings';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
 import UserMonitoring from './pages/UserMonitoring';
+import VLEIManagement from './pages/VLEIManagement';
 import __Layout from './Layout.jsx';
 
 
@@ -60,6 +61,7 @@ export const PAGES = {
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
     "UserMonitoring": UserMonitoring,
+    "VLEIManagement": VLEIManagement,
 }
 
 export const pagesConfig = {
