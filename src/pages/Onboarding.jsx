@@ -400,32 +400,11 @@ export default function Onboarding() {
           )}
         </div>
 
-        {/* Back Button */}
+        {/* Back Button - Preserves Form Data */}
         <div className="mt-8 text-center">
           <Button
             variant="ghost"
-            onClick={() => {
-              setShowForm(false);
-              setCurrentStep(1);
-              setFormData({
-                legal_name: '',
-                entity_category: '',
-                email: '',
-                apply_purpose: '',
-                legal_representative_name: '',
-                contact_person_name: '',
-                contact_person_tel: '',
-                contact_person_email: '',
-                legal_address: {},
-                headquarters_address: {},
-                entity_legal_form: '',
-                registry_country_code: '',
-                business_registry_name: '',
-                unique_business_id: '',
-                number_of_employees: '1',
-                document_urls: []
-              });
-            }}
+            onClick={() => setShowForm(false)}
             className="text-[#0066B3] hover:bg-blue-50"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
