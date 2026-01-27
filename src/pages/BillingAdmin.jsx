@@ -11,6 +11,10 @@ import BillingPlansManager from '../components/billing/BillingPlansManager';
 import ExportPanel from '../components/billing/ExportPanel';
 import CreditsManager from '../components/billing/CreditsManager';
 import ReferralManager from '../components/billing/ReferralManager';
+import ProviderCostManager from '../components/admin/ProviderCostManager';
+import MarkupRuleManager from '../components/admin/MarkupRuleManager';
+import ProfitAnalysisDashboard from '../components/admin/ProfitAnalysisDashboard';
+import PriceChangeAlerts from '../components/admin/PriceChangeAlerts';
 
 export default function BillingAdmin() {
   const [user, setUser] = useState(null);
@@ -111,9 +115,13 @@ export default function BillingAdmin() {
 
         {/* Tabs */}
         <Tabs defaultValue="dashboard" className="space-y-4">
-          <TabsList className="grid grid-cols-3 lg:grid-cols-6">
+          <TabsList className="grid grid-cols-3 lg:grid-cols-10">
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="plans">Plans</TabsTrigger>
+            <TabsTrigger value="costs">Provider Costs</TabsTrigger>
+            <TabsTrigger value="markup">Markup Rules</TabsTrigger>
+            <TabsTrigger value="profit">Profit Analysis</TabsTrigger>
+            <TabsTrigger value="prices">Price Alerts</TabsTrigger>
             <TabsTrigger value="credits">Credits</TabsTrigger>
             <TabsTrigger value="referrals">Referrals</TabsTrigger>
             <TabsTrigger value="export">Export</TabsTrigger>
@@ -126,6 +134,22 @@ export default function BillingAdmin() {
 
           <TabsContent value="plans">
             <BillingPlansManager />
+          </TabsContent>
+
+          <TabsContent value="costs">
+            <ProviderCostManager />
+          </TabsContent>
+
+          <TabsContent value="markup">
+            <MarkupRuleManager />
+          </TabsContent>
+
+          <TabsContent value="profit">
+            <ProfitAnalysisDashboard />
+          </TabsContent>
+
+          <TabsContent value="prices">
+            <PriceChangeAlerts />
           </TabsContent>
 
           <TabsContent value="credits">

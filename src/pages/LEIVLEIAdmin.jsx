@@ -7,10 +7,6 @@ import LEIVLEIStats from '../components/admin/LEIVLEIStats';
 import IssuedCredentialsList from '../components/admin/IssuedCredentialsList';
 import LOUQVIConfig from '../components/admin/LOUQVIConfig';
 import CredentialAuditLogs from '../components/admin/CredentialAuditLogs';
-import ProviderCostManager from '../components/admin/ProviderCostManager';
-import MarkupRuleManager from '../components/admin/MarkupRuleManager';
-import ProfitAnalysisDashboard from '../components/admin/ProfitAnalysisDashboard';
-import PriceChangeAlerts from '../components/admin/PriceChangeAlerts';
 
 export default function LEIVLEIAdmin() {
   const [user, setUser] = React.useState(null);
@@ -62,15 +58,23 @@ export default function LEIVLEIAdmin() {
         </div>
 
         <Tabs defaultValue="stats" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 lg:w-auto">
-            <TabsTrigger value="stats">Statistics</TabsTrigger>
-            <TabsTrigger value="credentials">Credentials</TabsTrigger>
-            <TabsTrigger value="config">API Config</TabsTrigger>
-            <TabsTrigger value="costs">Provider Costs</TabsTrigger>
-            <TabsTrigger value="markup">Markup Rules</TabsTrigger>
-            <TabsTrigger value="profit">Profit Analysis</TabsTrigger>
-            <TabsTrigger value="prices">Price Alerts</TabsTrigger>
-            <TabsTrigger value="audit">Audit Logs</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4 lg:w-auto">
+            <TabsTrigger value="stats" className="flex items-center gap-2">
+              <BarChart3 className="h-4 w-4" />
+              Statistics
+            </TabsTrigger>
+            <TabsTrigger value="credentials" className="flex items-center gap-2">
+              <Shield className="h-4 w-4" />
+              Credentials
+            </TabsTrigger>
+            <TabsTrigger value="config" className="flex items-center gap-2">
+              <Settings className="h-4 w-4" />
+              API Config
+            </TabsTrigger>
+            <TabsTrigger value="audit" className="flex items-center gap-2">
+              <FileText className="h-4 w-4" />
+              Audit Logs
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="stats">
@@ -83,22 +87,6 @@ export default function LEIVLEIAdmin() {
 
           <TabsContent value="config">
             <LOUQVIConfig />
-          </TabsContent>
-
-          <TabsContent value="costs">
-            <ProviderCostManager />
-          </TabsContent>
-
-          <TabsContent value="markup">
-            <MarkupRuleManager />
-          </TabsContent>
-
-          <TabsContent value="profit">
-            <ProfitAnalysisDashboard />
-          </TabsContent>
-
-          <TabsContent value="prices">
-            <PriceChangeAlerts />
           </TabsContent>
 
           <TabsContent value="audit">
