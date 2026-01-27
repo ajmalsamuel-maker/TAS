@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2, AlertCircle, Loader } from 'lucide-react';
+import { Shield, Activity, Loader } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function BillingSettingsPanel() {
@@ -46,12 +46,42 @@ export default function BillingSettingsPanel() {
   }
 
   const integrations = [
-    { name: 'QuickBooks Online', key: 'quickbooks', icon: '📊', connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) },
-    { name: 'Xero', key: 'xero', icon: '📈', connected: settings?.accounting_integrations?.some(i => i.system === 'xero' && i.is_connected) },
-    { name: 'Sage', key: 'sage', icon: '💼', connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) },
-    { name: 'NetSuite', key: 'netsuite', icon: '🌐', connected: settings?.accounting_integrations?.some(i => i.system === 'netsuite' && i.is_connected) },
-    { name: 'Oracle Finance Cloud', key: 'oracle', icon: '🏢', connected: settings?.accounting_integrations?.some(i => i.system === 'oracle' && i.is_connected) },
-    { name: 'SAP', key: 'sap', icon: '⚙️', connected: settings?.accounting_integrations?.some(i => i.system === 'sap' && i.is_connected) }
+    { 
+      name: 'QuickBooks Online', 
+      key: 'quickbooks', 
+      logo: 'https://plugin.intuit.com/quickbooks-online/mobileapp/images/quickbooks-icon.png',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) 
+    },
+    { 
+      name: 'Xero', 
+      key: 'xero', 
+      logo: 'https://www.xero.com/content/dam/xero/pilot-images/logos/xero-logo.svg',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'xero' && i.is_connected) 
+    },
+    { 
+      name: 'Sage', 
+      key: 'sage', 
+      logo: 'https://www.sage.com/~/media/images/sagedotcom/master/global/logos/sage-logo.svg',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) 
+    },
+    { 
+      name: 'NetSuite', 
+      key: 'netsuite', 
+      logo: 'https://www.netsuite.com/portal/assets/img/NS-logo.svg',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'netsuite' && i.is_connected) 
+    },
+    { 
+      name: 'Oracle Finance Cloud', 
+      key: 'oracle', 
+      logo: 'https://www.oracle.com/asset/web/favicons/favicon-192.png',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'oracle' && i.is_connected) 
+    },
+    { 
+      name: 'SAP', 
+      key: 'sap', 
+      logo: 'https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'sap' && i.is_connected) 
+    }
   ];
 
   return (
@@ -142,24 +172,36 @@ export default function BillingSettingsPanel() {
         <CardContent>
           <div className="space-y-3">
             {integrations.map((integration) => (
-              <div key={integration.key} className="flex items-center justify-between p-3 border rounded-lg">
-                <div>
-                  <p className="font-semibold">{integration.icon} {integration.name}</p>
-                  <p className="text-sm text-gray-600">Auto-export invoices</p>
+              <div key={integration.key} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                <div className="flex items-center gap-3">
+                  <img 
+                    src={integration.logo} 
+                    alt={`${integration.name} logo`}
+                    className="h-8 w-8 object-contain"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  <Activity className="h-8 w-8 text-blue-600 hidden" />
+                  <div>
+                    <p className="font-semibold text-gray-900">{integration.name}</p>
+                    <p className="text-sm text-gray-600">Auto-export invoices</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   {integration.connected ? (
-                    <Badge className="bg-green-100 text-green-800 flex items-center gap-1">
-                      <CheckCircle2 className="h-3 w-3" />
+                    <Badge className="bg-blue-600 text-white flex items-center gap-1">
+                      <Shield className="h-3 w-3" />
                       Connected
                     </Badge>
                   ) : (
                     <Badge variant="outline" className="flex items-center gap-1">
-                      <AlertCircle className="h-3 w-3" />
+                      <Activity className="h-3 w-3" />
                       Not Connected
                     </Badge>
                   )}
-                  <Button size="sm" variant="outline">
+                  <Button size="sm" variant="outline" className="hover:bg-blue-50 hover:border-blue-600">
                     {integration.connected ? 'Reconfigure' : 'Connect'}
                   </Button>
                 </div>
