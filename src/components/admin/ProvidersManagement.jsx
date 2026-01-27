@@ -232,7 +232,7 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                                     api_key: loadedCredentials.api_key || editingProvider.api_key,
                                     client_id: loadedCredentials.client_id || editingProvider.client_id,
                                     client_secret: loadedCredentials.client_secret || editingProvider.client_secret,
-                                    api_endpoint: editingProvider.api_endpoint,
+                                    api_endpoint: loadedCredentials.api_endpoint || editingProvider.api_endpoint,
                                     config: editingProvider.config
                                   })} 
                                   className="w-full bg-blue-600 hover:bg-blue-700"
