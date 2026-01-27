@@ -193,48 +193,56 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                                 </div>
 
                                 {loadingCredentials && (
-                                  <div className="bg-yellow-50 border border-yellow-200 rounded p-3 text-xs text-yellow-800">
-                                    Loading credentials...
-                                  </div>
-                                )}
+                                   <div className="bg-yellow-50 border border-yellow-200 rounded p-3 text-xs text-yellow-800">
+                                     Loading credentials...
+                                   </div>
+                                 )}
 
-                                <div>
-                                  <Label className="text-sm font-semibold mb-2 block">API Key</Label>
-                                  <Input
-                                    value={loadedCredentials.api_key || editingProvider.api_key || ''}
-                                    onChange={(e) => setLoadedCredentials({...loadedCredentials, api_key: e.target.value})}
-                                    type="password"
-                                    placeholder="Enter API key"
-                                  />
+                                <div className="bg-gray-50 border border-gray-200 rounded p-3 text-xs text-gray-700 font-mono">
+                                  <strong>Debug - Loaded Credentials:</strong><br/>
+                                  api_key: {loadedCredentials.api_key ? '✓ Loaded' : '✗ Empty'}<br/>
+                                  client_id: {loadedCredentials.client_id ? '✓ Loaded' : '✗ Empty'}<br/>
+                                  client_secret: {loadedCredentials.client_secret ? '✓ Loaded' : '✗ Empty'}<br/>
+                                  api_endpoint: {loadedCredentials.api_endpoint ? '✓ Loaded' : '✗ Empty'}
                                 </div>
 
-                                <div>
-                                  <Label className="text-sm font-semibold mb-2 block">Client ID</Label>
-                                  <Input
-                                    value={loadedCredentials.client_id || editingProvider.client_id || ''}
-                                    onChange={(e) => setLoadedCredentials({...loadedCredentials, client_id: e.target.value})}
-                                    placeholder="Enter client ID"
-                                  />
-                                </div>
+                                 <div>
+                                   <Label className="text-sm font-semibold mb-2 block">API Key</Label>
+                                   <Input
+                                     value={loadedCredentials.api_key || ''}
+                                     onChange={(e) => setLoadedCredentials({...loadedCredentials, api_key: e.target.value})}
+                                     type="password"
+                                     placeholder="Enter API key"
+                                   />
+                                 </div>
 
-                                <div>
-                                  <Label className="text-sm font-semibold mb-2 block">Client Secret</Label>
-                                  <Input
-                                    value={loadedCredentials.client_secret || editingProvider.client_secret || ''}
-                                    onChange={(e) => setLoadedCredentials({...loadedCredentials, client_secret: e.target.value})}
-                                    type="password"
-                                    placeholder="Enter client secret"
-                                  />
-                                </div>
+                                 <div>
+                                   <Label className="text-sm font-semibold mb-2 block">Client ID</Label>
+                                   <Input
+                                     value={loadedCredentials.client_id || ''}
+                                     onChange={(e) => setLoadedCredentials({...loadedCredentials, client_id: e.target.value})}
+                                     placeholder="Enter client ID"
+                                   />
+                                 </div>
 
-                                <div>
-                                  <Label className="text-sm font-semibold mb-2 block">API Endpoint</Label>
-                                  <Input
-                                    value={loadedCredentials.api_endpoint || editingProvider.api_endpoint || ''}
-                                    onChange={(e) => setLoadedCredentials({...loadedCredentials, api_endpoint: e.target.value})}
-                                    placeholder="e.g., https://api.provider.com"
-                                  />
-                                </div>
+                                 <div>
+                                   <Label className="text-sm font-semibold mb-2 block">Client Secret</Label>
+                                   <Input
+                                     value={loadedCredentials.client_secret || ''}
+                                     onChange={(e) => setLoadedCredentials({...loadedCredentials, client_secret: e.target.value})}
+                                     type="password"
+                                     placeholder="Enter client secret"
+                                   />
+                                 </div>
+
+                                 <div>
+                                   <Label className="text-sm font-semibold mb-2 block">API Endpoint</Label>
+                                   <Input
+                                     value={loadedCredentials.api_endpoint || ''}
+                                     onChange={(e) => setLoadedCredentials({...loadedCredentials, api_endpoint: e.target.value})}
+                                     placeholder="e.g., https://api.provider.com"
+                                   />
+                                 </div>
 
                                 <div>
                                   <Label className="text-sm font-semibold mb-2 block">Custom Configuration (JSON)</Label>
