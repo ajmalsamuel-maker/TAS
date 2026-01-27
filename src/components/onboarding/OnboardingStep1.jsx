@@ -15,6 +15,23 @@ export default function OnboardingStep1({ formData, setFormData }) {
   const [kybVerified, setKybVerified] = useState(false);
   const [countries, setCountries] = useState([]);
 
+  useEffect(() => {
+    // Fetch all supported countries from KYB API
+    const fetchCountries = async () => {
+      try {
+        const result = await base44.functions.invoke('kyb', {
+          action: 'countries'
+        });
+        if (result.data?.data?.countries) {
+          setCountries(result.data.data.countries);
+        }
+      } catch (error) {
+        console.error('Failed to fetch countries:', error);
+      }
+    };
+    fetchCountries();
+  }, []);
+
   const updateField = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
