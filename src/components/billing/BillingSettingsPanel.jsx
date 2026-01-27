@@ -61,7 +61,7 @@ export default function BillingSettingsPanel() {
     { 
       name: 'Sage', 
       key: 'sage', 
-      logo: 'https://www.vectorlogo.zone/logos/sage/sage-ar21.svg',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Sage-logo_svg.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) 
     },
     { 
@@ -97,13 +97,13 @@ export default function BillingSettingsPanel() {
     { 
       name: 'FreshBooks', 
       key: 'freshbooks', 
-      logo: 'https://www.vectorlogo.zone/logos/freshbooks/freshbooks-ar21.svg',
+      logo: 'https://cdn.worldvectorlogo.com/logos/freshbooks-1.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'freshbooks' && i.is_connected) 
     },
     { 
       name: 'MYOB', 
       key: 'myob', 
-      logo: 'https://cdn.worldvectorlogo.com/logos/myob-1.svg',
+      logo: 'https://cdn.worldvectorlogo.com/logos/myob.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'myob' && i.is_connected) 
     },
     { 
