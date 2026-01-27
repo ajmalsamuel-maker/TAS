@@ -16,15 +16,22 @@ export default function ApplicationApprovalPanel({ application, onStatusChange }
   const handleApprove = async () => {
     setIsProcessing(true);
     try {
+      // Approve application
       await base44.functions.invoke('approveApplication', {
         applicationId: application.id,
         approvalNotes: ''
       });
-      toast.success('Application approved and credentials are being issued');
+      
+      // Auto-create organization
+      await base44.functions.invoke('autoCreateOrganization', {
+        application_id: application.id
+      });
+      
+      toast.success('Application approved, organization created, and credentials issued');
       setShowApproveForm(false);
       onStatusChange();
     } catch (error) {
-      toast.error('Failed to approve application');
+      toast.error('Failed to approve application: ' + error.message);
     } finally {
       setIsProcessing(false);
     }
