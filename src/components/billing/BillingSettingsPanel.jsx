@@ -61,7 +61,7 @@ export default function BillingSettingsPanel() {
     { 
       name: 'Sage', 
       key: 'sage', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Sage-logo_svg.svg',
+      logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/c9d1b21b9_png-clipart-logo-sage-group-brand-graphics-sage-logo-text-trademark.png',
       connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) 
     },
     { 
