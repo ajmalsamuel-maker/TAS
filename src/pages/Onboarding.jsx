@@ -6,7 +6,7 @@ import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { CheckCircle2, Upload, ArrowRight, ArrowLeft, Zap, Shield, FileCheck, Clock, Users, Loader } from 'lucide-react';
+import { CheckCircle2, Upload, ArrowRight, ArrowLeft, Zap, Shield, FileCheck, Clock, Users, Loader, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import OnboardingStep1 from '../components/onboarding/OnboardingStep1';
 import OnboardingStep2 from '../components/onboarding/OnboardingStep2';
