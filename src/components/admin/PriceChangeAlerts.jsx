@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { AlertCircle, CheckCircle2, XCircle, TrendingUp, TrendingDown } from 'lucide-react';
+import { AlertCircle, Shield, Activity } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function PriceChangeAlerts() {
@@ -81,7 +81,7 @@ export default function PriceChangeAlerts() {
       <CardContent>
         {priceChanges.length === 0 ? (
           <div className="text-center py-8 text-gray-500">
-            <CheckCircle2 className="h-12 w-12 mx-auto mb-3 text-green-500" />
+            <Shield className="h-12 w-12 mx-auto mb-3 text-blue-500" />
             <p>No pending price changes</p>
           </div>
         ) : (
@@ -115,12 +115,8 @@ export default function PriceChangeAlerts() {
                     <TableCell className="font-mono font-bold">${change.new_cost.toFixed(2)}</TableCell>
                     <TableCell>
                       <div className="flex items-center gap-1">
-                        {isIncrease ? (
-                          <TrendingUp className="h-4 w-4 text-red-600" />
-                        ) : (
-                          <TrendingDown className="h-4 w-4 text-green-600" />
-                        )}
-                        <span className={isIncrease ? 'text-red-600' : 'text-green-600'}>
+                        <Activity className="h-4 w-4 text-blue-600" />
+                        <span className="text-gray-900">
                           {changePercent}%
                         </span>
                       </div>
@@ -129,20 +125,17 @@ export default function PriceChangeAlerts() {
                       <div className="flex gap-2">
                         <Button
                           size="sm"
-                          variant="outline"
-                          className="text-green-600 hover:bg-green-50"
+                          className="bg-blue-600 hover:bg-blue-700 text-white"
                           onClick={() => approveMutation.mutate({ id: change.id, changeData: change })}
                         >
-                          <CheckCircle2 className="h-4 w-4 mr-1" />
+                          <Shield className="h-4 w-4 mr-1" />
                           Approve
                         </Button>
                         <Button
                           size="sm"
                           variant="outline"
-                          className="text-red-600 hover:bg-red-50"
                           onClick={() => rejectMutation.mutate({ id: change.id })}
                         >
-                          <XCircle className="h-4 w-4 mr-1" />
                           Reject
                         </Button>
                       </div>

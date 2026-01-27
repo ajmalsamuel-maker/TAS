@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { DollarSign, Plus, Edit, Trash2, RefreshCw, CheckCircle2, XCircle } from 'lucide-react';
+import { Activity, Plus, Edit, Trash2, RefreshCw, Shield, XCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function ProviderCostManager() {
@@ -116,7 +116,7 @@ export default function ProviderCostManager() {
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
-              <DollarSign className="h-5 w-5 text-green-600" />
+              <Activity className="h-5 w-5 text-blue-600" />
               Provider Service Costs
             </CardTitle>
             <Dialog open={showAddDialog} onOpenChange={(open) => {
@@ -240,8 +240,8 @@ export default function ProviderCostManager() {
                     <TableCell className="font-medium">{cost.provider_name}</TableCell>
                     <TableCell className="font-mono">${cost.cost_per_unit.toFixed(2)}</TableCell>
                     <TableCell>
-                      <Badge className={cost.is_active ? 'bg-green-600' : 'bg-gray-400'}>
-                        {cost.is_active ? <CheckCircle2 className="h-3 w-3 mr-1" /> : <XCircle className="h-3 w-3 mr-1" />}
+                      <Badge className={cost.is_active ? 'bg-blue-600' : 'bg-gray-400'}>
+                        {cost.is_active ? <Shield className="h-3 w-3 mr-1" /> : <XCircle className="h-3 w-3 mr-1" />}
                         {cost.is_active ? 'Active' : 'Inactive'}
                       </Badge>
                     </TableCell>

@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Percent, Plus, Edit, Trash2, TrendingUp, Globe, Building } from 'lucide-react';
+import { Activity, Plus, Edit, Trash2, Shield, Globe, Settings } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function MarkupRuleManager() {
@@ -133,7 +133,7 @@ export default function MarkupRuleManager() {
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
-              <Percent className="h-5 w-5 text-blue-600" />
+              <Activity className="h-5 w-5 text-blue-600" />
               Markup Rules
             </CardTitle>
             <Dialog open={showAddDialog} onOpenChange={(open) => {
@@ -306,7 +306,7 @@ export default function MarkupRuleManager() {
                       {rule.scope === 'global' ? (
                         <Badge className="bg-blue-600"><Globe className="h-3 w-3 mr-1" />Global</Badge>
                       ) : (
-                        <Badge className="bg-purple-600"><Building className="h-3 w-3 mr-1" />Org-Specific</Badge>
+                        <Badge className="bg-blue-600"><Settings className="h-3 w-3 mr-1" />Org-Specific</Badge>
                       )}
                     </TableCell>
                     <TableCell>

@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { DollarSign, Settings, Zap, FileText } from 'lucide-react';
+import { Activity, Settings, Shield, FileText } from 'lucide-react';
 import BillingDashboard from '../components/billing/BillingDashboard';
 import BillingSettingsPanel from '../components/billing/BillingSettingsPanel';
 import BillingPlansManager from '../components/billing/BillingPlansManager';
@@ -71,7 +71,7 @@ export default function BillingAdmin() {
                   <p className="text-sm text-gray-600">Total Revenue</p>
                   <p className="text-2xl font-bold">${summaryStats?.totalRevenue.toFixed(2) || '0'}</p>
                 </div>
-                <DollarSign className="h-8 w-8 text-green-600" />
+                <Activity className="h-8 w-8 text-blue-600" />
               </div>
             </CardContent>
           </Card>
@@ -83,7 +83,7 @@ export default function BillingAdmin() {
                   <p className="text-sm text-gray-600">Pending Invoices</p>
                   <p className="text-2xl font-bold">${summaryStats?.pendingAmount.toFixed(2) || '0'}</p>
                 </div>
-                <FileText className="h-8 w-8 text-orange-600" />
+                <FileText className="h-8 w-8 text-blue-600" />
               </div>
             </CardContent>
           </Card>
@@ -107,7 +107,7 @@ export default function BillingAdmin() {
                   <p className="text-sm text-gray-600">Active Plans</p>
                   <p className="text-2xl font-bold">{summaryStats?.activePlans || 0}</p>
                 </div>
-                <Zap className="h-8 w-8 text-purple-600" />
+                <Shield className="h-8 w-8 text-blue-600" />
               </div>
             </CardContent>
           </Card>

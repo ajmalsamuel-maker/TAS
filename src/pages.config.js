@@ -12,6 +12,7 @@ import DownloadLogo from './pages/DownloadLogo';
 import FeatureVerificationGuide from './pages/FeatureVerificationGuide';
 import Home from './pages/Home';
 import IntegrationsSummary from './pages/IntegrationsSummary';
+import LEIVLEIAdmin from './pages/LEIVLEIAdmin';
 import MarketingWebsiteDocumentation from './pages/MarketingWebsiteDocumentation';
 import Onboarding from './pages/Onboarding';
 import OrganizationOnboarding from './pages/OrganizationOnboarding';
@@ -22,13 +23,12 @@ import UserCompliance from './pages/UserCompliance';
 import UserCredentials from './pages/UserCredentials';
 import UserDashboard from './pages/UserDashboard';
 import UserLogin from './pages/UserLogin';
+import UserMonitoring from './pages/UserMonitoring';
 import UserPortalDocumentation from './pages/UserPortalDocumentation';
 import UserSettings from './pages/UserSettings';
+import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
-import UserMonitoring from './pages/UserMonitoring';
-import VLEIManagement from './pages/VLEIManagement';
-import LEIVLEIAdmin from './pages/LEIVLEIAdmin';
 import __Layout from './Layout.jsx';
 
 
@@ -47,6 +47,7 @@ export const PAGES = {
     "FeatureVerificationGuide": FeatureVerificationGuide,
     "Home": Home,
     "IntegrationsSummary": IntegrationsSummary,
+    "LEIVLEIAdmin": LEIVLEIAdmin,
     "MarketingWebsiteDocumentation": MarketingWebsiteDocumentation,
     "Onboarding": Onboarding,
     "OrganizationOnboarding": OrganizationOnboarding,
@@ -57,13 +58,12 @@ export const PAGES = {
     "UserCredentials": UserCredentials,
     "UserDashboard": UserDashboard,
     "UserLogin": UserLogin,
+    "UserMonitoring": UserMonitoring,
     "UserPortalDocumentation": UserPortalDocumentation,
     "UserSettings": UserSettings,
+    "VLEIManagement": VLEIManagement,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
-    "UserMonitoring": UserMonitoring,
-    "VLEIManagement": VLEIManagement,
-    "LEIVLEIAdmin": LEIVLEIAdmin,
 }
 
 export const pagesConfig = {

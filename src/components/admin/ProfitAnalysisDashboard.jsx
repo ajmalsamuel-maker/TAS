@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { TrendingUp, DollarSign, Percent, TrendingDown } from 'lucide-react';
+import { Activity, Shield, FileText } from 'lucide-react';
 
 export default function ProfitAnalysisDashboard() {
   const { data: transactions = [], isLoading } = useQuery({
@@ -51,8 +51,8 @@ export default function ProfitAnalysisDashboard() {
                 <p className="text-sm text-gray-600 mb-2">Total Revenue</p>
                 <p className="text-3xl font-bold text-gray-900">${totalRevenue.toFixed(2)}</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                <TrendingUp className="h-6 w-6 text-green-600" />
+              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                <Activity className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </CardContent>
@@ -65,8 +65,8 @@ export default function ProfitAnalysisDashboard() {
                 <p className="text-sm text-gray-600 mb-2">Total Costs</p>
                 <p className="text-3xl font-bold text-gray-900">${totalCosts.toFixed(2)}</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
-                <TrendingDown className="h-6 w-6 text-red-600" />
+              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                <Activity className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </CardContent>
@@ -80,7 +80,7 @@ export default function ProfitAnalysisDashboard() {
                 <p className="text-3xl font-bold text-gray-900">${totalProfit.toFixed(2)}</p>
               </div>
               <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                <DollarSign className="h-6 w-6 text-blue-600" />
+                <Shield className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </CardContent>
@@ -93,8 +93,8 @@ export default function ProfitAnalysisDashboard() {
                 <p className="text-sm text-gray-600 mb-2">Profit Margin</p>
                 <p className="text-3xl font-bold text-gray-900">{profitMargin}%</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
-                <Percent className="h-6 w-6 text-purple-600" />
+              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                <FileText className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </CardContent>
@@ -138,7 +138,7 @@ export default function ProfitAnalysisDashboard() {
                       <TableCell className="font-mono text-red-600">${data.cost.toFixed(2)}</TableCell>
                       <TableCell className="font-mono text-green-600">${profit.toFixed(2)}</TableCell>
                       <TableCell>
-                        <Badge className={margin > 20 ? 'bg-green-600' : margin > 10 ? 'bg-yellow-600' : 'bg-red-600'}>
+                        <Badge className="bg-blue-600">
                           {margin}%
                         </Badge>
                       </TableCell>
