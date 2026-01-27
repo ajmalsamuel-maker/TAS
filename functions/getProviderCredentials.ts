@@ -13,15 +13,32 @@ Deno.serve(async (req) => {
 
     const credentials = {};
 
-    // Map provider names to their secret keys
+    // Map provider names to their secret keys and endpoints
     const secretMap = {
-      'Facia': ['FACIA_CLIENT_ID', 'FACIA_CLIENT_SECRET'],
-      'KYB': ['KYB_API_KEY', 'KYB_CLIENT_ID', 'KYB_CLIENT_SECRET'],
-      'AML': ['AMLWATCHER_API_KEY', 'AMLWATCHER_CLIENT_ID', 'AMLWATCHER_CLIENT_SECRET'],
-      'AMLWatcher': ['AMLWATCHER_API_KEY', 'AMLWATCHER_CLIENT_ID', 'AMLWATCHER_CLIENT_SECRET']
+      'Facia': {
+        keys: ['FACIA_CLIENT_ID', 'FACIA_CLIENT_SECRET'],
+        endpoint: 'https://api.facia.io'
+      },
+      'KYB': {
+        keys: ['KYB_API_KEY', 'KYB_CLIENT_ID', 'KYB_CLIENT_SECRET'],
+        endpoint: 'https://api.kyb.provider.com'
+      },
+      'AML': {
+        keys: ['AMLWATCHER_API_KEY', 'AMLWATCHER_CLIENT_ID', 'AMLWATCHER_CLIENT_SECRET'],
+        endpoint: 'https://api.amlwatcher.com'
+      },
+      'AMLWatcher': {
+        keys: ['AMLWATCHER_API_KEY', 'AMLWATCHER_CLIENT_ID', 'AMLWATCHER_CLIENT_SECRET'],
+        endpoint: 'https://api.amlwatcher.com'
+      }
     };
 
-    const keys = secretMap[provider_name] || [];
+    const config = secretMap[provider_name];
+    if (!config) {
+      return Response.json({ provider_name, credentials: {}, api_endpoint: '' });
+    }
+
+    const { keys, endpoint } = config;
 
     for (const key of keys) {
       const value = Deno.env.get(key);
@@ -35,7 +52,8 @@ Deno.serve(async (req) => {
 
     return Response.json({ 
       provider_name,
-      credentials
+      credentials,
+      api_endpoint: endpoint
     });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
