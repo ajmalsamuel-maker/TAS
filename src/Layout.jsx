@@ -73,6 +73,7 @@ function LayoutContent({ children, currentPageName }) {
   // Admin Portal Navigation (Admins Only)
   const adminPortalPages = [
     { nameKey: 'nav.dashboard', icon: Shield, path: 'AdminDashboard', tooltip: 'Admin control panel' },
+    { name: 'LEI/vLEI', icon: Activity, path: 'LEIVLEIAdmin', tooltip: 'Credential issuance management' },
     { name: 'Billing', icon: Activity, path: 'BillingAdmin', tooltip: 'Manage billing and revenue' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings', tooltip: 'System and account settings' },
     { name: 'Docs', icon: FileText, path: 'AdminDocumentation', tooltip: 'Technical documentation and admin manual' }
