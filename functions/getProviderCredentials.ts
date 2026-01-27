@@ -19,31 +19,11 @@ Deno.serve(async (req) => {
         keys: ['FACIA_CLIENT_ID', 'FACIA_CLIENT_SECRET'],
         endpoint: 'https://api.facia.io'
       },
-      'KYB': {
-        keys: ['KYB_API_KEY'],
-        endpoint: 'https://api.kyb.provider.com'
-      },
-      'FTS KYB': {
-        keys: ['KYB_API_KEY'],
-        endpoint: 'https://api.kyb.provider.com'
-      },
       'The KYB Company': {
         keys: ['KYB_API_KEY'],
         endpoint: 'https://api.kyb.provider.com'
       },
-      'AML': {
-        keys: ['AMLWATCHER_API_KEY', 'AMLWATCHER_CLIENT_ID', 'AMLWATCHER_CLIENT_SECRET'],
-        endpoint: 'https://api.amlwatcher.com'
-      },
-      'FTS AML': {
-        keys: ['AMLWATCHER_API_KEY', 'AMLWATCHER_CLIENT_ID', 'AMLWATCHER_CLIENT_SECRET'],
-        endpoint: 'https://api.amlwatcher.com'
-      },
       'AML Watcher': {
-        keys: ['AMLWATCHER_API_KEY', 'AMLWATCHER_CLIENT_ID', 'AMLWATCHER_CLIENT_SECRET'],
-        endpoint: 'https://api.amlwatcher.com'
-      },
-      'AMLWatcher': {
         keys: ['AMLWATCHER_API_KEY', 'AMLWATCHER_CLIENT_ID', 'AMLWATCHER_CLIENT_SECRET'],
         endpoint: 'https://api.amlwatcher.com'
       }
