@@ -28,16 +28,23 @@ Deno.serve(async (req) => {
       };
     }
 
-    // Test KYB (The KYB) API status page
+    // Test KYB (The KYB) API - Company listing (v2)
     try {
-      const kybResponse = await fetch('http://status.thekyb.com/', {
+      const kybApiKey = Deno.env.get('KYB_API_KEY');
+      const kybResponse = await fetch('https://api.thekyb.com/v2/countries', {
         method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'token': kybApiKey
+        },
         signal: AbortSignal.timeout(5000)
       });
 
       results.apis.theKyb = {
-        status: kybResponse.ok ? 'online' : 'offline',
-        statusCode: kybResponse.status
+        status: (kybResponse.ok || kybResponse.status === 401) ? 'online' : 'offline',
+        statusCode: kybResponse.status,
+        note: kybResponse.status === 401 ? 'Invalid API key' : ''
       };
     } catch (error) {
       results.apis.theKyb = {
