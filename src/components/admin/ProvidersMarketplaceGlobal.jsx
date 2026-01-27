@@ -95,14 +95,14 @@ export default function ProvidersMarketplaceGlobal() {
       </div>
 
       {/* Category Tabs */}
-      <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
-          {PROVIDER_CATEGORIES.map(cat => (
-            <TabsTrigger key={cat} value={cat} className="text-xs">
-              {CATEGORY_LABELS[cat]?.split(' ')[0]}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+       <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
+         <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 gap-1 h-auto">
+           {PROVIDER_CATEGORIES.map(cat => (
+             <TabsTrigger key={cat} value={cat} className="text-xs py-2">
+               {CATEGORY_LABELS[cat]?.split(' ')[0]}
+             </TabsTrigger>
+           ))}
+         </TabsList>
 
         {PROVIDER_CATEGORIES.map(category => (
           <TabsContent key={category} value={category} className="space-y-4">
