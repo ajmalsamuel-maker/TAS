@@ -125,6 +125,7 @@ export default function BillingAdmin() {
             <TabsTrigger value="credits">Credits</TabsTrigger>
             <TabsTrigger value="referrals">Referrals</TabsTrigger>
             <TabsTrigger value="export">Export</TabsTrigger>
+            <TabsTrigger value="sync">Sync Status</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
 
@@ -162,6 +163,10 @@ export default function BillingAdmin() {
 
           <TabsContent value="export">
             <ExportPanel />
+          </TabsContent>
+
+          <TabsContent value="sync">
+            <AccountingSyncDashboard />
           </TabsContent>
 
           <TabsContent value="settings">

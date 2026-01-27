@@ -6,8 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Shield, Activity, Loader, ExternalLink } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Shield, Activity, Loader, ExternalLink, Settings, RefreshCw, BarChart } from 'lucide-react';
 import { toast } from 'sonner';
+import FieldMappingConfig from './FieldMappingConfig';
+import AccountingSyncDashboard from './AccountingSyncDashboard';
 
 export default function BillingSettingsPanel() {
   const queryClient = useQueryClient();
@@ -15,6 +18,8 @@ export default function BillingSettingsPanel() {
   const [formData, setFormData] = useState({});
   const [connectingIntegration, setConnectingIntegration] = useState(null);
   const [credentials, setCredentials] = useState({});
+  const [managingIntegration, setManagingIntegration] = useState(null);
+  const [syncing, setSyncing] = useState(false);
 
   // Fetch billing settings
   const { data: settings, isLoading } = useQuery({
@@ -105,6 +110,30 @@ export default function BillingSettingsPanel() {
       integrationKey: connectingIntegration,
       credentials: credentials
     });
+  };
+
+  const handleManageIntegration = (integrationKey) => {
+    setManagingIntegration(integrationKey);
+  };
+
+  const handleSyncNow = async (integrationKey) => {
+    setSyncing(true);
+    try {
+      const { data } = await base44.functions.invoke('syncAccountingData', {
+        integration_key: integrationKey,
+        sync_type: 'all'
+      });
+      
+      if (data.success) {
+        toast.success(`Synced ${data.synced} items successfully${data.failed > 0 ? `, ${data.failed} failed` : ''}`);
+      } else {
+        toast.error('Sync failed');
+      }
+    } catch (error) {
+      toast.error(error.message || 'Sync failed');
+    } finally {
+      setSyncing(false);
+    }
   };
 
   if (isLoading) {
@@ -405,20 +434,75 @@ export default function BillingSettingsPanel() {
                       Not Connected
                     </Badge>
                   )}
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
-                    className="hover:bg-blue-50 hover:border-blue-600"
-                    onClick={() => handleConnect(integration.key)}
-                  >
-                    {integration.connected ? 'Reconfigure' : 'Connect'}
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    {integration.connected && (
+                      <>
+                        <Button 
+                          size="sm" 
+                          variant="ghost"
+                          onClick={() => handleSyncNow(integration.key)}
+                          disabled={syncing}
+                        >
+                          <RefreshCw className={`h-4 w-4 ${syncing ? 'animate-spin' : ''}`} />
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="ghost"
+                          onClick={() => handleManageIntegration(integration.key)}
+                        >
+                          <Settings className="h-4 w-4" />
+                        </Button>
+                      </>
+                    )}
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="hover:bg-blue-50 hover:border-blue-600"
+                      onClick={() => handleConnect(integration.key)}
+                    >
+                      {integration.connected ? 'Reconfigure' : 'Connect'}
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
+
+      {/* Manage Integration Modal */}
+      {managingIntegration && (
+        <Dialog open={!!managingIntegration} onOpenChange={() => setManagingIntegration(null)}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>
+                Manage {integrations.find(i => i.key === managingIntegration)?.name}
+              </DialogTitle>
+              <DialogDescription>
+                Configure field mappings and view sync history
+              </DialogDescription>
+            </DialogHeader>
+
+            <Tabs defaultValue="mappings" className="mt-4">
+              <TabsList>
+                <TabsTrigger value="mappings">Field Mappings</TabsTrigger>
+                <TabsTrigger value="dashboard">Sync Dashboard</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="mappings">
+                <FieldMappingConfig 
+                  integrationKey={managingIntegration}
+                  integrationName={integrations.find(i => i.key === managingIntegration)?.name}
+                />
+              </TabsContent>
+
+              <TabsContent value="dashboard">
+                <AccountingSyncDashboard />
+              </TabsContent>
+            </Tabs>
+          </DialogContent>
+        </Dialog>
+      )}
 
       {/* Connection Modal */}
       {connectingIntegration && (
