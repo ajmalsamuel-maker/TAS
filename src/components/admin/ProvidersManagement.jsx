@@ -211,8 +211,8 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                                 <div>
                                   <Label className="text-sm font-semibold mb-2 block">API Endpoint</Label>
                                   <Input
-                                    value={editingProvider.api_endpoint || ''}
-                                    onChange={(e) => setEditingProvider({...editingProvider, api_endpoint: e.target.value})}
+                                    value={loadedCredentials.api_endpoint || editingProvider.api_endpoint || ''}
+                                    onChange={(e) => setLoadedCredentials({...loadedCredentials, api_endpoint: e.target.value})}
                                     placeholder="e.g., https://api.provider.com"
                                   />
                                 </div>
