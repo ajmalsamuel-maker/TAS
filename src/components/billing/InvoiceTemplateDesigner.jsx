@@ -229,19 +229,19 @@ export default function InvoiceTemplateDesigner() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {Object.entries(INVOICE_STANDARDS).map(([key, std]) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+            {invoiceStandards?.map((std) => (
               <button
-                key={key}
-                onClick={() => setSelectedStandard(key)}
+                key={std.id}
+                onClick={() => setSelectedStandard(std.country_code)}
                 className={`p-4 rounded-lg border-2 transition-all text-left ${
-                  selectedStandard === key
+                  selectedStandard === std.country_code
                     ? 'border-blue-600 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
-                <p className="font-semibold text-sm">{std.name}</p>
-                <p className="text-xs text-gray-600 mt-1">{std.regions.join(', ')}</p>
+                <p className="font-semibold text-sm">{std.country_name}</p>
+                <p className="text-xs text-gray-600 mt-1">{std.invoicing_standards?.join(', ')}</p>
               </button>
             ))}
           </div>
