@@ -40,6 +40,7 @@ const CATEGORY_LABELS = {
 export default function ProvidersMarketplaceGlobal() {
   const [selectedCategory, setSelectedCategory] = useState('KYB_KYC');
   const [searchTerm, setSearchTerm] = useState('');
+  const [showAddProvider, setShowAddProvider] = useState(false);
   const queryClient = useQueryClient();
 
   const { mutate: enableProvider, isPending } = useMutation({
