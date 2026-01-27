@@ -23,33 +23,37 @@ export default function ProvidersManagement({ providers: initialProviders }) {
     queryFn: () => base44.entities.Provider.list()
   });
 
-  // Load credentials when dialog opens with a provider
-  useEffect(() => {
-    if (showDialog && editingProvider) {
-      loadCredentials(editingProvider);
-    }
-  }, [showDialog, editingProvider?.id]);
-
   const loadCredentials = async (provider) => {
     setLoadingCredentials(true);
     try {
       const response = await base44.functions.invoke('getProviderCredentials', { 
         provider_name: provider.name 
       });
-      console.log('Loaded credentials:', response.data);
-      setLoadedCredentials(prev => ({
-        ...prev,
+      console.log('Credentials loaded for', provider.name, ':', response.data);
+      setLoadedCredentials({
         api_key: response.data.credentials?.api_key || '',
         client_id: response.data.credentials?.client_id || '',
         client_secret: response.data.credentials?.client_secret || '',
         api_endpoint: response.data.api_endpoint || ''
-      }));
+      });
     } catch (error) {
       console.error('Failed to load credentials:', error);
-      setLoadedCredentials({});
+      setLoadedCredentials({
+        api_key: '',
+        client_id: '',
+        client_secret: '',
+        api_endpoint: ''
+      });
     }
     setLoadingCredentials(false);
   };
+
+  // Load credentials when dialog opens
+  useEffect(() => {
+    if (showDialog && editingProvider) {
+      loadCredentials(editingProvider);
+    }
+  }, [showDialog, editingProvider?.id]);
 
   const { mutate: updateProvider } = useMutation({
     mutationFn: async (data) => {
