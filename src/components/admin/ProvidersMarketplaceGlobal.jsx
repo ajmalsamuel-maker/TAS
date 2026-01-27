@@ -161,6 +161,142 @@ export default function ProvidersMarketplaceGlobal() {
   );
 }
 
+function AddProviderDialog({ onClose }) {
+  const [formData, setFormData] = useState({
+    provider_name: '',
+    provider_category: 'KYB_KYC',
+    api_type: 'REST',
+    authentication_method: 'API_Key',
+    best_for: '',
+    service_types: [],
+    global_coverage: [],
+    accuracy_rate: 0,
+    response_time_ms: 0,
+    pricing_model: 'Per_Check'
+  });
+
+  const queryClient = useQueryClient();
+
+  const { mutate: addProvider } = useMutation({
+    mutationFn: async (data) => {
+      return await base44.entities.ProviderGlobal.create(data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['providersGlobal'] });
+      alert('Provider added to global registry!');
+      onClose();
+    },
+    onError: (err) => {
+      alert('Failed to add provider: ' + err.message);
+    }
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addProvider(formData);
+  };
+
+  return (
+    <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+      <DialogHeader>
+        <DialogTitle>Add Provider to Global Registry</DialogTitle>
+      </DialogHeader>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <Label className="text-sm font-semibold mb-2 block">Provider Name</Label>
+            <Input
+              required
+              placeholder="e.g., Certizen, AMLWatcher"
+              value={formData.provider_name}
+              onChange={(e) => setFormData({...formData, provider_name: e.target.value})}
+            />
+          </div>
+          <div>
+            <Label className="text-sm font-semibold mb-2 block">Category</Label>
+            <select 
+              className="w-full border rounded px-3 py-2 text-sm"
+              value={formData.provider_category}
+              onChange={(e) => setFormData({...formData, provider_category: e.target.value})}
+            >
+              {PROVIDER_CATEGORIES.map(cat => (
+                <option key={cat} value={cat}>{CATEGORY_LABELS[cat]}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <Label className="text-sm font-semibold mb-2 block">API Type</Label>
+            <select className="w-full border rounded px-3 py-2 text-sm"
+              value={formData.api_type}
+              onChange={(e) => setFormData({...formData, api_type: e.target.value})}
+            >
+              {['REST', 'GraphQL', 'SOAP', 'Webhook', 'SDK'].map(t => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <Label className="text-sm font-semibold mb-2 block">Auth Method</Label>
+            <select className="w-full border rounded px-3 py-2 text-sm"
+              value={formData.authentication_method}
+              onChange={(e) => setFormData({...formData, authentication_method: e.target.value})}
+            >
+              {['API_Key', 'OAuth2', 'JWT', 'Basic_Auth', 'Certificate'].map(a => (
+                <option key={a} value={a}>{a}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <Label className="text-sm font-semibold mb-2 block">Best For</Label>
+          <Input
+            placeholder="Use case description"
+            value={formData.best_for}
+            onChange={(e) => setFormData({...formData, best_for: e.target.value})}
+          />
+        </div>
+
+        <div className="grid grid-cols-3 gap-4">
+          <div>
+            <Label className="text-sm font-semibold mb-2 block">Accuracy Rate (%)</Label>
+            <Input
+              type="number"
+              min="0" max="100"
+              value={formData.accuracy_rate}
+              onChange={(e) => setFormData({...formData, accuracy_rate: Number(e.target.value)})}
+            />
+          </div>
+          <div>
+            <Label className="text-sm font-semibold mb-2 block">Response Time (ms)</Label>
+            <Input
+              type="number"
+              value={formData.response_time_ms}
+              onChange={(e) => setFormData({...formData, response_time_ms: Number(e.target.value)})}
+            />
+          </div>
+          <div>
+            <Label className="text-sm font-semibold mb-2 block">Pricing Model</Label>
+            <select className="w-full border rounded px-3 py-2 text-sm"
+              value={formData.pricing_model}
+              onChange={(e) => setFormData({...formData, pricing_model: e.target.value})}
+            >
+              {['Per_Check', 'Per_Month', 'Per_Verification', 'Volume_Based', 'Custom'].map(p => (
+                <option key={p} value={p}>{p}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="flex gap-2 pt-4">
+          <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
+          <Button type="submit" className="bg-blue-600 hover:bg-blue-700">Add to Registry</Button>
+        </div>
+      </form>
+    </DialogContent>
+  );
+}
+
 function ProviderCard({ provider, enabledProvider, queryClient, onEnable, isEnabling }) {
   const [expanded, setExpanded] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
