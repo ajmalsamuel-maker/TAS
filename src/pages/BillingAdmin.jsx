@@ -9,6 +9,7 @@ import BillingDashboard from '../components/billing/BillingDashboard';
 import BillingSettingsPanel from '../components/billing/BillingSettingsPanel';
 import BillingPlansManager from '../components/billing/BillingPlansManager';
 import ExportPanel from '../components/billing/ExportPanel';
+import AccountingSyncDashboard from '../components/billing/AccountingSyncDashboard';
 import CreditsManager from '../components/billing/CreditsManager';
 import ReferralManager from '../components/billing/ReferralManager';
 import ProviderCostManager from '../components/admin/ProviderCostManager';
