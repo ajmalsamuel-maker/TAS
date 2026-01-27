@@ -184,3 +184,7 @@ export const EVENT_CATEGORIES = {
   WORKFLOW: 'workflow',
   INTEGRATION: 'integration'
 };
+
+// Backward compatibility aliases
+export const ACTION_TYPES = AUDIT_EVENTS;
+export const logAction = logAuditEvent;
