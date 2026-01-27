@@ -49,25 +49,25 @@ export default function BillingSettingsPanel() {
     { 
       name: 'QuickBooks Online', 
       key: 'quickbooks', 
-      logo: 'https://quickbooks.intuit.com/oidam/intuit/sbseg/en_us/blog/images/quickbooks-icon-450x450.png',
+      logo: 'https://plugin.intuitcdn.net/designsystem/assets/2020/03/05130638/qb-logo.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) 
     },
     { 
       name: 'Xero', 
       key: 'xero', 
-      logo: 'https://developer.xero.com/static/images/developer-app-signup/xero-api.png',
+      logo: 'https://www.xero.com/content/dam/xero/pilot-images/logos/xero-logo.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'xero' && i.is_connected) 
     },
     { 
       name: 'Sage', 
       key: 'sage', 
-      logo: 'https://www.sage.com/en-gb/-/media/images/sagedotcom/master/global/sage_logo_green.svg',
+      logo: 'https://www.sage.com/-/media/images/sagedotcom/master/rebrand-2023/sage-logo.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) 
     },
     { 
       name: 'NetSuite', 
       key: 'netsuite', 
-      logo: 'https://www.netsuite.com/portal/assets/img/NetSuite-logo.svg',
+      logo: 'https://www.netsuite.com/portal/assets/img/business-suite/erp/oracle-netsuite-logo.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'netsuite' && i.is_connected) 
     },
     { 
@@ -103,13 +103,13 @@ export default function BillingSettingsPanel() {
     { 
       name: 'MYOB', 
       key: 'myob', 
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/MYOB_logo.svg/320px-MYOB_logo.svg.png',
+      logo: 'https://www.myob.com/content/dam/myob/nz/images/logos/myob-logo-teal.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'myob' && i.is_connected) 
     },
     { 
       name: 'TallyPrime', 
       key: 'tallyprime', 
-      logo: 'https://tallysolutions.com/rs/uploads/2020/05/tally-logo-icon.png',
+      logo: 'https://tallysolutions.com/wp-content/uploads/2021/07/tally-logo.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'tallyprime' && i.is_connected) 
     }
   ];
