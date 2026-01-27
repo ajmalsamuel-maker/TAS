@@ -28,23 +28,16 @@ Deno.serve(async (req) => {
       };
     }
 
-    // Test KYB (The KYB) API - company search endpoint
+    // Test KYB (The KYB) API status page
     try {
-      const kybApiKey = Deno.env.get('KYB_API_KEY');
-      const kybResponse = await fetch('https://api.thekyb.com/api/company-search', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${kybApiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ company_name: 'test' }),
+      const kybResponse = await fetch('http://status.thekyb.com/', {
+        method: 'GET',
         signal: AbortSignal.timeout(5000)
       });
-      
+
       results.apis.theKyb = {
-        status: (kybResponse.ok || kybResponse.status === 401 || kybResponse.status === 400) ? 'online' : 'offline',
-        statusCode: kybResponse.status,
-        note: kybResponse.status === 401 ? 'Invalid API key' : ''
+        status: kybResponse.ok ? 'online' : 'offline',
+        statusCode: kybResponse.status
       };
     } catch (error) {
       results.apis.theKyb = {
