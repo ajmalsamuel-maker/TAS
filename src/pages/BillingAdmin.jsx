@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Activity, Settings, Shield, FileText } from 'lucide-react';
+import { Activity, Settings, Shield, FileText, FileCheck } from 'lucide-react';
 import BillingDashboard from '../components/billing/BillingDashboard';
 import BillingSettingsPanel from '../components/billing/BillingSettingsPanel';
 import BillingPlansManager from '../components/billing/BillingPlansManager';
@@ -12,6 +12,7 @@ import ExportPanel from '../components/billing/ExportPanel';
 import AccountingSyncDashboard from '../components/billing/AccountingSyncDashboard';
 import CreditsManager from '../components/billing/CreditsManager';
 import ReferralManager from '../components/billing/ReferralManager';
+import InvoiceTemplateDesigner from '../components/billing/InvoiceTemplateDesigner';
 import ProviderCostManager from '../components/admin/ProviderCostManager';
 import MarkupRuleManager from '../components/admin/MarkupRuleManager';
 import ProfitAnalysisDashboard from '../components/admin/ProfitAnalysisDashboard';
@@ -116,9 +117,10 @@ export default function BillingAdmin() {
 
         {/* Tabs */}
         <Tabs defaultValue="dashboard" className="space-y-4">
-          <TabsList className="grid grid-cols-3 lg:grid-cols-10">
+          <TabsList className="grid grid-cols-3 lg:grid-cols-11 overflow-x-auto">
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="plans">Plans</TabsTrigger>
+            <TabsTrigger value="template">Template</TabsTrigger>
             <TabsTrigger value="costs">Provider Costs</TabsTrigger>
             <TabsTrigger value="markup">Markup Rules</TabsTrigger>
             <TabsTrigger value="profit">Profit Analysis</TabsTrigger>
@@ -136,6 +138,10 @@ export default function BillingAdmin() {
 
           <TabsContent value="plans">
             <BillingPlansManager />
+          </TabsContent>
+
+          <TabsContent value="template">
+            <InvoiceTemplateDesigner />
           </TabsContent>
 
           <TabsContent value="costs">
