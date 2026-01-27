@@ -10,14 +10,20 @@ Deno.serve(async (req) => {
       apis: {}
     };
 
-    // Test AML Watcher API
+    // Test AML Watcher API (use /get-access-token to verify credentials)
     try {
-      const amlResponse = await fetch('https://api.amlwatcher.com/health', {
-        method: 'GET',
+      const amlWatcherClientId = Deno.env.get('AMLWATCHER_CLIENT_ID');
+      const amlWatcherClientSecret = Deno.env.get('AMLWATCHER_CLIENT_SECRET');
+      
+      const amlResponse = await fetch('https://api.amlwatcher.com/get-access-token', {
+        method: 'POST',
         headers: {
-          'Authorization': `Bearer ${Deno.env.get('AMLWATCHER_API_KEY')}`,
           'Content-Type': 'application/json'
         },
+        body: JSON.stringify({
+          client_id: amlWatcherClientId,
+          client_secret: amlWatcherClientSecret
+        }),
         signal: AbortSignal.timeout(5000)
       });
       
@@ -32,9 +38,9 @@ Deno.serve(async (req) => {
       };
     }
 
-    // Test KYB Company API
+    // Test KYB (The KYB) API - correct base URL
     try {
-      const kybResponse = await fetch('https://api.kyb-company.com/health', {
+      const kybResponse = await fetch('https://api.thekyb.com/api', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${Deno.env.get('KYB_API_KEY')}`,
@@ -43,30 +49,31 @@ Deno.serve(async (req) => {
         signal: AbortSignal.timeout(5000)
       });
       
-      results.apis.kybCompany = {
+      results.apis.theKyb = {
         status: kybResponse.ok ? 'online' : 'offline',
         statusCode: kybResponse.status
       };
     } catch (error) {
-      results.apis.kybCompany = {
+      results.apis.theKyb = {
         status: 'offline',
         error: error.message
       };
     }
 
-    // Test Facia API
+    // Test FACEIO API - correct endpoint with /status
     try {
-      const faciaResponse = await fetch('https://api.facia.io/health', {
+      const faciaApiKey = Deno.env.get('FACIA_CLIENT_ID');
+      const faciaResponse = await fetch(`https://api.faceio.net/status?key=${faciaApiKey}`, {
         method: 'GET',
         signal: AbortSignal.timeout(5000)
       });
       
-      results.apis.facia = {
+      results.apis.faceio = {
         status: faciaResponse.ok ? 'online' : 'offline',
         statusCode: faciaResponse.status
       };
     } catch (error) {
-      results.apis.facia = {
+      results.apis.faceio = {
         status: 'offline',
         error: error.message
       };
