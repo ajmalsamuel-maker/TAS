@@ -49,25 +49,25 @@ export default function BillingSettingsPanel() {
     { 
       name: 'QuickBooks Online', 
       key: 'quickbooks', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiMyQ0EwMUIiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTAgMTBoNHY0aC00ek0xOCAxMGg0djRoLTR6TTEwIDE4aDR2NGgtNHpNMTggMThoNHY0aC00eiIvPjwvc3ZnPg==',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Intuit_QuickBooks_logo.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) 
     },
     { 
       name: 'Xero', 
       key: 'xero', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMTNCNUVBIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+WDwvdGV4dD48L3N2Zz4=',
+      logo: 'https://www.vectorlogo.zone/logos/xero/xero-ar21.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'xero' && i.is_connected) 
     },
     { 
       name: 'Sage', 
       key: 'sage', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDBEQzAwIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UzwvdGV4dD48L3N2Zz4=',
+      logo: 'https://www.vectorlogo.zone/logos/sage/sage-ar21.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) 
     },
     { 
       name: 'NetSuite', 
       key: 'netsuite', 
-      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjRUYzOTM5IiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TlM8L3RleHQ+PC9zdmc+',
+      logo: 'https://www.svgrepo.com/show/342094/oracle-netsuite.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'netsuite' && i.is_connected) 
     },
     { 
