@@ -81,9 +81,14 @@ export default function ProvidersMarketplaceGlobal() {
     queryFn: () => base44.entities.Provider.list()
   });
 
-  const filteredProviders = providers?.filter(p =>
-    p.provider_name.toLowerCase().includes(searchTerm.toLowerCase())
+  // Remove duplicates by provider_name
+  const uniqueProviders = providers?.filter((p, idx, arr) => 
+    arr.findIndex(x => x.provider_name === p.provider_name) === idx
   ) || [];
+
+  const filteredProviders = uniqueProviders.filter(p =>
+    p.provider_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="space-y-6">
