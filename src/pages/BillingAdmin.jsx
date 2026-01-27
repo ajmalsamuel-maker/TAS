@@ -172,13 +172,16 @@ export default function BillingAdmin() {
         {/* Info Banner */}
         <Card className="mt-8 bg-blue-50 border-2 border-blue-200">
           <CardContent className="pt-6">
-            <h3 className="font-semibold text-gray-900 mb-2">📋 Billing System Guide</h3>
+            <div className="flex items-center gap-2 mb-3">
+              <FileText className="h-5 w-5 text-blue-600" />
+              <h3 className="font-semibold text-gray-900">Billing System Guide</h3>
+            </div>
             <ul className="text-sm text-gray-700 space-y-1 ml-4">
-              <li>✓ <strong>Dashboard:</strong> View all invoices, revenue, and customer usage</li>
-              <li>✓ <strong>Billing Plans:</strong> Create/edit subscription tiers with custom pricing</li>
-              <li>✓ <strong>Settings:</strong> Configure company info, tax rates, auto-invoicing, and accounting integrations</li>
-              <li>✓ <strong>Usage Tracking:</strong> Automatically track KYB, AML, LEI, and API calls per customer</li>
-              <li>✓ <strong>Accounting Export:</strong> Export to QuickBooks, Xero, Sage, or NetSuite</li>
+              <li><Shield className="h-3 w-3 inline mr-2 text-blue-600" /><strong>Dashboard:</strong> View all invoices, revenue, and customer usage</li>
+              <li><Shield className="h-3 w-3 inline mr-2 text-blue-600" /><strong>Billing Plans:</strong> Create/edit subscription tiers with custom pricing</li>
+              <li><Shield className="h-3 w-3 inline mr-2 text-blue-600" /><strong>Settings:</strong> Configure company info, tax rates, auto-invoicing, and accounting integrations</li>
+              <li><Shield className="h-3 w-3 inline mr-2 text-blue-600" /><strong>Usage Tracking:</strong> Automatically track KYB, AML, LEI, and API calls per customer</li>
+              <li><Shield className="h-3 w-3 inline mr-2 text-blue-600" /><strong>Accounting Export:</strong> Export to QuickBooks, Xero, Sage, or NetSuite</li>
             </ul>
           </CardContent>
         </Card>
