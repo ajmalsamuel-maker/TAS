@@ -15,7 +15,7 @@ export default function StatsCard({ title, value, icon: Icon, bgColor, trend }) 
             </CardTitle>
           </div>
           <div className={`p-3 rounded-xl ${bgColor} bg-opacity-20`}>
-            <Icon className={`w-6 h-6 ${bgColor.replace('bg-', 'text-')}`} />
+            <Icon className="w-6 h-6 text-current" style={{ color: 'inherit' }} />
           </div>
         </div>
         {trend && (
