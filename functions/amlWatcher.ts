@@ -1,31 +1,5 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 
-const AML_BASE_URL = 'https://api.amlwatcher.com';
-
-async function screenEntity(searchParams) {
-  const apiKey = Deno.env.get('AMLWATCHER_API_KEY');
-  
-  const response = await fetch(`${AML_BASE_URL}/api/search`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: searchParams.name,
-      categories: searchParams.categories || ["PEP", "SIP", "Sanctions"],
-      entity_type: searchParams.entity_type || ["Person"],
-      match_score: searchParams.match_score || 80,
-      exact_search: searchParams.exact_search || false,
-      group_data: searchParams.group_data || false,
-      countries: searchParams.countries || [],
-      birth_incorporation_date: searchParams.birth_incorporation_date || "",
-      unique_identifier: searchParams.unique_identifier || "",
-      client_reference: searchParams.client_reference || "",
-      api_key: apiKey
-    })
-  });
-
-  return await response.json();
-}
-
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
@@ -37,16 +11,33 @@ Deno.serve(async (req) => {
 
     const { action, ...params } = await req.json();
 
-    if (action === 'screen') {
-      const results = await screenEntity(params);
-
-      return Response.json({ 
-        status: 'success',
-        data: results 
-      });
+    if (action !== 'screen') {
+      return Response.json({ error: 'Invalid action' }, { status: 400 });
     }
 
-    return Response.json({ error: 'Invalid action' }, { status: 400 });
+    // Route through orchestrator for intelligent provider selection
+    const orchestratorResponse = await base44.functions.invoke('providerOrchestrator', {
+      service_type: 'aml',
+      country_code: params.country || user.country_code,
+      request_data: {
+        name: params.name,
+        categories: params.categories || ["PEP", "SIP", "Sanctions"],
+        entity_type: params.entity_type || ["Person"],
+        match_score: params.match_score || 80,
+        exact_search: params.exact_search || false,
+        group_data: params.group_data || false,
+        countries: params.countries || [],
+        birth_incorporation_date: params.birth_incorporation_date || "",
+        unique_identifier: params.unique_identifier || "",
+        client_reference: params.client_reference || ""
+      }
+    });
+
+    return Response.json({ 
+      status: 'success',
+      data: orchestratorResponse.data.data,
+      provider_used: orchestratorResponse.data.provider_used
+    });
 
   } catch (error) {
     return Response.json({ 
