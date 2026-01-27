@@ -4,6 +4,7 @@ import { createPageUrl } from '../utils';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import ProvidersMarketplaceGlobal from '@/components/admin/ProvidersMarketplaceGlobal';
 import { 
   Users, Activity, Globe, Shield, TrendingUp, 
   AlertTriangle, CheckCircle2, Server
