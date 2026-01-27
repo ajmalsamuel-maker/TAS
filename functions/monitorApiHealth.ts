@@ -34,16 +34,16 @@ Deno.serve(async (req) => {
       };
     }
 
-    // Test KYB (The KYB) API - search endpoint
+    // Test KYB (The KYB) API - company search endpoint
     try {
       const kybApiKey = Deno.env.get('KYB_API_KEY');
-      const kybResponse = await fetch('https://api.thekyb.com/api/v1/search', {
+      const kybResponse = await fetch('https://api.thekyb.com/api/company-search', {
         method: 'POST',
         headers: {
-          'X-API-KEY': kybApiKey,
+          'Authorization': `Bearer ${kybApiKey}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ company_name: 'test' }),
         signal: AbortSignal.timeout(5000)
       });
       
