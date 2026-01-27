@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Download, FileText, Loader } from 'lucide-react';
+import { Download, FileText, Loader, Activity } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function ExportPanel() {
@@ -29,9 +29,9 @@ export default function ExportPanel() {
   });
 
   const formatOptions = [
-    { value: 'csv', label: 'CSV', icon: '📄' },
-    { value: 'excel', label: 'Excel (XLSX)', icon: '📊' },
-    { value: 'json', label: 'JSON', icon: '{ }' }
+    { value: 'csv', label: 'CSV', icon: FileText },
+    { value: 'excel', label: 'Excel (XLSX)', icon: Activity },
+    { value: 'json', label: 'JSON', icon: FileText }
   ];
 
   return (
@@ -45,20 +45,23 @@ export default function ExportPanel() {
           <div>
             <label className="text-sm font-semibold mb-2 block">Export Format</label>
             <div className="grid md:grid-cols-3 gap-2">
-              {formatOptions.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => setFilters({...filters, format: option.value})}
-                  className={`p-3 border rounded-lg transition-all ${
-                    filters.format === option.value
-                      ? 'bg-blue-100 border-blue-400'
-                      : 'bg-gray-50 hover:bg-gray-100'
-                  }`}
-                >
-                  <p className="text-2xl mb-1">{option.icon}</p>
-                  <p className="text-sm font-semibold">{option.label}</p>
-                </button>
-              ))}
+              {formatOptions.map((option) => {
+                const IconComponent = option.icon;
+                return (
+                  <button
+                    key={option.value}
+                    onClick={() => setFilters({...filters, format: option.value})}
+                    className={`p-4 border rounded-lg transition-all flex flex-col items-center gap-2 ${
+                      filters.format === option.value
+                        ? 'bg-blue-100 border-blue-400'
+                        : 'bg-gray-50 hover:bg-gray-100'
+                    }`}
+                  >
+                    <IconComponent className="h-8 w-8 text-blue-600" />
+                    <p className="text-sm font-semibold">{option.label}</p>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -84,7 +87,7 @@ export default function ExportPanel() {
           <Button
             onClick={() => exportMutation.mutate(filters)}
             disabled={exportMutation.isPending}
-            className="w-full bg-green-600 hover:bg-green-700"
+            className="w-full bg-blue-600 hover:bg-blue-700"
           >
             {exportMutation.isPending ? (
               <>
@@ -103,9 +106,12 @@ export default function ExportPanel() {
 
       {/* Info */}
       <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
-        <p className="text-sm text-gray-700">
-          <strong>💡 Tip:</strong> Use CSV for spreadsheet applications, Excel for advanced formatting, or JSON for system integrations.
-        </p>
+        <div className="flex items-start gap-2">
+          <Activity className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+          <p className="text-sm text-gray-700">
+            <strong>Export Formats:</strong> Use CSV for spreadsheet applications, Excel for advanced formatting, or JSON for system integrations.
+          </p>
+        </div>
       </div>
 
       {/* Quick Export Buttons */}
