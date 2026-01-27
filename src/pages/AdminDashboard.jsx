@@ -17,6 +17,7 @@ import UserManagement from '../components/admin/UserManagement';
 import AuditLogsManagement from '../components/admin/AuditLogsManagement';
 import WebhookManagement from '../components/admin/WebhookManagement';
 import AMLMonitoringPanel from '../components/admin/AMLMonitoringPanel';
+import MonitoringDashboard from '../components/monitoring/MonitoringDashboard';
 import PolicyManager from '../components/policy/PolicyManager';
 import CaseQueue from '../components/case/CaseQueue';
 import TransactionMonitoring from '../components/transaction/TransactionMonitoring';
@@ -231,7 +232,10 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="monitoring">
-            <AMLMonitoringPanel />
+            <div className="space-y-6">
+              <MonitoringDashboard />
+              <AMLMonitoringPanel />
+            </div>
           </TabsContent>
 
           <TabsContent value="cases">
