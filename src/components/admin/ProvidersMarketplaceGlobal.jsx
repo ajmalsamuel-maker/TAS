@@ -139,8 +139,23 @@ export default function ProvidersMarketplaceGlobal() {
   );
 }
 
-function ProviderCard({ provider }) {
+function ProviderCard({ provider, enabledProvider, queryClient }) {
   const [expanded, setExpanded] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [config, setConfig] = useState(enabledProvider?.config || {});
+
+  const { mutate: updateProvider } = useMutation({
+    mutationFn: async () => {
+      return await base44.entities.Provider.update(enabledProvider.id, {
+        config: config
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['enabledProviders'] });
+      setEditOpen(false);
+      alert('Provider configuration updated!');
+    }
+  });
 
   return (
     <Card className="hover:shadow-lg transition-shadow">
@@ -319,14 +334,74 @@ function ProviderCard({ provider }) {
               </div>
             )}
 
-            {/* Action Button */}
-            <Button 
-              onClick={() => handleEnableProvider(provider)}
-              disabled={isPending}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
-            >
-              {isPending ? 'Enabling...' : `Enable ${provider.provider_name}`}
-            </Button>
+            {/* Action Buttons */}
+            <div className="flex gap-2">
+              {enabledProvider ? (
+                <Dialog open={editOpen} onOpenChange={setEditOpen}>
+                  <DialogTrigger asChild>
+                    <Button className="flex-1 bg-green-600 hover:bg-green-700">
+                      <Settings className="h-4 w-4 mr-2" />
+                      Configure
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Configure {provider.provider_name}</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                      <div>
+                        <Label className="text-sm font-semibold mb-2 block">Provider Status</Label>
+                        <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                          {enabledProvider.status}
+                        </div>
+                      </div>
+
+                      {provider.setup_requirements?.map(req => (
+                        <div key={req}>
+                          <Label className="text-sm font-semibold mb-2 block">{req}</Label>
+                          <Input
+                            placeholder={`Enter ${req}`}
+                            value={config[req] || ''}
+                            onChange={(e) => setConfig({...config, [req]: e.target.value})}
+                          />
+                        </div>
+                      ))}
+
+                      <div>
+                        <Label className="text-sm font-semibold mb-2 block">Custom Configuration (JSON)</Label>
+                        <Textarea
+                          placeholder='{"key": "value"}'
+                          value={typeof config.custom_fields === 'string' ? config.custom_fields : JSON.stringify(config.custom_fields || {})}
+                          onChange={(e) => setConfig({...config, custom_fields: e.target.value})}
+                          className="h-32 font-mono text-xs"
+                        />
+                      </div>
+
+                      <div className="bg-blue-50 border border-blue-200 rounded p-3">
+                        <p className="text-xs text-blue-800 mb-2 font-semibold">API Details</p>
+                        <div className="text-xs text-blue-700 space-y-1">
+                          <p><strong>Base URL:</strong> {provider.api_endpoints?.base_url}</p>
+                          <p><strong>Auth Method:</strong> {provider.authentication_method}</p>
+                          <p><strong>Sandbox:</strong> {provider.api_endpoints?.sandbox_url}</p>
+                        </div>
+                      </div>
+
+                      <Button onClick={() => updateProvider()} className="w-full bg-blue-600 hover:bg-blue-700">
+                        Save Configuration
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              ) : (
+                <Button 
+                  onClick={() => window.ProvidersMarketplaceGlobal?.handleEnableProvider?.(provider)}
+                  disabled={isPending}
+                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
+                >
+                  {isPending ? 'Enabling...' : `Enable ${provider.provider_name}`}
+                </Button>
+              )}
+            </div>
           </div>
         )}
       </CardContent>
