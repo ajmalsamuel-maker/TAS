@@ -41,9 +41,9 @@ export default function UserTeam() {
   }, []);
 
   const { data: teamMembers = [] } = useQuery({
-    queryKey: ['team-members', organization?.id],
-    queryFn: () => base44.entities.User.filter({ organization_id: organization.id }),
-    enabled: !!organization?.id,
+    queryKey: ['team-members', user?.organization_id],
+    queryFn: () => base44.entities.User.filter({ organization_id: user.organization_id }),
+    enabled: !!user?.organization_id,
     initialData: []
   });
 
@@ -55,7 +55,7 @@ export default function UserTeam() {
       toast.success('User invited successfully');
       setInviteData({ email: '', role: 'user' });
       setShowInviteForm(false);
-      queryClient.invalidateQueries(['team-members']);
+      queryClient.invalidateQueries({ queryKey: ['team-members'] });
     },
     onError: (error) => {
       toast.error('Failed to invite user: ' + error.message);

@@ -47,7 +47,7 @@ export default function UserPolicies() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-bold text-gray-900 mb-2">Compliance Policies</h1>
-            <p className="text-gray-600">Manage custom compliance and verification policies for {organization.name}</p>
+            <p className="text-gray-600">Manage custom compliance and verification policies</p>
           </div>
           <Button className="bg-blue-600">
             <Plus className="h-4 w-4 mr-2" />
