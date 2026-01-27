@@ -49,25 +49,25 @@ export default function BillingSettingsPanel() {
     { 
       name: 'QuickBooks Online', 
       key: 'quickbooks', 
-      logo: 'https://plugin.intuit.com/quickbooks-online/mobileapp/images/quickbooks-icon.png',
+      logo: null,
       connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) 
     },
     { 
       name: 'Xero', 
       key: 'xero', 
-      logo: 'https://www.xero.com/content/dam/xero/pilot-images/logos/xero-logo.svg',
+      logo: null,
       connected: settings?.accounting_integrations?.some(i => i.system === 'xero' && i.is_connected) 
     },
     { 
       name: 'Sage', 
       key: 'sage', 
-      logo: 'https://www.sage.com/~/media/images/sagedotcom/master/global/logos/sage-logo.svg',
+      logo: null,
       connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) 
     },
     { 
       name: 'NetSuite', 
       key: 'netsuite', 
-      logo: 'https://www.netsuite.com/portal/assets/img/NS-logo.svg',
+      logo: null,
       connected: settings?.accounting_integrations?.some(i => i.system === 'netsuite' && i.is_connected) 
     },
     { 
@@ -174,16 +174,15 @@ export default function BillingSettingsPanel() {
             {integrations.map((integration) => (
               <div key={integration.key} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                 <div className="flex items-center gap-3">
-                  <img 
-                    src={integration.logo} 
-                    alt={`${integration.name} logo`}
-                    className="h-8 w-8 object-contain"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
-                  <Activity className="h-8 w-8 text-blue-600 hidden" />
+                  {integration.logo ? (
+                    <img 
+                      src={integration.logo} 
+                      alt={`${integration.name} logo`}
+                      className="h-8 w-8 object-contain"
+                    />
+                  ) : (
+                    <Activity className="h-8 w-8 text-blue-600" />
+                  )}
                   <div>
                     <p className="font-semibold text-gray-900">{integration.name}</p>
                     <p className="text-sm text-gray-600">Auto-export invoices</p>
