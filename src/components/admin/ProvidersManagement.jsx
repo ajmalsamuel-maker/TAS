@@ -10,6 +10,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Server, Activity, Globe, Settings, Trash2 } from 'lucide-react';
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
+import ProviderCountryRouting from './ProviderCountryRouting';
+import ProviderHealthConfig from './ProviderHealthConfig';
 
 export default function ProvidersManagement({ providers: initialProviders }) {
   const [editingProvider, setEditingProvider] = useState(null);
@@ -159,6 +161,8 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex gap-2 justify-end">
+                      <ProviderHealthConfig provider={provider} />
+                      <ProviderCountryRouting provider={provider} />
                       <Dialog open={showDialog && editingProvider?.id === provider.id} onOpenChange={(open) => {
                         setShowDialog(open);
                         if (!open) {
