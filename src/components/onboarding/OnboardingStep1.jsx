@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Search, CheckCircle2, Loader, Building2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { ISO_COUNTRIES } from './countryData';
 
 export default function OnboardingStep1({ formData, setFormData }) {
   const [searchQuery, setSearchQuery] = useState('');
