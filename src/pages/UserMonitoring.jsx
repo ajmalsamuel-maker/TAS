@@ -53,7 +53,7 @@ export default function UserMonitoring() {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['user-schedules']);
+      queryClient.invalidateQueries({ queryKey: ['user-schedules'] });
       toast.success('Schedule updated');
     }
   });
@@ -67,9 +67,9 @@ export default function UserMonitoring() {
       }
     },
     onSuccess: (result) => {
-      queryClient.invalidateQueries(['user-schedules']);
-      queryClient.invalidateQueries(['aml-alerts']);
-      queryClient.invalidateQueries(['kyb-alerts']);
+      queryClient.invalidateQueries({ queryKey: ['user-schedules'] });
+      queryClient.invalidateQueries({ queryKey: ['aml-alerts'] });
+      queryClient.invalidateQueries({ queryKey: ['kyb-alerts'] });
       toast.success(`Check complete`);
     },
     onError: (error) => {
@@ -77,7 +77,7 @@ export default function UserMonitoring() {
     }
   });
 
-  if (!user || !organization) {
+  if (!user) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
         <p className="text-gray-600">Loading...</p>
@@ -107,7 +107,7 @@ export default function UserMonitoring() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Compliance Monitoring</h1>
-          <p className="text-gray-600">Ongoing AML and KYB monitoring for {organization.name}</p>
+          <p className="text-gray-600">Ongoing AML and KYB monitoring</p>
         </div>
 
         {/* Stats */}
