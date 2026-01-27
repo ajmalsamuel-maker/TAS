@@ -29,7 +29,10 @@ export default function ProvidersManagement({ providers: initialProviders }) {
       const { data } = await base44.functions.invoke('getProviderCredentials', { 
         provider_name: provider.name 
       });
-      setLoadedCredentials(data.credentials || {});
+      setLoadedCredentials({
+        ...data.credentials,
+        api_endpoint: data.api_endpoint
+      });
     } catch (error) {
       console.error('Failed to load credentials:', error);
       setLoadedCredentials({});
