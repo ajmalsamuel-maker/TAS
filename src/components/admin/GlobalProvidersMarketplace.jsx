@@ -38,7 +38,7 @@ const categoryColors = {
   'BLOCKCHAIN_COMPLIANCE': 'bg-cyan-100 text-cyan-800'
 };
 
-export default function GlobalProvidersMarketplace() {
+export default function GlobalProviders() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedProvider, setSelectedProvider] = useState(null);
