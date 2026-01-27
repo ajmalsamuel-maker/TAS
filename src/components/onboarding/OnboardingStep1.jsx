@@ -17,20 +17,25 @@ export default function OnboardingStep1({ formData, setFormData }) {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    // Fetch all supported countries from KYB API
-    const fetchCountries = async () => {
-      try {
-        const result = await base44.functions.invoke('kyb', {
-          action: 'countries'
-        });
-        if (result.data?.data?.countries) {
-          setCountries(result.data.data.countries);
+    // Use ISO country standards as primary source
+    if (ISO_COUNTRIES && ISO_COUNTRIES.length > 0) {
+      setCountries(ISO_COUNTRIES);
+    } else {
+      // Fallback: fetch from KYB API
+      const fetchCountries = async () => {
+        try {
+          const result = await base44.functions.invoke('kyb', {
+            action: 'countries'
+          });
+          if (result.data?.data?.countries) {
+            setCountries(result.data.data.countries);
+          }
+        } catch (error) {
+          console.error('Failed to fetch countries:', error);
         }
-      } catch (error) {
-        console.error('Failed to fetch countries:', error);
-      }
-    };
-    fetchCountries();
+      };
+      fetchCountries();
+    }
   }, []);
 
   const updateField = (field, value) => {
