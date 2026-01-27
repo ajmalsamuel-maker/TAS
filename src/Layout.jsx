@@ -9,7 +9,7 @@ import LanguageSelector from './components/i18n/LanguageSelector';
 import NotificationBell from './components/notifications/NotificationBell';
 import { 
           Home, Users, Activity, Globe, LogOut, 
-          Shield, Menu, X, Settings, BarChart, Mail, FileText, BookOpen
+          Shield, Menu, X, Settings, BarChart, Mail, FileText, BookOpen, AlertTriangle
         } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
@@ -65,7 +65,13 @@ function LayoutContent({ children, currentPageName }) {
   const userPortalPages = [
     { nameKey: 'nav.dashboard', icon: Activity, path: 'UserDashboard', tooltip: 'View your dashboard overview' },
     { name: 'Monitoring', icon: Shield, path: 'UserMonitoring', tooltip: 'AML & KYB ongoing monitoring' },
+    { name: 'Alerts', icon: AlertTriangle, path: 'UserAlerts', tooltip: 'View compliance alerts' },
+    { name: 'Workflows', icon: Activity, path: 'UserWorkflows', tooltip: 'Track verification workflows' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials', tooltip: 'Manage LEI and vLEI credentials' },
+    { name: 'Transactions', icon: Activity, path: 'UserTransactions', tooltip: 'Monitor transactions' },
+    { name: 'Cases', icon: Shield, path: 'UserCases', tooltip: 'View assigned cases' },
+    { name: 'Policies', icon: FileText, path: 'UserPolicies', tooltip: 'Manage compliance policies' },
+    { name: 'Team', icon: Users, path: 'UserTeam', tooltip: 'Manage team members' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings', tooltip: 'Configure account settings' },
     { name: 'Documentation', icon: FileText, path: 'UserPortalDocumentation', tooltip: 'Technical documentation and user manual' }
   ];
