@@ -379,21 +379,25 @@ function ProviderCard({ provider, enabledProvider, queryClient, onEnable, isEnab
         {expanded && (
           <div className="space-y-4 pt-4 border-t">
             {/* Coverage Map */}
-            <div>
-              <p className="text-xs font-semibold text-gray-600 mb-2">Global Coverage</p>
-              <div className="flex flex-wrap gap-1">
-                {provider.global_coverage?.slice(0, 10).map(country => (
-                  <Badge key={country} variant="outline" className="text-xs">
-                    {country}
-                  </Badge>
-                ))}
-                {provider.global_coverage?.length > 10 && (
-                  <Badge variant="outline" className="text-xs">
-                    +{provider.global_coverage.length - 10} more
-                  </Badge>
-                )}
-              </div>
-            </div>
+             <div>
+               <p className="text-xs font-semibold text-gray-600 mb-2">Global Coverage</p>
+               {!provider.global_coverage || provider.global_coverage.length === 0 ? (
+                 <Badge className="bg-green-100 text-green-800 text-xs">Global Coverage</Badge>
+               ) : (
+                 <div className="flex flex-wrap gap-1">
+                   {provider.global_coverage.slice(0, 10).map(country => (
+                     <Badge key={country} variant="outline" className="text-xs">
+                       {country}
+                     </Badge>
+                   ))}
+                   {provider.global_coverage.length > 10 && (
+                     <Badge variant="outline" className="text-xs">
+                       +{provider.global_coverage.length - 10} more
+                     </Badge>
+                   )}
+                 </div>
+               )}
+             </div>
 
             {/* Supported Documents */}
             {provider.supported_documents?.length > 0 && (
