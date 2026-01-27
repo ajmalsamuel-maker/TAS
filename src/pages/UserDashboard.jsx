@@ -27,14 +27,14 @@ export default function UserDashboard() {
 
   const { data: workflows = [] } = useQuery({
     queryKey: ['user-workflows'],
-    queryFn: () => base44.entities.Workflow.filter({ user_id: user?.id }),
+    queryFn: () => base44.entities.Workflow.filter({ created_by: user?.email }),
     enabled: !!user,
     initialData: []
   });
 
   const { data: alerts = [] } = useQuery({
     queryKey: ['user-alerts'],
-    queryFn: () => base44.entities.AMLAlert.filter({ user_id: user?.id }),
+    queryFn: () => base44.entities.AMLAlert.filter({ created_by: user?.email }),
     enabled: !!user,
     initialData: []
   });
