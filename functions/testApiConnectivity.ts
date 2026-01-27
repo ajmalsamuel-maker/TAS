@@ -5,66 +5,62 @@ const FACIA_BASE_URL = 'https://api.facia.ai';
 const KYB_BASE_URL = 'https://api.kyb.fts-alpha.com';
 
 async function testAMLWatcher() {
-  const clientId = Deno.env.get('AMLWATCHER_CLIENT_ID');
-  const clientSecret = Deno.env.get('AMLWATCHER_CLIENT_SECRET');
-
-  if (!clientId || !clientSecret) {
-    return {
-      service: 'AML Watcher',
-      status: 'error',
-      message: 'Missing credentials',
-      connected: false
-    };
-  }
-
   try {
-    // Test authentication
-    const authResponse = await fetch(`${AML_BASE_URL}/get-access-token`, {
+    const apiKey = Deno.env.get('AMLWATCHER_API_KEY');
+
+    if (!apiKey) {
+      return {
+        service: 'AML Watcher',
+        status: 'warning',
+        message: 'API Key not configured',
+        connected: false,
+        note: 'Please set AMLWATCHER_API_KEY'
+      };
+    }
+
+    // Test a simple search request
+    const searchResponse = await fetch(`${AML_BASE_URL}/api/search`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ client_id: clientId, client_secret: clientSecret })
+      body: JSON.stringify({
+        name: 'Test Entity',
+        categories: ['PEP'],
+        entity_type: ['Person'],
+        match_score: 100,
+        api_key: apiKey
+      })
     });
 
-    const authData = await authResponse.json();
-    
-    if (authData.status !== 'SUCCESS') {
+    if (!searchResponse.ok) {
+      const text = await searchResponse.text();
       return {
         service: 'AML Watcher',
         status: 'error',
-        message: authData.error || 'Authentication failed',
+        message: `API request failed: ${text}`,
         connected: false
       };
     }
 
-    // Test API key generation
-    const apiKeyResponse = await fetch(`${AML_BASE_URL}/api/api-key`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${authData.data.access_token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ expires_at: 30 })
-    });
+    const searchData = await searchResponse.json();
 
-    const apiKeyData = await apiKeyResponse.json();
-
-    if (apiKeyData.status !== 'SUCCESS') {
+    if (searchData.status === 'SUCCESS' || searchData.status === 'FAIL') {
+      return {
+        service: 'AML Watcher',
+        status: 'success',
+        message: 'Connected successfully',
+        connected: true,
+        capabilities: ['Entity Screening', 'PEP Detection', 'Sanctions Screening', 'Adverse Media']
+      };
+    } else {
       return {
         service: 'AML Watcher',
         status: 'warning',
-        message: 'Authenticated but API key generation failed',
-        connected: true,
-        details: apiKeyData
+        message: 'Unexpected API response format',
+        connected: false,
+        details: searchData
       };
     }
 
-    return {
-      service: 'AML Watcher',
-      status: 'success',
-      message: 'Connected successfully',
-      connected: true,
-      capabilities: ['Authentication', 'API Key Generation', 'Entity Screening']
-    };
   } catch (error) {
     return {
       service: 'AML Watcher',

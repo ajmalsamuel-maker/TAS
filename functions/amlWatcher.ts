@@ -2,53 +2,25 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 
 const AML_BASE_URL = 'https://api.amlwatcher.com';
 
-async function getAccessToken() {
-  const clientId = Deno.env.get('AMLWATCHER_CLIENT_ID');
-  const clientSecret = Deno.env.get('AMLWATCHER_CLIENT_SECRET');
-
-  const response = await fetch(`${AML_BASE_URL}/get-access-token`, {
+async function screenEntity(searchParams) {
+  const apiKey = Deno.env.get('AMLWATCHER_API_KEY');
+  
+  const response = await fetch(`${AML_BASE_URL}/api/search`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      client_id: clientId,
-      client_secret: clientSecret
+      name: searchParams.name,
+      categories: searchParams.categories || ["PEP", "SIP", "Sanctions"],
+      entity_type: searchParams.entity_type || ["Person"],
+      match_score: searchParams.match_score || 80,
+      exact_search: searchParams.exact_search || false,
+      group_data: searchParams.group_data || false,
+      countries: searchParams.countries || [],
+      birth_incorporation_date: searchParams.birth_incorporation_date || "",
+      unique_identifier: searchParams.unique_identifier || "",
+      client_reference: searchParams.client_reference || "",
+      api_key: apiKey
     })
-  });
-
-  const data = await response.json();
-  if (data.status !== 'SUCCESS') {
-    throw new Error(data.error || 'Failed to get access token');
-  }
-
-  return data.data.access_token;
-}
-
-async function generateApiKey(accessToken) {
-  const response = await fetch(`${AML_BASE_URL}/api/api-key`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${accessToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ expires_at: 30 })
-  });
-
-  const data = await response.json();
-  if (data.status !== 'SUCCESS') {
-    throw new Error(data.error || 'Failed to generate API key');
-  }
-
-  return data.data.api_key.key;
-}
-
-async function screenEntity(apiKey, searchParams) {
-  const response = await fetch(`${AML_BASE_URL}/api/search`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(searchParams)
   });
 
   return await response.json();
@@ -66,9 +38,7 @@ Deno.serve(async (req) => {
     const { action, ...params } = await req.json();
 
     if (action === 'screen') {
-      const accessToken = await getAccessToken();
-      const apiKey = await generateApiKey(accessToken);
-      const results = await screenEntity(apiKey, params);
+      const results = await screenEntity(params);
 
       return Response.json({ 
         status: 'success',
