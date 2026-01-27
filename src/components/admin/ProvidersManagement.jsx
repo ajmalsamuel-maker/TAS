@@ -144,60 +144,75 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                             <Settings className="h-4 w-4" />
                           </Button>
                         </DialogTrigger>
-                        {editingProvider && (
-                          <DialogContent className="max-w-2xl">
-                            <DialogHeader>
-                              <DialogTitle>Configure {editingProvider.name}</DialogTitle>
-                            </DialogHeader>
-                            <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-                              <div>
-                                <Label className="text-sm font-semibold mb-2 block">API Key</Label>
-                                <Input
-                                  value={editConfig.api_key || ''}
-                                  onChange={(e) => setEditConfig({...editConfig, api_key: e.target.value})}
-                                  type="password"
-                                  placeholder="Enter API key"
-                                />
-                              </div>
+                        <DialogContent className="max-w-2xl">
+                          {editingProvider && (
+                            <>
+                              <DialogHeader>
+                                <DialogTitle>Configure {editingProvider.name}</DialogTitle>
+                              </DialogHeader>
+                              <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                                <div className="bg-blue-50 border border-blue-200 rounded p-3 text-xs text-blue-800">
+                                  <strong>Provider:</strong> {editingProvider.name} | <strong>Type:</strong> {editingProvider.service_type}
+                                </div>
 
-                              <div>
-                                <Label className="text-sm font-semibold mb-2 block">Client ID</Label>
-                                <Input
-                                  value={editConfig.client_id || ''}
-                                  onChange={(e) => setEditConfig({...editConfig, client_id: e.target.value})}
-                                  placeholder="Enter client ID"
-                                />
-                              </div>
+                                <div>
+                                  <Label className="text-sm font-semibold mb-2 block">API Key</Label>
+                                  <Input
+                                    value={editConfig.api_key || ''}
+                                    onChange={(e) => setEditConfig({...editConfig, api_key: e.target.value})}
+                                    type="password"
+                                    placeholder="Enter API key"
+                                  />
+                                </div>
 
-                              <div>
-                                <Label className="text-sm font-semibold mb-2 block">Client Secret</Label>
-                                <Input
-                                  value={editConfig.client_secret || ''}
-                                  onChange={(e) => setEditConfig({...editConfig, client_secret: e.target.value})}
-                                  type="password"
-                                  placeholder="Enter client secret"
-                                />
-                              </div>
+                                <div>
+                                  <Label className="text-sm font-semibold mb-2 block">Client ID</Label>
+                                  <Input
+                                    value={editConfig.client_id || ''}
+                                    onChange={(e) => setEditConfig({...editConfig, client_id: e.target.value})}
+                                    placeholder="Enter client ID"
+                                  />
+                                </div>
 
-                              <div>
-                                <Label className="text-sm font-semibold mb-2 block">Custom Configuration (JSON)</Label>
-                                <Textarea
-                                  placeholder='{"key": "value"}'
-                                  value={typeof editConfig.custom_fields === 'string' ? editConfig.custom_fields : JSON.stringify(editConfig.custom_fields || {})}
-                                  onChange={(e) => setEditConfig({...editConfig, custom_fields: e.target.value})}
-                                  className="h-32 font-mono text-xs"
-                                />
-                              </div>
+                                <div>
+                                  <Label className="text-sm font-semibold mb-2 block">Client Secret</Label>
+                                  <Input
+                                    value={editConfig.client_secret || ''}
+                                    onChange={(e) => setEditConfig({...editConfig, client_secret: e.target.value})}
+                                    type="password"
+                                    placeholder="Enter client secret"
+                                  />
+                                </div>
 
-                              <Button 
-                                onClick={() => updateProvider({ config: editConfig })} 
-                                className="w-full bg-blue-600 hover:bg-blue-700"
-                              >
-                                Save Configuration
-                              </Button>
-                            </div>
-                          </DialogContent>
-                        )}
+                                <div>
+                                  <Label className="text-sm font-semibold mb-2 block">API Endpoint</Label>
+                                  <Input
+                                    value={editConfig.api_endpoint || ''}
+                                    onChange={(e) => setEditConfig({...editConfig, api_endpoint: e.target.value})}
+                                    placeholder="e.g., https://api.provider.com"
+                                  />
+                                </div>
+
+                                <div>
+                                  <Label className="text-sm font-semibold mb-2 block">Custom Configuration (JSON)</Label>
+                                  <Textarea
+                                    placeholder='{"key": "value"}'
+                                    value={typeof editConfig.custom_fields === 'string' ? editConfig.custom_fields : JSON.stringify(editConfig.custom_fields || {})}
+                                    onChange={(e) => setEditConfig({...editConfig, custom_fields: e.target.value})}
+                                    className="h-32 font-mono text-xs"
+                                  />
+                                </div>
+
+                                <Button 
+                                  onClick={() => updateProvider({ config: editConfig })} 
+                                  className="w-full bg-blue-600 hover:bg-blue-700"
+                                >
+                                  Save Configuration
+                                </Button>
+                              </div>
+                            </>
+                          )}
+                        </DialogContent>
                       </Dialog>
 
                       <Button 
