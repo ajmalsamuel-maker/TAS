@@ -10,26 +10,22 @@ Deno.serve(async (req) => {
       apis: {}
     };
 
-    // Test AML Watcher API (use /get-access-token to verify credentials)
+    // Test AML Watcher API with Basic Auth
     try {
-      const amlWatcherClientId = Deno.env.get('AMLWATCHER_CLIENT_ID');
-      const amlWatcherClientSecret = Deno.env.get('AMLWATCHER_CLIENT_SECRET');
-      
-      const amlResponse = await fetch('https://api.amlwatcher.com/get-access-token', {
-        method: 'POST',
+      const amlWatcherApiKey = Deno.env.get('AMLWATCHER_API_KEY');
+      const amlResponse = await fetch('https://api.amlwatcher.com/api/v1/searches', {
+        method: 'GET',
         headers: {
+          'Authorization': `Bearer ${amlWatcherApiKey}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          client_id: amlWatcherClientId,
-          client_secret: amlWatcherClientSecret
-        }),
         signal: AbortSignal.timeout(5000)
       });
       
       results.apis.amlWatcher = {
-        status: amlResponse.ok ? 'online' : 'offline',
-        statusCode: amlResponse.status
+        status: (amlResponse.ok || amlResponse.status === 401) ? 'online' : 'offline',
+        statusCode: amlResponse.status,
+        note: amlResponse.status === 401 ? 'Invalid credentials' : ''
       };
     } catch (error) {
       results.apis.amlWatcher = {
@@ -38,20 +34,23 @@ Deno.serve(async (req) => {
       };
     }
 
-    // Test KYB (The KYB) API - correct base URL
+    // Test KYB (The KYB) API - search endpoint
     try {
-      const kybResponse = await fetch('https://api.thekyb.com/api', {
-        method: 'GET',
+      const kybApiKey = Deno.env.get('KYB_API_KEY');
+      const kybResponse = await fetch('https://api.thekyb.com/api/v1/search', {
+        method: 'POST',
         headers: {
-          'Authorization': `Bearer ${Deno.env.get('KYB_API_KEY')}`,
+          'X-API-KEY': kybApiKey,
           'Content-Type': 'application/json'
         },
+        body: JSON.stringify({}),
         signal: AbortSignal.timeout(5000)
       });
       
       results.apis.theKyb = {
-        status: kybResponse.ok ? 'online' : 'offline',
-        statusCode: kybResponse.status
+        status: (kybResponse.ok || kybResponse.status === 401 || kybResponse.status === 400) ? 'online' : 'offline',
+        statusCode: kybResponse.status,
+        note: kybResponse.status === 401 ? 'Invalid API key' : ''
       };
     } catch (error) {
       results.apis.theKyb = {
