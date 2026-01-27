@@ -49,37 +49,37 @@ export default function BillingSettingsPanel() {
     { 
       name: 'QuickBooks Online', 
       key: 'quickbooks', 
-      logo: 'https://plugin.intuitcdn.net/designsystem/assets/2020/03/05130638/qb-logo.svg',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiMyQ0EwMUIiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTAgMTBoNHY0aC00ek0xOCAxMGg0djRoLTR6TTEwIDE4aDR2NGgtNHpNMTggMThoNHY0aC00eiIvPjwvc3ZnPg==',
       connected: settings?.accounting_integrations?.some(i => i.system === 'quickbooks' && i.is_connected) 
     },
     { 
       name: 'Xero', 
       key: 'xero', 
-      logo: 'https://www.xero.com/content/dam/xero/pilot-images/logos/xero-logo.svg',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMTNCNUVBIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+WDwvdGV4dD48L3N2Zz4=',
       connected: settings?.accounting_integrations?.some(i => i.system === 'xero' && i.is_connected) 
     },
     { 
       name: 'Sage', 
       key: 'sage', 
-      logo: 'https://www.sage.com/-/media/images/sagedotcom/master/rebrand-2023/sage-logo.svg',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDBEQzAwIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UzwvdGV4dD48L3N2Zz4=',
       connected: settings?.accounting_integrations?.some(i => i.system === 'sage' && i.is_connected) 
     },
     { 
       name: 'NetSuite', 
       key: 'netsuite', 
-      logo: 'https://www.netsuite.com/portal/assets/img/business-suite/erp/oracle-netsuite-logo.svg',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjRUYzOTM5IiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TlM8L3RleHQ+PC9zdmc+',
       connected: settings?.accounting_integrations?.some(i => i.system === 'netsuite' && i.is_connected) 
     },
     { 
       name: 'Oracle Finance Cloud', 
       key: 'oracle', 
-      logo: 'https://www.oracle.com/asset/web/favicons/favicon-192.png',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjRjgwMDAwIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+T1JBPC90ZXh0Pjwvc3ZnPg==',
       connected: settings?.accounting_integrations?.some(i => i.system === 'oracle' && i.is_connected) 
     },
     { 
       name: 'SAP', 
       key: 'sap', 
-      logo: 'https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDA4OEQ0IiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U0FQPC90ZXh0Pjwvc3ZnPg==',
       connected: settings?.accounting_integrations?.some(i => i.system === 'sap' && i.is_connected) 
     },
     { 
@@ -91,25 +91,25 @@ export default function BillingSettingsPanel() {
     { 
       name: 'Microsoft Dynamics 365', 
       key: 'dynamics365', 
-      logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/0a6cc61f8_download8.png',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGcgZmlsbD0iIzAwNzgxNCI+PHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB4PSIxIiB5PSIxIi8+PHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB4PSIxNyIgeT0iMSIgZmlsbD0iIzhCQjgzQiIvPjxyZWN0IHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgeD0iMSIgeT0iMTciIGZpbGw9IiMwNTk0Q0YiLz48cmVjdCB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHg9IjE3IiB5PSIxNyIgZmlsbD0iI0ZCQjgzQiIvPjwvZz48L3N2Zz4=',
       connected: settings?.accounting_integrations?.some(i => i.system === 'dynamics365' && i.is_connected) 
     },
     { 
       name: 'FreshBooks', 
       key: 'freshbooks', 
-      logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/9ee777209_download5.jpg',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMEY3MkRCIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RkI8L3RleHQ+PC9zdmc+',
       connected: settings?.accounting_integrations?.some(i => i.system === 'freshbooks' && i.is_connected) 
     },
     { 
       name: 'MYOB', 
       key: 'myob', 
-      logo: 'https://www.myob.com/content/dam/myob/nz/images/logos/myob-logo-teal.svg',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDBBM0FBIiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TVlPQjwvdGV4dD48L3N2Zz4=',
       connected: settings?.accounting_integrations?.some(i => i.system === 'myob' && i.is_connected) 
     },
     { 
       name: 'TallyPrime', 
       key: 'tallyprime', 
-      logo: 'https://tallysolutions.com/wp-content/uploads/2021/07/tally-logo.svg',
+      logo: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjRTYzOTQ2IiByeD0iNCIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VDwvdGV4dD48L3N2Zz4=',
       connected: settings?.accounting_integrations?.some(i => i.system === 'tallyprime' && i.is_connected) 
     }
   ];
