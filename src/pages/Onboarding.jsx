@@ -11,8 +11,9 @@ import { toast } from 'sonner';
 import OnboardingStep1 from '../components/onboarding/OnboardingStep1';
 import OnboardingStep2 from '../components/onboarding/OnboardingStep2';
 import OnboardingStep3 from '../components/onboarding/OnboardingStep3';
-import OnboardingStep4 from '../components/onboarding/OnboardingStep4';
-import OnboardingStep5 from '../components/onboarding/OnboardingStep5';
+import OnboardingStep4AML from '../components/onboarding/OnboardingStep4AML';
+import OnboardingStep5 from '../components/onboarding/OnboardingStep4';
+import OnboardingStep6Facia from '../components/onboarding/OnboardingStep6Facia';
 import GuidedWalkthrough from '../components/onboarding/GuidedWalkthrough';
 import ProgressWithTime from '../components/onboarding/ProgressWithTime';
 
@@ -58,15 +59,16 @@ export default function Onboarding() {
     document_urls: []
   });
 
-  const totalSteps = 5;
+  const totalSteps = 6;
   const progress = (currentStep / totalSteps) * 100;
 
   const steps = [
     { number: 1, title: 'Basic Information', component: OnboardingStep1 },
-    { number: 2, title: 'Contact & Address', component: OnboardingStep2 },
-    { number: 3, title: 'Business Details', component: OnboardingStep3 },
-    { number: 4, title: 'Documents & Review', component: OnboardingStep4 },
-    { number: 5, title: 'Facial Verification', component: OnboardingStep5 }
+    { number: 2, title: 'Address Details', component: OnboardingStep2 },
+    { number: 3, title: 'Business Registry', component: OnboardingStep3 },
+    { number: 4, title: 'AML Screening', component: OnboardingStep4AML },
+    { number: 5, title: 'Documents', component: OnboardingStep5 },
+    { number: 6, title: 'Identity Verification', component: OnboardingStep6Facia }
   ];
 
   const handleNext = () => {
@@ -164,7 +166,7 @@ export default function Onboarding() {
                 <Shield className="h-6 w-6 text-[#0066B3]" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2">KYB Verification</h3>
-              <p className="text-sm text-gray-600">Global business verification with UBO checks</p>
+              <p className="text-sm text-gray-600">Instant company lookup and verification</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
@@ -172,23 +174,23 @@ export default function Onboarding() {
                 <Zap className="h-6 w-6 text-[#0066B3]" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2">AML Screening</h3>
-              <p className="text-sm text-gray-600">Sanctions, PEP & adverse media screening</p>
+              <p className="text-sm text-gray-600">Real-time sanctions & PEP screening</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                <Users className="h-6 w-6 text-[#0066B3]" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">Face Verification</h3>
+              <p className="text-sm text-gray-600">AI-powered liveness detection</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
                 <FileCheck className="h-6 w-6 text-[#0066B3]" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2">LEI Issuance</h3>
-              <p className="text-sm text-gray-600">Automatic LEI generation upon approval</p>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                <FileCheck className="h-6 w-6 text-[#0066B3]" />
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">vLEI Credentials</h3>
-              <p className="text-sm text-gray-600">Digital identity with KERI verification</p>
+              <h3 className="font-bold text-gray-900 mb-2">LEI & vLEI</h3>
+              <p className="text-sm text-gray-600">Automatic credential issuance</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
@@ -196,20 +198,21 @@ export default function Onboarding() {
                 <Clock className="h-6 w-6 text-[#0066B3]" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2">Fast Processing</h3>
-              <p className="text-sm text-gray-600">Reviewed within 2-4 business days</p>
+              <p className="text-sm text-gray-600">Complete in under 15 minutes</p>
             </div>
           </div>
 
           {/* Process Overview */}
           <div className="bg-white rounded-xl border-2 border-blue-100 p-8 mb-12 shadow-lg">
             <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Onboarding Process</h2>
-            <div className="grid md:grid-cols-5 gap-4">
+            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
-                { num: 1, title: 'Basic Information', desc: 'Legal name, entity type, and business purpose' },
-                { num: 2, title: 'Contact & Address', desc: 'Legal representatives and office locations' },
-                { num: 3, title: 'Business Details', desc: 'Registration info, UBO, and employee count' },
-                { num: 4, title: 'Document Upload', desc: 'Submit business certificates and verification' },
-                { num: 5, title: 'Facial Verification', desc: 'Liveness test before LEI issuance' }
+                { num: 1, title: 'Company Info', desc: 'KYB search & auto-fill' },
+                { num: 2, title: 'Addresses', desc: 'HQ and legal address' },
+                { num: 3, title: 'Registry', desc: 'Business registration details' },
+                { num: 4, title: 'AML Check', desc: 'Sanctions & PEP screening' },
+                { num: 5, title: 'Documents', desc: 'Upload certificates' },
+                { num: 6, title: 'Verification', desc: 'Facial liveness test' }
               ].map((step) => (
                 <div key={step.num} className="text-center">
                   <div className="w-12 h-12 bg-[#0066B3] text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-3">
@@ -335,10 +338,17 @@ export default function Onboarding() {
               <strong>Note:</strong> Fields marked with * are required. Your application will be reviewed within 2-4 business days.
             </p>
           </div>
+          {currentStep === 4 && (
+            <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg">
+              <p className="text-sm text-red-900">
+                <strong>⚠️ AML Screening:</strong> This step screens your business against global sanctions, PEP, and adverse media databases. Required for compliance.
+              </p>
+            </div>
+          )}
           {currentStep === totalSteps && (
-            <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-lg">
-              <p className="text-sm text-amber-900">
-                <strong>⚠️ Important:</strong> Complete facial verification (liveness test) to proceed with LEI and vLEI issuance. This is the final step before credentials are issued.
+            <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-lg">
+              <p className="text-sm text-purple-900">
+                <strong>⚠️ Final Step:</strong> Complete facial verification to proceed with LEI and vLEI issuance. This is the last requirement before credentials are issued.
               </p>
             </div>
           )}
