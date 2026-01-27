@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { 
-  AlertCircle, AlertTriangle, CheckCircle2, Clock, 
+  AlertTriangle, CheckCircle2, Clock, 
   Filter, Eye, Check, Trash2, RefreshCw 
 } from 'lucide-react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
@@ -268,9 +268,9 @@ export default function ProviderAlertsPanel() {
                             </div>
 
                             {alert.details && (
-                              <Alert>
-                                <AlertCircle className="h-4 w-4" />
-                                <AlertDescription className="text-xs">
+                               <Alert>
+                                 <AlertTriangle className="h-4 w-4" />
+                                 <AlertDescription className="text-xs">
                                   <div className="space-y-1">
                                     <p>Current Status: {alert.details.status}</p>
                                     <p>Uptime: {alert.details.uptime}%</p>
