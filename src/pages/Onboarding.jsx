@@ -165,6 +165,34 @@ export default function Onboarding() {
     }
   };
 
+  const handleSaveDraft = async () => {
+    try {
+      // Check if draft already exists
+      const draftApps = await base44.entities.OnboardingApplication.filter({ 
+        created_by: user.email,
+        status: 'draft' 
+      });
+      
+      if (draftApps.length > 0) {
+        // Update existing draft
+        await base44.entities.OnboardingApplication.update(draftApps[0].id, {
+          ...formData,
+          status: 'draft'
+        });
+      } else {
+        // Create new draft
+        await base44.entities.OnboardingApplication.create({
+          ...formData,
+          status: 'draft'
+        });
+      }
+      toast.success('Draft saved successfully! You can continue anytime.');
+    } catch (error) {
+      toast.error('Failed to save draft. Please try again.');
+      console.error('Draft save error:', error);
+    }
+  };
+
   const handleVLEIComplete = () => {
     navigate(createPageUrl('ApplicationStatus'));
   };
