@@ -140,6 +140,12 @@ export default function InvoiceTemplateDesigner() {
     queryFn: () => base44.entities.InvoiceStandard.list()
   });
 
+  const { data: countryTemplates } = useQuery({
+    queryKey: ['invoiceTemplates', selectedStandard],
+    queryFn: () => selectedStandard ? base44.entities.InvoiceTemplate.filter({ country_code: selectedStandard }) : Promise.resolve([]),
+    enabled: !!selectedStandard
+  });
+
   const addStandardMutation = useMutation({
     mutationFn: (data) => base44.entities.InvoiceStandard.create(data),
     onSuccess: () => {
@@ -159,6 +165,28 @@ export default function InvoiceTemplateDesigner() {
     },
     onError: (error) => {
       toast.error(error.message || 'Failed to add standard');
+    }
+  });
+
+  const saveTemplateMutation = useMutation({
+    mutationFn: async (data) => {
+      const existing = countryTemplates?.[0];
+      if (existing) {
+        return base44.entities.InvoiceTemplate.update(existing.id, data);
+      } else {
+        return base44.entities.InvoiceTemplate.create({
+          country_code: selectedStandard,
+          country_name: invoiceStandards?.find(s => s.country_code === selectedStandard)?.country_name,
+          ...data
+        });
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['invoiceTemplates'] });
+      toast.success('Template saved for ' + selectedStandard);
+    },
+    onError: (error) => {
+      toast.error(error.message || 'Failed to save template');
     }
   });
 
