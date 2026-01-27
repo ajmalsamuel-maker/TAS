@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { AlertCircle, Eye, Save } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { AlertCircle, Eye, Save, Plus } from 'lucide-react';
 import { toast } from 'sonner';
 
 const INVOICE_STANDARDS = {
@@ -104,9 +105,20 @@ const INVOICE_STANDARDS = {
 
 export default function InvoiceTemplateDesigner() {
   const queryClient = useQueryClient();
-  const [selectedStandard, setSelectedStandard] = useState('en16931');
+  const [selectedStandard, setSelectedStandard] = useState('AT');
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [autoDetectByCountry, setAutoDetectByCountry] = useState(false);
+  const [showAddStandard, setShowAddStandard] = useState(false);
+  const [newStandardData, setNewStandardData] = useState({
+    country_code: '',
+    country_name: '',
+    invoicing_standards: [],
+    required_fields: [],
+    tax_identification: { field_name: '', format_pattern: '', required: false },
+    tax_treatment: { vat_applicable: false, default_tax_rate: 0, reverse_charge_applicable: false, tax_label: '' },
+    invoice_format: { date_format: 'DD/MM/YYYY', decimal_separator: '.', currency_format: '', language_requirement: '' },
+    legal_requirements: { invoice_retention_days: 2555, sequential_numbering_required: false, signature_required: false, digital_invoice_accepted: true, electronic_submission_required: false }
+  });
   const [templateData, setTemplateData] = useState({
     header_logo_position: 'left',
     header_text: 'INVOICE',
@@ -126,6 +138,28 @@ export default function InvoiceTemplateDesigner() {
   const { data: invoiceStandards } = useQuery({
     queryKey: ['invoiceStandards'],
     queryFn: () => base44.entities.InvoiceStandard.list()
+  });
+
+  const addStandardMutation = useMutation({
+    mutationFn: (data) => base44.entities.InvoiceStandard.create(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['invoiceStandards'] });
+      toast.success('Invoice standard added successfully');
+      setShowAddStandard(false);
+      setNewStandardData({
+        country_code: '',
+        country_name: '',
+        invoicing_standards: [],
+        required_fields: [],
+        tax_identification: { field_name: '', format_pattern: '', required: false },
+        tax_treatment: { vat_applicable: false, default_tax_rate: 0, reverse_charge_applicable: false, tax_label: '' },
+        invoice_format: { date_format: 'DD/MM/YYYY', decimal_separator: '.', currency_format: '', language_requirement: '' },
+        legal_requirements: { invoice_retention_days: 2555, sequential_numbering_required: false, signature_required: false, digital_invoice_accepted: true, electronic_submission_required: false }
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message || 'Failed to add standard');
+    }
   });
 
   const { data: settings } = useQuery({
@@ -228,23 +262,145 @@ export default function InvoiceTemplateDesigner() {
             }
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-            {invoiceStandards?.map((std) => (
-              <button
-                key={std.id}
-                onClick={() => setSelectedStandard(std.country_code)}
-                className={`p-4 rounded-lg border-2 transition-all text-left ${
-                  selectedStandard === std.country_code
-                    ? 'border-blue-600 bg-blue-50'
-                    : 'border-gray-200 hover:border-gray-300'
-                }`}
-              >
-                <p className="font-semibold text-sm">{std.country_name}</p>
-                <p className="text-xs text-gray-600 mt-1">{std.invoicing_standards?.join(', ')}</p>
-              </button>
-            ))}
+        <CardContent className="space-y-4">
+          <div className="flex gap-3">
+            <select
+              value={selectedStandard}
+              onChange={(e) => setSelectedStandard(e.target.value)}
+              className="flex-1 px-3 py-2 border rounded-md text-sm"
+            >
+              <option value="">-- Select Country/Standard --</option>
+              {invoiceStandards?.map((std) => (
+                <option key={std.id} value={std.country_code}>
+                  {std.country_name} - {std.invoicing_standards?.join(', ')}
+                </option>
+              ))}
+            </select>
+            
+            <Dialog open={showAddStandard} onOpenChange={setShowAddStandard}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Standard
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle>Add New Invoicing Standard</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Country Code (ISO 3166-1 alpha-2)</label>
+                      <Input
+                        value={newStandardData.country_code}
+                        onChange={(e) => setNewStandardData({...newStandardData, country_code: e.target.value.toUpperCase()})}
+                        placeholder="e.g., US"
+                        maxLength={2}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Country Name</label>
+                      <Input
+                        value={newStandardData.country_name}
+                        onChange={(e) => setNewStandardData({...newStandardData, country_name: e.target.value})}
+                        placeholder="e.g., United States"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Invoicing Standards (comma-separated)</label>
+                    <Input
+                      value={newStandardData.invoicing_standards?.join(', ')}
+                      onChange={(e) => setNewStandardData({...newStandardData, invoicing_standards: e.target.value.split(',').map(s => s.trim())})}
+                      placeholder="e.g., UBL 2.1, Custom Standard"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Required Fields (comma-separated)</label>
+                    <Textarea
+                      value={newStandardData.required_fields?.join(', ')}
+                      onChange={(e) => setNewStandardData({...newStandardData, required_fields: e.target.value.split(',').map(s => s.trim())})}
+                      placeholder="e.g., Invoice number, Invoice date, Tax ID"
+                      className="min-h-20"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Tax Identification Field</label>
+                      <Input
+                        value={newStandardData.tax_identification?.field_name}
+                        onChange={(e) => setNewStandardData({...newStandardData, tax_identification: {...newStandardData.tax_identification, field_name: e.target.value}})}
+                        placeholder="e.g., VAT ID"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Default Tax Rate (%)</label>
+                      <Input
+                        type="number"
+                        value={newStandardData.tax_treatment?.default_tax_rate}
+                        onChange={(e) => setNewStandardData({...newStandardData, tax_treatment: {...newStandardData.tax_treatment, default_tax_rate: parseFloat(e.target.value)}})}
+                        placeholder="0"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Currency Code</label>
+                      <Input
+                        value={newStandardData.invoice_format?.currency_format}
+                        onChange={(e) => setNewStandardData({...newStandardData, invoice_format: {...newStandardData.invoice_format, currency_format: e.target.value.toUpperCase()}})}
+                        placeholder="e.g., USD"
+                        maxLength={3}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-1">Language Requirement</label>
+                      <Input
+                        value={newStandardData.invoice_format?.language_requirement}
+                        onChange={(e) => setNewStandardData({...newStandardData, invoice_format: {...newStandardData.invoice_format, language_requirement: e.target.value}})}
+                        placeholder="e.g., EN/ES"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={() => addStandardMutation.mutate(newStandardData)}
+                      disabled={!newStandardData.country_code || !newStandardData.country_name || addStandardMutation.isPending}
+                      className="bg-blue-600 hover:bg-blue-700"
+                    >
+                      {addStandardMutation.isPending ? 'Adding...' : 'Add Standard'}
+                    </Button>
+                    <Button variant="outline" onClick={() => setShowAddStandard(false)}>Cancel</Button>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
+
+          {selectedStandard && (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              {(() => {
+                const selected = invoiceStandards?.find(s => s.country_code === selectedStandard);
+                return (
+                  <>
+                    <p className="font-semibold text-sm mb-2">{selected?.country_name}</p>
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Standards:</strong> {selected?.invoicing_standards?.join(', ')}</p>
+                      <p><strong>Default Tax Rate:</strong> {selected?.tax_treatment?.default_tax_rate}%</p>
+                      <p><strong>Currency:</strong> {selected?.invoice_format?.currency_format}</p>
+                      <p><strong>Language:</strong> {selected?.invoice_format?.language_requirement}</p>
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+          )}
         </CardContent>
       </Card>
 
