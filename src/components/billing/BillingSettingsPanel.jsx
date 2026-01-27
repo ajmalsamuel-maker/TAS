@@ -85,31 +85,31 @@ export default function BillingSettingsPanel() {
     { 
       name: 'Zoho Books', 
       key: 'zohobooks', 
-      logo: 'https://www.zoho.com/books/images/zoho-books-logo.png',
+      logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/b8799f259_download9.png',
       connected: settings?.accounting_integrations?.some(i => i.system === 'zohobooks' && i.is_connected) 
     },
     { 
       name: 'Microsoft Dynamics 365', 
       key: 'dynamics365', 
-      logo: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4qVsf',
+      logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/0a6cc61f8_download8.png',
       connected: settings?.accounting_integrations?.some(i => i.system === 'dynamics365' && i.is_connected) 
     },
     { 
       name: 'FreshBooks', 
       key: 'freshbooks', 
-      logo: 'https://www.freshbooks.com/wp-content/themes/freshbooks/dist/images/logos/freshbooks-logo.svg',
+      logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/9ee777209_download5.jpg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'freshbooks' && i.is_connected) 
     },
     { 
       name: 'MYOB', 
       key: 'myob', 
-      logo: 'https://www.myob.com/content/dam/myob-dot-com/nz/logos/MYOB_Logo_Solid_RGB.svg',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/MYOB_logo.svg/320px-MYOB_logo.svg.png',
       connected: settings?.accounting_integrations?.some(i => i.system === 'myob' && i.is_connected) 
     },
     { 
       name: 'TallyPrime', 
       key: 'tallyprime', 
-      logo: 'https://tallysolutions.com/wp-content/uploads/2022/09/tally-prime-logo.svg',
+      logo: 'https://tallysolutions.com/rs/uploads/2020/05/tally-logo-icon.png',
       connected: settings?.accounting_integrations?.some(i => i.system === 'tallyprime' && i.is_connected) 
     }
   ];
