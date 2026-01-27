@@ -81,6 +81,36 @@ export default function BillingSettingsPanel() {
       key: 'sap', 
       logo: 'https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg',
       connected: settings?.accounting_integrations?.some(i => i.system === 'sap' && i.is_connected) 
+    },
+    { 
+      name: 'Zoho Books', 
+      key: 'zohobooks', 
+      logo: 'https://www.zoho.com/books/images/zoho-books-logo.png',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'zohobooks' && i.is_connected) 
+    },
+    { 
+      name: 'Microsoft Dynamics 365', 
+      key: 'dynamics365', 
+      logo: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4qVsf',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'dynamics365' && i.is_connected) 
+    },
+    { 
+      name: 'FreshBooks', 
+      key: 'freshbooks', 
+      logo: 'https://www.freshbooks.com/wp-content/themes/freshbooks/dist/images/logos/freshbooks-logo.svg',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'freshbooks' && i.is_connected) 
+    },
+    { 
+      name: 'MYOB', 
+      key: 'myob', 
+      logo: 'https://www.myob.com/content/dam/myob-dot-com/nz/logos/MYOB_Logo_Solid_RGB.svg',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'myob' && i.is_connected) 
+    },
+    { 
+      name: 'TallyPrime', 
+      key: 'tallyprime', 
+      logo: 'https://tallysolutions.com/wp-content/uploads/2022/09/tally-prime-logo.svg',
+      connected: settings?.accounting_integrations?.some(i => i.system === 'tallyprime' && i.is_connected) 
     }
   ];
 
