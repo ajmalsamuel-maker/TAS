@@ -25,6 +25,7 @@ import UserPortalDocumentation from './pages/UserPortalDocumentation';
 import UserSettings from './pages/UserSettings';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
+import IntegrationsSummary from './pages/IntegrationsSummary';
 import __Layout from './Layout.jsx';
 
 
@@ -56,6 +57,7 @@ export const PAGES = {
     "UserSettings": UserSettings,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
+    "IntegrationsSummary": IntegrationsSummary,
 }
 
 export const pagesConfig = {
