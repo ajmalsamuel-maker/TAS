@@ -23,11 +23,13 @@ Deno.serve(async (req) => {
             return Response.json({ error: 'Organization must have LEI before issuing vLEIs' }, { status: 400 });
         }
 
-        // Generate unique vLEI identifier
+        // Generate unique DEMO vLEI identifier
         const timestamp = Date.now();
-        const vleiId = `vLEI-${organization.lei}-${credentialType}-${timestamp}`;
+        const vleiId = `DEMO-vLEI-${organization.lei}-${credentialType}-${timestamp}`;
 
-        // Create W3C Verifiable Credential
+        // Create W3C Verifiable Credential (DEMO/SANDBOX ONLY)
+        // ⚠️ WARNING: This is NOT a real GLEIF vLEI credential
+        // Real vLEIs require GLEIF QVI infrastructure
         const validFrom = new Date().toISOString();
         const credentialData = {
             "@context": [
@@ -35,7 +37,11 @@ Deno.serve(async (req) => {
                 "https://www.gleif.org/vlei/v1"
             ],
             "id": vleiId,
-            "type": ["VerifiableCredential", `${credentialType}Credential`],
+            "type": ["VerifiableCredential", `${credentialType}Credential`, "DemoCredential"],
+            "credentialStatus": {
+                "type": "DemoCredential",
+                "description": "⚠️ SANDBOX/DEMO CREDENTIAL - Not a real GLEIF vLEI"
+            },
             "issuer": {
                 "id": organization.lei,
                 "name": organization.name,

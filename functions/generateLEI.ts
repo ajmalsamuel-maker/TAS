@@ -1,13 +1,15 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 
 /**
- * Generate a Legal Entity Identifier (LEI)
+ * Generate a DEMO Legal Entity Identifier (LEI)
+ * ⚠️ WARNING: This is a SANDBOX/DEMO LEI - NOT a real GLEIF-issued LEI
+ * Real LEIs can ONLY be issued by GLEIF-accredited LOUs
  * Format: 20-character alphanumeric code per ISO 17442
  * Structure: 4-char prefix + 12-char random + 4-char check digits
  */
 function generateLEICode() {
-  // TAS prefix (Trust Anchor Service)
-  const prefix = 'TAS0';
+  // DEMO prefix (clearly marked as sandbox/testing)
+  const prefix = 'DEMO';
   
   // Generate 12 random alphanumeric characters
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

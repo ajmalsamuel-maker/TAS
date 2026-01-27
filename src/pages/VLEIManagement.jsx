@@ -55,8 +55,13 @@ export default function VLEIManagement() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">vLEI Credential Management</h1>
-          <p className="text-gray-600">Issue and manage verifiable Legal Entity Identifier credentials for {organization.name}</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Demo vLEI Credential Management</h1>
+          <p className="text-gray-600">Issue and manage demo verifiable Legal Entity Identifier credentials for {organization.name}</p>
+          <div className="mt-4 bg-red-50 border-l-4 border-red-500 p-4 rounded">
+            <p className="text-sm text-red-800">
+              <strong>⚠️ Sandbox Environment:</strong> Credentials issued here are for testing only and are not real GLEIF vLEIs.
+            </p>
+          </div>
         </div>
 
         <VLEIManager organization={organization} />

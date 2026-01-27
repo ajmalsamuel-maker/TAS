@@ -89,12 +89,30 @@ export default function VLEIManager({ organization }) {
 
   return (
     <div className="space-y-6">
+      <Card className="border-2 border-red-300 bg-red-50 shadow-lg mb-6">
+        <CardContent className="pt-6">
+          <div className="flex items-start gap-4">
+            <AlertCircle className="h-6 w-6 text-red-600 flex-shrink-0" />
+            <div>
+              <h3 className="text-lg font-bold text-red-900 mb-2">⚠️ SANDBOX/DEMO CREDENTIALS ONLY</h3>
+              <p className="text-sm text-red-800 mb-2">
+                This system issues <strong>DEMO vLEI credentials</strong> for testing purposes only. These are NOT real GLEIF credentials.
+              </p>
+              <p className="text-xs text-red-700">
+                Real vLEI credentials require GLEIF's Qualified vLEI Issuer (QVI) infrastructure and cannot be self-issued. 
+                For production use, integrate with a GLEIF-accredited issuer.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       <Card className="border-2 border-purple-100 shadow-lg">
         <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b-2 border-purple-100">
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-6 w-6 text-purple-600" />
-              vLEI Credential Manager
+              Demo vLEI Credential Manager
             </CardTitle>
             <Button onClick={() => setShowIssuer(!showIssuer)} className="bg-purple-600 hover:bg-purple-700">
               <Plus className="h-4 w-4 mr-2" />
@@ -228,10 +246,11 @@ export default function VLEIManager({ organization }) {
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
                           <Badge className={vlei.credential_type === 'OOR' ? 'bg-purple-600' : 'bg-cyan-600'}>
                             {vlei.credential_type}
                           </Badge>
+                          <Badge className="bg-red-600">DEMO</Badge>
                           <Badge variant={vlei.status === 'active' ? 'default' : 'destructive'} className={vlei.status === 'active' ? 'bg-green-600' : ''}>
                             {vlei.status === 'active' ? <CheckCircle2 className="h-3 w-3 mr-1" /> : <AlertCircle className="h-3 w-3 mr-1" />}
                             {vlei.status}

@@ -52,16 +52,34 @@ export default function OnboardingStep7vLEI({ application, onComplete }) {
 
   return (
     <div className="space-y-6">
+      <div className="bg-red-50 border-2 border-red-400 rounded-lg p-6 mb-6">
+        <div className="flex items-start gap-4">
+          <AlertCircle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
+          <div className="flex-1">
+            <h3 className="text-lg font-bold text-red-900 mb-2">⚠️ SANDBOX/DEMO ENVIRONMENT</h3>
+            <p className="text-red-800 text-sm mb-2">
+              <strong>This system issues DEMO credentials only.</strong> These are NOT real GLEIF LEI or vLEI credentials and have no legal standing.
+            </p>
+            <ul className="text-xs text-red-700 space-y-1 list-disc list-inside">
+              <li>Real LEIs can only be issued by GLEIF-accredited Local Operating Units (LOUs)</li>
+              <li>Real vLEIs require GLEIF's Qualified vLEI Issuer (QVI) infrastructure</li>
+              <li>Demo credentials are for testing and development purposes only</li>
+              <li>Do not use these credentials for production or legal purposes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-6">
         <div className="flex items-start gap-4">
           <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
             <Shield className="h-6 w-6 text-white" />
           </div>
           <div className="flex-1">
-            <h3 className="text-lg font-bold text-gray-900 mb-2">vLEI Credential Issuance</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Demo vLEI Credential Issuance</h3>
             <p className="text-gray-700 mb-4">
-              Issue a verifiable Legal Entity Identifier (vLEI) credential for the authorized representative. 
-              This digital credential cryptographically proves the representative's authority to act on behalf of your organization.
+              Issue a demo verifiable Legal Entity Identifier (vLEI) credential for the authorized representative. 
+              This simulates how a digital credential would cryptographically prove the representative's authority.
             </p>
             <div className="grid md:grid-cols-2 gap-4 text-sm">
               <div className="bg-white rounded-lg p-3 border border-purple-200">
@@ -176,11 +194,14 @@ export default function OnboardingStep7vLEI({ application, onComplete }) {
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-gray-600 mb-1">Credential Type</p>
-                  <Badge className="bg-purple-600">{formData.credentialType}</Badge>
+                  <div className="flex gap-2">
+                    <Badge className="bg-purple-600">{formData.credentialType}</Badge>
+                    <Badge className="bg-red-600">DEMO</Badge>
+                  </div>
                 </div>
                 <div>
                   <p className="text-gray-600 mb-1">Status</p>
-                  <Badge className="bg-green-600">Active</Badge>
+                  <Badge className="bg-green-600">Active (Sandbox)</Badge>
                 </div>
                 <div>
                   <p className="text-gray-600 mb-1">Holder</p>

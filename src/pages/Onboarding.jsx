@@ -169,6 +169,25 @@ export default function Onboarding() {
             </p>
           </div>
 
+          {/* Demo Warning */}
+          <div className="bg-red-50 border-2 border-red-400 rounded-xl p-6 mb-8 shadow-lg">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <AlertCircle className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-red-900 mb-2">⚠️ SANDBOX/DEMO ENVIRONMENT</h3>
+                <p className="text-red-800 mb-3">
+                  This onboarding process issues <strong>DEMO credentials only</strong>. LEIs and vLEIs generated here are for testing purposes and have no legal standing.
+                </p>
+                <p className="text-sm text-red-700">
+                  Real LEI issuance requires integration with GLEIF-accredited Local Operating Units (LOUs). 
+                  Real vLEIs require GLEIF's Qualified vLEI Issuer (QVI) infrastructure.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Benefits Section */}
           <div className="grid md:grid-cols-5 gap-4 mb-16">
             <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
@@ -199,8 +218,8 @@ export default function Onboarding() {
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
                 <FileCheck className="h-6 w-6 text-[#0066B3]" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2">LEI & vLEI</h3>
-              <p className="text-sm text-gray-600">Automatic credential issuance</p>
+              <h3 className="font-bold text-gray-900 mb-2">Demo LEI & vLEI</h3>
+              <p className="text-sm text-gray-600">Sandbox credential issuance</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
