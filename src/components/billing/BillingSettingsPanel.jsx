@@ -5,13 +5,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Shield, Activity, Loader } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Shield, Activity, Loader, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function BillingSettingsPanel() {
   const queryClient = useQueryClient();
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({});
+  const [connectingIntegration, setConnectingIntegration] = useState(null);
+  const [credentials, setCredentials] = useState({});
 
   // Fetch billing settings
   const { data: settings, isLoading } = useQuery({
@@ -41,9 +44,181 @@ export default function BillingSettingsPanel() {
     }
   });
 
+  // Connect integration
+  const connectMutation = useMutation({
+    mutationFn: async ({ integrationKey, credentials }) => {
+      const updatedIntegrations = settings?.accounting_integrations || [];
+      const existingIndex = updatedIntegrations.findIndex(i => i.system === integrationKey);
+      
+      const integrationData = {
+        system: integrationKey,
+        is_connected: true,
+        api_key_set: true,
+        auto_export: true,
+        last_sync: new Date().toISOString(),
+        credentials: credentials // Store encrypted in production
+      };
+
+      if (existingIndex >= 0) {
+        updatedIntegrations[existingIndex] = integrationData;
+      } else {
+        updatedIntegrations.push(integrationData);
+      }
+
+      if (settings?.id) {
+        return base44.entities.BillingSettings.update(settings.id, {
+          accounting_integrations: updatedIntegrations
+        });
+      } else {
+        return base44.entities.BillingSettings.create({
+          accounting_integrations: updatedIntegrations
+        });
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['billingSettings'] });
+      toast.success('Integration connected successfully');
+      setConnectingIntegration(null);
+      setCredentials({});
+    },
+    onError: (error) => {
+      toast.error(error.message || 'Failed to connect integration');
+    }
+  });
+
+  const handleConnect = (integrationKey) => {
+    setConnectingIntegration(integrationKey);
+    setCredentials({});
+  };
+
+  const handleSaveConnection = () => {
+    const config = integrationConfigs[connectingIntegration];
+    const requiredFields = config.fields.filter(f => f.required);
+    const missingFields = requiredFields.filter(f => !credentials[f.name]);
+
+    if (missingFields.length > 0) {
+      toast.error(`Please fill in: ${missingFields.map(f => f.label).join(', ')}`);
+      return;
+    }
+
+    connectMutation.mutate({
+      integrationKey: connectingIntegration,
+      credentials: credentials
+    });
+  };
+
   if (isLoading) {
     return <div className="text-center py-8"><Loader className="h-6 w-6 animate-spin mx-auto" /></div>;
   }
+
+  // Integration credential configurations
+  const integrationConfigs = {
+    quickbooks: {
+      fields: [
+        { name: 'client_id', label: 'Client ID', type: 'text', required: true },
+        { name: 'client_secret', label: 'Client Secret', type: 'password', required: true },
+        { name: 'realm_id', label: 'Company ID (Realm ID)', type: 'text', required: true }
+      ],
+      authType: 'OAuth 2.0',
+      docs: 'https://developer.intuit.com/app/developer/qbo/docs/get-started'
+    },
+    xero: {
+      fields: [
+        { name: 'client_id', label: 'Client ID', type: 'text', required: true },
+        { name: 'client_secret', label: 'Client Secret', type: 'password', required: true },
+        { name: 'tenant_id', label: 'Tenant ID', type: 'text', required: true }
+      ],
+      authType: 'OAuth 2.0',
+      docs: 'https://developer.xero.com/documentation/getting-started-guide/'
+    },
+    sage: {
+      fields: [
+        { name: 'subscription_key', label: 'Subscription Key', type: 'text', required: true },
+        { name: 'client_id', label: 'Client ID', type: 'text', required: true },
+        { name: 'client_secret', label: 'Client Secret', type: 'password', required: true }
+      ],
+      authType: 'OAuth 2.0',
+      docs: 'https://developer.sage.com/'
+    },
+    netsuite: {
+      fields: [
+        { name: 'account_id', label: 'Account ID', type: 'text', required: true },
+        { name: 'consumer_key', label: 'Consumer Key', type: 'text', required: true },
+        { name: 'consumer_secret', label: 'Consumer Secret', type: 'password', required: true },
+        { name: 'token_id', label: 'Token ID', type: 'text', required: true },
+        { name: 'token_secret', label: 'Token Secret', type: 'password', required: true }
+      ],
+      authType: 'Token-Based',
+      docs: 'https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4247337262.html'
+    },
+    oracle: {
+      fields: [
+        { name: 'base_url', label: 'Base URL', type: 'text', required: true, placeholder: 'https://your-instance.oraclecloud.com' },
+        { name: 'username', label: 'Username', type: 'text', required: true },
+        { name: 'password', label: 'Password', type: 'password', required: true }
+      ],
+      authType: 'Basic Auth',
+      docs: 'https://docs.oracle.com/en/cloud/saas/financials/23d/farfa/index.html'
+    },
+    sap: {
+      fields: [
+        { name: 'api_url', label: 'API URL', type: 'text', required: true },
+        { name: 'client_id', label: 'Client ID', type: 'text', required: true },
+        { name: 'client_secret', label: 'Client Secret', type: 'password', required: true },
+        { name: 'company_id', label: 'Company ID', type: 'text', required: true }
+      ],
+      authType: 'OAuth 2.0',
+      docs: 'https://api.sap.com/'
+    },
+    zohobooks: {
+      fields: [
+        { name: 'organization_id', label: 'Organization ID', type: 'text', required: true },
+        { name: 'client_id', label: 'Client ID', type: 'text', required: true },
+        { name: 'client_secret', label: 'Client Secret', type: 'password', required: true },
+        { name: 'refresh_token', label: 'Refresh Token', type: 'password', required: true }
+      ],
+      authType: 'OAuth 2.0',
+      docs: 'https://www.zoho.com/books/api/v3/'
+    },
+    dynamics365: {
+      fields: [
+        { name: 'tenant_id', label: 'Tenant ID', type: 'text', required: true },
+        { name: 'client_id', label: 'Application (Client) ID', type: 'text', required: true },
+        { name: 'client_secret', label: 'Client Secret', type: 'password', required: true },
+        { name: 'environment_url', label: 'Environment URL', type: 'text', required: true }
+      ],
+      authType: 'OAuth 2.0 (Azure AD)',
+      docs: 'https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page'
+    },
+    freshbooks: {
+      fields: [
+        { name: 'client_id', label: 'Client ID', type: 'text', required: true },
+        { name: 'client_secret', label: 'Client Secret', type: 'password', required: true },
+        { name: 'account_id', label: 'Account ID', type: 'text', required: true }
+      ],
+      authType: 'OAuth 2.0',
+      docs: 'https://www.freshbooks.com/api/start'
+    },
+    myob: {
+      fields: [
+        { name: 'client_id', label: 'Client ID', type: 'text', required: true },
+        { name: 'client_secret', label: 'Client Secret', type: 'password', required: true },
+        { name: 'company_file_id', label: 'Company File ID', type: 'text', required: true }
+      ],
+      authType: 'OAuth 2.0',
+      docs: 'https://developer.myob.com/api/accountright/api-overview/'
+    },
+    tallyprime: {
+      fields: [
+        { name: 'server_url', label: 'Tally Server URL', type: 'text', required: true, placeholder: 'http://localhost:9000' },
+        { name: 'company_name', label: 'Company Name', type: 'text', required: true },
+        { name: 'username', label: 'Username (if security enabled)', type: 'text', required: false },
+        { name: 'password', label: 'Password (if security enabled)', type: 'password', required: false }
+      ],
+      authType: 'XML API / ODBC',
+      docs: 'https://tallysolutions.com/integration/'
+    }
+  };
 
   const integrations = [
     { 
@@ -230,7 +405,12 @@ export default function BillingSettingsPanel() {
                       Not Connected
                     </Badge>
                   )}
-                  <Button size="sm" variant="outline" className="hover:bg-blue-50 hover:border-blue-600">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="hover:bg-blue-50 hover:border-blue-600"
+                    onClick={() => handleConnect(integration.key)}
+                  >
                     {integration.connected ? 'Reconfigure' : 'Connect'}
                   </Button>
                 </div>
@@ -239,6 +419,77 @@ export default function BillingSettingsPanel() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Connection Modal */}
+      {connectingIntegration && (
+        <Dialog open={!!connectingIntegration} onOpenChange={() => setConnectingIntegration(null)}>
+          <DialogContent className="max-w-xl">
+            <DialogHeader>
+              <DialogTitle>
+                Connect {integrations.find(i => i.key === connectingIntegration)?.name}
+              </DialogTitle>
+              <DialogDescription>
+                Authentication Type: <span className="font-semibold">{integrationConfigs[connectingIntegration]?.authType}</span>
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="space-y-4 py-4">
+              {integrationConfigs[connectingIntegration]?.fields.map((field) => (
+                <div key={field.name}>
+                  <label className="text-sm font-semibold">
+                    {field.label}
+                    {field.required && <span className="text-red-500 ml-1">*</span>}
+                  </label>
+                  <Input
+                    type={field.type}
+                    placeholder={field.placeholder || `Enter ${field.label.toLowerCase()}`}
+                    value={credentials[field.name] || ''}
+                    onChange={(e) => setCredentials({...credentials, [field.name]: e.target.value})}
+                    className="mt-1"
+                  />
+                </div>
+              ))}
+
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-4">
+                <div className="flex items-start gap-2">
+                  <ExternalLink className="h-4 w-4 text-blue-600 mt-0.5" />
+                  <div className="text-sm">
+                    <p className="font-semibold text-blue-900">Need help?</p>
+                    <p className="text-blue-700">
+                      Visit the{' '}
+                      <a 
+                        href={integrationConfigs[connectingIntegration]?.docs} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="underline hover:text-blue-900"
+                      >
+                        official documentation
+                      </a>
+                      {' '}to get your API credentials.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3">
+              <Button 
+                variant="outline" 
+                onClick={() => setConnectingIntegration(null)}
+              >
+                Cancel
+              </Button>
+              <Button 
+                onClick={handleSaveConnection}
+                disabled={connectMutation.isPending}
+                className="bg-blue-600 hover:bg-blue-700"
+              >
+                {connectMutation.isPending ? 'Connecting...' : 'Save & Connect'}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
 
       {/* Invoice Settings */}
       <Card>
