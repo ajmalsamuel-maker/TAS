@@ -17,7 +17,7 @@ import UserManagement from '../components/admin/UserManagement';
 import AuditLogsManagement from '../components/admin/AuditLogsManagement';
 import WebhookManagement from '../components/admin/WebhookManagement';
 import AMLMonitoringPanel from '../components/admin/AMLMonitoringPanel';
-import MonitoringDashboard from '../components/monitoring/MonitoringDashboard';
+
 import PolicyManager from '../components/policy/PolicyManager';
 import CaseQueue from '../components/case/CaseQueue';
 import TransactionMonitoring from '../components/transaction/TransactionMonitoring';
@@ -149,29 +149,8 @@ export default function AdminDashboard() {
               <TabsTrigger value="applications" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 Applications
               </TabsTrigger>
-              <TabsTrigger value="workflows" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
-                Workflows
-              </TabsTrigger>
-              <TabsTrigger value="policies" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
-                Policies
-              </TabsTrigger>
-              <TabsTrigger value="cases" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
-                Cases
-              </TabsTrigger>
-              <TabsTrigger value="transactions" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
-                Transactions
-              </TabsTrigger>
-              <TabsTrigger value="fraud" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
-                Fraud
-              </TabsTrigger>
-              <TabsTrigger value="monitoring" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
-                AML
-              </TabsTrigger>
-              <TabsTrigger value="web3" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
-                Web3
-              </TabsTrigger>
               <TabsTrigger value="reports" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
-                Reports
+                Analytics
               </TabsTrigger>
               <TabsTrigger value="providers" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 Providers
@@ -207,14 +186,6 @@ export default function AdminDashboard() {
             <OnboardingApplications applications={applications} />
           </TabsContent>
 
-          <TabsContent value="workflows">
-            <WorkflowsOverview workflows={workflows} />
-          </TabsContent>
-
-          <TabsContent value="policies">
-            <PolicyManager />
-          </TabsContent>
-
           <TabsContent value="users">
             <UserManagement />
           </TabsContent>
@@ -229,29 +200,6 @@ export default function AdminDashboard() {
 
           <TabsContent value="webhooks">
             <WebhookManagement />
-          </TabsContent>
-
-          <TabsContent value="monitoring">
-            <div className="space-y-6">
-              <MonitoringDashboard />
-              <AMLMonitoringPanel />
-            </div>
-          </TabsContent>
-
-          <TabsContent value="cases">
-            <CaseQueue user={user} />
-          </TabsContent>
-
-          <TabsContent value="transactions">
-            <TransactionMonitoring />
-          </TabsContent>
-
-          <TabsContent value="fraud">
-            <FraudDashboard />
-          </TabsContent>
-
-          <TabsContent value="web3">
-            <Web3Analytics />
           </TabsContent>
 
           <TabsContent value="reports">

@@ -64,9 +64,7 @@ function LayoutContent({ children, currentPageName }) {
   // User Portal Navigation (Authenticated Regular Users)
   const userPortalPages = [
     { nameKey: 'nav.dashboard', icon: Activity, path: 'UserDashboard', tooltip: 'View your dashboard overview' },
-    { nameKey: 'nav.workflows', icon: Activity, path: 'Workflows', tooltip: 'Track verification workflows' },
-    { name: 'Web3', icon: Globe, path: 'Web3Dashboard', tooltip: 'Web3 and blockchain features' },
-    { nameKey: 'nav.compliance', icon: Shield, path: 'UserCompliance', tooltip: 'Monitor compliance status' },
+    { name: 'Monitoring', icon: Shield, path: 'UserMonitoring', tooltip: 'AML & KYB ongoing monitoring' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials', tooltip: 'Manage LEI and vLEI credentials' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings', tooltip: 'Configure account settings' },
     { name: 'Documentation', icon: FileText, path: 'UserPortalDocumentation', tooltip: 'Technical documentation and user manual' }

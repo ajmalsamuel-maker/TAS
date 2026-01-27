@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import DownloadLogo from './pages/DownloadLogo';
 import FeatureVerificationGuide from './pages/FeatureVerificationGuide';
 import Home from './pages/Home';
+import IntegrationsSummary from './pages/IntegrationsSummary';
 import MarketingWebsiteDocumentation from './pages/MarketingWebsiteDocumentation';
 import Onboarding from './pages/Onboarding';
 import OrganizationOnboarding from './pages/OrganizationOnboarding';
@@ -25,7 +26,7 @@ import UserPortalDocumentation from './pages/UserPortalDocumentation';
 import UserSettings from './pages/UserSettings';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
-import IntegrationsSummary from './pages/IntegrationsSummary';
+import UserMonitoring from './pages/UserMonitoring';
 import __Layout from './Layout.jsx';
 
 
@@ -43,6 +44,7 @@ export const PAGES = {
     "DownloadLogo": DownloadLogo,
     "FeatureVerificationGuide": FeatureVerificationGuide,
     "Home": Home,
+    "IntegrationsSummary": IntegrationsSummary,
     "MarketingWebsiteDocumentation": MarketingWebsiteDocumentation,
     "Onboarding": Onboarding,
     "OrganizationOnboarding": OrganizationOnboarding,
@@ -57,7 +59,7 @@ export const PAGES = {
     "UserSettings": UserSettings,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
-    "IntegrationsSummary": IntegrationsSummary,
+    "UserMonitoring": UserMonitoring,
 }
 
 export const pagesConfig = {
