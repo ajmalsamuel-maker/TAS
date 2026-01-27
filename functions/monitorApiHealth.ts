@@ -10,20 +10,21 @@ Deno.serve(async (req) => {
       apis: {}
     };
 
-    // Test AML Watcher API with Basic Auth
+    // Test AML Watcher API
     try {
       const amlWatcherApiKey = Deno.env.get('AMLWATCHER_API_KEY');
-      const amlResponse = await fetch('https://api.amlwatcher.com/api/v1/searches', {
-        method: 'GET',
+      const amlResponse = await fetch('https://api.amlwatcher.com/api/v1/sanctions-search', {
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${amlWatcherApiKey}`,
           'Content-Type': 'application/json'
         },
+        body: JSON.stringify({ name: 'test' }),
         signal: AbortSignal.timeout(5000)
       });
       
       results.apis.amlWatcher = {
-        status: (amlResponse.ok || amlResponse.status === 401) ? 'online' : 'offline',
+        status: (amlResponse.ok || amlResponse.status === 401 || amlResponse.status === 400) ? 'online' : 'offline',
         statusCode: amlResponse.status,
         note: amlResponse.status === 401 ? 'Invalid credentials' : ''
       };
