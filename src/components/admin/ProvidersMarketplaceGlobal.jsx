@@ -17,7 +17,11 @@ const PROVIDER_CATEGORIES = [
   'FACIAL_RECOGNITION',
   'ID_VERIFICATION',
   'DOCUMENT_VERIFICATION',
-  'LIVENESS_DETECTION'
+  'LIVENESS_DETECTION',
+  'WEB3_VERIFICATION',
+  'BLOCKCHAIN_COMPLIANCE',
+  'LEI_ISSUANCE',
+  'VLEI_ISSUANCE'
 ];
 
 const CATEGORY_LABELS = {
@@ -26,7 +30,11 @@ const CATEGORY_LABELS = {
   FACIAL_RECOGNITION: 'Facial Recognition',
   ID_VERIFICATION: 'ID Verification',
   DOCUMENT_VERIFICATION: 'Document Verification',
-  LIVENESS_DETECTION: 'Liveness Detection'
+  LIVENESS_DETECTION: 'Liveness Detection',
+  WEB3_VERIFICATION: 'Web3 Verification',
+  BLOCKCHAIN_COMPLIANCE: 'Blockchain Compliance',
+  LEI_ISSUANCE: 'LEI Issuance',
+  VLEI_ISSUANCE: 'vLEI Issuance'
 };
 
 export default function ProvidersMarketplaceGlobal() {
