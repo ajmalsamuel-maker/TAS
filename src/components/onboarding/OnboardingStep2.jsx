@@ -69,7 +69,8 @@ export default function OnboardingStep2({ formData, setFormData }) {
         </div>
       </div>
 
-      {/* Legal Address */}
+      {/* Legal Address - Optional if same as Headquarters */}
+      {!sameAsHQ && (
       <div>
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Legal Address *</h3>
@@ -82,24 +83,15 @@ export default function OnboardingStep2({ formData, setFormData }) {
             <Label htmlFor="sameAsHQ" className="text-sm cursor-pointer">Same as Headquarters</Label>
           </div>
         </div>
-        
+
         <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <Label>Country/Region *</Label>
+          <div className="md:col-span-2">
+            <Label>Street Address *</Label>
             <Input
-              value={formData.legal_address?.country || ''}
-              onChange={(e) => updateAddress('legal_address', 'country', e.target.value)}
+              value={formData.legal_address?.address || ''}
+              onChange={(e) => updateAddress('legal_address', 'address', e.target.value)}
+              placeholder="Street address"
               className="mt-2"
-              disabled={sameAsHQ}
-            />
-          </div>
-          <div>
-            <Label>Province/Region *</Label>
-            <Input
-              value={formData.legal_address?.province || ''}
-              onChange={(e) => updateAddress('legal_address', 'province', e.target.value)}
-              className="mt-2"
-              disabled={sameAsHQ}
             />
           </div>
           <div>
@@ -108,7 +100,14 @@ export default function OnboardingStep2({ formData, setFormData }) {
               value={formData.legal_address?.city || ''}
               onChange={(e) => updateAddress('legal_address', 'city', e.target.value)}
               className="mt-2"
-              disabled={sameAsHQ}
+            />
+          </div>
+          <div>
+            <Label>Province/State *</Label>
+            <Input
+              value={formData.legal_address?.province || ''}
+              onChange={(e) => updateAddress('legal_address', 'province', e.target.value)}
+              className="mt-2"
             />
           </div>
           <div>
@@ -117,21 +116,17 @@ export default function OnboardingStep2({ formData, setFormData }) {
               value={formData.legal_address?.postal_code || ''}
               onChange={(e) => updateAddress('legal_address', 'postal_code', e.target.value)}
               className="mt-2"
-              disabled={sameAsHQ}
-            />
-          </div>
-          <div className="md:col-span-2">
-            <Label>Address *</Label>
-            <Input
-              value={formData.legal_address?.address || ''}
-              onChange={(e) => updateAddress('legal_address', 'address', e.target.value)}
-              placeholder="Street address"
-              className="mt-2"
-              disabled={sameAsHQ}
             />
           </div>
         </div>
       </div>
+      )}
+
+      {sameAsHQ && (
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <p className="text-sm text-gray-700">Legal address will be the same as headquarters address.</p>
+        </div>
+      )}
     </div>
   );
 }
