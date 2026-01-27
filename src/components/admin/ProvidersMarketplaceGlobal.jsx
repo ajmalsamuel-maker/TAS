@@ -6,7 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
-import { AlertCircle, Globe, Zap, DollarSign, Check, X } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { AlertCircle, Globe, Zap, DollarSign, Check, X, Settings } from 'lucide-react';
 
 const PROVIDER_CATEGORIES = [
   'KYB_KYC',
@@ -65,6 +68,11 @@ export default function ProvidersMarketplaceGlobal() {
     })
   });
 
+  const { data: enabledProviders = [] } = useQuery({
+    queryKey: ['enabledProviders'],
+    queryFn: () => base44.entities.Provider.list()
+  });
+
   const filteredProviders = providers?.filter(p =>
     p.provider_name.toLowerCase().includes(searchTerm.toLowerCase())
   ) || [];
@@ -111,9 +119,17 @@ export default function ProvidersMarketplaceGlobal() {
                   </CardContent>
                 </Card>
               ) : (
-                filteredProviders.map(provider => (
-                  <ProviderCard key={provider.id} provider={provider} />
-                ))
+                filteredProviders.map(provider => {
+                  const enabledProvider = enabledProviders.find(p => p.global_provider_id === provider.id);
+                  return (
+                    <ProviderCard 
+                      key={provider.id} 
+                      provider={provider} 
+                      enabledProvider={enabledProvider}
+                      queryClient={queryClient}
+                    />
+                  );
+                })
               )}
             </div>
           </TabsContent>
