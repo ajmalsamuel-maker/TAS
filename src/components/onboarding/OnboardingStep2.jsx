@@ -51,19 +51,18 @@ export default function OnboardingStep2({ formData, setFormData }) {
             />
           </div>
           <div>
+            <Label>Province/State *</Label>
+            <Input
+              value={formData.headquarters_address?.province || ''}
+              onChange={(e) => updateAddress('headquarters_address', 'province', e.target.value)}
+              className="mt-2"
+            />
+          </div>
+          <div>
             <Label>Postal Code *</Label>
             <Input
               value={formData.headquarters_address?.postal_code || ''}
               onChange={(e) => updateAddress('headquarters_address', 'postal_code', e.target.value)}
-              className="mt-2"
-            />
-          </div>
-          <div className="md:col-span-2">
-            <Label>Address *</Label>
-            <Input
-              value={formData.headquarters_address?.address || ''}
-              onChange={(e) => updateAddress('headquarters_address', 'address', e.target.value)}
-              placeholder="Street address"
               className="mt-2"
             />
           </div>
