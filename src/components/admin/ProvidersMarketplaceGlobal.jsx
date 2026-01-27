@@ -166,6 +166,9 @@ function ProviderCard({ provider, enabledProvider, queryClient }) {
               <CardTitle className="text-lg">{provider.provider_name}</CardTitle>
               <Badge variant="outline">{provider.api_type}</Badge>
               <Badge className="bg-blue-100 text-blue-800">{provider.authentication_method}</Badge>
+              {enabledProvider && (
+                <Badge className="bg-green-100 text-green-800">✓ Enabled</Badge>
+              )}
             </div>
             <CardDescription className="line-clamp-2">{provider.best_for}</CardDescription>
           </div>
