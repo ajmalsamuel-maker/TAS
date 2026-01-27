@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -8,13 +8,19 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Server, Activity, Globe, Settings, Trash2 } from 'lucide-react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 
-export default function ProvidersManagement({ providers }) {
+export default function ProvidersManagement({ providers: initialProviders }) {
   const [editingProvider, setEditingProvider] = useState(null);
   const [editConfig, setEditConfig] = useState({});
+  const [showDialog, setShowDialog] = useState(false);
   const queryClient = useQueryClient();
+
+  const { data: providers = initialProviders } = useQuery({
+    queryKey: ['providers'],
+    queryFn: () => base44.entities.Provider.list()
+  });
 
   const { mutate: updateProvider } = useMutation({
     mutationFn: async (data) => {
@@ -120,7 +126,10 @@ export default function ProvidersManagement({ providers }) {
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex gap-2 justify-end">
-                      <Dialog open={editingProvider?.id === provider.id} onOpenChange={(open) => !open && setEditingProvider(null)}>
+                      <Dialog open={showDialog && editingProvider?.id === provider.id} onOpenChange={(open) => {
+                        setShowDialog(open);
+                        if (!open) setEditingProvider(null);
+                      }}>
                         <DialogTrigger asChild>
                           <Button 
                             size="sm" 
@@ -129,63 +138,66 @@ export default function ProvidersManagement({ providers }) {
                             onClick={() => {
                               setEditingProvider(provider);
                               setEditConfig(provider.config || {});
+                              setShowDialog(true);
                             }}
                           >
                             <Settings className="h-4 w-4" />
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-2xl">
-                          <DialogHeader>
-                            <DialogTitle>Configure {provider.name}</DialogTitle>
-                          </DialogHeader>
-                          <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-                            <div>
-                              <Label className="text-sm font-semibold mb-2 block">API Key</Label>
-                              <Input
-                                value={editConfig.api_key || ''}
-                                onChange={(e) => setEditConfig({...editConfig, api_key: e.target.value})}
-                                type="password"
-                                placeholder="Enter API key"
-                              />
-                            </div>
+                        {editingProvider && (
+                          <DialogContent className="max-w-2xl">
+                            <DialogHeader>
+                              <DialogTitle>Configure {editingProvider.name}</DialogTitle>
+                            </DialogHeader>
+                            <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                              <div>
+                                <Label className="text-sm font-semibold mb-2 block">API Key</Label>
+                                <Input
+                                  value={editConfig.api_key || ''}
+                                  onChange={(e) => setEditConfig({...editConfig, api_key: e.target.value})}
+                                  type="password"
+                                  placeholder="Enter API key"
+                                />
+                              </div>
 
-                            <div>
-                              <Label className="text-sm font-semibold mb-2 block">Client ID</Label>
-                              <Input
-                                value={editConfig.client_id || ''}
-                                onChange={(e) => setEditConfig({...editConfig, client_id: e.target.value})}
-                                placeholder="Enter client ID"
-                              />
-                            </div>
+                              <div>
+                                <Label className="text-sm font-semibold mb-2 block">Client ID</Label>
+                                <Input
+                                  value={editConfig.client_id || ''}
+                                  onChange={(e) => setEditConfig({...editConfig, client_id: e.target.value})}
+                                  placeholder="Enter client ID"
+                                />
+                              </div>
 
-                            <div>
-                              <Label className="text-sm font-semibold mb-2 block">Client Secret</Label>
-                              <Input
-                                value={editConfig.client_secret || ''}
-                                onChange={(e) => setEditConfig({...editConfig, client_secret: e.target.value})}
-                                type="password"
-                                placeholder="Enter client secret"
-                              />
-                            </div>
+                              <div>
+                                <Label className="text-sm font-semibold mb-2 block">Client Secret</Label>
+                                <Input
+                                  value={editConfig.client_secret || ''}
+                                  onChange={(e) => setEditConfig({...editConfig, client_secret: e.target.value})}
+                                  type="password"
+                                  placeholder="Enter client secret"
+                                />
+                              </div>
 
-                            <div>
-                              <Label className="text-sm font-semibold mb-2 block">Custom Configuration (JSON)</Label>
-                              <Textarea
-                                placeholder='{"key": "value"}'
-                                value={typeof editConfig.custom_fields === 'string' ? editConfig.custom_fields : JSON.stringify(editConfig.custom_fields || {})}
-                                onChange={(e) => setEditConfig({...editConfig, custom_fields: e.target.value})}
-                                className="h-32 font-mono text-xs"
-                              />
-                            </div>
+                              <div>
+                                <Label className="text-sm font-semibold mb-2 block">Custom Configuration (JSON)</Label>
+                                <Textarea
+                                  placeholder='{"key": "value"}'
+                                  value={typeof editConfig.custom_fields === 'string' ? editConfig.custom_fields : JSON.stringify(editConfig.custom_fields || {})}
+                                  onChange={(e) => setEditConfig({...editConfig, custom_fields: e.target.value})}
+                                  className="h-32 font-mono text-xs"
+                                />
+                              </div>
 
-                            <Button 
-                              onClick={() => updateProvider({ config: editConfig })} 
-                              className="w-full bg-blue-600 hover:bg-blue-700"
-                            >
-                              Save Configuration
-                            </Button>
-                          </div>
-                        </DialogContent>
+                              <Button 
+                                onClick={() => updateProvider({ config: editConfig })} 
+                                className="w-full bg-blue-600 hover:bg-blue-700"
+                              >
+                                Save Configuration
+                              </Button>
+                            </div>
+                          </DialogContent>
+                        )}
                       </Dialog>
 
                       <Button 
