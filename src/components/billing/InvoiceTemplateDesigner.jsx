@@ -190,44 +190,39 @@ export default function InvoiceTemplateDesigner() {
     }
   });
 
-  const { data: settings } = useQuery({
-    queryKey: ['billingSettings'],
-    queryFn: () => base44.entities.BillingSettings.filter({}).then(r => r[0])
-  });
-
-  const saveMutation = useMutation({
-    mutationFn: async () => {
-      const existingSettings = await base44.entities.BillingSettings.filter({});
-      const updatedSettings = {
-        ...settings,
-        invoice_template: {
-          ...settings?.invoice_template,
-          ...templateData,
-          standard_compliance: selectedStandard,
-          auto_detect_by_country: autoDetectByCountry,
-          country_templates: selectedCountry ? {
-            [selectedCountry]: {
-              ...templateData,
-              standard_compliance: selectedStandard
-            }
-          } : {}
-        }
-      };
-
-      if (existingSettings[0]) {
-        return await base44.entities.BillingSettings.update(existingSettings[0].id, updatedSettings);
-      } else {
-        return await base44.entities.BillingSettings.create(updatedSettings);
-      }
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['billingSettings'] });
-      toast.success('Invoice template saved');
-    },
-    onError: (error) => {
-      toast.error(error.message || 'Failed to save template');
+  // Load template when country changes
+  React.useEffect(() => {
+    if (countryTemplates?.length > 0) {
+      const template = countryTemplates[0];
+      setTemplateData({
+        header_logo_position: template.header_logo_position || 'left',
+        header_text: template.header_text || 'INVOICE',
+        show_seller_info: template.show_seller_info !== false,
+        show_buyer_info: template.show_buyer_info !== false,
+        show_line_items: template.show_line_items !== false,
+        show_tax_breakdown: template.show_tax_breakdown !== false,
+        show_payment_terms: template.show_payment_terms !== false,
+        show_notes: template.show_notes !== false,
+        footer_text: template.footer_text || '',
+        terms_conditions: template.terms_conditions || '',
+        css_customizations: template.css_customizations || '',
+        currency_position: template.currency_position || 'left',
+        date_format: template.date_format || 'DD/MM/YYYY'
+      });
     }
-  });
+  }, [countryTemplates]);
+
+  const handleSaveSettings = () => {
+    if (!selectedStandard) {
+      toast.error('Please select a country/standard');
+      return;
+    }
+    if (!templateData.header_text) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+    saveTemplateMutation.mutate(templateData);
+  };
 
   const standard = INVOICE_STANDARDS[selectedStandard];
 
@@ -770,12 +765,12 @@ export default function InvoiceTemplateDesigner() {
       <div className="flex justify-end gap-3">
         <Button variant="outline">Cancel</Button>
         <Button 
-          onClick={() => saveMutation.mutate()}
-          disabled={saveMutation.isPending}
+          onClick={handleSaveSettings}
+          disabled={saveTemplateMutation.isPending || !selectedStandard}
           className="bg-blue-600 hover:bg-blue-700"
         >
           <Save className="h-4 w-4 mr-2" />
-          {saveMutation.isPending ? 'Saving...' : 'Save Template'}
+          {saveTemplateMutation.isPending ? 'Saving...' : `Save Template for ${selectedStandard}`}
         </Button>
       </div>
     </div>
