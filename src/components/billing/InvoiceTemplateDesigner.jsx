@@ -105,6 +105,8 @@ const INVOICE_STANDARDS = {
 export default function InvoiceTemplateDesigner() {
   const queryClient = useQueryClient();
   const [selectedStandard, setSelectedStandard] = useState('en16931');
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [autoDetectByCountry, setAutoDetectByCountry] = useState(false);
   const [templateData, setTemplateData] = useState({
     header_logo_position: 'left',
     header_text: 'INVOICE',
@@ -121,6 +123,11 @@ export default function InvoiceTemplateDesigner() {
     date_format: 'DD/MM/YYYY'
   });
 
+  const { data: invoiceStandards } = useQuery({
+    queryKey: ['invoiceStandards'],
+    queryFn: () => base44.entities.InvoiceStandard.list()
+  });
+
   const { data: settings } = useQuery({
     queryKey: ['billingSettings'],
     queryFn: () => base44.entities.BillingSettings.filter({}).then(r => r[0])
@@ -134,7 +141,14 @@ export default function InvoiceTemplateDesigner() {
         invoice_template: {
           ...settings?.invoice_template,
           ...templateData,
-          standard_compliance: selectedStandard
+          standard_compliance: selectedStandard,
+          auto_detect_by_country: autoDetectByCountry,
+          country_templates: selectedCountry ? {
+            [selectedCountry]: {
+              ...templateData,
+              standard_compliance: selectedStandard
+            }
+          } : {}
         }
       };
 
@@ -157,12 +171,61 @@ export default function InvoiceTemplateDesigner() {
 
   return (
     <div className="space-y-6">
+      {/* Country & Auto-Detection */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Invoice Standard Selection</CardTitle>
+          <CardDescription>
+            Configure global or country-specific invoice standards
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <label className="flex items-center gap-3 p-3 border rounded-lg">
+            <input
+              type="checkbox"
+              checked={autoDetectByCountry}
+              onChange={(e) => setAutoDetectByCountry(e.target.checked)}
+            />
+            <span className="font-medium text-sm">Auto-detect invoice standard based on customer country</span>
+          </label>
+          
+          {autoDetectByCountry && invoiceStandards && (
+            <div>
+              <label className="block text-sm font-medium mb-2">Select Country</label>
+              <select
+                value={selectedCountry || ''}
+                onChange={(e) => setSelectedCountry(e.target.value || null)}
+                className="w-full px-3 py-2 border rounded-md text-sm"
+              >
+                <option value="">-- Choose a country --</option>
+                {invoiceStandards.map(std => (
+                  <option key={std.id} value={std.country_code}>
+                    {std.country_name}
+                  </option>
+                ))}
+              </select>
+              {selectedCountry && (
+                <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm">
+                  <p className="font-medium">Standards for this country:</p>
+                  <p className="text-gray-700 mt-1">
+                    {invoiceStandards.find(s => s.country_code === selectedCountry)?.invoicing_standards?.join(', ')}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {/* Standards Overview */}
       <Card>
         <CardHeader>
-          <CardTitle>Invoice Standards & Compliance</CardTitle>
+          <CardTitle>Global Invoice Standards & Compliance</CardTitle>
           <CardDescription>
-            Choose the invoicing standard that applies to your business region and customers
+            {autoDetectByCountry 
+              ? `Customer invoices will automatically use the standard for their country` 
+              : 'Choose the default invoicing standard for all invoices'
+            }
           </CardDescription>
         </CardHeader>
         <CardContent>
