@@ -94,11 +94,17 @@ export default function ProvidersMarketplaceGlobal() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <div>
-          <h2 className="text-2xl font-bold">Global Provider Marketplace</h2>
-          <p className="text-gray-600 text-sm mt-1">Configure third-party providers for identity verification, AML screening, and compliance</p>
-        </div>
-      </div>
+         <div>
+           <h2 className="text-2xl font-bold">Global Provider Marketplace</h2>
+           <p className="text-gray-600 text-sm mt-1">Browse and add third-party providers to the global registry. Enable providers to use them operationally.</p>
+         </div>
+         <Dialog open={showAddProvider} onOpenChange={setShowAddProvider}>
+           <DialogTrigger asChild>
+             <Button className="bg-blue-600 hover:bg-blue-700">+ Add Provider</Button>
+           </DialogTrigger>
+           <AddProviderDialog onClose={() => setShowAddProvider(false)} />
+         </Dialog>
+       </div>
 
       {/* Category Tabs */}
        <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
