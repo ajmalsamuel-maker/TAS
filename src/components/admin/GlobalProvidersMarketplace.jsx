@@ -57,6 +57,8 @@ export default function GlobalProviders() {
     ? providers?.filter(p => web3Categories.includes(p.provider_category))
     : activeTab === 'lei'
     ? providers?.filter(p => leiCategories.includes(p.provider_category))
+    : activeTab === 'traditional'
+    ? providers?.filter(p => tradCategories.includes(p.provider_category))
     : providers;
 
   const filteredProviders = filteredByTab?.filter(p => {
