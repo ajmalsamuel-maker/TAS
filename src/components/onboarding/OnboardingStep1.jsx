@@ -13,6 +13,7 @@ export default function OnboardingStep1({ formData, setFormData }) {
   const [searchCountry, setSearchCountry] = useState('US');
   const [searching, setSearching] = useState(false);
   const [kybVerified, setKybVerified] = useState(false);
+  const [countries, setCountries] = useState([]);
 
   const updateField = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
