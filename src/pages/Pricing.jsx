@@ -123,27 +123,7 @@ export default function Pricing() {
             </div>
           </div>
 
-          {/* Provider Fees Notice */}
-          <div className="mt-8 sm:mt-12 bg-blue-50 border-l-4 border-[#0066B3] p-4 sm:p-6 rounded-lg">
-            <h4 className="font-bold text-sm sm:text-base text-gray-900 mb-2">Regulated Provider Fees</h4>
-            <p className="text-xs sm:text-sm text-gray-700 mb-4">
-              The following services are billed separately by licensed providers:
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-xs sm:text-sm">
-              <div className="bg-white rounded-lg p-3 border border-blue-200">
-                <p className="font-semibold text-gray-900">Certizen Technology</p>
-                <p className="text-gray-600">vLEI issuance, DID creation, trust credentialing</p>
-              </div>
-              <div className="bg-white rounded-lg p-3 border border-blue-200">
-                <p className="font-semibold text-gray-900">FTS AML</p>
-                <p className="text-gray-600">AML screening, PEP/sanctions checks</p>
-              </div>
-              <div className="bg-white rounded-lg p-3 border border-blue-200">
-                <p className="font-semibold text-gray-900">FTS KYB</p>
-                <p className="text-gray-600">KYB verification, UBO checks, business scoring</p>
-              </div>
-            </div>
-          </div>
+
         </div>
       </section>
 
