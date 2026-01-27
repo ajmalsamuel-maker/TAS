@@ -162,6 +162,9 @@ export default function AdminDashboard() {
               <TabsTrigger value="webhooks" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 Webhooks
               </TabsTrigger>
+              <TabsTrigger value="global-providers" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                Global Providers
+              </TabsTrigger>
               <TabsTrigger value="translations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 i18n
               </TabsTrigger>
@@ -201,6 +204,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="webhooks">
             <WebhookManagement />
+          </TabsContent>
+
+          <TabsContent value="global-providers">
+            <ProvidersMarketplaceGlobal />
           </TabsContent>
 
           <TabsContent value="reports">
