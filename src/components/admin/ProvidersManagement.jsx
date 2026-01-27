@@ -170,11 +170,17 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                                   <strong>Provider:</strong> {editingProvider.name} | <strong>Type:</strong> {editingProvider.service_type}
                                 </div>
 
+                                {loadingCredentials && (
+                                  <div className="bg-yellow-50 border border-yellow-200 rounded p-3 text-xs text-yellow-800">
+                                    Loading credentials...
+                                  </div>
+                                )}
+
                                 <div>
                                   <Label className="text-sm font-semibold mb-2 block">API Key</Label>
                                   <Input
-                                    value={editingProvider.api_key || ''}
-                                    onChange={(e) => setEditingProvider({...editingProvider, api_key: e.target.value})}
+                                    value={loadedCredentials.api_key || editingProvider.api_key || ''}
+                                    onChange={(e) => setLoadedCredentials({...loadedCredentials, api_key: e.target.value})}
                                     type="password"
                                     placeholder="Enter API key"
                                   />
@@ -183,8 +189,8 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                                 <div>
                                   <Label className="text-sm font-semibold mb-2 block">Client ID</Label>
                                   <Input
-                                    value={editingProvider.client_id || ''}
-                                    onChange={(e) => setEditingProvider({...editingProvider, client_id: e.target.value})}
+                                    value={loadedCredentials.client_id || editingProvider.client_id || ''}
+                                    onChange={(e) => setLoadedCredentials({...loadedCredentials, client_id: e.target.value})}
                                     placeholder="Enter client ID"
                                   />
                                 </div>
@@ -192,8 +198,8 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                                 <div>
                                   <Label className="text-sm font-semibold mb-2 block">Client Secret</Label>
                                   <Input
-                                    value={editingProvider.client_secret || ''}
-                                    onChange={(e) => setEditingProvider({...editingProvider, client_secret: e.target.value})}
+                                    value={loadedCredentials.client_secret || editingProvider.client_secret || ''}
+                                    onChange={(e) => setLoadedCredentials({...loadedCredentials, client_secret: e.target.value})}
                                     type="password"
                                     placeholder="Enter client secret"
                                   />
@@ -220,9 +226,9 @@ export default function ProvidersManagement({ providers: initialProviders }) {
 
                                 <Button 
                                   onClick={() => updateProvider({ 
-                                    api_key: editingProvider.api_key,
-                                    client_id: editingProvider.client_id,
-                                    client_secret: editingProvider.client_secret,
+                                    api_key: loadedCredentials.api_key || editingProvider.api_key,
+                                    client_id: loadedCredentials.client_id || editingProvider.client_id,
+                                    client_secret: loadedCredentials.client_secret || editingProvider.client_secret,
                                     api_endpoint: editingProvider.api_endpoint,
                                     config: editingProvider.config
                                   })} 
