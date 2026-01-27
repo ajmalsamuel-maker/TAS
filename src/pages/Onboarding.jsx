@@ -28,12 +28,39 @@ export default function Onboarding() {
   const [showGuidance, setShowGuidance] = useState(true);
   const navigate = useNavigate();
 
-  // Check authentication on mount
+  // Check authentication and load draft on mount
   React.useEffect(() => {
     base44.auth.me()
-      .then(currentUser => {
+      .then(async (currentUser) => {
         if (currentUser) {
           setUser(currentUser);
+          // Load existing draft application
+          const draftApps = await base44.entities.OnboardingApplication.filter({ 
+            created_by: currentUser.email,
+            status: 'draft' 
+          });
+          if (draftApps.length > 0) {
+            const draft = draftApps[0];
+            setFormData({
+              legal_name: draft.legal_name || '',
+              entity_category: draft.entity_category || '',
+              email: draft.email || '',
+              apply_purpose: draft.apply_purpose || '',
+              legal_representative_name: draft.legal_representative_name || '',
+              contact_person_name: draft.contact_person_name || '',
+              contact_person_tel: draft.contact_person_tel || '',
+              contact_person_email: draft.contact_person_email || '',
+              legal_address: draft.legal_address || {},
+              headquarters_address: draft.headquarters_address || {},
+              entity_legal_form: draft.entity_legal_form || '',
+              registry_country_code: draft.registry_country_code || '',
+              business_registry_name: draft.business_registry_name || '',
+              unique_business_id: draft.unique_business_id || '',
+              number_of_employees: draft.number_of_employees || '1',
+              document_urls: draft.document_urls || []
+            });
+            setShowForm(true);
+          }
         }
         setLoading(false);
       })
