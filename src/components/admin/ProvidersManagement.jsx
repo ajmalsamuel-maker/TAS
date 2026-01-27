@@ -152,8 +152,8 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                             className="text-blue-600 hover:text-blue-700"
                             onClick={() => {
                               setEditingProvider(provider);
-                              setEditConfig(provider.config || {});
                               setShowDialog(true);
+                              loadCredentials(provider);
                             }}
                           >
                             <Settings className="h-4 w-4" />
