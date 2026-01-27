@@ -19,22 +19,22 @@ import OrganizationOnboarding from './pages/OrganizationOnboarding';
 import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
 import Pricing from './pages/Pricing';
 import PublicDocumentation from './pages/PublicDocumentation';
+import UserAlerts from './pages/UserAlerts';
+import UserCases from './pages/UserCases';
 import UserCompliance from './pages/UserCompliance';
 import UserCredentials from './pages/UserCredentials';
 import UserDashboard from './pages/UserDashboard';
 import UserLogin from './pages/UserLogin';
 import UserMonitoring from './pages/UserMonitoring';
+import UserPolicies from './pages/UserPolicies';
 import UserPortalDocumentation from './pages/UserPortalDocumentation';
 import UserSettings from './pages/UserSettings';
+import UserTeam from './pages/UserTeam';
+import UserTransactions from './pages/UserTransactions';
+import UserWorkflows from './pages/UserWorkflows';
 import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
-import UserAlerts from './pages/UserAlerts';
-import UserWorkflows from './pages/UserWorkflows';
-import UserTeam from './pages/UserTeam';
-import UserTransactions from './pages/UserTransactions';
-import UserCases from './pages/UserCases';
-import UserPolicies from './pages/UserPolicies';
 import __Layout from './Layout.jsx';
 
 
@@ -60,22 +60,22 @@ export const PAGES = {
     "PlatformAdminDashboard": PlatformAdminDashboard,
     "Pricing": Pricing,
     "PublicDocumentation": PublicDocumentation,
+    "UserAlerts": UserAlerts,
+    "UserCases": UserCases,
     "UserCompliance": UserCompliance,
     "UserCredentials": UserCredentials,
     "UserDashboard": UserDashboard,
     "UserLogin": UserLogin,
     "UserMonitoring": UserMonitoring,
+    "UserPolicies": UserPolicies,
     "UserPortalDocumentation": UserPortalDocumentation,
     "UserSettings": UserSettings,
+    "UserTeam": UserTeam,
+    "UserTransactions": UserTransactions,
+    "UserWorkflows": UserWorkflows,
     "VLEIManagement": VLEIManagement,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
-    "UserAlerts": UserAlerts,
-    "UserWorkflows": UserWorkflows,
-    "UserTeam": UserTeam,
-    "UserTransactions": UserTransactions,
-    "UserCases": UserCases,
-    "UserPolicies": UserPolicies,
 }
 
 export const pagesConfig = {
