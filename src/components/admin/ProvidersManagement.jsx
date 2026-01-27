@@ -146,7 +146,10 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                     <div className="flex gap-2 justify-end">
                       <Dialog open={showDialog && editingProvider?.id === provider.id} onOpenChange={(open) => {
                         setShowDialog(open);
-                        if (!open) setEditingProvider(null);
+                        if (!open) {
+                          setEditingProvider(null);
+                          setLoadedCredentials({});
+                        }
                       }}>
                         <DialogTrigger asChild>
                           <Button 
@@ -156,6 +159,7 @@ export default function ProvidersManagement({ providers: initialProviders }) {
                             onClick={() => {
                               setEditingProvider(provider);
                               setShowDialog(true);
+                              setLoadedCredentials({});
                               loadCredentials(provider);
                             }}
                           >
