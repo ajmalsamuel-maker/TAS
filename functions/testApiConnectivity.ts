@@ -2,7 +2,7 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 
 const AML_BASE_URL = 'https://api.amlwatcher.com';
 const FACIA_BASE_URL = 'https://api.facia.ai';
-const KYB_BASE_URL = 'https://api.kyb.fts-alpha.com';
+const KYB_BASE_URL = 'https://api.thekyb.com/api';
 
 async function testAMLWatcher() {
   try {
@@ -136,35 +136,57 @@ async function testFacia() {
 
 async function testKYB() {
   try {
-    // Test KYB API endpoint with a health check or basic query
-    const response = await fetch(`${KYB_BASE_URL}/health`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
+    const apiKey = Deno.env.get('KYB_API_KEY');
+
+    if (!apiKey) {
+      return {
+        service: 'The KYB',
+        status: 'warning',
+        message: 'API Key not configured',
+        connected: false,
+        note: 'Please set KYB_API_KEY'
+      };
+    }
+
+    // Test a simple search request
+    const response = await fetch(`${KYB_BASE_URL}/search`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        query: 'Test Company',
+        country: 'US'
+      })
     });
 
-    if (response.ok) {
+    if (!response.ok) {
+      const text = await response.text();
       return {
-        service: 'KYB (FTS)',
-        status: 'success',
-        message: 'Connected successfully',
-        connected: true,
-        capabilities: ['Business Verification', 'Registry Lookup', 'Document Validation']
-      };
-    } else {
-      return {
-        service: 'KYB (FTS)',
-        status: 'warning',
-        message: `API responded with status ${response.status}`,
+        service: 'The KYB',
+        status: 'error',
+        message: `API request failed: ${text}`,
         connected: false
       };
     }
+
+    const data = await response.json();
+
+    return {
+      service: 'The KYB',
+      status: 'success',
+      message: 'Connected successfully',
+      connected: true,
+      capabilities: ['Business Registry Search', 'Company Verification', 'Officer Details', 'Beneficial Ownership']
+    };
+
   } catch (error) {
     return {
-      service: 'KYB (FTS)',
+      service: 'The KYB',
       status: 'error',
       message: error.message,
-      connected: false,
-      note: 'KYB API credentials or endpoint may need configuration'
+      connected: false
     };
   }
 }
