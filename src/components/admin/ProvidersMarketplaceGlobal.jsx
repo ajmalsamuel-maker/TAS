@@ -127,6 +127,8 @@ export default function ProvidersMarketplaceGlobal() {
                       provider={provider} 
                       enabledProvider={enabledProvider}
                       queryClient={queryClient}
+                      onEnable={enableProvider}
+                      isEnabling={isPending}
                     />
                   );
                 })
@@ -139,7 +141,7 @@ export default function ProvidersMarketplaceGlobal() {
   );
 }
 
-function ProviderCard({ provider, enabledProvider, queryClient }) {
+function ProviderCard({ provider, enabledProvider, queryClient, onEnable, isEnabling }) {
   const [expanded, setExpanded] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [config, setConfig] = useState(enabledProvider?.config || {});
@@ -397,11 +399,11 @@ function ProviderCard({ provider, enabledProvider, queryClient }) {
                 </Dialog>
               ) : (
                 <Button 
-                  onClick={() => window.ProvidersMarketplaceGlobal?.handleEnableProvider?.(provider)}
-                  disabled={isPending}
+                  onClick={() => onEnable(provider)}
+                  disabled={isEnabling}
                   className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
                 >
-                  {isPending ? 'Enabling...' : `Enable ${provider.provider_name}`}
+                  {isEnabling ? 'Enabling...' : `Enable ${provider.provider_name}`}
                 </Button>
               )}
             </div>
