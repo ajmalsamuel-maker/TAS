@@ -343,12 +343,17 @@ function ProviderCard({ provider, enabledProvider, queryClient, onEnable, isEnab
       <CardContent className="space-y-4">
         {/* Quick Stats */}
         <div className="grid grid-cols-4 gap-3">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
-            <p className="text-xs text-gray-600 mb-1">Coverage</p>
-            <p className="font-bold text-sm">
-              {(!provider.global_coverage || provider.global_coverage.filter(c => c?.trim?.()).length === 0) ? 'Global' : `${provider.global_coverage.filter(c => c?.trim?.()).length} Countries`}
-            </p>
-          </div>
+          {(() => {
+            const validCountries = provider.global_coverage?.filter(c => c && typeof c === 'string' && c.trim().length > 0) || [];
+            return (
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
+                <p className="text-xs text-gray-600 mb-1">Coverage</p>
+                <p className="font-bold text-sm">
+                  {validCountries.length === 0 ? 'Global' : `${validCountries.length} Countries`}
+                </p>
+              </div>
+            );
+          })()}
           <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <p className="text-xs text-gray-600 mb-1">Accuracy</p>
             <p className="font-bold text-sm">{provider.accuracy_rate}%</p>
