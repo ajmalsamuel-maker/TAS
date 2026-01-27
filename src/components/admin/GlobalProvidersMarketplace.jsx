@@ -89,7 +89,8 @@ export default function GlobalProviders() {
           <TabsTrigger value="lei">LEI/vLEI</TabsTrigger>
         </TabsList>
 
-        <TabsContent value={activeTab} className="space-y-4">
+        {['all', 'traditional', 'web3', 'lei'].map(tab => (
+        <TabsContent key={tab} value={tab} className="space-y-4">
           {/* Search & Filters */}
           <div className="space-y-4">
         <div className="relative">
