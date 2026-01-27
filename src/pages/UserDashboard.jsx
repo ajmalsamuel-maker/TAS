@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
   Shield, CheckCircle2, AlertTriangle, Clock,
-  TrendingUp, FileText, Globe, Key, ArrowRight, AlertCircle
+  TrendingUp, FileText, Globe, Key, ArrowRight
 } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import StatsCard from '../components/dashboard/StatsCard';
