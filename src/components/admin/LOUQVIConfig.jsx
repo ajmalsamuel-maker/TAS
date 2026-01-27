@@ -12,10 +12,55 @@ export default function LOUQVIConfig() {
   const [louProvider, setLouProvider] = useState('rapidlei');
   const [louApiKey, setLouApiKey] = useState('');
   const [louEnabled, setLouEnabled] = useState(false);
+  const [showAddLOU, setShowAddLOU] = useState(false);
+  const [newLOUName, setNewLOUName] = useState('');
+  const [newLOUUrl, setNewLOUUrl] = useState('');
 
   const [qviProvider, setQviProvider] = useState('gleif');
   const [qviApiKey, setQviApiKey] = useState('');
   const [qviEnabled, setQviEnabled] = useState(false);
+  const [showAddQVI, setShowAddQVI] = useState(false);
+  const [newQVIName, setNewQVIName] = useState('');
+  const [newQVIUrl, setNewQVIUrl] = useState('');
+
+  const [customLOUProviders, setCustomLOUProviders] = useState([]);
+  const [customQVIProviders, setCustomQVIProviders] = useState([]);
+
+  const handleAddLOUProvider = () => {
+    if (!newLOUName || !newLOUUrl) {
+      toast.error('Please provide provider name and URL');
+      return;
+    }
+    const newProvider = {
+      value: newLOUName.toLowerCase().replace(/\s+/g, '_'),
+      label: newLOUName,
+      url: newLOUUrl
+    };
+    setCustomLOUProviders([...customLOUProviders, newProvider]);
+    setLouProvider(newProvider.value);
+    setNewLOUName('');
+    setNewLOUUrl('');
+    setShowAddLOU(false);
+    toast.success(`${newLOUName} added successfully`);
+  };
+
+  const handleAddQVIProvider = () => {
+    if (!newQVIName || !newQVIUrl) {
+      toast.error('Please provide provider name and URL');
+      return;
+    }
+    const newProvider = {
+      value: newQVIName.toLowerCase().replace(/\s+/g, '_'),
+      label: newQVIName,
+      url: newQVIUrl
+    };
+    setCustomQVIProviders([...customQVIProviders, newProvider]);
+    setQviProvider(newProvider.value);
+    setNewQVIName('');
+    setNewQVIUrl('');
+    setShowAddQVI(false);
+    toast.success(`${newQVIName} added successfully`);
+  };
 
   const handleSaveLOUConfig = () => {
     // In production, this would save to secrets/environment variables
@@ -33,12 +78,14 @@ export default function LOUQVIConfig() {
     { value: 'rapidlei', label: 'RapidLEI', url: 'https://www.rapidlei.com' },
     { value: 'bloomberg', label: 'Bloomberg LEI', url: 'https://www.bloomberg.com/lei' },
     { value: 'ubisecure', label: 'Ubisecure', url: 'https://www.ubisecure.com' },
-    { value: 'gmei', label: 'GMEI Utility', url: 'https://www.gmeiutility.org' }
+    { value: 'gmei', label: 'GMEI Utility', url: 'https://www.gmeiutility.org' },
+    ...customLOUProviders
   ];
 
   const qviProviders = [
     { value: 'gleif', label: 'GLEIF (Direct)', url: 'https://www.gleif.org/vlei' },
-    { value: 'partner_qvi', label: 'Partner QVI', url: '#' }
+    { value: 'partner_qvi', label: 'Partner QVI', url: '#' },
+    ...customQVIProviders
   ];
 
   return (
@@ -64,27 +111,66 @@ export default function LOUQVIConfig() {
 
           <div className="space-y-4">
             <div>
-              <Label htmlFor="lou-provider">LOU Provider</Label>
-              <Select value={louProvider} onValueChange={setLouProvider}>
-                <SelectTrigger id="lou-provider">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {louProviders.map(provider => (
-                    <SelectItem key={provider.value} value={provider.value}>
-                      {provider.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <a 
-                href={louProviders.find(p => p.value === louProvider)?.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-xs text-blue-600 hover:underline flex items-center gap-1 mt-1"
-              >
-                Visit provider website <ExternalLink className="h-3 w-3" />
-              </a>
+              <div className="flex items-center justify-between mb-2">
+                <Label htmlFor="lou-provider">LOU Provider</Label>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowAddLOU(!showAddLOU)}
+                >
+                  {showAddLOU ? 'Cancel' : '+ Add Custom'}
+                </Button>
+              </div>
+              
+              {showAddLOU ? (
+                <div className="space-y-3 p-4 bg-gray-50 rounded-lg border">
+                  <div>
+                    <Label htmlFor="new-lou-name">Provider Name</Label>
+                    <Input
+                      id="new-lou-name"
+                      placeholder="e.g., Custom LOU Provider"
+                      value={newLOUName}
+                      onChange={(e) => setNewLOUName(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="new-lou-url">Website URL</Label>
+                    <Input
+                      id="new-lou-url"
+                      placeholder="https://..."
+                      value={newLOUUrl}
+                      onChange={(e) => setNewLOUUrl(e.target.value)}
+                    />
+                  </div>
+                  <Button onClick={handleAddLOUProvider} className="w-full">
+                    Add Provider
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <Select value={louProvider} onValueChange={setLouProvider}>
+                    <SelectTrigger id="lou-provider">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {louProviders.map(provider => (
+                        <SelectItem key={provider.value} value={provider.value}>
+                          {provider.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <a 
+                    href={louProviders.find(p => p.value === louProvider)?.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-xs text-blue-600 hover:underline flex items-center gap-1 mt-1"
+                  >
+                    Visit provider website <ExternalLink className="h-3 w-3" />
+                  </a>
+                </>
+              )}
             </div>
 
             <div>
@@ -147,27 +233,66 @@ export default function LOUQVIConfig() {
 
           <div className="space-y-4">
             <div>
-              <Label htmlFor="qvi-provider">QVI Provider</Label>
-              <Select value={qviProvider} onValueChange={setQviProvider}>
-                <SelectTrigger id="qvi-provider">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {qviProviders.map(provider => (
-                    <SelectItem key={provider.value} value={provider.value}>
-                      {provider.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <a 
-                href={qviProviders.find(p => p.value === qviProvider)?.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-xs text-purple-600 hover:underline flex items-center gap-1 mt-1"
-              >
-                Learn more about QVI <ExternalLink className="h-3 w-3" />
-              </a>
+              <div className="flex items-center justify-between mb-2">
+                <Label htmlFor="qvi-provider">QVI Provider</Label>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowAddQVI(!showAddQVI)}
+                >
+                  {showAddQVI ? 'Cancel' : '+ Add Custom'}
+                </Button>
+              </div>
+              
+              {showAddQVI ? (
+                <div className="space-y-3 p-4 bg-gray-50 rounded-lg border">
+                  <div>
+                    <Label htmlFor="new-qvi-name">Provider Name</Label>
+                    <Input
+                      id="new-qvi-name"
+                      placeholder="e.g., Custom QVI Provider"
+                      value={newQVIName}
+                      onChange={(e) => setNewQVIName(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="new-qvi-url">Website URL</Label>
+                    <Input
+                      id="new-qvi-url"
+                      placeholder="https://..."
+                      value={newQVIUrl}
+                      onChange={(e) => setNewQVIUrl(e.target.value)}
+                    />
+                  </div>
+                  <Button onClick={handleAddQVIProvider} className="w-full">
+                    Add Provider
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <Select value={qviProvider} onValueChange={setQviProvider}>
+                    <SelectTrigger id="qvi-provider">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {qviProviders.map(provider => (
+                        <SelectItem key={provider.value} value={provider.value}>
+                          {provider.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <a 
+                    href={qviProviders.find(p => p.value === qviProvider)?.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-xs text-purple-600 hover:underline flex items-center gap-1 mt-1"
+                  >
+                    Learn more about QVI <ExternalLink className="h-3 w-3" />
+                  </a>
+                </>
+              )}
             </div>
 
             <div>
