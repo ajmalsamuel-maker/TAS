@@ -34,10 +34,11 @@ export default function OnboardingStep2({ formData, setFormData }) {
         <p className="text-sm text-gray-600 mb-4">Country from Step 1: <span className="font-medium">{formData.headquarters_address?.country || formData.legal_address?.country || 'Not set'}</span></p>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <Label>Province/Region *</Label>
+            <Label>Street Address *</Label>
             <Input
-              value={formData.headquarters_address?.province || ''}
-              onChange={(e) => updateAddress('headquarters_address', 'province', e.target.value)}
+              value={formData.headquarters_address?.address || ''}
+              onChange={(e) => updateAddress('headquarters_address', 'address', e.target.value)}
+              placeholder="Street address"
               className="mt-2"
             />
           </div>
