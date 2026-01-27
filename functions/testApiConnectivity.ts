@@ -111,7 +111,7 @@ async function testFacia() {
     // Facia API returns token in result.data.token, not access_token
     const accessToken = data.result?.data?.token || data.access_token;
 
-    if (!accessToken) {
+    if (!accessToken || !data.status) {
       return {
         service: 'Facia',
         status: 'error',
@@ -126,8 +126,7 @@ async function testFacia() {
       status: 'success',
       message: 'Connected successfully',
       connected: true,
-      capabilities: ['Liveness Detection', 'Face Matching', 'ID Verification'],
-      token_format: 'result.data.token'
+      capabilities: ['Liveness Detection', 'Face Matching', 'ID Verification']
     };
   } catch (error) {
     return {
