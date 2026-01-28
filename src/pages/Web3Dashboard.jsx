@@ -134,8 +134,8 @@ export default function Web3Dashboard() {
             <p className="text-sm text-gray-700 mb-4">
               All Web3 operations are powered by TAS-integrated service providers:
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg p-3 border border-green-200">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              <div className="bg-white rounded-lg p-2 sm:p-3 border border-green-200">
                 <p className="font-semibold text-gray-900 text-sm">LEI & vLEI Issuance</p>
                 <p className="text-xs text-gray-600 mt-1">Powered by Certizen</p>
               </div>
