@@ -157,7 +157,7 @@ export default function TMaaSFeature() {
             ].map((feature, i) => {
               const Icon = feature.icon;
               return (
-                <Card key={i} className="border-2 border-blue-100 hover:border-[#0066B3] transition-all">
+                <Card key={i} className="border-2 border-blue-100 hover:border-[#0044CC] transition-all">
                   <CardHeader>
                     <div className="w-12 h-12 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-lg flex items-center justify-center mb-3">
                       <Icon className="h-6 w-6 text-white" />
@@ -169,7 +169,7 @@ export default function TMaaSFeature() {
                     <ul className="space-y-2">
                       {feature.features.map((f, j) => (
                         <li key={j} className="flex items-center gap-2 text-xs text-gray-700">
-                          <div className="w-1.5 h-1.5 bg-[#0066B3] rounded-full" />
+                          <div className="w-1.5 h-1.5 bg-[#0044CC] rounded-full" />
                           {f}
                         </li>
                       ))}
@@ -226,7 +226,7 @@ export default function TMaaSFeature() {
                   <ul className="space-y-2">
                     {useCase.metrics.map((m, j) => (
                       <li key={j} className="flex items-center gap-2 text-xs text-gray-700">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-[#0066B3]" />
+                        <CheckCircle2 className="h-3.5 w-3.5 text-[#0044CC]" />
                         {m}
                       </li>
                     ))}
@@ -269,11 +269,11 @@ export default function TMaaSFeature() {
                   <p className="text-sm text-gray-600">{plan.desc}</p>
                 </CardHeader>
                 <CardContent className="pt-6">
-                  <p className="text-3xl font-bold text-[#0066B3] mb-6">{plan.price}</p>
+                  <p className="text-3xl font-bold text-[#0044CC] mb-6">{plan.price}</p>
                   <ul className="space-y-3">
                     {plan.features.map((f, j) => (
                       <li key={j} className="flex items-center gap-2 text-sm">
-                        <CheckCircle2 className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-[#0044CC] flex-shrink-0" />
                         {f}
                       </li>
                     ))}
