@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
   ArrowRight, Shield, Zap, Layers, CheckCircle2, AlertTriangle,
-  BarChart3, Workflow, Code, Settings, Play, TrendingUp, Clock, Users, BarChart2, DollarSign
+  BarChart3, Workflow, Code, Settings, Play, TrendingUp, Clock, Users, BarChart2, DollarSign, FileText
 } from 'lucide-react';
 import StandardsFooter from '@/components/standards/StandardsFooter';
 
