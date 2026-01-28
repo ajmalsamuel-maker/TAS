@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
   ArrowRight, Shield, Lock, CheckCircle2, AlertTriangle,
-  Archive, Zap, Eye, FileCheck, TrendingUp, BarChart3, Fingerprint
+  Archive, Zap, Eye, FileCheck, TrendingUp, BarChart3, Fingerprint, Clock, FileText, BarChart2, DollarSign
 } from 'lucide-react';
 import StandardsFooter from '@/components/standards/StandardsFooter';
 
@@ -68,13 +68,13 @@ export default function AuditComplianceFeature() {
               <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-bold text-gray-900 mb-3">The Audit Burden</h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li>❌ Average audit preparation time: 2-4 weeks</li>
-                  <li>❌ Manual log gathering from multiple systems</li>
-                  <li>❌ Gap analysis during audits (critical findings)</li>
-                  <li>❌ Incomplete audit trails can lead to compliance failures</li>
-                  <li>❌ Failed audits cost $500k+ in penalties and remediation</li>
-                </ul>
+                 <ul className="space-y-2 text-sm text-gray-700">
+                   <li className="flex items-center gap-2"><Clock className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Average audit preparation time: 2-4 weeks</li>
+                   <li className="flex items-center gap-2"><FileText className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Manual log gathering from multiple systems</li>
+                   <li className="flex items-center gap-2"><BarChart2 className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Gap analysis during audits (critical findings)</li>
+                   <li className="flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Incomplete audit trails can lead to compliance failures</li>
+                   <li className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Failed audits cost $500k+ in penalties and remediation</li>
+                 </ul>
               </div>
             </div>
           </div>

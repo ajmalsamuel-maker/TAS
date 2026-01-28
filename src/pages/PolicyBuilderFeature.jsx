@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
   ArrowRight, Shield, Zap, Layers, CheckCircle2, AlertTriangle,
-  BarChart3, Workflow, Code, Settings, Play, TrendingUp
+  BarChart3, Workflow, Code, Settings, Play, TrendingUp, Clock, Users, BarChart2, DollarSign
 } from 'lucide-react';
 import StandardsFooter from '@/components/standards/StandardsFooter';
 
@@ -77,13 +77,13 @@ export default function PolicyBuilderFeature() {
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-2 border-[#0044CC] border-l-4 border-l-[#0044CC]">
               <h3 className="text-lg font-bold text-gray-900 mb-6">Real Costs of Code-Based Workflows</h3>
-              <div className="space-y-4 text-sm text-gray-700">
-                <p>⏱️ Average workflow change: 2-3 weeks (request → code → QA → deploy)</p>
-                <p>👥 Requires 3+ teams (business, engineering, QA)</p>
-                <p>📊 Can't test regulatory ideas (A/B testing requires code changes)</p>
-                <p>❌ Regulatory agility: Poor (slow response to new requirements)</p>
-                <p>💸 Average workflow change cost: $5,000+</p>
-              </div>
+               <div className="space-y-4 text-sm text-gray-700">
+                 <p className="flex items-center gap-2"><Clock className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Average workflow change: 2-3 weeks (request → code → QA → deploy)</p>
+                 <p className="flex items-center gap-2"><Users className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Requires 3+ teams (business, engineering, QA)</p>
+                 <p className="flex items-center gap-2"><BarChart2 className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Can't test regulatory ideas (A/B testing requires code changes)</p>
+                 <p className="flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Regulatory agility: Poor (slow response to new requirements)</p>
+                 <p className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Average workflow change cost: $5,000+</p>
+               </div>
             </div>
           </div>
         </div>

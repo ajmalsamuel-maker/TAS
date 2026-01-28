@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
   ArrowRight, Shield, Activity, TrendingUp, CheckCircle2, AlertTriangle,
-  Zap, BarChart3, Lock, Settings, Play, Clock
+  Zap, BarChart3, Lock, Settings, Play, Clock, Users, BarChart2, Search, DollarSign
 } from 'lucide-react';
 import StandardsFooter from '@/components/standards/StandardsFooter';
 
@@ -74,12 +74,12 @@ export default function TMaaSFeature() {
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-2 border-[#0044CC] border-l-4 border-l-[#0044CC]">
               <h3 className="text-lg font-bold text-gray-900 mb-6">Typical Workflow Issues</h3>
-              <div className="space-y-4 text-sm text-gray-700">
-                <p>⏱️ Average review time: 4-8 hours per alert</p>
-                <p>📊 False positive rate: 70-80% in some systems</p>
-                <p>❌ Missed suspicious patterns: Complex behavioral analysis impossible</p>
-                <p>📝 Manual audit trails: Error-prone and incomplete</p>
-              </div>
+               <div className="space-y-4 text-sm text-gray-700">
+                 <p className="flex items-center gap-2"><Clock className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Average review time: 4-8 hours per alert</p>
+                 <p className="flex items-center gap-2"><BarChart2 className="h-4 w-4 text-[#0044CC] flex-shrink-0" />False positive rate: 70-80% in some systems</p>
+                 <p className="flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Missed suspicious patterns: Complex behavioral analysis impossible</p>
+                 <p className="flex items-center gap-2"><FileText className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Manual audit trails: Error-prone and incomplete</p>
+               </div>
             </div>
           </div>
         </div>

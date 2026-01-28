@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
   ArrowRight, Shield, Clock, CheckCircle2, AlertTriangle, Users,
-  TrendingUp, Zap, Target, CheckSquare, AlertCircle
+  TrendingUp, Zap, Target, CheckSquare, AlertCircle, BarChart2, Search, DollarSign, FileText
 } from 'lucide-react';
 import StandardsFooter from '@/components/standards/StandardsFooter';
 
@@ -77,13 +77,13 @@ export default function CaseManagementFeature() {
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-2 border-[#0044CC] border-l-4 border-l-[#0044CC]">
               <h3 className="text-lg font-bold text-gray-900 mb-6">Real Costs of Manual Case Management</h3>
-              <div className="space-y-4 text-sm text-gray-700">
-                <p>📋 Average case handling time: 2-5 days</p>
-                <p>👥 Duplicate work by different analysts: 30-40%</p>
-                <p>⏰ SLA miss rate: 15-25%</p>
-                <p>🔍 Incomplete audit trails: Regulatory risk</p>
-                <p>💸 Compliance team cost per alert: $50-200</p>
-              </div>
+               <div className="space-y-4 text-sm text-gray-700">
+                 <p className="flex items-center gap-2"><Clock className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Average case handling time: 2-5 days</p>
+                 <p className="flex items-center gap-2"><Users className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Duplicate work by different analysts: 30-40%</p>
+                 <p className="flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-[#0044CC] flex-shrink-0" />SLA miss rate: 15-25%</p>
+                 <p className="flex items-center gap-2"><Search className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Incomplete audit trails: Regulatory risk</p>
+                 <p className="flex items-center gap-2"><DollarSign className="h-4 w-4 text-[#0044CC] flex-shrink-0" />Compliance team cost per alert: $50-200</p>
+               </div>
             </div>
           </div>
         </div>
