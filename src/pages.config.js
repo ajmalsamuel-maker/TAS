@@ -99,6 +99,7 @@ import Workflows from './pages/Workflows';
 import TMaaSFeature from './pages/TMaaSFeature';
 import CaseManagementFeature from './pages/CaseManagementFeature';
 import AuditComplianceFeature from './pages/AuditComplianceFeature';
+import PolicyBuilderFeature from './pages/PolicyBuilderFeature';
 import __Layout from './Layout.jsx';
 
 
@@ -155,6 +156,7 @@ export const PAGES = {
     "TMaaSFeature": TMaaSFeature,
     "CaseManagementFeature": CaseManagementFeature,
     "AuditComplianceFeature": AuditComplianceFeature,
+    "PolicyBuilderFeature": PolicyBuilderFeature,
 }
 
 export const pagesConfig = {
