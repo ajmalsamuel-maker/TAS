@@ -76,31 +76,31 @@ export default function Web3Dashboard() {
         </Card>
 
         {/* Main Tabs */}
-         <Tabs defaultValue="wallets" className="space-y-4 sm:space-y-6">
-           <div className="bg-white border-2 border-blue-100 rounded-lg p-1 overflow-x-auto">
-           <TabsList className="bg-white flex-wrap h-auto w-max sm:w-auto sm:grid sm:grid-cols-3 gap-1">
-            <TabsTrigger value="wallets" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Wallets & DIDs
-            </TabsTrigger>
-            <TabsTrigger value="credentials" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Credential Issuer
-            </TabsTrigger>
-            <TabsTrigger value="dao" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              DAO Identity
-            </TabsTrigger>
-            <TabsTrigger value="defi" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              DeFi Compliance
-            </TabsTrigger>
-            <TabsTrigger value="crosschain" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              Cross-Chain
-            </TabsTrigger>
-            <TabsTrigger value="nft" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
-              NFT Auth
+        <Tabs defaultValue="wallets" className="space-y-4 sm:space-y-6">
+          <div className="bg-white border-2 border-blue-100 rounded-lg p-1 overflow-x-auto">
+            <TabsList className="bg-white flex-wrap h-auto w-max sm:w-auto sm:grid sm:grid-cols-3 gap-1">
+              <TabsTrigger value="wallets" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+                Wallets & DIDs
               </TabsTrigger>
-              </TabsList>
-              </div>
+              <TabsTrigger value="credentials" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+                Credential Issuer
+              </TabsTrigger>
+              <TabsTrigger value="dao" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+                DAO Identity
+              </TabsTrigger>
+              <TabsTrigger value="defi" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+                DeFi Compliance
+              </TabsTrigger>
+              <TabsTrigger value="crosschain" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+                Cross-Chain
+              </TabsTrigger>
+              <TabsTrigger value="nft" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
+                NFT Auth
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
-              <TabsContent value="wallets">
+          <TabsContent value="wallets">
             <WalletConnect user={user} />
           </TabsContent>
 
