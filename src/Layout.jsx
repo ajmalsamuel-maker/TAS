@@ -52,6 +52,12 @@ function LayoutContent({ children, currentPageName }) {
   const isAdmin = user?.role === 'admin';
   const isAuthenticated = !!user;
 
+  // Determine portal context based on current page
+  const adminPages = ['AdminDashboard', 'AdminCp', 'LEIVLEIAdmin', 'BillingAdmin', 'AdminDocumentation', 'AdminAnalytics', 'AdminReports', 'PlatformAdminDashboard'];
+  const userPages = ['UserDashboard', 'UserMonitoring', 'UserAlerts', 'UserWorkflows', 'UserCredentials', 'UserTransactions', 'UserCases', 'UserPolicies', 'UserTeam', 'UserSettings', 'UserPortalDocumentation'];
+  const isInAdminPortal = adminPages.includes(currentPageName);
+  const isInUserPortal = userPages.includes(currentPageName);
+
   // Marketing Website (Public) - ONLY these pages for non-authenticated users
   const marketingPages = [
     { nameKey: 'nav.home', icon: Home, path: 'Home', tooltip: 'Return to homepage' },
@@ -85,10 +91,10 @@ function LayoutContent({ children, currentPageName }) {
     { name: 'Docs', icon: FileText, path: 'AdminDocumentation', tooltip: 'Technical documentation and admin manual' }
   ];
 
-  // CLEAR SEPARATION: Marketing vs Portal navigation
+  // CLEAR SEPARATION: Respect current portal context
   const navigationPages = !isAuthenticated 
     ? marketingPages 
-    : isAdmin 
+    : (isInAdminPortal && isAdmin)
       ? adminPortalPages
       : userPortalPages;
 
