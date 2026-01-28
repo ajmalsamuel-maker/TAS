@@ -73,66 +73,66 @@ export default function UserDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
             Welcome back, {user?.full_name || 'User'}
           </h1>
-          <p className="text-gray-600">Your compliance dashboard and trust services overview</p>
+          <p className="text-sm sm:text-base text-gray-600">Your compliance dashboard and trust services overview</p>
         </div>
 
         {/* Onboarding Status Section */}
         {!currentApplication ? (
-          <Card className="mb-8 border-2 border-blue-500 bg-gradient-to-r from-blue-50 to-cyan-50 shadow-lg">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+          <Card className="mb-6 sm:mb-8 border-2 border-blue-500 bg-gradient-to-r from-blue-50 to-cyan-50 shadow-lg">
+            <CardContent className="p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-2">Get Your LEI & Digital Credentials</h2>
-                  <p className="text-gray-600 mb-4">
+                  <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Get Your LEI & Digital Credentials</h2>
+                  <p className="text-sm sm:text-base text-gray-600 mb-4">
                     Start your business onboarding to receive your Legal Entity Identifier (LEI) and vLEI credentials. Takes 5-10 minutes to complete.
                   </p>
-                  <div className="flex gap-2">
-                    <Badge className="bg-blue-600">Step 1 of 5</Badge>
-                    <Badge variant="outline">Draft</Badge>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge className="bg-blue-600 text-xs sm:text-sm">Step 1 of 5</Badge>
+                    <Badge variant="outline" className="text-xs sm:text-sm">Draft</Badge>
                   </div>
                 </div>
                 <Button 
                   onClick={() => window.location.href = createPageUrl('Onboarding')}
-                  className="bg-[#0044CC] hover:bg-[#002D66] text-white px-8 py-6 h-auto flex-shrink-0"
+                  className="bg-[#0044CC] hover:bg-[#002D66] text-white px-6 sm:px-8 py-5 sm:py-6 h-auto w-full sm:w-auto sm:flex-shrink-0 text-sm sm:text-base"
                 >
-                  Start Onboarding <ArrowRight className="ml-2 h-5 w-5" />
+                  Start Onboarding <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </div>
             </CardContent>
           </Card>
         ) : (
-          <Card className="mb-8 border-2 border-amber-500 bg-gradient-to-r from-amber-50 to-orange-50 shadow-lg">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+          <Card className="mb-6 sm:mb-8 border-2 border-amber-500 bg-gradient-to-r from-amber-50 to-orange-50 shadow-lg">
+            <CardContent className="p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-2">Continue Your Onboarding</h2>
-                  <p className="text-gray-600 mb-4">
+                  <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Continue Your Onboarding</h2>
+                  <p className="text-sm sm:text-base text-gray-600 mb-4">
                     You have an incomplete application. Pick up where you left off!
                   </p>
-                  <div className="flex gap-2 items-center">
-                    <Badge className="bg-amber-600">
+                  <div className="flex flex-wrap gap-2 items-center">
+                    <Badge className="bg-amber-600 text-xs sm:text-sm">
                       Step {currentApplication.tas_verification_status === 'complete' ? 5 : 
                             currentApplication.status === 'under_review' ? 4 :
                             currentApplication.status === 'submitted' ? 2 : 1} of 5
                     </Badge>
-                    <Badge variant="outline">{currentApplication.status || 'draft'}</Badge>
+                    <Badge variant="outline" className="text-xs sm:text-sm">{currentApplication.status || 'draft'}</Badge>
                     {currentApplication.status === 'approved' && (
-                      <Badge className="bg-green-600">Ready for Credentials</Badge>
+                      <Badge className="bg-green-600 text-xs sm:text-sm">Ready for Credentials</Badge>
                     )}
                   </div>
                 </div>
                 <Button 
                   onClick={() => window.location.href = createPageUrl('Onboarding')}
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-6 h-auto flex-shrink-0"
+                  className="bg-amber-600 hover:bg-amber-700 text-white px-6 sm:px-8 py-5 sm:py-6 h-auto w-full sm:w-auto sm:flex-shrink-0 text-sm sm:text-base"
                 >
-                  Continue <ArrowRight className="ml-2 h-5 w-5" />
+                  Continue <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </div>
             </CardContent>
