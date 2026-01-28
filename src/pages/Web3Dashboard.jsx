@@ -43,24 +43,24 @@ export default function Web3Dashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <Boxes className="h-10 w-10 text-purple-600" />
-            <h1 className="text-4xl font-bold text-gray-900">Web3 Operations</h1>
+            <Boxes className="h-8 sm:h-10 w-8 sm:w-10 text-purple-600" />
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">Web3 Operations</h1>
           </div>
-          <p className="text-gray-600">Manage DAO identity, DeFi compliance, cross-chain credentials, and NFT authentication</p>
+          <p className="text-xs sm:text-base text-gray-600">Manage DAO identity, DeFi compliance, cross-chain credentials, and NFT authentication</p>
         </div>
 
         {/* W3C Standards Banner */}
-        <Card className="mb-8 border-2 border-blue-200 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-4">
-              <Sparkles className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+        <Card className="mb-6 sm:mb-8 border-2 border-blue-200 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50">
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
+              <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 flex-shrink-0 mt-1" />
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">W3C Standards Compliant</h3>
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">W3C Standards Compliant</h3>
                 <p className="text-sm text-gray-700 mb-3">
                   TAS bridges traditional LEI-based legal identity with W3C-compliant decentralized identity standards
                 </p>
@@ -76,8 +76,8 @@ export default function Web3Dashboard() {
         </Card>
 
         {/* Main Tabs */}
-        <Tabs defaultValue="wallets" className="space-y-6">
-          <TabsList className="bg-white border-2 border-blue-100 flex-wrap h-auto">
+        <Tabs defaultValue="wallets" className="space-y-4 sm:space-y-6">
+          <TabsList className="bg-white border-2 border-blue-100 flex-wrap h-auto w-full overflow-x-auto sm:w-auto">
             <TabsTrigger value="wallets" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               Wallets & DIDs
             </TabsTrigger>
@@ -124,11 +124,11 @@ export default function Web3Dashboard() {
         </Tabs>
 
         {/* TAS Integrated Services Banner */}
-        <Card className="mt-8 border-2 border-green-200 bg-gradient-to-r from-green-50 to-emerald-50">
-          <CardHeader className="border-b-2 border-green-200">
-            <CardTitle className="text-lg">TAS Integrated Services</CardTitle>
+        <Card className="mt-6 sm:mt-8 border-2 border-green-200 bg-gradient-to-r from-green-50 to-emerald-50">
+          <CardHeader className="border-b-2 border-green-200 p-4 sm:p-6">
+            <CardTitle className="text-base sm:text-lg">TAS Integrated Services</CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <p className="text-sm text-gray-700 mb-4">
               All Web3 operations are powered by TAS-integrated service providers:
             </p>
@@ -150,12 +150,12 @@ export default function Web3Dashboard() {
         </Card>
 
         {/* Technical Architecture */}
-        <Card className="border-2 border-slate-200 shadow-lg">
-          <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 border-b-2 border-slate-200">
-            <CardTitle>Technical Architecture</CardTitle>
+        <Card className="mt-4 sm:mt-6 border-2 border-slate-200 shadow-lg">
+          <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 border-b-2 border-slate-200 p-4 sm:p-6">
+            <CardTitle className="text-base sm:text-lg">Technical Architecture</CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
-            <div className="grid md:grid-cols-3 gap-6">
+          <CardContent className="p-4 sm:p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-6">
               <div className="bg-white rounded-lg p-4 border-2 border-purple-100">
                 <h4 className="font-bold text-purple-900 mb-2">Identity Layer</h4>
                 <p className="text-sm text-gray-600 mb-3">

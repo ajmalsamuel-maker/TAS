@@ -37,20 +37,20 @@ export default function UserCompliance() {
   const complianceColor = complianceScore >= 90 ? 'text-green-600' : complianceScore >= 70 ? 'text-blue-600' : complianceScore >= 50 ? 'text-yellow-600' : 'text-red-600';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Compliance Overview</h1>
-          <p className="text-gray-600">Monitor your compliance status, risk scores, and regulatory position</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Compliance Overview</h1>
+          <p className="text-xs sm:text-base text-gray-600">Monitor your compliance status, risk scores, and regulatory position</p>
         </div>
 
         {/* Compliance Score Card */}
-        <Card className="mb-8 border-2 border-blue-100 shadow-xl bg-gradient-to-br from-white to-blue-50">
-          <CardHeader>
-            <CardTitle className="text-2xl">Overall Compliance Score</CardTitle>
+        <Card className="mb-6 sm:mb-8 border-2 border-blue-100 shadow-xl bg-gradient-to-br from-white to-blue-50">
+          <CardHeader className="p-4 sm:p-6">
+            <CardTitle className="text-lg sm:text-2xl">Overall Compliance Score</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between mb-6">
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-6">
               <div>
                 <div className={`text-6xl font-bold ${complianceColor}`}>
                   {complianceScore}%
@@ -64,7 +64,7 @@ export default function UserCompliance() {
 
             <Progress value={complianceScore} className="h-3 mb-4" />
             
-            <div className="grid md:grid-cols-3 gap-4 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 mt-6">
               <div className="bg-white rounded-lg p-4 border border-blue-200">
                 <p className="text-sm text-gray-600 mb-1">Total Workflows</p>
                 <p className="text-2xl font-bold text-gray-900">{totalWorkflows}</p>
@@ -82,15 +82,15 @@ export default function UserCompliance() {
         </Card>
 
         {/* Compliance Checklist */}
-        <Card className="mb-8 border-2 border-blue-100 shadow-lg">
-          <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-            <CardTitle className="flex items-center gap-2">
-              <CheckCircle2 className="h-6 w-6 text-[#0044CC]" />
+        <Card className="mb-6 sm:mb-8 border-2 border-blue-100 shadow-lg">
+          <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100 p-4 sm:p-6">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <CheckCircle2 className="h-5 w-5 sm:h-6 sm:w-6 text-[#0044CC]" />
               Compliance Checklist
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
-            <div className="space-y-4">
+          <CardContent className="p-4 sm:p-6">
+            <div className="space-y-3 sm:space-y-4">
               {[
                 { item: 'LEI Registration', status: !!user?.lei, required: true },
                 { item: 'vLEI Credential (OOR)', status: !!user?.oor_credential, required: true },
@@ -99,15 +99,15 @@ export default function UserCompliance() {
                 { item: 'DID Verification', status: workflows.some(w => w.type === 'did_verification' && w.status === 'completed'), required: false },
                 { item: 'Provenance Chain Verified', status: workflows.some(w => w.data_passport), required: false }
               ].map((check, i) => (
-                <div key={i} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
-                  <div className="flex items-center gap-3">
+                <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 p-3 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-2 sm:gap-3">
                     {check.status ? (
-                      <CheckCircle2 className="h-6 w-6 text-green-600" />
+                      <CheckCircle2 className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 flex-shrink-0" />
                     ) : (
-                      <Clock className="h-6 w-6 text-gray-400" />
+                      <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-gray-400 flex-shrink-0" />
                     )}
-                    <div>
-                      <p className="font-medium text-gray-900">{check.item}</p>
+                    <div className="min-w-0">
+                      <p className="font-medium text-xs sm:text-base text-gray-900">{check.item}</p>
                       {check.required && !check.status && (
                         <p className="text-xs text-red-600">Required for compliance</p>
                       )}
@@ -124,36 +124,36 @@ export default function UserCompliance() {
 
         {/* Risk Assessment */}
         <Card className="border-2 border-blue-100 shadow-lg">
-          <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-            <CardTitle className="flex items-center gap-2">
-              <AlertTriangle className="h-6 w-6 text-[#0044CC]" />
+          <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100 p-4 sm:p-6">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6 text-[#0044CC]" />
               Risk Assessment & AML Status
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             {activeAlerts === 0 ? (
-              <div className="text-center py-12">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="h-10 w-10 text-green-600" />
+              <div className="text-center py-8 sm:py-12">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 className="h-8 w-8 sm:h-10 sm:w-10 text-green-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">All Clear</h3>
-                <p className="text-gray-600">No active AML alerts or compliance issues detected</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">All Clear</h3>
+                <p className="text-xs sm:text-base text-gray-600">No active AML alerts or compliance issues detected</p>
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg">
+                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-3 sm:p-4 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
-                    <AlertTriangle className="h-5 w-5 text-yellow-600" />
-                    <p className="font-semibold text-gray-900">{activeAlerts} Active Alert{activeAlerts !== 1 ? 's' : ''}</p>
+                    <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-600 flex-shrink-0" />
+                    <p className="font-semibold text-xs sm:text-sm text-gray-900">{activeAlerts} Active Alert{activeAlerts !== 1 ? 's' : ''}</p>
                   </div>
-                  <p className="text-sm text-gray-700">Please review and take action on pending alerts</p>
+                  <p className="text-xs sm:text-sm text-gray-700">Please review and take action on pending alerts</p>
                 </div>
 
                 {alerts.slice(0, 5).map((alert) => (
-                  <div key={alert.id} className="bg-white border-2 border-gray-200 rounded-lg p-4">
-                    <div className="flex items-start justify-between mb-2">
+                  <div key={alert.id} className="bg-white border-2 border-gray-200 rounded-lg p-3 sm:p-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
                       <div className="flex items-center gap-2">
-                        <AlertTriangle className="h-5 w-5 text-orange-600" />
+                        <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-orange-600 flex-shrink-0" />
                         <span className="font-semibold text-gray-900">
                           {alert.type?.replace('_', ' ').toUpperCase()}
                         </span>
