@@ -6,19 +6,24 @@ import AdminDocumentation from './pages/AdminDocumentation';
 import AdminReports from './pages/AdminReports';
 import ApplicationStatus from './pages/ApplicationStatus';
 import BillingAdmin from './pages/BillingAdmin';
+import CSPSolution from './pages/CSPSolution';
 import CompleteOnboarding from './pages/CompleteOnboarding';
 import Contact from './pages/Contact';
+import CryptoSolution from './pages/CryptoSolution';
 import DownloadLogo from './pages/DownloadLogo';
 import FeatureVerificationGuide from './pages/FeatureVerificationGuide';
 import Home from './pages/Home';
 import IntegrationsSummary from './pages/IntegrationsSummary';
 import LEIVLEIAdmin from './pages/LEIVLEIAdmin';
+import LegalSolution from './pages/LegalSolution';
 import MarketingWebsiteDocumentation from './pages/MarketingWebsiteDocumentation';
 import Onboarding from './pages/Onboarding';
 import OrganizationOnboarding from './pages/OrganizationOnboarding';
 import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
 import Pricing from './pages/Pricing';
 import PublicDocumentation from './pages/PublicDocumentation';
+import RemittanceSolution from './pages/RemittanceSolution';
+import TradeFinanceSolution from './pages/TradeFinanceSolution';
 import UserAlerts from './pages/UserAlerts';
 import UserCases from './pages/UserCases';
 import UserCompliance from './pages/UserCompliance';
@@ -36,11 +41,6 @@ import UserWorkflows from './pages/UserWorkflows';
 import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
-import CryptoSolution from './pages/CryptoSolution';
-import TradeFinanceSolution from './pages/TradeFinanceSolution';
-import LegalSolution from './pages/LegalSolution';
-import CSPSolution from './pages/CSPSolution';
-import RemittanceSolution from './pages/RemittanceSolution';
 import __Layout from './Layout.jsx';
 
 
@@ -53,19 +53,24 @@ export const PAGES = {
     "AdminReports": AdminReports,
     "ApplicationStatus": ApplicationStatus,
     "BillingAdmin": BillingAdmin,
+    "CSPSolution": CSPSolution,
     "CompleteOnboarding": CompleteOnboarding,
     "Contact": Contact,
+    "CryptoSolution": CryptoSolution,
     "DownloadLogo": DownloadLogo,
     "FeatureVerificationGuide": FeatureVerificationGuide,
     "Home": Home,
     "IntegrationsSummary": IntegrationsSummary,
     "LEIVLEIAdmin": LEIVLEIAdmin,
+    "LegalSolution": LegalSolution,
     "MarketingWebsiteDocumentation": MarketingWebsiteDocumentation,
     "Onboarding": Onboarding,
     "OrganizationOnboarding": OrganizationOnboarding,
     "PlatformAdminDashboard": PlatformAdminDashboard,
     "Pricing": Pricing,
     "PublicDocumentation": PublicDocumentation,
+    "RemittanceSolution": RemittanceSolution,
+    "TradeFinanceSolution": TradeFinanceSolution,
     "UserAlerts": UserAlerts,
     "UserCases": UserCases,
     "UserCompliance": UserCompliance,
@@ -83,11 +88,6 @@ export const PAGES = {
     "VLEIManagement": VLEIManagement,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
-    "CryptoSolution": CryptoSolution,
-    "TradeFinanceSolution": TradeFinanceSolution,
-    "LegalSolution": LegalSolution,
-    "CSPSolution": CSPSolution,
-    "RemittanceSolution": RemittanceSolution,
 }
 
 export const pagesConfig = {

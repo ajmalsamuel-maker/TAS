@@ -250,7 +250,7 @@ function LayoutContent({ children, currentPageName }) {
       {/* Footer */}
       <footer className="bg-gradient-to-r from-[#001A40] via-[#002D66] to-[#0044CC] text-white mt-24">
         <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 className="text-lg font-bold mb-4">Trust Anchor Service</h3>
               <p className="text-blue-200 text-sm">
@@ -258,12 +258,21 @@ function LayoutContent({ children, currentPageName }) {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
+              <h4 className="font-semibold mb-4">Industries</h4>
+              <ul className="space-y-2 text-sm text-blue-200">
+                <li><Link to={createPageUrl('CryptoSolution')} className="hover:text-white">Crypto Exchanges</Link></li>
+                <li><Link to={createPageUrl('TradeFinanceSolution')} className="hover:text-white">Trade Finance</Link></li>
+                <li><Link to={createPageUrl('LegalSolution')} className="hover:text-white">Law Firms</Link></li>
+                <li><Link to={createPageUrl('CSPSolution')} className="hover:text-white">Corporate Services</Link></li>
+                <li><Link to={createPageUrl('RemittanceSolution')} className="hover:text-white">Remittance</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-sm text-blue-200">
                 <li><Link to={createPageUrl('PublicDocumentation')} className="hover:text-white">Documentation</Link></li>
-                <li><a href="#" className="hover:text-white">API Reference</a></li>
-                <li><a href="#" className="hover:text-white">Sandbox</a></li>
-                <li><a href="#" className="hover:text-white">Support</a></li>
+                <li><Link to={createPageUrl('Pricing')} className="hover:text-white">Pricing</Link></li>
+                <li><Link to={createPageUrl('Contact')} className="hover:text-white">Contact</Link></li>
               </ul>
             </div>
             <div>
