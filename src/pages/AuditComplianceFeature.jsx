@@ -213,21 +213,21 @@ export default function AuditComplianceFeature() {
               </thead>
               <tbody>
                 {[
-                  { std: 'SOX (Sarbanes-Oxley)', ret: '7 years', trail: '✅', signed: '✅', coverage: 'Financial transactions, system access, data changes' },
-                  { std: 'GDPR', ret: 'As needed', trail: '✅', signed: '✅', coverage: 'Personal data access, processing, deletion, consent' },
-                  { std: 'HIPAA', ret: '6 years', trail: '✅', signed: '✅', coverage: 'Healthcare data access, modifications, user activity' },
-                  { std: 'PCI-DSS', ret: '1 year', trail: '✅', signed: '✅', coverage: 'Payment data handling, access logs, security events' },
-                  { std: 'ISO 27001', ret: '7 years', trail: '✅', signed: '✅', coverage: 'Information security, access control, risk management' },
-                  { std: 'FATF AML/CFT', ret: '5 years', trail: '✅', signed: '✅', coverage: 'Compliance decisions, screening, investigations' }
-                ].map((row, i) => (
-                  <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-blue-50'}>
-                    <td className="border p-3 font-semibold text-gray-900">{row.std}</td>
-                    <td className="border p-3 text-center text-gray-700">{row.ret}</td>
-                    <td className="border p-3 text-center">{row.trail}</td>
-                    <td className="border p-3 text-center">{row.signed}</td>
-                    <td className="border p-3 text-gray-700">{row.coverage}</td>
-                  </tr>
-                ))}
+                   { std: 'SOX (Sarbanes-Oxley)', ret: '7 years', coverage: 'Financial transactions, system access, data changes' },
+                   { std: 'GDPR', ret: 'As needed', coverage: 'Personal data access, processing, deletion, consent' },
+                   { std: 'HIPAA', ret: '6 years', coverage: 'Healthcare data access, modifications, user activity' },
+                   { std: 'PCI-DSS', ret: '1 year', coverage: 'Payment data handling, access logs, security events' },
+                   { std: 'ISO 27001', ret: '7 years', coverage: 'Information security, access control, risk management' },
+                   { std: 'FATF AML/CFT', ret: '5 years', coverage: 'Compliance decisions, screening, investigations' }
+                 ].map((row, i) => (
+                   <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-blue-50'}>
+                     <td className="border p-3 font-semibold text-gray-900">{row.std}</td>
+                     <td className="border p-3 text-center text-gray-700">{row.ret}</td>
+                     <td className="border p-3 text-center"><CheckCircle2 className="h-4 w-4 text-[#0044CC] mx-auto" /></td>
+                     <td className="border p-3 text-center"><CheckCircle2 className="h-4 w-4 text-[#0044CC] mx-auto" /></td>
+                     <td className="border p-3 text-gray-700">{row.coverage}</td>
+                   </tr>
+                 ))}
               </tbody>
             </table>
           </div>
