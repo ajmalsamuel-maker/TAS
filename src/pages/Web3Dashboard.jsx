@@ -143,8 +143,8 @@ export default function Web3Dashboard() {
                 <p className="font-semibold text-gray-900 text-xs sm:text-sm">AML/KYB Verification</p>
                 <p className="text-xs text-gray-600 mt-1">Powered by FTS.Money</p>
               </div>
-              <div className="bg-white rounded-lg p-3 border border-green-200">
-                <p className="font-semibold text-gray-900 text-sm">Compliance Monitoring</p>
+              <div className="bg-white rounded-lg p-2 sm:p-3 border border-green-200">
+                <p className="font-semibold text-gray-900 text-xs sm:text-sm">Compliance Monitoring</p>
                 <p className="text-xs text-gray-600 mt-1">Integrated via TAS</p>
               </div>
             </div>
