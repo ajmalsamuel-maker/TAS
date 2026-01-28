@@ -10,7 +10,7 @@ import { Settings, Globe, User, Save, CheckCircle2, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
-import TMaaSEnablementCard from '../components/tmaas/TMaaSEnablementCard';
+import TMaaSEnablementCard from '../components/tmaas/TMaaSEnablementCard.jsx';
 
 const LANGUAGES = [
   { code: 'en', name: 'English' },
