@@ -67,7 +67,8 @@ function LayoutContent({ children, currentPageName }) {
       { name: 'Trade Finance', path: 'TradeFinanceSolution' },
       { name: 'Legal', path: 'LegalSolution' },
       { name: 'Corporate Services', path: 'CSPSolution' },
-      { name: 'Remittance', path: 'RemittanceSolution' }
+      { name: 'Remittance', path: 'RemittanceSolution' },
+      { name: 'Web3 & Blockchain', path: 'Web3Solution' }
     ], tooltip: 'Industry-specific solutions' },
     { nameKey: 'nav.pricing', icon: Activity, path: 'Pricing', tooltip: 'View pricing plans' },
     { nameKey: 'nav.contact', icon: Mail, path: 'Contact', tooltip: 'Get in touch with us' },
@@ -317,6 +318,7 @@ function LayoutContent({ children, currentPageName }) {
                 <li><Link to={createPageUrl('LegalSolution')} className="hover:text-white">Law Firms</Link></li>
                 <li><Link to={createPageUrl('CSPSolution')} className="hover:text-white">Corporate Services</Link></li>
                 <li><Link to={createPageUrl('RemittanceSolution')} className="hover:text-white">Remittance</Link></li>
+                <li><Link to={createPageUrl('Web3Solution')} className="hover:text-white">Web3 & Blockchain</Link></li>
               </ul>
             </div>
             <div>

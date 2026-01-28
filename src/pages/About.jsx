@@ -161,105 +161,91 @@ export default function About() {
         </div>
       </section>
 
-      {/* Web3 & Blockchain */}
+      {/* Core Services */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Web3 & Blockchain Ready</h2>
-          <p className="text-xl text-center text-gray-600 mb-16">Bridging traditional legal identity with decentralized operations</p>
+          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Core Services</h2>
+          <p className="text-xl text-center text-gray-600 mb-16">Complete compliance stack in one platform</p>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* DAO Legal Setup */}
-            <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl p-8 border-2 border-purple-200">
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">DAO Legal Identity</h3>
-              <p className="text-gray-700 mb-4">
-                Enable DAOs to obtain legally recognized LEI credentials while maintaining decentralized governance
-              </p>
-              <ul className="space-y-2">
-                {['LEI issuance for DAOs', 'Legal entity verification', 'Multi-signature authority mapping', 'Compliance automation'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                    <div className="w-1.5 h-1.5 bg-purple-600 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* DeFi Compliance */}
-            <div className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-xl p-8 border-2 border-cyan-200">
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">DeFi Compliance</h3>
-              <p className="text-gray-700 mb-4">
-                Meet regulatory requirements without compromising decentralization
-              </p>
-              <ul className="space-y-2">
-                {['KYB for DeFi protocols', 'AML screening integration', 'Real-time compliance monitoring', 'Regulatory reporting automation'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                    <div className="w-1.5 h-1.5 bg-cyan-600 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Cross-Chain Identity */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 border-2 border-blue-200">
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Cross-Chain Identity</h3>
-              <p className="text-gray-700 mb-4">
-                Universal identity that works across any blockchain or traditional system
-              </p>
-              <ul className="space-y-2">
-                {['Blockchain-agnostic LEI credentials', 'Verifiable across all chains', 'Portable digital identity', 'Interoperable with Web2 systems'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                    <div className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* NFT & Digital Asset Authentication */}
-            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-8 border-2 border-indigo-200">
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">NFT Authentication</h3>
-              <p className="text-gray-700 mb-4">
-                Cryptographically verify entity ownership and authority for digital assets
-              </p>
-              <ul className="space-y-2">
-                {['vLEI-backed ownership proof', 'Creator identity verification', 'Provenance tracking', 'Anti-fraud protection'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                    <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* W3C Standards */}
-          <div className="bg-gradient-to-br from-slate-100 to-blue-100 rounded-2xl p-8 border-2 border-blue-200">
-            <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">W3C & Industry Standards Compliance</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: 'Decentralized Identifiers (DIDs)',
-                  desc: 'W3C standard for self-sovereign identity creation and management'
-                },
-                {
-                  title: 'Verifiable Credentials (VCs)',
-                  desc: 'W3C data model for cryptographically secure, tamper-proof credentials'
-                },
-                {
-                  title: 'KERI/ACDC Protocols',
-                  desc: 'Key Event Receipt Infrastructure for cryptographic verification and trust chains'
-                }
-              ].map((item, i) => (
-                <div key={i} className="bg-white rounded-lg p-6 border border-blue-200">
-                  <h4 className="font-bold text-gray-900 mb-2">{item.title}</h4>
-                  <p className="text-sm text-gray-600">{item.desc}</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: Shield,
+                title: 'LEI/vLEI Issuance',
+                desc: 'Issue globally recognized legal entity identifiers and verifiable credentials',
+                features: ['Automated application', 'Multi-jurisdiction support', 'Instant verification']
+              },
+              {
+                icon: Network,
+                title: 'KYB Verification',
+                desc: 'Comprehensive business verification and beneficial ownership checks',
+                features: ['Entity verification', 'UBO screening', 'Document validation']
+              },
+              {
+                icon: Lock,
+                title: 'AML Screening',
+                desc: 'Real-time sanctions, PEP, and adverse media screening',
+                features: ['Watchlist monitoring', 'Risk scoring', 'Continuous checks']
+              },
+              {
+                icon: Zap,
+                title: 'Liveness Detection',
+                desc: 'Biometric facial verification with anti-spoofing technology',
+                features: ['Live verification', 'Anti-fraud', 'Instant results']
+              }
+            ].map((service, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border-2 border-blue-200 hover:shadow-xl transition-all">
+                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-4 border-2 border-blue-200">
+                  <service.icon className="h-6 w-6 text-[#0066B3]" />
                 </div>
-              ))}
-            </div>
-            <p className="text-center text-gray-700 mt-6 text-sm">
-              TAS seamlessly bridges traditional LEI-based legal identity with W3C-compliant decentralized identity standards
-            </p>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">{service.title}</h3>
+                <p className="text-sm text-gray-600 mb-4">{service.desc}</p>
+                <ul className="space-y-1">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2 text-xs text-gray-700">
+                      <div className="w-1 h-1 bg-[#0066B3] rounded-full" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">How TAS Works</h2>
+          <p className="text-xl text-center text-gray-600 mb-16">Simple integration, powerful results</p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                step: '1',
+                title: 'Apply for LEI',
+                desc: 'Submit application via TAS Portal with automated KYB and AML screening'
+              },
+              {
+                step: '2',
+                title: 'Receive Credentials',
+                desc: 'Get LEI and vLEI credentials issued by accredited providers (Certizen)'
+              },
+              {
+                step: '3',
+                title: 'Verify Instantly',
+                desc: 'Use credentials across your ecosystem with cryptographic verification'
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white rounded-xl p-8 border-2 border-blue-200 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#0044CC] to-[#0066B3] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-2xl font-bold">{item.step}</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-gray-900">{item.title}</h3>
+                <p className="text-gray-600">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
