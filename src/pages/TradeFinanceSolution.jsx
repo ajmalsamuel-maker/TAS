@@ -4,7 +4,8 @@ import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Ship, CheckCircle, Clock, DollarSign, Globe, FileCheck, AlertCircle } from 'lucide-react';
+import { Ship, CheckCircle, Clock, DollarSign, Globe, FileCheck, AlertCircle, ArrowRight } from 'lucide-react';
+import StandardsFooter from '@/components/standards/StandardsFooter';
 
 export default function TradeFinanceSolution() {
   const challenges = [
@@ -49,34 +50,38 @@ export default function TradeFinanceSolution() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section */}
-      <section className="py-24">
+      <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
-            <Badge className="mb-4 bg-emerald-100 text-emerald-700 border-emerald-300">
-              For Trade Finance Platforms & Banks
+            <Badge className="mb-4 bg-white/20 text-white border-white/30">
+              TAS Platform for Trade Finance
             </Badge>
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
               LEI-Verified Trade Networks
             </h1>
-            <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Stop TBML before it happens. Every buyer, seller, and intermediary verified through 
-              GLEIF-authorized vLEI credentials. The future of trusted global trade.
+            <p className="text-xl text-blue-100 mb-4 max-w-3xl mx-auto">
+              Use the TAS Platform to stop TBML before it happens. Every buyer, seller, and intermediary verified through cryptographic vLEI credentials.
+            </p>
+            <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
+              Powered by Certizen's GLEIF-authorized QVI infrastructure. The future of trusted global trade.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link to={createPageUrl('Contact')}>
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-                  <Ship className="mr-2 h-5 w-5" />
-                  Request Trade Demo
+              <Link to={createPageUrl('Onboarding')}>
+                <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50">
+                  Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link to={createPageUrl('Pricing')}>
-                <Button size="lg" variant="outline">
-                  View Pricing
+              <Link to={createPageUrl('Contact')}>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  Contact Sales
                 </Button>
               </Link>
             </div>
+            <p className="text-sm text-blue-200 mt-6">
+              Powered by Certizen Technology (GLEIF-Accredited QVI) • Built on TAS Platform
+            </p>
           </div>
         </div>
       </section>
@@ -92,13 +97,13 @@ export default function TradeFinanceSolution() {
             {challenges.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <Card key={idx} className="border-emerald-200">
+                <Card key={idx} className="border-2 border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg">
                   <CardHeader>
                     <Icon className="h-10 w-10 text-red-500 mb-4" />
                     <CardTitle className="text-lg text-slate-900">❌ {item.problem}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-start gap-2 text-emerald-700 font-semibold">
+                    <div className="flex items-start gap-2 text-[#0066B3] font-semibold">
                       <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
                       <span>✅ {item.solution}</span>
                     </div>
@@ -124,13 +129,13 @@ export default function TradeFinanceSolution() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {features.map((feature, idx) => (
-              <Card key={idx} className="border-emerald-200 hover:shadow-lg transition-shadow">
+              <Card key={idx} className="border-2 border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-slate-900">{feature.title}</CardTitle>
                   <CardDescription>{feature.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-300">
+                  <Badge className="bg-blue-100 text-[#0066B3] border-blue-300">
                     {feature.benefit}
                   </Badge>
                 </CardContent>
@@ -141,7 +146,7 @@ export default function TradeFinanceSolution() {
       </section>
 
       {/* Use Case Example */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 to-blue-600">
+      <section className="py-20 bg-gradient-to-r from-[#0066B3] to-[#004C8C]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-white rounded-2xl p-8 md:p-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">
@@ -179,7 +184,7 @@ export default function TradeFinanceSolution() {
             </div>
 
             <div className="mt-8 text-center">
-              <Badge className="bg-emerald-600 text-white text-lg px-6 py-2">
+              <Badge className="bg-[#0066B3] text-white text-lg px-6 py-2">
                 <DollarSign className="inline h-5 w-5 mr-2" />
                 99% Cost Reduction, 60x Faster
               </Badge>
@@ -188,21 +193,53 @@ export default function TradeFinanceSolution() {
         </div>
       </section>
 
+      {/* Standards */}
+      <StandardsFooter />
+
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <FileCheck className="h-20 w-20 text-emerald-600 mx-auto mb-6" />
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+          <FileCheck className="h-20 w-20 mx-auto mb-6" />
+          <h2 className="text-4xl font-bold mb-4">
             Join the LEI-Verified Trade Network
           </h2>
-          <p className="text-xl text-slate-600 mb-8">
-            TradeIX, Marco Polo members, and leading banks are building the future of compliant trade
+          <p className="text-xl text-blue-100 mb-8">
+            Leading banks are building the future of compliant trade with TAS Platform
           </p>
-          <Link to={createPageUrl('Contact')}>
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-              Get Started Today
-            </Button>
-          </Link>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link to={createPageUrl('Onboarding')}>
+              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50">
+                Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to={createPageUrl('Contact')}>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                Contact Sales
+              </Button>
+            </Link>
+          </div>
+          <p className="text-sm text-blue-200 mt-6">
+            Powered by Certizen Technology (GLEIF-Accredited QVI)
+          </p>
+        </div>
+      </section>
+
+      {/* Logos Footer */}
+      <section className="py-12 bg-white border-t">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-sm text-gray-500 mb-4">Powered by</p>
+          <div className="flex items-center justify-center gap-12">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/4191d6eef_Untitleddesign5.png"
+              alt="Certizen Technology"
+              className="h-8"
+            />
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png"
+              alt="FTS.Money"
+              className="h-10"
+            />
+          </div>
         </div>
       </section>
     </div>
