@@ -111,11 +111,11 @@ export default function AuditComplianceFeature() {
               return (
                 <Card key={i} className="bg-white border-2 border-blue-200">
                   <CardHeader>
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004C8C] rounded-lg flex items-center justify-center mb-3">
-                      <Icon className="h-6 w-6 text-white" />
-                    </div>
-                    <CardTitle>{item.title}</CardTitle>
-                  </CardHeader>
+                     <div className="w-12 h-12 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-lg flex items-center justify-center mb-3">
+                       <Icon className="h-6 w-6 text-white" />
+                     </div>
+                     <CardTitle>{item.title}</CardTitle>
+                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-600">{item.desc}</p>
                   </CardContent>
@@ -173,7 +173,7 @@ export default function AuditComplianceFeature() {
               return (
                 <Card key={i} className="border-2 border-blue-100 hover:border-[#0044CC] transition-all">
                   <CardHeader>
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004C8C] rounded-lg flex items-center justify-center mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-lg flex items-center justify-center mb-3">
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <CardTitle className="text-lg">{feature.title}</CardTitle>
