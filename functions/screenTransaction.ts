@@ -81,11 +81,13 @@ Deno.serve(async (req) => {
     // 2. FRAUD DETECTION (Velocity checks, anomalies)
     if (rules.fraud_detection) {
       try {
-        // Count recent transactions from same account
-        const recentTxs = await base44.asServiceRole.entities.Transaction.filter({
-          from_account: from_account,
-          created_date: { $gte: new Date(Date.now() - 3600000).toISOString() }
-        });
+        // Count recent transactions from same account (last hour)
+        const oneHourAgo = new Date(Date.now() - 3600000).toISOString();
+        const recentTxs = await base44.asServiceRole.entities.Transaction.list();
+        const recentFiltered = recentTxs?.filter(tx => 
+          tx.from_account === from_account && 
+          tx.created_date >= oneHourAgo
+        ) || [];
 
         const recentCount = recentTxs?.length || 0;
         const recentAmount = recentTxs?.reduce((sum, tx) => sum + (tx.amount || 0), 0) || 0;
