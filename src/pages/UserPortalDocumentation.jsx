@@ -624,6 +624,257 @@ export default function UserPortalDocumentation() {
           )}
         </Card>
 
+                     {/* Transaction Monitoring (TMaaS) */}
+                     <Card className="mb-8">
+                     <CardHeader>
+                     <SectionHeader title="Transaction Monitoring (TMaaS): Real-Time Transaction Screening" section="tmaas" />
+                     </CardHeader>
+                     {expandedSections.tmaas && (
+                       <CardContent className="space-y-8">
+                           <h3 className="text-xl font-bold mb-4">Real-Time Compliance Screening for Every Transaction</h3>
+                           <p className="mb-4 leading-relaxed">
+                             The Transaction Monitoring menu item (TMaaS) enables real-time screening of every transaction—payment, transfer, trade, withdrawal—against your custom rules, sanctions watchlists, and fraud detection models. Rather than reviewing transactions after the fact, TMaaS makes compliance decisions in milliseconds as transactions occur, blocking high-risk transactions instantly while approving legitimate ones without delay.
+                           </p>
+
+                           <div>
+                             <h3 className="text-lg font-bold mb-4">Transaction Screening Configuration</h3>
+                             <p className="mb-4 leading-relaxed">
+                               When you navigate to Transaction Monitoring from your dashboard, you'll see three primary sections: Configuration (where you set up rules and thresholds), Dashboard (real-time metrics and alerts), and History (searchable log of screened transactions). Configuration allows you to define rules without touching code: IF amount &gt; $10,000 AND currency is foreign THEN flag for review. IF country is OFAC-sanctioned THEN auto-block. IF velocity exceeds 5 transactions in 1 minute THEN escalate.
+                             </p>
+                             <p className="mb-4 leading-relaxed">
+                               The system evaluates transactions against these rules in real-time, returning a response within 100ms that includes: decision (approve/block/review), confidence score (0-100%), reasoning (which rules triggered), and required actions (if any). Your system receives this response and acts immediately—processing the payment if approved, holding it pending manual review, or rejecting it if blocked.
+                             </p>
+                           </div>
+
+                           <div>
+                             <h3 className="text-lg font-bold mb-4">Rule Types & Examples</h3>
+                             <div className="space-y-4">
+                               <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                                 <h4 className="font-bold mb-2">Amount Thresholds</h4>
+                                 <p className="text-sm">IF amount &gt; $50,000 THEN escalate • IF amount between $10k-$50k THEN enrich and score • IF amount &lt; $1,000 THEN auto-approve</p>
+                               </div>
+                               <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                                 <h4 className="font-bold mb-2">Velocity Rules</h4>
+                                 <p className="text-sm">IF same counterparty &gt; 3 transactions in 1 hour THEN flag • IF same sender &gt; 10 transactions today THEN review • IF unusual pattern for this customer THEN escalate</p>
+                               </div>
+                               <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                                 <h4 className="font-bold mb-2">Geographic Rules</h4>
+                                 <p className="text-sm">IF destination country in {high-risk list} THEN review • IF OFAC-sanctioned country THEN auto-block • IF sudden geographic shift for customer THEN escalate</p>
+                               </div>
+                               <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                                 <h4 className="font-bold mb-2">Counterparty Screening</h4>
+                                 <p className="text-sm">IF counterparty matches sanctions watchlist THEN auto-block • IF counterparty has fraud history THEN review • IF counterparty is on your blocklist THEN auto-block</p>
+                               </div>
+                             </div>
+                           </div>
+
+                           <div>
+                             <h3 className="text-lg font-bold mb-4">TMaaS Analytics Dashboard</h3>
+                             <p className="mb-4 leading-relaxed">
+                               The dashboard displays key performance metrics: Transactions Screened Today, Approval Rate (%), Decline Rate (%), Escalation Rate (%), and Average Processing Time (milliseconds). You can see trends over time—how approval rates change week-to-week, whether specific rules are firing more frequently, and whether transaction patterns are evolving. This data helps you optimize rules: if a rule is blocking 50% of transactions but 95% of those are eventually approved, the rule may be too aggressive and should be relaxed.
+                             </p>
+                           </div>
+                       </CardContent>
+                     )}
+                     </Card>
+
+                     {/* Case Management */}
+                     <Card className="mb-8">
+                     <CardHeader>
+                     <SectionHeader title="Cases Menu Item: Managing Compliance Investigations" section="cases" />
+                     </CardHeader>
+                     {expandedSections.cases && (
+                       <CardContent className="space-y-8">
+                           <h3 className="text-xl font-bold mb-4">Structured Workflows for Compliance Investigations</h3>
+                           <p className="mb-4 leading-relaxed">
+                             Cases are structured workflows for investigating any compliance alert: AML matches, sanctions hits, unusual transaction patterns, document verification failures, or any high-risk situation. The Cases menu item is where you view assigned cases, conduct investigations, document findings, and reach final determinations with full audit trails.
+                           </p>
+
+                           <div>
+                             <h3 className="text-lg font-bold mb-4">Navigating Your Case Queue</h3>
+                             <p className="mb-4 leading-relaxed">
+                               When you open Cases, you see your personal queue of assignments: NEW cases (just created, unreviewed), IN PROGRESS (you're actively investigating), PENDING INFO (waiting for customer response or external data), and RESOLVED (awaiting final closure). Each case shows: case number, type (AML Alert, Transaction Review, Document Verification, etc.), severity (Critical/High/Medium/Low), current status, days in queue, and SLA deadline. Cases exceeding their SLA deadline are highlighted in red, triggering escalation to supervisors.
+                             </p>
+                             <p className="mb-4 leading-relaxed">
+                               You can filter your queue by type, severity, status, or assignee. Create custom views for cases you monitor frequently—e.g., "My High-Severity AML Cases" or "Cases awaiting customer response." These saved filters help you focus on what matters right now rather than searching through dozens of cases.
+                             </p>
+                           </div>
+
+                           <div>
+                             <h3 className="text-lg font-bold mb-4">Investigating a Case: Step-by-Step</h3>
+                             <div className="space-y-4">
+                               <div className="flex gap-4">
+                                 <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Review Alert Details</h4>
+                                   <p className="text-sm">Click the case to see what triggered it. For AML matches, you see: which watchlist matched, match percentage (0-100%), entity name, country, and why the system flagged it. Context includes the customer's profile, previous alerts, and verification history.</p>
+                                 </div>
+                               </div>
+                               <div className="flex gap-4">
+                                 <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Conduct Research</h4>
+                                   <p className="text-sm">Use external sources: Google the company name and beneficial owners, check business registries, review news archives, verify addresses. Are they actually a legitimate business in the jurisdiction they claim? Or could this be a shell company used for sanctions evasion?</p>
+                                 </div>
+                               </div>
+                               <div className="flex gap-4">
+                                 <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Add Investigation Notes</h4>
+                                   <p className="text-sm">Document what you discovered. "Company name 'Global Imports Ltd' matched sanctioned entity 'Global Imports Ltd' in Iran, but target jurisdiction is UK with different registration number. Likely false positive based on name similarity."</p>
+                                 </div>
+                               </div>
+                               <div className="flex gap-4">
+                                 <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Request Additional Info (If Needed)</h4>
+                                   <p className="text-sm">Click "Request Information" and send a message to the customer: "We need additional documentation to complete our review. Please provide: corporate structure chart, beneficial owner identification, and recent bank statement. Response due within 5 business days."</p>
+                                 </div>
+                               </div>
+                               <div className="flex gap-4">
+                                 <div className="bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">5</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Make Final Determination</h4>
+                                   <p className="text-sm">Click "Resolve Case" and select: Approved (false positive, proceed), Rejected (genuine risk, escalate), or Escalated (needs senior review). Add final notes explaining your determination. The case is closed with full documentation.</p>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                       </CardContent>
+                     )}
+                     </Card>
+
+                     {/* Audit Logs */}
+                     <Card className="mb-8">
+                     <CardHeader>
+                     <SectionHeader title="Audit Logs Menu Item: Complete Activity History" section="auditlogs" />
+                     </CardHeader>
+                     {expandedSections.auditlogs && (
+                       <CardContent className="space-y-8">
+                           <h3 className="text-xl font-bold mb-4">Immutable Records of Every Action</h3>
+                           <p className="mb-4 leading-relaxed">
+                             The Audit Logs section displays every action taken on your account: who logged in and when, which documents were uploaded, which applications were submitted, which credentials were downloaded, and which settings were changed. This complete audit trail is essential for compliance documentation, internal audits, and regulatory investigations.
+                           </p>
+
+                           <div>
+                             <h3 className="text-lg font-bold mb-4">What's Recorded in Audit Logs</h3>
+                             <table className="w-full text-sm border-collapse">
+                               <thead className="bg-gray-800 text-white">
+                                 <tr>
+                                   <th className="border p-3 text-left">Action Type</th>
+                                   <th className="border p-3 text-left">Recorded Details</th>
+                                   <th className="border p-3 text-left">Use Case</th>
+                                 </tr>
+                               </thead>
+                               <tbody>
+                                 <tr className="hover:bg-red-50">
+                                   <td className="border p-3 font-semibold">Authentication</td>
+                                   <td className="border p-3">Login timestamp, IP address, device type, success/failure, user email</td>
+                                   <td className="border p-3">Detect unauthorized access attempts, verify access patterns</td>
+                                 </tr>
+                                 <tr className="hover:bg-orange-50">
+                                   <td className="border p-3 font-semibold">Application Submission</td>
+                                   <td className="border p-3">Submit time, submitted by, application ID, data submitted, LEI application number</td>
+                                   <td className="border p-3">Prove application was submitted on a specific date for regulatory filing</td>
+                                 </tr>
+                                 <tr className="hover:bg-yellow-50">
+                                   <td className="border p-3 font-semibold">Document Upload</td>
+                                   <td className="border p-3">Upload time, document type, uploaded by, file size, document ID</td>
+                                   <td className="border p-3">Show that required documents were provided during verification process</td>
+                                 </tr>
+                                 <tr className="hover:bg-blue-50">
+                                   <td className="border p-3 font-semibold">Credential Download</td>
+                                   <td className="border p-3">Download time, credential type (LEI/vLEI), downloaded by, IP address</td>
+                                   <td className="border p-3">Track who accessed credentials and when for compliance audits</td>
+                                 </tr>
+                                 <tr className="hover:bg-green-50">
+                                   <td className="border p-3 font-semibold">Settings Changes</td>
+                                   <td className="border p-3">Change time, what was changed, old value, new value, changed by</td>
+                                   <td className="border p-3">Trace configuration history and identify unauthorized changes</td>
+                                 </tr>
+                               </tbody>
+                             </table>
+                           </div>
+
+                           <div>
+                             <h3 className="text-lg font-bold mb-4">Using Audit Logs for Compliance</h3>
+                             <p className="mb-4 leading-relaxed">
+                               <strong>Regulatory Audits:</strong> When auditors ask "Show us all actions related to LEI application ABC," you can filter audit logs by application ID and generate a report showing every submission, document, decision, and status change with timestamps and who performed each action.
+                             </p>
+                             <p className="mb-4 leading-relaxed">
+                               <strong>Security Investigations:</strong> If you suspect unauthorized access, audit logs show every login—successful and failed—with IP addresses and device information. You can identify if someone accessed your account from unusual locations.
+                             </p>
+                             <p className="leading-relaxed">
+                               <strong>Internal Disputes:</strong> If your team disagrees about when something happened or who approved a decision, audit logs provide the definitive truth: timestamped, cryptographically signed records showing exactly what occurred.
+                             </p>
+                           </div>
+                       </CardContent>
+                     )}
+                     </Card>
+
+                     {/* Policy Builder */}
+                     <Card className="mb-8">
+                     <CardHeader>
+                     <SectionHeader title="Workflows/Policies Menu Item: Designing Custom Verification Processes" section="workflows" />
+                     </CardHeader>
+                     {expandedSections.workflows && (
+                       <CardContent className="space-y-8">
+                           <h3 className="text-xl font-bold mb-4">No-Code Workflow Design for Advanced Compliance</h3>
+                           <p className="mb-4 leading-relaxed">
+                             The Policy Builder enables compliance teams to design custom workflows without engineers. Rather than using the standard KYB→AML→LEI process, you can create specialized workflows: risk-based KYB (low-risk customers get fast-track, high-risk get enhanced due diligence), industry-specific verification (crypto exchanges require stricter checks than traditional businesses), or geographic policies (different requirements for different jurisdictions).
+                           </p>
+
+                           <div>
+                             <h3 className="text-lg font-bold mb-4">Building a Workflow: Step-by-Step</h3>
+                             <div className="space-y-4">
+                               <div className="flex gap-4">
+                                 <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Start from Template or Blank</h4>
+                                   <p className="text-sm">Choose a template (Standard Verification, Risk-Based Flow, Fast-Track, Enhanced Due Diligence) or build from scratch. Templates save time by providing pre-configured nodes you can customize.</p>
+                                 </div>
+                               </div>
+                               <div className="flex gap-4">
+                                 <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Drag Verification Nodes</h4>
+                                   <p className="text-sm">Drag "KYB Check" node into the workflow. Configure it: which registries to query, what to verify, how strict the matching (exact match vs fuzzy match). Drag "AML Screening" node, configure watchlist selection, match confidence thresholds.</p>
+                                 </div>
+                               </div>
+                               <div className="flex gap-4">
+                                 <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Add Decision Points</h4>
+                                   <p className="text-sm">Drag a "Decision" node and configure branching logic: IF AML result is "high match" THEN send to "Manual Review" node. IF KYB result is "failed" THEN send to "Rejection" node. IF both pass THEN send to "LEI Issuance" node.</p>
+                                 </div>
+                               </div>
+                               <div className="flex gap-4">
+                                 <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Add Notifications & Actions</h4>
+                                   <p className="text-sm">Drag "Notify" nodes: notify customer when approved, notify admin when escalated. Drag "Escalate" nodes for high-risk cases. Drag "Issue Credential" node at the end for successful completions.</p>
+                                 </div>
+                               </div>
+                               <div className="flex gap-4">
+                                 <div className="bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">5</div>
+                                 <div>
+                                   <h4 className="font-bold mb-1">Test & Deploy</h4>
+                                   <p className="text-sm">Test the workflow with sample data. The system walks through each node, showing you decisions at each step. Once satisfied, deploy the workflow. It's immediately active for new applications. You can A/B test it against the current workflow.</p>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+
+                           <div>
+                             <h3 className="text-lg font-bold mb-4">Monitoring Workflow Performance</h3>
+                             <p className="mb-4 leading-relaxed">
+                               After deploying a workflow, the analytics dashboard shows: applications processed today, approval rate (%), rejection rate (%), escalation rate (%), average time per stage, and which nodes are creating bottlenecks. If Document Verification is taking 5 hours on average (vs. KYB's 30 minutes), you know where the slowdown is. If your rejection rate is 15% but industry average is 3%, your workflow may be too strict.
+                             </p>
+                           </div>
+                       </CardContent>
+                     )}
+                     </Card>
+
                      {/* Compliance & Monitoring */}
                      <Card className="mb-8">
                      <CardHeader>
