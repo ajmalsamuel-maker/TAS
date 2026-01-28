@@ -659,7 +659,7 @@ export default function UserPortalDocumentation() {
                                </div>
                                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
                                  <h4 className="font-bold mb-2">Geographic Rules</h4>
-                                 <p className="text-sm">IF destination country in {high-risk list} THEN review • IF OFAC-sanctioned country THEN auto-block • IF sudden geographic shift for customer THEN escalate</p>
+                                 <p className="text-sm">IF destination country in &quot;high-risk list&quot; THEN review • IF OFAC-sanctioned country THEN auto-block • IF sudden geographic shift for customer THEN escalate</p>
                                </div>
                                <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
                                  <h4 className="font-bold mb-2">Counterparty Screening</h4>
