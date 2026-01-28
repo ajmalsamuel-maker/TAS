@@ -95,6 +95,7 @@ import UserTMaaS from './pages/UserTMaaS';
 import TMaaSSetup from './pages/TMaaSSetup';
 import TMaaSTransactions from './pages/TMaaSTransactions';
 import TMaaSRules from './pages/TMaaSRules';
+import UserTMaaSAnalytics from './pages/UserTMaaSAnalytics';
 import __Layout from './Layout.jsx';
 
 
@@ -147,6 +148,7 @@ export const PAGES = {
     "TMaaSSetup": TMaaSSetup,
     "TMaaSTransactions": TMaaSTransactions,
     "TMaaSRules": TMaaSRules,
+    "UserTMaaSAnalytics": UserTMaaSAnalytics,
 }
 
 export const pagesConfig = {
