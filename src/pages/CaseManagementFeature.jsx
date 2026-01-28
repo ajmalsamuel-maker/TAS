@@ -46,33 +46,33 @@ export default function CaseManagementFeature() {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">The Compliance Investigation Challenge</h2>
               <div className="space-y-4">
                 <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Alert Overload</p>
-                    <p className="text-gray-600 text-sm">Hundreds of AML/KYB alerts pile up without systematic routing</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Manual Workflows</p>
-                    <p className="text-gray-600 text-sm">Spreadsheets and emails, no tracking or accountability</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">SLA Breaches</p>
-                    <p className="text-gray-600 text-sm">No visibility into investigation timelines or compliance deadlines</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Audit Risk</p>
-                    <p className="text-gray-600 text-sm">Missing documentation of decisions and investigation steps</p>
-                  </div>
-                </div>
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">Alert Overload</p>
+                     <p className="text-gray-600 text-sm">Hundreds of AML/KYB alerts pile up without systematic routing</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">Manual Workflows</p>
+                     <p className="text-gray-600 text-sm">Spreadsheets and emails, no tracking or accountability</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">SLA Breaches</p>
+                     <p className="text-gray-600 text-sm">No visibility into investigation timelines or compliance deadlines</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">Audit Risk</p>
+                     <p className="text-gray-600 text-sm">Missing documentation of decisions and investigation steps</p>
+                   </div>
+                 </div>
               </div>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-2 border-[#0044CC] border-l-4 border-l-[#0044CC]">
