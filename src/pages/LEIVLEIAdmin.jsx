@@ -58,24 +58,26 @@ export default function LEIVLEIAdmin() {
         </div>
 
         <Tabs defaultValue="stats" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 lg:w-auto">
-            <TabsTrigger value="stats" className="flex items-center gap-2">
-              <BarChart3 className="h-4 w-4" />
-              Statistics
+          <div className="bg-white border-2 border-blue-100 rounded-lg p-1 overflow-x-auto">
+            <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-1 h-auto bg-transparent w-full">
+            <TabsTrigger value="stats" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm flex items-center gap-1">
+             <BarChart3 className="h-3 w-3 sm:h-4 sm:w-4" />
+             <span className="hidden sm:inline">Statistics</span>
             </TabsTrigger>
-            <TabsTrigger value="credentials" className="flex items-center gap-2">
-              <Shield className="h-4 w-4" />
-              Credentials
+            <TabsTrigger value="credentials" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm flex items-center gap-1">
+             <Shield className="h-3 w-3 sm:h-4 sm:w-4" />
+             <span className="hidden sm:inline">Credentials</span>
             </TabsTrigger>
-            <TabsTrigger value="config" className="flex items-center gap-2">
-              <Settings className="h-4 w-4" />
-              API Config
+            <TabsTrigger value="config" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm flex items-center gap-1">
+             <Settings className="h-3 w-3 sm:h-4 sm:w-4" />
+             <span className="hidden sm:inline">API Config</span>
             </TabsTrigger>
-            <TabsTrigger value="audit" className="flex items-center gap-2">
-              <FileText className="h-4 w-4" />
-              Audit Logs
+            <TabsTrigger value="audit" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm flex items-center gap-1">
+             <FileText className="h-3 w-3 sm:h-4 sm:w-4" />
+             <span className="hidden sm:inline">Audit Logs</span>
             </TabsTrigger>
-          </TabsList>
+            </TabsList>
+            </div>
 
           <TabsContent value="stats">
             <LEIVLEIStats />

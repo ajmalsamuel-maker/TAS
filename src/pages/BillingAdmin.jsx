@@ -65,7 +65,7 @@ export default function BillingAdmin() {
         </div>
 
         {/* Summary Stats */}
-        <div className="grid md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
@@ -117,20 +117,22 @@ export default function BillingAdmin() {
 
         {/* Tabs */}
         <Tabs defaultValue="dashboard" className="space-y-4">
-          <TabsList className="grid grid-cols-3 lg:grid-cols-11 overflow-x-auto">
-            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-            <TabsTrigger value="plans">Plans</TabsTrigger>
-            <TabsTrigger value="template">Template</TabsTrigger>
-            <TabsTrigger value="costs">Provider Costs</TabsTrigger>
-            <TabsTrigger value="markup">Markup Rules</TabsTrigger>
-            <TabsTrigger value="profit">Profit Analysis</TabsTrigger>
-            <TabsTrigger value="prices">Price Alerts</TabsTrigger>
-            <TabsTrigger value="credits">Credits</TabsTrigger>
-            <TabsTrigger value="referrals">Referrals</TabsTrigger>
-            <TabsTrigger value="export">Export</TabsTrigger>
-            <TabsTrigger value="sync">Sync Status</TabsTrigger>
-            <TabsTrigger value="settings">Settings</TabsTrigger>
-          </TabsList>
+          <div className="bg-white border-2 border-blue-100 rounded-lg p-1 overflow-x-auto">
+            <TabsList className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-11 gap-1 h-auto bg-transparent w-full">
+            <TabsTrigger value="dashboard" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Dashboard</TabsTrigger>
+            <TabsTrigger value="plans" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Plans</TabsTrigger>
+            <TabsTrigger value="template" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Template</TabsTrigger>
+            <TabsTrigger value="costs" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Costs</TabsTrigger>
+            <TabsTrigger value="markup" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Markup</TabsTrigger>
+            <TabsTrigger value="profit" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Profit</TabsTrigger>
+            <TabsTrigger value="prices" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Prices</TabsTrigger>
+            <TabsTrigger value="credits" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Credits</TabsTrigger>
+            <TabsTrigger value="referrals" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Referrals</TabsTrigger>
+            <TabsTrigger value="export" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Export</TabsTrigger>
+            <TabsTrigger value="sync" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Sync</TabsTrigger>
+            <TabsTrigger value="settings" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">Settings</TabsTrigger>
+            </TabsList>
+            </div>
 
           <TabsContent value="dashboard">
             <BillingDashboard organizationId="all" />

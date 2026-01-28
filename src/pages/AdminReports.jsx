@@ -27,20 +27,20 @@ export default function AdminReports() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <div className="bg-white border-2 border-blue-100 rounded-lg p-1">
-          <TabsList className="grid grid-cols-4 gap-1 h-auto bg-transparent">
-            <TabsTrigger value="metrics" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-sm">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-1 h-auto bg-transparent w-full">
+            <TabsTrigger value="metrics" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
               <BarChart3 className="mr-2 h-4 w-4" />
               Metrics
             </TabsTrigger>
-            <TabsTrigger value="trends" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-sm">
+            <TabsTrigger value="trends" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
               <TrendingUp className="mr-2 h-4 w-4" />
               Trends
             </TabsTrigger>
-            <TabsTrigger value="export" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-sm">
+            <TabsTrigger value="export" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
               <Download className="mr-2 h-4 w-4" />
               Export
             </TabsTrigger>
-            <TabsTrigger value="settings" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-sm">
+            <TabsTrigger value="settings" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
               <Settings className="mr-2 h-4 w-4" />
               Settings
             </TabsTrigger>

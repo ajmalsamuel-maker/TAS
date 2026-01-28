@@ -70,7 +70,7 @@ export default function AdminAnalytics() {
         </div>
 
         {/* KPI Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-8">
           {[
             { title: 'Total Workflows', value: workflows.length, icon: Activity, color: 'from-blue-500 to-blue-600', trend: '+24%' },
             { title: 'Active Providers', value: providers.filter(p => p.status === 'active').length, icon: Zap, color: 'from-green-500 to-green-600', trend: '+2' },
@@ -93,7 +93,7 @@ export default function AdminAnalytics() {
         </div>
 
         {/* Charts Row 1 */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6 mb-6">
           <Card className="border-2 border-blue-100 shadow-lg">
             <CardHeader className="border-b-2 border-blue-100 bg-gradient-to-r from-blue-50 to-cyan-50">
               <CardTitle>Workflows Over Time</CardTitle>
@@ -184,7 +184,7 @@ export default function AdminAnalytics() {
                 </Funnel>
               </FunnelChart>
             </ResponsiveContainer>
-            <div className="mt-6 grid md:grid-cols-5 gap-4 text-center">
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-4 text-center">
               {conversionFunnel.map((stage, i) => (
                 <div key={i} className="p-3 bg-gray-50 rounded-lg">
                   <p className="text-sm text-gray-600 mb-1">{stage.name}</p>
