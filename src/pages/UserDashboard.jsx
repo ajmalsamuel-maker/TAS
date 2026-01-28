@@ -239,7 +239,7 @@ export default function UserDashboard() {
               <div className="bg-white rounded-lg p-4 border border-blue-200">
                 <p className="text-sm text-gray-600 mb-1">Preferred Language</p>
                 <p className="font-medium text-gray-900">
-                  {user?.preferred_language?.toUpperCase() || 'EN'}
+                  {(user?.preferred_language || 'en').toUpperCase()}
                 </p>
                 <Globe className="h-4 w-4 text-gray-400 mt-1" />
               </div>
