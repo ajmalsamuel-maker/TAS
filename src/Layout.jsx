@@ -85,8 +85,10 @@ function LayoutContent({ children, currentPageName }) {
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials', tooltip: 'Manage LEI and vLEI credentials' },
     { name: 'Application Status', icon: FileText, path: 'ApplicationStatus', tooltip: 'Check your application progress' },
     { name: 'Web3', icon: Globe, path: 'Web3Dashboard', tooltip: 'Web3 identity and blockchain integration' },
-    { name: 'TMaaS', icon: Activity, path: 'UserTransactions', tooltip: 'Transaction Monitoring As A Service' },
-    { name: 'TMaaS Analytics', icon: BarChart, path: 'UserTMaaSAnalytics', tooltip: 'TMaaS performance analytics and insights' },
+    { name: 'TMaaS', icon: Activity, dropdown: [
+      { name: 'Dashboard', path: 'UserTransactions' },
+      { name: 'Analytics', path: 'UserTMaaSAnalytics' }
+    ], tooltip: 'Transaction Monitoring As A Service' },
     { name: 'Cases', icon: Shield, path: 'UserCases', tooltip: 'View assigned cases' },
     { name: 'Team', icon: Users, path: 'UserTeam', tooltip: 'Manage team members' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings', tooltip: 'Configure account settings' },
