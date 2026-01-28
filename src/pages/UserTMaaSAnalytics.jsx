@@ -28,21 +28,22 @@ export default function UserTMaaSAnalytics() {
   });
 
   // Get analytics data
-  const { data: analyticsData, isLoading } = useQuery({
-    queryKey: ['tmaas-analytics', days, selectedConfig],
-    queryFn: async () => {
-      if (!selectedConfig && !configs?.[0]) return null;
-      const response = await base44.functions.invoke('getTMaaSAnalytics', {
-        days,
-        tmaas_config_id: selectedConfig
-      });
-      return response.data;
-    },
-    enabled: !!(selectedConfig || configs?.length)
-  });
+   const { data: analyticsData, isLoading } = useQuery({
+     queryKey: ['tmaas-analytics', days, selectedConfig],
+     queryFn: async () => {
+       if (!selectedConfig && !configs?.[0]) return null;
+       const configId = selectedConfig?.id || configs?.[0]?.id;
+       const response = await base44.functions.invoke('getTMaaSAnalytics', {
+         configId,
+         timePeriod: days.toString()
+       });
+       return response.data;
+     },
+     enabled: !!(selectedConfig || configs?.length)
+   });
 
-  const activeConfig = selectedConfig || configs?.[0];
-  const currentAnalytics = analyticsData?.analytics?.[activeConfig?.id];
+   const activeConfig = selectedConfig || configs?.[0];
+   const currentAnalytics = analyticsData;
 
   const handleExport = async () => {
     try {
