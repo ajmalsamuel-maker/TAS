@@ -85,19 +85,19 @@ export default function OnboardingStep3({ formData, setFormData }) {
   const registriesForCountry = getRegistriesForCountry(formData.registry_country_code);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <Label htmlFor="entity_legal_form" className="text-base">Entity Legal Form (ISO 20275) *</Label>
+        <Label htmlFor="entity_legal_form" className="text-sm sm:text-base">Entity Legal Form (ISO 20275) *</Label>
         <Select 
           value={formData.entity_legal_form}
           onValueChange={(value) => updateField('entity_legal_form', value)}
         >
-          <SelectTrigger className="mt-2">
+          <SelectTrigger className="mt-2 text-sm">
             <SelectValue placeholder="Select entity legal form" />
           </SelectTrigger>
-          <SelectContent>
-            {ENTITY_LEGAL_FORMS.map((form) => (
-              <SelectItem key={form.code} value={form.code} className="flex flex-col">
+          <SelectContent className="text-sm">
+             {ENTITY_LEGAL_FORMS.map((form) => (
+               <SelectItem key={form.code} value={form.code} className="flex flex-col text-sm">
                 <div className="flex items-center justify-between gap-3">
                   <span className="font-medium">{form.label}</span>
                   <span className="text-xs text-gray-500">({form.code})</span>
@@ -118,19 +118,19 @@ export default function OnboardingStep3({ formData, setFormData }) {
         )}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
         <div>
-          <Label htmlFor="business_registry_country" className="text-base">Registry Country (ISO 3166-1) *</Label>
+          <Label htmlFor="business_registry_country" className="text-sm sm:text-base">Registry Country (ISO 3166-1) *</Label>
           <Select 
             value={formData.registry_country_code || ''}
             onValueChange={(value) => updateField('registry_country_code', value)}
           >
-            <SelectTrigger className="mt-2">
+            <SelectTrigger className="mt-2 text-sm">
               <SelectValue placeholder="Select country" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="text-sm">
               {COUNTRY_CODES.map((country) => (
-                <SelectItem key={country.code} value={country.code}>
+                <SelectItem key={country.code} value={country.code} className="text-sm">
                   {country.name} ({country.code})
                 </SelectItem>
               ))}
@@ -139,18 +139,18 @@ export default function OnboardingStep3({ formData, setFormData }) {
         </div>
 
         <div>
-          <Label htmlFor="business_registry_name" className="text-base">Name of Business Registry *</Label>
+          <Label htmlFor="business_registry_name" className="text-sm sm:text-base">Name of Business Registry *</Label>
           {registriesForCountry.length > 1 ? (
             <Select 
               value={formData.business_registry_name}
               onValueChange={(value) => updateField('business_registry_name', value)}
             >
-              <SelectTrigger className="mt-2">
+              <SelectTrigger className="mt-2 text-sm">
                 <SelectValue placeholder="Select a registry for this country" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="text-sm">
                 {registriesForCountry.map((registry) => (
-                  <SelectItem key={registry.code} value={registry.name}>
+                  <SelectItem key={registry.code} value={registry.name} className="text-sm">
                     {registry.name}
                   </SelectItem>
                 ))}
@@ -162,7 +162,7 @@ export default function OnboardingStep3({ formData, setFormData }) {
                 id="business_registry_name"
                 value={registriesForCountry[0].name}
                 disabled
-                className="mt-2 bg-gray-50"
+                className="mt-2 bg-gray-50 text-sm"
               />
               <p className="text-xs text-gray-500 mt-1">Auto-populated based on selected country</p>
             </div>
@@ -172,7 +172,7 @@ export default function OnboardingStep3({ formData, setFormData }) {
               value={formData.business_registry_name}
               onChange={(e) => updateField('business_registry_name', e.target.value)}
               placeholder="Enter registry name"
-              className="mt-2"
+              className="mt-2 text-sm"
               required
             />
           )}
@@ -180,64 +180,64 @@ export default function OnboardingStep3({ formData, setFormData }) {
       </div>
 
       <div>
-        <Label htmlFor="unique_business_id" className="text-base">Unique Business Identifier *</Label>
+        <Label htmlFor="unique_business_id" className="text-sm sm:text-base">Unique Business Identifier *</Label>
         <Input
           id="unique_business_id"
           value={formData.unique_business_id}
           onChange={(e) => updateField('unique_business_id', e.target.value)}
           placeholder="Certificate of Incorporation No."
-          className="mt-2"
+          className="mt-2 text-sm"
           required
         />
       </div>
 
       <div>
-        <Label htmlFor="business_registration_cert_no" className="text-base">Business Registration Certificate No. *</Label>
+        <Label htmlFor="business_registration_cert_no" className="text-sm sm:text-base">Business Registration Certificate No. *</Label>
         <Input
           id="business_registration_cert_no"
           value={formData.business_registration_cert_no}
           onChange={(e) => updateField('business_registration_cert_no', e.target.value)}
-          className="mt-2"
+          className="mt-2 text-sm"
           required
         />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
         <div>
-          <Label htmlFor="entity_creation_date" className="text-base">Entity Creation Date *</Label>
+          <Label htmlFor="entity_creation_date" className="text-sm sm:text-base">Entity Creation Date *</Label>
           <Input
             id="entity_creation_date"
             type="date"
             value={formData.entity_creation_date}
             onChange={(e) => updateField('entity_creation_date', e.target.value)}
-            className="mt-2"
+            className="mt-2 text-sm"
             required
-          />
-        </div>
+            />
+            </div>
 
-        <div>
-          <Label htmlFor="business_cert_effective_date" className="text-base">Business Certificate Effective Date *</Label>
+            <div>
+            <Label htmlFor="business_cert_effective_date" className="text-sm sm:text-base">Business Certificate Effective Date *</Label>
           <Input
             id="business_cert_effective_date"
             type="date"
             value={formData.business_cert_effective_date}
             onChange={(e) => updateField('business_cert_effective_date', e.target.value)}
-            className="mt-2"
+            className="mt-2 text-sm"
             required
-          />
-        </div>
-      </div>
+            />
+            </div>
+            </div>
 
-      <div>
-        <Label htmlFor="number_of_employees" className="text-base">Number of Employees *</Label>
-        <Select 
-          value={formData.number_of_employees}
-          onValueChange={(value) => updateField('number_of_employees', value)}
-        >
-          <SelectTrigger className="mt-2">
+            <div>
+            <Label htmlFor="number_of_employees" className="text-sm sm:text-base">Number of Employees *</Label>
+            <Select 
+            value={formData.number_of_employees}
+            onValueChange={(value) => updateField('number_of_employees', value)}
+            >
+            <SelectTrigger className="mt-2 text-sm">
             <SelectValue placeholder="Select number of employees" />
-          </SelectTrigger>
-          <SelectContent>
+            </SelectTrigger>
+            <SelectContent className="text-sm">
             <SelectItem value="1">1</SelectItem>
             <SelectItem value="2">2</SelectItem>
             <SelectItem value="3_or_more">3 or more</SelectItem>
