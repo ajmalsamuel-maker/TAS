@@ -14,18 +14,15 @@ export default function TMaaSFeature() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white py-16 sm:py-24">
+      <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-2 mb-6">
-            <Badge className="bg-white/20 text-white border-white/30">Feature Spotlight</Badge>
-          </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">Transaction Monitoring As A Service</h1>
           <p className="text-lg sm:text-xl text-blue-100 max-w-3xl mb-8">
             Real-time financial transaction screening with intelligent rule engine, risk scoring, and comprehensive analytics
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to={createPageUrl('Onboarding')}>
-              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#0044CC] hover:bg-blue-50">
                 Enable TMaaS <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -104,7 +101,7 @@ export default function TMaaSFeature() {
               { step: '4', title: 'Decision & Action', desc: 'Auto-approve, flag, or block based on thresholds' }
             ].map((item, i) => (
               <div key={i} className="bg-white rounded-lg p-6 border-2 border-blue-200">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0066B3] to-[#004C8C] text-white flex items-center justify-center font-bold mb-4">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0044CC] to-[#002D66] text-white flex items-center justify-center font-bold mb-4">
                   {item.step}
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
@@ -162,7 +159,7 @@ export default function TMaaSFeature() {
               return (
                 <Card key={i} className="border-2 border-blue-100 hover:border-[#0066B3] transition-all">
                   <CardHeader>
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004C8C] rounded-lg flex items-center justify-center mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-lg flex items-center justify-center mb-3">
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <CardTitle className="text-lg">{feature.title}</CardTitle>
@@ -289,7 +286,7 @@ export default function TMaaSFeature() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 sm:py-24 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
+      <section className="py-16 sm:py-24 bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Ready to Screen Every Transaction?</h2>
           <p className="text-lg text-blue-100 mb-10">
@@ -297,7 +294,7 @@ export default function TMaaSFeature() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to={createPageUrl('Onboarding')}>
-              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50 text-lg px-8">
+              <Button size="lg" className="bg-white text-[#0044CC] hover:bg-blue-50 text-lg px-8">
                 Enable TMaaS <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
