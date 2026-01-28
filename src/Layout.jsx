@@ -54,7 +54,7 @@ function LayoutContent({ children, currentPageName }) {
 
   // Determine portal context based on current page
   const adminPages = ['AdminDashboard', 'AdminCp', 'LEIVLEIAdmin', 'BillingAdmin', 'AdminDocumentation', 'AdminAnalytics', 'AdminReports', 'PlatformAdminDashboard'];
-  const userPages = ['UserDashboard', 'UserMonitoring', 'UserAlerts', 'UserWorkflows', 'UserCredentials', 'UserTransactions', 'UserCases', 'UserPolicies', 'UserTeam', 'UserSettings', 'UserPortalDocumentation'];
+  const userPages = ['UserDashboard', 'UserMonitoring', 'UserAlerts', 'UserWorkflows', 'UserCredentials', 'UserTransactions', 'UserCases', 'UserPolicies', 'UserTeam', 'UserSettings', 'UserPortalDocumentation', 'UserTransactionMonitoring'];
   const isInAdminPortal = adminPages.includes(currentPageName);
   const isInUserPortal = userPages.includes(currentPageName);
 
