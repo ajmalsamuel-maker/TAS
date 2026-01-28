@@ -49,10 +49,10 @@ export default function CSPSolution() {
               Issue LEI/vLEI Credentials<br/>for Every Entity You Form
             </h1>
             <p className="text-xl text-blue-100 mb-4 max-w-3xl mx-auto">
-              Use the TAS Platform to offer LEI/vLEI issuance as a service. Turn entity formation into a credential issuance business.
+              Use the TAS Platform to streamline LEI/vLEI credential issuance during entity formation.
             </p>
             <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
-              Powered by Certizen's GLEIF-authorized QVI infrastructure. New revenue, market differentiation, future-proof compliance.
+              Certizen (GLEIF-Accredited QVI) issues credentials via TAS. Offer clients instant LEI/vLEI issuance alongside traditional formation services.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Link to={createPageUrl('Onboarding')}>
@@ -125,14 +125,14 @@ export default function CSPSolution() {
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-[#0066B3] mb-4">CSP + vLEI Model:</h3>
+                <h3 className="text-xl font-semibold text-[#0066B3] mb-4">Enhanced Service Model:</h3>
                 <ul className="space-y-2 text-slate-600">
-                  <li>• All traditional services ✓</li>
-                  <li>• <span className="text-[#0066B3] font-semibold">+ LEI issuance: $150-$300</span></li>
-                  <li>• <span className="text-[#0066B3] font-semibold">+ vLEI credential: $100-$200/year</span></li>
-                  <li>• <span className="text-[#0066B3] font-semibold">+ ECR credentials: $50 per employee</span></li>
+                  <li>• Traditional formation services</li>
+                  <li>• <span className="text-[#0066B3] font-semibold">+ LEI credential facilitation via TAS/Certizen</span></li>
+                  <li>• <span className="text-[#0066B3] font-semibold">+ vLEI credential issuance</span></li>
+                  <li>• <span className="text-[#0066B3] font-semibold">+ Employee credentials (ECR) as needed</span></li>
                   <li className="pt-4 font-semibold text-[#0066B3]">
-                    Total Annual Revenue per Entity: $1,200-$4,850
+                    Result: Enhanced value proposition for clients
                   </li>
                 </ul>
               </div>
@@ -140,10 +140,10 @@ export default function CSPSolution() {
 
             <div className="mt-8 p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
               <p className="text-center text-2xl font-bold text-gray-900">
-                📈 30-50% Revenue Increase per Entity
+                📈 Differentiated Service Offering
               </p>
               <p className="text-center text-slate-600 mt-2">
-                Plus: Market differentiation, client retention, regulatory future-proofing
+                Market differentiation through instant LEI/vLEI availability, enhanced client experience, future-proof compliance
               </p>
             </div>
           </div>

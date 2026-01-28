@@ -4,24 +4,25 @@ import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Send, CheckCircle, AlertCircle, Globe, Zap, Shield, DollarSign } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Globe, Zap, Shield, ArrowRight } from 'lucide-react';
+import StandardsFooter from '@/components/standards/StandardsFooter';
 
 export default function RemittanceSolution() {
   const challenges = [
     {
       icon: AlertCircle,
-      problem: "False positives flag 15-30% of legitimate transactions",
-      solution: "vLEI verification reduces false positives to <1%"
+      problem: "High false positive rates flag legitimate business transactions",
+      solution: "vLEI verification significantly reduces false positives"
     },
     {
       icon: AlertCircle,
-      problem: "High-risk corridors face enhanced scrutiny and delays",
-      solution: "LEI-verified corridors = premium tier, instant settlement"
+      problem: "Certain corridors face enhanced scrutiny and delays",
+      solution: "LEI-verified entities enable premium service tiers"
     },
     {
       icon: AlertCircle,
-      problem: "De-risking closes accounts in developing markets",
-      solution: "vLEI proves entity legitimacy, keeps corridors open"
+      problem: "Manual KYB verification creates processing bottlenecks",
+      solution: "Automated vLEI verification via TAS Platform"
     }
   ];
 
@@ -30,56 +31,60 @@ export default function RemittanceSolution() {
       name: "Consumer Tier",
       users: "Individual senders",
       kyc: "Basic ID verification",
-      limits: "$1K-$10K per transaction",
-      fees: "3-7%"
+      limits: "Lower transaction limits",
+      fees: "Standard processing"
     },
     {
       name: "Business Tier",
       users: "SMEs, freelancers",
       kyc: "Business registration + manual review",
-      limits: "$10K-$50K per transaction",
-      fees: "2-4%",
-      pain: "❌ 2-5 day verification"
+      limits: "Moderate transaction limits",
+      fees: "Manual verification",
+      pain: "❌ Multi-day verification"
     },
     {
       name: "LEI-Verified Tier (NEW)",
       users: "Verified entities",
       kyc: "Automatic via vLEI",
-      limits: "Unlimited",
-      fees: "0.5-1.5%",
-      benefit: "✅ 5-second verification"
+      limits: "Higher transaction limits",
+      fees: "Instant verification",
+      benefit: "✅ Real-time approval"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section */}
-      <section className="py-24">
+      <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
-            <Badge className="mb-4 bg-cyan-100 text-cyan-700 border-cyan-300">
-              For Money Transfer Operators & Remittance Platforms
+            <Badge className="mb-4 bg-white/20 text-white border-white/30">
+              TAS Platform for Remittance Providers
             </Badge>
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-              LEI-Verified Remittance Corridors
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              LEI-Verified Business Remittance
             </h1>
-            <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Launch premium B2B remittance with instant entity verification. 
-              Reduce false positives by 90%. Keep high-risk corridors profitable.
+            <p className="text-xl text-blue-100 mb-4 max-w-3xl mx-auto">
+              Launch premium B2B remittance services with instant entity verification through the TAS Platform.
+            </p>
+            <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
+              Certizen (GLEIF-Accredited QVI) issues LEI/vLEI credentials via TAS. Dramatically reduce false positives with automated KYB and AML screening.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link to={createPageUrl('Contact')}>
-                <Button size="lg" className="bg-cyan-600 hover:bg-cyan-700">
-                  <Send className="mr-2 h-5 w-5" />
-                  Request Demo
+              <Link to={createPageUrl('Onboarding')}>
+                <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50">
+                  Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link to={createPageUrl('Pricing')}>
-                <Button size="lg" variant="outline">
-                  See Pricing
+              <Link to={createPageUrl('Contact')}>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  Contact Sales
                 </Button>
               </Link>
             </div>
+            <p className="text-sm text-blue-200 mt-6">
+              Powered by Certizen Technology (GLEIF-Accredited QVI) • Built on TAS Platform
+            </p>
           </div>
         </div>
       </section>
@@ -95,13 +100,13 @@ export default function RemittanceSolution() {
             {challenges.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <Card key={idx} className="border-cyan-200">
+                <Card key={idx} className="border-2 border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg">
                   <CardHeader>
                     <Icon className="h-10 w-10 text-red-500 mb-4" />
                     <CardTitle className="text-lg text-slate-900">❌ {item.problem}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-start gap-2 text-cyan-700 font-semibold">
+                    <div className="flex items-start gap-2 text-[#0066B3] font-semibold">
                       <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
                       <span>✅ {item.solution}</span>
                     </div>
@@ -129,11 +134,11 @@ export default function RemittanceSolution() {
             {tiers.map((tier, idx) => (
               <Card 
                 key={idx} 
-                className={idx === 2 ? "border-cyan-500 border-2 shadow-xl" : "border-slate-200"}
+                className={idx === 2 ? "border-[#0066B3] border-2 shadow-xl" : "border-2 border-gray-200"}
               >
                 <CardHeader>
                   {idx === 2 && (
-                    <Badge className="mb-2 bg-cyan-600 text-white w-fit">RECOMMENDED</Badge>
+                    <Badge className="mb-2 bg-[#0066B3] text-white w-fit">PREMIUM TIER</Badge>
                   )}
                   <CardTitle className="text-slate-900">{tier.name}</CardTitle>
                   <CardDescription>{tier.users}</CardDescription>
@@ -148,7 +153,7 @@ export default function RemittanceSolution() {
                     <p className="font-semibold text-slate-900">{tier.limits}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-slate-500">Fees:</p>
+                    <p className="text-sm text-slate-500">Processing:</p>
                     <p className="font-semibold text-slate-900">{tier.fees}</p>
                   </div>
                   {tier.pain && (
@@ -157,7 +162,7 @@ export default function RemittanceSolution() {
                     </Badge>
                   )}
                   {tier.benefit && (
-                    <Badge className="bg-cyan-100 text-cyan-700 border-cyan-300">
+                    <Badge className="bg-blue-100 text-[#0066B3] border-blue-300">
                       {tier.benefit}
                     </Badge>
                   )}
@@ -169,47 +174,47 @@ export default function RemittanceSolution() {
       </section>
 
       {/* Use Case */}
-      <section className="py-20 bg-gradient-to-r from-cyan-600 to-blue-600">
+      <section className="py-20 bg-gradient-to-r from-[#0066B3] to-[#004C8C]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-white rounded-2xl p-8 md:p-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">
-              Real-World Example: Nigeria → UK Corridor
+              Example: Cross-Border Business Remittance
             </h2>
             
             <div className="grid md:grid-cols-2 gap-12">
               <div>
-                <h3 className="text-xl font-semibold text-red-600 mb-4">❌ Current State</h3>
+                <h3 className="text-xl font-semibold text-red-600 mb-4">❌ Traditional Approach</h3>
                 <ul className="space-y-3 text-slate-600">
-                  <li>• 40% of Nigerian business transfers flagged</li>
-                  <li>• 3-7 day hold for compliance review</li>
-                  <li>• Many accounts closed due to "high-risk" profile</li>
-                  <li>• Fees: 5-8% due to compliance overhead</li>
+                  <li>• High percentage of legitimate business transfers flagged</li>
+                  <li>• Multi-day holds for compliance review</li>
+                  <li>• Risk-based account restrictions</li>
+                  <li>• Significant compliance overhead</li>
                 </ul>
                 <div className="mt-6 p-4 bg-red-50 rounded-lg">
-                  <p className="text-red-700 font-semibold">Sender Experience: Terrible</p>
-                  <p className="text-red-600">MTO Profitability: Negative</p>
+                  <p className="text-red-700 font-semibold">Result: Delayed processing</p>
+                  <p className="text-red-600">Higher operational costs</p>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-cyan-600 mb-4">✅ With LEI Verification</h3>
+                <h3 className="text-xl font-semibold text-[#0066B3] mb-4">✅ With TAS Platform</h3>
                 <ul className="space-y-3 text-slate-600">
-                  <li>• Nigerian business presents vLEI credential</li>
-                  <li>• TAS verifies: Registered company, clean AML history</li>
-                  <li>• Transaction auto-approved in 5 seconds</li>
-                  <li>• Fees: 1.5% (premium tier pricing)</li>
+                  <li>• Business presents vLEI credential issued by Certizen</li>
+                  <li>• TAS verifies: LEI status, KYB data, AML screening</li>
+                  <li>• Transaction auto-approved in real-time</li>
+                  <li>• Premium service tier enabled</li>
                 </ul>
-                <div className="mt-6 p-4 bg-cyan-50 rounded-lg">
-                  <p className="text-cyan-700 font-semibold">Sender Experience: Excellent</p>
-                  <p className="text-cyan-600">MTO Profitability: High</p>
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                  <p className="text-[#0066B3] font-semibold">Result: Instant processing</p>
+                  <p className="text-blue-600">Lower operational costs</p>
                 </div>
               </div>
             </div>
 
             <div className="mt-8 text-center">
-              <Badge className="bg-cyan-600 text-white text-lg px-6 py-2">
-                <DollarSign className="inline h-5 w-5 mr-2" />
-                Keep high-risk corridors profitable with LEI verification
+              <Badge className="bg-[#0066B3] text-white text-lg px-6 py-2">
+                <Shield className="inline h-5 w-5 mr-2" />
+                Enable premium corridors with LEI/vLEI verification
               </Badge>
             </div>
           </div>
@@ -229,19 +234,19 @@ export default function RemittanceSolution() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="border-cyan-200">
+            <Card className="border-2 border-gray-200 hover:border-[#0066B3] transition-all">
               <CardHeader>
-                <Zap className="h-10 w-10 text-cyan-600 mb-2" />
+                <Zap className="h-10 w-10 text-[#0066B3] mb-2" />
                 <CardTitle className="text-slate-900">Instant Verification</CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600">
-                vLEI check = 5 seconds vs 3-5 days manual review
+                Real-time vLEI checks vs multi-day manual review
               </CardContent>
             </Card>
 
-            <Card className="border-cyan-200">
+            <Card className="border-2 border-gray-200 hover:border-[#0066B3] transition-all">
               <CardHeader>
-                <Shield className="h-10 w-10 text-cyan-600 mb-2" />
+                <Shield className="h-10 w-10 text-[#0066B3] mb-2" />
                 <CardTitle className="text-slate-900">AML Compliance</CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600">
@@ -249,70 +254,76 @@ export default function RemittanceSolution() {
               </CardContent>
             </Card>
 
-            <Card className="border-cyan-200">
+            <Card className="border-2 border-gray-200 hover:border-[#0066B3] transition-all">
               <CardHeader>
-                <Globe className="h-10 w-10 text-cyan-600 mb-2" />
+                <Globe className="h-10 w-10 text-[#0066B3] mb-2" />
                 <CardTitle className="text-slate-900">Global Recognition</CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600">
-                LEI accepted worldwide = no duplicate KYC per corridor
+                LEI accepted worldwide - verify once, use everywhere
               </CardContent>
             </Card>
 
-            <Card className="border-cyan-200">
+            <Card className="border-2 border-gray-200 hover:border-[#0066B3] transition-all">
               <CardHeader>
-                <DollarSign className="h-10 w-10 text-cyan-600 mb-2" />
-                <CardTitle className="text-slate-900">Premium Pricing</CardTitle>
+                <CheckCircle className="h-10 w-10 text-[#0066B3] mb-2" />
+                <CardTitle className="text-slate-900">Premium Service</CardTitle>
               </CardHeader>
               <CardContent className="text-slate-600">
-                Justify higher fees for LEI-verified tier (like Wise Business)
+                Offer enhanced tiers for LEI-verified business customers
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              The Business Case
-            </h2>
-          </div>
+      {/* Standards */}
+      <StandardsFooter />
 
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-cyan-600 mb-2">90%</div>
-              <p className="text-slate-600">Reduction in false positives</p>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-cyan-600 mb-2">80%</div>
-              <p className="text-slate-600">Lower compliance costs</p>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-cyan-600 mb-2">3x</div>
-              <p className="text-slate-600">Higher profit margins on B2B remittances</p>
-            </div>
+      {/* CTA */}
+      <section className="py-20 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <Send className="h-20 w-20 mx-auto mb-6" />
+          <h2 className="text-4xl font-bold mb-4">
+            Launch LEI-Verified Business Remittance
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Enable premium business corridors with TAS Platform
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link to={createPageUrl('Onboarding')}>
+              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50">
+                Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to={createPageUrl('Contact')}>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                Contact Sales
+              </Button>
+            </Link>
           </div>
+          <p className="text-sm text-blue-200 mt-6">
+            Powered by Certizen Technology (GLEIF-Accredited QVI)
+          </p>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <Send className="h-20 w-20 text-cyan-600 mx-auto mb-6" />
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
-            Launch LEI-Verified Business Remittance
-          </h2>
-          <p className="text-xl text-slate-600 mb-8">
-            Wise, Remitly, and leading MTOs are building premium LEI tiers
-          </p>
-          <Link to={createPageUrl('Contact')}>
-            <Button size="lg" className="bg-cyan-600 hover:bg-cyan-700">
-              Schedule Demo
-            </Button>
-          </Link>
+      {/* Logos Footer */}
+      <section className="py-12 bg-white border-t">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-sm text-gray-500 mb-4">Powered by</p>
+          <div className="flex items-center justify-center gap-12">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/4191d6eef_Untitleddesign5.png"
+              alt="Certizen Technology"
+              className="h-8"
+            />
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png"
+              alt="FTS.Money"
+              className="h-10"
+            />
+          </div>
         </div>
       </section>
     </div>

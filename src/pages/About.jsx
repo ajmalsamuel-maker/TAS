@@ -12,7 +12,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">About TAS Platform</h1>
           <p className="text-base sm:text-lg lg:text-xl text-blue-100 max-w-3xl">
-            B2B SaaS infrastructure enabling businesses to issue LEI/vLEI credentials and automate compliance workflows across corporate, Web3, and supply chain operations
+            B2B SaaS infrastructure for LEI/vLEI credential issuance, KYB verification, AML screening, liveness detection, and automated compliance workflows - serving crypto exchanges, trade finance, law firms, corporate services, remittance providers, and enterprises
           </p>
         </div>
       </section>
@@ -50,10 +50,10 @@ export default function About() {
               <h3 className="text-2xl font-bold mb-6 text-[#0044CC]">Our Vision</h3>
               <div className="space-y-4">
                 {[
-                  'Identity infrastructure for any business - banks, DAOs, supply chains, enterprises',
+                  'Identity infrastructure for crypto exchanges, trade finance, law firms, corporate services, remittance providers, and enterprises',
                   'Multi-tenant SaaS model with complete workspace isolation',
                   'Global interoperability via unified API',
-                  'Web3-ready trust layer (DID, VCs, vLEI)',
+                  'Complete compliance stack: LEI/vLEI, KYB, AML, liveness verification',
                   'Enable frictionless verification and credential issuance at scale'
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">

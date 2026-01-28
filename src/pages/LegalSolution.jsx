@@ -12,33 +12,33 @@ export default function LegalSolution() {
     {
       title: "M&A Practices",
       icon: Building,
-      pain: "72-hour entity verification delays deal closings",
-      solution: "vLEI = instant entity legitimacy proof",
-      savings: "$50K per deal"
+      pain: "Entity verification delays deal closings",
+      solution: "vLEI provides instant entity legitimacy proof",
+      savings: "Faster closings"
     },
     {
       title: "Real Estate Closings",
       icon: FileCheck,
-      pain: "FinCEN RRE Rule requires beneficial owner verification",
-      solution: "LEI auto-discloses UBOs, pre-verified",
-      savings: "3x faster closings"
+      pain: "New regulations require beneficial owner verification",
+      solution: "LEI auto-discloses UBOs through GLEIF Level 2 data",
+      savings: "Streamlined compliance"
     },
     {
       title: "Trust & Estate",
       icon: Shield,
-      pain: "IOLTA account monitoring = manual nightmare",
-      solution: "vLEI-tagged transactions = audit-ready trails",
-      savings: "90% less compliance overhead"
+      pain: "IOLTA account monitoring requires extensive documentation",
+      solution: "vLEI-tagged transactions create audit-ready trails",
+      savings: "Reduced compliance overhead"
     }
   ];
 
   const features = [
-    "Client vLEI verification in 5 seconds (vs 3 days manual)",
-    "Trust account transactions cryptographically signed",
+    "Rapid client vLEI verification via TAS Platform",
+    "Cryptographically-signed transaction trails",
     "Cross-border deals with mutual LEI recognition",
-    "FinCEN RRE Rule compliance built-in (March 2026)",
-    "Audit trails accepted by bar associations",
-    "Integration with Clio, MyCase, CosmoLex"
+    "Built-in KYB, AML screening, and liveness verification",
+    "Comprehensive audit logging",
+    "RESTful API for practice management integration"
   ];
 
   return (
@@ -57,7 +57,7 @@ export default function LegalSolution() {
               Use the TAS Platform to close deals 3x faster with cryptographic proof of entity legitimacy.
             </p>
             <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
-              FinCEN RRE Rule compliant. IOLTA monitoring built-in. Bar-approved audit trails. Powered by Certizen Technology.
+              Certizen (GLEIF-Accredited QVI) issues LEI/vLEI credentials via TAS Platform. Built-in KYB, AML screening, liveness verification, and audit-ready compliance trails.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Link to={createPageUrl('Onboarding')}>
@@ -119,64 +119,64 @@ export default function LegalSolution() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-white rounded-2xl p-8 md:p-12">
             <div className="flex items-center gap-4 mb-6">
-              <div className="h-16 w-16 rounded-full bg-red-100 flex items-center justify-center">
-                <Clock className="h-8 w-8 text-red-600" />
+              <div className="h-16 w-16 rounded-full bg-blue-100 flex items-center justify-center">
+                <Shield className="h-8 w-8 text-[#0066B3]" />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-slate-900">FinCEN RRE Rule Deadline</h2>
-                <p className="text-xl text-slate-600">March 1, 2026 - Are you ready?</p>
+                <h2 className="text-3xl font-bold text-slate-900">Evolving Compliance Requirements</h2>
+                <p className="text-xl text-slate-600">Stay ahead of regulatory changes with TAS</p>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 mt-8">
               <div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">New Requirements:</h3>
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">Regulatory Trends:</h3>
                 <ul className="space-y-3 text-slate-600">
                   <li className="flex gap-2">
                     <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
-                    <span>Verify beneficial owners for all real estate transactions</span>
+                    <span>Enhanced beneficial ownership verification requirements</span>
                   </li>
                   <li className="flex gap-2">
                     <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
-                    <span>Report suspicious activity within 30 days</span>
+                    <span>Stricter AML monitoring and reporting obligations</span>
                   </li>
                   <li className="flex gap-2">
                     <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
-                    <span>Maintain audit trails for 5 years</span>
+                    <span>Extended audit trail retention requirements</span>
                   </li>
                   <li className="flex gap-2">
                     <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
-                    <span>Screen against OFAC/sanctions lists</span>
+                    <span>Comprehensive sanctions screening mandates</span>
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-emerald-600 mb-4">TAS Automates It All:</h3>
+                <h3 className="text-xl font-semibold text-[#0066B3] mb-4">TAS Platform Capabilities:</h3>
                 <ul className="space-y-3 text-slate-600">
                   <li className="flex gap-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Client presents LEI → UBOs auto-disclosed</span>
+                    <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
+                    <span>LEI auto-discloses UBOs via GLEIF Level 2 data</span>
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>Real-time AML screening against global databases</span>
+                    <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
+                    <span>Real-time AML screening against global watchlists</span>
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
                     <span>Cryptographically-signed audit logs</span>
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    <span>One-click SAR filing integration</span>
+                    <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
+                    <span>Automated compliance workflow orchestration</span>
                   </li>
                 </ul>
               </div>
             </div>
 
             <div className="mt-8 p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
-              <p className="text-center text-lg font-semibold text-slate-900">
-                🚨 Non-compliance penalty: <span className="text-red-600">Up to $500K per violation + bar suspension</span>
+              <p className="text-center text-sm text-slate-600">
+                Note: FinCEN's Residential Real Estate (RRE) Rule effective March 1, 2026, requires beneficial ownership reporting for certain real estate transactions. TAS Platform helps automate compliance workflows.
               </p>
             </div>
           </div>
@@ -208,31 +208,31 @@ export default function LegalSolution() {
         </div>
       </section>
 
-      {/* Social Proof */}
+      {/* Benefits Overview */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <Users className="h-16 w-16 text-[#0066B3] mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Trusted by Leading Law Firms
+              Built for Modern Legal Practice
             </h2>
             <p className="text-xl text-slate-600">
-              Am Law 100 firms are moving to LEI-verified client onboarding
+              Streamline client onboarding with cryptographic entity verification
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-[#0066B3] mb-2">72%</div>
-              <p className="text-slate-600">Faster M&A closings</p>
+              <div className="text-4xl font-bold text-[#0066B3] mb-2">Instant</div>
+              <p className="text-slate-600">Entity Verification</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#0066B3] mb-2">$2M</div>
-              <p className="text-slate-600">Average annual savings</p>
+              <div className="text-4xl font-bold text-[#0066B3] mb-2">Global</div>
+              <p className="text-slate-600">LEI Recognition</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#0066B3] mb-2">100%</div>
-              <p className="text-slate-600">Bar compliance</p>
+              <div className="text-4xl font-bold text-[#0066B3] mb-2">Automated</div>
+              <p className="text-slate-600">Compliance Workflows</p>
             </div>
           </div>
         </div>

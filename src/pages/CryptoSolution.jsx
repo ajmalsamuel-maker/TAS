@@ -30,9 +30,9 @@ export default function CryptoSolution() {
   ];
 
   const stats = [
-    { label: "False Positive Reduction", value: "90%", icon: CheckCircle },
-    { label: "Faster KYB Processing", value: "95%", icon: Zap },
-    { label: "Institutional Clients", value: "500+", icon: Users }
+    { label: "Cryptographic Verification", value: "LEI/vLEI", icon: CheckCircle },
+    { label: "Processing Time", value: "Real-time", icon: Zap },
+    { label: "Global Standard", value: "ISO 17442", icon: Users }
   ];
 
   return (
@@ -52,10 +52,10 @@ export default function CryptoSolution() {
               LEI/vLEI-Verified<br />Institutional Crypto Trading
             </h1>
             <p className="text-xl text-blue-100 mb-4 max-w-3xl mx-auto">
-              Use the TAS Platform to issue LEI/vLEI credentials and enable cryptographically-verified entity trading.
+              Enable institutional traders to onboard with cryptographically-verified LEI/vLEI credentials through the TAS Platform.
             </p>
             <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
-              Powered by Certizen's QVI infrastructure. Reduce compliance costs by 90% with automated vLEI verification.
+              Certizen (GLEIF-Accredited QVI) issues credentials via TAS. Automated KYB, AML screening, and liveness verification built-in.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Link to={createPageUrl('Onboarding')}>
@@ -154,8 +154,8 @@ export default function CryptoSolution() {
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Traditional KYC</h3>
                     <p className="text-gray-600">
-                      Screen "ABC Hedge Fund" → 50 name matches → 3 hours manual review → 
-                      30% false positives → regulatory risk
+                      Name-based screening → Multiple matches → Hours of manual review → 
+                      High false positive rates → Regulatory risk
                     </p>
                   </div>
                 </div>
@@ -167,8 +167,8 @@ export default function CryptoSolution() {
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">TAS vLEI Verification</h3>
                     <p className="text-gray-600">
-                      ABC presents vLEI → Cryptographic signature verified → LEI active status checked → 
-                      5-second approval → Zero false positives
+                      Entity presents vLEI → Cryptographic signature verified → LEI status checked → 
+                      Instant approval → Minimal false positives
                     </p>
                   </div>
                 </div>
@@ -177,24 +177,24 @@ export default function CryptoSolution() {
 
             <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-[#0066B3]">
               <CardHeader>
-                <CardTitle className="text-gray-900">Result: 90% Cost Reduction</CardTitle>
+                <CardTitle className="text-gray-900">Key Benefits</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-gray-700">
                 <div className="flex justify-between">
                   <span>Manual Review Time:</span>
-                  <span className="font-semibold text-gray-900">3 hours → 5 seconds</span>
+                  <span className="font-semibold text-gray-900">Hours → Seconds</span>
                 </div>
                 <div className="flex justify-between">
                   <span>False Positives:</span>
-                  <span className="font-semibold text-gray-900">30% → 0%</span>
+                  <span className="font-semibold text-gray-900">Dramatically Reduced</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Compliance Team Size:</span>
-                  <span className="font-semibold text-gray-900">20 FTE → 2 FTE</span>
+                  <span>Compliance Overhead:</span>
+                  <span className="font-semibold text-gray-900">Significantly Lower</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Annual Savings:</span>
-                  <span className="font-semibold text-green-600">$2M+</span>
+                  <span>Customer Experience:</span>
+                  <span className="font-semibold text-green-600">Streamlined</span>
                 </div>
               </CardContent>
             </Card>

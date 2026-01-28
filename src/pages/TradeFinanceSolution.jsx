@@ -10,18 +10,18 @@ import StandardsFooter from '@/components/standards/StandardsFooter';
 export default function TradeFinanceSolution() {
   const challenges = [
     {
-      problem: "Letters of Credit take 5-10 days to verify counterparties",
-      solution: "Instant vLEI verification = same-day approval",
+      problem: "Letters of Credit require lengthy counterparty verification",
+      solution: "Instant vLEI verification streamlines trade approval",
       icon: Clock
     },
     {
-      problem: "Trade-Based Money Laundering (TBML) costs banks $1.6T annually",
-      solution: "LEI-anchored invoice matching detects over/under invoicing",
+      problem: "Trade-Based Money Laundering (TBML) detection is complex and manual",
+      solution: "LEI-anchored invoice matching helps detect suspicious patterns",
       icon: AlertCircle
     },
     {
-      problem: "Cross-border KYC duplication wastes resources",
-      solution: "LEI recognized globally = one KYB, infinite reuse",
+      problem: "Cross-border KYC duplication creates inefficiency",
+      solution: "LEI recognized globally - verify once, use everywhere",
       icon: Globe
     }
   ];
@@ -30,17 +30,17 @@ export default function TradeFinanceSolution() {
     {
       title: "Counterparty vLEI Verification",
       description: "Buyers and sellers present cryptographically-signed entity credentials",
-      benefit: "95% faster trade approval"
+      benefit: "Significantly faster trade approval"
     },
     {
       title: "Smart Contract Escrow",
-      description: "Release funds only when both parties present valid vLEI signatures",
-      benefit: "Zero payment fraud"
+      description: "Release funds when both parties present valid vLEI signatures",
+      benefit: "Enhanced payment security"
     },
     {
       title: "TBML Detection",
-      description: "AI-powered invoice analysis with LEI-anchored pricing benchmarks",
-      benefit: "Flag suspicious trades in real-time"
+      description: "Invoice analysis with LEI-anchored benchmarks",
+      benefit: "Flag suspicious patterns automatically"
     },
     {
       title: "Provenance Chains",
@@ -157,36 +157,36 @@ export default function TradeFinanceSolution() {
               <div>
                 <h3 className="text-xl font-semibold text-red-600 mb-4">❌ Traditional Process</h3>
                 <ol className="space-y-3 text-slate-600">
-                  <li><strong>Day 1-3:</strong> Manual verification of buyer/seller registrations</li>
-                  <li><strong>Day 4-6:</strong> Paper document exchange and review</li>
-                  <li><strong>Day 7-8:</strong> Bank compliance checks both parties</li>
-                  <li><strong>Day 9-10:</strong> Final approval and fund release</li>
+                  <li><strong>Days 1-3:</strong> Manual verification of buyer/seller registrations</li>
+                  <li><strong>Days 4-7:</strong> Document exchange and compliance review</li>
+                  <li><strong>Days 8-10:</strong> Bank checks both parties</li>
+                  <li><strong>Days 11+:</strong> Final approval and fund release</li>
                 </ol>
                 <div className="mt-6 p-4 bg-red-50 rounded-lg">
-                  <p className="text-red-700 font-semibold">Total Time: 10 days</p>
-                  <p className="text-red-600">Cost: $5,000+ in fees</p>
+                  <p className="text-red-700 font-semibold">Total Time: Multiple days to weeks</p>
+                  <p className="text-red-600">High compliance overhead</p>
                 </div>
               </div>
 
               <div>
                 <h3 className="text-xl font-semibold text-emerald-600 mb-4">✅ TAS vLEI Process</h3>
                 <ol className="space-y-3 text-slate-600">
-                  <li><strong>Hour 1:</strong> Buyer & seller present vLEI credentials</li>
-                  <li><strong>Hour 2:</strong> Cryptographic verification (5 seconds each)</li>
-                  <li><strong>Hour 3:</strong> Smart contract auto-approves terms</li>
-                  <li><strong>Hour 4:</strong> Funds released to escrow</li>
+                  <li><strong>Step 1:</strong> Buyer & seller present vLEI credentials</li>
+                  <li><strong>Step 2:</strong> Cryptographic verification (instant)</li>
+                  <li><strong>Step 3:</strong> KYB & AML checks via TAS Platform</li>
+                  <li><strong>Step 4:</strong> Automated approval workflow</li>
                 </ol>
                 <div className="mt-6 p-4 bg-emerald-50 rounded-lg">
-                  <p className="text-emerald-700 font-semibold">Total Time: 4 hours</p>
-                  <p className="text-emerald-600">Cost: $50 verification fee</p>
+                  <p className="text-emerald-700 font-semibold">Total Time: Same-day processing</p>
+                  <p className="text-emerald-600">Significantly lower overhead</p>
                 </div>
               </div>
             </div>
 
             <div className="mt-8 text-center">
               <Badge className="bg-[#0066B3] text-white text-lg px-6 py-2">
-                <DollarSign className="inline h-5 w-5 mr-2" />
-                99% Cost Reduction, 60x Faster
+                <Zap className="inline h-5 w-5 mr-2" />
+                Dramatically faster processing with enhanced security
               </Badge>
             </div>
           </div>

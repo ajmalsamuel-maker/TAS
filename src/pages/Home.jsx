@@ -26,10 +26,10 @@ export default function Home() {
                 Enterprise Identity & Compliance Platform
               </h1>
               <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-                Multi-tenant B2B SaaS platform for LEI/vLEI issuance, KYB verification, and automated compliance workflows
+                Multi-tenant B2B SaaS platform for LEI/vLEI issuance, KYB verification, AML screening, liveness detection, and automated compliance workflows
               </p>
               <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8">
-                Purpose-built for banks, fintechs, DAOs, supply chains, and enterprises
+                Purpose-built for crypto exchanges, trade finance, law firms, corporate services, remittance providers, and enterprises
               </p>
               
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8">
