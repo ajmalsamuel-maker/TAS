@@ -4,7 +4,8 @@ import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Scale, CheckCircle, Clock, Shield, FileCheck, Building, Users } from 'lucide-react';
+import { Scale, CheckCircle, Clock, Shield, FileCheck, Building, Users, ArrowRight } from 'lucide-react';
+import StandardsFooter from '@/components/standards/StandardsFooter';
 
 export default function LegalSolution() {
   const practices = [
@@ -41,34 +42,38 @@ export default function LegalSolution() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-amber-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section */}
-      <section className="py-24">
+      <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
-            <Badge className="mb-4 bg-amber-100 text-amber-700 border-amber-300">
-              For Law Firms & Legal Professionals
+            <Badge className="mb-4 bg-white/20 text-white border-white/30">
+              TAS Platform for Law Firms
             </Badge>
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
               vLEI-Verified Legal Practice
             </h1>
-            <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Close deals 3x faster with cryptographic proof of entity legitimacy. 
-              FinCEN RRE Rule compliant. IOLTA monitoring built-in. Bar-approved audit trails.
+            <p className="text-xl text-blue-100 mb-4 max-w-3xl mx-auto">
+              Use the TAS Platform to close deals 3x faster with cryptographic proof of entity legitimacy.
+            </p>
+            <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
+              FinCEN RRE Rule compliant. IOLTA monitoring built-in. Bar-approved audit trails. Powered by Certizen Technology.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link to={createPageUrl('Contact')}>
-                <Button size="lg" className="bg-amber-600 hover:bg-amber-700">
-                  <Scale className="mr-2 h-5 w-5" />
-                  Book Legal Demo
+              <Link to={createPageUrl('Onboarding')}>
+                <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50">
+                  Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link to={createPageUrl('UserLogin')}>
-                <Button size="lg" variant="outline">
-                  Start Free Trial
+              <Link to={createPageUrl('Contact')}>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  Contact Sales
                 </Button>
               </Link>
             </div>
+            <p className="text-sm text-blue-200 mt-6">
+              Powered by Certizen Technology (GLEIF-Accredited QVI) • Built on TAS Platform
+            </p>
           </div>
         </div>
       </section>
@@ -84,9 +89,9 @@ export default function LegalSolution() {
             {practices.map((practice, idx) => {
               const Icon = practice.icon;
               return (
-                <Card key={idx} className="border-amber-200 hover:shadow-xl transition-shadow">
+                <Card key={idx} className="border-2 border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg">
                   <CardHeader>
-                    <Icon className="h-12 w-12 text-amber-600 mb-4" />
+                    <Icon className="h-12 w-12 text-[#0066B3] mb-4" />
                     <CardTitle className="text-slate-900">{practice.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -98,7 +103,7 @@ export default function LegalSolution() {
                       <p className="text-sm text-emerald-600 font-semibold mb-1">✅ TAS Solution:</p>
                       <p className="text-slate-600">{practice.solution}</p>
                     </div>
-                    <Badge className="bg-amber-100 text-amber-700 border-amber-300">
+                    <Badge className="bg-blue-100 text-[#0066B3] border-blue-300">
                       {practice.savings}
                     </Badge>
                   </CardContent>
@@ -110,7 +115,7 @@ export default function LegalSolution() {
       </section>
 
       {/* FinCEN Compliance */}
-      <section className="py-20 bg-gradient-to-r from-amber-600 to-orange-600">
+      <section className="py-20 bg-gradient-to-r from-[#0066B3] to-[#004C8C]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-white rounded-2xl p-8 md:p-12">
             <div className="flex items-center gap-4 mb-6">
@@ -169,7 +174,7 @@ export default function LegalSolution() {
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-amber-50 rounded-lg border-2 border-amber-200">
+            <div className="mt-8 p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
               <p className="text-center text-lg font-semibold text-slate-900">
                 🚨 Non-compliance penalty: <span className="text-red-600">Up to $500K per violation + bar suspension</span>
               </p>
@@ -192,9 +197,9 @@ export default function LegalSolution() {
 
           <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {features.map((feature, idx) => (
-              <Card key={idx} className="border-amber-200">
+              <Card key={idx} className="border-2 border-gray-200">
                 <CardContent className="flex items-center gap-3 pt-6">
-                  <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-[#0066B3] flex-shrink-0" />
                   <span className="text-slate-700">{feature}</span>
                 </CardContent>
               </Card>
@@ -207,7 +212,7 @@ export default function LegalSolution() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <Users className="h-16 w-16 text-amber-600 mx-auto mb-4" />
+            <Users className="h-16 w-16 text-[#0066B3] mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-slate-900 mb-4">
               Trusted by Leading Law Firms
             </h2>
@@ -218,36 +223,68 @@ export default function LegalSolution() {
 
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-amber-600 mb-2">72%</div>
+              <div className="text-4xl font-bold text-[#0066B3] mb-2">72%</div>
               <p className="text-slate-600">Faster M&A closings</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-amber-600 mb-2">$2M</div>
+              <div className="text-4xl font-bold text-[#0066B3] mb-2">$2M</div>
               <p className="text-slate-600">Average annual savings</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-amber-600 mb-2">100%</div>
+              <div className="text-4xl font-bold text-[#0066B3] mb-2">100%</div>
               <p className="text-slate-600">Bar compliance</p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Standards */}
+      <StandardsFooter />
+
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <Scale className="h-20 w-20 text-amber-600 mx-auto mb-6" />
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+          <Scale className="h-20 w-20 mx-auto mb-6" />
+          <h2 className="text-4xl font-bold mb-4">
             Join BigLaw's Compliance Evolution
           </h2>
-          <p className="text-xl text-slate-600 mb-8">
-            Kirkland & Ellis, Latham & Watkins, and top M&A practices are going LEI-verified
+          <p className="text-xl text-blue-100 mb-8">
+            Leading M&A practices are adopting LEI-verified client onboarding with TAS Platform
           </p>
-          <Link to={createPageUrl('Contact')}>
-            <Button size="lg" className="bg-amber-600 hover:bg-amber-700">
-              Schedule Your Demo
-            </Button>
-          </Link>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link to={createPageUrl('Onboarding')}>
+              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50">
+                Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to={createPageUrl('Contact')}>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                Contact Sales
+              </Button>
+            </Link>
+          </div>
+          <p className="text-sm text-blue-200 mt-6">
+            Powered by Certizen Technology (GLEIF-Accredited QVI)
+          </p>
+        </div>
+      </section>
+
+      {/* Logos Footer */}
+      <section className="py-12 bg-white border-t">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-sm text-gray-500 mb-4">Powered by</p>
+          <div className="flex items-center justify-center gap-12">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/4191d6eef_Untitleddesign5.png"
+              alt="Certizen Technology"
+              className="h-8"
+            />
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69745611ba890597a348b91e/db0e0ce38_FTSMoney-primary-logo-RGB.png"
+              alt="FTS.Money"
+              className="h-10"
+            />
+          </div>
         </div>
       </section>
     </div>
