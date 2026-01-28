@@ -169,10 +169,11 @@ export default function Onboarding() {
   const handleSaveDraft = async () => {
     try {
       // Check if draft already exists
-      const draftApps = await base44.entities.OnboardingApplication.filter({ 
-        created_by: user.email,
-        status: 'draft' 
-      });
+      const allApps = await base44.entities.OnboardingApplication.list();
+      const draftApps = allApps.filter(app => 
+        app.created_by === user.email && 
+        app.status === 'draft'
+      );
       
       if (draftApps.length > 0) {
         // Update existing draft
