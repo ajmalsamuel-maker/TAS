@@ -402,6 +402,26 @@ const PublicDocumentation = () => {
                     <td className="border p-3">Get instant alerts if regulatory status changes.</td>
                   </tr>
                   <tr className="hover:bg-indigo-50">
+                    <td className="border p-3 font-semibold">Transaction Monitoring (TMaaS)</td>
+                    <td className="border p-3">Real-time screening of millions of transactions against rules and watchlists</td>
+                    <td className="border p-3">Screen payments, transfers, and trades instantly. Auto-approve low-risk, auto-block high-risk.</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3 font-semibold">Case Management</td>
+                    <td className="border p-3">Investigation workflow for alerts with SLA tracking and audit trails</td>
+                    <td className="border p-3">Track and resolve compliance issues with full documentation.</td>
+                  </tr>
+                  <tr className="hover:bg-indigo-50">
+                    <td className="border p-3 font-semibold">Audit Logging</td>
+                    <td className="border p-3">Cryptographically signed audit trail of every action and decision</td>
+                    <td className="border p-3">Meet compliance requirements (SOX, GDPR, PCI DSS) with immutable records.</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="border p-3 font-semibold">Policy Builder</td>
+                    <td className="border p-3">No-code workflow designer for custom verification and compliance processes</td>
+                    <td className="border p-3">Deploy policy changes in minutes without engineering. A/B test variants.</td>
+                  </tr>
+                  <tr className="hover:bg-indigo-50">
                     <td className="border p-3 font-semibold">REST API</td>
                     <td className="border p-3">Integrate verification into your application</td>
                     <td className="border p-3">Embed KYB/AML directly into your workflows.</td>
@@ -411,13 +431,238 @@ const PublicDocumentation = () => {
                     <td className="border p-3">Real-time notifications when verification completes</td>
                     <td className="border p-3">Update customer status automatically as soon as approved.</td>
                   </tr>
-                  <tr className="hover:bg-indigo-50">
-                    <td className="border p-3 font-semibold">Case Management</td>
-                    <td className="border p-3">Investigation workflow for alerts requiring human review</td>
-                    <td className="border p-3">Track and resolve compliance issues with audit trail.</td>
-                  </tr>
                 </tbody>
               </table>
+            </CardContent>
+          )}
+        </Card>
+
+        {/* Transaction Monitoring as a Service (TMaaS) */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="Transaction Monitoring as a Service (TMaaS)" section="tmaas" />
+          </CardHeader>
+          {expandedSections.tmaas && (
+            <CardContent className="space-y-6 text-gray-700">
+              <div>
+                <p className="leading-relaxed mb-4">
+                  Transaction Monitoring as a Service (TMaaS) extends TAS beyond business identity verification into real-time transaction screening. While KYB verifies WHO your customer is, TMaaS monitors WHAT they do—ensuring every transaction complies with sanctions regulations, fraud prevention rules, and your custom policies.
+                </p>
+                <p className="leading-relaxed mb-4">
+                  Traditional transaction monitoring requires proprietary infrastructure, compliance expertise, and constant regulatory updates. TMaaS eliminates this complexity by providing API-based transaction screening with configurable rules, real-time risk scoring, and automated decision-making. Payment processors, crypto exchanges, fintech platforms, and enterprise treasury teams use TMaaS to screen millions of transactions daily without building monitoring systems themselves.
+                </p>
+                <h3 className="text-lg font-bold mb-4">How TMaaS Works</h3>
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                    <div>
+                      <h4 className="font-bold mb-1">Submit Transaction</h4>
+                      <p className="text-sm">Send transaction details via REST API: amount, currency, counterparty name/country, transaction type, device info, and custom attributes</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                    <div>
+                      <h4 className="font-bold mb-1">Execute Rule Engine</h4>
+                      <p className="text-sm">Transaction is evaluated against your custom rules: amount thresholds, velocity checks, country restrictions, counterparty screening, and fraud indicators</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                    <div>
+                      <h4 className="font-bold mb-1">Enrich with Data</h4>
+                      <p className="text-sm">Enhance transaction context with geo-IP data, device fingerprinting, velocity history, and sanctions screening across 300+ watchlists</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                    <div>
+                      <h4 className="font-bold mb-1">Generate Decision</h4>
+                      <p className="text-sm">Receive real-time response: auto-approve, auto-block, or escalate for manual review with detailed reasoning and risk score</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold mb-4">Core TMaaS Capabilities</h3>
+                <table className="w-full text-sm border-collapse">
+                  <thead className="bg-gray-800 text-white">
+                    <tr>
+                      <th className="border p-3 text-left">Capability</th>
+                      <th className="border p-3 text-left">Description</th>
+                      <th className="border p-3 text-left">Benefit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="hover:bg-blue-50">
+                      <td className="border p-3 font-semibold">Custom Rule Builder</td>
+                      <td className="border p-3">No-code interface to create rules: IF amount &gt; $10,000 AND country = Iran THEN block. Drag-and-drop logic with AND/OR operators</td>
+                      <td className="border p-3">Deploy compliance policies without engineers. Update rules in minutes.</td>
+                    </tr>
+                    <tr className="hover:bg-blue-50">
+                      <td className="border p-3 font-semibold">Intelligent Risk Scoring</td>
+                      <td className="border p-3">ML-based scoring combines rule matches, velocity patterns, and historical behavior into 0-100 risk score</td>
+                      <td className="border p-3">Differentiate high-risk transactions from false positives. Reduce manual review workload.</td>
+                    </tr>
+                    <tr className="hover:bg-indigo-50">
+                      <td className="border p-3 font-semibold">Auto-Approve/Block</td>
+                      <td className="border p-3">Rules can automatically approve low-risk transactions or block high-risk ones without human review</td>
+                      <td className="border p-3">40% faster transaction processing. Lower operational costs.</td>
+                    </tr>
+                    <tr className="hover:bg-indigo-50">
+                      <td className="border p-3 font-semibold">Real-Time Monitoring</td>
+                      <td className="border p-3">Screen every transaction in &lt;100ms. Process millions daily. Horizontal scaling with demand.</td>
+                      <td className="border p-3">Support high-volume platforms without infrastructure headaches.</td>
+                    </tr>
+                    <tr className="hover:bg-blue-50">
+                      <td className="border p-3 font-semibold">Data Enrichment</td>
+                      <td className="border p-3">Enhance transactions with: geo-IP location, device fingerprint, velocity history, sanctions screening, fraud scores</td>
+                      <td className="border p-3">Better decision accuracy. Fewer false positives and false negatives.</td>
+                    </tr>
+                    <tr className="hover:bg-indigo-50">
+                      <td className="border p-3 font-semibold">Advanced Analytics</td>
+                      <td className="border p-3">Dashboards show: alerts per rule, approval rates, false positive rates, rule effectiveness metrics</td>
+                      <td className="border p-3">Continuously optimize rules based on real data. Reduce compliance noise.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          )}
+        </Card>
+
+        {/* Case Management */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="Case Management & Investigation Workflow" section="casemanagement" />
+          </CardHeader>
+          {expandedSections.casemanagement && (
+            <CardContent className="space-y-6 text-gray-700">
+              <div>
+                <p className="leading-relaxed mb-4">
+                  Case Management provides a structured workflow for investigating compliance alerts, managing SLA timelines, and maintaining audit-ready documentation. Every alert that requires human judgment becomes a case—whether it's a sanctions match, high-risk customer, failed verification, or transaction anomaly.
+                </p>
+                <p className="leading-relaxed mb-4">
+                  The case system ensures that no alert falls through the cracks. Cases have assigned owners, SLA deadlines, status tracking, and built-in workflows preventing premature closure or unresolved issues. All case decisions are documented with evidence, investigator notes, and final determination—creating an immutable record suitable for regulatory examination.
+                </p>
+                <h3 className="text-lg font-bold mb-4">Case Lifecycle</h3>
+                <div className="space-y-4">
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <h4 className="font-bold mb-2">New → Assigned (SLA: Immediate)</h4>
+                    <p className="text-sm">Alert triggers case creation. Case is automatically assigned to available compliance officers based on expertise and workload balancing.</p>
+                  </div>
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <h4 className="font-bold mb-2">Assigned → In Progress (SLA: 24-48 hours)</h4>
+                    <p className="text-sm">Officer reviews alert details, conducts research, adds investigation notes, gathers supporting evidence. System tracks time spent on the case.</p>
+                  </div>
+                  <div className="bg-yellow-50 p-4 rounded border-l-4 border-yellow-600">
+                    <h4 className="font-bold mb-2">In Progress → Pending Info (Optional, SLA Extended)</h4>
+                    <p className="text-sm">Officer requests additional information from the customer or external sources. Case is paused with a specific deadline for response (typically 5-10 days).</p>
+                  </div>
+                  <div className="bg-green-50 p-4 rounded border-l-4 border-green-600">
+                    <h4 className="font-bold mb-2">Investigation → Resolved (SLA: 3-5 days)</h4>
+                    <p className="text-sm">Officer determines final disposition: Approved (false positive), Rejected (genuine risk), or Escalated (requires higher authority). Decision and reasoning are documented.</p>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded border-l-4 border-gray-600">
+                    <h4 className="font-bold mb-2">Resolved → Closed (SLA: 24 hours after resolution)</h4>
+                    <p className="text-sm">Case is closed. SLA compliance is recorded. Case remains in audit log forever as immutable history.</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          )}
+        </Card>
+
+        {/* Audit & Compliance Logging */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="Audit Logging & Compliance Trails" section="auditlogging" />
+          </CardHeader>
+          {expandedSections.auditlogging && (
+            <CardContent className="space-y-6 text-gray-700">
+              <div>
+                <p className="leading-relaxed mb-4">
+                  Every action on the TAS platform—every application submission, every document upload, every decision, every configuration change—is automatically logged with cryptographic signatures. These audit trails are essential for regulatory compliance (SOX, GDPR, PCI DSS), dispute resolution, and security forensics.
+                </p>
+                <p className="leading-relaxed mb-4">
+                  The audit system captures: WHO performed the action (user email, role), WHAT was done (specific action type), WHEN it occurred (timestamp), WHERE it happened (IP address, device), and the BEFORE/AFTER states of modified data. Audit logs are cryptographically signed to prevent tampering and stored with immutable retention policies matching regulatory requirements (7 years for SOX, 3 years for GDPR, etc.).
+                </p>
+                <h3 className="text-lg font-bold mb-4">What Gets Logged</h3>
+                <table className="w-full text-sm border-collapse">
+                  <thead className="bg-gray-800 text-white">
+                    <tr>
+                      <th className="border p-3 text-left">Event Category</th>
+                      <th className="border p-3 text-left">Examples</th>
+                      <th className="border p-3 text-center">Retained</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="hover:bg-red-50">
+                      <td className="border p-3 font-semibold">Authentication</td>
+                      <td className="border p-3">Login, logout, failed login attempts, password changes, 2FA enable/disable</td>
+                      <td className="border p-3 text-center">2 years</td>
+                    </tr>
+                    <tr className="hover:bg-orange-50">
+                      <td className="border p-3 font-semibold">Data Access</td>
+                      <td className="border p-3">API calls, report downloads, credential downloads, data exports</td>
+                      <td className="border p-3 text-center">7 years</td>
+                    </tr>
+                    <tr className="hover:bg-yellow-50">
+                      <td className="border p-3 font-semibold">Data Modification</td>
+                      <td className="border p-3">Document uploads, application changes, profile updates, status changes</td>
+                      <td className="border p-3 text-center">7 years</td>
+                    </tr>
+                    <tr className="hover:bg-blue-50">
+                      <td className="border p-3 font-semibold">Compliance Actions</td>
+                      <td className="border p-3">Alert investigation, case resolution, rule changes, monitoring configuration</td>
+                      <td className="border p-3 text-center">7 years</td>
+                    </tr>
+                    <tr className="hover:bg-green-50">
+                      <td className="border p-3 font-semibold">Billing</td>
+                      <td className="border p-3">Invoice generation, payment received, refund issued, billing disputes</td>
+                      <td className="border p-3 text-center">7 years</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          )}
+        </Card>
+
+        {/* Policy Builder & Workflow Designer */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="Visual Policy Builder & Workflow Designer" section="policybuilder" />
+          </CardHeader>
+          {expandedSections.policybuilder && (
+            <CardContent className="space-y-6 text-gray-700">
+              <div>
+                <p className="leading-relaxed mb-4">
+                  The Policy Builder enables compliance teams to design custom verification workflows without writing code. Rather than requesting engineering changes for every policy adjustment, business users drag and drop workflow nodes—verification steps, decision points, escalation rules, notification triggers—and deploy policies in minutes.
+                </p>
+                <p className="leading-relaxed mb-4">
+                  Typical workflows sequence KYB verification, AML screening, document validation, manual review (if needed), and credential issuance. Advanced workflows include parallel processing (run multiple checks simultaneously), conditional branching (different paths based on results), A/B testing (compare policy variants), and real-time analytics (track approval rates and measure effectiveness).
+                </p>
+                <h3 className="text-lg font-bold mb-4">Key Features</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <p className="font-bold mb-2">No-Code Design</p>
+                    <p className="text-sm">Drag verification steps, decision nodes, notifications, and approval gates. Save and deploy instantly. No engineering required.</p>
+                  </div>
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <p className="font-bold mb-2">Pre-Built Nodes</p>
+                    <p className="text-sm">Library of ready-made nodes: KYB Check, AML Screen, Document Verify, Manual Review, Notify, Escalate, Approve, Reject. Extend with custom logic.</p>
+                  </div>
+                  <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                    <p className="font-bold mb-2">A/B Testing</p>
+                    <p className="text-sm">Create policy variants and direct a percentage of traffic to each. Compare approval rates, false positive rates, and time-to-resolution.</p>
+                  </div>
+                  <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                    <p className="font-bold mb-2">Real-Time Analytics</p>
+                    <p className="text-sm">Dashboard shows: executions today, approval rate, rejection rate, average time, bottlenecks, and cost per workflow execution.</p>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           )}
         </Card>
