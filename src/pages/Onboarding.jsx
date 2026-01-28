@@ -215,26 +215,26 @@ export default function Onboarding() {
   if (!showForm) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+             {/* Header */}
+            <div className="text-center mb-8 sm:mb-16">
+              <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
               Get Started with Trust Anchor Service
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto">
               Complete a comprehensive LEI and Business Onboarding process to unlock full access to identity verification, compliance screening, and digital credentials
             </p>
           </div>
 
           {/* Demo Warning */}
-          <div className="bg-red-50 border-2 border-red-400 rounded-xl p-6 mb-8 shadow-lg">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+          <div className="bg-red-50 border-2 border-red-400 rounded-xl p-4 sm:p-6 mb-6 sm:mb-8 shadow-lg">
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="w-10 sm:w-12 h-10 sm:h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
                 <AlertCircle className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-red-900 mb-2">⚠️ SANDBOX/DEMO ENVIRONMENT</h3>
-                <p className="text-red-800 mb-3">
+                <h3 className="text-base sm:text-xl font-bold text-red-900 mb-2">⚠️ SANDBOX/DEMO ENVIRONMENT</h3>
+                <p className="text-sm sm:text-base text-red-800 mb-3">
                   This onboarding process issues <strong>DEMO credentials only</strong>. LEIs and vLEIs generated here are for testing purposes and have no legal standing.
                 </p>
                 <p className="text-sm text-red-700">
@@ -246,13 +246,13 @@ export default function Onboarding() {
           </div>
 
           {/* Benefits Section */}
-          <div className="grid md:grid-cols-5 gap-4 mb-16">
-            <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                <Shield className="h-6 w-6 text-[#0066B3]" />
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">KYB Verification</h3>
-              <p className="text-sm text-gray-600">Instant company lookup and verification</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-16">
+            <div className="bg-white rounded-lg p-4 sm:p-6 border border-blue-100 shadow-sm">
+             <div className="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+               <Shield className="h-5 sm:h-6 w-5 sm:w-6 text-[#0066B3]" />
+             </div>
+             <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">KYB Verification</h3>
+             <p className="text-xs sm:text-sm text-gray-600">Instant company lookup and verification</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 border border-blue-100 shadow-sm">
@@ -289,9 +289,9 @@ export default function Onboarding() {
           </div>
 
           {/* Process Overview */}
-          <div className="bg-white rounded-xl border-2 border-blue-100 p-8 mb-12 shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Onboarding Process</h2>
-            <div className="grid md:grid-cols-3 lg:grid-cols-7 gap-4">
+          <div className="bg-white rounded-xl border-2 border-blue-100 p-4 sm:p-8 mb-8 sm:mb-12 shadow-lg">
+           <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">Onboarding Process</h2>
+           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2 sm:gap-4">
               {[
                 { num: 1, title: 'Company Info', desc: 'KYB search & auto-fill' },
                 { num: 2, title: 'Addresses', desc: 'HQ and legal address' },
@@ -302,11 +302,11 @@ export default function Onboarding() {
                 { num: 7, title: 'vLEI', desc: 'Digital credential issuance' }
               ].map((step) => (
                 <div key={step.num} className="text-center">
-                  <div className="w-12 h-12 bg-[#0066B3] text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-3">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#0066B3] text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg mx-auto mb-2 sm:mb-3">
                     {step.num}
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-600">{step.desc}</p>
+                  <h3 className="font-semibold text-gray-900 mb-1 sm:mb-2 text-xs sm:text-sm">{step.title}</h3>
+                  <p className="text-xs text-gray-600 hidden sm:block">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -338,19 +338,19 @@ export default function Onboarding() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 py-12">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">
+         <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
             LEI Application & Business Onboarding
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-base sm:text-lg text-gray-600">
             Complete this form to apply for your Legal Entity Identifier and access TAS services
           </p>
         </div>
 
         {/* Progress with Time Estimates */}
-        <div className="mb-8">
+         <div className="mb-6 sm:mb-8">
           <ProgressWithTime currentStep={currentStep} totalSteps={totalSteps} steps={steps} />
         </div>
 
@@ -364,8 +364,8 @@ export default function Onboarding() {
 
         {/* Form Content */}
         <Card className="border-2 border-blue-100 shadow-xl">
-          <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-            <CardTitle className="text-2xl text-gray-900">
+          <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100 p-4 sm:p-6">
+            <CardTitle className="text-lg sm:text-2xl text-gray-900">
               {steps[currentStep - 1].title}
             </CardTitle>
           </CardHeader>
@@ -384,30 +384,30 @@ export default function Onboarding() {
 
             {/* Navigation Buttons */}
             {currentStep !== 7 && (
-              <div className="flex justify-between items-center mt-8 pt-6 border-t gap-4">
-                <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-6 sm:mt-8 pt-4 sm:pt-6 border-t gap-3 sm:gap-4">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
                   <Button
                     variant="outline"
                     onClick={handleBack}
                     disabled={currentStep === 1}
-                    className="px-6"
+                    className="px-4 sm:px-6 text-sm sm:text-base flex-1 sm:flex-none"
                   >
-                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    <ArrowLeft className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                     Back
                   </Button>
                   <Button
                     variant="outline"
                     onClick={handleSaveDraft}
-                    className="px-6 text-gray-700"
+                    className="px-4 sm:px-6 text-gray-700 text-sm sm:text-base flex-1 sm:flex-none"
                   >
-                    Save as Draft
+                    Save Draft
                   </Button>
                 </div>
 
                 {currentStep < 6 ? (
                   <Button
                     onClick={handleNext}
-                    className="bg-[#0044CC] hover:bg-[#002D66] px-6"
+                    className="bg-[#0044CC] hover:bg-[#002D66] px-6 text-sm sm:text-base w-full sm:w-auto"
                   >
                     Next
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -415,7 +415,7 @@ export default function Onboarding() {
                 ) : (
                   <Button
                     onClick={handleSubmit}
-                    className="bg-green-600 hover:bg-green-700 px-8"
+                    className="bg-green-600 hover:bg-green-700 px-6 sm:px-8 text-sm sm:text-base w-full sm:w-auto"
                     disabled={isSubmitting || isRunningAml}
                   >
                     {isSubmitting || isRunningAml ? (
@@ -437,29 +437,29 @@ export default function Onboarding() {
         </Card>
 
         {/* Info Banner */}
-        <div className="mt-8 space-y-4">
-          <div className="bg-blue-50 border-l-4 border-[#0044CC] p-6 rounded-lg">
-            <p className="text-sm text-gray-700">
+        <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4">
+          <div className="bg-blue-50 border-l-4 border-[#0044CC] p-4 sm:p-6 rounded-lg">
+            <p className="text-xs sm:text-sm text-gray-700">
               <strong>Note:</strong> Fields marked with * are required. Your application will be reviewed within 2-4 business days.
             </p>
           </div>
           {currentStep === 4 && (
-            <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg">
-              <p className="text-sm text-red-900">
+            <div className="bg-red-50 border-l-4 border-red-500 p-4 sm:p-6 rounded-lg">
+              <p className="text-xs sm:text-sm text-red-900">
                 <strong>⚠️ AML Screening:</strong> This step screens your business against global sanctions, PEP, and adverse media databases. Required for compliance.
               </p>
             </div>
           )}
           {currentStep === 6 && (
-            <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-lg">
-              <p className="text-sm text-purple-900">
+            <div className="bg-purple-50 border-l-4 border-purple-500 p-4 sm:p-6 rounded-lg">
+              <p className="text-xs sm:text-sm text-purple-900">
                 <strong>⚠️ Identity Verification:</strong> Complete facial verification to proceed with LEI and vLEI issuance.
               </p>
             </div>
           )}
           {currentStep === 7 && (
-            <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-lg">
-              <p className="text-sm text-purple-900">
+            <div className="bg-purple-50 border-l-4 border-purple-500 p-4 sm:p-6 rounded-lg">
+              <p className="text-xs sm:text-sm text-purple-900">
                 <strong>🎉 Final Step:</strong> Issue your vLEI credential to complete onboarding and gain full access to TAS services.
               </p>
             </div>
@@ -467,7 +467,7 @@ export default function Onboarding() {
         </div>
 
         {/* Back Button - Preserves Form Data */}
-        <div className="mt-8 text-center">
+        <div className="mt-6 sm:mt-8 text-center">
           <Button
             variant="ghost"
             onClick={() => setShowForm(false)}
