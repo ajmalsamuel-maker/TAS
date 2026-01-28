@@ -43,33 +43,33 @@ export default function TMaaSFeature() {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">The Challenge</h2>
               <div className="space-y-4">
                 <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Manual Review Bottleneck</p>
-                    <p className="text-gray-600 text-sm">Every transaction requires manual evaluation, slowing processes</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">False Positives</p>
-                    <p className="text-gray-600 text-sm">Generic rules flag legitimate transactions, wasting compliance time</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Missed Risk</p>
-                    <p className="text-gray-600 text-sm">Complex fraud patterns require AI analysis, not rule-of-thumb checks</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Compliance Gaps</p>
-                    <p className="text-gray-600 text-sm">Manual processes aren't auditable or consistently applied</p>
-                  </div>
-                </div>
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">Manual Review Bottleneck</p>
+                     <p className="text-gray-600 text-sm">Every transaction requires manual evaluation, slowing processes</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">False Positives</p>
+                     <p className="text-gray-600 text-sm">Generic rules flag legitimate transactions, wasting compliance time</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">Missed Risk</p>
+                     <p className="text-gray-600 text-sm">Complex fraud patterns require AI analysis, not rule-of-thumb checks</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">Compliance Gaps</p>
+                     <p className="text-gray-600 text-sm">Manual processes aren't auditable or consistently applied</p>
+                   </div>
+                 </div>
               </div>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-2 border-[#0044CC] border-l-4 border-l-[#0044CC]">

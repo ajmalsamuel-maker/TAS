@@ -46,33 +46,33 @@ export default function PolicyBuilderFeature() {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">The Code-Centric Problem</h2>
               <div className="space-y-4">
                 <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Every Change = Code Deploy</p>
-                    <p className="text-gray-600 text-sm">Adjusting workflow rules requires engineering work and deployment delays</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Testing is Slow</p>
-                    <p className="text-gray-600 text-sm">New workflow variations require QA cycles and staging deployments</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">Compliance Can't Iterate</p>
-                    <p className="text-gray-600 text-sm">Non-technical teams can't test regulatory ideas independently</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900">No A/B Testing</p>
-                    <p className="text-gray-600 text-sm">Can't run workflow variants to optimize approval rates</p>
-                  </div>
-                </div>
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">Every Change = Code Deploy</p>
+                     <p className="text-gray-600 text-sm">Adjusting workflow rules requires engineering work and deployment delays</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">Testing is Slow</p>
+                     <p className="text-gray-600 text-sm">New workflow variations require QA cycles and staging deployments</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">Compliance Can't Iterate</p>
+                     <p className="text-gray-600 text-sm">Non-technical teams can't test regulatory ideas independently</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
+                   <div>
+                     <p className="font-semibold text-gray-900">No A/B Testing</p>
+                     <p className="text-gray-600 text-sm">Can't run workflow variants to optimize approval rates</p>
+                   </div>
+                 </div>
               </div>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-2 border-[#0044CC] border-l-4 border-l-[#0044CC]">
