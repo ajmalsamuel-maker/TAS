@@ -42,8 +42,8 @@ export default function UserTransactionMonitoring() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-4xl font-bold text-gray-900">Transaction Monitoring as a Service</h1>
-            <Badge className="bg-purple-600 text-white">PREMIUM FEATURE</Badge>
+            <h1 className="text-4xl font-bold text-gray-900">TMaaS - Transaction Monitoring as a Service</h1>
+            <Badge className="bg-purple-600 text-white">PREMIUM</Badge>
           </div>
           <p className="text-gray-600">Real-time transaction screening for merchants and processors</p>
         </div>
