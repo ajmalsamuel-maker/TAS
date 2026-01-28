@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
+import { createPageUrl } from '@/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -116,12 +118,11 @@ export default function TMaaSEnablementCard({ organization, onUpdate }) {
 
           {organization?.tmaas_enabled && (
             <div className="pt-4 border-t">
-              <Button
-                onClick={() => window.location.href = '/pages/UserTMaaSAnalytics'}
-                className="w-full bg-green-600 hover:bg-green-700 text-white"
-              >
-                View TMaaS Analytics
-              </Button>
+              <Link to={createPageUrl('UserTMaaSAnalytics')}>
+                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                  View TMaaS Analytics
+                </Button>
+              </Link>
             </div>
           )}
         </div>
