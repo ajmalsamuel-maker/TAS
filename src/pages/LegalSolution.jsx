@@ -133,19 +133,19 @@ export default function LegalSolution() {
                 <h3 className="text-xl font-semibold text-slate-900 mb-4">New Requirements:</h3>
                 <ul className="space-y-3 text-slate-600">
                   <li className="flex gap-2">
-                    <CheckCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
                     <span>Verify beneficial owners for all real estate transactions</span>
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
                     <span>Report suspicious activity within 30 days</span>
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
                     <span>Maintain audit trails for 5 years</span>
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-[#0066B3] flex-shrink-0 mt-0.5" />
                     <span>Screen against OFAC/sanctions lists</span>
                   </li>
                 </ul>
