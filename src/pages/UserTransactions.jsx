@@ -62,7 +62,10 @@ export default function UserTransactions() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">TMaaS Transactions</h1>
+          <div className="flex items-center gap-3 mb-2">
+            <h1 className="text-4xl font-bold text-gray-900">TMaaS Transactions</h1>
+            <Badge className="bg-purple-600 text-white">PREMIUM</Badge>
+          </div>
           <p className="text-gray-600">View transaction screening results from your monitoring configurations</p>
         </div>
 
