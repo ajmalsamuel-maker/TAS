@@ -103,15 +103,15 @@ export default function UserMonitoring() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Ongoing Compliance Monitoring</h1>
-          <p className="text-gray-600">Continuous surveillance of existing customers - schedule automatic AML/KYB checks to detect changes over time</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Ongoing Compliance Monitoring</h1>
+          <p className="text-xs sm:text-sm lg:text-base text-gray-600">Continuous surveillance of existing customers - schedule automatic AML/KYB checks to detect changes over time</p>
         </div>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-8">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
