@@ -141,41 +141,41 @@ const AdminDocumentation = () => {
                 <div>
                   <h3 className="text-xl font-bold mb-4">Administrator Role Overview</h3>
                   <p className="mb-4 leading-relaxed">
-                    As a TAS Platform Administrator, you are the operational backbone of the Trust Anchor Service. Your responsibilities span application review, organization management, compliance monitoring, billing oversight, and system health maintenance. This manual provides comprehensive guidance for every administrative function, from routine daily tasks to complex edge cases requiring judgment and expertise.
+                    As a TAS Platform Administrator, you are the operational backbone of the Trust Anchor Service. Your responsibilities span application review, organization management, compliance monitoring, billing oversight, and system health maintenance. This manual provides comprehensive guidance for every administrative function, from routine daily tasks to complex edge cases requiring judgment and expertise. You manage the entire customer lifecycle from initial onboarding through ongoing compliance monitoring and eventual offboarding.
                   </p>
                   <p className="mb-4 leading-relaxed">
-                    The TAS platform processes thousands of verification requests monthly across 120+ countries, supporting organizations from small startups to Fortune 500 enterprises. Your role ensures that every application is reviewed with appropriate rigor, that billing is accurate and transparent, that compliance alerts are investigated promptly, and that customers receive excellent service throughout their lifecycle. The average administrator manages 30-50 applications daily, monitors 200+ active organizations, and resolves 10-15 support cases while maintaining 99.5% SLA compliance.
+                    The TAS platform processes thousands of verification requests monthly across 120+ countries, supporting organizations from small startups to Fortune 500 enterprises. Your role ensures that every application is reviewed with appropriate rigor, that billing is accurate and transparent, that compliance alerts are investigated within regulatory deadlines, and that customers receive excellent service throughout their lifecycle. The average administrator manages 30-50 applications daily, monitors 200+ active organizations, reviews transaction monitoring configurations, investigates 10-15 compliance cases, and resolves support escalations while maintaining 100% regulatory SLA compliance.
                   </p>
                   <p className="leading-relaxed">
-                    This manual is organized into functional areas matching your daily workflow: Dashboard Operations, Application Review, Organization Management, Billing Administration, Compliance Monitoring, and System Configuration. Each section provides detailed narratives explaining not just how to perform tasks, but why processes are designed as they are, what regulatory requirements drive decisions, and how to handle exceptional situations requiring judgment.
+                    This manual is organized into core functional areas matching your daily workflow: Organization Administration, Application Review, Case Management, Audit & Compliance, Transaction Monitoring (TMaaS), Policy Governance, and System Monitoring. Each section provides detailed narratives explaining not just how to perform tasks, but why processes are designed as they are, what regulatory requirements drive decisions, how to handle exceptions, and what to watch for to prevent issues. Whether you're approving your first application or investigating your hundredth compliance case, this manual has the guidance you need.
                   </p>
                 </div>
 
                 <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded">
                   <h3 className="text-lg font-bold mb-4">Core Administrative Responsibilities</h3>
                   <ul className="space-y-3 text-sm">
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Application Review & Approval:</strong> Evaluate LEI applications for completeness, accuracy, and compliance with GLEIF standards. Target: &lt;24-hour turnaround for standard applications</span></li>
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Organization Lifecycle Management:</strong> Create, configure, and maintain organization accounts including billing setup, feature enablement, and user management</span></li>
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Compliance Alert Investigation:</strong> Review and resolve AML alerts, sanction matches, and PEP flags within regulatory timelines with full documentation</span></li>
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Billing & Revenue Management:</strong> Configure pricing plans, manage credits, process invoices, resolve payment failures, and export data to accounting systems</span></li>
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Credential Issuance & Management:</strong> Issue vLEI credentials, manage LEI renewals, handle revocations, and maintain GLEIF synchronization</span></li>
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>System Monitoring & Maintenance:</strong> Monitor platform health, respond to alerts, coordinate with engineering on issues, and ensure uptime SLAs are met</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Organization Management:</strong> Create organization accounts, configure features/pricing, manage team members, monitor organization health, handle onboarding/offboarding</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Application Review & Approval:</strong> Evaluate LEI applications for completeness, verify GLEIF compliance, investigate issues, approve or request clarification. Target: <24-hour turnaround</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Compliance Case Management:</strong> Monitor case queue, assign investigations, escalate SLA-at-risk cases, enforce regulatory timelines, maintain audit trails</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>TMaaS Administration:</strong> Configure transaction monitoring rules, manage watchlist thresholds, optimize alert routing, analyze false positives</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Billing & Revenue:</strong> Configure pricing plans, manage credits, process invoices, resolve payment failures, export to accounting systems</span></li>
+                    <li className="flex gap-3"><span className="text-blue-600 font-bold">✓</span><span><strong>Audit Logging & Compliance:</strong> Configure retention policies, verify log integrity, manage access controls, generate compliance reports for auditors</span></li>
                   </ul>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-bold mb-4">Daily Administrative Workflow</h3>
                   <p className="mb-4 leading-relaxed">
-                    A typical administrator day begins with the Dashboard Health Check - review the top metrics bar for any red indicators requiring immediate attention, check the pending applications queue for SLA breaches, scan the AML alerts panel for critical severity items, and verify system health is green. This morning review takes 5-10 minutes but surfaces 90% of urgent issues.
+                    A typical administrator day begins with Morning Health Check - review the Dashboard metrics for red indicators, check applications queue for SLA breaches, scan compliance alerts for critical items, verify system health. This 5-10 minute review surfaces 90% of urgent issues requiring immediate action.
                   </p>
                   <p className="mb-4 leading-relaxed">
-                    The morning session (9 AM - 12 PM) focuses on application review. Process applications in priority order: SLA-breached items first, then approaching-deadline items, then standard queue. Target 15-20 application reviews before lunch, with an average of 8-12 minutes per straightforward application and 20-30 minutes for complex cases requiring manual research. Use the batch approval feature when you have 3+ straightforward applications from the same jurisdiction to save time.
+                    Morning Session (9 AM - 12 PM) focuses on application review: Process applications in priority order (SLA-breached first, approaching-deadline second, standard queue third). Target 15-20 application reviews before lunch, averaging 8-12 minutes per straightforward application and 20-30 minutes for complex cases. Use batch approval for 3+ straightforward applications from same jurisdiction to save time.
                   </p>
                   <p className="mb-4 leading-relaxed">
-                    Afternoon sessions (1 PM - 5 PM) alternate between compliance work and operational tasks. Monday afternoons focus on billing - review pending invoices, resolve payment failures, process refund requests. Tuesday/Thursday afternoons handle compliance - investigate AML alerts, review high-risk cases, update sanctions list configurations. Wednesday/Friday afternoons cover organization management - create new organizations for sales deals, configure special pricing, handle support escalations. This pattern ensures all areas receive attention without becoming overwhelming.
+                    Afternoon Sessions (1 PM - 5 PM) rotate specializations: Monday = Billing (invoices, payment failures), Tuesday/Thursday = Compliance (investigate alerts, review cases, optimize SLAs), Wednesday/Friday = Organization Management (new accounts, pricing configs, escalations). This pattern ensures all areas get adequate attention without overwhelming any single session.
                   </p>
                   <p className="leading-relaxed">
-                    The end-of-day review (30 minutes before close) verifies all critical items are resolved: check for unassigned SLA-breached applications, verify critical AML alerts have been assigned or resolved, confirm no failed payment notifications were missed, and review tomorrow's calendar for LEI renewals or scheduled maintenance. Document any items you couldn't complete in team notes so the next shift or tomorrow morning picks them up immediately.
+                    End-of-Day Review (30 minutes before close) verifies completion: unassigned SLA-breached items handled? Critical AML alerts assigned or resolved? Payment failures acknowledged? Next day's calendar reviewed for renewals/maintenance? Document incompleteto-completion items in team notes for next shift to pick up immediately. This handoff process ensures nothing falls through cracks between shifts.
                   </p>
                 </div>
               </CardContent>
@@ -186,7 +186,7 @@ const AdminDocumentation = () => {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input
-                  placeholder="Search admin manual (e.g., 'approve application', 'billing plans', 'user management')..."
+                  placeholder="Search admin manual (e.g., 'approve application', 'compliance case', 'TMaaS rules')..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 pr-4 py-6 text-base shadow-sm"
@@ -220,10 +220,12 @@ const AdminDocumentation = () => {
             <Card className="bg-gray-900 text-white mt-8">
               <CardContent className="pt-6">
                 <div className="text-sm space-y-3">
-                  <p><strong>Document Version:</strong> 1.0</p>
-                  <p><strong>Last Updated:</strong> January 26, 2026</p>
+                  <p><strong>Document Version:</strong> 2.0.0</p>
+                  <p><strong>Published:</strong> January 28, 2026</p>
+                  <p><strong>Last Updated:</strong> January 28, 2026</p>
                   <p><strong>Classification:</strong> Internal - Admin Teams</p>
-                  <p><strong>Owner:</strong> TAS Operations</p>
+                  <p><strong>Owner:</strong> TAS Operations & Product</p>
+                  <p><strong>Coverage:</strong> All Admin Functions (Organizations, Applications, Cases, TMaaS, Billing, Audit, Policies)</p>
                   <p className="text-xs mt-4 border-t border-gray-700 pt-4">© 2026 FTS.Money & Certizen Technologies. Internal use only.</p>
                 </div>
               </CardContent>
@@ -232,12 +234,12 @@ const AdminDocumentation = () => {
 
           {/* Technical Reference Tab */}
           <TabsContent value="technical" className="space-y-6">
-            <div className="flex flex-wrap gap-3 mb-6">
-               <Badge variant="default">Version 2.0.0</Badge>
-               <Badge variant="secondary">Complete Technical Reference</Badge>
-               <Badge variant="secondary">2026-01-28</Badge>
-               <Badge className="bg-amber-100 text-amber-800">Internal - Technical Teams</Badge>
-             </div>
+           <div className="flex flex-wrap gap-3 mb-6">
+              <Badge variant="default">Version 2.0.0</Badge>
+              <Badge variant="secondary">Complete Technical Reference - Architecture & Systems</Badge>
+              <Badge variant="secondary">2026-01-28</Badge>
+              <Badge className="bg-amber-100 text-amber-800">Internal - Technical Teams</Badge>
+            </div>
 
         {/* Executive Summary */}
         <Card className="mb-8">
