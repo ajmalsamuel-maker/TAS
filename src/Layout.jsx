@@ -97,7 +97,6 @@ function LayoutContent({ children, currentPageName }) {
   // Admin Portal Navigation (Admins Only)
   const adminPortalPages = [
     { nameKey: 'nav.dashboard', icon: Shield, path: 'AdminDashboard', tooltip: 'Admin control panel' },
-    { name: 'Platform Admin', icon: Activity, path: 'PlatformAdminDashboard', tooltip: 'Platform-level administration' },
     { name: 'LEI/vLEI', icon: Activity, path: 'LEIVLEIAdmin', tooltip: 'Credential issuance management' },
     { name: 'Analytics', icon: BarChart, path: 'AdminAnalytics', tooltip: 'Platform analytics and metrics' },
     { name: 'Reports', icon: FileText, path: 'AdminReports', tooltip: 'Generate compliance and performance reports' },
