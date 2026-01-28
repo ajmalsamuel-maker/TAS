@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Activity, Shield, AlertTriangle, TrendingUp, Plus, Eye } from 'lucide-react';
 import StatsCard from '../dashboard/StatsCard';
-import TMaaSConfigForm from './TMaaSConfigForm';
+import TMaaSConfigForm from './TMaaSConfigForm.jsx';
 import TransactionMonitoring from '../transaction/TransactionMonitoring';
 
 export default function TMaaSManagement() {
