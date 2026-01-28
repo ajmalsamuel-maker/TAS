@@ -214,6 +214,61 @@ export default function About() {
         </div>
       </section>
 
+      {/* Advanced Features */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Advanced Enterprise Features</h2>
+          <p className="text-xl text-center text-gray-600 mb-16">Beyond core identity services - powerful monitoring, compliance, and workflow tools</p>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                title: 'Transaction Monitoring As A Service (TMaaS)',
+                desc: 'Real-time screening with intelligent rule engine, risk scoring, and data enrichment',
+                features: ['Custom rule builder', 'Auto-approve/block decisions', 'Webhook integration', 'Advanced analytics'],
+                path: 'TMaaSFeature'
+              },
+              {
+                title: 'Enterprise Case Management',
+                desc: 'Automate compliance investigations with SLA tracking and complete audit trails',
+                features: ['Alert-to-case escalation', 'Intelligent routing', 'SLA compliance', 'Audit logging'],
+                path: 'CaseManagementFeature'
+              },
+              {
+                title: 'Audit & Compliance Logging',
+                desc: 'Cryptographically-signed audit trails with 7-year retention and compliance mapping',
+                features: ['Event capture', 'Digital signatures', 'Compliance standards', 'Automated archival'],
+                path: 'AuditComplianceFeature'
+              },
+              {
+                title: 'Visual Policy Builder',
+                desc: 'No-code workflow designer with drag-drop interface, testing mode, and A/B testing',
+                features: ['Drag-drop nodes', 'Real-time analytics', 'Policy variants', 'Pre-built templates'],
+                path: 'PolicyBuilderFeature'
+              }
+            ].map((feature, i) => (
+              <Link key={i} to={createPageUrl(feature.path)}>
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-2 border-blue-200 hover:border-[#0066B3] hover:shadow-lg transition-all cursor-pointer h-full">
+                  <h3 className="text-2xl font-bold mb-3 text-gray-900 group-hover:text-[#0066B3]">{feature.title}</h3>
+                  <p className="text-gray-600 mb-6">{feature.desc}</p>
+                  <ul className="space-y-2 mb-4">
+                    {feature.features.map((f, j) => (
+                      <li key={j} className="flex items-center gap-2 text-sm text-gray-700">
+                        <div className="w-2 h-2 bg-[#0066B3] rounded-full" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex items-center gap-2 text-[#0066B3] font-semibold mt-4">
+                    Learn more <ArrowRight className="h-4 w-4" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* How It Works */}
       <section className="py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-6">
