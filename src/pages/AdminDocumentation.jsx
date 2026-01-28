@@ -295,6 +295,86 @@ const AdminDocumentation = () => {
           </CardContent>
         </Card>
 
+        {/* Admin Dashboard Overview */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="Admin Dashboard: Your Operational Control Center" section="admin_dashboard" />
+          </CardHeader>
+          {expandedSections.admin_dashboard && (
+            <CardContent className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4">Understanding the Admin Dashboard</h3>
+                <p className="mb-4 leading-relaxed">
+                  The Admin Dashboard is your primary operational interface for managing the entire TAS platform. When you log in, this is the first screen you see—and it's designed to give you complete situational awareness of everything happening on the platform: applications pending review, critical compliance alerts, payment failures, system health, and performance metrics. The dashboard is real-time, updating continuously as events occur, so you always see the current state of the platform without manual refreshes.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  Unlike operational dashboards focused on a single metric or workflow, the Admin Dashboard is deliberately comprehensive. It provides a 360-degree view combining data from applications, compliance, billing, system health, and organization management into one interface. This design reduces the number of screens you need to check during your morning health review—instead of navigating to 5 different sections, you see the most important metrics on one page and can drill down into specific areas as needed.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold mb-4">Dashboard Sections & Key Metrics</h3>
+                
+                <div className="space-y-6">
+                  <div className="bg-blue-50 p-4 rounded border-l-4 border-blue-600">
+                    <h4 className="font-bold mb-2">Health Status Bar (Top)</h4>
+                    <p className="text-sm mb-2">At the very top of the dashboard is a single-line health status bar showing: System Status (green = healthy, yellow = degraded, red = critical), API Uptime Percentage (target 99.9%), Database Response Time (P99 latency in milliseconds), and Current User Count. This bar is color-coded for at-a-glance assessment. If any metric is yellow or red, click it for detailed diagnostics. This 2-second review tells you if there are platform-level issues affecting all operations.</p>
+                  </div>
+
+                  <div className="bg-green-50 p-4 rounded border-l-4 border-green-600">
+                    <h4 className="font-bold mb-2">Key Metrics Grid (Upper Section)</h4>
+                    <p className="text-sm mb-2">The dashboard displays four primary metric cards in a grid:</p>
+                    <p className="text-sm mb-2"><strong>Applications Pending:</strong> Total number of applications waiting for review, color-coded by urgency (red = SLA breached, yellow = approaching deadline, green = on schedule). Click to see the queue prioritized by SLA. This metric helps you assess your daily workload and identify urgent items.</p>
+                    <p className="text-sm mb-2"><strong>Compliance Cases Active:</strong> Total open cases by severity (critical, high, medium, low). Click to view the case queue filtered by severity. Critical cases should be minimal (ideally 0) after initial triage. This shows compliance investigation workload and alerts you to backlogs.</p>
+                    <p className="text-sm mb-2"><strong>Organizations Monitored:</strong> Total active organizations, with a sparkline graph showing trends over last 30 days. Click to view organization health metrics (active, at-risk, dormant). This helps you track customer growth and identify organizations needing attention.</p>
+                    <p className="text-sm mb-2"><strong>Revenue This Month:</strong> Accumulated billing revenue for current billing period, with projected total based on current trajectory. Click to view revenue breakdown by tier, service type, and overage charges. This metric is critical for business health assessment.</p>
+                  </div>
+
+                  <div className="bg-purple-50 p-4 rounded border-l-4 border-purple-600">
+                    <h4 className="font-bold mb-2">Alert Center (Middle Section)</h4>
+                    <p className="text-sm mb-2">Displays critical alerts requiring immediate action, organized by severity and category: Critical (red background, requires action within 1 hour), High (orange, within 4 hours), Medium (yellow, within 1 day). Common alerts include: SLA-breached applications, payment failures, critical compliance cases, system health issues, bulk verification failures. Each alert has an action button—click to navigate directly to the item requiring attention. Resolved alerts auto-disappear from this section.</p>
+                  </div>
+
+                  <div className="bg-orange-50 p-4 rounded border-l-4 border-orange-600">
+                    <h4 className="font-bold mb-2">Application Queue (Left Column)</h4>
+                    <p className="text-sm mb-2">Shows real-time application queue with queued/processing/ready counts and average processing time. A horizontal progress bar visualizes the distribution (red = SLA breached, yellow = at risk, green = on schedule). Hover over segments for details. Below the queue status are quick statistics: Total in Queue, Average Age (days), On SLA (%), and Suggested Batch Size (how many you can process before lunch). Click to drill into the queue and start processing applications.</p>
+                  </div>
+
+                  <div className="bg-indigo-50 p-4 rounded border-l-4 border-indigo-600">
+                    <h4 className="font-bold mb-2">Compliance Activity (Right Column)</h4>
+                    <p className="text-sm mb-2">Displays real-time compliance metrics: Cases Resolved Today (count + trend), Average Resolution Time (hours), SLA Compliance (% on-time), and Escalation Rate (% of cases escalated to higher level). A mini chart shows cases by severity and status. This section gives you immediate insight into compliance workload and team performance.</p>
+                  </div>
+
+                  <div className="bg-cyan-50 p-4 rounded border-l-4 border-cyan-600">
+                    <h4 className="font-bold mb-2">Billing Dashboard (Bottom)</h4>
+                    <p className="text-sm mb-2">Shows billing health: Payment Success Rate (target 98%+), Failed Payments ($ and count), Invoices Due This Week (count), and Revenue Recognition Rate (%). A mini bar chart shows monthly revenue trend. Click to view detailed billing reports, payment failures requiring action, or upcoming renewals. This section prevents revenue issues from going unnoticed.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold mb-4">Recent Activity & Filtering</h3>
+                <p className="mb-4 leading-relaxed">
+                  Below the metrics grid is an Activity Timeline showing recent events from the last 24 hours: applications submitted/approved/rejected, compliance cases created/resolved, payment failures, system alerts, user actions. Each activity entry shows an icon (indicating event type), brief description, timestamp (relative time like "2 hours ago"), and user attribution (who performed the action). Click any activity to see full details and navigate to the affected item.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  Filter the activity feed by category: Applications, Compliance, Billing, System, Users. Or filter by organization to see all activity for a specific customer. The filtered results help you focus on what's relevant to your current task without scrolling through unrelated events.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold mb-4">Dashboard Customization & Preferences</h3>
+                <p className="mb-4 leading-relaxed">
+                  Customize your dashboard layout by clicking "Customize Dashboard" (top-right). You can: move metric cards (drag-and-drop), hide/show sections, adjust the order of columns, set metric update frequency (real-time = 1 second, normal = 5 seconds, delayed = 30 seconds for slower connections). Your preferences auto-save and persist across sessions.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  For departments, you can create role-specific dashboard layouts: Admin Dashboard (all metrics), Application Review Team Dashboard (prioritize application queue), Compliance Team Dashboard (prioritize cases and alerts), Billing Team Dashboard (prioritize revenue and payment metrics). Each team member saves their preferred layout and switches between saved layouts using the layout dropdown.
+                </p>
+              </div>
+            </CardContent>
+          )}
+        </Card>
+
         {/* TMaaS Administration */}
         <Card className="mb-8">
           <CardHeader>
