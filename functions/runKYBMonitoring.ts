@@ -1,6 +1,6 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 
-const KYB_BASE_URL = 'https://api.thekyb.com/api';
+const KYB_BASE_URL = 'https://api.kyb-provider.com';
 
 Deno.serve(async (req) => {
   try {
@@ -25,119 +25,62 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Schedule not found' }, { status: 404 });
     }
 
-    // Get current company data for comparison
-    const applications = await base44.entities.OnboardingApplication.filter({ 
-      id: schedule.application_id 
-    });
-    const application = applications[0];
-
-    if (!application) {
-      return Response.json({ error: 'Application not found' }, { status: 404 });
-    }
-
-    // Fetch latest company data from KYB API
-    const apiKey = Deno.env.get('KYB_API_KEY');
+    // Run KYB screening
+    const kybApiKey = Deno.env.get('KYB_API_KEY');
     
-    const response = await fetch(`${KYB_BASE_URL}/search`, {
+    const response = await fetch(`${KYB_BASE_URL}/api/verify-company`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        query: schedule.entity_name,
-        country: application.registry_country_code || 'US',
-        registration_number: application.unique_business_id
+        lei: schedule.entity_lei || undefined,
+        company_name: schedule.entity_name,
+        country: schedule.monitoring_config?.country || undefined,
+        api_key: kybApiKey
       })
     });
 
     const result = await response.json();
 
-    // Detect changes
+    // Check for changes in company status
     const newAlerts = [];
-    if (result.data?.companies && result.data.companies.length > 0) {
-      const latestData = result.data.companies[0];
-      
-      // Check for status changes
-      if (latestData.status && latestData.status !== application.entity_status) {
+    if (result.data?.changes && result.data.changes.length > 0) {
+      for (const change of result.data.changes) {
         const alert = await base44.entities.KYBAlert.create({
           organization_id: schedule.organization_id,
           monitoring_schedule_id: schedule_id,
-          alert_type: 'company_status_change',
-          severity: latestData.status === 'dissolved' || latestData.status === 'inactive' ? 'critical' : 'medium',
+          alert_type: change.type || 'company_status_change',
+          severity: change.severity || 'medium',
           entity_name: schedule.entity_name,
           entity_lei: schedule.entity_lei,
           change_details: {
-            field_changed: 'Company Status',
-            old_value: application.entity_status || 'active',
-            new_value: latestData.status,
-            change_date: new Date().toISOString().split('T')[0]
+            field_changed: change.field,
+            old_value: change.old_value,
+            new_value: change.new_value,
+            change_date: change.date
           },
-          status: 'new',
-          raw_data: latestData
+          status: 'new'
         });
+        
         newAlerts.push(alert);
-      }
 
-      // Check for address changes
-      if (latestData.address && latestData.address !== application.legal_address?.address) {
-        const alert = await base44.entities.KYBAlert.create({
-          organization_id: schedule.organization_id,
-          monitoring_schedule_id: schedule_id,
-          alert_type: 'address_change',
-          severity: 'low',
-          entity_name: schedule.entity_name,
-          entity_lei: schedule.entity_lei,
-          change_details: {
-            field_changed: 'Registered Address',
-            old_value: application.legal_address?.address,
-            new_value: latestData.address,
-            change_date: new Date().toISOString().split('T')[0]
-          },
-          status: 'new',
-          raw_data: latestData
-        });
-        newAlerts.push(alert);
-      }
-
-      // Check for beneficial ownership changes (if available)
-      if (latestData.beneficial_owners && JSON.stringify(latestData.beneficial_owners) !== JSON.stringify(application.beneficial_owners)) {
-        const alert = await base44.entities.KYBAlert.create({
-          organization_id: schedule.organization_id,
-          monitoring_schedule_id: schedule_id,
-          alert_type: 'ownership_change',
-          severity: 'high',
-          entity_name: schedule.entity_name,
-          entity_lei: schedule.entity_lei,
-          change_details: {
-            field_changed: 'Beneficial Ownership',
-            old_value: 'Previous ownership structure',
-            new_value: 'New ownership structure detected',
-            change_date: new Date().toISOString().split('T')[0]
-          },
-          status: 'new',
-          raw_data: latestData
-        });
-        newAlerts.push(alert);
-      }
-
-      // Send notifications
-      if (newAlerts.length > 0 && schedule.monitoring_config?.notify_emails) {
-        for (const email of schedule.monitoring_config.notify_emails) {
-          await base44.asServiceRole.integrations.Core.SendEmail({
-            to: email,
-            subject: `KYB Alert: Changes Detected for ${schedule.entity_name}`,
-            body: `
-              <h2>KYB Monitoring Alert</h2>
-              <p><strong>Entity:</strong> ${schedule.entity_name}</p>
-              <p><strong>LEI:</strong> ${schedule.entity_lei || 'N/A'}</p>
-              <p><strong>Changes Detected:</strong> ${newAlerts.length}</p>
-              <ul>
-                ${newAlerts.map(a => `<li>${a.alert_type.replace(/_/g, ' ').toUpperCase()}: ${a.change_details.old_value} → ${a.change_details.new_value}</li>`).join('')}
-              </ul>
-              <p>Please review these alerts in the TAS dashboard.</p>
-            `
-          });
+        // Send notification if configured
+        if (schedule.monitoring_config?.notify_emails) {
+          for (const email of schedule.monitoring_config.notify_emails) {
+            await base44.asServiceRole.integrations.Core.SendEmail({
+              to: email,
+              subject: `KYB Alert: ${change.type || 'Company Change'} Detected`,
+              body: `
+                <h2>KYB Monitoring Alert</h2>
+                <p><strong>Entity:</strong> ${schedule.entity_name}</p>
+                <p><strong>Change Type:</strong> ${change.type}</p>
+                <p><strong>Field:</strong> ${change.field}</p>
+                <p><strong>Old Value:</strong> ${change.old_value}</p>
+                <p><strong>New Value:</strong> ${change.new_value}</p>
+                <p><strong>Severity:</strong> ${alert.severity.toUpperCase()}</p>
+                <p>Please review this alert in the TAS dashboard.</p>
+              `
+            });
+          }
         }
       }
     }
@@ -153,7 +96,7 @@ Deno.serve(async (req) => {
     return Response.json({
       success: true,
       checks_performed: 1,
-      changes_detected: newAlerts.length,
+      alerts_generated: newAlerts.length,
       new_alerts: newAlerts,
       next_check: getNextCheckDate(schedule.frequency)
     });
