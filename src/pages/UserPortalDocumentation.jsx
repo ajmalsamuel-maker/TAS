@@ -268,6 +268,225 @@ export default function UserPortalDocumentation() {
                   <Badge className="bg-blue-100 text-blue-800">Business Users & Compliance Officers</Badge>
                 </div>
 
+        {/* Getting Started with TAS */}
+        <Card className="mb-8">
+          <CardHeader>
+            <h2 className="text-3xl font-bold">Getting Started with TAS: Your First Steps</h2>
+          </CardHeader>
+          <CardContent className="space-y-6 text-gray-700">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Welcome to Trust Anchor Service</h3>
+              <p className="mb-4 leading-relaxed">
+                Trust Anchor Service (TAS) is your comprehensive platform for digital identity verification, regulatory compliance, and credential management. Whether you're a financial institution, crypto exchange, law firm, or corporate services provider, TAS automates complex verification processes that traditionally took weeks into a streamlined 2-5 hour experience. This Getting Started guide will walk you through your first login, account setup, and initial navigation of the platform.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">1. Account Creation & Initial Login</h3>
+              <p className="mb-4 leading-relaxed">
+                Your TAS account is created when an organization administrator invites you via email. You'll receive an invitation link valid for 7 days. Click the link to create your password (minimum 12 characters including uppercase, lowercase, numbers, and symbols). Set up Two-Factor Authentication (2FA) using an authenticator app like Google Authenticator or Microsoft Authenticator. Save your backup codes in a secure location—these allow account recovery if you lose your 2FA device. Once setup is complete, you're logged into the platform and ready to begin.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">2. Understanding Your Role & Permissions</h3>
+              <p className="mb-4 leading-relaxed">
+                TAS operates with role-based access control. Your role determines what you can see and do. Organization Administrators have full access to all features, can manage users and billing, and configure integrations. Compliance Officers can investigate alerts, manage cases, and view compliance data but cannot access billing or user management. Regular Users can submit applications and download credentials assigned to them. Viewers have read-only access for auditing purposes. You'll see your role displayed in the top-right corner of the screen next to your name.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">3. Navigating the Interface</h3>
+              <p className="mb-4 leading-relaxed">
+                The main navigation menu is on the left side (desktop) or accessible via the hamburger menu (mobile). The top navigation bar shows your organization's name, your user profile, and a notification bell. The Dashboard is your starting point—it displays your compliance status, active workflows, pending alerts, and recent activity in one view. From here, you can access all other sections: Workflows (track verification processes), Credentials (manage LEI/vLEI), Compliance (handle alerts), Cases (investigate issues), Settings (configure your account), and more. Color-coded badges help you quickly identify what needs attention: red for critical issues, yellow for warnings, green for completed actions.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">4. Your First Action: Setting Preferences</h3>
+              <p className="mb-4 leading-relaxed">
+                Before submitting your first application, configure your preferences in Settings. Set your timezone so dates and notifications appear correctly. Configure notification preferences—decide whether you want in-app notifications, emails, SMS alerts, or all three. For administrators, verify that your billing information and contact details are correct. Set up your team members if this is a multi-user organization. These configuration steps take 10 minutes and ensure the platform works optimally for you. Most users find that after this initial setup, they can focus on actual verification and compliance work without administrative distractions.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* LEI Application Process */}
+        <Card className="mb-8">
+          <CardHeader>
+            <h2 className="text-3xl font-bold">LEI Application Process: Complete Guide</h2>
+          </CardHeader>
+          <CardContent className="space-y-6 text-gray-700">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Understanding the LEI & Why It Matters</h3>
+              <p className="mb-4 leading-relaxed">
+                A Legal Entity Identifier (LEI) is a 20-character global identifier for your business issued by GLEIF (Global Legal Entity Identifier Foundation). It's recognized by banks, regulators, and financial institutions worldwide as the authoritative proof of your business's legal identity. Think of it like a global passport for your company—without it, you cannot open international bank accounts, participate in securities trading, or comply with financial regulations. The LEI is valid for one year and must be renewed annually. TAS automates the entire LEI issuance process: we verify your business exists by querying official registries, conduct AML screening, issue the LEI on your behalf, and handle renewals automatically.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">1. Preparing Your Application Documents</h3>
+              <p className="mb-4 leading-relaxed">
+                Before submitting your LEI application, gather required documentation. Primary requirements: (1) Official Business Registration Certificate or Incorporation Documents proving your business is legally registered in your jurisdiction. This should be an official document from your country's business registry—scanned copies are acceptable, but they must be clearly readable and dated within the last 12 months. (2) Proof of Address showing your organization's registered address—typically a utility bill, lease agreement, or official correspondence from a government agency dated within the last 3 months. (3) Beneficial Ownership Documentation if your business has beneficial owners (shareholders owning 25%+ of the company), you must provide identification documents for all beneficial owners. This includes government-issued ID (passport, national ID, driver's license) and proof of ownership (shareholder registers, corporate structure documents). (4) Company Seal or Authorized Signatory Evidence for some jurisdictions, certification that documents are authentic by an authorized company signatory.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                Prepare these documents in advance. Take clear digital photographs or scans in PDF or image format. Name files descriptively: "BusinessRegistration_2026.pdf" rather than "scan001.pdf". This helps our team quickly identify documents during review. Ensure all documents are in their original language or provide certified English translations for non-English documents. Documents must be dated and official—edited or altered documents will be rejected during verification.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">2. Submitting Your Application</h3>
+              <p className="mb-4 leading-relaxed">
+                Log into your TAS account and click "New Application" from the Dashboard or Workflows menu. You'll enter a multi-step form collecting your business details: Legal name (exactly as shown on your registration documents), Alternative business names if your company operates under different names, Entity category (bank, fintech, law firm, insurance, trade, other), Jurisdiction where your business is registered, Registration number assigned by your local business registry, Entity establishment date, Number of employees, Beneficial owners and directors with full legal names and identification numbers. For each field, accuracy is critical—mismatches between your application and official registry data will trigger manual review delays. Enter information exactly as it appears on your registration documents.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                After entering business information, you'll upload supporting documents. Click "Upload Document," select the document type (Business Registration, Proof of Address, Beneficial Owner ID, etc.), and choose your file. The system scans for common issues: image quality (too blurry—retake the photo), document completeness (page partially cut off—re-upload), file format (accept PDF, JPG, PNG). Once documents are uploaded, review the entire application for accuracy. Click "Submit Application" to finalize. You'll receive a confirmation email immediately and see "Submitted" status on your application.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">3. Verification Process: What Happens Behind the Scenes</h3>
+              <p className="mb-4 leading-relaxed">
+                After submission, your application enters an automated verification workflow. Stage 1 - Know Your Business (KYB) Verification typically completes within 30 minutes. Our system queries official business registries in 120+ countries using your registration number and legal name. It confirms: (1) Your business is actually registered in the jurisdiction you claim, (2) Your registration number is valid, (3) Company status is active (not dissolved, suspended, or inactive), (4) Business address matches what you provided, (5) Directors and beneficial owners match your submission. If everything matches perfectly, you automatically advance to Stage 2. If there are minor discrepancies (address formatted differently, name abbreviation variations), you may receive an email requesting clarification. Respond within 3 business days with corrected information or documentation.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                Stage 2 - Anti-Money Laundering (AML) Screening runs immediately after KYB passes. This screening checks your business and all beneficial owners against 300+ global sanctions lists (OFAC, UN, EU, UK, DFAT, etc.) and PEP (Politically Exposed Persons) databases. This stage typically completes in 15-30 minutes. If the system finds no matches or only very low-confidence matches (0-30% probability), you automatically advance to Stage 3. If it finds potential matches (30-70% confidence), an email notifies you that your application is under enhanced review. Our compliance team investigates—this typically takes 1-3 business days. You may receive requests for additional documentation explaining your business relationship with the person or entity that triggered the match. Most investigations (approximately 80%) conclude that matches are false positives and your application proceeds. High-confidence matches (70%+ probability of being the actual sanctioned entity) require thorough investigation by senior compliance officers and may take 3-7 days.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                Stage 3 - LEI Issuance occurs once KYB passes and AML screening completes without blocking results. GLEIF (the authoritative LEI registry) is notified of your verified business. They assign your LEI code and issue the credential within 4 hours. You'll receive an email confirmation with your 20-character LEI code. Your LEI is immediately active for use in financial transactions and regulatory filings. Simultaneously, we generate your vLEI (verifiable LEI credential) and additional certificates in multiple formats for different use cases. You can download and use your credentials immediately.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">4. Tracking Your Application Status</h3>
+              <p className="mb-4 leading-relaxed">
+                From the Workflows menu, click on your application to see its current status with detailed progress information. The status page shows your application's position: "Submitted" (received and queued), "KYB Verification" (registry queries running), "AML Screening" (sanctions screening running), "Manual Review" (requires human investigation), "Approved" (verification complete, awaiting credential issuance), or "Complete" (credentials issued and ready for download). A progress bar indicates completion percentage. Below the progress bar is a detailed activity log showing every action: "2026-01-28 10:15 AM - KYB Check Started - Querying UK Companies House Registry", "2026-01-28 10:23 AM - KYB Check Completed - Company found and verified", "2026-01-28 10:24 AM - AML Screening Started - Checking OFAC sanctions list", and so on. Click any activity entry to see detailed results and any errors encountered. You can also download a processing report as PDF—useful for your own records or to share with auditors.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                If your application requires additional information, you'll see a yellow "Action Required" banner at the top with a message like "We need clarification on your beneficial ownership structure. Please provide: corporate family tree showing parent and subsidiary companies, shareholder register proving ownership percentages. Response due by [date]." Click "Respond to Request" to upload documents or provide written explanations. Once you submit your response, the review clock restarts—we typically respond within 1-2 business days.
+              </p>
+            </div>
+
+            <MermaidDiagram 
+              chart={`graph TB
+                A["Application<br/>Submitted"]
+                B["KYB<br/>Verification<br/>30 min"]
+                C["AML<br/>Screening<br/>15-30 min"]
+                D{"Manual<br/>Review<br/>Needed?"}
+                E["Investigation<br/>1-7 days"]
+                F["Approved"]
+                G["LEI<br/>Issued"]
+                H["vLEI<br/>Generated"]
+                I["Download<br/>Credentials"]
+
+                A --> B
+                B --> C
+                C --> D
+                D -->|No| F
+                D -->|Yes| E
+                E --> F
+                F --> G
+                G --> H
+                H --> I
+
+                style A fill:#e3f2fd,stroke:#0066B3,stroke-width:2px
+                style B fill:#c5e1a5,stroke:#0066B3,stroke-width:2px
+                style C fill:#c5e1a5,stroke:#0066B3,stroke-width:2px
+                style D fill:#fff9c4,stroke:#0066B3,stroke-width:2px
+                style E fill:#ffccbc,stroke:#0066B3,stroke-width:2px
+                style F fill:#d4edda,stroke:#0066B3,stroke-width:2px
+                style G fill:#d4edda,stroke:#0066B3,stroke-width:2px
+                style H fill:#d4edda,stroke:#0066B3,stroke-width:2px
+                style I fill:#d4edda,stroke:#0066B3,stroke-width:2px`}
+            />
+          </CardContent>
+        </Card>
+
+        {/* Compliance & Ongoing Monitoring */}
+        <Card className="mb-8">
+          <CardHeader>
+            <h2 className="text-3xl font-bold">Compliance & Ongoing Monitoring: Maintaining Regulatory Standing</h2>
+          </CardHeader>
+          <CardContent className="space-y-6 text-gray-700">
+            <div>
+              <h3 className="text-xl font-bold mb-4">The Compliance Lifecycle: Beyond Initial Verification</h3>
+              <p className="mb-4 leading-relaxed">
+                Obtaining your LEI is just the beginning. Regulatory compliance is an ongoing requirement, not a one-time event. Global sanctions lists are updated constantly as geopolitical situations evolve. Beneficial owners may change due to share acquisitions or corporate restructuring. Your business location may shift. Documents expire and require renewal. The Compliance menu in TAS is your nerve center for managing all these ongoing requirements. It provides real-time visibility into your regulatory status, automated alerts when changes occur, and structured workflows for responding to compliance issues. The platform continuously monitors your business 24/7/365 and immediately notifies you of any changes requiring your attention.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">1. Continuous Watchlist Monitoring</h3>
+              <p className="mb-4 leading-relaxed">
+                TAS monitors your business and all beneficial owners against updated sanctions lists daily. Global lists monitored include OFAC (US), UN Sanctions, EU Sanctions, UK Sanctions, Australian DFAT, and 50+ other jurisdiction-specific lists. When watchlists update (which happens 3-5 times daily), the system automatically downloads new data and runs your organization through the updated lists. If a new match is detected, you receive immediate notification: a red badge appears on the Compliance menu in the portal (you'll see "1 Alert" indicator), an email notification arrives at your registered address, and optionally an SMS alert if you've enabled mobile notifications. The alert includes: the source list that matched your organization, the entity name and country that matched, the match confidence score (0-100%), and key details explaining the match (why the system flagged it as a potential hit). You can then investigate the match to determine if it's a true positive (your company is actually sanctioned) or a false positive (name similarity but different entity). Most matches (approximately 85%) are false positives from name similarities—"Global Trading Ltd" might match both a legitimate UK company and a sanctioned Iranian entity with the same name.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                The system's fuzzy matching algorithm intelligently distinguishes false positives. Matches below 30% confidence are automatically marked "False Positive - Auto-Resolved" without requiring your action. However, they remain visible in your alert history for audit purposes. You can click any alert to see why the system dismissed it and what specific differences indicated it wasn't a true match. This gives you complete transparency and a permanent record for regulatory audits. Matches of 30-70% confidence trigger quick human review by our compliance team (usually resolved within a few hours to 1 business day). High-confidence matches (70%+) require thorough investigation, which may take 1-3 days. Our analysts will contact you requesting additional documentation to help clarify whether the match represents actual regulatory risk. Common requests include corporate structure charts, source of funds documentation, or business activity explanations demonstrating you don't operate in sanctioned jurisdictions or with sanctioned parties.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">2. Alert Investigation & Resolution Workflow</h3>
+              <p className="mb-4 leading-relaxed">
+                When you receive a compliance alert, the Cases menu automatically creates a case for investigation. The case displays the alert details, required actions, and an SLA deadline (time by which you must respond). Most critical alerts have a 2-hour SLA for initial acknowledgment. Your investigation process: (1) Review Alert Details - understand what triggered the alert, which watchlist it matched, and the confidence score. (2) Conduct Research - use external sources (Google search, official registry checks, news archives) to verify whether the matched entity is actually your organization or a different entity with a similar name. (3) Document Your Findings - add investigation notes explaining your conclusion. For example, "Matched 'Global Imports Ltd (Iran)' but our company is 'Global Imports LLC (UK)' with different registration number, different management, different business location. This is clearly a false positive based on name similarity." (4) Resolve the Case - click "Resolve Case" and provide your determination: "False Positive - Not Our Entity" (the match does not apply to us), "True Positive - Escalate" (we are actually sanctioned and require legal/regulatory response), or "Requires Further Review" (insufficient information to determine, request more time). (5) Document Actions Taken - if the match required you to take actions (freezing accounts, ceasing business with a party, etc.), document what you did.
+              </p>
+              <p className="mb-4 leading-relaxed">
+                The entire case investigation is logged with timestamps, your documentation, and cryptographic signatures—creating an audit trail that proves you investigated thoroughly and made reasonable determinations. This documentation is critical if regulators ever audit your compliance processes. You can demonstrate that you received the alert, investigated promptly, reached a well-reasoned conclusion, and took appropriate actions. This significantly reduces your regulatory liability compared to organizations that miss alerts or fail to investigate properly.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">3. Document Expiration Management & Renewal Requirements</h3>
+              <p className="mb-4 leading-relaxed">
+                Your business documents have varying validity periods. Business Registration Certificates typically don't expire, but proof of address documents must be refreshed every 3 months (utility bills become outdated), beneficial owner identification must remain valid (expired passports must be renewed), and jurisdiction-specific documents have their own requirements. The Compliance page includes a Document Tracker that automatically monitors all documents you've uploaded. It shows each document's type, upload date, expiration date (if applicable), and days until expiration. Documents expiring within 30 days are flagged yellow and appear at the top of the list with "Action Required - Expiring Soon" labels. Expired documents turn red and may trigger workflows requiring updated documentation. You'll receive email reminders 30 days before expiration, again at 15 days, and final reminders at 7 and 1 day before expiration. When documents expire, you can upload fresh versions directly from the Document Tracker. Updated documents are immediately scanned for quality and completeness. Most updated documents are accepted within minutes and your compliance score is restored. Some documents may trigger re-verification if they show significant changes (address change, beneficial ownership changes, directorship changes). Re-verifications typically complete within 1-2 hours and you'll receive confirmation email once complete.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">4. LEI Renewal & Credential Management</h3>
+              <p className="mb-4 leading-relaxed">
+                Your LEI is valid for exactly one year from issuance. Ninety days before expiration, TAS begins sending renewal reminders. You'll see a yellow "LEI Expiring Soon" notice on your Dashboard and Compliance page, along with a one-click "Renew Now" button. Click to initiate renewal. The renewal process is straightforward: we verify your business information is still current (most companies just need to confirm that their registered information hasn't changed), we run updated AML screening (ensuring no new sanctions have occurred), and we submit the renewal to GLEIF. Renewal is processed within 4 hours. Your LEI validity period extends for another year, and you'll receive confirmation email with your renewed LEI code (the same 20-character code remains unchanged—your LEI code is permanent). The renewal occurs automatically on your payment method on file. If you have a different payment method, update it from Settings → Billing before the renewal date to ensure it doesn't fail. If renewal fails due to payment issues, you'll receive email notifications and the system blocks credential downloads until renewal is completed. This prevents you from relying on expired credentials for financial transactions.
+              </p>
+            </div>
+
+            <MermaidDiagram 
+              chart={`graph LR
+                A["Daily Watchlist<br/>Updates"]
+                B{"Match<br/>Found?"}
+                C["Continue<br/>Monitoring"]
+                D["Alert<br/>Created"]
+                E{"Confidence<br/>Score?"}
+                F["Auto-Resolved<br/>False Positive"]
+                G["Manual Review<br/>1-3 days"]
+                H["Investigation<br/>Complete"]
+                I["False Positive<br/>Case Closed"]
+                J["True Positive<br/>Escalate"]
+
+                A --> B
+                B -->|No| C
+                B -->|Yes| D
+                D --> E
+                E -->|Low 0-30%| F
+                E -->|Medium 30-70%| G
+                E -->|High 70%+| G
+                G --> H
+                H -->|Safe| I
+                H -->|Risk| J
+
+                style A fill:#e3f2fd
+                style B fill:#fff3e0
+                style C fill:#d4edda
+                style D fill:#fce4ec
+                style E fill:#fff3e0
+                style F fill:#d4edda
+                style G fill:#ffccbc
+                style H fill:#fff3e0
+                style I fill:#d4edda
+                style J fill:#f8d7da`}
+            />
+          </CardContent>
+        </Card>
+
         {/* Dashboard Overview */}
         <Card className="mb-8">
           <CardHeader>
