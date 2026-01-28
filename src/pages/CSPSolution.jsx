@@ -10,30 +10,46 @@ import StandardsFooter from '@/components/standards/StandardsFooter';
 export default function CSPSolution() {
   const useCases = [
     {
-      title: "Automated vLEI Issuance",
-      description: "Issue LEI + vLEI to every company you form automatically",
+      title: "Streamlined LEI/vLEI Issuance",
+      description: "Facilitate LEI/vLEI credential issuance (via Certizen/TAS) during entity formation",
       icon: Zap,
-      benefit: "New revenue stream: $50-$200 per credential"
+      benefit: "Enhanced formation packages"
     },
     {
-      title: "Become a QVI (Qualified vLEI Issuer)",
-      description: "TAS white-labels GLEIF-authorized issuance infrastructure",
+      title: "TAS Platform Integration",
+      description: "Use TAS API to connect formation workflow with Certizen's credential issuance",
       icon: Award,
-      benefit: "Market differentiation vs competitors"
+      benefit: "Market differentiation"
     },
     {
-      title: "Multi-Jurisdiction Compliance",
-      description: "One platform for all entity formations - Delaware, BVI, Singapore, etc.",
+      title: "Multi-Jurisdiction Support",
+      description: "One platform for all entity formations across jurisdictions",
       icon: Globe,
-      benefit: "Reduce operational complexity"
+      benefit: "Simplified operations"
     }
   ];
 
   const platforms = [
-    { name: "Stripe Atlas", volume: "10K+ companies/year", opportunity: "Add vLEI to every startup formation" },
-    { name: "Firstbase.io", volume: "5K+ companies/year", opportunity: "Premium vLEI tier = $299 upsell" },
-    { name: "CSC Global", volume: "Millions managed", opportunity: "Retrofit LEI to existing entities" },
-    { name: "Ogier", volume: "Offshore specialist", opportunity: "BVI/Cayman vLEI compliance" }
+    {
+      name: "Online Formation Platforms",
+      description: "Digital company formation services",
+      opportunity: "Integrate LEI/vLEI credential facilitation into formation workflow"
+    },
+    {
+      name: "Remote Setup Services",
+      description: "International company setup platforms",
+      opportunity: "Offer vLEI credentials for cross-border clients"
+    },
+    {
+      name: "Enterprise CSPs",
+      description: "Corporate service providers",
+      opportunity: "Add premium credential services for enterprise clients"
+    },
+    {
+      name: "Specialized Jurisdictions",
+      description: "Jurisdiction-specific formation services",
+      opportunity: "Provide globally-recognized credentials for local entities"
+    }
   ];
 
   return (
@@ -46,7 +62,7 @@ export default function CSPSolution() {
               TAS Platform for Corporate Service Providers
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Issue LEI/vLEI Credentials<br/>for Every Entity You Form
+              Offer LEI/vLEI Credentials<br/>for Every Entity You Form
             </h1>
             <p className="text-xl text-blue-100 mb-4 max-w-3xl mx-auto">
               Use the TAS Platform to streamline LEI/vLEI credential issuance during entity formation.
@@ -113,26 +129,24 @@ export default function CSPSolution() {
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">Traditional CSP Model:</h3>
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">Traditional CSP Services:</h3>
                 <ul className="space-y-2 text-slate-600">
-                  <li>• Entity formation: $500-$2,000</li>
-                  <li>• Registered agent: $100-$300/year</li>
-                  <li>• Annual filings: $200-$500/year</li>
-                  <li className="pt-4 font-semibold text-slate-900">
-                    Total Annual Revenue per Entity: $800-$3,800
-                  </li>
+                  <li>• Entity formation</li>
+                  <li>• Registered agent services</li>
+                  <li>• Annual compliance filings</li>
+                  <li>• Document management</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-[#0066B3] mb-4">Enhanced Service Model:</h3>
+                <h3 className="text-xl font-semibold text-[#0066B3] mb-4">TAS-Enhanced Model:</h3>
                 <ul className="space-y-2 text-slate-600">
-                  <li>• Traditional formation services</li>
-                  <li>• <span className="text-[#0066B3] font-semibold">+ LEI credential facilitation via TAS/Certizen</span></li>
-                  <li>• <span className="text-[#0066B3] font-semibold">+ vLEI credential issuance</span></li>
+                  <li>• All traditional services</li>
+                  <li>• <span className="text-[#0066B3] font-semibold">+ LEI credential facilitation (issued by Certizen via TAS)</span></li>
+                  <li>• <span className="text-[#0066B3] font-semibold">+ vLEI credential issuance (OOR role)</span></li>
                   <li>• <span className="text-[#0066B3] font-semibold">+ Employee credentials (ECR) as needed</span></li>
                   <li className="pt-4 font-semibold text-[#0066B3]">
-                    Result: Enhanced value proposition for clients
+                    Result: Differentiated offering with globally-recognized credentials
                   </li>
                 </ul>
               </div>
@@ -151,14 +165,14 @@ export default function CSPSolution() {
       </section>
 
       {/* Target Platforms */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Perfect for Digital Formation Platforms
+              Ideal for Digital Formation Platforms
             </h2>
             <p className="text-xl text-slate-600">
-              API-native, white-label vLEI issuance in your brand
+              Integrate TAS Platform to offer LEI/vLEI credentials during entity formation
             </p>
           </div>
 
@@ -195,7 +209,7 @@ export default function CSPSolution() {
               </div>
               <h3 className="text-xl font-semibold text-slate-900 mb-2">Entity Formed</h3>
               <p className="text-slate-600">
-                Client submits formation request via your platform (Stripe Atlas, Firstbase, etc.)
+                Client completes formation through your platform
               </p>
             </div>
 
@@ -203,9 +217,9 @@ export default function CSPSolution() {
               <div className="w-16 h-16 rounded-full bg-blue-100 text-[#0066B3] text-2xl font-bold flex items-center justify-center mx-auto mb-4">
                 2
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">TAS Auto-Issues LEI/vLEI</h3>
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">Certizen Issues LEI/vLEI via TAS</h3>
               <p className="text-slate-600">
-                API triggers TAS → LEI requested from GLEIF → vLEI credential generated → Signed by your QVI
+                API triggers TAS Platform → Certizen (QVI) issues LEI credential → vLEI generated and cryptographically signed
               </p>
             </div>
 
@@ -236,22 +250,23 @@ export default function CSPSolution() {
             <CardHeader>
               <div className="flex items-center gap-4 mb-2">
                 <Award className="h-10 w-10 text-[#0066B3]" />
-                <CardTitle className="text-2xl text-slate-900">Regulatory Driver: CSP Act 2024</CardTitle>
+                <div>
+                  <CardTitle className="text-3xl text-slate-900">Regulatory Compliance Support</CardTitle>
+                  <p className="text-lg text-slate-600">LEI/vLEI helps meet beneficial ownership requirements</p>
+                </div>
               </div>
-              <CardDescription className="text-lg">
-                New regulations require CSPs to verify beneficial ownership and report to FinCEN
-              </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6">
               <p className="text-slate-600">
-                <strong>Challenge:</strong> Manual UBO verification is expensive and error-prone
+                <strong>Challenge:</strong> Manual UBO verification can be time-consuming
               </p>
               <p className="text-[#0066B3] font-semibold">
-                <strong>Solution:</strong> LEI automatically discloses UBOs through GLEIF's Level 2 data
+                <strong>TAS Solution:</strong> LEI automatically discloses UBOs through GLEIF's Level 2 data
               </p>
               <div className="p-4 bg-blue-50 rounded-lg">
-                <p className="text-slate-900">
-                  Every entity with LEI = pre-verified beneficial ownership = instant CSP Act compliance
+                <p className="text-sm text-slate-600">
+                  CSPs can streamline client UBO verification through LEI, 
+                  helping meet evolving beneficial ownership disclosure requirements across jurisdictions.
                 </p>
               </div>
             </CardContent>
