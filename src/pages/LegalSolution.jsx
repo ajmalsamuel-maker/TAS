@@ -14,21 +14,21 @@ export default function LegalSolution() {
       icon: Building,
       pain: "Entity verification delays deal closings",
       solution: "vLEI provides instant entity legitimacy proof",
-      savings: "Faster closings"
+      benefit: "Faster closings"
     },
     {
       title: "Real Estate Closings",
       icon: FileCheck,
       pain: "New regulations require beneficial owner verification",
       solution: "LEI auto-discloses UBOs through GLEIF Level 2 data",
-      savings: "Streamlined compliance"
+      benefit: "Streamlined compliance"
     },
     {
       title: "Trust & Estate",
       icon: Shield,
       pain: "IOLTA account monitoring requires extensive documentation",
       solution: "vLEI-tagged transactions create audit-ready trails",
-      savings: "Reduced compliance overhead"
+      benefit: "Reduced compliance overhead"
     }
   ];
 
@@ -95,16 +95,16 @@ export default function LegalSolution() {
                     <CardTitle className="text-slate-900">{practice.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div>
-                      <p className="text-sm text-red-600 font-semibold mb-1">❌ Current Pain:</p>
-                      <p className="text-slate-600">{practice.pain}</p>
+                    <div className="bg-red-50 rounded-lg p-3 border border-red-200">
+                      <p className="text-xs font-semibold mb-1 text-gray-700">Current Pain:</p>
+                      <p className="text-sm text-slate-600">{practice.pain}</p>
                     </div>
-                    <div>
-                      <p className="text-sm text-emerald-600 font-semibold mb-1">✅ TAS Solution:</p>
-                      <p className="text-slate-600">{practice.solution}</p>
+                    <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                      <p className="text-xs font-semibold mb-1 text-gray-700">TAS Solution:</p>
+                      <p className="text-sm text-slate-600">{practice.solution}</p>
                     </div>
                     <Badge className="bg-blue-100 text-[#0066B3] border-blue-300">
-                      {practice.savings}
+                      {practice.benefit}
                     </Badge>
                   </CardContent>
                 </Card>

@@ -148,8 +148,8 @@ export default function CryptoSolution() {
             <div>
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold text-xl">
-                    ✗
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center border-2 border-blue-200">
+                    <Shield className="h-6 w-6 text-gray-500" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Traditional KYC</h3>
@@ -161,8 +161,8 @@ export default function CryptoSolution() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold text-xl">
-                    ✓
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center border-2 border-blue-300">
+                    <CheckCircle className="h-6 w-6 text-[#0066B3]" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">TAS vLEI Verification</h3>

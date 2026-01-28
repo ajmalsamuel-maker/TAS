@@ -4,7 +4,7 @@ import { createPageUrl } from '../utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Ship, CheckCircle, Clock, DollarSign, Globe, FileCheck, AlertCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, Clock, Globe, FileCheck, AlertCircle, ArrowRight, Zap, Shield } from 'lucide-react';
 import StandardsFooter from '@/components/standards/StandardsFooter';
 
 export default function TradeFinanceSolution() {

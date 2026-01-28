@@ -153,10 +153,13 @@ export default function CSPSolution() {
             </div>
 
             <div className="mt-8 p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
-              <p className="text-center text-2xl font-bold text-gray-900">
-                📈 Differentiated Service Offering
-              </p>
-              <p className="text-center text-slate-600 mt-2">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <TrendingUp className="h-8 w-8 text-[#0066B3]" />
+                <p className="text-2xl font-bold text-gray-900">
+                  Differentiated Service Offering
+                </p>
+              </div>
+              <p className="text-center text-slate-600">
                 Market differentiation through instant LEI/vLEI availability, enhanced client experience, future-proof compliance
               </p>
             </div>

@@ -302,24 +302,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Strategic Value */}
-          <div className="mt-12 grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-cyan-50 to-blue-100 rounded-xl p-6 border-2 border-blue-200">
-              <h4 className="font-bold text-lg mb-3 text-[#0066B3]">For FTS.Money</h4>
-              <p className="text-gray-700">
-                Through its TAS service, FTS.Money enhances its platform value by delivering faster onboarding, 
-                reduced risk, and stronger cross-border acceptance.
-              </p>
-            </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border-2 border-blue-200">
-              <h4 className="font-bold text-lg mb-3 text-[#0066B3]">For Certizen</h4>
-              <p className="text-gray-700">
-                Positions Certizen Technology as a universal trust anchor for businesses across industries, 
-                as well as serving government systems and decentralized ecosystems.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -328,7 +311,7 @@ export default function About() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Build with TAS?</h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join banks, fintechs, DAOs, and enterprises using TAS to automate credential issuance and compliance workflows
+            Join crypto exchanges, trade finance firms, law firms, corporate services, remittance providers, and enterprises using TAS Platform
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to={createPageUrl('Onboarding')}>
