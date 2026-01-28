@@ -170,8 +170,8 @@ export default function Web3Dashboard() {
                 </ul>
               </div>
 
-              <div className="bg-white rounded-lg p-3 sm:p-4 border-2 border-blue-100">
-                <h4 className="font-bold text-blue-900 mb-2 text-sm sm:text-base">Cryptographic Trust</h4>
+              <div className="bg-white rounded-lg p-3 sm:p-4 border-2 border-blue-200">
+                <h4 className="font-bold text-[#002D66] mb-2 text-sm sm:text-base">Cryptographic Trust</h4>
                 <p className="text-xs sm:text-sm text-gray-600 mb-3">
                   KERI/ACDC protocols for verification
                 </p>
