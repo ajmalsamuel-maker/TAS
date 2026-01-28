@@ -123,6 +123,11 @@ export default function UserTeam() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="user">Business User</SelectItem>
+                      <SelectItem value="compliance_officer">Compliance Officer</SelectItem>
+                      <SelectItem value="analyst">Analyst</SelectItem>
+                      <SelectItem value="investigator">Investigator</SelectItem>
+                      <SelectItem value="auditor">Auditor</SelectItem>
+                      <SelectItem value="manager">Manager</SelectItem>
                       {isAdmin && <SelectItem value="admin">Administrator</SelectItem>}
                     </SelectContent>
                   </Select>
@@ -151,8 +156,16 @@ export default function UserTeam() {
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-lg font-semibold text-gray-900">{member.full_name}</h3>
-                        <Badge className={member.role === 'admin' ? 'bg-purple-600' : 'bg-gray-600'}>
-                          {member.role === 'admin' ? 'Admin' : 'User'}
+                        <Badge className={
+                          member.role === 'admin' ? 'bg-purple-600' :
+                          member.role === 'compliance_officer' ? 'bg-blue-600' :
+                          member.role === 'manager' ? 'bg-indigo-600' :
+                          member.role === 'analyst' ? 'bg-cyan-600' :
+                          member.role === 'investigator' ? 'bg-teal-600' :
+                          member.role === 'auditor' ? 'bg-green-600' :
+                          'bg-gray-600'
+                        }>
+                          {member.org_role || member.role || 'User'}
                         </Badge>
                       </div>
                       <div className="flex items-center gap-2 text-gray-600">

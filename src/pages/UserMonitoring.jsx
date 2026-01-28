@@ -106,8 +106,8 @@ export default function UserMonitoring() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Compliance Monitoring</h1>
-          <p className="text-gray-600">Ongoing AML and KYB monitoring</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Compliance Monitoring Configuration</h1>
+          <p className="text-gray-600">Configure and manage ongoing AML and KYB monitoring schedules</p>
         </div>
 
         {/* Stats */}

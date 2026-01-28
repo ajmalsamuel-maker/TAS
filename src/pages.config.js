@@ -35,6 +35,7 @@ import UserWorkflows from './pages/UserWorkflows';
 import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
+import UserTransactionMonitoring from './pages/UserTransactionMonitoring';
 import __Layout from './Layout.jsx';
 
 
@@ -76,6 +77,7 @@ export const PAGES = {
     "VLEIManagement": VLEIManagement,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
+    "UserTransactionMonitoring": UserTransactionMonitoring,
 }
 
 export const pagesConfig = {
