@@ -82,7 +82,7 @@ function LayoutContent({ children, currentPageName }) {
     { name: 'Alerts', icon: AlertTriangle, path: 'UserAlerts', tooltip: 'View compliance alerts' },
     { name: 'Workflows', icon: FileText, path: 'UserPolicies', tooltip: 'Advanced: Design custom compliance workflows' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials', tooltip: 'Manage LEI and vLEI credentials' },
-    { name: 'Transactions', icon: Activity, path: 'UserTransactions', tooltip: 'Monitor transactions' },
+    { name: 'TMaaS', icon: Activity, path: 'UserTransactions', tooltip: 'Transaction Monitoring As A Service' },
     { name: 'Cases', icon: Shield, path: 'UserCases', tooltip: 'View assigned cases' },
     { name: 'Team', icon: Users, path: 'UserTeam', tooltip: 'Manage team members' },
     { nameKey: 'nav.settings', icon: Settings, path: 'UserSettings', tooltip: 'Configure account settings' },
