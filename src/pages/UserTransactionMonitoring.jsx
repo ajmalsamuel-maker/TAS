@@ -4,6 +4,7 @@ import { createPageUrl } from '../utils';
 import { Activity, Lock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import TransactionMonitoringConfig from '../components/user/TransactionMonitoringConfig';
 
 export default function UserTransactionMonitoring() {
@@ -40,7 +41,10 @@ export default function UserTransactionMonitoring() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Transaction Monitoring as a Service</h1>
+          <div className="flex items-center gap-3 mb-2">
+            <h1 className="text-4xl font-bold text-gray-900">Transaction Monitoring as a Service</h1>
+            <Badge className="bg-purple-600 text-white">PREMIUM FEATURE</Badge>
+          </div>
           <p className="text-gray-600">Real-time transaction screening for merchants and processors</p>
         </div>
 
