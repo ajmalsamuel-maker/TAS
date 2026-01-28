@@ -164,7 +164,7 @@ export default function CaseManagementFeature() {
               return (
                 <Card key={i} className="border-2 border-blue-100 hover:border-[#0066B3] transition-all">
                   <CardHeader>
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004C8C] rounded-lg flex items-center justify-center mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-lg flex items-center justify-center mb-3">
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <CardTitle className="text-lg">{feature.title}</CardTitle>
@@ -270,7 +270,7 @@ export default function CaseManagementFeature() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 sm:py-24 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
+      <section className="py-16 sm:py-24 bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Streamline Your Compliance Investigations</h2>
           <p className="text-lg text-blue-100 mb-10">
@@ -278,7 +278,7 @@ export default function CaseManagementFeature() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to={createPageUrl('Onboarding')}>
-              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50 text-lg px-8">
+              <Button size="lg" className="bg-white text-[#0044CC] hover:bg-blue-50 text-lg px-8">
                 Enable Case Management <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
