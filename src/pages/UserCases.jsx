@@ -68,15 +68,15 @@ export default function UserCases() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Compliance Cases</h1>
-          <p className="text-gray-600">Cases assigned to you for investigation and resolution</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Compliance Cases</h1>
+          <p className="text-xs sm:text-base text-gray-600">Cases assigned to you for investigation and resolution</p>
         </div>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
           <Card className="border-2 border-blue-100">
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
@@ -129,11 +129,11 @@ export default function UserCases() {
         {/* Filter */}
         <div className="mb-6">
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-48">
+            <SelectTrigger className="w-full sm:w-48 text-sm">
               <Filter className="h-4 w-4 mr-2" />
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="text-sm">
               <SelectItem value="all">All Cases</SelectItem>
               <SelectItem value="open">Open</SelectItem>
               <SelectItem value="under_review">Under Review</SelectItem>
@@ -148,11 +148,11 @@ export default function UserCases() {
           {filteredCases.length > 0 ? (
             filteredCases.map(caseItem => (
               <Card key={caseItem.id} className="border-2 border-blue-100 hover:shadow-lg transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-lg font-semibold text-gray-900">{caseItem.case_number}</h3>
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                        <h3 className="text-sm sm:text-lg font-semibold text-gray-900 break-all">{caseItem.case_number}</h3>
                         <Badge className={getStatusColor(caseItem.status)}>
                           <span className="mr-1">{getStatusIcon(caseItem.status)}</span>
                           {caseItem.status || 'new'}
@@ -170,7 +170,7 @@ export default function UserCases() {
                       {caseItem.description && (
                         <p className="text-sm text-gray-600 mb-3">{caseItem.description}</p>
                       )}
-                      <div className="grid md:grid-cols-4 gap-4 text-sm">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 text-xs sm:text-sm">
                         <div>
                           <p className="text-gray-600 mb-1">Type</p>
                           <p className="font-semibold text-gray-900 capitalize">{caseItem.case_type || 'Investigation'}</p>

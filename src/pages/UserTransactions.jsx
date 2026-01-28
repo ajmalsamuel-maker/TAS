@@ -59,18 +59,18 @@ export default function UserTransactions() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-4xl font-bold text-gray-900">Transaction Monitoring As A Service</h1>
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">Transaction Monitoring As A Service</h1>
             <Badge className="bg-purple-600 text-white">PREMIUM</Badge>
           </div>
-          <p className="text-gray-600">View transaction screening results from your monitoring configurations</p>
+          <p className="text-xs sm:text-base text-gray-600">View transaction screening results from your monitoring configurations</p>
         </div>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
           <Card className="border-2 border-blue-100">
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
@@ -117,11 +117,11 @@ export default function UserTransactions() {
         {/* Filter */}
         <div className="mb-6">
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-48">
+            <SelectTrigger className="w-full sm:w-48 text-sm">
               <Filter className="h-4 w-4 mr-2" />
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="text-sm">
               <SelectItem value="all">All Transactions</SelectItem>
               <SelectItem value="approved">Approved</SelectItem>
               <SelectItem value="flagged">Flagged</SelectItem>
@@ -136,24 +136,24 @@ export default function UserTransactions() {
           {filteredTransactions.length > 0 ? (
             filteredTransactions.map(transaction => (
               <Card key={transaction.id} className="border-2 border-blue-100 hover:shadow-lg transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
                         {transaction.transaction_type === 'inbound' ? (
-                          <ArrowDownLeft className="h-5 w-5 text-green-600" />
+                          <ArrowDownLeft className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
                         ) : (
-                          <ArrowUpRight className="h-5 w-5 text-red-600" />
+                          <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 text-red-600 flex-shrink-0" />
                         )}
-                        <h3 className="text-lg font-semibold text-gray-900">
+                        <h3 className="text-xs sm:text-lg font-semibold text-gray-900 break-all">
                           {transaction.counterparty || 'Unknown'} - ${transaction.amount?.toFixed(2)}
                         </h3>
                         <Badge className={getStatusColor(transaction.status)}>
                           {transaction.status || 'pending'}
                         </Badge>
                       </div>
-                      <p className="text-sm text-gray-600 mb-2">{transaction.description || 'No description'}</p>
-                      <div className="grid md:grid-cols-4 gap-4 text-sm">
+                      <p className="text-xs sm:text-sm text-gray-600 mb-2">{transaction.description || 'No description'}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 text-xs sm:text-sm">
                         <div>
                           <p className="text-gray-600 mb-1">Type</p>
                           <p className="font-semibold text-gray-900 capitalize">{transaction.transaction_type}</p>

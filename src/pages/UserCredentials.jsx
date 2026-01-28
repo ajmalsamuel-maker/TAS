@@ -35,29 +35,29 @@ export default function UserCredentials() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">My Credentials & Identity</h1>
-          <p className="text-gray-600">Manage your LEI, vLEI, and trust credentials</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">My Credentials & Identity</h1>
+          <p className="text-xs sm:text-base text-gray-600">Manage your LEI, vLEI, and trust credentials</p>
         </div>
 
         {/* LEI Card */}
         <Card className="mb-6 border-2 border-blue-100 shadow-xl bg-gradient-to-br from-white to-blue-50">
-          <CardHeader className="border-b-2 border-blue-100 bg-gradient-to-r from-blue-50 to-cyan-50">
-            <CardTitle className="flex items-center gap-2 text-2xl">
-              <Key className="h-6 w-6 text-[#0044CC]" />
+          <CardHeader className="border-b-2 border-blue-100 bg-gradient-to-r from-blue-50 to-cyan-50 p-4 sm:p-6">
+            <CardTitle className="flex items-center gap-2 text-lg sm:text-2xl">
+              <Key className="h-5 w-5 sm:h-6 sm:w-6 text-[#0044CC]" />
               Legal Entity Identifier (LEI)
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-8">
+          <CardContent className="p-4 sm:p-8">
             {user?.lei ? (
               <div>
-                <div className="bg-white rounded-xl p-6 border-2 border-green-200 mb-6">
-                  <div className="flex items-start justify-between mb-4">
+                <div className="bg-white rounded-xl p-4 sm:p-6 border-2 border-green-200 mb-6">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                     <div>
-                      <p className="text-sm text-gray-600 mb-2">Your LEI</p>
-                      <p className="text-3xl font-mono font-bold text-gray-900">{user.lei}</p>
+                      <p className="text-xs sm:text-sm text-gray-600 mb-2">Your LEI</p>
+                      <p className="text-2xl sm:text-3xl font-mono font-bold text-gray-900 break-all">{user.lei}</p>
                     </div>
                     <Badge className="bg-green-100 text-green-800 border-green-200">
                       <CheckCircle2 className="h-4 w-4 mr-1" />
@@ -84,9 +84,9 @@ export default function UserCredentials() {
                   </Button>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="text-sm text-gray-600 mb-1">Issued To</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                    <p className="text-xs sm:text-sm text-gray-600 mb-1">Issued To</p>
                     <p className="font-semibold text-gray-900">{user.company_name || user.full_name}</p>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
@@ -123,11 +123,11 @@ export default function UserCredentials() {
         )}
 
         {/* vLEI Credentials - Legacy Display */}
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
           <Card className="border-2 border-purple-100 shadow-lg">
-            <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b-2 border-purple-100">
-              <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-purple-600" />
+            <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b-2 border-purple-100 p-4 sm:p-6">
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600" />
                 Official Organizational Role (OOR)
               </CardTitle>
             </CardHeader>

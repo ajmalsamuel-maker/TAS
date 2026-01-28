@@ -93,12 +93,12 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-          <p className="text-gray-600">Manage TAS platform, providers, workflows, and translations</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+          <p className="text-xs sm:text-base text-gray-600">Manage TAS platform, providers, workflows, and translations</p>
           <div className="mt-4">
             <OrganizationFilterSelector 
               selectedOrgId={selectedOrgId}
@@ -109,7 +109,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
           <StatsCard
             title="Active Providers"
             value={activeProviders}
@@ -139,9 +139,9 @@ export default function AdminDashboard() {
         </div>
 
         {/* Main Content Tabs */}
-        <Tabs defaultValue="organizations" className="space-y-6">
-          <div className="bg-white border-2 border-blue-100 rounded-lg p-1">
-            <TabsList className="grid grid-cols-3 lg:grid-cols-8 gap-1 h-auto bg-transparent">
+        <Tabs defaultValue="organizations" className="space-y-4 sm:space-y-6">
+          <div className="bg-white border-2 border-blue-100 rounded-lg p-1 overflow-x-auto">
+            <TabsList className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-8 gap-1 h-auto bg-transparent w-max sm:w-full">
               <TabsTrigger value="organizations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 Organizations
               </TabsTrigger>

@@ -70,18 +70,18 @@ export default function UserSettings() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 sm:p-6">
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Account Settings</h1>
-          <p className="text-gray-600">Manage your profile and preferences</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Account Settings</h1>
+          <p className="text-xs sm:text-base text-gray-600">Manage your profile and preferences</p>
         </div>
 
         {/* Profile Information */}
         <Card className="mb-6 border-2 border-blue-100 shadow-lg">
-          <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100">
-            <CardTitle className="flex items-center gap-2">
-              <User className="h-6 w-6 text-[#0044CC]" />
+          <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 border-b-2 border-blue-100 p-4 sm:p-6">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <User className="h-5 w-5 sm:h-6 sm:w-6 text-[#0044CC]" />
               Profile Information
             </CardTitle>
           </CardHeader>
@@ -89,22 +89,22 @@ export default function UserSettings() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="full_name">Full Name</Label>
+                  <Label htmlFor="full_name" className="text-sm sm:text-base">Full Name</Label>
                   <Input
                     id="full_name"
                     value={formData.full_name}
                     onChange={(e) => setFormData({...formData, full_name: e.target.value})}
-                    className="mt-2"
+                    className="mt-2 text-sm"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="email">Email (Read-only)</Label>
+                  <Label htmlFor="email" className="text-sm sm:text-base">Email (Read-only)</Label>
                   <Input
                     id="email"
                     value={user?.email || ''}
                     disabled
-                    className="mt-2 bg-gray-100"
+                    className="mt-2 bg-gray-100 text-sm"
                   />
                 </div>
 

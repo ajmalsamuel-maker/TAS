@@ -80,15 +80,15 @@ export default function OnboardingStep4({ formData, setFormData }) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4 sm:space-y-8">
       {/* Document Upload */}
       <div>
-        <Label className="text-base mb-3 block">Upload Business Documents *</Label>
-        <p className="text-sm text-gray-600 mb-4">
+        <Label className="text-sm sm:text-base mb-3 block">Upload Business Documents *</Label>
+        <p className="text-xs sm:text-sm text-gray-600 mb-4">
           Please upload: Business Registration Certificate, Certificate of Incorporation, and any other relevant documents
         </p>
         
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
+        <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-8 text-center hover:border-blue-400 transition-colors">
           <input
             type="file"
             multiple
@@ -100,22 +100,22 @@ export default function OnboardingStep4({ formData, setFormData }) {
           />
           <label htmlFor="file-upload" className="cursor-pointer">
             {uploading || extracting ? (
-              <Loader className="h-12 w-12 mx-auto mb-4 text-blue-400 animate-spin" />
-            ) : (
-              <Upload className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-            )}
-            <p className="text-lg font-medium text-gray-700 mb-2">
+                <Loader className="h-8 sm:h-12 w-8 sm:w-12 mx-auto mb-4 text-blue-400 animate-spin" />
+              ) : (
+                <Upload className="h-8 sm:h-12 w-8 sm:w-12 mx-auto mb-4 text-gray-400" />
+              )}
+              <p className="text-sm sm:text-lg font-medium text-gray-700 mb-2">
               {uploading ? 'Uploading...' : extracting ? 'Extracting data...' : 'Click to upload documents'}
             </p>
-            <p className="text-sm text-gray-500">PDF, JPG, PNG up to 10MB each</p>
+            <p className="text-xs sm:text-sm text-gray-500">PDF, JPG, PNG up to 10MB each</p>
           </label>
         </div>
 
         {formData.document_urls && formData.document_urls.length > 0 && (
-          <div className="mt-6 space-y-3">
-            <p className="font-medium text-gray-700">Uploaded Documents:</p>
+          <div className="mt-4 sm:mt-6 space-y-3">
+            <p className="font-medium text-sm sm:text-base text-gray-700">Uploaded Documents:</p>
             {formData.document_urls.map((url, index) => (
-              <div key={index} className="flex items-center justify-between bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <div key={index} className="flex items-center justify-between bg-gray-50 rounded-lg p-2 sm:p-3 border border-gray-200">
                 <div className="flex items-center gap-3">
                   <FileText className="h-5 w-5 text-blue-600" />
                   <span className="text-sm text-gray-700">Document {index + 1}</span>
@@ -135,9 +135,9 @@ export default function OnboardingStep4({ formData, setFormData }) {
       </div>
 
       {/* Review Summary */}
-      <div className="bg-blue-50 rounded-xl p-6 border-2 border-blue-200">
-        <h3 className="text-lg font-semibold mb-4 text-gray-900">Application Summary</h3>
-        <div className="grid md:grid-cols-2 gap-4 text-sm">
+      <div className="bg-blue-50 rounded-xl p-4 sm:p-6 border-2 border-blue-200">
+        <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-900">Application Summary</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
           <div>
             <span className="text-gray-600">Legal Name:</span>
             <p className="font-medium text-gray-900">{formData.legal_name || 'Not provided'}</p>
@@ -161,7 +161,7 @@ export default function OnboardingStep4({ formData, setFormData }) {
         </div>
       </div>
 
-      <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg">
+      <div className="bg-green-50 border-l-4 border-green-500 p-4 sm:p-6 rounded-lg">
         <p className="text-sm text-gray-700">
           <strong>Next Steps:</strong> Upon submission, your application will be reviewed within 2-4 business days. 
           You will receive an email notification when your LEI is issued and your account is activated. 

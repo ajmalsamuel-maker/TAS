@@ -52,14 +52,14 @@ export default function OnboardingStep4AML({ formData }) {
   const riskLevel = results ? getRiskLevel() : null;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* AML Screening Header */}
-      <div className="bg-red-50 border-2 border-red-200 rounded-xl p-6">
+      <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 sm:p-6">
         <div className="flex items-center gap-3 mb-3">
-          <Shield className="h-6 w-6 text-red-600" />
-          <h3 className="text-lg font-semibold text-gray-900">Anti-Money Laundering (AML) Screening</h3>
+          <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" />
+          <h3 className="text-base sm:text-lg font-semibold text-gray-900">Anti-Money Laundering (AML) Screening</h3>
         </div>
-        <p className="text-sm text-gray-700 mb-4">
+        <p className="text-xs sm:text-sm text-gray-700 mb-4">
           We will screen your business against global sanctions lists, Politically Exposed Persons (PEP) databases, and adverse media.
         </p>
         
@@ -86,9 +86,9 @@ export default function OnboardingStep4AML({ formData }) {
 
       {/* Screening Results */}
       {results && (
-        <Card className="p-6 border-2 border-gray-200">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">Screening Results</h3>
+        <Card className="p-4 sm:p-6 border-2 border-gray-200">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900">Screening Results</h3>
             <Badge className={
               riskLevel === 'low' ? 'bg-green-600' :
               riskLevel === 'medium' ? 'bg-yellow-600' :
@@ -101,9 +101,9 @@ export default function OnboardingStep4AML({ formData }) {
           </div>
 
           {/* Entity Screened */}
-          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-600 mb-1">Entity Screened:</p>
-            <p className="font-semibold text-gray-900">{formData.legal_name}</p>
+          <div className="mb-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
+            <p className="text-xs sm:text-sm text-gray-600 mb-1">Entity Screened:</p>
+            <p className="font-semibold text-sm sm:text-base text-gray-900">{formData.legal_name}</p>
           </div>
 
           {/* Matches */}
@@ -193,8 +193,8 @@ export default function OnboardingStep4AML({ formData }) {
       )}
 
       {/* Info */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <p className="text-sm text-blue-900">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
+        <p className="text-xs sm:text-sm text-blue-900">
           <strong>What we check:</strong> Global sanctions lists (OFAC, EU, UN), Politically Exposed Persons (PEP), Special Interest Persons (SIP), and adverse media mentions.
         </p>
       </div>
