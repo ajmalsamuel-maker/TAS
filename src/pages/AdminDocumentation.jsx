@@ -126,9 +126,9 @@ const AdminDocumentation = () => {
           {/* Admin Manual Tab */}
           <TabsContent value="manual" className="space-y-6">
             <div className="flex flex-wrap gap-3 mb-6">
-              <Badge variant="default">Version 1.0</Badge>
-              <Badge variant="secondary">Complete Administrator Guide</Badge>
-              <Badge variant="secondary">2026-01-26</Badge>
+              <Badge variant="default">Version 2.0.0</Badge>
+              <Badge variant="secondary">Complete Administrator Guide - All Features</Badge>
+              <Badge variant="secondary">2026-01-28</Badge>
               <Badge className="bg-amber-100 text-amber-800">Internal - Admin Teams</Badge>
             </div>
 
@@ -233,11 +233,11 @@ const AdminDocumentation = () => {
           {/* Technical Reference Tab */}
           <TabsContent value="technical" className="space-y-6">
             <div className="flex flex-wrap gap-3 mb-6">
-              <Badge variant="default">Version 1.0</Badge>
-              <Badge variant="secondary">Complete Reference</Badge>
-              <Badge variant="secondary">2026-01-26</Badge>
-              <Badge className="bg-amber-100 text-amber-800">Internal - Technical Teams</Badge>
-            </div>
+               <Badge variant="default">Version 2.0.0</Badge>
+               <Badge variant="secondary">Complete Technical Reference</Badge>
+               <Badge variant="secondary">2026-01-28</Badge>
+               <Badge className="bg-amber-100 text-amber-800">Internal - Technical Teams</Badge>
+             </div>
 
         {/* Executive Summary */}
         <Card className="mb-8">
@@ -322,23 +322,26 @@ const AdminDocumentation = () => {
         {/* Case Management Administration */}
         <Card className="mb-8">
           <CardHeader>
-            <SectionHeader title="Case Management Administration: SLA Enforcement & Escalation" section="cases_admin" />
+            <SectionHeader title="Case Management Administration: Workflow & SLA Enforcement" section="cases_admin" />
           </CardHeader>
           {expandedSections.cases_admin && (
             <CardContent className="space-y-8">
               <div>
-                <h3 className="text-xl font-bold mb-4">Managing Compliance Investigations & SLA Compliance</h3>
+                <h3 className="text-xl font-bold mb-4">Comprehensive Compliance Investigation Management</h3>
                 <p className="mb-4 leading-relaxed">
-                  Case management administration ensures that every alert is investigated and resolved according to regulatory timelines (SLA deadlines). Your role includes: monitoring case queue health, assigning high-risk cases to senior investigators, escalating cases that are approaching SLA deadlines, and generating compliance reports for auditors showing 100% SLA adherence.
+                  Case management is the operational hub for compliance investigations. Every AML alert, fraud indicator, document verification failure, or regulatory concern becomes a case. Your administrative role ensures investigations follow regulatory timelines (SLAs), maintains proper documentation, escalates appropriately, and generates audit trails proving regulatory compliance. The case management system is designed to be bulletproof from a compliance perspective: no alert gets lost, no SLA gets missed, and every decision is documented.
                 </p>
                 <p className="mb-4 leading-relaxed">
-                  <strong>Case Queue Monitoring:</strong> The admin dashboard shows real-time case metrics: total cases in queue, average age (days), cases at risk of SLA breach (highlighted in yellow), cases breaching SLA (highlighted in red), and cases resolved this week. Set automated alerts: if any CRITICAL alert isn't reviewed within 1 hour, ping the on-call investigator. If a case exceeds SLA, automatically escalate to the supervisor.
+                  <strong>Case Queue Monitoring & Health Metrics:</strong> The admin dashboard displays real-time case metrics: Total Cases (all open cases), Average Age (days in queue), SLA Risk (yellow if approaching deadline), SLA Breached (red if deadline passed), Resolved This Week, and Time-to-Resolution trends. Set up automated monitoring: if CRITICAL severity cases (sanctions hits) are not assigned within 60 minutes, the system sends a priority notification to on-call staff. If HIGH severity cases (PEP matches) exceed their 1-day SLA, escalate to the Compliance Manager. If any case exceeds SLA for 3+ days, escalate to VP Compliance for executive attention.
                 </p>
                 <p className="mb-4 leading-relaxed">
-                  <strong>Intelligent Assignment:</strong> Configure case assignment rules based on case type, severity, and investigator expertise. HIGH severity AML cases automatically assign to senior investigators. MEDIUM severity cases distribute evenly across available investigators based on current workload. Use round-robin assignment to prevent bottlenecks where one person handles all cases.
+                  <strong>Intelligent Case Assignment:</strong> Implement assignment rules matching case complexity to investigator expertise. Straightforward false positive cases (low confidence AML matches with obvious differences) → junior analysts. Medium-complexity cases (PEP matches requiring research) → mid-level investigators. High-complexity cases (confirmed sanctions hits, international jurisdictional issues) → senior investigators. Use workload balancing: distribute cases evenly rather than assigning all to one person, preventing bottlenecks. When high-priority cases arrive, automatically reassign from lower-priority investigators if necessary to maintain SLA compliance.
                 </p>
                 <p className="mb-4 leading-relaxed">
-                  <strong>Escalation Workflows:</strong> Define escalation rules: if a case isn't assigned within 1 hour of creation, escalate to the compliance manager. If a case exceeds SLA, escalate to the VP of Compliance. If an investigator requests assistance, escalate to the senior investigator. These automatic escalations prevent cases from falling through cracks and ensure timely resolution.
+                  <strong>Escalation Workflows & Alert Rules:</strong> Configure automatic escalations: Cases unassigned after 1 hour → escalate to team lead. Cases exceeding SLA → escalate to compliance manager. Multiple escalations on same organization → escalate to VP. Critical alerts (sanctions hits) with high confidence → immediate CEO notification (regulatory requirement). Design escalations so they create a paper trail proving you identified and escalated issues appropriately. This documentation is invaluable if regulators audit your compliance processes.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>SLA Compliance Reporting:</strong> Generate monthly SLA compliance reports for internal review and regulatory audits. Report: total cases, cases resolved on time, cases breached SLA, SLA compliance percentage (target 100%), average resolution time by severity, and escalation frequency. Investigate any patterns: if one investigator consistently breaches SLA, they may need support. If a case type consistently breaches (e.g., international cases), your SLA timelines may need adjustment. Share reports with the compliance team and adjust processes based on data.
                 </p>
               </div>
             </CardContent>
@@ -961,10 +964,12 @@ const AdminDocumentation = () => {
         <Card className="bg-gray-900 text-white">
           <CardContent className="pt-6">
             <div className="text-sm space-y-3">
-              <p><strong>Document Version:</strong> 1.0</p>
-              <p><strong>Last Updated:</strong> January 26, 2026</p>
+              <p><strong>Document Version:</strong> 2.0.0</p>
+              <p><strong>Published:</strong> January 28, 2026</p>
+              <p><strong>Last Updated:</strong> January 28, 2026</p>
               <p><strong>Classification:</strong> Internal - Technical Teams</p>
-              <p><strong>Owner:</strong> Platform Engineering</p>
+              <p><strong>Owner:</strong> Platform Engineering & Architecture</p>
+              <p><strong>Coverage:</strong> Platform Architecture, Multi-Tenancy, Billing System, Compliance, Case Management, Audit Logging</p>
               <p className="text-xs mt-4 border-t border-gray-700 pt-4">© 2026 FTS.Money & Certizen Technologies. Internal use only.</p>
             </div>
           </CardContent>
