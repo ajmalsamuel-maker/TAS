@@ -163,7 +163,7 @@ export default function AuditComplianceFeature() {
                 items: ['7-year retention', 'Compression', 'Cold storage', 'Auto-archival', 'Legal hold', 'Custom policies']
               },
               {
-                icon: BarChart3,
+                icon: Fingerprint,
                 title: 'Audit Reporting',
                 desc: 'Export for compliance auditors',
                 items: ['CSV export', 'PDF reports', 'Search & filter', 'Timeline views', 'Compliance summaries', 'Auditor dashboards']
