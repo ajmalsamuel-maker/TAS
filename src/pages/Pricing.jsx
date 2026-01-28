@@ -136,15 +136,16 @@ export default function Pricing() {
             <h3 className="text-xl sm:text-2xl font-bold mb-2 text-gray-900 text-center">Pay-As-You-Go Credentials & Verifications</h3>
             <p className="text-center text-gray-600 mb-8">All plans use usage-based pricing for credential issuance and verification services</p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
-              {[
-                { service: 'LEI Issuance', rate: 'Market rate', desc: 'Initial LEI credential (via Certizen QVI)', note: 'Annual renewal: Market rate' },
-                { service: 'vLEI Credential (OOR)', rate: 'Market rate', desc: 'Organization role credential', note: 'Annual renewal: Market rate' },
-                { service: 'vLEI Credential (ECR)', rate: 'Market rate', desc: 'Employee role credential per person', note: 'Annual renewal: Market rate' },
-                { service: 'KYB Verification', rate: '$15-25', desc: 'Company verification check', note: 'Per verification' },
-                { service: 'AML Screening', rate: '$5-10', desc: 'Sanctions, PEP, adverse media', note: 'Per screening' },
-                { service: 'Liveness Detection', rate: '$3-5', desc: 'Facial biometric verification', note: 'Per verification' },
-                { service: 'Ongoing Monitoring', rate: '$10-20', desc: 'Continuous AML/KYB monitoring', note: 'Per entity/month' }
-              ].map((item, i) => (
+               {[
+                 { service: 'LEI Issuance', rate: 'Market rate', desc: 'Initial LEI credential (via Certizen QVI)', note: 'Annual renewal: Market rate' },
+                 { service: 'vLEI Credential (OOR)', rate: 'Market rate', desc: 'Organization role credential', note: 'Annual renewal: Market rate' },
+                 { service: 'vLEI Credential (ECR)', rate: 'Market rate', desc: 'Employee role credential per person', note: 'Annual renewal: Market rate' },
+                 { service: 'KYB Verification', rate: '$15-25', desc: 'Company verification check', note: 'Per verification' },
+                 { service: 'AML Screening', rate: '$5-10', desc: 'Sanctions, PEP, adverse media', note: 'Per screening' },
+                 { service: 'Liveness Detection', rate: '$3-5', desc: 'Facial biometric verification', note: 'Per verification' },
+                 { service: 'Ongoing Monitoring', rate: '$10-20', desc: 'Continuous AML/KYB monitoring', note: 'Per entity/month' },
+                 { service: 'Transaction Monitoring (TMaaS)', rate: '$0.10-0.50', desc: 'Per transaction screened', note: 'Volume discounts available' }
+               ].map((item, i) => (
                 <div key={i} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 sm:p-6 border border-blue-200">
                   <h4 className="font-bold text-sm sm:text-base text-gray-900 mb-2">{item.service}</h4>
                   <p className="text-xl sm:text-2xl font-bold text-[#0066B3] mb-2">{item.rate}</p>
