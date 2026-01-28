@@ -14,7 +14,7 @@ export default function CaseManagementFeature() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white py-16 sm:py-24">
+      <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 mb-6">
             <Badge className="bg-white/20 text-white border-white/30">Enterprise Feature</Badge>
@@ -25,7 +25,7 @@ export default function CaseManagementFeature() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to={createPageUrl('Onboarding')}>
-              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#0044CC] hover:bg-blue-50">
                 Get Started <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -106,7 +106,7 @@ export default function CaseManagementFeature() {
               { step: '5', title: 'Resolved', desc: 'Decision & audit logging' }
             ].map((item, i) => (
               <div key={i} className="bg-white rounded-lg p-4 border-2 border-blue-200 text-center">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0066B3] to-[#004C8C] text-white flex items-center justify-center font-bold mx-auto mb-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0044CC] to-[#002D66] text-white flex items-center justify-center font-bold mx-auto mb-3">
                   {item.step}
                 </div>
                 <h4 className="font-bold text-gray-900 text-sm mb-1">{item.title}</h4>
@@ -162,7 +162,7 @@ export default function CaseManagementFeature() {
             ].map((feature, i) => {
               const Icon = feature.icon;
               return (
-                <Card key={i} className="border-2 border-blue-100 hover:border-[#0066B3] transition-all">
+                <Card key={i} className="border-2 border-blue-100 hover:border-[#0044CC] transition-all">
                   <CardHeader>
                     <div className="w-12 h-12 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-lg flex items-center justify-center mb-3">
                       <Icon className="h-6 w-6 text-white" />
@@ -174,7 +174,7 @@ export default function CaseManagementFeature() {
                     <ul className="space-y-2">
                       {feature.features.map((f, j) => (
                         <li key={j} className="flex items-center gap-2 text-xs text-gray-700">
-                          <div className="w-1.5 h-1.5 bg-[#0066B3] rounded-full" />
+                          <div className="w-1.5 h-1.5 bg-[#0044CC] rounded-full" />
                           {f}
                         </li>
                       ))}
@@ -211,7 +211,7 @@ export default function CaseManagementFeature() {
             ].map((benefit, i) => (
               <Card key={i} className="bg-white border-2 border-blue-200 text-center">
                 <CardContent className="pt-8">
-                  <p className="text-5xl font-bold text-[#0066B3] mb-3">{benefit.metric}</p>
+                  <p className="text-5xl font-bold text-[#0044CC] mb-3">{benefit.metric}</p>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
                   <p className="text-sm text-gray-600">{benefit.desc}</p>
                 </CardContent>
@@ -257,7 +257,7 @@ export default function CaseManagementFeature() {
                   <ul className="space-y-2">
                     {useCase.solutions.map((sol, j) => (
                       <li key={j} className="flex items-center gap-2 text-sm text-gray-700">
-                        <CheckCircle2 className="h-4 w-4 text-[#0066B3] flex-shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-[#0044CC] flex-shrink-0" />
                         {sol}
                       </li>
                     ))}

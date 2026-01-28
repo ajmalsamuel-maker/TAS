@@ -54,8 +54,10 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminDocumentation from './pages/AdminDocumentation';
 import AdminReports from './pages/AdminReports';
 import ApplicationStatus from './pages/ApplicationStatus';
+import AuditComplianceFeature from './pages/AuditComplianceFeature';
 import BillingAdmin from './pages/BillingAdmin';
 import CSPSolution from './pages/CSPSolution';
+import CaseManagementFeature from './pages/CaseManagementFeature';
 import CompleteOnboarding from './pages/CompleteOnboarding';
 import Contact from './pages/Contact';
 import CryptoSolution from './pages/CryptoSolution';
@@ -69,9 +71,11 @@ import MarketingWebsiteDocumentation from './pages/MarketingWebsiteDocumentation
 import Onboarding from './pages/Onboarding';
 import OrganizationOnboarding from './pages/OrganizationOnboarding';
 import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
+import PolicyBuilderFeature from './pages/PolicyBuilderFeature';
 import Pricing from './pages/Pricing';
 import PublicDocumentation from './pages/PublicDocumentation';
 import RemittanceSolution from './pages/RemittanceSolution';
+import TMaaSFeature from './pages/TMaaSFeature';
 import TMaaSRules from './pages/TMaaSRules';
 import TMaaSSetup from './pages/TMaaSSetup';
 import TMaaSTransactions from './pages/TMaaSTransactions';
@@ -96,10 +100,6 @@ import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Web3Solution from './pages/Web3Solution';
 import Workflows from './pages/Workflows';
-import TMaaSFeature from './pages/TMaaSFeature';
-import CaseManagementFeature from './pages/CaseManagementFeature';
-import AuditComplianceFeature from './pages/AuditComplianceFeature';
-import PolicyBuilderFeature from './pages/PolicyBuilderFeature';
 import __Layout from './Layout.jsx';
 
 
@@ -111,8 +111,10 @@ export const PAGES = {
     "AdminDocumentation": AdminDocumentation,
     "AdminReports": AdminReports,
     "ApplicationStatus": ApplicationStatus,
+    "AuditComplianceFeature": AuditComplianceFeature,
     "BillingAdmin": BillingAdmin,
     "CSPSolution": CSPSolution,
+    "CaseManagementFeature": CaseManagementFeature,
     "CompleteOnboarding": CompleteOnboarding,
     "Contact": Contact,
     "CryptoSolution": CryptoSolution,
@@ -126,9 +128,11 @@ export const PAGES = {
     "Onboarding": Onboarding,
     "OrganizationOnboarding": OrganizationOnboarding,
     "PlatformAdminDashboard": PlatformAdminDashboard,
+    "PolicyBuilderFeature": PolicyBuilderFeature,
     "Pricing": Pricing,
     "PublicDocumentation": PublicDocumentation,
     "RemittanceSolution": RemittanceSolution,
+    "TMaaSFeature": TMaaSFeature,
     "TMaaSRules": TMaaSRules,
     "TMaaSSetup": TMaaSSetup,
     "TMaaSTransactions": TMaaSTransactions,
@@ -153,10 +157,6 @@ export const PAGES = {
     "Web3Dashboard": Web3Dashboard,
     "Web3Solution": Web3Solution,
     "Workflows": Workflows,
-    "TMaaSFeature": TMaaSFeature,
-    "CaseManagementFeature": CaseManagementFeature,
-    "AuditComplianceFeature": AuditComplianceFeature,
-    "PolicyBuilderFeature": PolicyBuilderFeature,
 }
 
 export const pagesConfig = {
