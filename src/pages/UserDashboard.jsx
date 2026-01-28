@@ -140,7 +140,7 @@ export default function UserDashboard() {
         )}
 
         {/* Stats Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <StatsCard
             title="Compliance Score"
             value={`${complianceScore}%`}
@@ -170,13 +170,13 @@ export default function UserDashboard() {
         </div>
 
         {/* Charts Row */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <Card className="border-2 border-blue-100 shadow-lg">
             <CardHeader>
-              <CardTitle>Workflow Activity</CardTitle>
+              <CardTitle className="text-base sm:text-lg">Workflow Activity</CardTitle>
             </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={250}>
+            <CardContent className="p-3 sm:p-6">
+              <ResponsiveContainer width="100%" height={200} className="text-xs">{/* Smaller height on mobile */}
                 <LineChart data={monthlyData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
@@ -190,10 +190,10 @@ export default function UserDashboard() {
 
           <Card className="border-2 border-blue-100 shadow-lg">
             <CardHeader>
-              <CardTitle>AML Alerts by Month</CardTitle>
+              <CardTitle className="text-base sm:text-lg">AML Alerts by Month</CardTitle>
             </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={250}>
+            <CardContent className="p-3 sm:p-6">
+              <ResponsiveContainer width="100%" height={200} className="text-xs">{/* Smaller height on mobile */}
                 <BarChart data={monthlyData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
@@ -207,15 +207,15 @@ export default function UserDashboard() {
         </div>
 
         {/* Credentials Card */}
-        <Card className="mb-8 border-2 border-blue-100 shadow-lg bg-gradient-to-br from-white to-blue-50">
+        <Card className="mb-6 sm:mb-8 border-2 border-blue-100 shadow-lg bg-gradient-to-br from-white to-blue-50">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Key className="h-5 w-5 text-[#0044CC]" />
+            <CardTitle className="flex flex-col sm:flex-row sm:items-center gap-2 text-base sm:text-lg">
+              <Key className="h-4 w-4 sm:h-5 sm:w-5 text-[#0044CC]" />
               Your Credentials & Trust Services
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-3 gap-6">
+          <CardContent className="p-3 sm:p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
               <div className="bg-white rounded-lg p-4 border border-blue-200">
                 <p className="text-sm text-gray-600 mb-1">Legal Entity Identifier</p>
                 <p className="font-mono text-lg font-bold text-gray-900">
@@ -248,7 +248,7 @@ export default function UserDashboard() {
         </Card>
 
         {/* Workflows and Alerts */}
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           <WorkflowStatusPanel workflows={workflows} />
           <AMLAlertsPanel alerts={alerts} />
         </div>
