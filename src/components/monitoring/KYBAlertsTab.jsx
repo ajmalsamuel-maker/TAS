@@ -40,7 +40,7 @@ export default function KYBAlertsTab({ organizationId }) {
                   }>
                     {alert.severity}
                   </Badge>
-                  <Badge variant="outline">{alert.alert_type.replace(/_/g, ' ')}</Badge>
+                  <Badge variant="outline">{(alert.alert_type || 'change').replace(/_/g, ' ')}</Badge>
                 </div>
 
                 {alert.change_details && (
@@ -71,7 +71,7 @@ export default function KYBAlertsTab({ organizationId }) {
               </div>
 
               <Badge variant={alert.status === 'new' ? 'default' : 'secondary'}>
-                {alert.status}
+                {alert.status || 'pending'}
               </Badge>
             </div>
           </CardContent>

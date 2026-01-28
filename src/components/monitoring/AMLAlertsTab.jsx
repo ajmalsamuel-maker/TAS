@@ -42,7 +42,7 @@ export default function AMLAlertsTab({ organizationId }) {
                   }>
                     {alert.severity}
                   </Badge>
-                  <Badge variant="outline">{alert.type.replace(/_/g, ' ')}</Badge>
+                  <Badge variant="outline">{(alert.type || 'alert').replace(/_/g, ' ')}</Badge>
                 </div>
 
                 <p className="text-sm text-gray-600 mb-2">
@@ -67,7 +67,7 @@ export default function AMLAlertsTab({ organizationId }) {
               </div>
 
               <Badge variant={alert.status === 'new' ? 'default' : 'secondary'}>
-                {alert.status}
+                {alert.status || 'pending'}
               </Badge>
             </div>
           </CardContent>
