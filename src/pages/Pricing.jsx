@@ -13,8 +13,30 @@ export default function Pricing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">B2B SaaS Pricing</h1>
           <p className="text-base sm:text-lg lg:text-xl text-blue-100 max-w-2xl mx-auto">
-            Multi-tenant workspaces with complete isolation. Each organization gets their own secure environment to manage credential issuance and compliance workflows.
+            Multi-tenant workspaces with complete isolation. LEI/vLEI issuance, KYB verification, AML screening, and liveness detection - all in one platform.
           </p>
+        </div>
+      </section>
+
+      {/* Industry Solutions Banner */}
+      <section className="py-8 bg-white border-b-2 border-blue-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-sm text-gray-600 mb-4">Industry-specific solutions available:</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              { name: 'Crypto', path: 'CryptoSolution' },
+              { name: 'Trade Finance', path: 'TradeFinanceSolution' },
+              { name: 'Legal', path: 'LegalSolution' },
+              { name: 'CSP', path: 'CSPSolution' },
+              { name: 'Remittance', path: 'RemittanceSolution' }
+            ].map((industry, i) => (
+              <Link key={i} to={createPageUrl(industry.path)}>
+                <Button variant="ghost" size="sm" className="text-[#0066B3] hover:bg-blue-50 text-xs">
+                  {industry.name} →
+                </Button>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

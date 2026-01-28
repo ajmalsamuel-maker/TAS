@@ -17,6 +17,29 @@ export default function About() {
         </div>
       </section>
 
+      {/* Industry Solutions Banner */}
+      <section className="py-12 bg-gradient-to-br from-blue-50 to-cyan-50 border-y-2 border-blue-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <h3 className="text-2xl font-bold text-center mb-6 text-gray-900">Purpose-Built for Your Industry</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              { name: 'Crypto Exchanges', path: 'CryptoSolution' },
+              { name: 'Trade Finance', path: 'TradeFinanceSolution' },
+              { name: 'Law Firms', path: 'LegalSolution' },
+              { name: 'Corporate Services', path: 'CSPSolution' },
+              { name: 'Remittance', path: 'RemittanceSolution' }
+            ].map((industry, i) => (
+              <Link key={i} to={createPageUrl(industry.path)}>
+                <Button variant="outline" className="border-[#0066B3] text-[#0066B3] hover:bg-blue-50">
+                  {industry.name}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Vision & Objectives */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

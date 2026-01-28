@@ -372,42 +372,47 @@ export default function Home() {
                 title: 'Crypto',
                 path: 'CryptoSolution',
                 desc: 'LEI-verified institutional trading',
-                icon: '🪙'
+                Icon: Network
               },
               {
                 title: 'Trade Finance',
                 path: 'TradeFinanceSolution',
                 desc: 'SWIFT-integrated counterparty verification',
-                icon: '📦'
+                Icon: Globe
               },
               {
                 title: 'Legal',
                 path: 'LegalSolution',
                 desc: 'Multi-jurisdictional client onboarding',
-                icon: '⚖️'
+                Icon: FileCheck
               },
               {
                 title: 'CSPs',
                 path: 'CSPSolution',
                 desc: 'LEI issuance as a service',
-                icon: '🏢'
+                Icon: Building2
               },
               {
                 title: 'Remittance',
                 path: 'RemittanceSolution',
                 desc: 'Compliance-ready corridors',
-                icon: '💸'
+                Icon: Zap
               }
-            ].map((solution, i) => (
+            ].map((solution, i) => {
+              const Icon = solution.Icon;
+              return (
               <Link key={i} to={createPageUrl(solution.path)}>
                 <div className="bg-white rounded-xl p-6 border-2 border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg cursor-pointer group">
-                  <div className="text-4xl mb-3">{solution.icon}</div>
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004080] rounded-lg flex items-center justify-center mb-3">
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
                   <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-[#0066B3]">{solution.title}</h3>
                   <p className="text-sm text-gray-600">{solution.desc}</p>
                   <ArrowRight className="h-5 w-5 text-[#0066B3] mt-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </Link>
-            ))}
+            );
+            })}
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">

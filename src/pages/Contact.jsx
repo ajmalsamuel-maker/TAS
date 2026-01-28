@@ -27,8 +27,30 @@ export default function Contact() {
          <div className="max-w-7xl mx-auto px-4 sm:px-6">
            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4">Get in Touch</h1>
            <p className="text-base sm:text-lg lg:text-xl text-blue-200">
-             Ready to transform your compliance infrastructure? Let's talk.
+             Ready to streamline LEI/vLEI issuance, KYB verification, and compliance workflows? Let's talk.
            </p>
+         </div>
+       </div>
+
+       {/* Industry Solutions Banner */}
+       <div className="bg-blue-50 border-b-2 border-blue-200 py-6">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+           <p className="text-center text-sm text-gray-600 mb-3">Explore solutions for your industry:</p>
+           <div className="flex flex-wrap justify-center gap-2">
+             {[
+               { name: 'Crypto', path: 'CryptoSolution' },
+               { name: 'Trade Finance', path: 'TradeFinanceSolution' },
+               { name: 'Legal', path: 'LegalSolution' },
+               { name: 'Corporate Services', path: 'CSPSolution' },
+               { name: 'Remittance', path: 'RemittanceSolution' }
+             ].map((industry, i) => (
+               <Link key={i} to={createPageUrl(industry.path)}>
+                 <Button variant="ghost" size="sm" className="text-[#0066B3] hover:bg-blue-100 text-xs">
+                   {industry.name} →
+                 </Button>
+               </Link>
+             ))}
+           </div>
          </div>
        </div>
 

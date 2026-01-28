@@ -62,6 +62,13 @@ function LayoutContent({ children, currentPageName }) {
   const marketingPages = [
     { nameKey: 'nav.home', icon: Home, path: 'Home', tooltip: 'Return to homepage' },
     { nameKey: 'nav.solutions', icon: Shield, path: 'About', tooltip: 'Learn about our solutions' },
+    { name: 'Industries', icon: Globe, dropdown: [
+      { name: 'Crypto', path: 'CryptoSolution' },
+      { name: 'Trade Finance', path: 'TradeFinanceSolution' },
+      { name: 'Legal', path: 'LegalSolution' },
+      { name: 'Corporate Services', path: 'CSPSolution' },
+      { name: 'Remittance', path: 'RemittanceSolution' }
+    ], tooltip: 'Industry-specific solutions' },
     { nameKey: 'nav.pricing', icon: Activity, path: 'Pricing', tooltip: 'View pricing plans' },
     { nameKey: 'nav.contact', icon: Mail, path: 'Contact', tooltip: 'Get in touch with us' },
     { name: 'Learn', icon: FileText, path: 'PublicDocumentation', tooltip: 'Browse documentation' },
@@ -114,6 +121,27 @@ function LayoutContent({ children, currentPageName }) {
                 {navigationPages.map((page) => {
                   const Icon = page.icon;
                   const isActive = currentPageName === page.path;
+                  
+                  // Handle dropdown navigation
+                  if (page.dropdown) {
+                    return (
+                      <div key={page.name} className="relative group">
+                        <div className="px-4 py-2 rounded-lg text-blue-100 hover:bg-white/10 hover:text-white cursor-pointer">
+                          <span>{page.name}</span>
+                        </div>
+                        <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border-2 border-blue-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                          {page.dropdown.map((item, idx) => (
+                            <Link key={idx} to={createPageUrl(item.path)}>
+                              <div className="px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#0066B3] first:rounded-t-lg last:rounded-b-lg transition-colors">
+                                {item.name}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  }
+                  
                   return (
                     <Tooltip key={page.path}>
                       <TooltipTrigger asChild>
@@ -188,6 +216,30 @@ function LayoutContent({ children, currentPageName }) {
               </div>
               {navigationPages.map((page) => {
                 const Icon = page.icon;
+                
+                // Handle dropdown in mobile
+                if (page.dropdown) {
+                  return (
+                    <div key={page.name}>
+                      <div className="flex items-center gap-3 px-4 py-3 text-blue-100 font-semibold">
+                        <Icon className="h-5 w-5" />
+                        <span>{page.name}</span>
+                      </div>
+                      {page.dropdown.map((item, idx) => (
+                        <Link
+                          key={idx}
+                          to={createPageUrl(item.path)}
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <div className="flex items-center gap-3 px-8 py-2 hover:bg-white/10 text-sm text-blue-200">
+                            <span>{item.name}</span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  );
+                }
+                
                 return (
                   <Link
                     key={page.path}
