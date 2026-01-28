@@ -83,7 +83,6 @@ function LayoutContent({ children, currentPageName }) {
     { name: 'Compliance', icon: Shield, path: 'UserCompliance', tooltip: 'Compliance management and tracking' },
     { name: 'Workflows', icon: FileText, path: 'UserPolicies', tooltip: 'Advanced: Design custom compliance workflows' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials', tooltip: 'Manage LEI and vLEI credentials' },
-    { name: 'Application Status', icon: FileText, path: 'ApplicationStatus', tooltip: 'Check your application progress' },
     { name: 'Web3', icon: Globe, path: 'Web3Dashboard', tooltip: 'Web3 identity and blockchain integration' },
     { name: 'TMaaS', icon: Activity, dropdown: [
       { name: 'Dashboard', path: 'UserTransactions' },
