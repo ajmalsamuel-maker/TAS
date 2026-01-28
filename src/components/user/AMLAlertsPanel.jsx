@@ -46,7 +46,7 @@ export default function AMLAlertsPanel({ alerts }) {
                   <div className="flex items-center gap-2">
                     {getStatusIcon(alert.status)}
                     <span className="font-semibold text-gray-900">
-                      {alert.type?.replace('_', ' ').toUpperCase()}
+                      {(alert.type || 'alert').replace('_', ' ').toUpperCase()}
                     </span>
                   </div>
                   <Badge className={getSeverityColor(alert.severity)} variant="outline">
@@ -61,7 +61,7 @@ export default function AMLAlertsPanel({ alerts }) {
                 <div className="flex items-center justify-between text-xs text-gray-500">
                   <span>{format(new Date(alert.created_date), 'MMM d, yyyy HH:mm')}</span>
                   <Badge variant="outline" className="text-xs">
-                    {alert.status?.replace('_', ' ')}
+                    {(alert.status || 'pending').replace('_', ' ')}
                   </Badge>
                 </div>
               </div>

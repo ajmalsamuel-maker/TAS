@@ -58,7 +58,7 @@ export default function WorkflowStatusPanel({ workflows }) {
                     {getStatusIcon(workflow.status)}
                     <div>
                       <h4 className="font-semibold text-gray-900">
-                        {workflow.type?.replace('_', ' ').toUpperCase()}
+                        {(workflow.type || 'workflow').replace('_', ' ').toUpperCase()}
                       </h4>
                       <p className="text-xs text-gray-500">
                         Provider: {workflow.provider_name || 'TAS Platform'}
