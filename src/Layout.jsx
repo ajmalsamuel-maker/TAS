@@ -72,7 +72,7 @@ function LayoutContent({ children, currentPageName }) {
     { nameKey: 'nav.dashboard', icon: Activity, path: 'UserDashboard', tooltip: 'View your dashboard overview' },
     { name: 'Monitoring', icon: Shield, path: 'UserMonitoring', tooltip: 'Ongoing surveillance of existing customers' },
     { name: 'Alerts', icon: AlertTriangle, path: 'UserAlerts', tooltip: 'View compliance alerts' },
-    { name: 'Workflows', icon: FileText, path: 'UserPolicies', tooltip: 'Design workflows & view execution history' },
+    { name: 'Workflows', icon: FileText, path: 'UserPolicies', tooltip: 'Advanced: Design custom compliance workflows' },
     { nameKey: 'nav.credentials', icon: Shield, path: 'UserCredentials', tooltip: 'Manage LEI and vLEI credentials' },
     { name: 'Transactions', icon: Activity, path: 'UserTransactions', tooltip: 'Monitor transactions' },
     { name: 'Cases', icon: Shield, path: 'UserCases', tooltip: 'View assigned cases' },

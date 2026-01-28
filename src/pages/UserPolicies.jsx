@@ -122,13 +122,23 @@ export default function UserPolicies() {
         </div>
 
         {/* Explanation */}
-        <Alert className="mb-6 border-blue-200 bg-blue-50">
-          <AlertCircle className="h-4 w-4 text-blue-600" />
+        <Alert className="mb-6 border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+          <AlertCircle className="h-4 w-4 text-purple-600" />
           <AlertDescription className="text-sm text-gray-700">
-            <strong>What are Verification Workflows?</strong> No-code workflows that automatically screen NEW customers during onboarding or transactions. 
-            <span className="block mt-1 text-blue-900 font-medium">
-              Note: For ongoing monitoring of EXISTING customers, use "Monitoring" instead.
-            </span>
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <strong>Advanced Workflow Designer</strong>
+                  <Badge className="bg-purple-600 text-white text-xs">PREMIUM FEATURE</Badge>
+                </div>
+                <p className="mb-2">
+                  Create custom compliance policies beyond standard onboarding - ideal for businesses with complex screening requirements, A/B testing needs, or transaction monitoring rules.
+                </p>
+                <p className="text-xs text-gray-600">
+                  <strong>Standard onboarding</strong> (LEI → KYB → AML → Verification) runs automatically. Use workflows for <strong>advanced scenarios</strong> like high-value transactions, VIP customer paths, or custom fraud detection rules.
+                </p>
+              </div>
+            </div>
           </AlertDescription>
         </Alert>
 
