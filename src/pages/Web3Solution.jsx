@@ -65,7 +65,7 @@ export default function Web3Solution() {
               </Button>
             </Link>
             <Link to={createPageUrl('Contact')}>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0066B3] transition-colors">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white bg-white/10 hover:bg-white hover:text-[#0066B3] transition-colors">
                 Contact Sales
               </Button>
             </Link>
@@ -231,7 +231,7 @@ export default function Web3Solution() {
               </Button>
             </Link>
             <Link to={createPageUrl('Contact')}>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0066B3] transition-colors">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white bg-white/10 hover:bg-white hover:text-[#0066B3] transition-colors">
                 Contact Sales
               </Button>
             </Link>
