@@ -65,11 +65,11 @@ export default function Web3Dashboard() {
                   TAS bridges traditional LEI-based legal identity with W3C-compliant decentralized identity standards
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-blue-100 text-blue-800">Decentralized Identifiers (DIDs)</Badge>
-                  <Badge className="bg-purple-100 text-purple-800">Verifiable Credentials (VCs)</Badge>
-                  <Badge className="bg-indigo-100 text-indigo-800">KERI/ACDC Protocols</Badge>
-                  <Badge className="bg-green-100 text-green-800">ISO 17442 LEI</Badge>
-                </div>
+                       <Badge className="bg-[#0044CC]/10 text-[#0044CC]">Decentralized Identifiers (DIDs)</Badge>
+                       <Badge className="bg-[#002D66]/10 text-[#002D66]">Verifiable Credentials (VCs)</Badge>
+                       <Badge className="bg-blue-100 text-blue-800">KERI/ACDC Protocols</Badge>
+                       <Badge className="bg-blue-100 text-blue-800">ISO 17442 LEI</Badge>
+                     </div>
               </div>
             </div>
           </CardContent>
