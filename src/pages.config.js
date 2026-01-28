@@ -98,6 +98,7 @@ import Web3Solution from './pages/Web3Solution';
 import Workflows from './pages/Workflows';
 import TMaaSFeature from './pages/TMaaSFeature';
 import CaseManagementFeature from './pages/CaseManagementFeature';
+import AuditComplianceFeature from './pages/AuditComplianceFeature';
 import __Layout from './Layout.jsx';
 
 
@@ -153,6 +154,7 @@ export const PAGES = {
     "Workflows": Workflows,
     "TMaaSFeature": TMaaSFeature,
     "CaseManagementFeature": CaseManagementFeature,
+    "AuditComplianceFeature": AuditComplianceFeature,
 }
 
 export const pagesConfig = {
