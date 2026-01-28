@@ -45,7 +45,7 @@ export default function CreateScheduleModal({ open, onClose, organization, appli
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['monitoring-schedules']);
+      queryClient.invalidateQueries({ queryKey: ['user-schedules'] });
       toast.success('Monitoring schedule created');
       onClose();
     },
