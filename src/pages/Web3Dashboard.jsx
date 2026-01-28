@@ -96,10 +96,11 @@ export default function Web3Dashboard() {
             </TabsTrigger>
             <TabsTrigger value="nft" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white">
               NFT Auth
-            </TabsTrigger>
-          </TabsList>
+              </TabsTrigger>
+              </TabsList>
+              </div>
 
-          <TabsContent value="wallets">
+              <TabsContent value="wallets">
             <WalletConnect user={user} />
           </TabsContent>
 
