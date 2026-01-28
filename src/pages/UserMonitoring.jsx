@@ -180,7 +180,7 @@ export default function UserMonitoring() {
                         <Badge variant="outline">{schedule.monitoring_type.replace(/_/g, ' ')}</Badge>
                       </div>
 
-                      <div className="grid md:grid-cols-4 gap-4 text-sm">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 text-xs sm:text-sm">
                         <div>
                           <p className="text-gray-600">Frequency</p>
                           <p className="font-medium capitalize">{schedule.frequency}</p>
@@ -200,7 +200,7 @@ export default function UserMonitoring() {
                       </div>
                     </div>
 
-                    <div className="flex gap-2 ml-4">
+                    <div className="flex gap-2 ml-2 sm:ml-4">
                       <Button
                         variant="outline"
                         size="sm"
