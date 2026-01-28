@@ -62,8 +62,8 @@ export default function UserTransactions() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Transactions</h1>
-          <p className="text-gray-600">View and manage all your transactions</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">TMaaS Transactions</h1>
+          <p className="text-gray-600">View transaction screening results from your monitoring configurations</p>
         </div>
 
         {/* Stats */}
