@@ -358,13 +358,57 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Use Cases */}
+      {/* Industry Solutions */}
       <section className="py-24 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
-            Use Cases
+            Industry Solutions
           </h2>
-          <p className="text-xl text-center text-gray-600 mb-16">Real-World Applications</p>
+          <p className="text-xl text-center text-gray-600 mb-16">Purpose-built for your industry</p>
+
+          <div className="grid md:grid-cols-5 gap-6 mb-16">
+            {[
+              {
+                title: 'Crypto',
+                path: 'CryptoSolution',
+                desc: 'LEI-verified institutional trading',
+                icon: '🪙'
+              },
+              {
+                title: 'Trade Finance',
+                path: 'TradeFinanceSolution',
+                desc: 'SWIFT-integrated counterparty verification',
+                icon: '📦'
+              },
+              {
+                title: 'Legal',
+                path: 'LegalSolution',
+                desc: 'Multi-jurisdictional client onboarding',
+                icon: '⚖️'
+              },
+              {
+                title: 'CSPs',
+                path: 'CSPSolution',
+                desc: 'LEI issuance as a service',
+                icon: '🏢'
+              },
+              {
+                title: 'Remittance',
+                path: 'RemittanceSolution',
+                desc: 'Compliance-ready corridors',
+                icon: '💸'
+              }
+            ].map((solution, i) => (
+              <Link key={i} to={createPageUrl(solution.path)}>
+                <div className="bg-white rounded-xl p-6 border-2 border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg cursor-pointer group">
+                  <div className="text-4xl mb-3">{solution.icon}</div>
+                  <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-[#0066B3]">{solution.title}</h3>
+                  <p className="text-sm text-gray-600">{solution.desc}</p>
+                  <ArrowRight className="h-5 w-5 text-[#0066B3] mt-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </Link>
+            ))}
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
