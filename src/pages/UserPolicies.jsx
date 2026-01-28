@@ -4,12 +4,15 @@ import { createPageUrl } from '../utils';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Shield, Plus, FileText } from 'lucide-react';
+import { Shield, Plus, FileText, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import PolicyManager from '../components/policy/PolicyManager';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 export default function UserPolicies() {
   const [user, setUser] = useState(null);
   const [organization, setOrganization] = useState(null);
+  const [showPolicyManager, setShowPolicyManager] = useState(false);
 
   useEffect(() => {
     base44.auth.me()
@@ -41,19 +44,46 @@ export default function UserPolicies() {
   const active = policies.filter(p => p.status === 'active').length;
   const draft = policies.filter(p => p.status === 'draft').length;
 
+  if (showPolicyManager) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-6">
+            <Button variant="outline" onClick={() => setShowPolicyManager(false)}>
+              ← Back to Policies List
+            </Button>
+          </div>
+          <PolicyManager />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Compliance Policies</h1>
-            <p className="text-gray-600">Manage custom compliance and verification policies</p>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">Verification Workflows</h1>
+            <p className="text-gray-600">Design automated workflows for onboarding new customers and screening transactions</p>
           </div>
-          <Button className="bg-blue-600">
+          <Button className="bg-blue-600" onClick={() => setShowPolicyManager(true)}>
             <Plus className="h-4 w-4 mr-2" />
-            Create Policy
+            Create Workflow
           </Button>
         </div>
+
+        {/* Explanation */}
+        <Alert className="mb-6 border-blue-200 bg-blue-50">
+          <AlertCircle className="h-4 w-4 text-blue-600" />
+          <AlertDescription className="text-sm text-gray-700">
+            <strong>What are Verification Workflows?</strong> These are no-code, visual workflows that automatically screen NEW customers during onboarding or transactions in real-time. 
+            Use them to chain identity verification, KYB checks, AML screening, and fraud detection steps. 
+            <span className="block mt-2 text-blue-900 font-medium">
+              Note: For ongoing monitoring of EXISTING customers, use "Compliance Monitoring Configuration" instead.
+            </span>
+          </AlertDescription>
+        </Alert>
 
         {/* Stats */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -140,11 +170,11 @@ export default function UserPolicies() {
             <Card>
               <CardContent className="py-12 text-center">
                 <FileText className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                <p className="text-gray-600 mb-2">No policies yet</p>
-                <p className="text-sm text-gray-500 mb-4">Create custom compliance policies for your organization</p>
-                <Button className="bg-blue-600">
+                <p className="text-gray-600 mb-2">No verification workflows yet</p>
+                <p className="text-sm text-gray-500 mb-4">Create automated workflows to screen new customers and transactions</p>
+                <Button className="bg-blue-600" onClick={() => setShowPolicyManager(true)}>
                   <Plus className="h-4 w-4 mr-2" />
-                  Create Your First Policy
+                  Create Your First Workflow
                 </Button>
               </CardContent>
             </Card>
