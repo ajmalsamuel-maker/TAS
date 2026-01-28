@@ -109,7 +109,7 @@ function LayoutContent({ children, currentPageName }) {
     <div className={`min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 ${isRTL ? 'rtl' : 'ltr'}`}>
       {/* Top Navigation */}
       <nav className="bg-gradient-to-r from-[#0044CC] via-[#002D66] to-[#001A40] text-white shadow-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to={createPageUrl(isAuthenticated ? (isAdmin ? 'AdminDashboard' : 'UserDashboard') : 'Home')} className="flex items-center">
@@ -302,8 +302,8 @@ function LayoutContent({ children, currentPageName }) {
 
       {/* Footer */}
       <footer className="bg-gradient-to-r from-[#001A40] via-[#002D66] to-[#0044CC] text-white mt-24">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-6 sm:mb-8">
             <div>
               <h3 className="text-lg font-bold mb-4">Trust Anchor Service</h3>
               <p className="text-blue-200 text-sm">
@@ -337,7 +337,7 @@ function LayoutContent({ children, currentPageName }) {
             </div>
           </div>
           
-          <div className="border-t border-white/20 pt-8 text-center text-sm text-blue-200">
+          <div className="border-t border-white/20 pt-6 sm:pt-8 text-center text-xs sm:text-sm text-blue-200">
             <p>© 2026 FTS.Money & Certizen Technologies. All rights reserved.</p>
           </div>
         </div>
