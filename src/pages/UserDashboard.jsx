@@ -122,7 +122,7 @@ export default function UserDashboard() {
                             currentApplication.status === 'under_review' ? 4 :
                             currentApplication.status === 'submitted' ? 2 : 1} of 5
                     </Badge>
-                    <Badge variant="outline">{currentApplication.status}</Badge>
+                    <Badge variant="outline">{currentApplication.status || 'draft'}</Badge>
                     {currentApplication.status === 'approved' && (
                       <Badge className="bg-green-600">Ready for Credentials</Badge>
                     )}
