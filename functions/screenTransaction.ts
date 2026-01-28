@@ -89,8 +89,8 @@ Deno.serve(async (req) => {
           tx.created_date >= oneHourAgo
         ) || [];
 
-        const recentCount = recentTxs?.length || 0;
-        const recentAmount = recentTxs?.reduce((sum, tx) => sum + (tx.amount || 0), 0) || 0;
+        const recentCount = recentFiltered.length;
+        const recentAmount = recentFiltered.reduce((sum, tx) => sum + (tx.amount || 0), 0);
 
         // Simple fraud scoring
         let fraudScore = 0;
