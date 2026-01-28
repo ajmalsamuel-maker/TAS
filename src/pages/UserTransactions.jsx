@@ -146,7 +146,7 @@ export default function UserTransactions() {
                           {transaction.counterparty || 'Unknown'} - ${transaction.amount?.toFixed(2)}
                         </h3>
                         <Badge className={getStatusColor(transaction.status)}>
-                          {transaction.status}
+                          {transaction.status || 'pending'}
                         </Badge>
                       </div>
                       <p className="text-sm text-gray-600 mb-2">{transaction.description || 'No description'}</p>

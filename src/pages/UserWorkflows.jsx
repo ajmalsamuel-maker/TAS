@@ -158,7 +158,7 @@ export default function UserWorkflows() {
                         <h3 className="text-lg font-semibold text-gray-900">{workflow.name || 'Unnamed Workflow'}</h3>
                         <Badge className={getStatusColor(workflow.status)}>
                           <span className="mr-1">{getStatusIcon(workflow.status)}</span>
-                          {workflow.status}
+                          {workflow.status || 'pending'}
                         </Badge>
                       </div>
                       {workflow.description && (

@@ -155,7 +155,7 @@ export default function UserCases() {
                         <h3 className="text-lg font-semibold text-gray-900">{caseItem.case_number}</h3>
                         <Badge className={getStatusColor(caseItem.status)}>
                           <span className="mr-1">{getStatusIcon(caseItem.status)}</span>
-                          {caseItem.status}
+                          {caseItem.status || 'new'}
                         </Badge>
                         {caseItem.priority && (
                           <Badge variant="outline" className={
