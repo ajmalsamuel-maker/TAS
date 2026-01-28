@@ -158,8 +158,8 @@ export default function Web3Dashboard() {
           </CardHeader>
           <CardContent className="p-4 sm:p-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-              <div className="bg-white rounded-lg p-3 sm:p-4 border-2 border-purple-100">
-                <h4 className="font-bold text-purple-900 mb-2 text-sm sm:text-base">Identity Layer</h4>
+              <div className="bg-white rounded-lg p-3 sm:p-4 border-2 border-blue-200">
+                <h4 className="font-bold text-[#0044CC] mb-2 text-sm sm:text-base">Identity Layer</h4>
                 <p className="text-xs sm:text-sm text-gray-600 mb-3">
                   LEI-based legal identity with W3C DID/VC compliance
                 </p>
