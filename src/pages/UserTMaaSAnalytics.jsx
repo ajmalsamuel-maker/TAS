@@ -175,50 +175,50 @@ export default function UserTMaaSAnalytics() {
             </TabsContent>
 
             {/* Enrichment Performance */}
-            <TabsContent value="enrichment">
-              <div className="grid md:grid-cols-2 gap-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Enrichment Services</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    {[
-                      { name: 'Geo-IP Lookup', enabled: currentAnalytics.enrichment_performance.geo_ip_enabled },
-                      { name: 'Domain Reputation', enabled: currentAnalytics.enrichment_performance.domain_rep_enabled },
-                      { name: 'Velocity History', enabled: currentAnalytics.enrichment_performance.velocity_enabled },
-                      { name: 'Device Fingerprint', enabled: currentAnalytics.enrichment_performance.device_fp_enabled }
-                    ].map((service) => (
-                      <div key={service.name} className="flex items-center justify-between p-3 border rounded-lg">
-                        <span className="font-medium">{service.name}</span>
-                        <Badge variant={service.enabled ? 'default' : 'outline'}>
-                          {service.enabled ? 'Active' : 'Inactive'}
-                        </Badge>
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
+                <TabsContent value="enrichment">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Enrichment Services</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        {[
+                          { name: 'AML Checks', enabled: currentAnalytics.enrichment_data?.aml_checks_performed > 0 },
+                          { name: 'Fraud Detection', enabled: currentAnalytics.enrichment_data?.fraud_checks_performed > 0 },
+                          { name: 'Risk Assessment', enabled: true },
+                          { name: 'Real-time Screening', enabled: true }
+                        ].map((service) => (
+                          <div key={service.name} className="flex items-center justify-between p-3 border rounded-lg">
+                            <span className="font-medium">{service.name}</span>
+                            <Badge variant={service.enabled ? 'default' : 'outline'}>
+                              {service.enabled ? 'Active' : 'Inactive'}
+                            </Badge>
+                          </div>
+                        ))}
+                      </CardContent>
+                    </Card>
 
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Performance Metrics</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div>
-                      <p className="text-sm text-gray-600">Avg Processing Time</p>
-                      <p className="text-2xl font-bold">{currentAnalytics.enrichment_performance.avg_enrichment_time_ms}ms</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600">Success Rate</p>
-                      <p className="text-2xl font-bold">{currentAnalytics.enrichment_performance.enrichment_success_rate}%</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600">Data Quality Score</p>
-                      <p className="text-2xl font-bold">{currentAnalytics.enrichment_performance.data_quality_score}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Performance Metrics</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div>
+                          <p className="text-sm text-gray-600">AML Avg Score</p>
+                          <p className="text-2xl font-bold">{currentAnalytics.enrichment_data?.avg_aml_score || 0}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-600">Fraud Avg Score</p>
+                          <p className="text-2xl font-bold">{currentAnalytics.enrichment_data?.avg_fraud_score || 0}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-600">Checks Performed</p>
+                          <p className="text-2xl font-bold">{(currentAnalytics.enrichment_data?.aml_checks_performed || 0) + (currentAnalytics.enrichment_data?.fraud_checks_performed || 0)}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </TabsContent>
 
             {/* Risk Exposure */}
             <TabsContent value="risk">
