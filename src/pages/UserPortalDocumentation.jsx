@@ -129,11 +129,11 @@ export default function UserPortalDocumentation() {
             <div className="flex flex-wrap gap-3 mb-6">
               <Badge variant="outline" className="px-4 py-1.5 text-sm">
                 <FileText className="w-4 h-4 mr-2" />
-                Version 1.0.3
+                Version 2.0.0
               </Badge>
               <Badge variant="outline" className="px-4 py-1.5 text-sm">
                 <Activity className="w-4 h-4 mr-2" />
-                Published: January 26, 2026
+                Published: January 28, 2026
               </Badge>
               <Badge variant="outline" className="px-4 py-1.5 text-sm bg-blue-50">
                 <Users className="w-4 h-4 mr-2" />
@@ -157,17 +157,23 @@ export default function UserPortalDocumentation() {
                   The TAS platform automates complex verification workflows that traditionally required weeks of manual effort. Our integrated system performs Know Your Business (KYB) verification by querying official business registries in 120+ countries, conducts Anti-Money Laundering (AML) screening against 300+ global watchlists, and issues cryptographically verifiable credentials compliant with GLEIF and W3C standards. Most applications complete within 4-8 hours, with 87% approved automatically without manual intervention.
                 </p>
                 <div className="bg-white rounded-lg p-4 border border-blue-200">
-                  <h4 className="font-semibold text-gray-900 mb-3">What You'll Find in This Manual:</h4>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Getting Started:</strong> Account creation, dashboard navigation, user roles, and interface orientation for first-time users</span></li>
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>LEI Application Process:</strong> Complete walkthrough from document preparation through final approval and credential issuance</span></li>
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Credential Management:</strong> Downloading certificates, understanding vLEI credentials, sharing with partners, and managing renewals</span></li>
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Compliance Monitoring:</strong> Responding to AML alerts, maintaining regulatory standards, and understanding continuous monitoring</span></li>
-                    <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Web3 Integration:</strong> Using credentials in blockchain systems, DeFi protocols, and decentralized applications</span></li>
-                  </ul>
-                </div>
+                   <h4 className="font-semibold text-gray-900 mb-3">What You'll Find in This Manual:</h4>
+                   <ul className="space-y-2 text-sm text-gray-700">
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Getting Started:</strong> Account creation, dashboard navigation, user roles, and interface orientation for first-time users</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Dashboard:</strong> Compliance overview, real-time metrics, status cards, and activity feed navigation</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>LEI Application & Verification:</strong> Complete walkthrough from document preparation through workflow completion and credential issuance</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Credential Management:</strong> Downloading certificates, understanding vLEI credentials, sharing with partners, and managing renewals</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Transaction Monitoring (TMaaS):</strong> Real-time transaction screening, rule configuration, and compliance decision-making</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Case Management:</strong> Investigating compliance alerts, documenting findings, and reaching regulatory-compliant determinations</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Audit Logging:</strong> Complete activity history for compliance documentation, security investigations, and regulatory audits</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Policy Builder:</strong> Designing custom verification workflows without code, A/B testing policies, and optimizing compliance processes</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Compliance Monitoring:</strong> Responding to AML alerts, managing continuous monitoring, and maintaining regulatory standards</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Settings & Administration:</strong> User management, security configuration, API access, and webhook integration</span></li>
+                     <li className="flex gap-3"><span className="text-blue-600 font-bold">•</span><span><strong>Web3 Integration:</strong> Using credentials in blockchain systems, DeFi protocols, DAO governance, and NFT authentication</span></li>
+                   </ul>
+                 </div>
                 <p className="text-sm text-gray-600 italic border-t border-blue-200 pt-4 mt-4">
-                  <strong>Maintained By:</strong> TAS Product & Customer Success Teams | <strong>Last Updated:</strong> January 26, 2026 | <strong>Feedback:</strong> userdocs@tas.example.com
+                  <strong>Maintained By:</strong> TAS Product & Customer Success Teams | <strong>Last Updated:</strong> January 28, 2026 | <strong>Feedback:</strong> userdocs@tas.example.com
                 </p>
               </CardContent>
             </Card>
@@ -184,29 +190,36 @@ export default function UserPortalDocumentation() {
                 <p className="text-sm text-gray-700 mb-4">
                   This manual is organized into focused sections covering each major area of the TAS platform. Click any section title to expand detailed guides with screenshots, examples, and best practices. Use the search bar below to quickly find specific procedures or terminology.
                 </p>
-                <div className="grid md:grid-cols-3 gap-4 text-sm">
-                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
-                    <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
-                      <BookOpen className="w-4 h-4" />
-                      Getting Started
-                    </h4>
-                    <p className="text-gray-700">Account setup, navigation basics, dashboard orientation, and role understanding</p>
-                  </div>
-                  <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
-                    <h4 className="font-semibold text-indigo-900 mb-2 flex items-center gap-2">
-                      <FileText className="w-4 h-4" />
-                      LEI Applications
-                    </h4>
-                    <p className="text-gray-700">Complete application workflow, document requirements, and approval tracking</p>
-                  </div>
-                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
-                    <h4 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
-                      <Shield className="w-4 h-4" />
-                      Compliance
-                    </h4>
-                    <p className="text-gray-700">AML alerts, monitoring procedures, and regulatory maintenance</p>
-                  </div>
-                </div>
+                <div className="grid md:grid-cols-4 gap-4 text-sm">
+                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                     <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
+                       <BookOpen className="w-4 h-4" />
+                       Dashboard
+                     </h4>
+                     <p className="text-gray-700">Real-time compliance status, active workflows, alerts, and credentials overview</p>
+                   </div>
+                   <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+                     <h4 className="font-semibold text-indigo-900 mb-2 flex items-center gap-2">
+                       <FileText className="w-4 h-4" />
+                       Verification
+                     </h4>
+                     <p className="text-gray-700">LEI applications, KYB workflows, AML screening, and credential issuance</p>
+                   </div>
+                   <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                     <h4 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
+                       <Shield className="w-4 h-4" />
+                       Compliance
+                     </h4>
+                     <p className="text-gray-700">AML alerts, continuous monitoring, cases, audit logs, and regulatory management</p>
+                   </div>
+                   <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                     <h4 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
+                       <Activity className="w-4 h-4" />
+                       Operations
+                     </h4>
+                     <p className="text-gray-700">Transaction monitoring (TMaaS), policy builder, settings, and API configuration</p>
+                   </div>
+                 </div>
               </CardContent>
             </Card>
 
@@ -249,11 +262,11 @@ export default function UserPortalDocumentation() {
           <TabsContent value="technical" className="space-y-6">
             <div className="space-y-6">
               <div className="flex flex-wrap gap-3">
-                <Badge variant="default">User Guide</Badge>
-                <Badge variant="secondary">Complete Reference</Badge>
-                <Badge variant="secondary">2026-01-26</Badge>
-                <Badge className="bg-blue-100 text-blue-800">User Facing</Badge>
-              </div>
+                  <Badge variant="default">User Guide</Badge>
+                  <Badge variant="secondary">Complete Reference - All Features</Badge>
+                  <Badge variant="secondary">2026-01-28</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">Business Users & Compliance Officers</Badge>
+                </div>
 
         {/* Dashboard Overview */}
         <Card className="mb-8">
@@ -1153,13 +1166,14 @@ export default function UserPortalDocumentation() {
               <div>
                 <h4 className="font-bold text-lg mb-3 text-blue-200">Document Information</h4>
                 <div className="text-sm space-y-2">
-                  <p><strong>Version:</strong> 1.0.3</p>
-                  <p><strong>Published:</strong> January 26, 2026</p>
-                  <p><strong>Last Reviewed:</strong> January 26, 2026</p>
-                  <p><strong>Classification:</strong> User Facing Documentation</p>
-                  <p><strong>Target Audience:</strong> Business Users, Compliance Officers, Finance Teams</p>
+                  <p><strong>Version:</strong> 2.0.0</p>
+                  <p><strong>Published:</strong> January 28, 2026</p>
+                  <p><strong>Last Reviewed:</strong> January 28, 2026</p>
+                  <p><strong>Classification:</strong> User Facing Documentation - Complete</p>
+                  <p><strong>Target Audience:</strong> Business Users, Compliance Officers, Finance Teams, API Developers</p>
+                  <p><strong>Coverage:</strong> All TAS Portal Features (Dashboard, Verification, TMaaS, Cases, Audit Logs, Policies, Compliance, Settings, Web3)</p>
                 </div>
-              </div>
+                </div>
               <div>
                 <h4 className="font-bold text-lg mb-3 text-blue-200">Support & Feedback</h4>
                 <div className="text-sm space-y-2">
