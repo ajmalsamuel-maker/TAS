@@ -139,9 +139,9 @@ export default function AdminDashboard() {
         </div>
 
         {/* Main Content Tabs */}
-        <Tabs defaultValue="organizations" className="space-y-4 sm:space-y-6">
-          <div className="bg-white border-2 border-blue-100 rounded-lg p-1 overflow-x-auto">
-            <TabsList className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-8 gap-1 h-auto bg-transparent w-max sm:w-full">
+         <Tabs defaultValue="organizations" className="space-y-4 sm:space-y-6">
+           <div className="bg-white border-2 border-blue-100 rounded-lg p-1 overflow-x-auto">
+             <TabsList className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-1 h-auto bg-transparent w-full">
               <TabsTrigger value="organizations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 Organizations
               </TabsTrigger>
