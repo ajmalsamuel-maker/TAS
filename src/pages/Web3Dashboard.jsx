@@ -43,19 +43,19 @@ export default function Web3Dashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50 p-4 sm:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6 sm:mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <Boxes className="h-8 sm:h-10 w-8 sm:w-10 text-purple-600" />
+            <Boxes className="h-8 sm:h-10 w-8 sm:w-10 text-[#0044CC]" />
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">Web3 Operations</h1>
           </div>
           <p className="text-xs sm:text-base text-gray-600">Manage DAO identity, DeFi compliance, cross-chain credentials, and NFT authentication</p>
         </div>
 
         {/* W3C Standards Banner */}
-        <Card className="mb-6 sm:mb-8 border-2 border-blue-200 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50">
+        <Card className="mb-6 sm:mb-8 border-2 border-blue-200 bg-gradient-to-r from-[#0044CC]/5 via-blue-50 to-slate-50">
           <CardContent className="p-4 sm:p-6">
             <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
               <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 flex-shrink-0 mt-1" />
