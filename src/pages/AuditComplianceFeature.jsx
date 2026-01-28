@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
   ArrowRight, Shield, Lock, CheckCircle2, AlertTriangle,
-  Archive, Zap, Eye, FileCheck, TrendingUp, BarChart3
+  Archive, Zap, Eye, FileCheck, TrendingUp, BarChart3, Fingerprint
 } from 'lucide-react';
 import StandardsFooter from '@/components/standards/StandardsFooter';
 
