@@ -72,6 +72,9 @@ import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
 import Pricing from './pages/Pricing';
 import PublicDocumentation from './pages/PublicDocumentation';
 import RemittanceSolution from './pages/RemittanceSolution';
+import TMaaSRules from './pages/TMaaSRules';
+import TMaaSSetup from './pages/TMaaSSetup';
+import TMaaSTransactions from './pages/TMaaSTransactions';
 import TradeFinanceSolution from './pages/TradeFinanceSolution';
 import UserAlerts from './pages/UserAlerts';
 import UserCases from './pages/UserCases';
@@ -83,19 +86,16 @@ import UserMonitoring from './pages/UserMonitoring';
 import UserPolicies from './pages/UserPolicies';
 import UserPortalDocumentation from './pages/UserPortalDocumentation';
 import UserSettings from './pages/UserSettings';
+import UserTMaaS from './pages/UserTMaaS';
+import UserTMaaSAnalytics from './pages/UserTMaaSAnalytics';
 import UserTeam from './pages/UserTeam';
 import UserTransactionMonitoring from './pages/UserTransactionMonitoring';
 import UserTransactions from './pages/UserTransactions';
 import UserWorkflows from './pages/UserWorkflows';
 import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
-import Workflows from './pages/Workflows';
 import Web3Solution from './pages/Web3Solution';
-import UserTMaaS from './pages/UserTMaaS';
-import TMaaSSetup from './pages/TMaaSSetup';
-import TMaaSTransactions from './pages/TMaaSTransactions';
-import TMaaSRules from './pages/TMaaSRules';
-import UserTMaaSAnalytics from './pages/UserTMaaSAnalytics';
+import Workflows from './pages/Workflows';
 import __Layout from './Layout.jsx';
 
 
@@ -125,6 +125,9 @@ export const PAGES = {
     "Pricing": Pricing,
     "PublicDocumentation": PublicDocumentation,
     "RemittanceSolution": RemittanceSolution,
+    "TMaaSRules": TMaaSRules,
+    "TMaaSSetup": TMaaSSetup,
+    "TMaaSTransactions": TMaaSTransactions,
     "TradeFinanceSolution": TradeFinanceSolution,
     "UserAlerts": UserAlerts,
     "UserCases": UserCases,
@@ -136,19 +139,16 @@ export const PAGES = {
     "UserPolicies": UserPolicies,
     "UserPortalDocumentation": UserPortalDocumentation,
     "UserSettings": UserSettings,
+    "UserTMaaS": UserTMaaS,
+    "UserTMaaSAnalytics": UserTMaaSAnalytics,
     "UserTeam": UserTeam,
     "UserTransactionMonitoring": UserTransactionMonitoring,
     "UserTransactions": UserTransactions,
     "UserWorkflows": UserWorkflows,
     "VLEIManagement": VLEIManagement,
     "Web3Dashboard": Web3Dashboard,
-    "Workflows": Workflows,
     "Web3Solution": Web3Solution,
-    "UserTMaaS": UserTMaaS,
-    "TMaaSSetup": TMaaSSetup,
-    "TMaaSTransactions": TMaaSTransactions,
-    "TMaaSRules": TMaaSRules,
-    "UserTMaaSAnalytics": UserTMaaSAnalytics,
+    "Workflows": Workflows,
 }
 
 export const pagesConfig = {

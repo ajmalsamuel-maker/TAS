@@ -10,6 +10,7 @@ import { Settings, Globe, User, Save, CheckCircle2, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+import TMaaSEnablementCard from '../components/tmaas/TMaaSEnablementCard';
 
 const LANGUAGES = [
   { code: 'en', name: 'English' },
@@ -26,6 +27,7 @@ const LANGUAGES = [
 
 export default function UserSettings() {
   const [user, setUser] = useState(null);
+  const [organization, setOrganization] = useState(null);
   const [formData, setFormData] = useState({
     full_name: '',
     company_name: '',
@@ -37,7 +39,7 @@ export default function UserSettings() {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    base44.auth.me().then(userData => {
+    base44.auth.me().then(async (userData) => {
       setUser(userData);
       setFormData({
         full_name: userData.full_name || '',
@@ -46,6 +48,11 @@ export default function UserSettings() {
         preferred_language: userData.preferred_language || 'en',
         region: userData.region || ''
       });
+
+      if (userData.organization_id) {
+        const orgs = await base44.entities.Organization.filter({ id: userData.organization_id });
+        if (orgs?.[0]) setOrganization(orgs[0]);
+      }
     });
   }, []);
 
@@ -186,6 +193,21 @@ export default function UserSettings() {
             </form>
           </CardContent>
         </Card>
+
+        {/* TMaaS Enablement */}
+        {organization && (
+          <Card className="mb-6">
+            <CardContent className="p-6">
+              <TMaaSEnablementCard 
+                organization={organization}
+                onUpdate={async () => {
+                  const orgs = await base44.entities.Organization.filter({ id: organization.id });
+                  if (orgs?.[0]) setOrganization(orgs[0]);
+                }}
+              />
+            </CardContent>
+          </Card>
+        )}
 
         {/* Account Info */}
         <Card className="border-2 border-blue-100 shadow-lg">
