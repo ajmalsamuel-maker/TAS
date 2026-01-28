@@ -99,13 +99,15 @@ export default function TradeFinanceSolution() {
               return (
                 <Card key={idx} className="border-2 border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg">
                   <CardHeader>
-                    <Icon className="h-10 w-10 text-red-500 mb-4" />
-                    <CardTitle className="text-lg text-slate-900">❌ {item.problem}</CardTitle>
+                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4 border-2 border-blue-200">
+                      <Icon className="h-6 w-6 text-gray-500" />
+                    </div>
+                    <CardTitle className="text-lg text-slate-900">{item.problem}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-start gap-2 text-[#0066B3] font-semibold">
-                      <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                      <span>✅ {item.solution}</span>
+                    <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                      <p className="text-xs font-semibold mb-1 text-gray-700">TAS Solution:</p>
+                      <p className="text-sm text-[#0066B3] font-semibold">{item.solution}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -155,30 +157,30 @@ export default function TradeFinanceSolution() {
             
             <div className="grid md:grid-cols-2 gap-12">
               <div>
-                <h3 className="text-xl font-semibold text-red-600 mb-4">❌ Traditional Process</h3>
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">Traditional Process</h3>
                 <ol className="space-y-3 text-slate-600">
                   <li><strong>Days 1-3:</strong> Manual verification of buyer/seller registrations</li>
                   <li><strong>Days 4-7:</strong> Document exchange and compliance review</li>
                   <li><strong>Days 8-10:</strong> Bank checks both parties</li>
                   <li><strong>Days 11+:</strong> Final approval and fund release</li>
                 </ol>
-                <div className="mt-6 p-4 bg-red-50 rounded-lg">
-                  <p className="text-red-700 font-semibold">Total Time: Multiple days to weeks</p>
-                  <p className="text-red-600">High compliance overhead</p>
+                <div className="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+                  <p className="text-slate-700 font-semibold">Total Time: Multiple days to weeks</p>
+                  <p className="text-slate-600">High compliance overhead</p>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-emerald-600 mb-4">✅ TAS vLEI Process</h3>
+                <h3 className="text-xl font-semibold text-[#0066B3] mb-4">TAS vLEI Process</h3>
                 <ol className="space-y-3 text-slate-600">
                   <li><strong>Step 1:</strong> Buyer & seller present vLEI credentials</li>
                   <li><strong>Step 2:</strong> Cryptographic verification (instant)</li>
                   <li><strong>Step 3:</strong> KYB & AML checks via TAS Platform</li>
                   <li><strong>Step 4:</strong> Automated approval workflow</li>
                 </ol>
-                <div className="mt-6 p-4 bg-emerald-50 rounded-lg">
-                  <p className="text-emerald-700 font-semibold">Total Time: Same-day processing</p>
-                  <p className="text-emerald-600">Significantly lower overhead</p>
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <p className="text-[#0066B3] font-semibold">Total Time: Same-day processing</p>
+                  <p className="text-blue-600">Significantly lower overhead</p>
                 </div>
               </div>
             </div>

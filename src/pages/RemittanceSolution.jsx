@@ -102,13 +102,15 @@ export default function RemittanceSolution() {
               return (
                 <Card key={idx} className="border-2 border-gray-200 hover:border-[#0066B3] transition-all hover:shadow-lg">
                   <CardHeader>
-                    <Icon className="h-10 w-10 text-red-500 mb-4" />
-                    <CardTitle className="text-lg text-slate-900">❌ {item.problem}</CardTitle>
+                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4 border-2 border-blue-200">
+                      <Icon className="h-6 w-6 text-gray-500" />
+                    </div>
+                    <CardTitle className="text-lg text-slate-900">{item.problem}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-start gap-2 text-[#0066B3] font-semibold">
-                      <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                      <span>✅ {item.solution}</span>
+                    <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                      <p className="text-xs font-semibold mb-1 text-gray-700">TAS Solution:</p>
+                      <p className="text-sm text-[#0066B3] font-semibold">{item.solution}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -157,7 +159,7 @@ export default function RemittanceSolution() {
                     <p className="font-semibold text-slate-900">{tier.fees}</p>
                   </div>
                   {tier.pain && (
-                    <Badge variant="outline" className="text-red-600 border-red-300">
+                    <Badge variant="outline" className="text-gray-600 border-gray-300">
                       {tier.pain}
                     </Badge>
                   )}
@@ -183,28 +185,28 @@ export default function RemittanceSolution() {
             
             <div className="grid md:grid-cols-2 gap-12">
               <div>
-                <h3 className="text-xl font-semibold text-red-600 mb-4">❌ Traditional Approach</h3>
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">Traditional Approach</h3>
                 <ul className="space-y-3 text-slate-600">
                   <li>• High percentage of legitimate business transfers flagged</li>
                   <li>• Multi-day holds for compliance review</li>
                   <li>• Risk-based account restrictions</li>
                   <li>• Significant compliance overhead</li>
                 </ul>
-                <div className="mt-6 p-4 bg-red-50 rounded-lg">
-                  <p className="text-red-700 font-semibold">Result: Delayed processing</p>
-                  <p className="text-red-600">Higher operational costs</p>
+                <div className="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+                  <p className="text-slate-700 font-semibold">Result: Delayed processing</p>
+                  <p className="text-slate-600">Higher operational costs</p>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-[#0066B3] mb-4">✅ With TAS Platform</h3>
+                <h3 className="text-xl font-semibold text-[#0066B3] mb-4">With TAS Platform</h3>
                 <ul className="space-y-3 text-slate-600">
                   <li>• Business presents vLEI credential issued by Certizen</li>
                   <li>• TAS verifies: LEI status, KYB data, AML screening</li>
                   <li>• Transaction auto-approved in real-time</li>
                   <li>• Premium service tier enabled</li>
                 </ul>
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
                   <p className="text-[#0066B3] font-semibold">Result: Instant processing</p>
                   <p className="text-blue-600">Lower operational costs</p>
                 </div>

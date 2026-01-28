@@ -95,7 +95,7 @@ export default function LegalSolution() {
                     <CardTitle className="text-slate-900">{practice.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="bg-red-50 rounded-lg p-3 border border-red-200">
+                    <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
                       <p className="text-xs font-semibold mb-1 text-gray-700">Current Pain:</p>
                       <p className="text-sm text-slate-600">{practice.pain}</p>
                     </div>
@@ -246,10 +246,10 @@ export default function LegalSolution() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <Scale className="h-20 w-20 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-4">
-            Join BigLaw's Compliance Evolution
+            Transform Your Legal Practice
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Leading M&A practices are adopting LEI-verified client onboarding with TAS Platform
+            Streamline client verification with LEI/vLEI credentials via TAS Platform
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Link to={createPageUrl('Onboarding')}>

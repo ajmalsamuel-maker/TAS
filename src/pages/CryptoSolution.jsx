@@ -194,7 +194,7 @@ export default function CryptoSolution() {
                 </div>
                 <div className="flex justify-between">
                   <span>Customer Experience:</span>
-                  <span className="font-semibold text-green-600">Streamlined</span>
+                  <span className="font-semibold text-[#0066B3]">Streamlined</span>
                 </div>
               </CardContent>
             </Card>
