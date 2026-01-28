@@ -135,7 +135,7 @@ export default function Pricing() {
           <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-xl border-2 border-blue-100 mb-16">
             <h3 className="text-xl sm:text-2xl font-bold mb-2 text-gray-900 text-center">Pay-As-You-Go Credentials & Verifications</h3>
             <p className="text-center text-gray-600 mb-8">All plans use usage-based pricing for credential issuance and verification services</p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
               {[
                 { service: 'LEI Issuance', rate: 'Market rate', desc: 'Initial LEI credential (via Certizen QVI)', note: 'Annual renewal: Market rate' },
                 { service: 'vLEI Credential (OOR)', rate: 'Market rate', desc: 'Organization role credential', note: 'Annual renewal: Market rate' },
@@ -159,7 +159,7 @@ export default function Pricing() {
           <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-blue-200">
             <h3 className="text-2xl font-bold mb-6 text-gray-900 text-center">Industry-Specific Solutions</h3>
             <p className="text-center text-gray-600 mb-8">Same platform, optimized workflows for your industry</p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {[
                 { name: 'Crypto Exchanges', path: 'CryptoSolution', features: ['Institutional KYB', 'vLEI-verified trading tiers', 'On-chain entity verification'] },
                 { name: 'Trade Finance', path: 'TradeFinanceSolution', features: ['Counterparty vLEI verification', 'TBML detection', 'Smart contract escrow'] },

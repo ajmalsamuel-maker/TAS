@@ -64,7 +64,7 @@ export default function CryptoSolution() {
                 </Button>
               </Link>
               <Link to={createPageUrl('Contact')}>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0066B3] transition-colors">
                   Contact Sales
                 </Button>
               </Link>
@@ -222,7 +222,7 @@ export default function CryptoSolution() {
               </Button>
             </Link>
             <Link to={createPageUrl('Contact')}>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0066B3] transition-colors">
                 Contact Sales
               </Button>
             </Link>

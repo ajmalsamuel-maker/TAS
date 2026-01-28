@@ -40,7 +40,7 @@ export default function RemittanceSolution() {
       kyc: "Business registration + manual review",
       limits: "Moderate transaction limits",
       fees: "Manual verification",
-      pain: "❌ Multi-day verification"
+      pain: "Multi-day verification"
     },
     {
       name: "LEI-Verified Tier (NEW)",
@@ -48,7 +48,7 @@ export default function RemittanceSolution() {
       kyc: "Automatic via vLEI",
       limits: "Higher transaction limits",
       fees: "Instant verification",
-      benefit: "✅ Real-time approval"
+      benefit: "Real-time approval"
     }
   ];
 
@@ -77,7 +77,7 @@ export default function RemittanceSolution() {
                 </Button>
               </Link>
               <Link to={createPageUrl('Contact')}>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0066B3] transition-colors">
                   Contact Sales
                 </Button>
               </Link>
@@ -299,7 +299,7 @@ export default function RemittanceSolution() {
               </Button>
             </Link>
             <Link to={createPageUrl('Contact')}>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-[#0066B3] transition-colors">
                 Contact Sales
               </Button>
             </Link>
