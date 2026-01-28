@@ -1,5 +1,9 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 
+/**
+ * Screen a transaction against AML, fraud, and custom rules
+ * Called when transaction arrives via TMaaS webhook
+ */
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
@@ -9,167 +13,281 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { transaction_id } = await req.json();
+    const payload = await req.json();
+    const { transaction_id, amount, currency, type, from_account, to_account, counterparty_name, counterparty_country, ip_address } = payload;
 
-    if (!transaction_id) {
-      return Response.json({ error: 'transaction_id is required' }, { status: 400 });
+    // Validate required fields
+    if (!transaction_id || !amount || !type) {
+      return Response.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Fetch transaction
-    const transactions = await base44.entities.Transaction.filter({ id: transaction_id });
-    const transaction = transactions[0];
-
-    if (!transaction) {
-      return Response.json({ error: 'Transaction not found' }, { status: 404 });
-    }
-
-    // Fetch active rules
-    const rules = await base44.entities.TransactionRule.filter({ is_active: true });
-
-    let riskScore = 0;
-    let flags = [];
-    let triggeredRules = [];
-
-    // Evaluate each rule
-    for (const rule of rules) {
-      const ruleResult = evaluateRule(rule, transaction);
-      
-      if (ruleResult.triggered) {
-        triggeredRules.push(rule.id);
-        flags.push(...ruleResult.flags);
-        riskScore += ruleResult.riskPoints;
-
-        // Update rule trigger count
-        await base44.asServiceRole.entities.TransactionRule.update(rule.id, {
-          trigger_count: (rule.trigger_count || 0) + 1,
-          last_triggered: new Date().toISOString()
-        });
-
-        // Auto-create case if configured
-        if (rule.auto_create_case) {
-          await base44.functions.invoke('createCaseFromAlert', {
-            type: 'transaction_review',
-            priority: rule.severity,
-            subject: `${rule.name} - Transaction ${transaction.transaction_id || transaction.id}`,
-            description: `Transaction flagged by rule: ${rule.name}\nAmount: $${transaction.amount}\nFlags: ${ruleResult.flags.join(', ')}`,
-            sla_hours: rule.severity === 'critical' ? 2 : rule.severity === 'high' ? 4 : 24
-          });
-        }
-      }
-    }
-
-    // Calculate final risk level
-    let riskLevel = 'low';
-    if (riskScore >= 80) riskLevel = 'critical';
-    else if (riskScore >= 60) riskLevel = 'high';
-    else if (riskScore >= 40) riskLevel = 'medium';
-
-    // Determine status
-    let status = 'approved';
-    if (triggeredRules.length > 0) {
-      const criticalRule = rules.find(r => triggeredRules.includes(r.id) && r.action === 'block');
-      status = criticalRule ? 'blocked' : 'flagged';
-    }
-
-    // Update transaction
-    await base44.asServiceRole.entities.Transaction.update(transaction_id, {
-      risk_score: riskScore,
-      risk_level: riskLevel,
-      status,
-      flags,
-      triggered_rules: triggeredRules,
-      screening_results: {
-        screened_at: new Date().toISOString(),
-        rules_evaluated: rules.length,
-        rules_triggered: triggeredRules.length
-      }
+    // Get TMaaS config for this organization
+    const configs = await base44.asServiceRole.entities.TMaaSConfig.filter({
+      organization_id: user.organization_id
     });
 
-    // Run fraud detection
-    if (triggeredRules.length > 0 || riskScore > 50) {
-      await base44.functions.invoke('detectFraud', {
-        transaction_id: transaction_id
+    if (!configs || configs.length === 0) {
+      return Response.json({ error: 'TMaaS not configured' }, { status: 400 });
+    }
+
+    const config = configs[0];
+    const rules = config.monitoring_rules || {};
+
+    // Initialize screening results
+    const screeningResults = {
+      aml_score: 0,
+      fraud_score: 0,
+      aml_matches: [],
+      fraud_indicators: []
+    };
+
+    let risk_score = 0;
+    const triggered_rules = [];
+    const flags = [];
+
+    // 1. AML SCREENING
+    if (rules.aml_screening) {
+      try {
+        const amlKey = Deno.env.get('AMLWATCHER_API_KEY');
+        if (amlKey) {
+          const amlResponse = await fetch('https://api.amlwatcher.com/screen', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${amlKey}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              name: counterparty_name,
+              country: counterparty_country,
+              transaction_amount: amount
+            })
+          });
+
+          if (amlResponse.ok) {
+            const amlData = await amlResponse.json();
+            screeningResults.aml_score = amlData.risk_score || 0;
+            screeningResults.aml_matches = amlData.matches || [];
+            risk_score += amlData.risk_score || 0;
+            if (amlData.matches && amlData.matches.length > 0) {
+              flags.push('aml_match');
+            }
+          }
+        }
+      } catch (error) {
+        console.error('AML screening error:', error);
+      }
+    }
+
+    // 2. FRAUD DETECTION (Velocity checks, anomalies)
+    if (rules.fraud_detection) {
+      try {
+        // Count recent transactions from same account
+        const recentTxs = await base44.asServiceRole.entities.Transaction.filter({
+          from_account: from_account,
+          created_date: { $gte: new Date(Date.now() - 3600000).toISOString() }
+        });
+
+        const recentCount = recentTxs?.length || 0;
+        const recentAmount = recentTxs?.reduce((sum, tx) => sum + (tx.amount || 0), 0) || 0;
+
+        // Simple fraud scoring
+        let fraudScore = 0;
+        const indicators = [];
+
+        // High velocity
+        if (recentCount > 5) {
+          fraudScore += 15;
+          indicators.push('high_velocity');
+        }
+
+        // Large amount
+        if (amount > 100000) {
+          fraudScore += 10;
+          indicators.push('large_amount');
+        }
+
+        // Rapid succession
+        if (recentCount > 2 && recentAmount > 50000) {
+          fraudScore += 20;
+          indicators.push('rapid_succession');
+        }
+
+        screeningResults.fraud_score = fraudScore;
+        screeningResults.fraud_indicators = indicators;
+        risk_score += fraudScore;
+        if (fraudScore > 30) {
+          flags.push('fraud_risk');
+        }
+      } catch (error) {
+        console.error('Fraud detection error:', error);
+      }
+    }
+
+    // 3. EVALUATE CUSTOM RULES
+    const ruleResults = await evaluateCustomRules(
+      base44,
+      user.organization_id,
+      { amount, from_account, to_account, counterparty_country, currency },
+      triggered_rules
+    );
+
+    // 4. DETERMINE STATUS AND ACTIONS
+    let status = 'pending';
+    let auto_action = null;
+
+    // Auto-approve small, low-risk transactions
+    if (risk_score < (rules.auto_approve_threshold || 20) && triggered_rules.length === 0) {
+      status = 'approved';
+      auto_action = 'auto_approved';
+    }
+    // Auto-block high-risk or rule-triggered
+    else if (risk_score > (rules.auto_block_threshold || 70) || ruleResults.shouldBlock) {
+      status = 'blocked';
+      auto_action = 'auto_blocked';
+      flags.push('blocked');
+    }
+    // Flag for manual review
+    else if (risk_score > 30 || ruleResults.shouldFlag) {
+      status = 'flagged';
+      flags.push('flagged');
+    }
+
+    // 5. CREATE TRANSACTION RECORD
+    const txRecord = await base44.asServiceRole.entities.Transaction.create({
+      organization_id: user.organization_id,
+      transaction_id,
+      amount,
+      currency,
+      type,
+      from_account,
+      to_account,
+      counterparty_name,
+      counterparty_country,
+      ip_address,
+      status,
+      risk_score: Math.round(risk_score),
+      risk_level: getRiskLevel(risk_score),
+      screening_status: 'completed',
+      screening_results: screeningResults,
+      triggered_rules,
+      flags,
+      tmaas_config_id: config.id
+    });
+
+    // 6. CREATE ALERTS IF NEEDED
+    if (status === 'blocked' || status === 'flagged') {
+      await base44.asServiceRole.entities.TransactionAlert.create({
+        organization_id: user.organization_id,
+        transaction_id: txRecord.id,
+        tmaas_config_id: config.id,
+        alert_type: status === 'blocked' ? 'amount_threshold' : 'rule_triggered',
+        severity: status === 'blocked' ? 'critical' : 'high',
+        details: {
+          risk_score: Math.round(risk_score),
+          triggered_rules,
+          flags
+        },
+        transaction_amount: amount,
+        transaction_currency: currency
+      });
+
+      // Send webhook callback with alert
+      if (config.callback_url) {
+        await sendCallback(config.callback_url, {
+          transaction_id: txRecord.id,
+          status,
+          risk_score: Math.round(risk_score),
+          action: status === 'blocked' ? 'block' : 'flag'
+        });
+      }
+    } else if (config.callback_url) {
+      // Send callback with result
+      await sendCallback(config.callback_url, {
+        transaction_id: txRecord.id,
+        status: auto_action || status,
+        risk_score: Math.round(risk_score),
+        action: 'approve'
       });
     }
 
-    return Response.json({
-      success: true,
-      risk_score: riskScore,
-      risk_level: riskLevel,
-      status,
-      flags,
-      triggered_rules: triggeredRules.length
+    // 7. UPDATE TMaaS stats
+    await base44.asServiceRole.entities.TMaaSConfig.update(config.id, {
+      transactions_processed: (config.transactions_processed || 0) + 1,
+      transactions_blocked: status === 'blocked' ? (config.transactions_blocked || 0) + 1 : config.transactions_blocked,
+      transactions_flagged: status === 'flagged' ? (config.transactions_flagged || 0) + 1 : config.transactions_flagged,
+      last_transaction_date: new Date().toISOString()
     });
 
+    return Response.json({
+      success: true,
+      transaction_id: txRecord.id,
+      status,
+      risk_score: Math.round(risk_score),
+      action: auto_action || status
+    });
   } catch (error) {
     console.error('Transaction screening error:', error);
-    return Response.json({ 
-      error: 'Screening failed', 
-      details: error.message 
-    }, { status: 500 });
+    return Response.json({ error: error.message }, { status: 500 });
   }
 });
 
-function evaluateRule(rule, transaction) {
-  const result = { triggered: false, flags: [], riskPoints: 0 };
-  const conditions = rule.conditions;
+async function evaluateCustomRules(base44, orgId, txData, triggeredRules) {
+  try {
+    const rules = await base44.asServiceRole.entities.TransactionRule.filter({
+      organization_id: orgId,
+      enabled: true
+    });
 
-  switch (rule.rule_type) {
-    case 'amount_threshold':
-      if (conditions.amount_min && transaction.amount < conditions.amount_min) {
-        result.triggered = true;
-        result.flags.push(`Below minimum threshold ($${conditions.amount_min})`);
-        result.riskPoints = 20;
-      }
-      if (conditions.amount_max && transaction.amount > conditions.amount_max) {
-        result.triggered = true;
-        result.flags.push(`Exceeds maximum threshold ($${conditions.amount_max})`);
-        result.riskPoints = 40;
-      }
-      break;
+    let shouldFlag = false;
+    let shouldBlock = false;
 
-    case 'geographic':
-      const highRiskCountries = conditions.high_risk_jurisdictions || [];
-      if (transaction.counterparty_country && highRiskCountries.includes(transaction.counterparty_country)) {
-        result.triggered = true;
-        result.flags.push(`High-risk jurisdiction: ${transaction.counterparty_country}`);
-        result.riskPoints = 50;
-      }
-      break;
+    for (const rule of rules || []) {
+      const condition = rule.condition;
+      const value = rule.value;
+      let isTriggered = false;
 
-    case 'watchlist':
-      if (conditions.watchlist_check && transaction.counterparty_name) {
-        const watchlistMatch = checkWatchlist(transaction.counterparty_name);
-        if (watchlistMatch) {
-          result.triggered = true;
-          result.flags.push('Watchlist match detected');
-          result.riskPoints = 80;
-        }
+      switch (rule.type) {
+        case 'amount':
+          if (condition === 'greater_than' && txData.amount > parseFloat(value)) isTriggered = true;
+          if (condition === 'less_than' && txData.amount < parseFloat(value)) isTriggered = true;
+          break;
+        case 'country':
+          if (txData.counterparty_country === value) isTriggered = true;
+          break;
+        case 'velocity':
+          // Handled in screenTransaction
+          break;
       }
-      break;
 
-    case 'velocity':
-      // Simplified velocity check - in production, query recent transactions
-      result.triggered = true;
-      result.flags.push('Velocity check triggered');
-      result.riskPoints = 30;
-      break;
-
-    case 'pattern':
-      // Pattern detection logic
-      if (transaction.amount && transaction.amount % 100 === 0 && transaction.amount > 9000) {
-        result.triggered = true;
-        result.flags.push('Structured transaction pattern');
-        result.riskPoints = 35;
+      if (isTriggered) {
+        triggeredRules.push(rule.name);
+        if (rule.action === 'flag') shouldFlag = true;
+        if (rule.action === 'auto_block') shouldBlock = true;
       }
-      break;
+    }
+
+    return { shouldFlag, shouldBlock };
+  } catch (error) {
+    console.error('Rule evaluation error:', error);
+    return { shouldFlag: false, shouldBlock: false };
   }
-
-  return result;
 }
 
-function checkWatchlist(name) {
-  // Simplified watchlist - in production, check against real sanctions lists
-  const watchlist = ['OFAC', 'SANCTIONED', 'BLOCKED'];
-  return watchlist.some(item => name.toUpperCase().includes(item));
+function getRiskLevel(score) {
+  if (score >= 75) return 'critical';
+  if (score >= 50) return 'high';
+  if (score >= 25) return 'medium';
+  return 'low';
+}
+
+async function sendCallback(callbackUrl, data) {
+  try {
+    await fetch(callbackUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+  } catch (error) {
+    console.error('Callback error:', error);
+  }
 }
