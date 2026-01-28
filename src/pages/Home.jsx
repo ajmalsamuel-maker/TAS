@@ -92,41 +92,49 @@ export default function Home() {
                     <p className="text-xs text-gray-600 mt-1">Average time</p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Activity className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">100%</span>
+                  <Link to={createPageUrl('TMaaSFeature')}>
+                    <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm hover:shadow-md hover:scale-105 transition-all cursor-pointer">
+                      <div className="flex items-center justify-between mb-2">
+                        <Activity className="h-6 w-6 text-[#0066B3]" />
+                        <span className="text-2xl font-bold text-[#0066B3]">Real-time</span>
+                      </div>
+                      <p className="text-sm font-semibold text-gray-900">Transaction Monitoring</p>
+                      <p className="text-xs text-gray-600 mt-1">TMaaS with rule engine</p>
                     </div>
-                    <p className="text-sm font-semibold text-gray-900">Transaction Monitoring</p>
-                    <p className="text-xs text-gray-600 mt-1">Coverage</p>
-                  </div>
+                  </Link>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <ShieldAlert className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">AI</span>
+                  <Link to={createPageUrl('CaseManagementFeature')}>
+                    <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm hover:shadow-md hover:scale-105 transition-all cursor-pointer">
+                      <div className="flex items-center justify-between mb-2">
+                        <ShieldAlert className="h-6 w-6 text-[#0066B3]" />
+                        <span className="text-2xl font-bold text-[#0066B3]">SLA</span>
+                      </div>
+                      <p className="text-sm font-semibold text-gray-900">Case Management</p>
+                      <p className="text-xs text-gray-600 mt-1">Auto-escalation</p>
                     </div>
-                    <p className="text-sm font-semibold text-gray-900">Fraud Detection</p>
-                    <p className="text-xs text-gray-600 mt-1">Powered</p>
-                  </div>
+                  </Link>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Fingerprint className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">∞</span>
+                  <Link to={createPageUrl('AuditComplianceFeature')}>
+                    <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm hover:shadow-md hover:scale-105 transition-all cursor-pointer">
+                      <div className="flex items-center justify-between mb-2">
+                        <Fingerprint className="h-6 w-6 text-[#0066B3]" />
+                        <span className="text-2xl font-bold text-[#0066B3]">7yr</span>
+                      </div>
+                      <p className="text-sm font-semibold text-gray-900">Audit Logging</p>
+                      <p className="text-xs text-gray-600 mt-1">Compliance ready</p>
                     </div>
-                    <p className="text-sm font-semibold text-gray-900">DID Management</p>
-                    <p className="text-xs text-gray-600 mt-1">Scalable</p>
-                  </div>
+                  </Link>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <Zap className="h-6 w-6 text-[#0066B3]" />
-                      <span className="text-2xl font-bold text-[#0066B3]">Auto</span>
+                  <Link to={createPageUrl('PolicyBuilderFeature')}>
+                    <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm hover:shadow-md hover:scale-105 transition-all cursor-pointer">
+                      <div className="flex items-center justify-between mb-2">
+                        <Zap className="h-6 w-6 text-[#0066B3]" />
+                        <span className="text-2xl font-bold text-[#0066B3]">A/B</span>
+                      </div>
+                      <p className="text-sm font-semibold text-gray-900">Policy Builder</p>
+                      <p className="text-xs text-gray-600 mt-1">Visual + Testing</p>
                     </div>
-                    <p className="text-sm font-semibold text-gray-900">Workflow Automation</p>
-                    <p className="text-xs text-gray-600 mt-1">No-code builder</p>
-                  </div>
+                  </Link>
 
                   <div className="bg-gradient-to-br from-blue-50 to-white p-4 border-l-4 border-[#0066B3] shadow-sm">
                     <div className="flex items-center justify-between mb-2">
