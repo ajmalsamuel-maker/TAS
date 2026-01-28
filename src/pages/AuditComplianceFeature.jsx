@@ -63,9 +63,9 @@ export default function AuditComplianceFeature() {
             ))}
           </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-8 border-2 border-red-200">
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-2 border-[#0044CC] border-l-4 border-l-[#0044CC]">
             <div className="flex gap-4">
-              <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
+              <AlertTriangle className="h-6 w-6 text-[#0044CC] flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-bold text-gray-900 mb-3">The Audit Burden</h3>
                 <ul className="space-y-2 text-sm text-gray-700">

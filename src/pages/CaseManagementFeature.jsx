@@ -75,7 +75,7 @@ export default function CaseManagementFeature() {
                 </div>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-8 border-2 border-red-200">
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-2 border-[#0044CC] border-l-4 border-l-[#0044CC]">
               <h3 className="text-lg font-bold text-gray-900 mb-6">Real Costs of Manual Case Management</h3>
               <div className="space-y-4 text-sm text-gray-700">
                 <p>📋 Average case handling time: 2-5 days</p>
