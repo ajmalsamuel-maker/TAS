@@ -30,12 +30,17 @@ import UserPolicies from './pages/UserPolicies';
 import UserPortalDocumentation from './pages/UserPortalDocumentation';
 import UserSettings from './pages/UserSettings';
 import UserTeam from './pages/UserTeam';
+import UserTransactionMonitoring from './pages/UserTransactionMonitoring';
 import UserTransactions from './pages/UserTransactions';
 import UserWorkflows from './pages/UserWorkflows';
 import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
-import UserTransactionMonitoring from './pages/UserTransactionMonitoring';
+import CryptoSolution from './pages/CryptoSolution';
+import TradeFinanceSolution from './pages/TradeFinanceSolution';
+import LegalSolution from './pages/LegalSolution';
+import CSPSolution from './pages/CSPSolution';
+import RemittanceSolution from './pages/RemittanceSolution';
 import __Layout from './Layout.jsx';
 
 
@@ -72,12 +77,17 @@ export const PAGES = {
     "UserPortalDocumentation": UserPortalDocumentation,
     "UserSettings": UserSettings,
     "UserTeam": UserTeam,
+    "UserTransactionMonitoring": UserTransactionMonitoring,
     "UserTransactions": UserTransactions,
     "UserWorkflows": UserWorkflows,
     "VLEIManagement": VLEIManagement,
     "Web3Dashboard": Web3Dashboard,
     "Workflows": Workflows,
-    "UserTransactionMonitoring": UserTransactionMonitoring,
+    "CryptoSolution": CryptoSolution,
+    "TradeFinanceSolution": TradeFinanceSolution,
+    "LegalSolution": LegalSolution,
+    "CSPSolution": CSPSolution,
+    "RemittanceSolution": RemittanceSolution,
 }
 
 export const pagesConfig = {
