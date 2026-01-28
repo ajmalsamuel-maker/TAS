@@ -293,6 +293,110 @@ const AdminDocumentation = () => {
           </CardContent>
         </Card>
 
+        {/* TMaaS Administration */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="TMaaS Administration: Managing Transaction Monitoring Rules" section="tmaas_admin" />
+          </CardHeader>
+          {expandedSections.tmaas_admin && (
+            <CardContent className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4">Transaction Monitoring Service Administration</h3>
+                <p className="mb-4 leading-relaxed">
+                  As an administrator, you manage the TMaaS platform configuration for your organization's transaction monitoring. This includes: setting up rules, configuring watchlist thresholds, managing alert routing, and monitoring system health. The TMaaS Admin section in your dashboard provides complete control over transaction screening configuration and real-time monitoring of screening performance.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Rule Management:</strong> Rules define how transactions are evaluated. A typical rule set includes amount thresholds (flag any transaction over $100,000), velocity rules (flag same counterparty if more than 3 transactions in 1 hour), geographic rules (auto-block OFAC-sanctioned countries), and pattern rules (flag transactions that deviate from customer's normal behavior). Rules are organized by category, assigned priority levels (higher priority rules execute first), and can be enabled/disabled individually for A/B testing.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Watchlist Configuration:</strong> TMaaS screens transactions against 300+ sanctions lists (OFAC, UN, EU, DFAT, etc.). You configure which lists are active, how frequently they're updated (daily, hourly), and confidence thresholds for matches. Set a threshold of 70% or higher for OFAC matches (high confidence), but 40% or higher for broader international lists that may have false positives. Update thresholds based on your risk tolerance and false positive analysis.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Alert Configuration:</strong> When rules trigger, alerts are created and routed for action. Configure alert routing: which team gets notified for which alert types, notification channels (in-app, email, SMS, Slack), and SLA deadlines for response. Critical alerts (sanctions hits) route to senior compliance officers with 2-hour SLA. Medium alerts route to standard analysts with 24-hour SLA. Low alerts accumulate in a queue reviewed daily.
+                </p>
+              </div>
+            </CardContent>
+          )}
+        </Card>
+
+        {/* Case Management Administration */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="Case Management Administration: SLA Enforcement & Escalation" section="cases_admin" />
+          </CardHeader>
+          {expandedSections.cases_admin && (
+            <CardContent className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4">Managing Compliance Investigations & SLA Compliance</h3>
+                <p className="mb-4 leading-relaxed">
+                  Case management administration ensures that every alert is investigated and resolved according to regulatory timelines (SLA deadlines). Your role includes: monitoring case queue health, assigning high-risk cases to senior investigators, escalating cases that are approaching SLA deadlines, and generating compliance reports for auditors showing 100% SLA adherence.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Case Queue Monitoring:</strong> The admin dashboard shows real-time case metrics: total cases in queue, average age (days), cases at risk of SLA breach (highlighted in yellow), cases breaching SLA (highlighted in red), and cases resolved this week. Set automated alerts: if any CRITICAL alert isn't reviewed within 1 hour, ping the on-call investigator. If a case exceeds SLA, automatically escalate to the supervisor.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Intelligent Assignment:</strong> Configure case assignment rules based on case type, severity, and investigator expertise. HIGH severity AML cases automatically assign to senior investigators. MEDIUM severity cases distribute evenly across available investigators based on current workload. Use round-robin assignment to prevent bottlenecks where one person handles all cases.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Escalation Workflows:</strong> Define escalation rules: if a case isn't assigned within 1 hour of creation, escalate to the compliance manager. If a case exceeds SLA, escalate to the VP of Compliance. If an investigator requests assistance, escalate to the senior investigator. These automatic escalations prevent cases from falling through cracks and ensure timely resolution.
+                </p>
+              </div>
+            </CardContent>
+          )}
+        </Card>
+
+        {/* Audit Log Administration */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="Audit Log Administration: Retention & Compliance" section="audit_admin" />
+          </CardHeader>
+          {expandedSections.audit_admin && (
+            <CardContent className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4">Managing Audit Trails & Regulatory Compliance Records</h3>
+                <p className="mb-4 leading-relaxed">
+                  Audit logs are the complete record of every action on the platform—essential for regulatory compliance, security forensics, and dispute resolution. As an administrator, you configure audit retention policies, enable/disable logging for specific event types, and manage access to audit logs for auditors and investigators.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Retention Policies:</strong> Configure retention rules by compliance standard: SOX-regulated financial data = 7 years, GDPR personal data = 3 years, PCI DSS payment data = 1 year. The system automatically archives logs older than the active retention period to cold storage (S3) and deletes logs after the compliance retention deadline has passed. Generate reports showing: audit data archived this month, storage space consumed, and projected archive timeline.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Cryptographic Verification:</strong> All audit logs are cryptographically signed using HMAC-SHA256. This prevents tampering—if anyone modifies an audit log entry, the signature becomes invalid. Regularly verify log integrity: the system generates a daily report showing the number of verified logs, any verification failures (indicating tampering), and signature validity status. This is essential for regulatory examinations proving your audit trail hasn't been altered.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Audit Access Control:</strong> Configure who can access audit logs: assign internal audit team members, external auditors, and regulators to audit log viewer role (read-only). Never grant edit/delete permissions on audit logs—they should be immutable. Track who accessed which audit logs and when, creating an audit trail of the audit trail.
+                </p>
+              </div>
+            </CardContent>
+          )}
+        </Card>
+
+        {/* Policy & Workflow Administration */}
+        <Card className="mb-8">
+          <CardHeader>
+            <SectionHeader title="Policy & Workflow Administration: Governance & Optimization" section="policy_admin" />
+          </CardHeader>
+          {expandedSections.policy_admin && (
+            <CardContent className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold mb-4">Managing Custom Verification Workflows & Policy Governance</h3>
+                <p className="mb-4 leading-relaxed">
+                  The Policy Builder allows business users to design workflows, but administrators provide governance: approving new policies before deployment, comparing policy effectiveness, rolling back underperforming policies, and ensuring compliance with corporate standards. Your role ensures that all policies maintain consistent quality and align with regulatory requirements.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Policy Approval Workflow:</strong> When a compliance officer designs a new policy and submits it for deployment, it appears in your policy queue in Draft status. Review the policy: does it include all required verification steps for the customer type? Are SLA targets realistic? Does the policy account for regulatory requirements? Approve the policy to make it available for A/B testing, or request changes.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Performance Monitoring:</strong> Each active policy has a performance dashboard showing: applications processed, approval rate, average processing time, SLA compliance, and cost per application. Compare policies side-by-side: Policy A (Standard Flow) vs. Policy B (Risk-Based Flow). If Policy B has 5% higher approval rate with 10% faster processing and lower costs, recommend rolling it out fully. If Policy A has 2% fewer false positives, keep it for high-risk cases.
+                </p>
+                <p className="mb-4 leading-relaxed">
+                  <strong>Version Control & Rollback:</strong> Every time a policy is modified, the system saves the previous version. If a new version performs worse than expected (approval rate drops 20%, SLA breaches increase), immediately rollback to the previous version. This prevents bad policies from affecting customer experience. All policy changes are logged in the audit trail.
+                </p>
+              </div>
+            </CardContent>
+          )}
+        </Card>
+
         {/* System Architecture */}
         <Card className="mb-8">
           <CardHeader>
