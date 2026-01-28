@@ -97,6 +97,7 @@ import Web3Dashboard from './pages/Web3Dashboard';
 import Web3Solution from './pages/Web3Solution';
 import Workflows from './pages/Workflows';
 import TMaaSFeature from './pages/TMaaSFeature';
+import CaseManagementFeature from './pages/CaseManagementFeature';
 import __Layout from './Layout.jsx';
 
 
@@ -151,6 +152,7 @@ export const PAGES = {
     "Web3Solution": Web3Solution,
     "Workflows": Workflows,
     "TMaaSFeature": TMaaSFeature,
+    "CaseManagementFeature": CaseManagementFeature,
 }
 
 export const pagesConfig = {
