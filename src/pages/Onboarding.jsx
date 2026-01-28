@@ -31,14 +31,15 @@ export default function Onboarding() {
   // Check authentication and load draft on mount
   React.useEffect(() => {
     base44.auth.me()
-      .then(async (currentUser) => {
-        if (currentUser) {
-          setUser(currentUser);
-          // Load existing draft application
-          const draftApps = await base44.entities.OnboardingApplication.filter({ 
-            created_by: currentUser.email,
-            status: 'draft' 
-          });
+    .then(async (currentUser) => {
+    if (currentUser) {
+      setUser(currentUser);
+      // Load existing draft application
+      const allApps = await base44.entities.OnboardingApplication.list();
+      const draftApps = allApps.filter(app => 
+        app.created_by === currentUser.email && 
+        app.status === 'draft'
+      );
           if (draftApps.length > 0) {
             const draft = draftApps[0];
             setFormData({
