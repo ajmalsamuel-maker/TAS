@@ -92,6 +92,7 @@ import Web3Dashboard from './pages/Web3Dashboard';
 import Workflows from './pages/Workflows';
 import Web3Solution from './pages/Web3Solution';
 import UserTMaaS from './pages/UserTMaaS';
+import TMaaSSetup from './pages/TMaaSSetup';
 import __Layout from './Layout.jsx';
 
 
@@ -141,6 +142,7 @@ export const PAGES = {
     "Workflows": Workflows,
     "Web3Solution": Web3Solution,
     "UserTMaaS": UserTMaaS,
+    "TMaaSSetup": TMaaSSetup,
 }
 
 export const pagesConfig = {
