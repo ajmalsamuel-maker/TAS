@@ -89,84 +89,84 @@ export default function OnboardingStep1({ formData, setFormData }) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* KYB Search */}
-      <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
+      <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 sm:p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Building2 className="h-5 w-5 text-blue-600" />
-          <h3 className="font-semibold text-gray-900">Company Verification (KYB)</h3>
+          <Building2 className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+          <h3 className="font-semibold text-sm sm:text-base text-gray-900">Company Verification (KYB)</h3>
         </div>
-        <p className="text-sm text-gray-600 mb-4">Search for your company to auto-fill details</p>
+        <p className="text-xs sm:text-sm text-gray-600 mb-4">Search for your company to auto-fill details</p>
         
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
           <Select value={searchCountry} onValueChange={setSearchCountry}>
-            <SelectTrigger className="w-40">
+            <SelectTrigger className="w-full sm:w-40 text-sm">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="max-h-80">
+            <SelectContent className="max-h-80 text-sm">
               {countries.length > 0 ? countries.map((country) => (
-                <SelectItem key={country.code} value={country.code}>
+                <SelectItem key={country.code} value={country.code} className="text-sm">
                   {country.name} ({country.code})
                 </SelectItem>
               )) : (
-                <SelectItem value="US">USA</SelectItem>
+                <SelectItem value="US" className="text-sm">USA</SelectItem>
               )}
             </SelectContent>
           </Select>
           <Input
-            placeholder="Enter company name..."
+            placeholder="Company name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleKybSearch()}
-            className="flex-1"
+            className="flex-1 text-sm"
           />
-          <Button onClick={handleKybSearch} disabled={searching} className="bg-blue-600">
-            {searching ? <Loader className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+          <Button onClick={handleKybSearch} disabled={searching} className="bg-blue-600 w-full sm:w-auto text-sm">
+            {searching ? <Loader className="h-3 w-3 sm:h-4 sm:w-4 animate-spin" /> : <Search className="h-3 w-3 sm:h-4 sm:w-4" />}
           </Button>
         </div>
         
         {kybVerified && (
           <div className="mt-3 flex items-center gap-2 text-green-600">
-            <CheckCircle2 className="h-4 w-4" />
-            <span className="text-sm font-medium">Company verified via KYB registry</span>
+            <CheckCircle2 className="h-3 w-3 sm:h-4 sm:w-4" />
+            <span className="text-xs sm:text-sm font-medium">Company verified via KYB registry</span>
           </div>
         )}
       </div>
 
       {/* Company Information */}
       <div>
-        <Label htmlFor="legal_name" className="text-base">Legal Name *</Label>
+        <Label htmlFor="legal_name" className="text-sm sm:text-base">Legal Name *</Label>
         <Input
           id="legal_name"
           value={formData.legal_name}
           onChange={(e) => updateField('legal_name', e.target.value)}
           placeholder="Official registered business name"
-          className="mt-2"
+          className="mt-2 text-sm"
           required
         />
       </div>
 
       <div>
-        <Label htmlFor="other_entity_name" className="text-base">Other Entity Name</Label>
+        <Label htmlFor="other_entity_name" className="text-sm sm:text-base">Other Entity Name</Label>
         <Input
           id="other_entity_name"
           value={formData.other_entity_name || ''}
           onChange={(e) => updateField('other_entity_name', e.target.value)}
           placeholder="Trading name or DBA"
-          className="mt-2"
+          className="mt-2 text-sm"
         />
       </div>
 
       <div>
-        <Label htmlFor="entity_category" className="text-base">Entity Category *</Label>
+        <Label htmlFor="entity_category" className="text-sm sm:text-base">Entity Category *</Label>
         <Select 
           value={formData.entity_category}
           onValueChange={(value) => updateField('entity_category', value)}
         >
-          <SelectTrigger className="mt-2">
+          <SelectTrigger className="mt-2 text-sm">
             <SelectValue placeholder="Select entity category" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="text-sm">
             <SelectItem value="financial_institution">Financial Institution</SelectItem>
             <SelectItem value="fintech">Fintech</SelectItem>
             <SelectItem value="law_firm">Law Firm</SelectItem>
@@ -179,36 +179,36 @@ export default function OnboardingStep1({ formData, setFormData }) {
       </div>
 
       <div>
-        <Label htmlFor="website" className="text-base">Website</Label>
+        <Label htmlFor="website" className="text-sm sm:text-base">Website</Label>
         <Input
           id="website"
           type="url"
           value={formData.website || ''}
           onChange={(e) => updateField('website', e.target.value)}
           placeholder="https://example.com"
-          className="mt-2"
+          className="mt-2 text-sm"
         />
       </div>
 
       <div>
-        <Label htmlFor="apply_purpose" className="text-base">Application Purpose *</Label>
+        <Label htmlFor="apply_purpose" className="text-sm sm:text-base">Application Purpose *</Label>
         <Textarea
           id="apply_purpose"
           value={formData.apply_purpose}
           onChange={(e) => updateField('apply_purpose', e.target.value)}
           placeholder="Describe the purpose of this LEI application"
-          className="mt-2 h-24"
+          className="mt-2 h-20 sm:h-24 text-sm"
           required
         />
       </div>
 
       {/* Legal Representative & Contact */}
-      <div className="border-t pt-6">
-        <h3 className="text-lg font-semibold mb-4 text-gray-900">Legal Representative & Contact Person</h3>
+      <div className="border-t pt-4 sm:pt-6">
+        <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-900">Legal Representative & Contact Person</h3>
         
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
           <div>
-            <Label htmlFor="legal_representative_name" className="text-base">Full Name *</Label>
+            <Label htmlFor="legal_representative_name" className="text-sm sm:text-base">Full Name *</Label>
             <Input
               id="legal_representative_name"
               value={formData.legal_representative_name}
