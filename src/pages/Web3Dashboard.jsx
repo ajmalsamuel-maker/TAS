@@ -182,8 +182,8 @@ export default function Web3Dashboard() {
                 </ul>
               </div>
 
-              <div className="bg-white rounded-lg p-3 sm:p-4 border-2 border-green-100">
-                <h4 className="font-bold text-green-900 mb-2 text-sm sm:text-base">Interoperability</h4>
+              <div className="bg-white rounded-lg p-3 sm:p-4 border-2 border-blue-200">
+                <h4 className="font-bold text-[#001A40] mb-2 text-sm sm:text-base">Interoperability</h4>
                 <p className="text-xs sm:text-sm text-gray-600 mb-3">
                   Universal identity across Web2 and Web3
                 </p>
