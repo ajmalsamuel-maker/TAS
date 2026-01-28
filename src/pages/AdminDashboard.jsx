@@ -28,6 +28,7 @@ import Web3Analytics from '../components/admin/Web3Analytics';
 import AdminReports from './AdminReports';
 import OrganizationFilterSelector from '../components/admin/OrganizationFilterSelector';
 import VLEIAdminPanel from '../components/admin/VLEIAdminPanel';
+import TMaaSManagement from '../components/admin/TMaaSManagement';
 
 export default function AdminDashboard() {
   const [user, setUser] = useState(null);
@@ -140,12 +141,15 @@ export default function AdminDashboard() {
         {/* Main Content Tabs */}
         <Tabs defaultValue="organizations" className="space-y-6">
           <div className="bg-white border-2 border-blue-100 rounded-lg p-1">
-            <TabsList className="grid grid-cols-3 lg:grid-cols-7 gap-1 h-auto bg-transparent">
+            <TabsList className="grid grid-cols-3 lg:grid-cols-8 gap-1 h-auto bg-transparent">
               <TabsTrigger value="organizations" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 Organizations
               </TabsTrigger>
               <TabsTrigger value="vlei" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 vLEI
+              </TabsTrigger>
+              <TabsTrigger value="tmaas" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
+                TMaaS
               </TabsTrigger>
               <TabsTrigger value="applications" className="data-[state=active]:bg-[#0044CC] data-[state=active]:text-white text-xs sm:text-sm">
                 Applications
@@ -180,6 +184,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="vlei">
             <VLEIAdminPanel />
+          </TabsContent>
+
+          <TabsContent value="tmaas">
+            <TMaaSManagement />
           </TabsContent>
 
           <TabsContent value="providers">
