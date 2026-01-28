@@ -14,7 +14,7 @@ export default function PolicyBuilderFeature() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white py-16 sm:py-24">
+      <section className="bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 mb-6">
             <Badge className="bg-white/20 text-white border-white/30">Advanced Builder</Badge>
@@ -25,7 +25,7 @@ export default function PolicyBuilderFeature() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to={createPageUrl('UserPolicies')}>
-              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#0044CC] hover:bg-blue-50">
                 Design Your Workflow <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -102,7 +102,7 @@ export default function PolicyBuilderFeature() {
               <em>Imagine designing KYB workflows, AML approval processes, and risk-based rules without writing a single line of code...</em>
             </p>
             <div className="flex justify-center">
-              <div className="inline-block px-6 py-3 bg-gradient-to-r from-[#0066B3] to-[#004C8C] text-white rounded-lg">
+              <div className="inline-block px-6 py-3 bg-gradient-to-r from-[#0044CC] to-[#002D66] text-white rounded-lg">
                 Visual workflow builder comes with pre-built compliance nodes
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function PolicyBuilderFeature() {
               return (
                 <Card key={i} className="bg-white border-2 border-blue-200">
                   <CardContent className="pt-6 text-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004C8C] rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-lg flex items-center justify-center mx-auto mb-3">
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <h4 className="font-bold text-gray-900 mb-1">{item.title}</h4>
@@ -177,9 +177,9 @@ export default function PolicyBuilderFeature() {
             ].map((feature, i) => {
               const Icon = feature.icon;
               return (
-                <Card key={i} className="border-2 border-blue-100 hover:border-[#0066B3] transition-all">
+                <Card key={i} className="border-2 border-blue-100 hover:border-[#0044CC] transition-all">
                   <CardHeader>
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#0066B3] to-[#004C8C] rounded-lg flex items-center justify-center mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#0044CC] to-[#002D66] rounded-lg flex items-center justify-center mb-3">
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <CardTitle className="text-lg">{feature.title}</CardTitle>
@@ -189,7 +189,7 @@ export default function PolicyBuilderFeature() {
                     <ul className="space-y-2">
                       {feature.features.map((f, j) => (
                         <li key={j} className="flex items-center gap-2 text-xs text-gray-700">
-                          <div className="w-1.5 h-1.5 bg-[#0066B3] rounded-full" />
+                          <div className="w-1.5 h-1.5 bg-[#0044CC] rounded-full" />
                           {f}
                         </li>
                       ))}
@@ -233,7 +233,7 @@ export default function PolicyBuilderFeature() {
                   <ol className="space-y-2">
                     {useCase.steps.map((step, j) => (
                       <li key={j} className="flex gap-3 text-sm text-gray-700">
-                        <span className="font-bold text-[#0066B3] flex-shrink-0">{j + 1}</span>
+                        <span className="font-bold text-[#0044CC] flex-shrink-0">{j + 1}</span>
                         <span>{step}</span>
                       </li>
                     ))}
@@ -269,7 +269,7 @@ export default function PolicyBuilderFeature() {
             ].map((benefit, i) => (
               <Card key={i} className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200">
                 <CardContent className="pt-8 text-center">
-                  <p className="text-5xl font-bold text-[#0066B3] mb-2">{benefit.metric}</p>
+                  <p className="text-5xl font-bold text-[#0044CC] mb-2">{benefit.metric}</p>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
                   <p className="text-sm text-gray-600">{benefit.desc}</p>
                 </CardContent>
@@ -280,7 +280,7 @@ export default function PolicyBuilderFeature() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 sm:py-24 bg-gradient-to-br from-[#0066B3] via-[#004C8C] to-[#003366] text-white">
+      <section className="py-16 sm:py-24 bg-gradient-to-br from-[#0044CC] via-[#002D66] to-[#001A40] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Design Your First Compliance Workflow</h2>
           <p className="text-lg text-blue-100 mb-10">
@@ -288,7 +288,7 @@ export default function PolicyBuilderFeature() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to={createPageUrl('UserPolicies')}>
-              <Button size="lg" className="bg-white text-[#0066B3] hover:bg-blue-50 text-lg px-8">
+              <Button size="lg" className="bg-white text-[#0044CC] hover:bg-blue-50 text-lg px-8">
                 Open Builder <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
