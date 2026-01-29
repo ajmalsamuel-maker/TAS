@@ -1,7 +1,20 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Download } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { 
+  Download, Home, Users, Activity, Globe, LogOut, Shield, Menu, X, Settings, 
+  BarChart, Mail, FileText, BookOpen, AlertTriangle, Server, Database, Lock, 
+  Code, GitBranch, Zap, CheckCircle2, Clock, Calendar, ChevronRight, ChevronDown,
+  Search, Filter, Bell, Plus, Minus, Edit, Trash2, Eye, EyeOff, Upload, 
+  Copy, Check, RefreshCw, ArrowLeft, ArrowRight, ExternalLink, Info, HelpCircle,
+  Star, Heart, Bookmark, Share2, Send, Phone, MapPin, Building, CreditCard,
+  Package, ShoppingCart, DollarSign, TrendingUp, TrendingDown, PieChart,
+  BarChart2, LineChart, Briefcase, Award, Target, Flag, Tag, Folder,
+  Image, Video, Music, Mic, Camera, Monitor, Smartphone, Tablet, Cpu,
+  Cloud, CloudOff, Wifi, WifiOff, Bluetooth, Battery, BatteryCharging,
+  Volume2, VolumeX, Play, Pause, SkipBack, SkipForward, Maximize, Minimize
+} from 'lucide-react';
 
 export default function DownloadLogo() {
   const downloadSVG = () => {
@@ -223,6 +236,199 @@ export default function DownloadLogo() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Icon Library */}
+        <Card className="mt-8 border-2 border-purple-100 shadow-lg">
+          <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b-2 border-purple-100">
+            <CardTitle className="flex items-center gap-2">
+              <Package className="h-6 w-6 text-purple-600" />
+              Complete Icon Library (Lucide React)
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <div className="mb-4">
+              <Badge className="bg-purple-100 text-purple-800">Navigation & Actions</Badge>
+            </div>
+            <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-4 mb-6">
+              {[
+                { icon: Home, name: 'Home' },
+                { icon: Users, name: 'Users' },
+                { icon: Activity, name: 'Activity' },
+                { icon: Globe, name: 'Globe' },
+                { icon: LogOut, name: 'LogOut' },
+                { icon: Menu, name: 'Menu' },
+                { icon: X, name: 'X' },
+                { icon: Settings, name: 'Settings' },
+                { icon: Search, name: 'Search' },
+                { icon: Filter, name: 'Filter' },
+                { icon: Bell, name: 'Bell' },
+                { icon: Plus, name: 'Plus' },
+                { icon: Minus, name: 'Minus' },
+                { icon: Edit, name: 'Edit' },
+                { icon: Trash2, name: 'Trash' },
+                { icon: Eye, name: 'Eye' },
+                { icon: EyeOff, name: 'Hidden' },
+                { icon: Upload, name: 'Upload' },
+                { icon: Download, name: 'Download' },
+                { icon: Copy, name: 'Copy' },
+                { icon: Check, name: 'Check' },
+                { icon: RefreshCw, name: 'Refresh' },
+                { icon: ArrowLeft, name: 'Back' },
+                { icon: ArrowRight, name: 'Forward' },
+                { icon: ChevronRight, name: 'Next' },
+                { icon: ChevronDown, name: 'Down' },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1 p-2 hover:bg-purple-50 rounded-lg transition-colors">
+                  <Icon className="h-6 w-6 text-purple-600" />
+                  <span className="text-xs text-gray-600 text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mb-4">
+              <Badge className="bg-blue-100 text-blue-800">Security & Compliance</Badge>
+            </div>
+            <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-4 mb-6">
+              {[
+                { icon: Shield, name: 'Shield' },
+                { icon: Lock, name: 'Lock' },
+                { icon: CheckCircle2, name: 'Verified' },
+                { icon: AlertTriangle, name: 'Alert' },
+                { icon: Server, name: 'Server' },
+                { icon: Database, name: 'Database' },
+                { icon: Code, name: 'Code' },
+                { icon: GitBranch, name: 'Branch' },
+                { icon: Zap, name: 'Zap' },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1 p-2 hover:bg-blue-50 rounded-lg transition-colors">
+                  <Icon className="h-6 w-6 text-blue-600" />
+                  <span className="text-xs text-gray-600 text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mb-4">
+              <Badge className="bg-green-100 text-green-800">Communication & Info</Badge>
+            </div>
+            <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-4 mb-6">
+              {[
+                { icon: Mail, name: 'Mail' },
+                { icon: Phone, name: 'Phone' },
+                { icon: Send, name: 'Send' },
+                { icon: FileText, name: 'File' },
+                { icon: BookOpen, name: 'Book' },
+                { icon: Info, name: 'Info' },
+                { icon: HelpCircle, name: 'Help' },
+                { icon: ExternalLink, name: 'Link' },
+                { icon: Share2, name: 'Share' },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1 p-2 hover:bg-green-50 rounded-lg transition-colors">
+                  <Icon className="h-6 w-6 text-green-600" />
+                  <span className="text-xs text-gray-600 text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mb-4">
+              <Badge className="bg-orange-100 text-orange-800">Business & Analytics</Badge>
+            </div>
+            <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-4 mb-6">
+              {[
+                { icon: BarChart, name: 'BarChart' },
+                { icon: BarChart2, name: 'BarChart2' },
+                { icon: PieChart, name: 'PieChart' },
+                { icon: LineChart, name: 'LineChart' },
+                { icon: TrendingUp, name: 'Up' },
+                { icon: TrendingDown, name: 'Down' },
+                { icon: DollarSign, name: 'Dollar' },
+                { icon: CreditCard, name: 'Card' },
+                { icon: ShoppingCart, name: 'Cart' },
+                { icon: Package, name: 'Package' },
+                { icon: Briefcase, name: 'Briefcase' },
+                { icon: Building, name: 'Building' },
+                { icon: MapPin, name: 'Location' },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1 p-2 hover:bg-orange-50 rounded-lg transition-colors">
+                  <Icon className="h-6 w-6 text-orange-600" />
+                  <span className="text-xs text-gray-600 text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mb-4">
+              <Badge className="bg-pink-100 text-pink-800">Engagement & Media</Badge>
+            </div>
+            <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-4 mb-6">
+              {[
+                { icon: Star, name: 'Star' },
+                { icon: Heart, name: 'Heart' },
+                { icon: Bookmark, name: 'Bookmark' },
+                { icon: Award, name: 'Award' },
+                { icon: Target, name: 'Target' },
+                { icon: Flag, name: 'Flag' },
+                { icon: Tag, name: 'Tag' },
+                { icon: Calendar, name: 'Calendar' },
+                { icon: Clock, name: 'Clock' },
+                { icon: Folder, name: 'Folder' },
+                { icon: Image, name: 'Image' },
+                { icon: Video, name: 'Video' },
+                { icon: Music, name: 'Music' },
+                { icon: Mic, name: 'Mic' },
+                { icon: Camera, name: 'Camera' },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1 p-2 hover:bg-pink-50 rounded-lg transition-colors">
+                  <Icon className="h-6 w-6 text-pink-600" />
+                  <span className="text-xs text-gray-600 text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mb-4">
+              <Badge className="bg-cyan-100 text-cyan-800">Devices & System</Badge>
+            </div>
+            <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-4 mb-6">
+              {[
+                { icon: Monitor, name: 'Monitor' },
+                { icon: Smartphone, name: 'Phone' },
+                { icon: Tablet, name: 'Tablet' },
+                { icon: Cpu, name: 'CPU' },
+                { icon: Cloud, name: 'Cloud' },
+                { icon: CloudOff, name: 'Offline' },
+                { icon: Wifi, name: 'Wifi' },
+                { icon: WifiOff, name: 'No Wifi' },
+                { icon: Bluetooth, name: 'Bluetooth' },
+                { icon: Battery, name: 'Battery' },
+                { icon: BatteryCharging, name: 'Charging' },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1 p-2 hover:bg-cyan-50 rounded-lg transition-colors">
+                  <Icon className="h-6 w-6 text-cyan-600" />
+                  <span className="text-xs text-gray-600 text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mb-4">
+              <Badge className="bg-indigo-100 text-indigo-800">Media Controls</Badge>
+            </div>
+            <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-4">
+              {[
+                { icon: Volume2, name: 'Volume' },
+                { icon: VolumeX, name: 'Mute' },
+                { icon: Play, name: 'Play' },
+                { icon: Pause, name: 'Pause' },
+                { icon: SkipBack, name: 'Previous' },
+                { icon: SkipForward, name: 'Next' },
+                { icon: Maximize, name: 'Maximize' },
+                { icon: Minimize, name: 'Minimize' },
+              ].map(({ icon: Icon, name }) => (
+                <div key={name} className="flex flex-col items-center gap-1 p-2 hover:bg-indigo-50 rounded-lg transition-colors">
+                  <Icon className="h-6 w-6 text-indigo-600" />
+                  <span className="text-xs text-gray-600 text-center">{name}</span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Logo Concept */}
         <Card className="mt-8 border-2 border-blue-100 shadow-lg">

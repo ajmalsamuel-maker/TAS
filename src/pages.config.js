@@ -68,6 +68,7 @@ import IntegrationsSummary from './pages/IntegrationsSummary';
 import LEIVLEIAdmin from './pages/LEIVLEIAdmin';
 import LegalSolution from './pages/LegalSolution';
 import MarketingWebsiteDocumentation from './pages/MarketingWebsiteDocumentation';
+import MigrationGuide from './pages/MigrationGuide';
 import Onboarding from './pages/Onboarding';
 import OrganizationOnboarding from './pages/OrganizationOnboarding';
 import PlatformAdminDashboard from './pages/PlatformAdminDashboard';
@@ -100,7 +101,6 @@ import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Web3Solution from './pages/Web3Solution';
 import Workflows from './pages/Workflows';
-import MigrationGuide from './pages/MigrationGuide';
 import __Layout from './Layout.jsx';
 
 
@@ -126,6 +126,7 @@ export const PAGES = {
     "LEIVLEIAdmin": LEIVLEIAdmin,
     "LegalSolution": LegalSolution,
     "MarketingWebsiteDocumentation": MarketingWebsiteDocumentation,
+    "MigrationGuide": MigrationGuide,
     "Onboarding": Onboarding,
     "OrganizationOnboarding": OrganizationOnboarding,
     "PlatformAdminDashboard": PlatformAdminDashboard,
@@ -158,7 +159,6 @@ export const PAGES = {
     "Web3Dashboard": Web3Dashboard,
     "Web3Solution": Web3Solution,
     "Workflows": Workflows,
-    "MigrationGuide": MigrationGuide,
 }
 
 export const pagesConfig = {
