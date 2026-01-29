@@ -100,6 +100,7 @@ import VLEIManagement from './pages/VLEIManagement';
 import Web3Dashboard from './pages/Web3Dashboard';
 import Web3Solution from './pages/Web3Solution';
 import Workflows from './pages/Workflows';
+import MigrationGuide from './pages/MigrationGuide';
 import __Layout from './Layout.jsx';
 
 
@@ -157,6 +158,7 @@ export const PAGES = {
     "Web3Dashboard": Web3Dashboard,
     "Web3Solution": Web3Solution,
     "Workflows": Workflows,
+    "MigrationGuide": MigrationGuide,
 }
 
 export const pagesConfig = {
