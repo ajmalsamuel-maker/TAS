@@ -1,0 +1,93 @@
+{
+  "name": "ProviderAlert",
+  "type": "object",
+  "properties": {
+    "provider_id": {
+      "type": "string",
+      "description": "Reference to the Provider entity"
+    },
+    "provider_name": {
+      "type": "string",
+      "description": "Provider name for reference"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "vlei",
+        "kyb",
+        "aml",
+        "did",
+        "credential_verification",
+        "web3"
+      ],
+      "description": "Service type affected"
+    },
+    "alert_type": {
+      "type": "string",
+      "enum": [
+        "provider_offline",
+        "provider_degraded",
+        "recovery"
+      ],
+      "description": "Type of alert"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "acknowledged",
+        "resolved"
+      ],
+      "default": "active",
+      "description": "Current alert status"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "high",
+        "critical"
+      ],
+      "description": "Alert severity level"
+    },
+    "details": {
+      "type": "object",
+      "description": "Alert details (status, uptime, failures, etc.)"
+    },
+    "notified_admins": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of admin emails notified"
+    },
+    "alert_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When alert was triggered"
+    },
+    "acknowledged_by": {
+      "type": "string",
+      "description": "Email of admin who acknowledged the alert"
+    },
+    "acknowledged_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When alert was acknowledged"
+    },
+    "resolution_notes": {
+      "type": "string",
+      "description": "Notes about resolution"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When alert was resolved"
+    }
+  },
+  "required": [
+    "provider_id",
+    "provider_name",
+    "service_type",
+    "alert_type"
+  ]
+}

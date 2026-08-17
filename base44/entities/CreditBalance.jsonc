@@ -1,0 +1,58 @@
+{
+  "name": "CreditBalance",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Organization that owns these credits"
+    },
+    "total_credits": {
+      "type": "number",
+      "default": 0,
+      "description": "Total available credits (in currency)"
+    },
+    "used_credits": {
+      "type": "number",
+      "default": 0,
+      "description": "Credits already used"
+    },
+    "available_credits": {
+      "type": "number",
+      "default": 0,
+      "description": "Credits available for use"
+    },
+    "promotional_credits": {
+      "type": "number",
+      "default": 0,
+      "description": "Credits from promotions"
+    },
+    "referral_credits": {
+      "type": "number",
+      "default": 0,
+      "description": "Credits earned from referrals"
+    },
+    "prepaid_credits": {
+      "type": "number",
+      "default": 0,
+      "description": "Credits purchased upfront"
+    },
+    "rollover_credits": {
+      "type": "number",
+      "default": 0,
+      "description": "Credits rolled over from previous period"
+    },
+    "expiry_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When credits expire (null = no expiry)"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last credit transaction date"
+    }
+  },
+  "required": [
+    "organization_id"
+  ]
+}

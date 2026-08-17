@@ -1,0 +1,60 @@
+{
+  "name": "AMLAlert",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization owns this alert"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "workflow_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "sanction_hit",
+        "pep_match",
+        "adverse_media",
+        "transaction_anomaly",
+        "high_risk_jurisdiction"
+      ],
+      "description": "Type of AML alert"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium"
+    },
+    "details": {
+      "type": "object",
+      "description": "Alert details"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "under_review",
+        "resolved",
+        "escalated"
+      ],
+      "default": "new"
+    },
+    "assigned_to": {
+      "type": "string"
+    },
+    "resolution_notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "name": "TransactionAlert",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Organization that received the alert"
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "ID of transaction that triggered alert"
+    },
+    "tmaas_config_id": {
+      "type": "string",
+      "description": "TMaaS configuration that triggered alert"
+    },
+    "alert_type": {
+      "type": "string",
+      "enum": [
+        "aml_match",
+        "fraud_detected",
+        "velocity_exceeded",
+        "amount_threshold",
+        "high_risk_country",
+        "rule_triggered",
+        "anomaly_detected"
+      ],
+      "description": "Type of alert"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium",
+      "description": "Alert severity"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "acknowledged",
+        "under_review",
+        "resolved",
+        "escalated"
+      ],
+      "default": "new",
+      "description": "Alert status"
+    },
+    "details": {
+      "type": "object",
+      "description": "Alert-specific details",
+      "properties": {
+        "matching_entity": {
+          "type": "string"
+        },
+        "matching_score": {
+          "type": "number"
+        },
+        "triggered_rule": {
+          "type": "string"
+        },
+        "risk_factors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "transaction_amount": {
+      "type": "number",
+      "description": "Transaction amount for quick reference"
+    },
+    "transaction_currency": {
+      "type": "string",
+      "description": "Transaction currency"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Email of assigned analyst"
+    },
+    "assigned_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When alert was assigned"
+    },
+    "reviewed_by": {
+      "type": "string",
+      "description": "Email of user who reviewed alert"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When alert was reviewed"
+    },
+    "resolution_action": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "rejected",
+        "escalated_to_case",
+        "blocked",
+        "whitelisted"
+      ],
+      "description": "Action taken on alert"
+    },
+    "resolution_notes": {
+      "type": "string",
+      "description": "Notes on resolution"
+    },
+    "related_case_id": {
+      "type": "string",
+      "description": "Case created from this alert (if escalated)"
+    }
+  },
+  "required": [
+    "organization_id",
+    "transaction_id",
+    "alert_type"
+  ]
+}

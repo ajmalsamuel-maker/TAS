@@ -1,0 +1,43 @@
+{
+  "name": "FieldMapping",
+  "type": "object",
+  "properties": {
+    "integration_key": {
+      "type": "string",
+      "description": "Which accounting integration this mapping is for"
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "invoice",
+        "customer",
+        "product",
+        "payment"
+      ],
+      "description": "Type of entity being mapped"
+    },
+    "app_field": {
+      "type": "string",
+      "description": "Field name in TAS app"
+    },
+    "accounting_field": {
+      "type": "string",
+      "description": "Field name in accounting system"
+    },
+    "transform_function": {
+      "type": "string",
+      "description": "Optional transformation function to apply"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this mapping is active"
+    }
+  },
+  "required": [
+    "integration_key",
+    "entity_type",
+    "app_field",
+    "accounting_field"
+  ]
+}

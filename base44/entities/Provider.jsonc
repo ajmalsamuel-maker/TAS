@@ -1,0 +1,173 @@
+{
+  "name": "Provider",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Provider name (e.g., Certizen, The KYB Company, AML Watcher)"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "vlei",
+        "kyb",
+        "aml",
+        "did",
+        "credential_verification",
+        "web3"
+      ],
+      "description": "Type of service provided"
+    },
+    "endpoint": {
+      "type": "string",
+      "description": "API endpoint URL"
+    },
+    "health_check_endpoint": {
+      "type": "string",
+      "description": "Health check endpoint (e.g., /health, /status)"
+    },
+    "api_key": {
+      "type": "string",
+      "description": "API key for authentication"
+    },
+    "client_id": {
+      "type": "string",
+      "description": "Client ID for OAuth/OAuth2"
+    },
+    "client_secret": {
+      "type": "string",
+      "description": "Client secret for OAuth/OAuth2"
+    },
+    "api_endpoint": {
+      "type": "string",
+      "description": "Custom API endpoint"
+    },
+    "config": {
+      "type": "object",
+      "description": "Additional configuration settings"
+    },
+    "priority_weight": {
+      "type": "number",
+      "default": 10,
+      "description": "Priority weight (1 = highest, lower wins). Used for routing within same country"
+    },
+    "country_routing_rules": {
+      "type": "object",
+      "description": "Geographic routing configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable country-based routing for this provider"
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "description": "ISO country codes this provider serves (empty = global)"
+        },
+        "fallback_enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Can be used as fallback if primary providers fail"
+        },
+        "exclusive_countries": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, only serve specified countries (no global fallback)"
+        }
+      }
+    },
+    "health_check_config": {
+      "type": "object",
+      "description": "Health monitoring configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable health monitoring for this provider"
+        },
+        "check_frequency_minutes": {
+          "type": "number",
+          "default": 5,
+          "description": "How often to check health (minimum 5 minutes)"
+        },
+        "timeout_seconds": {
+          "type": "number",
+          "default": 10,
+          "description": "Health check timeout"
+        },
+        "expected_response_code": {
+          "type": "number",
+          "default": 200,
+          "description": "Expected HTTP status code for health endpoint"
+        },
+        "use_health_endpoint": {
+          "type": "boolean",
+          "default": true,
+          "description": "Try health endpoint first, fallback to API test"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "degraded",
+        "offline"
+      ],
+      "default": "active",
+      "description": "Current operational status (updated by health checks)"
+    },
+    "last_health_check": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last health check"
+    },
+    "uptime_percentage": {
+      "type": "number",
+      "default": 99.9,
+      "description": "Calculated uptime percentage (real-time)"
+    },
+    "avg_response_time_ms": {
+      "type": "number",
+      "description": "Average API response time in milliseconds"
+    },
+    "total_requests": {
+      "type": "number",
+      "default": 0,
+      "description": "Total requests served"
+    },
+    "failed_requests": {
+      "type": "number",
+      "default": 0,
+      "description": "Failed requests count"
+    },
+    "consecutive_failures": {
+      "type": "number",
+      "default": 0,
+      "description": "Consecutive failed health checks (triggers offline)"
+    },
+    "failure_threshold": {
+      "type": "number",
+      "default": 3,
+      "description": "Consecutive failures before marking offline"
+    },
+    "lei": {
+      "type": "string",
+      "description": "Provider's Legal Entity Identifier"
+    },
+    "region": {
+      "type": "string",
+      "description": "Geographic region"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether provider is enabled for use"
+    }
+  },
+  "required": []
+}

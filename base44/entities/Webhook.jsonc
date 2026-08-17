@@ -1,0 +1,67 @@
+{
+  "name": "Webhook",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization owns this webhook"
+    },
+    "url": {
+      "type": "string",
+      "description": "Webhook endpoint URL"
+    },
+    "event_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "workflow_started",
+          "workflow_updated",
+          "workflow_completed",
+          "application_submitted",
+          "application_approved",
+          "application_rejected",
+          "aml_alert"
+        ]
+      },
+      "description": "Events that trigger this webhook"
+    },
+    "partner_name": {
+      "type": "string",
+      "description": "Partner or integration name"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether webhook is active"
+    },
+    "retry_count": {
+      "type": "number",
+      "default": 3,
+      "description": "Number of retry attempts on failure"
+    },
+    "last_triggered": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last webhook trigger"
+    },
+    "last_status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "failed",
+        "pending"
+      ],
+      "default": "pending"
+    },
+    "secret_key": {
+      "type": "string",
+      "description": "HMAC secret for webhook signature verification"
+    }
+  },
+  "required": [
+    "organization_id",
+    "url",
+    "event_types"
+  ]
+}

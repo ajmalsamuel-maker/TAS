@@ -1,0 +1,83 @@
+{
+  "name": "PaymentRecord",
+  "type": "object",
+  "properties": {
+    "invoice_id": {
+      "type": "string",
+      "description": "Reference to Invoice"
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization paid"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Payment amount"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "credit_card",
+        "bank_transfer",
+        "wire",
+        "ach",
+        "check",
+        "paypal"
+      ],
+      "description": "How payment was received"
+    },
+    "payment_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When payment was received"
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "Payment processor transaction ID"
+    },
+    "reference_number": {
+      "type": "string",
+      "description": "Check number, wire ref, etc."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "completed",
+        "failed",
+        "refunded"
+      ],
+      "default": "pending",
+      "description": "Payment status"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes"
+    },
+    "reconciliation_status": {
+      "type": "string",
+      "enum": [
+        "unreconciled",
+        "reconciled",
+        "disputed"
+      ],
+      "default": "unreconciled",
+      "description": "Accounting reconciliation status"
+    },
+    "processor_response": {
+      "type": "object",
+      "description": "Raw response from payment processor"
+    }
+  },
+  "required": [
+    "invoice_id",
+    "organization_id",
+    "amount",
+    "payment_method",
+    "payment_date"
+  ]
+}

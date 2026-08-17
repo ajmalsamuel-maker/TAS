@@ -1,0 +1,48 @@
+{
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to User entity"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "starter",
+        "business",
+        "enterprise"
+      ],
+      "default": "starter"
+    },
+    "monthly_fee": {
+      "type": "number",
+      "description": "Monthly subscription fee in USD"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "suspended",
+        "cancelled"
+      ],
+      "default": "active"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "renewal_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "api_calls_used": {
+      "type": "number",
+      "default": 0
+    },
+    "api_calls_limit": {
+      "type": "number"
+    }
+  },
+  "required": []
+}

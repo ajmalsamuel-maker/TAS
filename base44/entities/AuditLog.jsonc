@@ -1,0 +1,146 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the event occurred"
+    },
+    "event_category": {
+      "type": "string",
+      "enum": [
+        "authentication",
+        "user_management",
+        "data_access",
+        "data_modification",
+        "system_configuration",
+        "billing",
+        "compliance",
+        "security",
+        "workflow",
+        "integration"
+      ],
+      "description": "High-level category of event"
+    },
+    "event_type": {
+      "type": "string",
+      "description": "Specific event type"
+    },
+    "event": {
+      "type": "string",
+      "description": "Human-readable event description"
+    },
+    "actor": {
+      "type": "string",
+      "description": "Who performed the action"
+    },
+    "actor_email": {
+      "type": "string",
+      "description": "Email of the actor"
+    },
+    "actor_lei": {
+      "type": "string",
+      "description": "Actor's LEI (if applicable)"
+    },
+    "actor_vlei_role": {
+      "type": "string",
+      "description": "OOR or ECR role"
+    },
+    "actor_ip": {
+      "type": "string",
+      "description": "IP address of actor"
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "Organization context"
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Type of entity affected"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID of entity affected"
+    },
+    "workflow_id": {
+      "type": "string",
+      "description": "Related workflow ID"
+    },
+    "before_state": {
+      "type": "object",
+      "description": "State before the action"
+    },
+    "after_state": {
+      "type": "object",
+      "description": "State after the action"
+    },
+    "details": {
+      "type": "object",
+      "description": "Event details and metadata"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Cryptographic signature for tamper detection"
+    },
+    "signature_algorithm": {
+      "type": "string",
+      "default": "SHA-256",
+      "description": "Algorithm used for signature"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "critical"
+      ],
+      "default": "info",
+      "description": "Event severity level"
+    },
+    "result": {
+      "type": "string",
+      "enum": [
+        "success",
+        "failure",
+        "partial"
+      ],
+      "default": "success",
+      "description": "Outcome of the action"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Error message if failed"
+    },
+    "compliance_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Compliance standards this log relates to (GDPR, SOX, HIPAA, etc.)"
+    },
+    "retention_period_days": {
+      "type": "number",
+      "default": 2555,
+      "description": "Days to retain before archival (default: 7 years)"
+    },
+    "is_archived": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this log has been archived"
+    },
+    "archived_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When log was archived"
+    },
+    "archive_location": {
+      "type": "string",
+      "description": "Storage location of archived data"
+    }
+  },
+  "required": [
+    "event",
+    "actor"
+  ]
+}

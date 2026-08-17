@@ -1,0 +1,193 @@
+{
+  "name": "Invoice",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization is being billed"
+    },
+    "subscription_id": {
+      "type": "string",
+      "description": "Reference to Subscription"
+    },
+    "invoice_number": {
+      "type": "string",
+      "description": "Unique invoice ID (auto-generated: INV-2026-001)"
+    },
+    "billing_period_start": {
+      "type": "string",
+      "format": "date",
+      "description": "Billing period start date"
+    },
+    "billing_period_end": {
+      "type": "string",
+      "format": "date",
+      "description": "Billing period end date"
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Invoice issue date"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Payment due date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "issued",
+        "sent",
+        "viewed",
+        "paid",
+        "overdue",
+        "cancelled"
+      ],
+      "default": "draft",
+      "description": "Invoice status"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit_price": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "subscription",
+              "usage",
+              "add_on",
+              "adjustment"
+            ]
+          },
+          "metadata": {
+            "type": "object"
+          }
+        }
+      },
+      "description": "Line items on invoice"
+    },
+    "subtotal": {
+      "type": "number",
+      "description": "Sum of all line items"
+    },
+    "tax_rate": {
+      "type": "number",
+      "description": "Tax percentage (0-100)"
+    },
+    "tax_amount": {
+      "type": "number",
+      "description": "Calculated tax amount"
+    },
+    "discount_amount": {
+      "type": "number",
+      "default": 0,
+      "description": "Applied discount"
+    },
+    "total_amount": {
+      "type": "number",
+      "description": "Final invoice total"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "description": "Currency code"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "credit_card",
+        "bank_transfer",
+        "wire",
+        "ach",
+        "check"
+      ],
+      "description": "Payment method"
+    },
+    "paid_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date payment received"
+    },
+    "payment_reference": {
+      "type": "string",
+      "description": "Transaction/check number"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes"
+    },
+    "customer_notes": {
+      "type": "string",
+      "description": "Notes visible to customer"
+    },
+    "accounting_code": {
+      "type": "string",
+      "description": "GL account code for export"
+    },
+    "exported_to": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "enum": [
+              "quickbooks",
+              "xero",
+              "sage",
+              "netsuite",
+              "custom"
+            ]
+          },
+          "exported_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "external_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Accounting system exports"
+    },
+    "pdf_url": {
+      "type": "string",
+      "description": "Generated PDF URL"
+    },
+    "email_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When invoice was emailed to customer"
+    },
+    "viewed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When customer viewed invoice"
+    }
+  },
+  "required": [
+    "organization_id",
+    "subscription_id",
+    "issue_date",
+    "due_date",
+    "items"
+  ]
+}

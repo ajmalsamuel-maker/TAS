@@ -1,0 +1,83 @@
+{
+  "name": "FraudModel",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization owns this model (null for platform-level models)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Model name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Model description"
+    },
+    "model_type": {
+      "type": "string",
+      "enum": [
+        "device_fingerprint",
+        "behavioral_analysis",
+        "anomaly_detection",
+        "velocity_check",
+        "pattern_recognition"
+      ],
+      "description": "Type of fraud model"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether model is active"
+    },
+    "confidence_threshold": {
+      "type": "number",
+      "default": 0.7,
+      "description": "Minimum confidence score to trigger alert (0-1)"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium"
+    },
+    "auto_block": {
+      "type": "boolean",
+      "default": false,
+      "description": "Automatically block transactions"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Features used by the model"
+    },
+    "configuration": {
+      "type": "object",
+      "description": "Model-specific configuration"
+    },
+    "detection_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of fraud cases detected"
+    },
+    "false_positive_rate": {
+      "type": "number",
+      "description": "Calculated false positive rate"
+    },
+    "last_trained": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last training/update timestamp"
+    }
+  },
+  "required": [
+    "name",
+    "model_type"
+  ]
+}

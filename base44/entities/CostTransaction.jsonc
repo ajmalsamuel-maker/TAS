@@ -1,0 +1,102 @@
+{
+  "name": "CostTransaction",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization this transaction is for"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "lei_issuance",
+        "vlei_issuance",
+        "kyb_verification",
+        "aml_screening",
+        "facial_verification"
+      ],
+      "description": "Type of service used"
+    },
+    "provider_name": {
+      "type": "string",
+      "description": "Which provider was used"
+    },
+    "reference_id": {
+      "type": "string",
+      "description": "Reference to application, workflow, or entity record"
+    },
+    "provider_cost": {
+      "type": "number",
+      "description": "Cost TAS paid to provider (in USD)"
+    },
+    "markup_applied": {
+      "type": "number",
+      "description": "Total markup added (in USD)"
+    },
+    "markup_breakdown": {
+      "type": "object",
+      "properties": {
+        "fixed_markup": {
+          "type": "number"
+        },
+        "percentage_markup": {
+          "type": "number"
+        },
+        "markup_rule_id": {
+          "type": "string"
+        },
+        "markup_rule_name": {
+          "type": "string"
+        }
+      },
+      "description": "Detailed breakdown of how markup was calculated"
+    },
+    "total_charged": {
+      "type": "number",
+      "description": "Total amount charged to organization (provider_cost + markup_applied)"
+    },
+    "profit_margin": {
+      "type": "number",
+      "description": "Profit margin percentage"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "description": "Currency code"
+    },
+    "transaction_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "completed",
+        "failed",
+        "refunded"
+      ],
+      "default": "completed",
+      "description": "Status of transaction"
+    },
+    "invoice_id": {
+      "type": "string",
+      "description": "Reference to invoice this transaction was billed on"
+    },
+    "usage_metric_id": {
+      "type": "string",
+      "description": "Reference to UsageMetrics record"
+    },
+    "performed_by": {
+      "type": "string",
+      "description": "Email of user who triggered this service"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional transaction metadata"
+    }
+  },
+  "required": [
+    "organization_id",
+    "service_type",
+    "provider_name",
+    "provider_cost",
+    "total_charged"
+  ]
+}

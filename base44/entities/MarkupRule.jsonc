@@ -1,0 +1,81 @@
+{
+  "name": "MarkupRule",
+  "type": "object",
+  "properties": {
+    "rule_name": {
+      "type": "string",
+      "description": "Name of markup rule for identification"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "lei_issuance",
+        "vlei_issuance",
+        "kyb_verification",
+        "aml_screening",
+        "facial_verification",
+        "all_services"
+      ],
+      "description": "Which service this markup applies to"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "global",
+        "organization"
+      ],
+      "default": "global",
+      "description": "Whether this is a global rule or org-specific"
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "If scope=organization, which org this applies to"
+    },
+    "markup_type": {
+      "type": "string",
+      "enum": [
+        "fixed",
+        "percentage",
+        "both"
+      ],
+      "description": "Type of markup calculation"
+    },
+    "fixed_markup": {
+      "type": "number",
+      "description": "Fixed amount to add (in USD)"
+    },
+    "percentage_markup": {
+      "type": "number",
+      "description": "Percentage to add (0-1000)"
+    },
+    "priority": {
+      "type": "number",
+      "default": 0,
+      "description": "When multiple rules apply, higher priority wins"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this rule is currently active"
+    },
+    "effective_from": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this rule becomes effective"
+    },
+    "effective_until": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this rule expires (null = indefinite)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of why this markup exists"
+    }
+  },
+  "required": [
+    "rule_name",
+    "service_type",
+    "markup_type"
+  ]
+}

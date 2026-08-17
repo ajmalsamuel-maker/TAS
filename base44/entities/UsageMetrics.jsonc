@@ -1,0 +1,88 @@
+{
+  "name": "UsageMetrics",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization"
+    },
+    "subscription_id": {
+      "type": "string",
+      "description": "Which subscription"
+    },
+    "period_start": {
+      "type": "string",
+      "format": "date",
+      "description": "Billing period start"
+    },
+    "period_end": {
+      "type": "string",
+      "format": "date",
+      "description": "Billing period end"
+    },
+    "kyb_verifications": {
+      "type": "number",
+      "default": 0,
+      "description": "Count of KYB verifications"
+    },
+    "aml_screenings": {
+      "type": "number",
+      "default": 0,
+      "description": "Count of AML screenings"
+    },
+    "lei_issuances": {
+      "type": "number",
+      "default": 0,
+      "description": "Count of LEI issuances"
+    },
+    "vlei_credentials": {
+      "type": "number",
+      "default": 0,
+      "description": "Count of vLEI credentials issued"
+    },
+    "api_calls": {
+      "type": "number",
+      "default": 0,
+      "description": "Total API calls"
+    },
+    "custom_metrics": {
+      "type": "object",
+      "description": "Custom tracked metrics (e.g., webhooks, transactions)"
+    },
+    "cost_breakdown": {
+      "type": "object",
+      "description": "Cost per metric type",
+      "properties": {
+        "kyb_cost": {
+          "type": "number"
+        },
+        "aml_cost": {
+          "type": "number"
+        },
+        "lei_cost": {
+          "type": "number"
+        },
+        "vlei_cost": {
+          "type": "number"
+        },
+        "overage_cost": {
+          "type": "number"
+        }
+      }
+    },
+    "total_cost": {
+      "type": "number",
+      "description": "Total usage cost (excludes base subscription)"
+    },
+    "invoice_id": {
+      "type": "string",
+      "description": "Reference to Invoice (once billed)"
+    }
+  },
+  "required": [
+    "organization_id",
+    "subscription_id",
+    "period_start",
+    "period_end"
+  ]
+}

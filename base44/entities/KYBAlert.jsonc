@@ -1,0 +1,99 @@
+{
+  "name": "KYBAlert",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Affected organization"
+    },
+    "monitoring_schedule_id": {
+      "type": "string",
+      "description": "Related monitoring schedule"
+    },
+    "alert_type": {
+      "type": "string",
+      "enum": [
+        "company_status_change",
+        "ownership_change",
+        "address_change",
+        "director_change",
+        "dissolution",
+        "insolvency",
+        "name_change"
+      ],
+      "description": "Type of change detected"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium",
+      "description": "Alert severity"
+    },
+    "entity_name": {
+      "type": "string",
+      "description": "Legal name of affected entity"
+    },
+    "entity_lei": {
+      "type": "string",
+      "description": "LEI of affected entity"
+    },
+    "change_details": {
+      "type": "object",
+      "description": "Details of what changed",
+      "properties": {
+        "field_changed": {
+          "type": "string"
+        },
+        "old_value": {
+          "type": "string"
+        },
+        "new_value": {
+          "type": "string"
+        },
+        "change_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "acknowledged",
+        "under_review",
+        "resolved",
+        "escalated"
+      ],
+      "default": "new",
+      "description": "Alert status"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "User ID of assigned analyst"
+    },
+    "resolution_notes": {
+      "type": "string",
+      "description": "Notes on how alert was resolved"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When alert was resolved"
+    },
+    "raw_data": {
+      "type": "object",
+      "description": "Raw API response data"
+    }
+  },
+  "required": [
+    "organization_id",
+    "alert_type",
+    "entity_name"
+  ]
+}

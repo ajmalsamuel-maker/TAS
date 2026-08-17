@@ -1,0 +1,48 @@
+{
+  "name": "CreditTransaction",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Organization"
+    },
+    "transaction_type": {
+      "type": "string",
+      "enum": [
+        "purchase",
+        "promotional",
+        "referral",
+        "usage",
+        "expiry",
+        "refund",
+        "rollover"
+      ],
+      "description": "Type of credit transaction"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Credit amount (positive = added, negative = used)"
+    },
+    "balance_after": {
+      "type": "number",
+      "description": "Credit balance after transaction"
+    },
+    "description": {
+      "type": "string",
+      "description": "Transaction description"
+    },
+    "reference_id": {
+      "type": "string",
+      "description": "Reference to invoice, referral, or promotion"
+    },
+    "performed_by": {
+      "type": "string",
+      "description": "User who performed transaction"
+    }
+  },
+  "required": [
+    "organization_id",
+    "transaction_type",
+    "amount"
+  ]
+}

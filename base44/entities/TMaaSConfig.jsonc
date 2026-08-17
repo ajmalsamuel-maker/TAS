@@ -1,0 +1,156 @@
+{
+  "name": "TMaaSConfig",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Organization providing transaction monitoring service"
+    },
+    "service_name": {
+      "type": "string",
+      "description": "Name of the TMaaS offering"
+    },
+    "merchant_id": {
+      "type": "string",
+      "description": "Merchant ID (MID) - if monitoring for specific merchant"
+    },
+    "bank_id": {
+      "type": "string",
+      "description": "Bank/Processor ID - if monitoring for financial institution"
+    },
+    "processor_name": {
+      "type": "string",
+      "description": "Name of payment processor"
+    },
+    "webhook_url": {
+      "type": "string",
+      "description": "Endpoint to send transaction data for monitoring"
+    },
+    "callback_url": {
+      "type": "string",
+      "description": "URL to send screening results back to processor"
+    },
+    "api_key": {
+      "type": "string",
+      "description": "API key for authentication"
+    },
+    "monitoring_rules": {
+      "type": "object",
+      "description": "Transaction monitoring rules configuration",
+      "properties": {
+        "aml_screening": {
+          "type": "boolean",
+          "default": true
+        },
+        "fraud_detection": {
+          "type": "boolean",
+          "default": true
+        },
+        "velocity_checks": {
+          "type": "boolean",
+          "default": true
+        },
+        "amount_threshold": {
+          "type": "number",
+          "description": "Auto-flag transactions above this amount"
+        },
+        "high_risk_countries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "auto_approve_threshold": {
+          "type": "number",
+          "description": "Auto-approve below this risk score"
+        },
+        "auto_block_threshold": {
+          "type": "number",
+          "description": "Auto-block above this risk score"
+        }
+      }
+    },
+    "notification_settings": {
+      "type": "object",
+      "properties": {
+        "email_alerts": {
+          "type": "boolean",
+          "default": true
+        },
+        "alert_emails": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "webhook_alerts": {
+          "type": "boolean",
+          "default": false
+        },
+        "alert_on_blocked": {
+          "type": "boolean",
+          "default": true
+        },
+        "alert_on_flagged": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string",
+          "enum": [
+            "per_transaction",
+            "monthly_flat",
+            "tiered"
+          ]
+        },
+        "rate_per_transaction": {
+          "type": "number"
+        },
+        "monthly_fee": {
+          "type": "number"
+        },
+        "included_transactions": {
+          "type": "number"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "testing"
+      ],
+      "default": "testing",
+      "description": "TMaaS configuration status"
+    },
+    "transactions_processed": {
+      "type": "number",
+      "default": 0,
+      "description": "Total transactions processed"
+    },
+    "transactions_blocked": {
+      "type": "number",
+      "default": 0
+    },
+    "transactions_flagged": {
+      "type": "number",
+      "default": 0
+    },
+    "last_transaction_date": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "organization_id",
+    "service_name",
+    "webhook_url",
+    "callback_url"
+  ]
+}

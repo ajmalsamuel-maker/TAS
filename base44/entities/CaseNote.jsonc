@@ -1,0 +1,55 @@
+{
+  "name": "CaseNote",
+  "type": "object",
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "description": "Reference to Case entity"
+    },
+    "author_email": {
+      "type": "string",
+      "description": "Note author email"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Note author name"
+    },
+    "note_type": {
+      "type": "string",
+      "enum": [
+        "comment",
+        "status_change",
+        "assignment",
+        "escalation",
+        "resolution",
+        "system"
+      ],
+      "default": "comment",
+      "description": "Type of note"
+    },
+    "content": {
+      "type": "string",
+      "description": "Note content"
+    },
+    "is_internal": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether note is internal only"
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "File URLs attached to note"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata (old value, new value for changes)"
+    }
+  },
+  "required": [
+    "case_id",
+    "content"
+  ]
+}

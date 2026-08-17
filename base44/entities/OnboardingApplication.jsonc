@@ -1,0 +1,239 @@
+{
+  "name": "OnboardingApplication",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization is onboarding this business"
+    },
+    "legal_name": {
+      "type": "string",
+      "description": "Legal Name of Entity"
+    },
+    "other_entity_name": {
+      "type": "string"
+    },
+    "previous_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "entity_category": {
+      "type": "string",
+      "enum": [
+        "financial_institution",
+        "fintech",
+        "law_firm",
+        "company_secretary",
+        "insurance",
+        "trade",
+        "other"
+      ],
+      "description": "Category of the business BEING onboarded"
+    },
+    "apply_purpose": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "legal_representative_name": {
+      "type": "string"
+    },
+    "legal_representative_mobile": {
+      "type": "string"
+    },
+    "legal_representative_email": {
+      "type": "string"
+    },
+    "contact_person_name": {
+      "type": "string"
+    },
+    "contact_person_tel": {
+      "type": "string"
+    },
+    "contact_person_email": {
+      "type": "string"
+    },
+    "contact_person_department": {
+      "type": "string"
+    },
+    "contact_person_position": {
+      "type": "string"
+    },
+    "legal_address": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        }
+      }
+    },
+    "headquarters_address": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        }
+      }
+    },
+    "entity_legal_form": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$",
+      "description": "ISO 20275 Entity Legal Form (ELF) code (4-digit code per GLEIF standard)"
+    },
+    "registry_country_code": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2 country code where business is registered"
+    },
+    "business_registry_name": {
+      "type": "string",
+      "description": "Official name of the business registry (e.g., Companies House, SIREN, ROC)"
+    },
+    "unique_business_id": {
+      "type": "string"
+    },
+    "business_registration_cert_no": {
+      "type": "string"
+    },
+    "entity_creation_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "number_of_employees": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3_or_more"
+      ]
+    },
+    "business_cert_effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "document_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Uploaded business registration and incorporation documents"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "submitted",
+        "under_review",
+        "approved",
+        "rejected"
+      ],
+      "default": "draft"
+    },
+    "aml_screening_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "completed",
+        "failed"
+      ],
+      "default": "pending",
+      "description": "AML screening process status"
+    },
+    "aml_screening_results": {
+      "type": "object",
+      "description": "Detailed AML screening results",
+      "properties": {
+        "matches": {
+          "type": "array",
+          "description": "High-risk matches found"
+        },
+        "all_matches": {
+          "type": "array",
+          "description": "All matches including low-score ones"
+        },
+        "screening_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "tas_verification_status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "aml_passed",
+        "facial_verified",
+        "complete"
+      ],
+      "default": "submitted",
+      "description": "TAS verification completion status"
+    },
+    "generated_lei": {
+      "type": "string",
+      "description": "Auto-generated LEI upon approval"
+    },
+    "generated_vlei": {
+      "type": "string",
+      "description": "Auto-generated vLEI credential"
+    },
+    "vlei_credential": {
+      "type": "object",
+      "description": "Complete vLEI credential with cryptographic proof"
+    },
+    "lei_issued_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "aml_result": {
+      "type": "object",
+      "description": "AML screening results"
+    },
+    "facial_verification_initiated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "facia_session_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "organization_id",
+    "legal_name",
+    "entity_category",
+    "email"
+  ]
+}

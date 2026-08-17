@@ -1,0 +1,67 @@
+{
+  "name": "SyncLog",
+  "type": "object",
+  "properties": {
+    "integration_key": {
+      "type": "string",
+      "description": "Which accounting integration"
+    },
+    "sync_id": {
+      "type": "string",
+      "description": "Batch sync identifier"
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Type of entity synced"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID of entity in TAS"
+    },
+    "external_id": {
+      "type": "string",
+      "description": "ID in external accounting system"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "success",
+        "failed"
+      ],
+      "default": "pending",
+      "description": "Sync status"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "app_to_accounting",
+        "accounting_to_app",
+        "bidirectional"
+      ],
+      "description": "Direction of sync"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Error details if failed"
+    },
+    "synced_by": {
+      "type": "string",
+      "description": "User who triggered sync"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Data that was synced"
+    },
+    "response": {
+      "type": "object",
+      "description": "Response from accounting system"
+    }
+  },
+  "required": [
+    "integration_key",
+    "entity_type",
+    "entity_id",
+    "status"
+  ]
+}

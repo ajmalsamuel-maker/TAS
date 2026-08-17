@@ -1,0 +1,68 @@
+{
+  "name": "RuleFeedback",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Organization providing feedback"
+    },
+    "rule_id": {
+      "type": "string",
+      "description": "ID of rule being evaluated"
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "Transaction that triggered the rule"
+    },
+    "transaction_alert_id": {
+      "type": "string",
+      "description": "Related alert ID"
+    },
+    "rule_triggered": {
+      "type": "boolean",
+      "description": "Whether rule flagged this transaction"
+    },
+    "actual_outcome": {
+      "type": "string",
+      "enum": [
+        "true_positive",
+        "false_positive",
+        "true_negative",
+        "false_negative"
+      ],
+      "description": "Actual classification after manual review"
+    },
+    "reviewer_email": {
+      "type": "string",
+      "description": "Email of reviewer providing feedback"
+    },
+    "review_notes": {
+      "type": "string",
+      "description": "Reviewer's notes on the decision"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When review was completed"
+    },
+    "confidence_score": {
+      "type": "number",
+      "description": "Reviewer's confidence in the decision (0-100)"
+    },
+    "impact_on_rule": {
+      "type": "string",
+      "enum": [
+        "improve",
+        "degrade",
+        "neutral"
+      ],
+      "description": "Whether this feedback improves or degrades rule"
+    }
+  },
+  "required": [
+    "organization_id",
+    "rule_id",
+    "transaction_id",
+    "actual_outcome"
+  ]
+}

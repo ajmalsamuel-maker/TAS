@@ -1,0 +1,163 @@
+{
+  "name": "Case",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization owns this case"
+    },
+    "case_number": {
+      "type": "string",
+      "description": "Unique case identifier (auto-generated)"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "application_review",
+        "transaction_review",
+        "aml_alert",
+        "fraud_alert",
+        "kyb_verification",
+        "document_verification",
+        "escalation"
+      ],
+      "description": "Type of case"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium",
+      "description": "Case priority level"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "assigned",
+        "in_progress",
+        "pending_info",
+        "escalated",
+        "resolved",
+        "closed"
+      ],
+      "default": "new",
+      "description": "Current case status"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Email of assigned investigator"
+    },
+    "assigned_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Assignment timestamp"
+    },
+    "assigned_by": {
+      "type": "string",
+      "description": "Who assigned the case"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Case title/subject"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed case description"
+    },
+    "related_entity_type": {
+      "type": "string",
+      "enum": [
+        "OnboardingApplication",
+        "Workflow",
+        "AMLAlert",
+        "Transaction",
+        "User"
+      ],
+      "description": "Type of related entity"
+    },
+    "related_entity_id": {
+      "type": "string",
+      "description": "ID of related entity"
+    },
+    "context_data": {
+      "type": "object",
+      "description": "Additional context (application data, transaction details, etc.)"
+    },
+    "sla_due_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "SLA deadline for resolution"
+    },
+    "sla_status": {
+      "type": "string",
+      "enum": [
+        "on_time",
+        "at_risk",
+        "breached"
+      ],
+      "default": "on_time",
+      "description": "SLA compliance status"
+    },
+    "resolution": {
+      "type": "string",
+      "description": "Resolution notes"
+    },
+    "resolution_action": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "rejected",
+        "escalated",
+        "more_info_needed",
+        "no_action"
+      ],
+      "description": "Final action taken"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Resolution timestamp"
+    },
+    "resolved_by": {
+      "type": "string",
+      "description": "Email of resolver"
+    },
+    "time_to_resolve_hours": {
+      "type": "number",
+      "description": "Hours taken to resolve"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags for categorization"
+    },
+    "watchers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Users watching this case"
+    },
+    "escalated_to": {
+      "type": "string",
+      "description": "Escalation target (supervisor email)"
+    },
+    "escalation_reason": {
+      "type": "string",
+      "description": "Reason for escalation"
+    }
+  },
+  "required": [
+    "organization_id",
+    "type",
+    "subject",
+    "priority"
+  ]
+}

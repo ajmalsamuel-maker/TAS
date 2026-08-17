@@ -1,0 +1,68 @@
+{
+  "name": "ProviderServiceCost",
+  "type": "object",
+  "properties": {
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "lei_issuance",
+        "vlei_issuance",
+        "kyb_verification",
+        "aml_screening",
+        "facial_verification"
+      ],
+      "description": "Type of service"
+    },
+    "provider_name": {
+      "type": "string",
+      "description": "Provider name (RapidLEI, GLEIF, AMLWatcher, Facia, etc.)"
+    },
+    "cost_per_unit": {
+      "type": "number",
+      "description": "Cost TAS pays to provider per unit (in USD)"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "description": "Currency code"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this pricing is currently active"
+    },
+    "effective_from": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this pricing becomes effective"
+    },
+    "effective_until": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this pricing expires (null = indefinite)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes about this pricing"
+    },
+    "auto_sync_enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to auto-sync prices from provider API"
+    },
+    "api_endpoint": {
+      "type": "string",
+      "description": "API endpoint for price fetching (if auto-sync enabled)"
+    },
+    "last_synced": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time prices were synced from provider"
+    }
+  },
+  "required": [
+    "service_type",
+    "provider_name",
+    "cost_per_unit"
+  ]
+}

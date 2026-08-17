@@ -1,0 +1,59 @@
+{
+  "name": "Referral",
+  "type": "object",
+  "properties": {
+    "referrer_organization_id": {
+      "type": "string",
+      "description": "Organization that made the referral"
+    },
+    "referrer_email": {
+      "type": "string",
+      "description": "Email of referrer"
+    },
+    "referee_organization_id": {
+      "type": "string",
+      "description": "Referred organization"
+    },
+    "referee_email": {
+      "type": "string",
+      "description": "Email of referred customer"
+    },
+    "referral_code": {
+      "type": "string",
+      "description": "Unique referral code used"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "completed",
+        "credited",
+        "expired"
+      ],
+      "default": "pending",
+      "description": "Referral status"
+    },
+    "credit_amount": {
+      "type": "number",
+      "description": "Credit amount for referrer"
+    },
+    "referee_credit_amount": {
+      "type": "number",
+      "description": "Credit amount for referee"
+    },
+    "credited_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When credits were awarded"
+    },
+    "conversion_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When referee became paying customer"
+    }
+  },
+  "required": [
+    "referrer_organization_id",
+    "referee_email"
+  ]
+}

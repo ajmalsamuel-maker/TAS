@@ -1,0 +1,113 @@
+{
+  "name": "Policy",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization owns this policy"
+    },
+    "name": {
+      "type": "string",
+      "description": "Policy name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Policy description"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "identity_verification",
+        "fraud_detection",
+        "aml_screening",
+        "kyb_verification",
+        "transaction_monitoring",
+        "custom"
+      ],
+      "description": "Policy type/category"
+    },
+    "workflow_definition": {
+      "type": "object",
+      "description": "Visual workflow configuration (nodes, edges, conditions)",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "paused",
+        "archived"
+      ],
+      "default": "draft",
+      "description": "Policy deployment status"
+    },
+    "version": {
+      "type": "number",
+      "default": 1,
+      "description": "Current version number"
+    },
+    "ab_testing_enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether A/B testing is enabled"
+    },
+    "ab_test_config": {
+      "type": "object",
+      "description": "A/B test configuration",
+      "properties": {
+        "variant_a_percentage": {
+          "type": "number",
+          "default": 50
+        },
+        "variant_b_id": {
+          "type": "string"
+        }
+      }
+    },
+    "execution_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of times policy has been executed"
+    },
+    "approval_rate": {
+      "type": "number",
+      "description": "Policy approval rate percentage"
+    },
+    "avg_execution_time_ms": {
+      "type": "number",
+      "description": "Average execution time in milliseconds"
+    },
+    "last_executed": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last execution timestamp"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags for organization"
+    }
+  },
+  "required": [
+    "organization_id",
+    "name",
+    "type",
+    "workflow_definition"
+  ]
+}

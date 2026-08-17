@@ -1,0 +1,27 @@
+{
+  "name": "Translation",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Translation key (e.g., 'kyb_success')"
+    },
+    "language": {
+      "type": "string",
+      "description": "ISO 639-1 language code"
+    },
+    "value": {
+      "type": "string",
+      "description": "Translated text"
+    },
+    "context": {
+      "type": "string",
+      "description": "Context where this translation is used"
+    },
+    "plural_forms": {
+      "type": "object",
+      "description": "Plural variations"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,148 @@
+{
+  "name": "BillingSettings",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "Your company name for invoices"
+    },
+    "company_address": {
+      "type": "string",
+      "description": "Company street address"
+    },
+    "company_city": {
+      "type": "string",
+      "description": "City"
+    },
+    "company_country": {
+      "type": "string",
+      "description": "Country code"
+    },
+    "company_phone": {
+      "type": "string",
+      "description": "Contact phone"
+    },
+    "company_email": {
+      "type": "string",
+      "description": "Billing contact email"
+    },
+    "tax_id": {
+      "type": "string",
+      "description": "Tax ID / EIN"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "Company logo for invoices"
+    },
+    "invoice_template": {
+      "type": "object",
+      "description": "Custom invoice HTML template",
+      "properties": {
+        "header": {
+          "type": "string"
+        },
+        "footer": {
+          "type": "string"
+        },
+        "css": {
+          "type": "string"
+        },
+        "custom_fields": {
+          "type": "object"
+        }
+      }
+    },
+    "invoice_prefix": {
+      "type": "string",
+      "default": "INV",
+      "description": "Invoice number prefix"
+    },
+    "invoice_next_number": {
+      "type": "number",
+      "default": 1,
+      "description": "Next invoice number"
+    },
+    "payment_terms_days": {
+      "type": "number",
+      "default": 30,
+      "description": "Days until due"
+    },
+    "default_tax_rate": {
+      "type": "number",
+      "default": 0,
+      "description": "Default tax percentage"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "description": "Default currency"
+    },
+    "auto_generate_invoices": {
+      "type": "boolean",
+      "default": true,
+      "description": "Auto-generate on billing date"
+    },
+    "auto_send_invoices": {
+      "type": "boolean",
+      "default": true,
+      "description": "Auto-send to customers"
+    },
+    "reminder_days_before_due": {
+      "type": "number",
+      "default": 3,
+      "description": "Days before due to send reminder"
+    },
+    "accounting_integrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string"
+          },
+          "is_connected": {
+            "type": "boolean"
+          },
+          "api_key_set": {
+            "type": "boolean"
+          },
+          "auto_export": {
+            "type": "boolean"
+          },
+          "last_sync": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "description": "Connected accounting systems"
+    },
+    "payment_integrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "stripe",
+              "square",
+              "paypal",
+              "adyen"
+            ]
+          },
+          "is_connected": {
+            "type": "boolean"
+          },
+          "api_key_set": {
+            "type": "boolean"
+          }
+        }
+      },
+      "description": "Payment processor connections"
+    }
+  },
+  "required": [
+    "company_name"
+  ]
+}

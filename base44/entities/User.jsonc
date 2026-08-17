@@ -1,0 +1,59 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Reference to Organization entity. Null for platform admins."
+    },
+    "job_title": {
+      "type": "string",
+      "description": "User's job title"
+    },
+    "department": {
+      "type": "string",
+      "description": "Department within organization"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "org_role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "compliance_officer",
+        "analyst",
+        "investigator",
+        "auditor",
+        "manager",
+        "user"
+      ],
+      "default": "user",
+      "description": "Role within organization"
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Granular permissions: view_cases, manage_cases, view_alerts, manage_alerts, view_policies, manage_policies, view_transactions, manage_transactions, view_team, manage_team, view_reports, manage_billing"
+    },
+    "is_platform_admin": {
+      "type": "boolean",
+      "default": false,
+      "description": "Platform-level admin (manages TAS platform itself)"
+    },
+    "last_login": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last login timestamp"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether user account is active"
+    }
+  },
+  "required": []
+}

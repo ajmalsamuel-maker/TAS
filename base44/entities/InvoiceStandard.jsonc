@@ -1,0 +1,148 @@
+{
+  "name": "InvoiceStandard",
+  "type": "object",
+  "properties": {
+    "country_code": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2 country code"
+    },
+    "country_name": {
+      "type": "string",
+      "description": "Full country name"
+    },
+    "invoicing_standards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Applicable standards (e.g., EN 16931, UBL, PEPPOL, GST, etc.)",
+      "examples": [
+        "EN 16931",
+        "PEPPOL",
+        "UBL 2.1",
+        "GST",
+        "VAT",
+        "ICP"
+      ]
+    },
+    "required_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Mandatory invoice fields for this country"
+    },
+    "tax_identification": {
+      "type": "object",
+      "description": "Tax ID requirements",
+      "properties": {
+        "field_name": {
+          "type": "string",
+          "description": "Local name for tax ID (VAT, TIN, GST, etc.)"
+        },
+        "format_pattern": {
+          "type": "string",
+          "description": "Regex pattern for validation"
+        },
+        "required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "tax_treatment": {
+      "type": "object",
+      "description": "Tax handling rules",
+      "properties": {
+        "vat_applicable": {
+          "type": "boolean"
+        },
+        "default_tax_rate": {
+          "type": "number"
+        },
+        "reverse_charge_applicable": {
+          "type": "boolean"
+        },
+        "tax_label": {
+          "type": "string"
+        }
+      }
+    },
+    "invoice_format": {
+      "type": "object",
+      "description": "Invoice formatting requirements",
+      "properties": {
+        "date_format": {
+          "type": "string",
+          "description": "e.g., DD/MM/YYYY, MM/DD/YYYY"
+        },
+        "decimal_separator": {
+          "type": "string",
+          "enum": [
+            ".",
+            ","
+          ]
+        },
+        "currency_format": {
+          "type": "string",
+          "description": "e.g., USD, EUR, INR"
+        },
+        "language_requirement": {
+          "type": "string",
+          "description": "e.g., EN, DE, FR, PT"
+        }
+      }
+    },
+    "legal_requirements": {
+      "type": "object",
+      "description": "Country-specific legal requirements",
+      "properties": {
+        "invoice_retention_days": {
+          "type": "number"
+        },
+        "sequential_numbering_required": {
+          "type": "boolean"
+        },
+        "signature_required": {
+          "type": "boolean"
+        },
+        "digital_invoice_accepted": {
+          "type": "boolean"
+        },
+        "electronic_submission_required": {
+          "type": "boolean"
+        },
+        "special_notes": {
+          "type": "string"
+        }
+      }
+    },
+    "accounting_system_mappings": {
+      "type": "object",
+      "description": "Field mappings for accounting systems",
+      "properties": {
+        "quickbooks": {
+          "type": "object"
+        },
+        "xero": {
+          "type": "object"
+        },
+        "oracle": {
+          "type": "object"
+        },
+        "sap": {
+          "type": "object"
+        }
+      }
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "country_code",
+    "country_name",
+    "invoicing_standards"
+  ]
+}

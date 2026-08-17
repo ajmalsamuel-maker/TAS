@@ -1,0 +1,203 @@
+{
+  "name": "TransactionRule",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Organization that owns this rule"
+    },
+    "name": {
+      "type": "string",
+      "description": "Rule name (e.g., 'High Volume Alert')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed rule description"
+    },
+    "rule_type": {
+      "type": "string",
+      "enum": [
+        "simple",
+        "complex"
+      ],
+      "default": "simple",
+      "description": "Simple (single condition) or Complex (multiple conditions with AND/OR logic)"
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attribute": {
+            "type": "string",
+            "enum": [
+              "amount",
+              "country",
+              "velocity",
+              "risk_score",
+              "device_fingerprint",
+              "ip_address",
+              "currency",
+              "transaction_type",
+              "counterparty_name"
+            ],
+            "description": "Transaction attribute to evaluate"
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "greater_than",
+              "less_than",
+              "equals",
+              "contains",
+              "in_list",
+              "between",
+              "matches_pattern"
+            ],
+            "description": "Comparison operator"
+          },
+          "value": {
+            "type": [
+              "string",
+              "number",
+              "array"
+            ],
+            "description": "Value to compare against"
+          }
+        },
+        "required": [
+          "attribute",
+          "operator",
+          "value"
+        ]
+      },
+      "description": "List of conditions to evaluate"
+    },
+    "logic": {
+      "type": "string",
+      "enum": [
+        "AND",
+        "OR"
+      ],
+      "default": "AND",
+      "description": "How to combine multiple conditions"
+    },
+    "automated_actions": {
+      "type": "object",
+      "description": "Actions to perform when rule triggers",
+      "properties": {
+        "action_type": {
+          "type": "string",
+          "enum": [
+            "auto_approve",
+            "auto_block",
+            "escalate_to_case",
+            "flag",
+            "require_additional_verification"
+          ],
+          "description": "Primary action to take"
+        },
+        "notify_on_trigger": {
+          "type": "boolean",
+          "default": true,
+          "description": "Send alert/notification when rule triggers"
+        },
+        "escalation_priority": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "description": "Priority for escalation"
+        },
+        "assign_to_group": {
+          "type": "string",
+          "description": "Team/group to assign escalated cases"
+        }
+      }
+    },
+    "data_enrichment": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "geo_ip",
+          "domain_reputation",
+          "device_fingerprint",
+          "velocity_history"
+        ]
+      },
+      "description": "External data sources to enrich transaction with"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this rule is active"
+    },
+    "priority": {
+      "type": "number",
+      "default": 10,
+      "description": "Evaluation order (lower = higher priority)"
+    },
+    "triggered_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Times this rule has been triggered"
+    },
+    "last_triggered": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time rule was triggered"
+    },
+    "performance_metrics": {
+      "type": "object",
+      "description": "Track rule effectiveness",
+      "properties": {
+        "true_positive_count": {
+          "type": "number",
+          "default": 0,
+          "description": "Correctly flagged transactions"
+        },
+        "false_positive_count": {
+          "type": "number",
+          "default": 0,
+          "description": "Incorrectly flagged transactions"
+        },
+        "precision": {
+          "type": "number",
+          "description": "True positives / (True positives + False positives)"
+        },
+        "recall": {
+          "type": "number",
+          "description": "True positives / (True positives + False negatives)"
+        }
+      }
+    },
+    "feedback_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Track feedback to optimize rule"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Email of rule creator"
+    },
+    "last_modified_by": {
+      "type": "string",
+      "description": "Email of last modifier"
+    },
+    "version": {
+      "type": "number",
+      "default": 1,
+      "description": "Rule version for tracking changes"
+    }
+  },
+  "required": [
+    "organization_id",
+    "name",
+    "conditions",
+    "automated_actions"
+  ]
+}

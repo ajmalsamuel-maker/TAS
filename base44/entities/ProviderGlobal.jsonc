@@ -1,0 +1,238 @@
+{
+  "name": "ProviderGlobal",
+  "type": "object",
+  "properties": {
+    "provider_name": {
+      "type": "string",
+      "description": "Name of the service provider"
+    },
+    "provider_category": {
+      "type": "string",
+      "enum": [
+        "KYB_KYC",
+        "AML_SCREENING",
+        "FACIAL_RECOGNITION",
+        "ID_VERIFICATION",
+        "DOCUMENT_VERIFICATION",
+        "LIVENESS_DETECTION",
+        "LEI_ISSUANCE",
+        "VLEI_ISSUANCE",
+        "WEB3_VERIFICATION",
+        "BLOCKCHAIN_COMPLIANCE"
+      ],
+      "description": "Category of service provided"
+    },
+    "service_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Specific services offered (e.g., Company verification, Individual KYC, Watchlist screening, On-chain verification)"
+    },
+    "global_coverage": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of countries/regions covered"
+    },
+    "api_type": {
+      "type": "string",
+      "enum": [
+        "REST",
+        "GraphQL",
+        "SOAP",
+        "Webhook",
+        "SDK",
+        "File_Upload",
+        "Hybrid",
+        "Smart_Contract"
+      ],
+      "description": "Type of API connection"
+    },
+    "authentication_method": {
+      "type": "string",
+      "enum": [
+        "API_Key",
+        "OAuth2",
+        "JWT",
+        "Basic_Auth",
+        "Certificate",
+        "Signature",
+        "Web3_Wallet"
+      ],
+      "description": "Authentication mechanism"
+    },
+    "api_endpoints": {
+      "type": "object",
+      "description": "Key API endpoints",
+      "properties": {
+        "base_url": {
+          "type": "string"
+        },
+        "sandbox_url": {
+          "type": "string"
+        },
+        "documentation_url": {
+          "type": "string"
+        }
+      }
+    },
+    "supported_documents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Supported document types (Passport, Driver License, etc.)"
+    },
+    "data_extraction_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Data fields that can be extracted"
+    },
+    "compliance_standards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Compliance certifications (SOC2, ISO27001, GDPR, GLEIF, etc.)"
+    },
+    "response_time_ms": {
+      "type": "number",
+      "description": "Average API response time in milliseconds"
+    },
+    "accuracy_rate": {
+      "type": "number",
+      "description": "Accuracy percentage (0-100)"
+    },
+    "pricing_model": {
+      "type": "string",
+      "enum": [
+        "Per_Check",
+        "Per_Month",
+        "Per_Verification",
+        "Volume_Based",
+        "Custom",
+        "Gas_Fees",
+        "Subscription"
+      ],
+      "description": "Pricing structure"
+    },
+    "pricing_range": {
+      "type": "object",
+      "description": "Estimated pricing range",
+      "properties": {
+        "min_cost": {
+          "type": "number"
+        },
+        "max_cost": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "default": "USD"
+        }
+      }
+    },
+    "integration_difficulty": {
+      "type": "string",
+      "enum": [
+        "Easy",
+        "Medium",
+        "Complex"
+      ],
+      "description": "Ease of integration"
+    },
+    "setup_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Required credentials/setup (API Key, Client ID, RPC Endpoint, etc.)"
+    },
+    "webhook_support": {
+      "type": "boolean",
+      "description": "Whether provider supports webhooks for async responses"
+    },
+    "batch_processing": {
+      "type": "boolean",
+      "description": "Supports batch verification"
+    },
+    "rate_limiting": {
+      "type": "object",
+      "description": "Rate limit information",
+      "properties": {
+        "requests_per_second": {
+          "type": "number"
+        },
+        "requests_per_day": {
+          "type": "number"
+        }
+      }
+    },
+    "data_retention": {
+      "type": "string",
+      "enum": [
+        "No_Storage",
+        "Temporary_30_days",
+        "Custom",
+        "Indefinite"
+      ],
+      "description": "How provider retains data"
+    },
+    "supported_blockchains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "For Web3 providers: supported blockchains (Ethereum, Polygon, Solana, etc.)"
+    },
+    "is_operational": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this provider is configured in the operational Provider entity"
+    },
+    "operational_provider_id": {
+      "type": "string",
+      "description": "Reference to the operational Provider entity ID if is_operational=true"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether provider is currently available"
+    },
+    "pros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key advantages"
+    },
+    "cons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key limitations"
+    },
+    "best_for": {
+      "type": "string",
+      "description": "Ideal use case/scenario"
+    },
+    "alternative_providers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Similar competing providers"
+    }
+  },
+  "required": [
+    "provider_name",
+    "provider_category",
+    "api_type",
+    "authentication_method"
+  ]
+}

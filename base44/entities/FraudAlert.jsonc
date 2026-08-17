@@ -1,0 +1,104 @@
+{
+  "name": "FraudAlert",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization owns this alert"
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "Related transaction ID"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User involved"
+    },
+    "fraud_type": {
+      "type": "string",
+      "enum": [
+        "account_takeover",
+        "identity_theft",
+        "card_fraud",
+        "synthetic_identity",
+        "velocity_abuse",
+        "device_spoofing",
+        "behavioral_anomaly"
+      ],
+      "description": "Type of fraud detected"
+    },
+    "confidence_score": {
+      "type": "number",
+      "description": "AI confidence score (0-1)"
+    },
+    "risk_score": {
+      "type": "number",
+      "description": "Overall risk score (0-100)"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "investigating",
+        "confirmed",
+        "false_positive",
+        "resolved"
+      ],
+      "default": "new"
+    },
+    "detection_method": {
+      "type": "string",
+      "description": "Model or rule that detected fraud"
+    },
+    "model_id": {
+      "type": "string",
+      "description": "Fraud model that triggered alert"
+    },
+    "indicators": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Fraud indicators found"
+    },
+    "device_data": {
+      "type": "object",
+      "description": "Device fingerprint data"
+    },
+    "behavioral_data": {
+      "type": "object",
+      "description": "Behavioral analysis results"
+    },
+    "case_id": {
+      "type": "string",
+      "description": "Related case if created"
+    },
+    "reviewed_by": {
+      "type": "string",
+      "description": "Investigator email"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolution_notes": {
+      "type": "string",
+      "description": "Investigation notes"
+    }
+  },
+  "required": [
+    "organization_id",
+    "fraud_type",
+    "confidence_score"
+  ]
+}

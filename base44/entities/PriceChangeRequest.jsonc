@@ -1,0 +1,105 @@
+{
+  "name": "PriceChangeRequest",
+  "type": "object",
+  "properties": {
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "lei_issuance",
+        "vlei_issuance",
+        "kyb_verification",
+        "aml_screening",
+        "facial_verification"
+      ],
+      "description": "Type of service with price change"
+    },
+    "provider_name": {
+      "type": "string",
+      "description": "Provider proposing price change"
+    },
+    "current_cost": {
+      "type": "number",
+      "description": "Current cost per unit"
+    },
+    "new_cost": {
+      "type": "number",
+      "description": "Proposed new cost per unit"
+    },
+    "change_percentage": {
+      "type": "number",
+      "description": "Percentage change (positive = increase, negative = decrease)"
+    },
+    "detected_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When price change was detected"
+    },
+    "detected_via": {
+      "type": "string",
+      "enum": [
+        "api_sync",
+        "manual_entry",
+        "provider_notification"
+      ],
+      "description": "How price change was detected"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_review",
+        "approved",
+        "rejected",
+        "expired"
+      ],
+      "default": "pending_review",
+      "description": "Status of price change request"
+    },
+    "reviewed_by": {
+      "type": "string",
+      "description": "Admin who reviewed this request"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this was reviewed"
+    },
+    "rejection_reason": {
+      "type": "string",
+      "description": "Why this price change was rejected"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When new price should take effect (if approved)"
+    },
+    "provider_service_cost_id": {
+      "type": "string",
+      "description": "Reference to ProviderServiceCost record"
+    },
+    "impact_analysis": {
+      "type": "object",
+      "properties": {
+        "affected_organizations": {
+          "type": "number"
+        },
+        "estimated_cost_increase": {
+          "type": "number"
+        },
+        "recommended_markup_adjustment": {
+          "type": "number"
+        }
+      },
+      "description": "Analysis of price change impact"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Internal notes about this price change"
+    }
+  },
+  "required": [
+    "service_type",
+    "provider_name",
+    "current_cost",
+    "new_cost"
+  ]
+}

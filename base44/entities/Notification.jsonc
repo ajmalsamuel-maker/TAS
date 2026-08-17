@@ -1,0 +1,79 @@
+{
+  "name": "Notification",
+  "type": "object",
+  "properties": {
+    "recipient_id": {
+      "type": "string",
+      "description": "User ID receiving the notification"
+    },
+    "recipient_email": {
+      "type": "string",
+      "description": "User email for notifications"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "user_invited",
+        "role_changed",
+        "critical_alert",
+        "workflow_completed",
+        "aml_alert",
+        "application_approved"
+      ],
+      "description": "Type of notification"
+    },
+    "title": {
+      "type": "string",
+      "description": "Notification title"
+    },
+    "message": {
+      "type": "string",
+      "description": "Notification message"
+    },
+    "action_url": {
+      "type": "string",
+      "description": "Optional URL for action button"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "unread",
+        "read",
+        "archived"
+      ],
+      "default": "unread",
+      "description": "Notification status"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "medium",
+      "description": "Notification priority"
+    },
+    "send_email": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to send email notification"
+    },
+    "email_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether email was successfully sent"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional context data"
+    }
+  },
+  "required": [
+    "recipient_id",
+    "type",
+    "title",
+    "message"
+  ]
+}

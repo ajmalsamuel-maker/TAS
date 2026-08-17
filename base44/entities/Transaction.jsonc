@@ -1,0 +1,162 @@
+{
+  "name": "Transaction",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization owns this transaction"
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "Unique transaction identifier"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User who initiated transaction"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Transaction amount"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "description": "Currency code"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "payment",
+        "transfer",
+        "withdrawal",
+        "deposit",
+        "purchase"
+      ],
+      "description": "Transaction type"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "screening",
+        "approved",
+        "flagged",
+        "rejected",
+        "blocked"
+      ],
+      "default": "pending",
+      "description": "Transaction status"
+    },
+    "from_account": {
+      "type": "string",
+      "description": "Source account/wallet"
+    },
+    "to_account": {
+      "type": "string",
+      "description": "Destination account/wallet"
+    },
+    "counterparty_name": {
+      "type": "string",
+      "description": "Name of counterparty"
+    },
+    "counterparty_country": {
+      "type": "string",
+      "description": "Counterparty country code"
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "IP address of transaction origin"
+    },
+    "device_fingerprint": {
+      "type": "string",
+      "description": "Device identifier"
+    },
+    "risk_score": {
+      "type": "number",
+      "description": "Calculated risk score (0-100)"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "description": "Risk classification"
+    },
+    "screening_status": {
+      "type": "string",
+      "enum": [
+        "not_screened",
+        "screening",
+        "completed"
+      ],
+      "default": "not_screened",
+      "description": "Screening progress status"
+    },
+    "screening_results": {
+      "type": "object",
+      "description": "Results from AML/fraud screening",
+      "properties": {
+        "aml_score": {
+          "type": "number"
+        },
+        "fraud_score": {
+          "type": "number"
+        },
+        "aml_matches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fraud_indicators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "triggered_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of rules that flagged this transaction"
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Fraud/AML flags"
+    },
+    "case_id": {
+      "type": "string",
+      "description": "Related case ID if flagged"
+    },
+    "tmaas_config_id": {
+      "type": "string",
+      "description": "TMaaS configuration used for screening"
+    },
+    "reviewed_by": {
+      "type": "string",
+      "description": "Email of reviewer"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional transaction metadata"
+    }
+  },
+  "required": [
+    "organization_id",
+    "amount",
+    "type"
+  ]
+}

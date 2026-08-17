@@ -1,0 +1,122 @@
+{
+  "name": "AuditSettings",
+  "type": "object",
+  "properties": {
+    "retention_policy": {
+      "type": "object",
+      "properties": {
+        "default_retention_days": {
+          "type": "number",
+          "default": 2555,
+          "description": "Default retention period (7 years for financial compliance)"
+        },
+        "category_overrides": {
+          "type": "object",
+          "properties": {
+            "authentication": {
+              "type": "number",
+              "description": "Days to retain authentication logs"
+            },
+            "billing": {
+              "type": "number",
+              "description": "Days to retain billing logs"
+            },
+            "compliance": {
+              "type": "number",
+              "description": "Days to retain compliance logs"
+            },
+            "security": {
+              "type": "number",
+              "description": "Days to retain security logs"
+            }
+          }
+        }
+      }
+    },
+    "archival_settings": {
+      "type": "object",
+      "properties": {
+        "auto_archive_enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically archive old logs"
+        },
+        "archive_storage_type": {
+          "type": "string",
+          "enum": [
+            "database",
+            "cloud_storage",
+            "cold_storage"
+          ],
+          "default": "database",
+          "description": "Where to store archived logs"
+        },
+        "compress_archives": {
+          "type": "boolean",
+          "default": true,
+          "description": "Compress archived logs"
+        }
+      }
+    },
+    "compliance_standards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "standard": {
+            "type": "string",
+            "enum": [
+              "SOX",
+              "GDPR",
+              "HIPAA",
+              "PCI-DSS",
+              "ISO27001",
+              "GLEIF"
+            ],
+            "description": "Compliance standard"
+          },
+          "retention_years": {
+            "type": "number",
+            "description": "Required retention period"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Applicable compliance standards and their requirements"
+    },
+    "logging_levels": {
+      "type": "object",
+      "properties": {
+        "capture_ip_addresses": {
+          "type": "boolean",
+          "default": true
+        },
+        "capture_before_after_states": {
+          "type": "boolean",
+          "default": true
+        },
+        "sign_critical_events": {
+          "type": "boolean",
+          "default": true,
+          "description": "Cryptographically sign security/compliance events"
+        }
+      }
+    },
+    "alert_thresholds": {
+      "type": "object",
+      "properties": {
+        "failed_login_attempts": {
+          "type": "number",
+          "default": 5
+        },
+        "critical_events_per_hour": {
+          "type": "number",
+          "default": 10
+        }
+      }
+    }
+  },
+  "required": []
+}

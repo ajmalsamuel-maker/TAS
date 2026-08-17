@@ -1,0 +1,490 @@
+{
+  "name": "BillingPlan",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Plan name (Starter, Business, Enterprise)"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "starter",
+        "business",
+        "enterprise"
+      ],
+      "description": "Subscription tier"
+    },
+    "base_price": {
+      "type": "number",
+      "description": "Monthly base price in USD"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "description": "Base currency code"
+    },
+    "billing_cycle": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "quarterly",
+        "annual"
+      ],
+      "default": "monthly",
+      "description": "Billing cycle duration"
+    },
+    "api_calls_limit": {
+      "type": "number",
+      "description": "Monthly API call limit"
+    },
+    "overage_price_per_call": {
+      "type": "number",
+      "description": "Price per API call over limit"
+    },
+    "component_pricing": {
+      "type": "object",
+      "description": "Granular pricing for each service component",
+      "properties": {
+        "lei_issuance": {
+          "type": "number",
+          "description": "Price per LEI issuance"
+        },
+        "vlei_issuance": {
+          "type": "number",
+          "description": "Price per vLEI credential issuance"
+        },
+        "kyb_verification": {
+          "type": "number",
+          "description": "Price per KYB verification"
+        },
+        "aml_screening": {
+          "type": "number",
+          "description": "Price per AML screening"
+        },
+        "document_verification": {
+          "type": "number",
+          "description": "Price per document verification"
+        },
+        "api_call": {
+          "type": "number",
+          "description": "Price per API call (if usage-based)"
+        }
+      }
+    },
+    "progressive_pricing": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "component": {
+            "type": "string",
+            "enum": [
+              "vlei_issuance",
+              "lei_issuance",
+              "kyb_verification",
+              "aml_screening"
+            ],
+            "description": "Which component this applies to"
+          },
+          "tiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "from": {
+                  "type": "number",
+                  "description": "Starting quantity"
+                },
+                "to": {
+                  "type": "number",
+                  "description": "Ending quantity (null = unlimited)"
+                },
+                "price": {
+                  "type": "number",
+                  "description": "Price per unit in this tier"
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Progressive pricing tiers (e.g., 1-100 at $50, 101-500 at $40)"
+    },
+    "promotional_pricing": {
+      "type": "object",
+      "description": "Time-limited promotional pricing",
+      "properties": {
+        "is_active": {
+          "type": "boolean",
+          "default": false
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Promotion start date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Promotion end date"
+        },
+        "discount_percentage": {
+          "type": "number",
+          "description": "Discount percentage (0-100)"
+        },
+        "discount_amount": {
+          "type": "number",
+          "description": "Fixed discount amount"
+        },
+        "promo_code": {
+          "type": "string",
+          "description": "Optional promo code"
+        },
+        "description": {
+          "type": "string",
+          "description": "Promotion description"
+        }
+      }
+    },
+    "seasonal_campaigns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Campaign name (Q4 Compliance Rush, Year-End Special)"
+          },
+          "recurring_type": {
+            "type": "string",
+            "enum": [
+              "annual",
+              "quarterly",
+              "monthly"
+            ],
+            "description": "How often campaign recurs"
+          },
+          "start_month": {
+            "type": "number",
+            "description": "Starting month (1-12)"
+          },
+          "end_month": {
+            "type": "number",
+            "description": "Ending month (1-12)"
+          },
+          "discount_percentage": {
+            "type": "number"
+          },
+          "discount_amount": {
+            "type": "number"
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "description": "Recurring seasonal pricing campaigns"
+    },
+    "regional_pricing": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "region_type": {
+            "type": "string",
+            "enum": [
+              "country",
+              "continent"
+            ],
+            "description": "Region granularity"
+          },
+          "region_code": {
+            "type": "string",
+            "description": "ISO country code or continent code"
+          },
+          "region_name": {
+            "type": "string",
+            "description": "Human-readable region name"
+          },
+          "price_multiplier": {
+            "type": "number",
+            "description": "Pricing multiplier (1.0 = base price, 0.8 = 20% off)"
+          },
+          "component_overrides": {
+            "type": "object",
+            "description": "Specific component price overrides for this region"
+          }
+        }
+      },
+      "description": "Region-specific pricing rules"
+    },
+    "organization_discounts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "organization_id": {
+            "type": "string",
+            "description": "Organization receiving discount"
+          },
+          "organization_name": {
+            "type": "string",
+            "description": "Organization name for reference"
+          },
+          "discount_percentage": {
+            "type": "number",
+            "description": "Discount percentage (0-100)"
+          },
+          "discount_amount": {
+            "type": "number",
+            "description": "Fixed discount amount per billing period"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason for discount (e.g., Partner, Early Adopter)"
+          },
+          "valid_from": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "valid_until": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Null = permanent discount"
+          }
+        }
+      },
+      "description": "Individual organization discounts"
+    },
+    "multi_year_discounts": {
+      "type": "object",
+      "description": "Multi-year contract discounts",
+      "properties": {
+        "one_year": {
+          "type": "number",
+          "default": 0,
+          "description": "Annual discount percentage"
+        },
+        "two_year": {
+          "type": "number",
+          "default": 15,
+          "description": "2-year discount percentage"
+        },
+        "three_year": {
+          "type": "number",
+          "default": 25,
+          "description": "3-year discount percentage"
+        }
+      }
+    },
+    "white_label_pricing": {
+      "type": "object",
+      "description": "Wholesale/reseller pricing",
+      "properties": {
+        "is_enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "wholesale_discount": {
+          "type": "number",
+          "description": "Wholesale discount percentage"
+        },
+        "minimum_volume": {
+          "type": "number",
+          "description": "Minimum monthly volume for wholesale pricing"
+        },
+        "component_wholesale_prices": {
+          "type": "object",
+          "description": "Wholesale prices for each component"
+        }
+      }
+    },
+    "referral_program": {
+      "type": "object",
+      "description": "Referral credit configuration",
+      "properties": {
+        "is_enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "credit_amount": {
+          "type": "number",
+          "description": "Credit amount per successful referral"
+        },
+        "referee_credit": {
+          "type": "number",
+          "description": "Credit for the referred customer"
+        },
+        "max_referrals": {
+          "type": "number",
+          "description": "Maximum referrals allowed (null = unlimited)"
+        }
+      }
+    },
+    "multi_currency_support": {
+      "type": "object",
+      "description": "Multi-currency configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "supported_currencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Supported currency codes (USD, EUR, GBP, AED, SGD)"
+        },
+        "auto_conversion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically convert prices based on region"
+        }
+      }
+    },
+    "tax_configuration": {
+      "type": "object",
+      "description": "Tax handling rules",
+      "properties": {
+        "auto_calculate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically calculate VAT/GST"
+        },
+        "tax_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "country_code": {
+                "type": "string"
+              },
+              "tax_type": {
+                "type": "string",
+                "enum": [
+                  "VAT",
+                  "GST",
+                  "Sales Tax",
+                  "None"
+                ]
+              },
+              "tax_rate": {
+                "type": "number",
+                "description": "Tax percentage"
+              },
+              "reverse_charge": {
+                "type": "boolean",
+                "description": "B2B reverse charge applies"
+              }
+            }
+          }
+        }
+      }
+    },
+    "payment_terms": {
+      "type": "object",
+      "description": "Payment terms configuration",
+      "properties": {
+        "default_terms": {
+          "type": "string",
+          "enum": [
+            "immediate",
+            "net_15",
+            "net_30",
+            "net_60",
+            "net_90"
+          ],
+          "default": "immediate"
+        },
+        "enterprise_terms": {
+          "type": "string",
+          "enum": [
+            "net_30",
+            "net_60",
+            "net_90"
+          ],
+          "description": "Payment terms for enterprise customers"
+        }
+      }
+    },
+    "industry_pricing": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "industry_type": {
+            "type": "string",
+            "enum": [
+              "nonprofit",
+              "government",
+              "education",
+              "healthcare",
+              "financial_services"
+            ],
+            "description": "Industry category"
+          },
+          "discount_percentage": {
+            "type": "number",
+            "description": "Industry-specific discount"
+          },
+          "special_terms": {
+            "type": "string",
+            "description": "Special terms or notes"
+          }
+        }
+      },
+      "description": "Industry-specific pricing"
+    },
+    "included_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Features included in plan"
+    },
+    "add_ons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Optional add-ons with pricing"
+    },
+    "discount_percentage": {
+      "type": "number",
+      "description": "Discount percentage (0-100) for annual billing"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether plan is available"
+    },
+    "description": {
+      "type": "string",
+      "description": "Plan description"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Custom fields for flexibility"
+    }
+  },
+  "required": [
+    "name",
+    "tier",
+    "base_price",
+    "api_calls_limit"
+  ]
+}

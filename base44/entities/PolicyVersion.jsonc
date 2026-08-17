@@ -1,0 +1,74 @@
+{
+  "name": "PolicyVersion",
+  "type": "object",
+  "properties": {
+    "policy_id": {
+      "type": "string",
+      "description": "Reference to parent Policy"
+    },
+    "version_number": {
+      "type": "number",
+      "description": "Version identifier"
+    },
+    "workflow_definition": {
+      "type": "object",
+      "description": "Workflow configuration snapshot"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "testing",
+        "deployed",
+        "superseded",
+        "archived"
+      ],
+      "default": "draft"
+    },
+    "is_ab_variant": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is an A/B test variant"
+    },
+    "variant_label": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B"
+      ],
+      "description": "A/B test variant label"
+    },
+    "traffic_percentage": {
+      "type": "number",
+      "default": 100,
+      "description": "Percentage of traffic routed to this version"
+    },
+    "execution_count": {
+      "type": "number",
+      "default": 0
+    },
+    "approval_rate": {
+      "type": "number"
+    },
+    "avg_execution_time_ms": {
+      "type": "number"
+    },
+    "test_results": {
+      "type": "object",
+      "description": "A/B test performance metrics"
+    },
+    "deployed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deployed_by": {
+      "type": "string",
+      "description": "User who deployed this version"
+    }
+  },
+  "required": [
+    "policy_id",
+    "version_number",
+    "workflow_definition"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "name": "InvoiceTemplate",
+  "type": "object",
+  "properties": {
+    "country_code": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2 country code"
+    },
+    "country_name": {
+      "type": "string",
+      "description": "Country name"
+    },
+    "header_logo_position": {
+      "type": "string",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ],
+      "default": "left"
+    },
+    "header_text": {
+      "type": "string",
+      "default": "INVOICE"
+    },
+    "show_seller_info": {
+      "type": "boolean",
+      "default": true
+    },
+    "show_buyer_info": {
+      "type": "boolean",
+      "default": true
+    },
+    "show_line_items": {
+      "type": "boolean",
+      "default": true
+    },
+    "show_tax_breakdown": {
+      "type": "boolean",
+      "default": true
+    },
+    "show_payment_terms": {
+      "type": "boolean",
+      "default": true
+    },
+    "show_notes": {
+      "type": "boolean",
+      "default": true
+    },
+    "footer_text": {
+      "type": "string"
+    },
+    "terms_conditions": {
+      "type": "string"
+    },
+    "css_customizations": {
+      "type": "string"
+    },
+    "currency_position": {
+      "type": "string",
+      "enum": [
+        "left",
+        "right"
+      ],
+      "default": "left"
+    },
+    "date_format": {
+      "type": "string",
+      "default": "DD/MM/YYYY"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "country_code",
+    "country_name"
+  ]
+}

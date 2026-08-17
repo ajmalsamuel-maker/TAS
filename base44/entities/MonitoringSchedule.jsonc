@@ -1,0 +1,100 @@
+{
+  "name": "MonitoringSchedule",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Organization being monitored"
+    },
+    "application_id": {
+      "type": "string",
+      "description": "Related onboarding application"
+    },
+    "monitoring_type": {
+      "type": "string",
+      "enum": [
+        "aml_watchlist",
+        "aml_adverse_media",
+        "kyb_company_changes",
+        "kyb_beneficial_ownership",
+        "combined"
+      ],
+      "description": "Type of monitoring"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "weekly",
+        "monthly",
+        "quarterly"
+      ],
+      "default": "quarterly",
+      "description": "How often to run checks"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "disabled"
+      ],
+      "default": "active",
+      "description": "Monitoring status"
+    },
+    "last_check_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When was the last check performed"
+    },
+    "next_check_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When is the next check scheduled"
+    },
+    "entity_name": {
+      "type": "string",
+      "description": "Legal name of entity being monitored"
+    },
+    "entity_lei": {
+      "type": "string",
+      "description": "LEI of entity being monitored"
+    },
+    "monitoring_config": {
+      "type": "object",
+      "description": "Custom configuration for monitoring",
+      "properties": {
+        "alert_threshold": {
+          "type": "number",
+          "description": "Match score threshold for alerts"
+        },
+        "notify_emails": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Email addresses to notify on alerts"
+        },
+        "auto_escalate": {
+          "type": "boolean",
+          "description": "Automatically escalate high-risk findings"
+        }
+      }
+    },
+    "check_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of checks performed"
+    },
+    "alert_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Total alerts generated"
+    }
+  },
+  "required": [
+    "organization_id",
+    "monitoring_type",
+    "entity_name"
+  ]
+}

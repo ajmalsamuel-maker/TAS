@@ -1,0 +1,80 @@
+{
+  "name": "Workflow",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Which organization owns this workflow"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "kyb",
+        "aml",
+        "vlei_issuance",
+        "did_verification",
+        "credential_verification",
+        "custom"
+      ],
+      "description": "Type of workflow"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "completed",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "provenance_chain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "lei": {
+            "type": "string"
+          },
+          "vlei_role": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "LEI/vLEI trust chain"
+    },
+    "language": {
+      "type": "string",
+      "default": "en"
+    },
+    "provider_name": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "description": "Workflow result data"
+    },
+    "data_passport": {
+      "type": "object",
+      "description": "Cryptographically signed data passport"
+    }
+  },
+  "required": [
+    "organization_id"
+  ]
+}
